@@ -14,9 +14,9 @@ do
             pip install -r $i/pip-requirements.txt
             echo "Found requirements file in $i"
         fi
-        if [ -f $i/requirements.txt ];
+        if [ -f $i/requirements-freeze.txt ];
         then
-            pip install -r $i/requirements.txt
+            pip install -r $i/requirements-freeze.txt
             echo "Found requirements file in $i"
         fi
         if [ -f $i/dev-requirements.txt ];
