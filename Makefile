@@ -14,8 +14,8 @@ copy-src:
 	docker cp catalog-app_ckan_1:$(CKAN_HOME)/src .
 
 dev:
-	docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
-	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+	docker-compose -f docker-compose.dev.yml build
+	docker-compose -f docker-compose.dev.yml up
 
 requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
