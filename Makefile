@@ -30,7 +30,7 @@ test:
 
 update-dependencies:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
-	docker-compose run --rm -T ckan pip install -r requirements-freeze.txt
+	docker-compose run --rm -T ckan pip install -r ${CKAN_HOME}/requirements-freeze.txt
 
 up:
 	docker-compose up

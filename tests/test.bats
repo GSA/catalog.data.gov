@@ -2,7 +2,7 @@
 
 load test_helper
 
-HOST="ckan"
+HOST="ckan-dev"
 PORT="5000"
 CKAN_DB="ckan"
 CKAN_DB_PW="ckan"
