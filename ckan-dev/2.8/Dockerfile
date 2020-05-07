@@ -15,6 +15,6 @@ RUN pip install --no-binary :all: -r https://raw.githubusercontent.com/ckan/ckan
 RUN mkdir $SRC_EXTENSIONS_DIR
 
 COPY setup/start_ckan_development.sh ${APP_DIR}
-
+COPY requirements.txt ${APP_DIR}
 
 CMD ["/srv/app/start_ckan_development.sh"]
