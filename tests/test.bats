@@ -35,7 +35,6 @@ function wait_for_app () {
   while [ $len_api_key -le 10 ]; do
     run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_USER_ADMIN';"
     local api_key=$(echo ${lines[2]} | xargs)
-    API_KEY
 
     echo "# API KEY $api_key" >&3
     len_api_key=${#api_key} 
@@ -97,7 +96,6 @@ function test_create_org () {
     -H "cache-control: no-cache" \
     -d '{"description": "Test organization","title": "Test Organization '$RNDCODE'","approval_status": "approved","state": "active","name": "test-organization-'$RNDCODE'"}'
 
-  # echo "Create ORG $output" >&3
   local success=$(echo $output | grep -o '"success": true')
 
   if [ "$success" = '"success": true' ]; then
@@ -203,7 +201,6 @@ function test_create_dataset () {
           "program_code": "010:001"
         }'
 
-  echo "Create DATASET $output" >&3
   local success=$(echo $output | grep -o '"success": true')
 
   if [ "$success" = '"success": true' ]; then
@@ -262,7 +259,6 @@ function test_read_dataset () {
   
   run curl --silent --fail "$url" --cookie ./cookie-jar
   if [ "$status" -eq 0 ]; then
-    echo "# Successful response from $url" >&3
     return 0;
   else
     echo "# Failed URL $url: $status" >&3
