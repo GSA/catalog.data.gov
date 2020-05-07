@@ -25,7 +25,8 @@ test:
 	docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 update-dependencies:
-	docker-compose run --rm -T ckan pip install -r requirements.txt
+	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
+	docker-compose run --rm -T ckan pip install -r requirements-freeze.txt
 
 up:
 	docker-compose up
