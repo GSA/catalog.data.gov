@@ -6,13 +6,15 @@ jobs:
       - checkout
       - run:
           name: Run tests
+          # in process ibn a diufferent branch
           command: make test
 
   deploy-sandbox:
     docker:
       - image: circleci/python:3.6
     environment:
-      JENKINS_URL: https://ci.sandbox.datagov.us
+      # TODO validate this URL
+      JENKINS_URL: https://ci.sandbox.datagov.us 
     steps:
       - checkout
       - deploy:
