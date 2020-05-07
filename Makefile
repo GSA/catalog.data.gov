@@ -17,6 +17,10 @@ dev:
 	docker-compose -f docker-compose.dev.yml build
 	docker-compose -f docker-compose.dev.yml up
 
+debug:
+	docker-compose -f docker-compose.dev.yml build
+	docker-compose -f docker-compose.dev.yml run --service-ports ckan-dev
+
 requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
 
