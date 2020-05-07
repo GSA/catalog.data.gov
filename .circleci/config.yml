@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: make test
+
+  deploy-sandbox:
+    docker:
+      - image: circleci/python:3.6
+    environment:
+      JENKINS_URL: https://ci.sandbox.datagov.us
+    steps:
+      - checkout
+      - deploy:
+          name: Trigger Jenkins deploy
+          command: bin/jenkins_build deploy-sandbox
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+      - deploy-sandbox:
+         requires:
+           - build
+         filters:
+           branches:
+             only: master
