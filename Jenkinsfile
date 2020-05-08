@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    INVENTORY = 'inventories/sandbox',
+    INVENTORY = 'inventories/sandbox'
     PLAYBOOK = 'catalog.yml'
   }
   stages {
