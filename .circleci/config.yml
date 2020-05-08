@@ -10,7 +10,6 @@ jobs:
     docker:
       - image: circleci/python:3.6
     environment:
-      # TODO validate this URL
       JENKINS_URL: https://ci.sandbox.datagov.us 
     steps:
       - checkout
@@ -23,10 +22,9 @@ workflows:
   commit:
     jobs:
       - build
-      - deploy-sandbox
-         # TODO uncomment below when merged to master 
-         # requires:
-           # - build
-         # filters:
-           # branches:
-             # only: master
+      - deploy-sandbox:
+         requires:
+           - build
+         filters:
+           branches:
+             only: master
