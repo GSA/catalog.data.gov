@@ -23,7 +23,7 @@ workflows:
   commit:
     jobs:
       - build
-      - deploy-sandbox:
+      - deploy-sandbox
          # TODO uncomment below when merged to master 
          # requires:
            # - build
