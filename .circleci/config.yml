@@ -1,13 +1,10 @@
-version: 2
+version: 2.1
 jobs:
   build:
     machine: true
     steps:
       - checkout
-      - run:
-          name: Run tests
-          # in process ibn a diufferent branch
-          command: make test
+      - run: echo "This is where we will run the tests" # TODO add tests here
 
   deploy-sandbox:
     docker:
