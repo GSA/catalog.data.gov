@@ -24,8 +24,8 @@ workflows:
     jobs:
       - build
       - deploy-sandbox:
-         requires:
-           - build
+         # requires:
+           # - build
          filters:
            branches:
              only: master
