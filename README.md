@@ -1,7 +1,5 @@
 # Docker Compose setup for CKAN
 
-![CKAN Versions](|%202.8.4-success.svg)
-
 * [Overview](#overview)
 * [Quick start](#quick-start)
 * [Development mode](#development-mode)
