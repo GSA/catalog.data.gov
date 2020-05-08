@@ -1,7 +1,6 @@
 # Docker Compose setup for CKAN
 
-![CKAN Versions](https://img.shields.io/badge/CKAN%20Versions-2.7.7%20|%202.8.4-success.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/openknowledge/ckan-base.svg)
-
+![CKAN Versions](|%202.8.4-success.svg)
 
 * [Overview](#overview)
 * [Quick start](#quick-start)
@@ -16,13 +15,9 @@
 
 ## Overview
 
-This is a set of Docker images and configuration files to run a CKAN site.
+Local development environment for catalog.data.gov's catalog-next
 
-It is largely based on two existing projects:
-
-* Keitaro's [CKAN Docker images](https://github.com/keitaroinc/docker-ckan)
-* Docker Compose setup currently included in [CKAN core](https://github.com/ckan/ckan)
-
+Based on [Open Knowledge Foundation](https://okfn.org/)'s [docker-ckan](https://github.com/okfn/docker-ckan) project.
 
 It includes the following images, all based on [Alpine Linux](https://alpinelinux.org/):
 
@@ -38,27 +33,33 @@ The site is configured via env vars (the base CKAN image loads [ckanext-envvars]
 
 Copy the included `.env.example` and rename it to `.env` to modify it depending on your own needs.
 
-Using the default values on the `.env.example` file will get you a working CKAN instance. There is a sysadmin user created by default with the values defined in `CKAN_SYSADMIN_NAME` and `CKAN_SYSADMIN_PASSWORD`(`ckan_admin` and `test1234` by default). I shouldn't be telling you this but obviously don't run any public CKAN instance with the default settings.
+Using the default values on the `.env.example` file will get you a working Catalog Next instance. There is a sysadmin user created by default with the values defined in `CKAN_SYSADMIN_NAME` and `CKAN_SYSADMIN_PASSWORD`(`ckan_admin` and `test1234` by default). I shouldn't be telling you this but obviously don't run any public CKAN instance with the default settings.
 
 To build the images:
 
-	docker-compose build
+        `make build`
 
 To start the containers:
+        `make up`
 
-	docker-compose up
+To remove the containers and volumes:
+
+        `make clean`
 
 ## Development mode
 
-To develop local extensions use the `docker-compose.dev.yml` file:
-
 To build the images:
 
-	docker-compose -f docker-compose.dev.yml build
+        `make build`
 
-To start the containers:
+To start the containers in development mode:
 
-	docker-compose -f docker-compose.dev.yml up
+        `make dev`
+
+To remove the containers and volumes:
+
+        `make build dev`
+
 
 See [CKAN Images](#ckan-images) for more details of what happens when using development mode.
 
@@ -170,7 +171,13 @@ ckan
 
 ```
 
+## Tests
 
-## Known Issues
+Run integration / smoke tests using:
 
-* Running the tests: Running the tests for CKAN or an extension inside the container will delete your current database. We need to patch CKAN core in our image to work around that.
+      `make test`
+
+## CI
+
+Continuous Integration via [Circle CI](https://app.circleci.com/pipelines/github/GSA/catalog.data.gov)
+
