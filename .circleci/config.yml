@@ -16,7 +16,7 @@ jobs:
       - checkout
       - deploy:
           name: Trigger Jenkins deploy
-          command: bin/jenkins_build deploy-sandbox
+          command: bin/jenkins_build deploy-ci-catalog-app
 
 workflows:
   version: 2
