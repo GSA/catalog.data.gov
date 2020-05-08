@@ -24,8 +24,9 @@ workflows:
     jobs:
       - build
       - deploy-sandbox:
+         # TODO uncomment below when merged to master 
          # requires:
            # - build
-         filters:
-           branches:
-             only: master
+         # filters:
+           # branches:
+             # only: master
