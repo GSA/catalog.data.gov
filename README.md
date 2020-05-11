@@ -1,3 +1,7 @@
+## On CKAN BASE
+
+This branch ONLY uses ckan-dev:2.8 image from OKF.
+
 ## Note on requirements
 
 We use a `requirements.txt` file to easily install add new requirements for development.
