@@ -1,3 +1,10 @@
+## Note on requirements
+
+We use a `requirements.txt` file to easily install add new requirements for development.
+However, this installation uses the `requirements-freeze.txt` to instantiate the local development environment and the test environment (TODO check if this true).
+
+Use `make requirements` to generate a `requirements-freeze.txt` file that is up to date with `requirements.txt`
+
 # Docker Compose setup for CKAN
 
 * [Overview](#overview)
