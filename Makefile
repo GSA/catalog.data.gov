@@ -28,9 +28,10 @@ test:
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
-update-dependencies:
-	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
-	docker-compose run --rm -T ckan pip install -r ${CKAN_HOME}/requirements-freeze.txt
+# TODO waiting for consensus package management solution
+# update-dependencies:
+#	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
+#	docker-compose run --rm -T ckan pip install -r ${CKAN_HOME}/requirements-freeze.txt
 
 up:
 	docker-compose up
