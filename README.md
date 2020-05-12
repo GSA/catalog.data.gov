@@ -4,7 +4,9 @@ This is a local development harness for data.catalog.gov.
 
 ## Getting started
 
-Run `make build up` to build and run the docker images.
+Run `make build up` to build and run the docker images. 
+
+The `CKAN_SITE_URL`, `CKAN_SYSADMIN_NAME`, and `CKAN_SYSADMIN_PASSWORD` are found in the .env file.
 
 ## Tests
 
