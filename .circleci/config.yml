@@ -5,7 +5,7 @@ jobs:
     steps:
       - checkout
       - run: make build ci
-      - run: make tests
+      - run: make test
 
   deploy-sandbox:
     docker:
