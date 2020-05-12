@@ -4,6 +4,9 @@ CKAN_HOME := /srv/app
 
 all: build
 
+ci:
+	docker-compose up -d
+
 build:
 	docker-compose build
 
