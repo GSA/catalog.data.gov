@@ -4,7 +4,8 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: echo "This is where we will run the tests" # TODO add tests here
+      - run: make build ci
+      - run: make test
 
   deploy-sandbox:
     docker:
