@@ -9,14 +9,21 @@ ARG TZ
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
 
-# Fix shapely lib error to install shapely
+# Fix shapely lib error. Install geos
 # TODO consider moving to Alpine>=3.11 or to Bionic
-RUN echo "@edge http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-RUN echo "@edge-testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-RUN apk update && \
-  apk add --update --force-overwrite "geos-dev@edge-testing" && \
-  rm -rf /var/cache/apk/*
+ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
+RUN tar xf /geos/geos.tar.bz2 -C /geos --strip-components=1
+RUN cd /geos && \
+    ./configure && \
+    make -j 1 && \
+    make install
+
+# RUN echo "@comu http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+
+# RUN apk update && \
+#   apk add --update --force-overwrite "geos@comu" "geos-dev@comu" && \
+#   rm -rf /var/cache/apk/*
 
 COPY requirements.txt ${APP_DIR}
 
