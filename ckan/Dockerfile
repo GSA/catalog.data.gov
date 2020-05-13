@@ -10,8 +10,10 @@ RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
 
 # Fix shapely lib error
-RUN echo "http://mirror.leaseweb.com/alpine/edge/testing" >> /etc/apk/repositories
-RUN apk add --no-cache geos-dev
+RUN apk add --no-cache \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    gdal-dev proj4-dev geos-dev
 
 COPY requirements.txt ${APP_DIR}
 
