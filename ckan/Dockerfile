@@ -9,6 +9,9 @@ ARG TZ
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
 
+# Fix shapely lib error
+RUN apk add --no-cache geos geos-dev
+
 COPY requirements.txt ${APP_DIR}
 
 RUN pip install -r requirements.txt
