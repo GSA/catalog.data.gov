@@ -1,4 +1,6 @@
 FROM openknowledge/ckan-dev:2.8
+# Inherit from here: https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.8/Dockerfile
+# And then from here: https://github.com/okfn/docker-ckan/blob/master/ckan-base/2.8/Dockerfile
 
 MAINTAINER Your Name Here <you@example.com>
 
