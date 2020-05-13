@@ -214,24 +214,6 @@ function test_read_dataset () {
   fi
 }
 
-function test_read_text_in_url() {
-  # GET a URL and check for text
-  
-  local url=$1
-  local text=$2
-
-  run curl --silent --fail --location --request GET $url
-  
-  local success=$(echo $output | grep -o "$text")
-  
-  if [ "$success" = "$text" ]; then
-    return 0;
-  else
-    echo "$text not found at $url : $success : $output" >&3
-    return 1;
-  fi
-}
-
 function test_extension_loaded() {
   # GET a URL and check for test
   
@@ -239,14 +221,20 @@ function test_extension_loaded() {
   local url="http://$HOST:$PORT/api/3/action/status_show"
 
   run curl --silent --fail --location --request GET $url
-
-  local success=$(echo $output | grep -o $extension)
   
-  if [ "$success" = $extension ]; then
-    return 0;
+  if [ "$status" -ne 22 ]; then
+
+    local success=$(echo $output | grep -o $extension)
+    
+    if [ "$success" = $extension ]; then
+      return 0;
+    else
+      echo "Extension $extension is not loaded [$success] : $output" >&3
+      return 1;
+    fi
   else
-    echo "Extension $extension is not loaded [$success] : $output" >&3
-    return 1;
+    echo "FAIL at $url" >&3
+    return 1
   fi
 }
 
