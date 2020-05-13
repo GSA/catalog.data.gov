@@ -10,7 +10,8 @@ RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
 
 # Fix shapely lib error
-RUN apk add --no-cache geos geos-dev
+RUN echo "http://mirror.leaseweb.com/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk add --no-cache geos-dev
 
 COPY requirements.txt ${APP_DIR}
 
