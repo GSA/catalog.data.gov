@@ -1,6 +1,8 @@
-# data.catalog.gov local development environment
+# catalog.data.gov local development environment
 
-This is a local development harness for data.catalog.gov.
+[![CircleCI](https://circleci.com/gh/GSA/catalog.data.gov.svg?style=svg)](https://circleci.com/gh/GSA/catalog.data.gov)
+
+This is a local development harness for catalog.data.gov.
 
 ## Getting started
 
