@@ -7,6 +7,8 @@ all: build
 ci:
 	docker-compose up -d
 	sleep 40
+	docker-compose logs db
+	docker-compose logs ckan
 
 build:
 	docker-compose build
