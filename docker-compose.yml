@@ -9,7 +9,7 @@ services:
         - TZ=${TZ}
     env_file:
       - .env
-    links:
+    depends_on:
       - db
       - solr
       - redis
