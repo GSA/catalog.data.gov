@@ -6,6 +6,8 @@ all: build
 
 ci:
 	docker-compose up -d
+	sleep 40
+	docker-compose exec db psql -U ckan ckan -c "select name, apikey, created from public.user;"
 
 build:
 	docker-compose build
