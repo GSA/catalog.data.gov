@@ -22,7 +22,12 @@ function wait_for_app () {
   export PGPASSWORD=$CKAN_DB_PW
 
   while [ $len_api_key -le 10 ]; do
-    run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_USER_ADMIN';"
+    local sql_command="psql -h $DB_HOST -U ckan $CKAN_DB -c 'select apikey from public.user where name=\"$CKAN_USER_ADMIN\";"
+    
+    run psql -h $DB_HOST -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_USER_ADMIN';"
+    echo "Check API KEY: $sql_command" >&3
+    echo " - $output" >&3
+
     local api_key=$(echo ${lines[2]} | xargs)
 
     echo "# API KEY $api_key" >&3
@@ -33,7 +38,7 @@ function wait_for_app () {
     fi
 
     retries=$(( $retries - 1 ))
-    sleep 10
+    sleep 20
   done
 
   echo "# Waiting for CKAN $HOST:$PORT" >&3
