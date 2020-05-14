@@ -8,6 +8,10 @@ This is a local development harness for catalog.data.gov.
 
 Run `make build up` to build and run the docker images. 
 
+Add `127.0.0.1 ckan` to your `/etc/hosts` file
+
+CKAN will run locally on `ckan:5000`
+
 The `CKAN_SITE_URL`, `CKAN_SYSADMIN_NAME`, and `CKAN_SYSADMIN_PASSWORD` are found in the .env file.
 
 ## Tests
