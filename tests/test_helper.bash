@@ -12,7 +12,7 @@ function wait_for_app () {
     fi
 
     retries=$(( $retries - 1 ))
-    sleep 5
+    sleep 10
   done
 
   echo "# Waiting for ADMIN USER DB" >&3
