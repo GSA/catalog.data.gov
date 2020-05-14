@@ -22,10 +22,10 @@ dev:
 
 debug:
 	docker-compose -f docker-compose.yml build
-	docker-compose -f docker-compose.yml run --service-ports ckan-dev
+	docker-compose -f docker-compose.yml run --service-ports ckan
 
 requirements:
-	docker-compose run --rm -T ckan-dev pip --quiet freeze > requirements-freeze.txt
+	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
 
 test:
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build

@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  ckan-dev:
+  ckan:
     build:
       context: ckan/
       dockerfile: Dockerfile
