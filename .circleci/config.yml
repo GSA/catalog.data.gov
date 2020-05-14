@@ -4,8 +4,7 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: make build ci
-      - run: make test
+      - run: make clean build test
 
   deploy-sandbox:
     docker:
