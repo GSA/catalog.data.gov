@@ -14,18 +14,18 @@ build:
 	docker-compose build
 
 clean:
-	docker-compose -f docker-compose.yml down -v --remove-orphans
+	docker-compose down -v --remove-orphans
 
 copy-src:
 	docker cp catalog-app_ckan_1:$(CKAN_HOME)/src .
 
 dev:
-	docker-compose -f docker-compose.yml build
-	docker-compose -f docker-compose.yml up
+	docker-compose build
+	docker-compose up
 
 debug:
-	docker-compose -f docker-compose.yml build
-	docker-compose -f docker-compose.yml run --service-ports ckan
+	docker-compose build
+	docker-compose run --service-ports ckan
 
 requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
