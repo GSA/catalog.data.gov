@@ -12,7 +12,7 @@ function wait_for_app () {
     fi
 
     retries=$(( $retries - 1 ))
-    sleep 10
+    sleep 15
   done
 
   echo "# Waiting for ADMIN USER DB" >&3
@@ -38,7 +38,7 @@ function wait_for_app () {
     fi
 
     retries=$(( $retries - 1 ))
-    sleep 20
+    sleep 30
   done
 
   echo "# Waiting for CKAN $HOST:$PORT" >&3
