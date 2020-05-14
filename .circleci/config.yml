@@ -11,12 +11,12 @@ jobs:
     docker:
       - image: circleci/python:3.6
     environment:
-      JENKINS_URL: https://ci.sandbox.datagov.us 
+      JENKINS_URL: https://ci.sandbox.datagov.us
     steps:
       - checkout
       - deploy:
           name: Trigger Jenkins deploy
-          command: bin/jenkins_build deploy-ci-catalog-app
+          command: bin/jenkins_build deploy-ci-app-catalog-next
 
 workflows:
   version: 2
