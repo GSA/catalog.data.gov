@@ -19,7 +19,7 @@ function wait_for_app () {
   done
 
   echo "# Waiting for ADMIN USER DB" >&3
-  retries=10
+  retries=15
   local len_api_key=0
   
   export PGPASSWORD=$CKAN_DB_PW
@@ -42,7 +42,7 @@ function wait_for_app () {
 
     retries=$(( $retries - 1 ))
     # incremental wait
-    sleep_time=$(((9 - retries)*10))
+    sleep_time=$(((14 - retries)*10))
     echo "# ... waiting $sleep_time" >&3
     sleep $sleep_time
   done
