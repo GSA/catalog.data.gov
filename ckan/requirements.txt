@@ -1,0 +1,91 @@
+# #####################################
+# FROM https://github.com/ckan/ckan/blob/2.8/requirements.in
+# #####################################
+Babel==2.3.4
+bleach==2.1.3
+click==6.7
+fanstatic==0.12
+Flask==0.12.4
+Flask-Babel==0.11.2
+Jinja2==2.8
+Markdown==2.6.7
+ofs==0.4.2
+Pairtree==0.7.1-T
+passlib==1.6.5
+paste==1.7.5.1
+polib==1.0.7
+psycopg2==2.7.3.2
+python-magic==0.4.15
+pysolr==3.6.0
+Pylons==0.9.7
+python-dateutil>=1.5.0,<2.0.0
+pytz==2016.7
+pyutilib.component.core==4.6.4
+repoze.who-friendlyform==1.0.8
+repoze.who==2.3
+requests==2.11.1
+Routes==1.13
+rq==0.6.0
+simplejson==3.10.0
+sqlalchemy-migrate==0.10.0
+SQLAlchemy==1.1.11
+sqlparse==0.2.2
+tzlocal==1.3
+unicodecsv>=0.9
+vdm==0.14
+WebHelpers==1.3
+WebOb==1.0.8
+WebTest==1.4.3  # need to pin this so that Pylons does not install a newer version that conflicts with WebOb==1.0.8
+zope.interface==4.3.2
+
+# #####################################
+# ckanext-spatial
+# #####################################
+-e git+https://github.com/ckan/ckanext-spatial#egg=ckanext-spatial
+# -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/pip-requirements.txt
+GeoAlchemy>=0.6
+GeoAlchemy2==0.5.0
+Shapely>=1.2.13
+OWSLib==0.8.6
+lxml>=2.3
+argparse
+pyparsing>=2.1.10
+# duplicated requests>=1.1.0
+
+# #####################################
+# ckanext-harvest
+# #####################################
+-e git+https://github.com/ckan/ckanext-harvest.git#egg=ckanext-harvest
+# -r https://raw.githubusercontent.com/ckan/ckanext-harvest/master/pip-requirements.txt
+ckantoolkit==0.0.3
+pika>=1.1.0
+pyOpenSSL==18.0.0
+redis>=3.3.0
+# duplicated requests==2.20.0
+# six>=1.12.0
+
+# #####################################
+# ckanext-datajson
+# #####################################
+-e git+https://github.com/GSA/ckanext-datajson.git#egg=ckanext-datajson
+# -r https://raw.githubusercontent.com/GSA/ckanext-datajson/master/pip-requirements.txt
+pyyaml
+lepl
+jsonschema==2.4.0
+rfc3987
+
+
+# #####################################
+# ckanext-geodatagov
+# #####################################
+-e git+https://github.com/GSA/ckanext-geodatagov.git#egg=ckanext-geodatagov
+#-r https://raw.githubusercontent.com/GSA/ckanext-geodatagov/master/pip-requirements.txt
+-e git+https://github.com/asl2/PyZ3950.git#egg=py3250
+ply==3.4
+boto
+# duplicated lxml
+
+# #####################################
+# ckanext-datagovtheme
+# #####################################
+-e git+https://github.com/GSA/ckanext-datagovtheme.git#egg=ckanext-datagovtheme

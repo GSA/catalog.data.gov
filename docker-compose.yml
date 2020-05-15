@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  ckan-dev:
+  ckan:
     build:
       context: ckan/
       dockerfile: Dockerfile
@@ -9,7 +9,7 @@ services:
         - TZ=${TZ}
     env_file:
       - .env
-    links:
+    depends_on:
       - db
       - solr
       - redis

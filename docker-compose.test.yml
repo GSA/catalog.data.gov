@@ -8,4 +8,4 @@ services:
       context: .
       dockerfile: Dockerfile.test
     depends_on:
-      - ckan-dev
+      - ckan

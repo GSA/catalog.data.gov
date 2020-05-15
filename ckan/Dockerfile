@@ -1,4 +1,6 @@
 FROM openknowledge/ckan-dev:2.8
+# Inherit from here: https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.8/Dockerfile
+# And then from here: https://github.com/okfn/docker-ckan/blob/master/ckan-base/2.8/Dockerfile
 
 MAINTAINER Your Name Here <you@example.com>
 
@@ -7,25 +9,18 @@ ARG TZ
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
 
-# Install any extensions needed by your CKAN instance
-# (Make sure to add the plugins to CKAN__PLUGINS in the .env file)
-# For instance:
-#RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
-#    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
-#    pip install -r https://raw.githubusercontent.com/ckan/ckanext-dcat/v0.0.6/requirements.txt
+# Fix shapely lib error. Install geos
+# TODO consider moving to Alpine>=3.11 or to Bionic
 
-# Clone the extension(s) your are writing for your own project in the `src` folder
-# to get them mounted in this image at runtime
+RUN apk add py-cryptography
 
-# Apply any patches needed to CKAN core or any of the built extensions (not the
-# runtime mounted ones)
-# See https://github.com/okfn/docker-ckan#applying-patches
-COPY patches ${APP_DIR}/patches
+ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
+RUN tar xf /geos/geos.tar.bz2 -C /geos --strip-components=1
+RUN cd /geos && \
+    ./configure && \
+    make -j 1 && \
+    make install
 
-RUN for d in $APP_DIR/patches/*; do \
-        if [ -d $d ]; then \
-            for f in `ls $d/*.patch | sort -g`; do \
-                cd $SRC_DIR/`basename "$d"` && echo "$0: Applying patch $f to $SRC_DIR/`basename $d`"; patch -p1 < "$f" ; \
-            done ; \
-        fi ; \
-    done
+COPY requirements.txt ${APP_DIR}
+
+RUN pip install -r requirements.txt
