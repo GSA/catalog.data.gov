@@ -9,11 +9,21 @@ load test_helper
 }
 
 @test "/user/login is up" {
-  test_view_login
+  test_url user/login
 }
 
 @test "Test admin login" {
-  test_login
+  local url="http://$HOST:$PORT/login_generic?came_from=/user/logged_in"
+  
+  run curl --silent --fail $url \
+    --compressed \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -H 'Origin: http://$HOST:$PORT' \
+    -H 'Referer: http://$HOST:$PORT/user/login' \
+    --data 'login=ckan_admin&password=test1234' \
+    --cookie-jar ./cookie-jar
+  
+  [ "$status" -ne 22 ]
 }
 
 @test "User can create org" {

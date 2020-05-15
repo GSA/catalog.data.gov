@@ -1,0 +1,7 @@
+{
+    "description": "Test organization",
+    "title": "Test Organization $RNDCODE",
+    "approval_status": "approved",
+    "state": "active",
+    "name": "test-organization-$RNDCODE"
+}

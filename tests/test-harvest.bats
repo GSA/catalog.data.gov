@@ -7,8 +7,6 @@ load test_helper
   test_extension_loaded harvest
 }
 
-@test "Harvest page exists" {
-  local url="http://$HOST:$PORT/harvest"
-  run curl --silent --fail $url
-  [ "$status" -ne 22 ]
+@test "Harvest URL exists" {
+  test_url harvest
 }

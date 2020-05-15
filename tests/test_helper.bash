@@ -59,27 +59,10 @@ function wait_for_app () {
   done
 }
 
-function test_view_login () {
-  local url="http://$HOST:$PORT/user/login"
-  # echo "#   - Testing view login at $url" >&3
+function test_url () {
+  local url="http://$HOST:$PORT/$1"
   run curl --silent --fail $url
   [ "$status" -ne 22 ]
-}
-
-function test_login () {
-
-  local url="http://$HOST:$PORT/login_generic?came_from=/user/logged_in"
-  
-  run curl --silent --fail $url \
-    --compressed \
-    -H 'Content-Type: application/x-www-form-urlencoded' \
-    -H 'Origin: http://$HOST:$PORT' \
-    -H 'Referer: http://$HOST:$PORT/user/login' \
-    --data 'login=ckan_admin&password=test1234' \
-    --cookie-jar ./cookie-jar
-  
-  [ "$status" -ne 22 ]
-
 }
 
 function test_create_org () {
@@ -88,13 +71,13 @@ function test_create_org () {
   run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_USER_ADMIN';"
   local api_key=$(echo ${lines[2]} | xargs)  # run fill $output with all response and $line with each response line
   
-  echo "Create ORG API KEY = $api_key" >&3
+  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
   
   run curl -X POST \
     http://$HOST:$PORT/api/3/action/organization_create \
     -H "Authorization: $api_key" \
     -H "cache-control: no-cache" \
-    -d '{"description": "Test organization","title": "Test Organization '$RNDCODE'","approval_status": "approved","state": "active","name": "test-organization-'$RNDCODE'"}'
+    -d "$json_data"
 
   local success=$(echo $output | grep -o '"success": true')
 
@@ -113,93 +96,14 @@ function test_create_dataset () {
   local api_key=$(echo ${lines[2]} | xargs)  # run fill $output with all response and $line with each response line
   echo "Create dataset API KEY = $api_key" >&3
   
+  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-package-create-01.json )
+  
   run curl -X POST \
     http://$HOST:$PORT/api/3/action/package_create \
     -H "Authorization: $api_key" \
     -H 'cache-control: no-cache' \
     -H 'content-type: application/json' \
-    -d '
-        {
-          "license_title": "License not specified",
-          "maintainer": null,
-          "relationships_as_object": [],
-          "private": true,
-          "maintainer_email": null,
-          "num_tags": 1,
-          "metadata_created": "2019-12-18T19:01:33.429530",
-          "metadata_modified": "2019-12-18T19:02:54.841495",
-          "author": null,
-          "author_email": null,
-          "state": "active",
-          "version": null,
-          "type": "dataset",
-          "resources": [
-            {
-              "conformsTo": "",
-              "cache_last_updated": null,
-              "describedByType": "",
-              "labels": {
-                "accessURL new": "Access URL",
-                "conformsTo": "Conforms To",
-                "describedBy": "Described By",
-                "describedByType": "Described By Type",
-                "format": "Media Type",
-                "formatReadable": "Format",
-                "created": "Created"
-              },
-              "webstore_last_updated": null,
-              "clear_upload": "",
-              "state": "active",
-              "size": null,
-              "describedBy": "",
-              "hash": "",
-              "description": "",
-              "format": "CSV",
-              "mimetype_inner": null,
-              "url_type": null,
-              "formatReadable": "",
-              "mimetype": null,
-              "cache_url": null,
-              "name": "Test Resource",
-              "created": "2019-12-18T19:02:54.448285",
-              "url": "https://www.bia.gov/tribal-leaders-csv",
-              "upload": "",
-              "webstore_url": null,
-              "last_modified": null,
-              "position": 0,
-              "resource_type": "file"
-            }
-          ],
-          "num_resources": 1,
-          "tags": [
-            {
-              "vocabulary_id": null,
-              "state": "active",
-              "display_name": "test",
-              "id": "65c76784-e271-4eb1-9778-a738622a1a3d",
-              "name": "test"
-            }
-          ],
-          "tag_string": "test",
-          "groups": [],
-          "license_id": "notspecified",
-          "relationships_as_subject": [],
-          "organization": "test-organization-'$RNDCODE'",
-          "isopen": false,
-          "url": null,
-          "notes": "The description of the test dataset",
-          "owner_org": "test-organization-'$RNDCODE'",
-          "bureau_code": "010:00",
-          "contact_email": "tester@fake.com",
-          "contact_name": "Tester",
-          "modified": "2019-12-18",
-          "public_access_level": "public",
-          "publisher": "Department of the Interior",
-          "unique_id": "doi-'$RNDCODE'",
-          "title": "Test Dataset '$RNDCODE'",
-          "name": "test-dataset-'$RNDCODE'",
-          "program_code": "010:001"
-        }'
+    -d "$json_data"
 
   local success=$(echo $output | grep -o '"success": true')
 
