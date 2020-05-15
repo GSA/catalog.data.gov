@@ -21,12 +21,6 @@ RUN cd /geos && \
     make -j 1 && \
     make install
 
-# RUN echo "@comu http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-
-# RUN apk update && \
-#   apk add --update --force-overwrite "geos@comu" "geos-dev@comu" && \
-#   rm -rf /var/cache/apk/*
-
 COPY requirements.txt ${APP_DIR}
 
 RUN pip install -r requirements.txt
