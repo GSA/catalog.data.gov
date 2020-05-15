@@ -1,0 +1,2 @@
+# ckanapi>=4.3
+requests
