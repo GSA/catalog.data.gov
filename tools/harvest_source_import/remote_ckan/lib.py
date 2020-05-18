@@ -9,7 +9,7 @@ class RemoteCKAN:
     def __init__(self, url, user_agent='Remote CKAN 1.0'):
         self.url = url
         self.user_agent = user_agent
-        logger.info(f'New remote CKAN {url}')
+        logger.debug(f'New remote CKAN {url}')
     
     def set_destination(self, ckan_url, ckan_api_key):
         self.destination_url = ckan_url
@@ -21,7 +21,7 @@ class RemoteCKAN:
                 source_type (str): datajson | csw | None=ALL
                 limit (int): max number of harvest sources to read 
         """  
-        logger.info(f'List harvest sources {start}-{page_size}')
+        logger.debug(f'List harvest sources {start}-{page_size}')
         package_search_url = f'{self.url}/api/3/action/package_search'
         # TODO use harvest_source_list for harvester ext
         
@@ -33,7 +33,7 @@ class RemoteCKAN:
         params = {'start': start, 'rows': page_size, 'q': q}
         headers = {'User-Agent': self.user_agent}
 
-        logger.info(f'request {package_search_url} {params}')
+        logger.debug(f'request {package_search_url} {params}')
         # response = requests.post(package_search_url, json=params, headers=headers)
         response = requests.get(package_search_url, params=params, headers=headers)
         if response.status_code >= 400:
@@ -45,7 +45,7 @@ class RemoteCKAN:
 
         if not data['success']:
             error = 'ERROR searching harvest sources {}'.format(data['error'])
-            print(error)
+            logger.error(error)
             raise ValueError(error)
 
         total = data['result']['count']
@@ -83,7 +83,7 @@ class RemoteCKAN:
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
         headers = self.get_request_headers(include_api_key=True)
 
-        logger.info(f'POST {package_create_url} headers:{headers} data:{ckan_package}')
+        logger.info('Creating source URL {}'.format(ckan_package['title']))
 
         try:
             req = requests.post(package_create_url, data=ckan_package, headers=headers)
@@ -110,5 +110,5 @@ class RemoteCKAN:
             error = 'API response failed: {}'.format(json_content.get('error', None))
             logger.error(error)
 
-        logger.info(f'Harvest source created: {json_content}')
+        logger.info('Harvest source created OK {}'.format(ckan_package['title']))
         return json_content
