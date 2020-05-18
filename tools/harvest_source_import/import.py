@@ -12,6 +12,7 @@ parser.add_argument("--user_agent", type=str, default='CKAN-harvest-source-impor
 parser.add_argument("--destination_url", type=str, default='http://ckan:5000', help="CKAN destination instance URL")
 parser.add_argument("--destination_api_key", type=str, help="CKAN destination instance API KEY")
 parser.add_argument("--destination_owner_org", type=str, help="CKAN destination Organization for all Harvest sources")
+parser.add_argument("--limit", type=int, default=0, help="Limit the amount of Harvest sources to import")
 
 args = parser.parse_args()
 
@@ -24,6 +25,12 @@ failed = 0
 already_exists = 0
 
 for hs in ckan.list_harvest_sources(source_type=args.source_type):
+
+    if args.limit > 0:
+        total = ok + already_exists + failed
+        if total >= args.limit:
+            break
+
     harvest_sources.append(hs)
     # save to destination CKAN    
     created, status_code, error = ckan.create_harvest_source(data=hs, owner_org_id=args.destination_owner_org)
