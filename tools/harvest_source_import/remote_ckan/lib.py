@@ -82,13 +82,15 @@ class RemoteCKAN:
             params:
                 data (dict): Harvest source dict
                 owner_org_id (str): Name or ID of the organization who owns this harvest source
-                
+
             returns:
                 created (boolean):
                 status_code (int): request status code
                 error (str): None or error
             """
     
+        config = data.get('config', {})
+
         ckan_package = {
             'name': data['name'],
             'owner_org': owner_org_id,
@@ -97,7 +99,7 @@ class RemoteCKAN:
             'notes': data['notes'],
             'source_type': data['source_type'],
             'frequency': data['frequency'],
-            'config': data.get('config', '{}')
+            'config': config
         } 
 
         # TODO should we create an organization? 
@@ -107,7 +109,7 @@ class RemoteCKAN:
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
         headers = self.get_request_headers(include_api_key=True)
 
-        logger.info('Creating source URL {}'.format(ckan_package['title']))
+        logger.info('Creating havervest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], config))
 
         try:
             req = requests.post(package_create_url, data=ckan_package, headers=headers)

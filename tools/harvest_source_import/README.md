@@ -1,8 +1,36 @@
 # Harvest source import
 
+```
+python import_harvest_sources.py -h
+usage: import_harvest_sources.py [-h] [--origin_url ORIGIN_URL]
+                                 [--source_type SOURCE_TYPE]
+                                 [--user_agent USER_AGENT]
+                                 [--destination_url DESTINATION_URL]
+                                 [--destination_api_key DESTINATION_API_KEY]
+                                 [--destination_owner_org DESTINATION_OWNER_ORG]
+                                 [--limit LIMIT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --origin_url ORIGIN_URL
+                        CKAN instance URL
+  --source_type SOURCE_TYPE
+                        Tipe of harvest source: ALL|datajson|csw|waf etc
+  --user_agent USER_AGENT
+                        User agent
+  --destination_url DESTINATION_URL
+                        CKAN destination instance URL
+  --destination_api_key DESTINATION_API_KEY
+                        CKAN destination instance API KEY
+  --destination_owner_org DESTINATION_OWNER_ORG
+                        CKAN destination Organization for all Harvest sources
+  --limit LIMIT         Limit the amount of Harvest sources to import
+```
+
+Running
 
 ```
-python import.py \
+python import_harvest_sources.py \
     --origin_url=https://catalog.data.gov \
     ----destination_url=http://ckan:5000 \
     --destination_api_key=xxxxx-xxxxx-xxxx-xxxxxx \
