@@ -19,15 +19,13 @@ ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destination_api_key)
 
 harvest_sources = []
-for hs in ckan.list_harvest_sources(source_type=args.source_type):
-    harvest_sources.append(hs)
-
 ok = 0
 failed = 0
 already_exists = 0
-for hs in harvest_sources:
-    # save to destination CKAN
-    
+
+for hs in ckan.list_harvest_sources(source_type=args.source_type):
+    harvest_sources.append(hs)
+    # save to destination CKAN    
     created, status_code, error = ckan.create_harvest_source(data=hs, owner_org_id=args.destination_owner_org)
     if created: 
         ok += 1

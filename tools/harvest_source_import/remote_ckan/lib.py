@@ -79,7 +79,11 @@ class RemoteCKAN:
 
     def create_harvest_source(self, data, owner_org_id):
         """ create a harvest source (is just a CKAN dataset/package)
-            returns
+            params:
+                data (dict): Harvest source dict
+                owner_org_id (str): Name or ID of the organization who owns this harvest source
+                
+            returns:
                 created (boolean):
                 status_code (int): request status code
                 error (str): None or error
