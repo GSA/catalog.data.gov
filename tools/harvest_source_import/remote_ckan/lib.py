@@ -1,3 +1,4 @@
+import json
 import requests
 from remote_ckan.logs import get_logger
 
@@ -9,6 +10,10 @@ class RemoteCKAN:
         self.url = url
         self.user_agent = user_agent
         logger.info(f'New remote CKAN {url}')
+    
+    def set_destination(self, ckan_url, ckan_api_key):
+        self.destination_url = ckan_url
+        self.api_key = ckan_api_key
 
     def list_harvest_sources(self, source_type=None, start=0, page_size=10):
         """ Generator for a list of harvest sources at a CKAN instance
@@ -18,6 +23,7 @@ class RemoteCKAN:
         """  
         logger.info(f'List harvest sources {start}-{page_size}')
         package_search_url = f'{self.url}/api/3/action/package_search'
+        # TODO use harvest_source_list for harvester ext
         
         if source_type is None or source_type == 'ALL':
             q = f'(type:harvest)'
@@ -61,3 +67,48 @@ class RemoteCKAN:
 
         # get next page   
         yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size)
+    
+    def get_request_headers(self, include_api_key=True):
+        headers = {'User-Agent': f'{self.user_agent}'}
+        if include_api_key:
+            headers['X-CKAN-API-Key'] = self.api_key
+        return headers
+
+    def create_harvest_source(self, data, owner_org_id):
+        """ create a harvest source (is just a CKAN dataset/package), """
+    
+        ckan_package = data
+        ckan_package['owner_org'] = owner_org_id
+
+        package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
+        headers = self.get_request_headers(include_api_key=True)
+
+        logger.info(f'POST {package_create_url} headers:{headers} data:{ckan_package}')
+
+        try:
+            req = requests.post(package_create_url, data=ckan_package, headers=headers)
+        except Exception as e:
+            error = 'ERROR creating harvest source: {} [{}]'.format(e, ckan_package)
+            raise
+
+        content = req.content
+        try:
+            json_content = json.loads(content)
+        except Exception as e:
+            error = 'ERROR parsing JSON data: {} [{}]'.format(content, e)
+            logger.error(error)
+            raise
+
+        if req.status_code >= 400:
+            error = ('ERROR creating harvest source: {}'
+                     '\n\t Status code: {}'
+                     '\n\t content:{}'.format(ckan_package, req.status_code, content))
+            logger.error(error)
+            raise Exception(error)
+
+        if not json_content['success']:
+            error = 'API response failed: {}'.format(json_content.get('error', None))
+            logger.error(error)
+
+        logger.info(f'Harvest source created: {json_content}')
+        return json_content

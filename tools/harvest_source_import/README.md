@@ -1,12 +1,17 @@
 # Harvest source import
 
-## Read harvest souorces
 
-Read harvest sources list for a specific type.
+```
+python import.py \
+    --origin_url=https://catalog.data.gov \
+    ----destination_url=http://ckan:5000 \
+    --destination_api_key=xxxxx-xxxxx-xxxx-xxxxxx \
+    --source_type=csw \
+    --destination_owner_org=my_owner_name_or_id
+```
 
 CSW example
 ```
-$ python import.py --source_type=csw
 remote_ckan.lib - New remote CKAN https://catalog.data.gov
 remote_ckan.lib - List harvest sources 0-10
 remote_ckan.lib - request https://catalog.data.gov/api/3/action/package_search {'start': 0, 'rows': 10, 'q': '(type:harvest source_type:csw)'}
