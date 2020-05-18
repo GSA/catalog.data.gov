@@ -19,15 +19,21 @@ ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destination_api_key)
 
 harvest_sources = []
-added = 0
 for hs in ckan.list_harvest_sources(source_type=args.source_type):
     harvest_sources.append(hs)
-    
-    # save to destination CKAN
-    try:
-        ckan.create_harvest_source(data=hs, owner_org_id=args.destination_owner_org)
-        added += 1
-    except:
-        pass
 
-print('Finished: {} harvest sources. {} Added'.format(len(harvest_sources), added))
+ok = 0
+failed = 0
+already_exists = 0
+for hs in harvest_sources:
+    # save to destination CKAN
+    
+    created, status_code, error = ckan.create_harvest_source(data=hs, owner_org_id=args.destination_owner_org)
+    if created: 
+        ok += 1
+    elif status_code == 409:
+        already_exists += 1
+    else:
+        failed += 1
+
+print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(len(harvest_sources), ok, already_exists, failed))

@@ -15,7 +15,7 @@ class RemoteCKAN:
         self.destination_url = ckan_url
         self.api_key = ckan_api_key
 
-    def list_harvest_sources(self, source_type=None, start=0, page_size=10):
+    def list_harvest_sources(self, source_type=None, start=0, page_size=100):
         """ Generator for a list of harvest sources at a CKAN instance
             Params:
                 source_type (str): datajson | csw | None=ALL
@@ -58,11 +58,14 @@ class RemoteCKAN:
         for hs in harvest_sources:
             title = hs['title']
             source_type = hs['source_type']  # datajosn, waf, etc
-            logger.info(f'  [{source_type}] Harvest source: {title}')
-            yield hs
+            state = hs['state']
+            
+            logger.info(f'  [{source_type}] Harvest source: {title} [{state}]')
+            if state == 'active':
+                yield hs
 
         # if the page is not full, is the last one
-        if count < page_size:
+        if count + 1 < page_size:
             return
 
         # get next page   
@@ -75,10 +78,27 @@ class RemoteCKAN:
         return headers
 
     def create_harvest_source(self, data, owner_org_id):
-        """ create a harvest source (is just a CKAN dataset/package), """
+        """ create a harvest source (is just a CKAN dataset/package)
+            returns
+                created (boolean):
+                status_code (int): request status code
+                error (str): None or error
+            """
     
-        ckan_package = data
-        ckan_package['owner_org'] = owner_org_id
+        ckan_package = {
+            'name': data['name'],
+            'owner_org': owner_org_id,
+            'title': data['title'],
+            'url': data['url'],
+            'notes': data['notes'],
+            'source_type': data['source_type'],
+            'frequency': data['frequency'],
+            'config': data.get('config', '{}')
+        } 
+
+        # TODO should we create an organization? 
+        # TODO Check all other fields
+        # organization = ckan_package['organization']
 
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
         headers = self.get_request_headers(include_api_key=True)
@@ -89,7 +109,7 @@ class RemoteCKAN:
             req = requests.post(package_create_url, data=ckan_package, headers=headers)
         except Exception as e:
             error = 'ERROR creating harvest source: {} [{}]'.format(e, ckan_package)
-            raise
+            return False, 0, error
 
         content = req.content
         try:
@@ -97,18 +117,19 @@ class RemoteCKAN:
         except Exception as e:
             error = 'ERROR parsing JSON data: {} [{}]'.format(content, e)
             logger.error(error)
-            raise
+            return False, 0, error
 
         if req.status_code >= 400:
             error = ('ERROR creating harvest source: {}'
                      '\n\t Status code: {}'
                      '\n\t content:{}'.format(ckan_package, req.status_code, content))
             logger.error(error)
-            raise Exception(error)
+            return False, req.status_code, error
 
         if not json_content['success']:
             error = 'API response failed: {}'.format(json_content.get('error', None))
             logger.error(error)
+            return False, req.status_code, error
 
         logger.info('Harvest source created OK {}'.format(ckan_package['title']))
-        return json_content
+        return True, req.status_code, None
