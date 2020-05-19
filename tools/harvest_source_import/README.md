@@ -1,7 +1,14 @@
 # Harvest source import
 
+Script: import_harvest_sources. Get params help.
+
 ```
 python import_harvest_sources.py -h
+```
+
+Response:
+
+```
 usage: import_harvest_sources.py [-h] [--origin_url ORIGIN_URL]
                                  [--source_type SOURCE_TYPE]
                                  [--user_agent USER_AGENT]
@@ -27,7 +34,7 @@ optional arguments:
   --limit LIMIT         Limit the amount of Harvest sources to import
 ```
 
-Running
+Test running for CSW harvest sources
 
 ```
 python import_harvest_sources.py \
@@ -38,7 +45,8 @@ python import_harvest_sources.py \
     --destination_owner_org=my_owner_name_or_id
 ```
 
-CSW example
+Response
+
 ```
 remote_ckan.lib - 7 (7) harvest sources found
 remote_ckan.lib -   [csw] Harvest source: Alaska LCC CSW Server [active]
