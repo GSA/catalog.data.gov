@@ -159,7 +159,10 @@ class RemoteCKAN:
             'title': data['title'],
             'description': data['description'],
             'id': data['id'],
+            'image_url': data['image_url']
         }
+
+        # TODO get the organization_type GSA field
 
         try:
             req = requests.post(package_create_url, data=organization, headers=headers)
