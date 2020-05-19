@@ -32,7 +32,7 @@ Running
 ```
 python import_harvest_sources.py \
     --origin_url=https://catalog.data.gov \
-    ----destination_url=http://ckan:5000 \
+    --destination_url=http://ckan:5000 \
     --destination_api_key=xxxxx-xxxxx-xxxx-xxxxxx \
     --source_type=csw \
     --destination_owner_org=my_owner_name_or_id

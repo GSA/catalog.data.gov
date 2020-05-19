@@ -125,6 +125,9 @@ class RemoteCKAN:
             logger.error(error)
             return False, 0, error
 
+        if req.status_code >= 409:
+            return False, req.status_code, 'Harvest source already exists'
+            
         if req.status_code >= 400:
             error = ('ERROR creating harvest source: {}'
                      '\n\t Status code: {}'
