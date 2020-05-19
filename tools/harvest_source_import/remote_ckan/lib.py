@@ -123,7 +123,7 @@ class RemoteCKAN:
         if req.status_code >= 400:
             error = ('ERROR creating harvest source: {}'
                      '\n\t Status code: {}'
-                     '\n\t content:{}'.format(ckan_package, req.status_code, content))
+                     '\n\t content:{}'.format(ckan_package, req.status_code, req.content))
             logger.error(error)
             return False, req.status_code, error
 
