@@ -79,6 +79,7 @@ class RemoteCKAN:
 
     def create_harvest_source(self, data, owner_org_id):
         """ create a harvest source (is just a CKAN dataset/package)
+            Ensure to create the organization first.
             params:
                 data (dict): Harvest source dict
                 owner_org_id (str): Name or ID of the organization who owns this harvest source
@@ -89,11 +90,15 @@ class RemoteCKAN:
                 error (str): None or error
             """
     
+        created, status, error = self.create_organization(data=data['organization'])
+        if not created:
+            return False, status, f'Unable to create organization: {error}'
+
         config = data.get('config', {})
 
         ckan_package = {
             'name': data['name'],
-            'owner_org': owner_org_id,
+            'owner_org': data['organization']['name'],
             'title': data['title'],
             'url': data['url'],
             'notes': data['notes'],
@@ -101,10 +106,6 @@ class RemoteCKAN:
             'frequency': data['frequency'],
             'config': config
         } 
-
-        # TODO should we create an organization? 
-        # TODO Check all other fields
-        # organization = ckan_package['organization']
 
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
         headers = self.get_request_headers(include_api_key=True)
@@ -140,4 +141,53 @@ class RemoteCKAN:
             return False, req.status_code, error
 
         logger.info('Harvest source created OK {}'.format(ckan_package['title']))
+        return True, req.status_code, None
+    
+    def create_organization(self, data):
+        """ Creates a new organization in CKAN destination 
+            Params:
+                data (dics): Required fields to create
+        """
+
+        package_create_url = f'{self.destination_url}/api/3/action/organization_create'
+        headers = self.get_request_headers(include_api_key=True)
+
+        logger.info('Creating organization {}'.format(data['title']))
+
+        organization = {
+            'name': data['name'],
+            'title': data['title'],
+            'description': data['description'],
+            'id': data['id'],
+        }
+
+        try:
+            req = requests.post(package_create_url, data=organization, headers=headers)
+        except Exception as e:
+            error = 'ERROR creating organization: {} [{}]'.format(e, organization)
+            return False, 0, error
+
+        content = req.content
+        try:
+            json_content = json.loads(content)
+        except Exception as e:
+            error = 'ERROR parsing JSON data: {} [{}]'.format(content, e)
+            logger.error(error)
+            return False, 0, error
+        
+        if req.status_code >= 400:
+            if 'already in use' in str(content):
+                return False, req.status_code, 'Already exists'
+            error = ('ERROR creating organization: {}'
+                     '\n\t Status code: {}'
+                     '\n\t content:{}'.format(organization, req.status_code, req.content))
+            logger.error(error)
+            return False, req.status_code, error
+
+        if not json_content['success']:
+            error = 'API response failed: {}'.format(json_content.get('error', None))
+            logger.error(error)
+            return False, req.status_code, error
+
+        logger.info('Organization created OK {}'.format(organization['title']))
         return True, req.status_code, None
