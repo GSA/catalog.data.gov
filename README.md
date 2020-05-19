@@ -50,8 +50,8 @@ symbolic link `requirements-freeze.txt` that references
 ### Procedure for updating a dependency
 
 1.  Add/change the dependency in `requirements/Pipfile`
-2.  Run `make updates-dependencies`
-3.  Run `make build`
+2.  Run `make update-dependencies build`
+3.  Run `make test`
 4.  Make sure to commit `ckan/requirements.txt` `requirements/Pipfile`
     and `requirements/Pipfile.lock` to make the change permanent.
 
