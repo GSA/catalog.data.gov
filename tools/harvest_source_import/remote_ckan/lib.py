@@ -117,16 +117,6 @@ class RemoteCKAN:
             error = 'ERROR creating harvest source: {} [{}]'.format(e, ckan_package)
             return False, 0, error
 
-        if req.status_code == 409:
-            return False, req.status_code, 'Harvest source already exists'
-
-        if req.status_code >= 400:
-            error = ('ERROR creating harvest source: {}'
-                     '\n\t Status code: {}'
-                     '\n\t content:{}'.format(ckan_package, req.status_code, req.content))
-            logger.error(error)
-            return False, req.status_code, error
-
         content = req.content
         try:
             json_content = json.loads(content)
@@ -134,6 +124,15 @@ class RemoteCKAN:
             error = 'ERROR parsing JSON data: {} [{}]'.format(content, e)
             logger.error(error)
             return False, 0, error
+        
+        if req.status_code >= 400:
+            if 'That URL is already in use' in str(content):
+                return False, req.status_code, 'Already exists'
+            error = ('ERROR creating harvest source: {}'
+                     '\n\t Status code: {}'
+                     '\n\t content:{}'.format(ckan_package, req.status_code, req.content))
+            logger.error(error)
+            return False, req.status_code, error
 
         if not json_content['success']:
             error = 'API response failed: {}'.format(json_content.get('error', None))

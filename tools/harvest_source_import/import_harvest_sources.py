@@ -36,7 +36,7 @@ for hs in ckan.list_harvest_sources(source_type=args.source_type):
     created, status_code, error = ckan.create_harvest_source(data=hs, owner_org_id=args.destination_owner_org)
     if created: 
         ok += 1
-    elif status_code == 409:
+    elif error == 'Already exists':
         already_exists += 1
     else:
         failed += 1
