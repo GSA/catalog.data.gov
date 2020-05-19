@@ -1,91 +1,88 @@
-# #####################################
-# FROM https://github.com/ckan/ckan/blob/2.8/requirements.in
-# #####################################
-Babel==2.3.4
+-i https://pypi.org/simple
+-e git+https://github.com/GSA/ckanext-datajson.git@46ed53e6bfa3ad1f60bda06daba8fdf77138b254#egg=ckanext-datajson
+argparse==1.4.0
+asn1crypto==1.3.0
+babel==2.3.4
+beaker==1.11.0
 bleach==2.1.3
+boto==2.49.0
+cffi==1.12.3
+ckanext-envvars==0.0.1
+ckantoolkit==0.0.3
 click==6.7
+cryptography==2.7
+decorator==4.4.2
+enum34==1.1.10; python_version < '3'
 fanstatic==0.12
-Flask==0.12.4
-Flask-Babel==0.11.2
-Jinja2==2.8
-Markdown==2.6.7
+flask-babel==0.11.2
+flask==0.12.4
+formencode==1.3.1
+funcsigs==1.0.2
+geoalchemy2==0.5.0
+geoalchemy==0.7.2
+git+https://github.com/GSA/ckanext-datagovtheme.git@873dc70135d4ed313517010fb2b3c208b72c2913#egg=ckanext-datagovtheme
+git+https://github.com/GSA/ckanext-geodatagov.git@d82eb45067f9b8335b6d767499f218431fb6c215#egg=ckanext-geodatagov
+git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=pyz3950
+git+https://github.com/ckan/ckan.git@7900935de6270ee80ec64a5378251dafedf3a0e4#egg=ckan
+git+https://github.com/ckan/ckanext-harvest.git@6d286eb8fd6ea3a136f0f3293b29efd5b4fbc025#egg=ckanext-harvest
+git+https://github.com/ckan/ckanext-spatial@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
+gunicorn==19.10.0
+html5lib==1.0.1
+ipaddress==1.0.23; python_version < '3'
+itsdangerous==1.1.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+jinja2==2.8
+jsonschema==2.4.0
+lepl==5.1.3
+lxml==4.5.1
+mako==1.1.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+markdown==3.1.1
+markupsafe==1.1.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+nose==1.3.7
 ofs==0.4.2
-Pairtree==0.7.1-T
+owslib==0.8.6
+pairtree==0.7.1-T
 passlib==1.6.5
 paste==1.7.5.1
+pastedeploy==2.1.0
+pastescript==2.0.2
+pbr==1.10.0
+pika==1.1.0
+ply==3.4
 polib==1.0.7
 psycopg2==2.7.3.2
-python-magic==0.4.15
+pycparser==2.20; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+pygments==2.5.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+pylons==0.9.7
+pyopenssl==18.0.0
+pyparsing==2.4.7
 pysolr==3.6.0
-Pylons==0.9.7
-python-dateutil>=1.5.0,<2.0.0
+python-dateutil==1.5
+python-magic==0.4.15
 pytz==2016.7
 pyutilib.component.core==4.6.4
+pyyaml==5.3.1
+redis==3.5.2
+repoze.lru==0.7
 repoze.who-friendlyform==1.0.8
 repoze.who==2.3
 requests==2.11.1
-Routes==1.13
+rfc3987==1.3.8
+routes==1.13
 rq==0.6.0
+shapely==1.7.0
 simplejson==3.10.0
+six==1.14.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 sqlalchemy-migrate==0.10.0
-SQLAlchemy==1.1.11
+sqlalchemy==1.1.11
 sqlparse==0.2.2
+tempita==0.5.2
 tzlocal==1.3
-unicodecsv>=0.9
+unicodecsv==0.14.1
 vdm==0.14
-WebHelpers==1.3
-WebOb==1.0.8
-WebTest==1.4.3  # need to pin this so that Pylons does not install a newer version that conflicts with WebOb==1.0.8
+webencodings==0.5.1
+weberror==0.13.1
+webhelpers==1.3
+webob==1.0.8
+webtest==1.4.3
+werkzeug==0.14.1
 zope.interface==4.3.2
-
-# #####################################
-# ckanext-spatial
-# #####################################
--e git+https://github.com/ckan/ckanext-spatial#egg=ckanext-spatial
-# -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/pip-requirements.txt
-GeoAlchemy>=0.6
-GeoAlchemy2==0.5.0
-Shapely>=1.2.13
-OWSLib==0.8.6
-lxml>=2.3
-argparse
-pyparsing>=2.1.10
-# duplicated requests>=1.1.0
-
-# #####################################
-# ckanext-harvest
-# #####################################
--e git+https://github.com/ckan/ckanext-harvest.git#egg=ckanext-harvest
-# -r https://raw.githubusercontent.com/ckan/ckanext-harvest/master/pip-requirements.txt
-ckantoolkit==0.0.3
-pika>=1.1.0
-pyOpenSSL==18.0.0
-redis>=3.3.0
-# duplicated requests==2.20.0
-# six>=1.12.0
-
-# #####################################
-# ckanext-datajson
-# #####################################
--e git+https://github.com/GSA/ckanext-datajson.git#egg=ckanext-datajson
-# -r https://raw.githubusercontent.com/GSA/ckanext-datajson/master/pip-requirements.txt
-pyyaml
-lepl
-jsonschema==2.4.0
-rfc3987
-
-
-# #####################################
-# ckanext-geodatagov
-# #####################################
--e git+https://github.com/GSA/ckanext-geodatagov.git#egg=ckanext-geodatagov
-#-r https://raw.githubusercontent.com/GSA/ckanext-geodatagov/master/pip-requirements.txt
--e git+https://github.com/asl2/PyZ3950.git#egg=py3250
-ply==3.4
-boto
-# duplicated lxml
-
-# #####################################
-# ckanext-datagovtheme
-# #####################################
--e git+https://github.com/GSA/ckanext-datagovtheme.git#egg=ckanext-datagovtheme

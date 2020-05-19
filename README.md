@@ -32,10 +32,28 @@ The repository extends the Open Knowledge Foundation `ckan-dev:2.8` docker image
 
 ## Note on requirements
 
-We use a `requirements.txt` file to easily install add new requirements for development.
-However, this installation uses the `requirements-freeze.txt` to instantiate the local development environment and the test environment.
+The source of truth about package dependencies is managed with
+*pipenv* kept in `requirements/Pipfile` and
+`requirements/Pipfile.lock`.  The base OKFN Docker image we are using,
+though, doesn't know about *pipenv*.  We have modified our ckan image
+(`ckan/Dockerfile`) to install frozen requirements from
+`ckan/requirements.txt` at image build time to help ensure all
+developers are working with the same set of requirements.
 
-Coming soon: better local package management. For the moment, add requirements to `requirements-freeze.txt` and rebuild, OR add an apropriate `requirements.txt` file (default CKAN 2.8 would be a good place to start), and uncoment the `make requirements` command in `Makefile`
+The Makefile target *update-dependencies*
+will use pipenv to generate a new `Pipfile.lock` and update `ckan/requirements.txt`.
+
+To support sandbox installation via the ansible playbooks, there is a
+symbolic link `requirements-freeze.txt` that references
+`ckan/requirements.txt`.
+
+### Procedure for updating a dependency
+
+1.  Add/change the dependency in `requirements/Pipfile`
+2.  Run `make updates-dependences`
+3.  Run `make build`
+4.  Make sure to commit `ckan/requirements.txt` `requirements/Pipfile`
+    and `requirements/Pipfile.lock` to make the change permanent.
 
 ## Create an extension
 
