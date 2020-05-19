@@ -13,6 +13,7 @@ RUN echo $TZ > /etc/timezone
 # TODO consider moving to Alpine>=3.11 or to Bionic
 
 RUN apk add py-cryptography
+RUN apk add vim
 
 ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
 RUN tar xf /geos/geos.tar.bz2 -C /geos --strip-components=1
