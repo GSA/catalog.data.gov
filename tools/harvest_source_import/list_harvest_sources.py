@@ -32,7 +32,6 @@ for hs in ckan.list_harvest_sources(source_type=args.source_type):
             break
 
     harvest_sources.append(hs)
-    print(hs)
     status = hs.get('status', {})
     last_job = status.get('last_job', {})
     if last_job is None:
