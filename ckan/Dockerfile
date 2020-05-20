@@ -9,11 +9,9 @@ ARG TZ
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
 
-# RUN apk add py-cryptography
+# add dependencies for cryptography and vim
 
-# add dependencies needed to build cryptography
-
-RUN apk add libressl-dev musl-dev libffi-dev
+RUN apk add libressl-dev musl-dev libffi-dev vim
 
 # Fix shapely lib error. Install geos
 # TODO consider moving to Alpine>=3.11 or to Bionic
