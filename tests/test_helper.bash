@@ -1,3 +1,22 @@
+load /bats/lib/bats-support/load.bash
+load /bats/lib/bats-assert/load.bash
+
+
+# log <msg>...
+#
+# stdin: msg
+#
+# Outputs message to stderr so that will be displayed by bats only when the
+# test fails.
+function log () {
+  if (( $# > 0)); then
+    # Print the arguments
+    echo "$@" >&2
+  else
+    # Print stdin
+    cat >&2
+  fi
+}
 
 function wait_for_app () {
   # The app takes quite a while to startup (solr initialization and

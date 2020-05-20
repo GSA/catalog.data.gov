@@ -25,7 +25,7 @@ load test_helper
     --data "password=$CKAN_SYSADMIN_PASSWORD" \
     --cookie-jar $BATS_TMPDIR/cookie-jar 2>&1 > /dev/null)
 
-  echo "$output" >&2 # debug
+  log "$output"
   echo "$output" | grep -qi '^< set-cookie:.*auth_tkt'
 }
 
@@ -38,7 +38,7 @@ load test_helper
     --data 'login=not_a_user' \
     --data 'password=badpassword' 2>&1 >/dev/null)
 
-  echo "$output" >&2 # debug
+  log "$output"
   ! echo "$output" | grep -qi '^< set-cookie:.*auth_tkt'
 }
 
