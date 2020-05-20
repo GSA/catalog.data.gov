@@ -9,3 +9,7 @@ src/*
 ._*
 .Spotlight-V100
 .Trashes
+
+# Custom docker env
+# e.g. add custom paths to debug extensions 
+local-dev.yml
