@@ -1,0 +1,4 @@
+include README.rst
+include LICENSE
+include requirements.txt
+recursive-include ckanext/catalogdatagov *.html *.json *.js *.less *.css *.mo
