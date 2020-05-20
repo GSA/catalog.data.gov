@@ -1,5 +1,6 @@
 -i https://pypi.org/simple
 -e git+https://github.com/GSA/ckanext-datajson.git@46ed53e6bfa3ad1f60bda06daba8fdf77138b254#egg=ckanext-datajson
+-e git+https://github.com/ckan/ckan.git@7900935de6270ee80ec64a5378251dafedf3a0e4#egg=ckan
 argparse==1.4.0
 asn1crypto==1.3.0
 babel==2.3.4
@@ -23,7 +24,6 @@ geoalchemy==0.7.2
 git+https://github.com/GSA/ckanext-datagovtheme.git@873dc70135d4ed313517010fb2b3c208b72c2913#egg=ckanext-datagovtheme
 git+https://github.com/GSA/ckanext-geodatagov.git@d82eb45067f9b8335b6d767499f218431fb6c215#egg=ckanext-geodatagov
 git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=pyz3950
-git+https://github.com/ckan/ckan.git@7900935de6270ee80ec64a5378251dafedf3a0e4#egg=ckan
 git+https://github.com/ckan/ckanext-harvest.git@6d286eb8fd6ea3a136f0f3293b29efd5b4fbc025#egg=ckanext-harvest
 git+https://github.com/ckan/ckanext-spatial@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 gunicorn==19.10.0
@@ -78,6 +78,7 @@ sqlparse==0.2.2
 tempita==0.5.2
 tzlocal==1.3
 unicodecsv==0.14.1
+urllib3==1.25.9
 vdm==0.14
 webencodings==0.5.1
 weberror==0.13.1

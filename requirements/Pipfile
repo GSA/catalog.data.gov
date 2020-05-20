@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-ckan = {ref = "ckan-2.8.4", git = "https://github.com/ckan/ckan.git"}
+ckan = {ref = "ckan-2.8.4", git = "https://github.com/ckan/ckan.git", editable = true}
 
 # catalog ckan extensions
 
@@ -20,13 +20,13 @@ ckanext-spatial = {ref = "master", git = "https://github.com/ckan/ckanext-spatia
 
 # ckanext-harvest
 
+cffi == "==1.12.3"
 ckantoolkit = "==0.0.3"
+cryptography = "==2.7"
 pika = ">=1.1.0"
 pyOpenSSL = "==18.0.0"
 redis = ">=3.3.0"
-
-cffi == "==1.12.3"
-cryptography = "==2.7"
+urllib3 = "*"
 
 # ckanext-datajson
 

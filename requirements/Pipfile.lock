@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a99f3e400b55b4a8867a7747c855b65644b4eb3f8bd68ebbb8bf01ae15cba132"
+            "sha256": "9b96d2f4b012ea689e2e0bd24acdd9f84a630cac0ada5890e1a52423faae24dc"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -96,12 +96,12 @@
             "version": "==1.12.3"
         },
         "ckan": {
+            "editable": true,
             "git": "https://github.com/ckan/ckan.git",
             "hashes": [
                 "sha256:af6e1127141256f026edee83c4425c2390db225891a3e79463ccf75f0818d09f"
             ],
-            "ref": "7900935de6270ee80ec64a5378251dafedf3a0e4",
-            "version": "==2.8.4"
+            "ref": "7900935de6270ee80ec64a5378251dafedf3a0e4"
         },
         "ckanext-datagovtheme": {
             "git": "https://github.com/GSA/ckanext-datagovtheme.git",
@@ -785,6 +785,14 @@
             ],
             "index": "pypi",
             "version": "==0.14.1"
+        },
+        "urllib3": {
+            "hashes": [
+                "sha256:3018294ebefce6572a474f0604c2021e33b3fd8006ecd11d62107a5d2a963527",
+                "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"
+            ],
+            "index": "pypi",
+            "version": "==1.25.9"
         },
         "vdm": {
             "hashes": [
