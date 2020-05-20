@@ -9,11 +9,12 @@ ARG TZ
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
 
+# add dependencies for cryptography and vim
+
+RUN apk add libressl-dev musl-dev libffi-dev vim
+
 # Fix shapely lib error. Install geos
 # TODO consider moving to Alpine>=3.11 or to Bionic
-
-RUN apk add py-cryptography
-RUN apk add vim
 
 ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
 RUN tar xf /geos/geos.tar.bz2 -C /geos --strip-components=1
@@ -23,5 +24,6 @@ RUN cd /geos && \
     make install
 
 COPY requirements.txt ${APP_DIR}
-
 RUN pip install -r requirements.txt
+RUN pip install --pre pipenv
+COPY freeze-requirements.sh /usr/local/bin
