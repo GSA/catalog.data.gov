@@ -1,8 +1,20 @@
-FROM bats/bats
+FROM bash as bats
 
-RUN apk add curl jq postgresql-client
+RUN apk add git && \
+  mkdir /bats && \
+  git clone https://github.com/bats-core/bats-core.git /bats && \
+  git clone https://github.com/bats-core/bats-support.git /bats/lib/bats-support && \
+  git clone https://github.com/bats-core/bats-assert.git /bats/lib/bats-assert
+
+FROM bash
+
+RUN apk add curl jq ncurses parallel postgresql-client
+
+COPY --from=bats /bats/ /bats/
+
+RUN ln -s /bats/bin/bats /usr/local/bin/bats
 
 COPY tests/ /tests/
 
-# bats/bats uses bats as the entrypoint
-CMD ["-r", "/tests"]
+ENTRYPOINT ["bash", "/usr/local/bin/bats"]
+CMD ["-p", "-r", "/tests"]
