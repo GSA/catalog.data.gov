@@ -26,6 +26,10 @@ Run `make clean` to stop and remove the containers and volumes associated with t
 
 The _only_  deployable resource associated with this repository is the `requirements-freeze.txt` file.
 
+## Harvesting
+
+Run `API=xxxx-xxxxx-xxxxx-xxxxx make harvest` to run the harvest import script. Make sure that there is a local catalog instance up and running at http://localhost:5000. This will harvest the first 10 harvest sources from https://catalog.data.gov.
+
 ## On Docker CKAN 2.8 images
 
 The repository extends the Open Knowledge Foundation `ckan-dev:2.8` docker image. The `ckan-base:2.8` image, if needed for some reasons, is available via dockerhub with the aformentioned tag, as referenced in [OKF's docker-ckan repository](https://github.com/okfn/docker-ckan).

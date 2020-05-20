@@ -34,6 +34,9 @@ test:
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
+harvest:
+	echo "\n\n****************** Ensure that the ckan container is up when running this command :) ***\n\n" && python3 ./tools/harvest_source_import/import_harvest_sources.py --origin_url=https://catalog.data.gov --destination_url=http://ckan:5000 --destination_api_key=${API} --source_type=csw --destination_owner_org=my_owner_name_or_id --limit=10
+ 
 # TODO waiting for consensus package management solution
 # update-dependencies:
 #	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
