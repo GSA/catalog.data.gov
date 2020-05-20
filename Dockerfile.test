@@ -17,4 +17,4 @@ RUN ln -s /bats/bin/bats /usr/local/bin/bats
 COPY tests/ /tests/
 
 ENTRYPOINT ["bash", "/usr/local/bin/bats"]
-CMD ["-p", "-r", "/tests"]
+CMD ["-r", "/tests"]
