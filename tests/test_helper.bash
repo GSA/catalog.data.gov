@@ -25,9 +25,9 @@ function wait_for_app () {
   export PGPASSWORD=$CKAN_DB_PW
 
   while [ $len_api_key -le 10 ]; do
-    local sql_command="psql -h $DB_HOST -U ckan $CKAN_DB -c 'select apikey from public.user where name=\"$CKAN_USER_ADMIN\";"
+    local sql_command="psql -h $DB_HOST -U ckan $CKAN_DB -c 'select apikey from public.user where name=\"$CKAN_SYSADMIN_NAME\";"
     
-    run psql -h $DB_HOST -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_USER_ADMIN';"
+    run psql -h $DB_HOST -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
     echo "Check API KEY: $sql_command" >&3
     echo " - $output" >&3
 
@@ -68,7 +68,7 @@ function test_url () {
 function test_create_org () {
   export PGPASSWORD=$CKAN_DB_PW
   
-  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_USER_ADMIN';"
+  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
   local api_key=$(echo ${lines[2]} | xargs)  # run fill $output with all response and $line with each response line
   
   local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
@@ -92,7 +92,7 @@ function test_create_org () {
 function test_create_dataset () {
   export PGPASSWORD=$CKAN_DB_PW
   
-  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_USER_ADMIN';"
+  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
   local api_key=$(echo ${lines[2]} | xargs)  # run fill $output with all response and $line with each response line
   echo "Create dataset API KEY = $api_key" >&3
   
@@ -118,8 +118,9 @@ function test_create_dataset () {
 function test_read_dataset () {
   
   local test_url="http://$HOST:$PORT/api/3/action/package_show?id=test-dataset-$RNDCODE"
-  run curl --fail --location --request GET $test_url --cookie ./cookie-jar
+  run curl --fail --location --request GET $test_url --cookie $BATS_TMPDIR/cookie-jar
   local dataset_success=$(echo $output | grep -o '"success": true')
+
 
   if [ "$dataset_success" = '"success": true' ]; then
     return 0;

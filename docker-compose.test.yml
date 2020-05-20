@@ -2,7 +2,9 @@
 version: '3'
 services:
   test:
-    env_file: 
+    environment:
+      TERM: ${TERM}
+    env_file:
       .env
     build:
       context: .

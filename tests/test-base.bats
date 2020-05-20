@@ -12,18 +12,34 @@ load test_helper
   test_url user/login
 }
 
-@test "Test admin login" {
+@test "when the admin user logs in then the auth_tkt cookie is set" {
   local url="http://$HOST:$PORT/login_generic?came_from=/user/logged_in"
-  
-  run curl --silent --fail $url \
-    --compressed \
-    -H 'Content-Type: application/x-www-form-urlencoded' \
-    -H 'Origin: http://$HOST:$PORT' \
-    -H 'Referer: http://$HOST:$PORT/user/login' \
-    --data 'login=ckan_admin&password=test1234' \
-    --cookie-jar ./cookie-jar
-  
-  [ "$status" -ne 22 ]
+
+  # POST the login endpoint. We're not interested in the response body, only
+  # the headers. We avoid `run` here because we need control of the
+  # redirection.
+  #
+  # Side-effect: the `cookie-jar` is created with the admin session.
+  output=$(curl --verbose --silent --location $url \
+    --data "login=$CKAN_SYSADMIN_NAME" \
+    --data "password=$CKAN_SYSADMIN_PASSWORD" \
+    --cookie-jar $BATS_TMPDIR/cookie-jar 2>&1 > /dev/null)
+
+  echo "$output" >&2 # debug
+  echo "$output" | grep -qi '^< set-cookie:.*auth_tkt'
+}
+
+@test "when a user login fails then the auth_tkt cookie is not set" {
+  local url="http://$HOST:$PORT/login_generic?came_from=/user/logged_in"
+
+  # Post the login endpoint. We're not interested in the response body, but
+  # Cookie header in order to assert our auth_tkt cookie is set.
+  output=$(curl --verbose --silent --location $url \
+    --data 'login=not_a_user' \
+    --data 'password=badpassword' 2>&1 >/dev/null)
+
+  echo "$output" >&2 # debug
+  ! echo "$output" | grep -qi '^< set-cookie:.*auth_tkt'
 }
 
 @test "User can create org" {
