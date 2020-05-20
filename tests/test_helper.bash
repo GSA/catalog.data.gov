@@ -1,6 +1,28 @@
+# Test helpers
+
 load /bats/lib/bats-support/load.bash
 load /bats/lib/bats-assert/load.bash
 
+
+# assert_json <jq-selector> <expected>
+#
+# Uses jq on `$output` and asserts the value matched by jq-selector matches
+# the expected value.
+function assert_json () {
+  local actual expected selector
+  selector=$1
+  expected=$2
+
+  {
+    actual=$(echo "$output" | jq --raw-output "$selector")
+    [ "$actual" = "$expected" ]
+  } || fail <<EOF
+selector : $selector
+actual   : $actual
+expected : $expected
+output   : $output
+EOF
+}
 
 # log <msg>...
 #
@@ -82,30 +104,6 @@ function test_url () {
   local url="http://$HOST:$PORT/$1"
   run curl --silent --fail $url
   [ "$status" -ne 22 ]
-}
-
-function test_create_org () {
-  export PGPASSWORD=$CKAN_DB_PW
-  
-  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
-  local api_key=$(echo ${lines[2]} | xargs)  # run fill $output with all response and $line with each response line
-  
-  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
-  
-  run curl -X POST \
-    http://$HOST:$PORT/api/3/action/organization_create \
-    -H "Authorization: $api_key" \
-    -H "cache-control: no-cache" \
-    -d "$json_data"
-
-  local success=$(echo $output | grep -o '"success": true')
-
-  if [ "$success" = '"success": true' ]; then
-    return 0;
-  else
-    echo "Failed to create org. API KEY $api_key. RND $RNDCODE OUTPUT: $output" >&3
-    return 1;
-  fi
 }
 
 function test_create_dataset () {

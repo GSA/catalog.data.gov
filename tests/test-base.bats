@@ -43,7 +43,25 @@ load test_helper
 }
 
 @test "User can create org" {
-  test_create_org
+  export PGPASSWORD=$CKAN_DB_PW
+  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
+  [ "$status" = 0 ]
+  assert_output --partial "(1 row)"
+
+  # Parse the API key from psql
+  local api_key=$(echo ${lines[2]} | xargs)
+
+  # Template the dataset JSON payload with a random code to provide uniqueness
+  # to the dataset.
+  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
+  run curl --silent -X POST \
+    http://$HOST:$PORT/api/3/action/organization_create \
+    -H "Authorization: $api_key" \
+    -H "cache-control: no-cache" \
+    -d "$json_data"
+
+  [ "$status" = 0 ]
+  assert_json .success true
 }
 
 @test "User can create dataset" {
