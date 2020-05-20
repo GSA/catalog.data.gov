@@ -14,7 +14,6 @@ usage: import_harvest_sources.py [-h] [--origin_url ORIGIN_URL]
                                  [--user_agent USER_AGENT]
                                  [--destination_url DESTINATION_URL]
                                  [--destination_api_key DESTINATION_API_KEY]
-                                 [--destination_owner_org DESTINATION_OWNER_ORG]
                                  [--limit LIMIT]
 
 optional arguments:
@@ -29,8 +28,6 @@ optional arguments:
                         CKAN destination instance URL
   --destination_api_key DESTINATION_API_KEY
                         CKAN destination instance API KEY
-  --destination_owner_org DESTINATION_OWNER_ORG
-                        CKAN destination Organization for all Harvest sources
   --limit LIMIT         Limit the amount of Harvest sources to import
 ```
 
@@ -41,8 +38,7 @@ python import_harvest_sources.py \
     --origin_url=https://catalog.data.gov \
     --destination_url=http://ckan:5000 \
     --destination_api_key=xxxxx-xxxxx-xxxx-xxxxxx \
-    --source_type=csw \
-    --destination_owner_org=my_owner_name_or_id
+    --source_type=csw
 ```
 
 Response

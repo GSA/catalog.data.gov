@@ -59,10 +59,20 @@ class RemoteCKAN:
             title = hs['title']
             source_type = hs['source_type']  # datajosn, waf, etc
             state = hs['state']
+            name = hs['name']
             
             logger.info(f'  [{source_type}] Harvest source: {title} [{state}]')
             if state == 'active':
-                yield hs
+                # We don't get full harvest soure info here. We need a custom call
+                harvest_show_url = f'{self.url}/api/3/action/harvest_source_show'
+                params = {'id': name}
+                logger.info(f'Get harvest source data {harvest_show_url} {params}')
+                response = requests.get(harvest_show_url, params=params, headers=headers)
+                if response.status_code >= 400:
+                    logger.error(f'Error [{response.status_code}] trying to get full harvest source info')
+                else:
+                    full_hs = response.json()
+                    yield full_hs['result']
 
         # if the page is not full, is the last one
         if count + 1 < page_size:
@@ -77,12 +87,11 @@ class RemoteCKAN:
             headers['X-CKAN-API-Key'] = self.api_key
         return headers
 
-    def create_harvest_source(self, data, owner_org_id):
+    def create_harvest_source(self, data):
         """ create a harvest source (is just a CKAN dataset/package)
             Ensure to create the organization first.
             params:
                 data (dict): Harvest source dict
-                owner_org_id (str): Name or ID of the organization who owns this harvest source
 
             returns:
                 created (boolean):
@@ -94,7 +103,19 @@ class RemoteCKAN:
         if not created:
             return False, status, f'Unable to create organization: {error}'
 
+        logger.info(data)
         config = data.get('config', {})
+        if type(config) == str:
+            config = json.loads(config)
+
+        # we can also have config in extras
+        # we don't get extras 
+        extras = data.get('extras', {})
+        for extra in extras:
+            if extra['key'] == 'config':
+                logger.info(f'Config found in extras: {extra}')
+                value = json.loads(extra['value'])
+                config.update(value)
 
         ckan_package = {
             'name': data['name'],
@@ -104,7 +125,7 @@ class RemoteCKAN:
             'notes': data['notes'],
             'source_type': data['source_type'],
             'frequency': data['frequency'],
-            'config': config
+            'config': json.dumps(config, indent=4)
         } 
 
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
