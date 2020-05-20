@@ -43,13 +43,8 @@ load test_helper
 }
 
 @test "User can create org" {
-  export PGPASSWORD=$CKAN_DB_PW
-  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
-  [ "$status" = 0 ]
-  assert_output --partial "(1 row)"
-
-  # Parse the API key from psql
-  local api_key=$(echo ${lines[2]} | xargs)
+  local api_key
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
 
   # Template the dataset JSON payload with a random code to provide uniqueness
   # to the dataset.
@@ -65,7 +60,20 @@ load test_helper
 }
 
 @test "User can create dataset" {
-  test_create_dataset
+  local api_key json_data
+
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  json_data=$(sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-package-create-01.json)
+
+  run curl --silent -X POST \
+    http://$HOST:$PORT/api/3/action/package_create \
+    -H "Authorization: $api_key" \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d "$json_data"
+
+  [ "$status" = 0 ]
+  assert_json .success true
 }
 
 @test "data is accessible for user" {
