@@ -41,3 +41,6 @@ for hs in ckan.list_harvest_sources(source_type=args.source_type):
         failed += 1
 
 print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(len(harvest_sources), ok, already_exists, failed))
+if len(ckan.errors) > 0:
+    print('*******\nWITH ERRORS\n*******')
+    print('\n\t'.join(ckan.errors))
