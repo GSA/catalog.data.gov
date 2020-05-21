@@ -17,6 +17,12 @@ jobs:
       - deploy:
           name: Trigger Jenkins deploy
           command: bin/jenkins_build deploy-ci-app-catalog-next
+  
+  test_extension:
+    machine: true
+    steps:
+      - checkout
+      - run: docker-compose exec ckan bash -c "cd src_extensions/ckanext-catalogdatagov && nosetests -v -s --with-pylons=test.ini"
 
 workflows:
   version: 2

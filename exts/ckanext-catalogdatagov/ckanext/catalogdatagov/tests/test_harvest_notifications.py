@@ -52,10 +52,10 @@ class TestNotifications:
     def teardown_class(cls):
 
         logger.info("Unloading plugin")
-        p.unload('harvest')
-        p.unload('datajson')
-        p.unload('ckan_harvester')
-        p.unload('catalogdatagov')
+        # p.unload('harvest')
+        # p.unload('datajson')
+        # p.unload('ckan_harvester')
+        # p.unload('catalogdatagov')
 
     def _create_harvest_source_and_job_if_not_existing(self):
         site_user = toolkit.get_action('get_site_user')(
@@ -95,6 +95,6 @@ class TestNotifications:
 
         harvest_source_reindex = toolkit.get_action('harvest_source_reindex')
         harvest_source_reindex(context, {'id': harvest_source['id']})
-        
+
         return context, harvest_source, job
     
