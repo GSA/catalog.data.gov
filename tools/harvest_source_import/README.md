@@ -72,7 +72,18 @@ Finished: 7 harvest sources. 7 Added, 0 already exists, 0 failed
 
 ### Test
 
+We use _pytest cassettes_ to save responses from orgin and destination CKAN instances.
 
+#### Record results
+
+We can run test against real CKAN instances to save each request reposnse (GET and POST)
+
+´´´
 python -m pytest --vcr-record=all tests/
+´´´
+#### Run test by used saved requests
 
+Run test with fake requests based on previous results
+´´´
 python -m pytest --vcr-record=none
+´´´
