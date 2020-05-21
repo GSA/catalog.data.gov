@@ -10,6 +10,7 @@ from ckanext.harvest.logic.action.update import (
     PackageSearchIndex, harvest_job_dictize, logic)
 from ckan.logic import chained_action
 from ckan.plugins.toolkit import check_access
+from ckan.lib.mailer import mail_recipient
 
 
 @chained_action
@@ -187,11 +188,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                                  'body': msg,
                                  }
                         try:
-                            log.error('SENDING FIXED PACKAGES EMAIL')
-                            log.error(email)
-                            log.error(msg)
-                            # To be uncommented when testing is done
-                            # mailer.mail_recipient(**email)
+                            mail_recipient(**email)
                         except Exception, e:
                             log.error('Error: %s; email: %s' % (e, email))
 
@@ -357,12 +354,9 @@ def harvest_jobs_run(up_func, context, data_dict):
                                     'body': msg
                                 }
                                 try:
-                                    log.error('SENDING SUMMARY REPORT EMAIL')
-                                    log.error(email)
-                                    log.error(msg)
-                                    # To be changed once testing is done (and maybe we can implement BCC in this extension)
-                                    # Is BCC required? This is custom GSA CKAN core functionality
-                                    # mailer.bcc_recipients(**email)
+                                    # GSA for uses bcc_recipients functio
+                                    # TODO define what to do here
+                                    mail_recipient(**email)
                                 except Exception:
                                     pass
 

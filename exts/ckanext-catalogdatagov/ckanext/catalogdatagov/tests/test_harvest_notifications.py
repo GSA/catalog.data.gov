@@ -43,9 +43,9 @@ class TestNotifications:
             harvest_source['id'],
             status
         )
-        # validate we have no error
+        # validate that even if there is no error, 
         assert_equal(0, status['last_job']['stats']['errored'])
-        # ... and the email is sent
+        # ... the email is being sent anyway
         assert mock_mailer_mail_recipient.called
 
     @classmethod
@@ -62,10 +62,10 @@ class TestNotifications:
     def teardown_class(cls):
 
         logger.info("Unloading plugin")
-        # p.unload('harvest')
-        # p.unload('datajson')
-        # p.unload('ckan_harvester')
-        # p.unload('catalogdatagov')
+        p.unload('harvest')
+        p.unload('datajson')
+        p.unload('ckan_harvester')
+        p.unload('catalogdatagov')
 
     def _create_harvest_source_and_job_if_not_existing(self):
         site_user = toolkit.get_action('get_site_user')(
