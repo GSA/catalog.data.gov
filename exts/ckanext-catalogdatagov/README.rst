@@ -104,6 +104,8 @@ To run the tests, do::
 
     nosetests --nologcapture --with-pylons=test.ini
 
+    docker-compose exec ckan bash -c "cd src_extensions/ckanext-catalogdatagov && nosetests -v -s --with-pylons=test.ini --debug=ckanext.catalogdatagov.tests.test_harvest_notifications"
+    
 To run the tests and produce a coverage report, first make sure you have
 coverage installed in your virtualenv (``pip install coverage``) then run::
 
