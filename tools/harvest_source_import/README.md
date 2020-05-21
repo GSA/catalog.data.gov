@@ -1,6 +1,6 @@
 # Harvest source tools
 
-Scripts to read and import harvest sources from a CKAN instance and addit to another CKAN instance.
+Scripts to read and import harvest sources from a CKAN instance and add them to another CKAN instance.
 These scripts require Python >= 3.6.
 
 ## Import
@@ -81,14 +81,14 @@ We use _pytest cassettes_ to save responses from orgin and destination CKAN inst
 
 #### Record results
 
-We can run test against real CKAN instances to save each request reposnse (GET and POST)
+We can run tests against real CKAN instances to save each request response (GET and POST)
 
 ´´´
 python -m pytest --vcr-record=all tests/
 ´´´
 #### Run tests against saved requests
 
-Run test with fake requests based on previous results
+Run tests with fake requests based on previous results
 ´´´
 python -m pytest --vcr-record=none
 ´´´
