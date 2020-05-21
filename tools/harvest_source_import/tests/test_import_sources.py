@@ -4,10 +4,12 @@ from remote_ckan.lib import RemoteCKAN
 
 @pytest.mark.vcr()
 def test_load_from_url():
+    """ Test with some previous harvester already saved
+        Use a pytest cassette so real requests are not required. """
 
     ckan = RemoteCKAN(url='https://catalog.data.gov')
     ckan.set_destination(ckan_url='http://ckan:5000',
-                         ckan_api_key='8364b33a-832f-45ab-8d2d-71dba1b8d9796')
+                         ckan_api_key='5e88a903-43d3-44fd-99cc-d9feacc5c2d9')
 
     harvest_sources = []
     ok = 0
@@ -35,5 +37,5 @@ def test_load_from_url():
     print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(len(harvest_sources), ok, already_exists, failed))
     
     assert ok == 9
-    assert failed == 1
-    assert already_exists == 0
+    assert failed == 0
+    assert already_exists == 1
