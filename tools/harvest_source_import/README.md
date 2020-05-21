@@ -81,7 +81,7 @@ We can run test against real CKAN instances to save each request reposnse (GET a
 ´´´
 python -m pytest --vcr-record=all tests/
 ´´´
-#### Run test by used saved requests
+#### Run tests against saved requests
 
 Run test with fake requests based on previous results
 ´´´
