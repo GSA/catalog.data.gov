@@ -19,14 +19,17 @@ jobs:
           command: bin/jenkins_build deploy-ci-app-catalog-next
   
   test_importer:
-    machine: true
+    working_directory: ~/tools/harvest_source_import 
+    build:
+      docker:
+        - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
-      - run: cd tools/harvest_source_import
-      - run: pip install -r dev-requirements.txt
-      - run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-      - run: flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - run: python -m pytest --vcr-record=none tests/
+      - run: | 
+        pip install -r dev-requirements.txt
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        python -m pytest --vcr-record=none tests/
 
 workflows:
   version: 2
