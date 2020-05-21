@@ -25,11 +25,13 @@ jobs:
         - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
-      - run: | 
-        pip install -r dev-requirements.txt
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        python -m pytest --vcr-record=none tests/
+      - run:
+          name: tests 
+          command: |  
+            pip install -r dev-requirements.txt
+            flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+            python -m pytest --vcr-record=none tests/
 
 workflows:
   version: 2
