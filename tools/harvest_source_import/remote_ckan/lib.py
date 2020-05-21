@@ -125,7 +125,7 @@ class RemoteCKAN:
             'notes': data['notes'],
             'source_type': data['source_type'],
             'frequency': data['frequency'],
-            'config': json.dumps(config, indent=4)
+            'config': json.dumps(config)
         } 
 
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
