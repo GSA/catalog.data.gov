@@ -1,3 +1,4 @@
+import datetime
 import logging
 from mock import patch
 from nose.tools import assert_equal
@@ -14,7 +15,6 @@ import ckanext.harvest.model as harvest_model
 from ckanext.harvest.model import HarvestGatherError, HarvestObjectError, HarvestObject, HarvestJob
 from ckanext.harvest.logic import HarvestJobExists
 from ckanext.harvest.logic.action.update import send_error_mail
-# from ckanext.catalogdatagov.logic.action.update import harvest_jobs_run
 
 
 logger = logging.getLogger(__name__)
@@ -99,6 +99,10 @@ class TestNotifications:
             job = toolkit.get_action('harvest_job_show')(context, {
                 'id': harvest_source['status']['last_job']['id']})
             pass
+
+        # mark as finished
+        job.gather_finished = datetime.datetime.utcnow()
+        job.save()
 
         harvest_jobs_run = toolkit.get_action('harvest_jobs_run') 
         harvest_jobs_run(context, {})

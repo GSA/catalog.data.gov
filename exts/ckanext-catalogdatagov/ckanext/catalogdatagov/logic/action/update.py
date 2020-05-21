@@ -1,6 +1,6 @@
 import datetime
 import json
-import logging as log
+import logging
 from sqlalchemy import exc
 
 from ckanext.harvest.logic.action.update import (
@@ -11,6 +11,9 @@ from ckanext.harvest.logic.action.update import (
 from ckan.logic import chained_action
 from ckan.plugins.toolkit import check_access
 from ckan.lib.mailer import mail_recipient
+
+
+log = logging.getLogger(__name__)
 
 
 @chained_action
@@ -37,10 +40,14 @@ def harvest_jobs_run(up_func, context, data_dict):
         context, {'source_id': source_id, 'status': u'Running'})
 
     if len(jobs):
+        log.info('Job found')        
+
         package_index = PackageSearchIndex()
 
         for job in jobs:
+            log.info('Job info {}'.format(job))
             if job['gather_finished']:
+                log.info('Job finished')
                 objects = session.query(HarvestObject.id) \
                     .filter(HarvestObject.harvest_job_id == job['id']) \
                     .filter(and_(
@@ -51,6 +58,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                     .order_by(HarvestObject.import_finished.desc())
 
                 if objects.count() == 0:
+                    log.info('0 Objects')
                     msg = ''  # message to be emailed for fixed packages
                     job_obj = HarvestJob.get(job['id'])
 
