@@ -116,7 +116,7 @@ class RemoteCKAN:
         ckan_package = self.get_package_from_data(data)
 
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
-        logger.info('Creating havervest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], ckan_package['config']))
+        logger.info('Creating harvest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], ckan_package['config']))
 
         created, status, error = self.request_ckan(url=package_create_url, method='POST', data=ckan_package)
 
@@ -145,7 +145,7 @@ class RemoteCKAN:
         ckan_package = self.get_package_from_data(data)
 
         package_update_url = f'{self.destination_url}/api/3/action/harvest_source_update'
-        logger.info(' ** Updating havervest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], ckan_package['config']))
+        logger.info(' ** Updating harvest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], ckan_package['config']))
 
         updated, status, error = self.request_ckan(url=package_update_url, method='POST', data=ckan_package)
         name = ckan_package['name']
