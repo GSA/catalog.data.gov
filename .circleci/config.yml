@@ -6,6 +6,7 @@ jobs:
       - checkout
       - run: make build ci
       - run: make test
+      - run: docker-compose exec ckan bash -c "cd src_extensions/ckanext-catalogdatagov && nosetests -v -s --with-pylons=test.ini"
 
   deploy-sandbox:
     docker:
@@ -16,14 +17,7 @@ jobs:
       - checkout
       - deploy:
           name: Trigger Jenkins deploy
-          command: bin/jenkins_build deploy-ci-app-catalog-next
-  
-  test_extension:
-    machine: true
-    steps:
-      - checkout
-      - run: make up
-      - run: docker-compose exec ckan bash -c "cd src_extensions/ckanext-catalogdatagov && nosetests -v -s --with-pylons=test.ini"
+          command: bin/jenkins_build deploy-ci-app-catalog-next    
 
 workflows:
   version: 2
@@ -36,4 +30,3 @@ workflows:
           filters:
             branches:
               only: master
-      - test_extension
