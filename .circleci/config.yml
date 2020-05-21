@@ -19,8 +19,8 @@ jobs:
           command: bin/jenkins_build deploy-ci-app-catalog-next
   
   test_importer:
-    working_directory: ~/tools/harvest_source_import 
     build:
+      working_directory: ~/tools/harvest_source_import 
       docker:
         - image: circleci/python:3.6.2-stretch-browsers
       steps:
