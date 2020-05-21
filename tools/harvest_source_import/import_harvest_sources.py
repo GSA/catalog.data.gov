@@ -18,18 +18,18 @@ args = parser.parse_args()
 ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destination_api_key)
 
-harvest_sources = []
-
-for hs in ckan.list_harvest_sources(source_type=args.source_type):
-
-    if args.limit > 0:
-        if len(harvest_sources) >= args.limit:
-            break
-
-    harvest_sources.append(hs)
+for hs in ckan.list_harvest_sources(source_type=args.source_type, limit=args.limit):
+    print(' ****** {}/{}'.format(len(ckan.harvest_sources), args.limit))
     # save to destination CKAN    
     ckan.create_harvest_source(data=hs)
+    assert 'created' in ckan.harvest_sources[hs['name']].keys()
+    assert 'updated' in ckan.harvest_sources[hs['name']].keys()
+    assert 'error' in ckan.harvest_sources[hs['name']].keys()
     
+for k, v in ckan.harvest_sources.items():
+    print(k)
+    print(v['created'])
+
 created = len([k for k, v in ckan.harvest_sources.items() if v['created'] ])
 updated = len([k for k, v in ckan.harvest_sources.items() if v['updated'] ])
 errors = len([k for k, v in ckan.harvest_sources.items() if v['error'] ])
@@ -37,7 +37,7 @@ total = created + updated + errors
 
 print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(total, created, updated, errors))
 
-assert total == len(harvest_sources)
+assert total == len(ckan.harvest_sources)
 
 if len(ckan.errors) > 0:
     print('*******\nWITH ERRORS\n*******')

@@ -17,13 +17,15 @@ class RemoteCKAN:
         self.destination_url = ckan_url
         self.api_key = ckan_api_key
 
-    def list_harvest_sources(self, source_type=None, start=0, page_size=100):
+    def list_harvest_sources(self, source_type=None, start=0, page_size=100, limit=0):
         """ Generator for a list of harvest sources at a CKAN instance
             Params:
                 source_type (str): datajson | csw | None=ALL
                 limit (int): max number of harvest sources to read 
         """  
+        
         logger.debug(f'List harvest sources {start}-{page_size}')
+
         package_search_url = f'{self.url}/api/3/action/package_search'
         # TODO use harvest_source_list for harvester ext
         
@@ -56,10 +58,14 @@ class RemoteCKAN:
         count = len(data['result']['results'])
         if count == 0:
             return
+
         harvest_sources = data['result']['results']
         logger.info(f'{count} ({total}) harvest sources found')
 
         for hs in harvest_sources:
+            total_sources = len(self.harvest_sources)
+            if limit > 0 and total_sources >= limit:
+                return
             title = hs['title']
             source_type = hs['source_type']  # datajosn, waf, etc
             state = hs['state']
@@ -84,12 +90,12 @@ class RemoteCKAN:
                     self.harvest_sources[name] = full_hs['result']
                     yield full_hs['result']
 
-        # if the page is not full, is the last one
+        # if the page is not full, it is the last one
         if count + 1 < page_size:
             return
 
         # get next page   
-        yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size)
+        yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size, limit=limit)
     
     def get_request_headers(self, include_api_key=True):
         headers = {'User-Agent': self.user_agent}
@@ -137,10 +143,6 @@ class RemoteCKAN:
                 status_code (int): request status code
                 error (str): None or error
             """
-    
-        created, status, error = self.create_organization(data=data['organization'])
-        if not created:
-            return False, status, f'Unable to create organization: {error}'
 
         ckan_package = self.get_package_from_data(data)
 
