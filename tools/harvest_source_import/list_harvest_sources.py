@@ -8,7 +8,7 @@ from remote_ckan.lib import RemoteCKAN
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--origin_url", type=str, default='https://catalog.data.gov', help="CKAN instance URL")
-parser.add_argument("--source_type", type=str, default='ALL', help="Tipe of harvest source: ALL|datajson|csw|waf etc")
+parser.add_argument("--source_type", type=str, default='ALL', help="Type of harvest source: ALL|datajson|csw|waf etc")
 parser.add_argument("--user_agent", type=str, default='CKAN-harvest-source-importer 1.0', help="User agent")
 parser.add_argument("--limit", type=int, default=0, help="Limit the amount of Harvest sources to import")
 args = parser.parse_args()
