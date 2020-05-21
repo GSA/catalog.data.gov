@@ -8,6 +8,7 @@ from ckantoolkit.tests.helpers import reset_db, FunctionalTestBase
 from ckan import plugins as p
 from ckan.plugins import toolkit
 from ckan import model
+from ckan.lib.base import config
 
 import ckanext.harvest.model as harvest_model
 from ckanext.harvest.model import HarvestGatherError, HarvestObjectError, HarvestObject, HarvestJob
@@ -23,6 +24,15 @@ class TestNotifications:
 
     @patch('ckan.lib.mailer.mail_recipient')
     def test_error_mail_not_sent(self, mock_mailer_mail_recipient):
+
+        config['ckan.harvest.mq.type'] = 'redis'
+        config['ckan.harvest.mq.hostname'] = 'redis'
+        config['ckan.harvest.mq.port'] = 6379
+        config['ckan.harvest.mq.redis_db'] = 1
+        config['ckan.harvest.log_level'] = 'info'
+        config['ckan.harvest.log_scope'] = 0
+        config['ckan.harvest.email'] = 'on'
+
         logger.info('Test error mail not sent')
         context, harvest_source, job = self._create_harvest_source_and_job_if_not_existing()
 

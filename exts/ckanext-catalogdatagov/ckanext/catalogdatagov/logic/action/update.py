@@ -391,6 +391,7 @@ def harvest_jobs_run(up_func, context, data_dict):
     sent_jobs = []
     for job in jobs:
         context['detailed'] = False
+        harvest_source_show = toolkit.get_action('harvest_source_show')
         source = harvest_source_show(context, {'id': job['source_id']})
         # source = harvest_source_show(context,{'id':source_id})
         if source['active']:
