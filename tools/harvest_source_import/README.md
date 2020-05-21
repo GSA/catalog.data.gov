@@ -1,4 +1,9 @@
-# Harvest source import
+# Harvest source tools
+
+Scripts to read and import harvest sources from a CKAN instance and addit to another CKAN instance.
+These scripts require Python >= 3.6.
+
+## Import
 
 Script: import_harvest_sources. Get params help.
 
