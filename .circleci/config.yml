@@ -35,3 +35,4 @@ workflows:
           filters:
             branches:
               only: master
+      - test_extension
