@@ -25,7 +25,7 @@ load test_helper
     --data "password=$CKAN_SYSADMIN_PASSWORD" \
     --cookie-jar $BATS_TMPDIR/cookie-jar 2>&1 > /dev/null)
 
-  echo "$output" >&2 # debug
+  log "$output"
   echo "$output" | grep -qi '^< set-cookie:.*auth_tkt'
 }
 
@@ -38,16 +38,42 @@ load test_helper
     --data 'login=not_a_user' \
     --data 'password=badpassword' 2>&1 >/dev/null)
 
-  echo "$output" >&2 # debug
+  log "$output"
   ! echo "$output" | grep -qi '^< set-cookie:.*auth_tkt'
 }
 
 @test "User can create org" {
-  test_create_org
+  local api_key
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+
+  # Template the dataset JSON payload with a random code to provide uniqueness
+  # to the dataset.
+  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
+  run curl --silent -X POST \
+    http://$HOST:$PORT/api/3/action/organization_create \
+    -H "Authorization: $api_key" \
+    -H "cache-control: no-cache" \
+    -d "$json_data"
+
+  [ "$status" = 0 ]
+  assert_json .success true
 }
 
 @test "User can create dataset" {
-  test_create_dataset
+  local api_key json_data
+
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  json_data=$(sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-package-create-01.json)
+
+  run curl --silent -X POST \
+    http://$HOST:$PORT/api/3/action/package_create \
+    -H "Authorization: $api_key" \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d "$json_data"
+
+  [ "$status" = 0 ]
+  assert_json .success true
 }
 
 @test "data is accessible for user" {
