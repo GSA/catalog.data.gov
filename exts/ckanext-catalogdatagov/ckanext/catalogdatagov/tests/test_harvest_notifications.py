@@ -62,9 +62,9 @@ class TestNotifications:
     def teardown_class(cls):
 
         logger.info("Unloading plugin")
-        p.unload('harvest')
-        p.unload('datajson')
-        p.unload('ckan_harvester')
+        # p.unload('harvest')
+        # p.unload('datajson')
+        # p.unload('ckan_harvester')
         p.unload('catalogdatagov')
 
     def _create_harvest_source_and_job_if_not_existing(self):
@@ -100,9 +100,10 @@ class TestNotifications:
                 'id': harvest_source['status']['last_job']['id']})
             pass
 
-        # mark as finished
-        job.gather_finished = datetime.datetime.utcnow()
-        job.save()
+        # mark as finished for testing purposes
+        job_obj = HarvestJob.get(job['id'])
+        job_obj.gather_finished = datetime.datetime.utcnow()
+        job_obj.save()
 
         harvest_jobs_run = toolkit.get_action('harvest_jobs_run') 
         harvest_jobs_run(context, {})
