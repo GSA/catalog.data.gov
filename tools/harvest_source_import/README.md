@@ -69,3 +69,10 @@ remote_ckan.lib - Harvest source created OK Restore-the-gulf
 Finished: 7 harvest sources. 7 Added, 0 already exists, 0 failed
 
 ```
+
+### Test
+
+
+python -m pytest --vcr-record=all tests/
+
+python -m pytest --vcr-record=none
