@@ -1,14 +1,15 @@
 # Harvest source tools
 
-Scripts to read and import harvest sources from a CKAN instance and add them to another CKAN instance.
+Scripts to read and import harvest sources from a CKAN instance and add it to another CKAN instance.
+
 These scripts require Python >= 3.6.
 
-## Import
+## Import Harvest Sources
 
-Script: import_harvest_sources. Get params help.
+Get help with import_harvest_sources.py parameters
 
 ```
-python import_harvest_sources.py -h
+$ python import_harvest_sources.py -h
 ```
 
 Response:
@@ -36,17 +37,17 @@ optional arguments:
   --limit LIMIT         Limit the amount of Harvest sources to import
 ```
 
-Test running for CSW harvest sources
+Run a CSW harvest source:
 
 ```
-python import_harvest_sources.py \
+$ python import_harvest_sources.py \
     --origin_url=https://catalog.data.gov \
     --destination_url=http://ckan:5000 \
     --destination_api_key=xxxxx-xxxxx-xxxx-xxxxxx \
     --source_type=csw
 ```
 
-Response
+Response:
 
 ```
 remote_ckan.lib - 7 (7) harvest sources found
@@ -83,12 +84,15 @@ We use _pytest cassettes_ to save responses from orgin and destination CKAN inst
 
 We can run tests against real CKAN instances to save each request response (GET and POST)
 
-´´´
-python -m pytest --vcr-record=all tests/
-´´´
+
+```
+$ python -m pytest --vcr-record=all tests/
+```
 #### Run tests against saved requests
 
-Run tests with fake requests based on previous results
-´´´
-python -m pytest --vcr-record=none
-´´´
+Run test with fake requests based on previous results
+
+```
+$ python -m pytest --vcr-record=none
+```
+
