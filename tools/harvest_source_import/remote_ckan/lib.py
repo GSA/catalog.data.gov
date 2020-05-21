@@ -89,7 +89,7 @@ class RemoteCKAN:
 
     def create_harvest_source(self, data):
         """ create a harvest source (is just a CKAN dataset/package)
-            Ensure to create the organization first.
+            This will create the organization if it does not already exist.
             params:
                 data (dict): Harvest source dict
 
