@@ -30,9 +30,9 @@ for hs in ckan.list_harvest_sources(source_type=args.source_type):
     # save to destination CKAN    
     ckan.create_harvest_source(data=hs)
     
-created = len([k for k, v in ckan.harvest_sources if v['created'] ])
-updated = len([k for k, v in ckan.harvest_sources if v['updated'] ])
-errors = len([k for k, v in ckan.harvest_sources if v['error'] ])
+created = len([k for k, v in ckan.harvest_sources.items() if v['created'] ])
+updated = len([k for k, v in ckan.harvest_sources.items() if v['updated'] ])
+errors = len([k for k, v in ckan.harvest_sources.items() if v['error'] ])
 total = created + updated + errors
 
 print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(total, created, updated, errors))

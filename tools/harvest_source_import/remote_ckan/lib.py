@@ -92,7 +92,7 @@ class RemoteCKAN:
         yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size)
     
     def get_request_headers(self, include_api_key=True):
-        headers = {'User-Agent': self.user_agent'}
+        headers = {'User-Agent': self.user_agent}
         if include_api_key:
             headers['X-CKAN-API-Key'] = self.api_key
         return headers
