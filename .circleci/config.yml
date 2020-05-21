@@ -22,6 +22,7 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run: make up
       - run: docker-compose exec ckan bash -c "cd src_extensions/ckanext-catalogdatagov && nosetests -v -s --with-pylons=test.ini"
 
 workflows:
