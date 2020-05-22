@@ -11,6 +11,7 @@ from ckanext.harvest.logic.action.update import (
 from ckan.logic import chained_action
 from ckan.plugins.toolkit import check_access
 from ckan.lib import search
+import ckan.lib.mailer
 
 
 log = logging.getLogger(__name__)
@@ -20,6 +21,14 @@ log = logging.getLogger(__name__)
 def harvest_jobs_run(up_func, context, data_dict):
     log.info('Harvest job run: %r', data_dict)
     check_access('harvest_jobs_run', context, data_dict)
+
+    # email = {
+    #         'recipient_emails': 'Jhon',
+    #         'recipient_name': 'jhon@mail.com',
+    #         'subject': 'Test subject',
+    #         'body': 'Test message'
+    #     }
+    # ckan.lib.mailer.mail_recipient(**email)
 
     model = context['model']
     session = context['session']
@@ -91,7 +100,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                     results = model.Session.execute(
                         sql, {'harvest_source_id': job_obj.source_id})
 
-                    log.info('Results: {}'.format(results))
+                    log.info('Results for no current packages: {}'.format(job_obj.source_id))
                     for row in results:
                         pkgs_no_current.add(row['package_id'])
 
@@ -165,7 +174,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                     results = model.Session.execute(
                         sql, {'owner_org': owner_org})
 
-                    log.info('Results2: {}'.format(results))
+                    log.info('Results: for {} {}'.format(owner_org, job_obj.source_id))
                     for row in results:
                         pkgs_no_harvest_object.add(row['id'])
 
@@ -199,10 +208,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                                             str(datetime.datetime.now()),
                                  'body': msg,
                                  }
-                        try:
-                            mailer.mail_recipient(**email)
-                        except Exception, e:
-                            log.error('Error: %s; email: %s' % (e, email))
+                        send_email_notification(email)
 
                     # finally we can call this job finished
                     job_obj.status = u'Finished'
@@ -331,6 +337,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                         sql = '''select group_id from member where table_id = :source_id;'''
                         q = model.Session.execute(sql, {'source_id': job_obj.source_id})
 
+                        notification_sent = 0
                         for row in q:
                             all_emails = []
 
@@ -368,12 +375,19 @@ def harvest_jobs_run(up_func, context, data_dict):
                                         'subject': 'Data.gov Latest Harvest Job Report for ' + harvest_name.capitalize(),
                                         'body': msg
                                     }
-                                    try:
-                                        # GSA for uses bcc_recipients functio
-                                        # TODO define what to do here
-                                        mailer.mail_recipient(**email)
-                                    except Exception:
-                                        log.error('Error: %s; email: %s' % (e, email))
+                                    notification_sent += 1
+                                    send_email_notification(email)
+                        
+                        notify_empty_jobs = config.get('ckanext.harvest.notify_empty_jobs')
+                        if notify_empty_jobs and notification_sent == 0:
+                            email = {
+                                'recipient_emails': 'Empty jobs admin',
+                                'recipient_name': notify_empty_jobs,
+                                'subject': 'No reports sent',
+                                'body': "We didn't sent any report"
+                            }
+                            
+                            send_email_notification(email)
 
                     # Reindex the harvest source dataset so it has the latest
                     # status
@@ -414,3 +428,14 @@ def harvest_jobs_run(up_func, context, data_dict):
     publisher.close()
 
     return sent_jobs
+
+
+def send_email_notification(email):
+    """ Send and email 
+        Param:
+            Email: dict with all required fields
+    """
+    try:
+        ckan.lib.mailer.mail_recipient(**email)
+    except Exception, e:
+        log.error('Error: %s; email: %s' % (e, email))

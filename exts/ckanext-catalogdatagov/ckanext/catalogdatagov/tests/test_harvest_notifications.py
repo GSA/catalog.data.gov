@@ -22,8 +22,6 @@ logger = logging.getLogger(__name__)
 
 class TestNotifications:
 
-
-
     @patch('ckan.lib.mailer.mail_recipient')
     def test_notificaion_sent_all_harvest_process(self, mock_mailer_mail_recipient):
 
@@ -47,7 +45,8 @@ class TestNotifications:
         config['ckan.harvest.log_level'] = 'info'
         config['ckan.harvest.log_scope'] = 0
         config['ckanext.harvest.email'] = 'on'
-        
+        config['ckanext.harvest.notify_empty_jobs'] = 'empty@gsa.gov'
+
         if not p.plugin_loaded('harvest'):
             logger.info("Loading harvest plugin")
             p.load('harvest')
@@ -76,8 +75,8 @@ class TestNotifications:
         }
         source_dict = {
             'title': 'Test Source',
-            'name': 'test-source',
-            'url': 'basic_test',
+            'name': 'test-source-01',
+            'url': 'http://basic_test.com',
             'source_type': 'ckan',
         }
 
