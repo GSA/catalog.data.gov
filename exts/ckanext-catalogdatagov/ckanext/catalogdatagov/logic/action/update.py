@@ -371,6 +371,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                                     send_email_notification(email)
                         
                         notify_empty_jobs = config.get('ckanext.harvest.notify_empty_jobs')
+                        log.info('Empty jobs {} {}'.format(notify_empty_jobs, notification_sent))
                         if notify_empty_jobs and notification_sent == 0:
                             email = {
                                 'recipient_email': notify_empty_jobs,
