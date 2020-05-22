@@ -25,10 +25,6 @@ for hs in ckan.list_harvest_sources(source_type=args.source_type, limit=args.lim
     assert 'created' in ckan.harvest_sources[hs['name']].keys()
     assert 'updated' in ckan.harvest_sources[hs['name']].keys()
     assert 'error' in ckan.harvest_sources[hs['name']].keys()
-    
-for k, v in ckan.harvest_sources.items():
-    print(k)
-    print(v['created'])
 
 created = len([k for k, v in ckan.harvest_sources.items() if v['created'] ])
 updated = len([k for k, v in ckan.harvest_sources.items() if v['updated'] ])
