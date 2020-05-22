@@ -31,18 +31,13 @@ class TestNotifications:
         config['ckan.harvest.mq.redis_db'] = 1
         config['ckan.harvest.log_level'] = 'info'
         config['ckan.harvest.log_scope'] = 0
-        config['ckan.harvest.email'] = 'on'
+        config['ckanext.harvest.email'] = 'on'
 
         logger.info('Test error mail not sent')
         context, harvest_source, job = self._create_harvest_source_and_job_if_not_existing()
 
         status = toolkit.get_action('harvest_source_show_status')(context, {'id': harvest_source['id']})
 
-        send_error_mail(
-            context,
-            harvest_source['id'],
-            status
-        )
         # validate that even if there is no error, 
         assert_equal(0, status['last_job']['stats']['errored'])
         # ... the email is being sent anyway
@@ -65,7 +60,7 @@ class TestNotifications:
         # p.unload('harvest')
         # p.unload('datajson')
         # p.unload('ckan_harvester')
-        p.unload('catalogdatagov')
+        # p.unload('catalogdatagov')
 
     def _create_harvest_source_and_job_if_not_existing(self):
         site_user = toolkit.get_action('get_site_user')(
@@ -104,6 +99,9 @@ class TestNotifications:
         job_obj = HarvestJob.get(job['id'])
         job_obj.gather_finished = datetime.datetime.utcnow()
         job_obj.save()
+
+        # hobj = HarvestObject(guid='xxxxx', job=job_obj, state='COMPLETE')
+        # hobj.save()
 
         harvest_jobs_run = toolkit.get_action('harvest_jobs_run') 
         harvest_jobs_run(context, {})

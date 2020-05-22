@@ -7,10 +7,10 @@ from ckanext.harvest.logic.action.update import (
     _make_scheduled_jobs, harvest_job_list, HarvestJob,
     HarvestObject, resubmit_jobs, resubmit_objects, and_,
     toolkit, get_action, config, get_gather_publisher,
-    PackageSearchIndex, harvest_job_dictize, logic)
+    PackageSearchIndex, harvest_job_dictize, logic, mailer)
 from ckan.logic import chained_action
 from ckan.plugins.toolkit import check_access
-from ckan.lib.mailer import mail_recipient
+from ckan.lib import search
 
 
 log = logging.getLogger(__name__)
@@ -57,8 +57,9 @@ def harvest_jobs_run(up_func, context, data_dict):
                             )) \
                     .order_by(HarvestObject.import_finished.desc())
 
+                log.info('{} Objects'.format(objects.count()))
                 if objects.count() == 0:
-                    log.info('0 Objects')
+                    
                     msg = ''  # message to be emailed for fixed packages
                     job_obj = HarvestJob.get(job['id'])
 
@@ -90,9 +91,11 @@ def harvest_jobs_run(up_func, context, data_dict):
                     results = model.Session.execute(
                         sql, {'harvest_source_id': job_obj.source_id})
 
+                    log.info('Results: {}'.format(results))
                     for row in results:
                         pkgs_no_current.add(row['package_id'])
 
+                    log.info('pkgs_no_current: {}'.format(pkgs_no_current))
                     if len(pkgs_no_current) > 0:
                         log_message = '%s packages to be relinked for ' \
                                 'source %s' % (len(pkgs_no_current),
@@ -162,6 +165,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                     results = model.Session.execute(
                         sql, {'owner_org': owner_org})
 
+                    log.info('Results2: {}'.format(results))
                     for row in results:
                         pkgs_no_harvest_object.add(row['id'])
 
@@ -196,7 +200,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                                  'body': msg,
                                  }
                         try:
-                            mail_recipient(**email)
+                            mailer.mail_recipient(**email)
                         except Exception, e:
                             log.error('Error: %s; email: %s' % (e, email))
 
@@ -233,6 +237,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                         source.config = json.dumps(source_config)
                         source.save()
 
+                    log.info("config 'ckanext.harvest.email'={}".format(config.get('ckanext.harvest.email')))
                     if config.get('ckanext.harvest.email') == 'on':
                         # email body
 
@@ -356,17 +361,19 @@ def harvest_jobs_run(up_func, context, data_dict):
                                         all_emails.append(org_email.lower())
 
                             if all_emails:
-                                email = {
-                                    'recipient_emails': all_emails,
-                                    'subject': 'Data.gov Latest Harvest Job Report for ' + harvest_name.capitalize(),
-                                    'body': msg
-                                }
-                                try:
-                                    # GSA for uses bcc_recipients functio
-                                    # TODO define what to do here
-                                    mail_recipient(**email)
-                                except Exception:
-                                    pass
+                                for email_addr in all_emails:
+                                    email = {
+                                        'recipient_emails': email_addr,
+                                        'recipient_name': email_addr,
+                                        'subject': 'Data.gov Latest Harvest Job Report for ' + harvest_name.capitalize(),
+                                        'body': msg
+                                    }
+                                    try:
+                                        # GSA for uses bcc_recipients functio
+                                        # TODO define what to do here
+                                        mailer.mail_recipient(**email)
+                                    except Exception:
+                                        log.error('Error: %s; email: %s' % (e, email))
 
                     # Reindex the harvest source dataset so it has the latest
                     # status
