@@ -14,7 +14,7 @@ def test_load_from_url():
                          ckan_api_key='9ff42439-4ee3-46b2-9ce9-b0b051884b37')
 
     print('Getting harvest sources ...')
-    for hs in ckan.list_harvest_sources(source_type='datajson', limit=6):
+    for hs in ckan.list_harvest_sources(source_type='datajson', limit=9):
 
         ckan.create_harvest_source(data=hs)
         assert 'created' in ckan.harvest_sources[hs['name']].keys()
@@ -30,6 +30,6 @@ def test_load_from_url():
 
     assert total == len(ckan.harvest_sources)
     assert created == 3
-    assert updated == 3
+    assert updated == 6
     assert errors == 0
 
