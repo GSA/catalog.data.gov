@@ -1,4 +1,29 @@
-# Harvest source tools
+# Harvest source scripts
+
+## Create a report on harvest sources
+
+list_harvest_sources
+
+```
+python list_harvest_sources.py --source_type=datajson
+remote_ckan.lib - 99 (151) harvest sources found
+remote_ckan.lib -   [datajson] Harvest source: U.S. Forest Service Geospatial Data Discovery [active]
+remote_ckan.lib - Get harvest source data https://catalog.data.gov/api/3/action/harvest_source_show {'id': 'u-s-forest-service-geospatial-data-discovery'}
+remote_ckan.lib - Error [500] trying to get full harvest source info about "U.S. Forest Service Geospatial Data Discovery" (u-s-forest-service-geospatial-data-discovery)
+remote_ckan.lib -   [datajson] Harvest source: City of Boise Data.json [active]
+remote_ckan.lib - Get harvest source data https://catalog.data.gov/api/3/action/harvest_source_show {'id': 'city-of-boise-data-json'}
+
+...
+
+Finished: 150 harvest sources with 2 error(s)
+*******
+WITH ERRORS
+*******
+  - Error [500] trying to get full harvest source info about "U.S. Forest Service Geospatial Data Discovery" (u-s-forest-service-geospatial-data-discovery)
+	- Error [500] trying to get full harvest source info about "honolulu json" (honolulu-json)
+```
+
+### Import harvest sources
 
 Scripts to read and import harvest sources from a CKAN instance and add it to another CKAN instance.
 

@@ -9,6 +9,7 @@ class RemoteCKAN:
     def __init__(self, url, user_agent='Remote CKAN 1.0'):
         self.url = url
         self.user_agent = user_agent
+        self.errors = []
         logger.debug(f'New remote CKAN {url}')
     
     def set_destination(self, ckan_url, ckan_api_key):
@@ -37,7 +38,8 @@ class RemoteCKAN:
         # response = requests.post(package_search_url, json=params, headers=headers)
         response = requests.get(package_search_url, params=params, headers=headers)
         if response.status_code >= 400:
-            error = f' - ERROR Response {response.status_code} {response.text}'
+            error = f'ERROR getting harvest sources: {response.status_code} {response.text}'
+            self.errors.append(error)
             logger.error(error)
             raise ValueError(error)
 
@@ -46,6 +48,7 @@ class RemoteCKAN:
         if not data['success']:
             error = 'ERROR searching harvest sources {}'.format(data['error'])
             logger.error(error)
+            self.errors.append(error)
             raise ValueError(error)
 
         total = data['result']['count']
@@ -69,7 +72,11 @@ class RemoteCKAN:
                 logger.info(f'Get harvest source data {harvest_show_url} {params}')
                 response = requests.get(harvest_show_url, params=params, headers=headers)
                 if response.status_code >= 400:
-                    logger.error(f'Error [{response.status_code}] trying to get full harvest source info')
+                    error = f'Error [{response.status_code}] trying to get full harvest source info about "{title}" ({name})'
+                    logger.error(error)
+                    self.errors.append(error)
+                    # yield incomplete version
+                    yield hs
                 else:
                     full_hs = response.json()
                     yield full_hs['result']
@@ -153,12 +160,14 @@ class RemoteCKAN:
             error = ('ERROR creating harvest source: {}'
                      '\n\t Status code: {}'
                      '\n\t content:{}'.format(ckan_package, req.status_code, req.content))
+            self.errors.append(error)
             logger.error(error)
             return False, req.status_code, error
 
         if not json_content['success']:
             error = 'API response failed: {}'.format(json_content.get('error', None))
             logger.error(error)
+            self.errors.append(error)
             return False, req.status_code, error
 
         logger.info('Harvest source created OK {}'.format(ckan_package['title']))
@@ -189,6 +198,7 @@ class RemoteCKAN:
             req = requests.post(package_create_url, data=organization, headers=headers)
         except Exception as e:
             error = 'ERROR creating organization: {} [{}]'.format(e, organization)
+            self.errors.append(error)
             return False, 0, error
 
         content = req.content

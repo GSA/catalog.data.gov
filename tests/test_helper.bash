@@ -1,3 +1,55 @@
+# Test helpers
+
+load /bats/lib/bats-support/load.bash
+load /bats/lib/bats-assert/load.bash
+
+
+# assert_json <jq-selector> <expected>
+#
+# Uses jq on `$output` and asserts the value matched by jq-selector matches
+# the expected value.
+function assert_json () {
+  local actual expected selector
+  selector=$1
+  expected=$2
+
+  {
+    actual=$(echo "$output" | jq --raw-output "$selector")
+    [ "$actual" = "$expected" ]
+  } || fail <<EOF
+selector : $selector
+actual   : $actual
+expected : $expected
+output   : $output
+EOF
+}
+
+# db [psql-args]
+#
+# stdin: SQL
+#
+# Wrapper for psql (defaults to ckan DB) for better shell support. A SQL error
+# will cause psql to error. Removes headers and column delimiters from the
+# output format for better parsing of the query response.
+function db () {
+  PGPASSWORD=ckan psql --no-align --quiet --tuples-only --set ON_ERROR_STOP=1 --host db --user ckan "$@"
+}
+
+# log <msg>...
+#
+# stdin: msg
+#
+# Outputs message to stderr so that will be displayed by bats only when the
+# test fails.
+function log () {
+  if (( $# > 0)); then
+    # Print the arguments
+    echo "$@" >&2
+  else
+    # Print stdin
+    cat >&2
+  fi
+}
 
 function wait_for_app () {
   # The app takes quite a while to startup (solr initialization and
@@ -22,16 +74,12 @@ function wait_for_app () {
   retries=15
   local len_api_key=0
   
-  export PGPASSWORD=$CKAN_DB_PW
-
   while [ $len_api_key -le 10 ]; do
-    local sql_command="psql -h $DB_HOST -U ckan $CKAN_DB -c 'select apikey from public.user where name=\"$CKAN_SYSADMIN_NAME\";"
-    
-    run psql -h $DB_HOST -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
-    echo "Check API KEY: $sql_command" >&3
-    echo " - $output" >&3
+    run db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
 
-    local api_key=$(echo ${lines[2]} | xargs)
+    if [ "$status" = 0 ]; then
+      api_key="$output"
+    fi
 
     echo "# API KEY $api_key" >&3
     len_api_key=${#api_key} 
@@ -63,56 +111,6 @@ function test_url () {
   local url="http://$HOST:$PORT/$1"
   run curl --silent --fail $url
   [ "$status" -ne 22 ]
-}
-
-function test_create_org () {
-  export PGPASSWORD=$CKAN_DB_PW
-  
-  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
-  local api_key=$(echo ${lines[2]} | xargs)  # run fill $output with all response and $line with each response line
-  
-  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
-  
-  run curl -X POST \
-    http://$HOST:$PORT/api/3/action/organization_create \
-    -H "Authorization: $api_key" \
-    -H "cache-control: no-cache" \
-    -d "$json_data"
-
-  local success=$(echo $output | grep -o '"success": true')
-
-  if [ "$success" = '"success": true' ]; then
-    return 0;
-  else
-    echo "Failed to create org. API KEY $api_key. RND $RNDCODE OUTPUT: $output" >&3
-    return 1;
-  fi
-}
-
-function test_create_dataset () {
-  export PGPASSWORD=$CKAN_DB_PW
-  
-  run psql -h db -U ckan $CKAN_DB -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
-  local api_key=$(echo ${lines[2]} | xargs)  # run fill $output with all response and $line with each response line
-  echo "Create dataset API KEY = $api_key" >&3
-  
-  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-package-create-01.json )
-  
-  run curl -X POST \
-    http://$HOST:$PORT/api/3/action/package_create \
-    -H "Authorization: $api_key" \
-    -H 'cache-control: no-cache' \
-    -H 'content-type: application/json' \
-    -d "$json_data"
-
-  local success=$(echo $output | grep -o '"success": true')
-
-  if [ "$success" = '"success": true' ]; then
-    return 0;
-  else
-    echo "Failed to create dataset. API KEY $api_key. RND: $RNDCODE OUTPUT: $output" >&3
-    return 1;
-  fi
 }
 
 function test_read_dataset () {
