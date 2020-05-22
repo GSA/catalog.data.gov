@@ -20,7 +20,8 @@ services:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
       - ./exts/ckanext-catalogdatagov:/srv/app/src_extensions/ckanext-catalogdatagov
-    
+      - ./requirements:/requirements
+
   datapusher:
     container_name: datapusher
     build:
