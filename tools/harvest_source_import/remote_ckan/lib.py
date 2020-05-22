@@ -225,8 +225,7 @@ class RemoteCKAN:
         if type(config) == str:
             config = json.loads(config)
 
-        # we can also have config in extras
-        # we don't get extras 
+        # We may have config defined as extras
         extras = data.get('extras', {})
         for extra in extras:
             if extra['key'] == 'config':
