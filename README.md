@@ -13,9 +13,11 @@ The _only_  deployable artifact associated with this repository is the
 `requirements-freeze.txt` file. See [datagov-deploy](https://github.com/GSA/datagov-deploy)
 for full configuration in live environments.
 
-The live environment is different than the development environment in a number of ways,
-so it is important to recognize how changes made to the application need to be captured
-so that the application is deployed properly.
+The live environment is different than the development environment in
+a number of ways. Changes made in this repo that work correctly in the
+development environment may require additional steps to be taken in
+order to make sure the application is deployable to the live
+environment:
 
 - If you need to add or change a dependency, you should make that
   change in the `requirements/Pipfile`, run `make update-dependencies`
@@ -25,7 +27,7 @@ so that the application is deployed properly.
 - If you need to add or remove a plugin, you will also need to update
   the plugin list in
   [datagov-deploy](https://github.com/GSA/datagov-deploy) Currently,
-  that means updating the value of `catalog_ckan_plugsin_default` in
+  that means updating the value of `catalog_ckan_plugins_default` in
   `ansible/inventories/*/group_vars/catalog-web-next/vars.yml`
   
 - If you need to add or change configuration that lives in the
@@ -36,9 +38,9 @@ so that the application is deployed properly.
   `ansible/roles/software/ckan/catalog/ckan-app/templates/catalog-next/etc_ckan_production_ini.j2`.
   
 - If you find you need to modify the `ckan/Dockerfile` to add OS
-  packages or install software, other changes may be needed to be made
-  to the ansible playbooks.  Please bring these situations to the
-  team's attention.
+  packages or install software, other changes may need to be made to
+  the ansible playbooks.  Please bring these situations to the team's
+  attention.
 
 ## Development
 
