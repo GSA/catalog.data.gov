@@ -9,7 +9,7 @@ def test_load_from_url():
 
     ckan = RemoteCKAN(url='https://catalog.data.gov')
     ckan.set_destination(ckan_url='http://ckan:5000',
-                         ckan_api_key='5e88a903-43d3-44fd-99cc-d9feacc5c2d9')
+                         ckan_api_key='2feae71c-0aed-453f-85f4-1bb7bfdb6e63')
 
     harvest_sources = []
     ok = 0
@@ -31,11 +31,11 @@ def test_load_from_url():
             failed += 1
         
         # limit
-        if ok + already_exists + failed == 10:
+        if ok + already_exists + failed == 20:
             break
 
     print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(len(harvest_sources), ok, already_exists, failed))
     
-    assert ok == 9
+    assert ok == 10
     assert failed == 0
-    assert already_exists == 1
+    assert already_exists == 10
