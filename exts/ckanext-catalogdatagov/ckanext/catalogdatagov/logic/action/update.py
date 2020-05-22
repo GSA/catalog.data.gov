@@ -22,14 +22,6 @@ def harvest_jobs_run(up_func, context, data_dict):
     log.info('Harvest job run: %r', data_dict)
     check_access('harvest_jobs_run', context, data_dict)
 
-    # email = {
-    #         'recipient_emails': 'Jhon',
-    #         'recipient_name': 'jhon@mail.com',
-    #         'subject': 'Test subject',
-    #         'body': 'Test message'
-    #     }
-    # ckan.lib.mailer.mail_recipient(**email)
-
     model = context['model']
     session = context['session']
 
@@ -370,7 +362,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                             if all_emails:
                                 for email_addr in all_emails:
                                     email = {
-                                        'recipient_emails': email_addr,
+                                        'recipient_email': email_addr,
                                         'recipient_name': email_addr,
                                         'subject': 'Data.gov Latest Harvest Job Report for ' + harvest_name.capitalize(),
                                         'body': msg
@@ -381,8 +373,8 @@ def harvest_jobs_run(up_func, context, data_dict):
                         notify_empty_jobs = config.get('ckanext.harvest.notify_empty_jobs')
                         if notify_empty_jobs and notification_sent == 0:
                             email = {
-                                'recipient_emails': 'Empty jobs admin',
-                                'recipient_name': notify_empty_jobs,
+                                'recipient_email': notify_empty_jobs,
+                                'recipient_name': 'Empty jobs admin',
                                 'subject': 'No reports sent',
                                 'body': "We didn't sent any report"
                             }
