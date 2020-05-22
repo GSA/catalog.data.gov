@@ -22,18 +22,12 @@ logger = logging.getLogger(__name__)
 
 class TestNotifications:
 
+
+
     @patch('ckan.lib.mailer.mail_recipient')
-    def test_error_mail_not_sent(self, mock_mailer_mail_recipient):
+    def test_notificaion_sent_all_harvest_process(self, mock_mailer_mail_recipient):
 
-        config['ckan.harvest.mq.type'] = 'redis'
-        config['ckan.harvest.mq.hostname'] = 'redis'
-        config['ckan.harvest.mq.port'] = 6379
-        config['ckan.harvest.mq.redis_db'] = 1
-        config['ckan.harvest.log_level'] = 'info'
-        config['ckan.harvest.log_scope'] = 0
-        config['ckanext.harvest.email'] = 'on'
-
-        logger.info('Test error mail not sent')
+        logger.info('Test notification sent')
         context, harvest_source, job = self._create_harvest_source_and_job_if_not_existing()
 
         status = toolkit.get_action('harvest_source_show_status')(context, {'id': harvest_source['id']})
@@ -45,6 +39,14 @@ class TestNotifications:
 
     @classmethod
     def setup_class(cls):
+        
+        config['ckan.harvest.mq.type'] = 'redis'
+        config['ckan.harvest.mq.hostname'] = 'redis'
+        config['ckan.harvest.mq.port'] = 6379
+        config['ckan.harvest.mq.redis_db'] = 1
+        config['ckan.harvest.log_level'] = 'info'
+        config['ckan.harvest.log_scope'] = 0
+        config['ckanext.harvest.email'] = 'on'
         
         if not p.plugin_loaded('harvest'):
             logger.info("Loading harvest plugin")
