@@ -377,7 +377,7 @@ def harvest_jobs_run(up_func, context, data_dict):
                                 'recipient_email': notify_empty_jobs,
                                 'recipient_name': 'Empty jobs admin',
                                 'subject': 'No reports sent',
-                                'body': "We didn't sent any report"
+                                'body': "We didn't send a report"
                             }
                             
                             send_email_notification(email)
