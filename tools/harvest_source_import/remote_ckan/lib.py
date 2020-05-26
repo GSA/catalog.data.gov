@@ -175,7 +175,36 @@ class RemoteCKAN:
         # TODO get the organization_type GSA field
 
         return self.request_ckan(method='POST', url=org_create_url, data=organization)
-         
+    
+    def get_config(self, data):
+        """ get config and extras from full data package and return a final str config """
+        config = data.get('config', {})
+        if type(config) == str:
+            config = json.loads(config)
+
+        # We may have config defined as extras
+        extras = data.get('extras', {})
+        for extra in extras:
+            if extra['key'] == 'config':
+                logger.info(f'Config found in extras: {extra}')
+                value = json.loads(extra['value'])
+                config.update(value)
+
+        return json.dumps(config)
+    
+    def get_package_from_data(self, data):
+        """ get full data package and return a final CKAN package """
+        return {
+            'name': data['name'],
+            'owner_org': data['organization']['name'],
+            'title': data['title'],
+            'url': data['url'],
+            'notes': data['notes'],
+            'source_type': data['source_type'],
+            'frequency': data['frequency'],
+            'config': self.get_config(data)
+        }
+
     def request_ckan(self, method, url, data):
         """ request CKAN and get results """
 
