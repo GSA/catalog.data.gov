@@ -247,3 +247,32 @@ class RemoteCKAN:
 
         logger.info('Request OK {}'.format(url))
         return True, req.status_code, None
+    
+    def get_config(self, data):
+        """ get config and extras from full data package and return a final str config """
+        config = data.get('config', {})
+        if type(config) == str:
+            config = json.loads(config)
+
+        # We may have config defined as extras
+        extras = data.get('extras', {})
+        for extra in extras:
+            if extra['key'] == 'config':
+                logger.info(f'Config found in extras: {extra}')
+                value = json.loads(extra['value'])
+                config.update(value)
+
+        return json.dumps(config)
+    
+    def get_package_from_data(self, data):
+        """ get full data package and return a final CKAN package """
+        return {
+            'name': data['name'],
+            'owner_org': data['organization']['name'],
+            'title': data['title'],
+            'url': data['url'],
+            'notes': data['notes'],
+            'source_type': data['source_type'],
+            'frequency': data['frequency'],
+            'config': self.get_config(data)
+        } 
