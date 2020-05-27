@@ -6,6 +6,10 @@ The catalog application includes a lot of harvester work.
 Repo: [GSA ckanext-datajson](https://github.com/GSA/ckanext-datajson)
 
 ## WAF-collections
+WAF collections are ...
+
+[more info](harvesters/waf-collections.md)
+
 Repo: [GSA GeoDataGov](https://github.com/GSA/ckanext-geodatagov/blob/master/ckanext/geodatagov/harvesters/waf_collection.py#L16)
 
 ## WAF
