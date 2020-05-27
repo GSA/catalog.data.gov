@@ -6,7 +6,7 @@ jobs:
       - checkout
       - run: make build ci
       - run: make test
-      - run: docker-compose exec ckan bash -c "cd src_extensions/ckanext-catalogdatagov && nosetests -v -s --with-pylons=test.ini"
+      - run: make test-catalog-ext
 
   deploy-sandbox:
     docker:

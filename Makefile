@@ -39,3 +39,6 @@ update-dependencies:
 
 up:
 	docker-compose up
+
+test-catalog-ext:
+	docker-compose exec ckan bash -c "cd src_extensions/ckanext-catalogdatagov && nosetests -v -s --with-pylons=test.ini"
