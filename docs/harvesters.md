@@ -5,6 +5,11 @@ The catalog application includes a lot of harvester work.
 ## DCAT-US 
 Repo: [GSA ckanext-datajson](https://github.com/GSA/ckanext-datajson)
 
+## WAF
+WAF stands for Web Accessible Folder. It is any folder with file contents exposed via a webserver to the outside world.
+
+[more info](harvesters/waf.md)
+
 ## WAF-collections
 WAF collections are ...
 
