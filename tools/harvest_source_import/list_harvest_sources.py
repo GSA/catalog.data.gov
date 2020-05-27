@@ -16,7 +16,7 @@ args = parser.parse_args()
 ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 
 csvfile = open(f'report-{args.source_type}.csv', 'w')
-fieldnames = ['title', 'name', 'type', 'frequency',
+fieldnames = ['title', 'name', 'type', 'url', 'frequency',
               'job_count', 'total_datasets', 'last_job_created',
               'last_job_finished', 'last_job_status']
 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -40,6 +40,7 @@ for hs in ckan.list_harvest_sources(source_type=args.source_type):
     row = {'title': hs['title'],
            'name': hs['name'],
            'type': hs['source_type'],
+           'url': hs['url'],
            'frequency': hs['frequency'],
            'job_count': status.get('job_count', 'undefined'),
            'total_datasets': status.get('total_datasets', 'undefined'),
