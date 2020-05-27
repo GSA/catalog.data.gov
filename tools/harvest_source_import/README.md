@@ -52,7 +52,7 @@ optional arguments:
   --origin_url ORIGIN_URL
                         CKAN instance URL
   --source_type SOURCE_TYPE
-                        Tipe of harvest source: ALL|datajson|csw|waf etc
+                        Type of harvest source: ALL|datajson|csw|waf etc
   --user_agent USER_AGENT
                         User agent
   --destination_url DESTINATION_URL
