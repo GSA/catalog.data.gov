@@ -93,8 +93,10 @@ though, doesn't know about *pipenv*.  We have modified our ckan image
 `ckan/requirements.txt` at image build time to help ensure all
 developers are working with the same set of requirements.
 
-The Makefile target *update-dependencies*
-will use pipenv to generate a new `Pipfile.lock` and update `ckan/requirements.txt`.
+The Makefile target *update-dependencies* will use pipenv to generate a new
+`Pipfile.lock` and update `ckan/requirements.txt`. _Note: Please be patient.
+pipenv can take several minutes to re-generate a lock file (in once case even up
+to 17 minutes)._
 
 To support sandbox installation via the ansible playbooks, there is a
 symbolic link `requirements-freeze.txt` that references

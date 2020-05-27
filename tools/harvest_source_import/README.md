@@ -69,8 +69,10 @@ $ python import_harvest_sources.py \
     --origin_url=https://catalog.data.gov \
     --destination_url=http://ckan:5000 \
     --destination_api_key=xxxxx-xxxxx-xxxx-xxxxxx \
-    --source_type=csw
+    --source_type=csw \
+    --limit=10
 ```
+
 
 Response:
 
