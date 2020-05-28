@@ -20,7 +20,7 @@ order to make sure the application is deployable to the live
 environment:
 
 - If you need to add or change a dependency, you should make that
-  change in the `requirements/Pipfile`, run `make update-dependencies`
+  change in the `requirements/pyproject.toml`, run `make update-dependencies`
   and commit the changed files.  (See the section below on
   requirements for details.)  Good news: no other changes are required!
   
@@ -86,16 +86,16 @@ repository](https://github.com/okfn/docker-ckan).
 ## Note on requirements
 
 The source of truth about package dependencies is managed with
-*pipenv* kept in `requirements/Pipfile` and
-`requirements/Pipfile.lock`.  The base OKFN Docker image we are using,
-though, doesn't know about *pipenv*.  We have modified our ckan image
+*poetry* kept in `requirements/pyproject.toml` and
+`requirements/poetry.lock`.  The base OKFN Docker image we are using,
+though, doesn't know about *poetry*.  We have modified our ckan image
 (`ckan/Dockerfile`) to install frozen requirements from
 `ckan/requirements.txt` at image build time to help ensure all
 developers are working with the same set of requirements.
 
-The Makefile target *update-dependencies* will use pipenv to generate a new
-`Pipfile.lock` and update `ckan/requirements.txt`. _Note: Please be patient.
-pipenv can take several minutes to re-generate a lock file (in once case even up
+The Makefile target *update-dependencies* will use poetry to generate a new
+`poetry.lock` and update `ckan/requirements.txt`. _Note: Please be patient.
+poetry can take several minutes to re-generate a lock file (in once case even up
 to 17 minutes)._
 
 To support sandbox installation via the ansible playbooks, there is a
@@ -104,10 +104,10 @@ symbolic link `requirements-freeze.txt` that references
 
 ### Procedure for updating a dependency
 
-1.  Add/change the dependency in `requirements/Pipfile`
+1.  Add/change the dependency in `requirements/pyproject.toml`
 2.  Run `make update-dependencies build test`
-3.  Make sure to commit `ckan/requirements.txt` `requirements/Pipfile`
-    and `requirements/Pipfile.lock` to make the change permanent.
+3.  Make sure to commit `ckan/requirements.txt` `requirements/pyproject.toml`
+    and `requirements/poetry.lock` to make the change permanent.
 
 ## Create an extension
 

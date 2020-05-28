@@ -25,5 +25,5 @@ RUN cd /geos && \
 
 COPY requirements.txt ${APP_DIR}
 RUN pip install -r requirements.txt
-RUN pip install --pre pipenv
+RUN pip install poetry
 COPY freeze-requirements.sh /usr/local/bin
