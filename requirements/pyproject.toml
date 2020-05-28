@@ -18,6 +18,8 @@ ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
 ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
 ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial" }
 
+# ckanext-harvest dependencies
+
 cffi = "1.12.3"
 ckantoolkit = "0.0.3"
 cryptography = "2.7"
@@ -32,6 +34,12 @@ pyyaml = "*"
 lepl = "*"
 jsonschema = "2.4.0"
 rfc3987 = "*"
+
+# ckanext-archiver
+
+celery = "3.1.25"
+kombu = "3.0.37"
+progressbar = "2.3"
 
 # ckanext-geodatagov
 
