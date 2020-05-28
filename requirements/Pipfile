@@ -14,6 +14,8 @@ ckanext-harvest = {ref = "master", git = "https://github.com/ckan/ckanext-harves
 ckanext-datajson = {ref = "master", git = "https://github.com/GSA/ckanext-datajson.git", editable = true }
 ckanext-geodatagov = {ref = "master", git = "https://github.com/GSA/ckanext-geodatagov.git" }
 ckanext-spatial = {ref = "master", git = "https://github.com/ckan/ckanext-spatial" }
+ckanext-report = {ref = "master", git = "https://github.com/datagovuk/ckanext-report" }
+ckanext-archiver = {ref = "master", git = "https://github.com/ckan/ckanext-archiver" }
 
 # some of the ckan extensions don't advertise their requirements
 # correctly, so we have to inject them manually
@@ -50,6 +52,14 @@ OWSLib = "==0.8.6"
 lxml = ">=2.3"
 argparse = "*"
 pyparsing = ">=2.1.10"
+
+# ckanext-report
+
+# ckanext-archiver
+
+celery = "==3.1.25"
+kombu = "==3.0.37"
+progressbar = "==2.3"
 
 # ckan doesn't advertise its requirements correctly, so let's add them
 # here.
