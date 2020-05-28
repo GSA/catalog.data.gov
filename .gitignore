@@ -1,3 +1,4 @@
+requirements/requirements.txt
 src/*
 .*.sw*
 
