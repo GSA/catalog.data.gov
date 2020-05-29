@@ -27,3 +27,4 @@ COPY requirements.txt ${APP_DIR}
 RUN pip install -r requirements.txt
 RUN pip install poetry
 COPY freeze-requirements.sh /usr/local/bin
+COPY docker-entrypoint.d/* /docker-entrypoint.d/
