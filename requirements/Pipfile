@@ -13,9 +13,9 @@ ckanext-datagovtheme = {ref = "master", git = "https://github.com/GSA/ckanext-da
 ckanext-harvest = {ref = "master", git = "https://github.com/ckan/ckanext-harvest.git" }
 ckanext-datajson = {ref = "master", git = "https://github.com/GSA/ckanext-datajson.git", editable = true }
 ckanext-geodatagov = {ref = "master", git = "https://github.com/GSA/ckanext-geodatagov.git" }
-ckanext-spatial = {ref = "master", git = "https://github.com/ckan/ckanext-spatial" }
-ckanext-report = {ref = "master", git = "https://github.com/datagovuk/ckanext-report" }
-ckanext-archiver = {ref = "master", git = "https://github.com/ckan/ckanext-archiver" }
+ckanext-spatial = {ref = "master", git = "https://github.com/ckan/ckanext-spatial.git" }
+ckanext-report = {ref = "master", git = "https://github.com/davidread/ckanext-report.git" }
+ckanext-archiver = {ref = "master", git = "https://github.com/ckan/ckanext-archiver.git" }
 
 # some of the ckan extensions don't advertise their requirements
 # correctly, so we have to inject them manually
@@ -54,6 +54,7 @@ argparse = "*"
 pyparsing = ">=2.1.10"
 
 # ckanext-report
+# no reqs
 
 # ckanext-archiver
 

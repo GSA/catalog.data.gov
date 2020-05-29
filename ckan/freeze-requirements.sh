@@ -10,6 +10,9 @@ USER_ID=$1
 GROUP_ID=$2
 
 cd /requirements
-pipenv lock -r
+echo "Clearing pip caches"
+pipenv lock --clear
+echo "Locking requirements"
+pipenv lock --requirements --verbose
 chown ${USER_ID}:${GROUP_ID} Pipfile.lock
 
