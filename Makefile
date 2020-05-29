@@ -35,8 +35,8 @@ test:
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 update-dependencies:
-	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g) > ckan/requirements.txt
-
+	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
+	cp requirements/requirements.txt ckan/requirements.txt
 up:
 	docker-compose up
 

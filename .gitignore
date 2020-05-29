@@ -1,8 +1,12 @@
+requirements/requirements.txt
 src/*
 .*.sw*
 
-.pyc
-.pyo
+*.pyc
+*.pyo
+*.egg-info
+.vscode/
+local-dev.yml
 
 .DS_Store
 .DS_Store?
