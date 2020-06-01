@@ -10,7 +10,7 @@ python = "^2.7"
 ckan = {tag = "ckan-2.8.4", git = "https://github.com/ckan/ckan.git"}
 
 ckanext-archiver = {git = "https://github.com/ckan/ckanext-archiver.git"}
-ckanext-datagovtheme = {git = "https://github.com/GSA/ckanext-datagovtheme.git", branch = "catalog-next"}
+ckanext-datagovtheme = {git = "https://github.com/GSA/ckanext-datagovtheme.git"}
 ckanext-datajson = {git = "https://github.com/GSA/ckanext-datajson.git" }
 ckanext-envvars = "*"
 ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git" }
