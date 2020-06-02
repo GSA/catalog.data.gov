@@ -23,13 +23,10 @@ WITH ERRORS
 	- Error [500] trying to get full harvest source info about "honolulu json" (honolulu-json)
 ```
 
-### Import harvest sources
+## Import harvest sources
 
-Scripts to read and import harvest sources from a CKAN instance and add it to another CKAN instance.
-
-These scripts require Python >= 3.6.
-
-## Import Harvest Sources
+Scripts to read and import harvest sources from a CKAN instance and add it to another CKAN instance.  
+These scripts require Python >= 3.6.  
 
 Get help with import_harvest_sources.py parameters
 
@@ -101,6 +98,24 @@ remote_ckan.lib - Creating source URL Restore-the-gulf
 remote_ckan.lib - Harvest source created OK Restore-the-gulf
 Finished: 7 harvest sources. 7 Added, 0 already exists, 0 failed
 
+```
+
+## Check sources
+
+The `check_harvest_sources.py` file is a script to test harvest sources and write a report with results.
+We need a text file with the list of sources to test.
+
+E.g. `federal_datajson.txt` in the script folder
+```
+cfpb-json
+omb
+u-s-epa-enterprise-data-inventory
+data-act-harvest
+```
+
+Run the script
+```
+python check_harvest_sources.py --source_type=datajson --names_to_test=federal_datajson.txt --destination_api_key=xxxxx
 ```
 
 ### Test
