@@ -34,7 +34,7 @@ class RemoteCKAN:
         else:
             q = f'(type:harvest source_type:{source_type})'
 
-        params = {'start': start, 'rows': page_size, 'q': q}
+        params = {'start': start, 'rows': page_size, 'q': q, 'fq': '+dataset_type:harvest'}
         headers = self.get_request_headers(include_api_key=False)
 
         logger.debug(f'request {package_search_url} {params}')
@@ -75,21 +75,8 @@ class RemoteCKAN:
             logger.info(f'  [{source_type}] Harvest source: {title} [{state}]')
             if state == 'active':
                 # We don't get full harvest soure info here. We need a custom call
-                harvest_show_url = f'{self.url}/api/3/action/harvest_source_show'
-                params = {'id': name}
-                logger.info(f'Get harvest source data {harvest_show_url} {params}')
-                response = requests.get(harvest_show_url, params=params, headers=headers)
-                if response.status_code >= 400:
-                    error = f'Error [{response.status_code}] trying to get full harvest source info about "{title}" ({name})'
-                    logger.error(error)
-                    self.errors.append(error)
-                    # yield incomplete version
-                    yield hs
-                else:
-                    full_hs = response.json()
-                    self.harvest_sources[name] = full_hs['result']
-                    yield full_hs['result']
-
+                yield self.get_full_harvest_source(hs)
+                
         # if the page is not full, it is the last one
         if count + 1 < page_size:
             return
@@ -97,6 +84,29 @@ class RemoteCKAN:
         # get next page   
         yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size, limit=limit)
     
+    def get_full_harvest_source(self, hs):
+        """ get full info (including job status) for a Harvest Source """
+        harvest_show_url = f'{self.url}/api/3/action/harvest_source_show'
+        if 'id' in hs.keys():
+            params = {'id': hs['id']}
+        else:
+            params = {'name_or_id': hs['name']}
+
+        headers = self.get_request_headers(include_api_key=False)
+
+        logger.info(f'Get harvest source data {harvest_show_url} {params}')
+        response = requests.get(harvest_show_url, params=params, headers=headers)
+        if response.status_code >= 400:
+            error = f'Error [{response.status_code}] trying to get full harvest source info: "{response.content}"'
+            logger.error(error)
+            self.errors.append(error)
+            # yield incomplete version
+            return hs
+        else:
+            full_hs = response.json()
+            self.harvest_sources[hs['name']] = full_hs['result']
+            return full_hs['result']
+
     def get_request_headers(self, include_api_key=True):
         headers = {'User-Agent': self.user_agent}
         if include_api_key:
