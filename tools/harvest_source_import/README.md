@@ -113,13 +113,13 @@ We can run tests against real CKAN instances to save each request response (GET 
 
 
 ```
-$ python -m pytest --vcr-record=all tests/
+$ python -m pytest -s --vcr-record=all tests/
 ```
 #### Run tests against saved requests
 
 Run test with fake requests based on previous results
 
 ```
-$ python -m pytest --vcr-record=none
+$ python -m pytest -s --vcr-record=none
 ```
 
