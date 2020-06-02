@@ -91,6 +91,6 @@ weberror==0.13.1
 webhelpers==1.3
 webob==1.0.8
 webtest==1.4.3
-werkzeug==0.14.1
+werkzeug==0.15.3
 zope.interface==4.3.2
 -e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
