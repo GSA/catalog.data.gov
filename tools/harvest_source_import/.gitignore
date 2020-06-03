@@ -3,3 +3,4 @@ __pycache__
 report-*.csv
 source-check*
 checks/
+*.txt
