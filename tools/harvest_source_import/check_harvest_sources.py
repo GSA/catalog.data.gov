@@ -43,7 +43,7 @@ else:
     names = args.names_to_tests.split(',')
 
 report_file_name = f'report-checks.csv'
-fieldnames = ['name', 'url', 'source_type', 'status', 'last_job_status',
+fieldnames = ['name', 'url', 'config', 'source_type', 'status', 'last_job_status',
               'added', 'updated', 'nulls', 'object_error_summary',
               'gather_error_summary', 'main_errors', 'time']
 final_file = open(report_file_name, 'a')
@@ -141,6 +141,7 @@ for name in names:
     ges = [str(e) for e in gather_error_summary]
     row['status'] = 'Script OK'
     row['url'] = full_hs['url']
+    row['config'] = full_hs['config']
     row['last_job_status'] = last_job_status
     row['added'] = added
     row['updated'] = updated
