@@ -23,13 +23,10 @@ WITH ERRORS
 	- Error [500] trying to get full harvest source info about "honolulu json" (honolulu-json)
 ```
 
-### Import harvest sources
+## Import harvest sources
 
-Scripts to read and import harvest sources from a CKAN instance and add it to another CKAN instance.
-
-These scripts require Python >= 3.6.
-
-## Import Harvest Sources
+Scripts to read and import harvest sources from a CKAN instance and add it to another CKAN instance.  
+These scripts require Python >= 3.6.  
 
 Get help with import_harvest_sources.py parameters
 
@@ -103,6 +100,24 @@ Finished: 7 harvest sources. 7 Added, 0 already exists, 0 failed
 
 ```
 
+## Check sources
+
+The `check_harvest_sources.py` file is a script to test harvest sources and write a report with results.
+We need a text file with the list of sources to test.
+
+E.g. `federal_datajson.txt` in the script folder
+```
+cfpb-json
+omb
+u-s-epa-enterprise-data-inventory
+data-act-harvest
+```
+
+Run the script
+```
+python check_harvest_sources.py --source_type=datajson --names_to_test=federal_datajson.txt --destination_api_key=xxxxx
+```
+
 ### Test
 
 We use _pytest cassettes_ to save responses from orgin and destination CKAN instances.
@@ -113,13 +128,13 @@ We can run tests against real CKAN instances to save each request response (GET 
 
 
 ```
-$ python -m pytest --vcr-record=all tests/
+$ python -m pytest -s --vcr-record=all tests/
 ```
 #### Run tests against saved requests
 
 Run test with fake requests based on previous results
 
 ```
-$ python -m pytest --vcr-record=none
+$ python -m pytest -s --vcr-record=none
 ```
 

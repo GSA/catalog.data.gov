@@ -11,7 +11,7 @@ def test_load_from_url():
 
     ckan = RemoteCKAN(url='https://catalog.data.gov')
     ckan.set_destination(ckan_url='http://ckan:5000',
-                         ckan_api_key='9ff42439-4ee3-46b2-9ce9-b0b051884b37')
+                         ckan_api_key='7564fcf7-1e79-4e03-a052-f94979051770')
 
     print('Getting harvest sources ...')
     for hs in ckan.list_harvest_sources(source_type='datajson', limit=9):
