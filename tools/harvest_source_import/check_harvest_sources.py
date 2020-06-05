@@ -62,7 +62,7 @@ for name in names:
         print(f'SKIP already checked source {args.source_type} {name}')
         continue
 
-    row = {'name': name,'time': time.time(), 'source_type': args.source_type}
+    row = {'name': name,'time': time.time()}
 
     # check if already exists locally
     hs = local_ckan.get_full_harvest_source(hs={'name': name})
@@ -142,6 +142,7 @@ for name in names:
     row['status'] = 'Script OK'
     row['url'] = full_hs['url']
     row['config'] = full_hs['config']
+    row['source_type'] = full_hs['source_type']
     row['last_job_status'] = last_job_status
     row['added'] = added
     row['updated'] = updated
