@@ -40,7 +40,7 @@ if os.path.isfile(args.names_to_test):
     names = f.read().splitlines()
     f.close()
 else:
-    names = args.names_to_tests.split(',')
+    names = args.names_to_test.split(',')
 
 report_file_name = f'report-checks.csv'
 fieldnames = ['name', 'url', 'config', 'source_type', 'status', 'last_job_status',
