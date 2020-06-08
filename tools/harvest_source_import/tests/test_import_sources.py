@@ -11,12 +11,15 @@ def test_load_from_url():
 
     ckan = RemoteCKAN(url='https://catalog.data.gov')
     ckan.set_destination(ckan_url='http://ckan:5000',
-                         ckan_api_key='7564fcf7-1e79-4e03-a052-f94979051770')
+                         ckan_api_key='783b1397-3a9f-4ffe-81c3-c67cc85ef5f1')
 
     print('Getting harvest sources ...')
-    for hs in ckan.list_harvest_sources(source_type='datajson', limit=9):
-
-        ckan.create_harvest_source(data=hs)
+    names = ['fdic-data-json', 'fcc', 'doi-cas-datajam', 'fhfa-json']
+    hss = [{'name': name} for name in names]
+    for hs in hss:  # ckan.list_harvest_sources(source_type='datajson', limit=3):
+        name = hs['name']
+        full_hs = ckan.get_full_harvest_source(hs={'name': name})
+        ckan.create_harvest_source(data=full_hs)
         assert 'created' in ckan.harvest_sources[hs['name']].keys()
         assert 'updated' in ckan.harvest_sources[hs['name']].keys()
         assert 'error' in ckan.harvest_sources[hs['name']].keys()
@@ -29,7 +32,7 @@ def test_load_from_url():
     print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(total, created, updated, errors))
 
     assert total == len(ckan.harvest_sources)
-    assert created == 3
-    assert updated == 6
+    assert created == 1
+    assert updated == 3
     assert errors == 0
 

@@ -301,7 +301,7 @@ class RemoteCKAN:
         """ get full data package and return a final CKAN package """
 
         config = self.get_config(data)
-        extras = data.get('extras', {})
+        extras = data.get('extras', [])
         
         ret = {
             'name': data['name'],
