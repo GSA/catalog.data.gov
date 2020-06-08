@@ -30,10 +30,6 @@ local_ckan = RemoteCKAN(url=args.destination_url)
 remote_ckan = RemoteCKAN(url=args.origin_url)
 remote_ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destination_api_key)
 
-# save results of each harvest test into a new folder
-if not os.path.isdir('checks'):
-    os.mkdir('checks')
-
 # we get a list of names from a file or list of source names 
 if os.path.isfile(args.names_to_test):
     f = open(args.names_to_test)
@@ -57,7 +53,7 @@ for name in names:
 
     # skips already checked sources
     file_name = f'source-checks-{args.source_type}-{name}.txt'
-    full_path = os.path.join('checks', file_name)
+    full_path = os.path.join(remote_ckan.temp_data, file_name)
     if os.path.isfile(full_path):
         print(f'SKIP already checked source {args.source_type} {name}')
         continue
@@ -74,6 +70,7 @@ for name in names:
             row['status'] = 'Failed to get external source'
             writer.writerow(row)
             continue
+
         # save it locally
         remote_ckan.create_harvest_source(data=rhs)
         # get this new source data
@@ -114,8 +111,6 @@ for name in names:
     row['main_errors'] = '\n\t - '.join(main_errors)
     # analyze results using harvest source show
     full_hs = local_ckan.get_full_harvest_source(hs={'id': sid, 'name': name})
-    
-    print('Harvest source tested: {}'.format(json.dumps(full_hs, indent=4)))
     
     hs_status = full_hs.get('status', {})
     last_job = hs_status.get('last_job', {})
