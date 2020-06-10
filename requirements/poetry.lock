@@ -165,6 +165,18 @@ type = "git"
 url = "https://github.com/ckan/ckanext-archiver.git"
 [[package]]
 category = "main"
+description = "Catalog customizations"
+name = "ckanext-datagovcatalog"
+optional = false
+python-versions = "*"
+version = "0.0.1"
+
+[package.source]
+reference = "f03ee6d9c00d137de5985687ce98c8fe3b159381"
+type = "git"
+url = "https://github.com/GSA/ckanext-datagovcatalog.git"
+[[package]]
+category = "main"
 description = "Datagov Theme"
 name = "ckanext-datagovtheme"
 optional = false
@@ -242,7 +254,7 @@ version = "0.2"
 [package.source]
 reference = "4ac25f19aa4eb9c798451f5eeb3084f907ccc003"
 type = "git"
-url = "https://github.com/ckan/ckanext-spatial"
+url = "https://github.com/ckan/ckanext-spatial.git"
 [[package]]
 category = "main"
 description = "UNKNOWN"
@@ -364,6 +376,18 @@ name = "funcsigs"
 optional = false
 python-versions = "*"
 version = "1.0.2"
+
+[[package]]
+category = "main"
+description = "A toolkit for generation of output for the web"
+name = "genshi"
+optional = false
+python-versions = "*"
+version = "0.7.3"
+
+[package.extras]
+i18n = ["Babel (>=0.8)"]
+plugin = ["setuptools (>=0.6a2)"]
 
 [[package]]
 category = "main"
@@ -1102,7 +1126,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "dcb7a89bc39bfacfac605fe01058f0773a82e600cf73cf99eecb039b0e923587"
+content-hash = "99d89bb2923149307b0a6a0f241ed028bd573051e3860e4d5433bdcb98bd56d1"
 python-versions = "^2.7"
 
 [metadata.files]
@@ -1182,6 +1206,7 @@ cffi = [
 ]
 ckan = []
 ckanext-archiver = []
+ckanext-datagovcatalog = []
 ckanext-datagovtheme = []
 ckanext-datajson = []
 ckanext-envvars = [
@@ -1242,6 +1267,10 @@ formencode = [
 funcsigs = [
     {file = "funcsigs-1.0.2-py2.py3-none-any.whl", hash = "sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca"},
     {file = "funcsigs-1.0.2.tar.gz", hash = "sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50"},
+]
+genshi = [
+    {file = "Genshi-0.7.3-py3-none-any.whl", hash = "sha256:5e92e278ca1ea395349a451d54fc81dc3c1b543c48939a15bd36b7b3335e1560"},
+    {file = "Genshi-0.7.3.tar.gz", hash = "sha256:7933c95151d7dd2124a2b4c8dd85bb6aec881ca17c0556da0b40e56434b313a0"},
 ]
 geoalchemy = [
     {file = "GeoAlchemy-0.7.2-py2.7.egg", hash = "sha256:282d63d4497ed2c7b59751fe1987d8d15a8215c5024de5d2fc79e0e631b59771"},

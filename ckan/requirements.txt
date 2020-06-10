@@ -11,13 +11,14 @@ celery==3.1.25
 cffi==1.12.3
 -e git+https://github.com/ckan/ckan.git@7900935de6270ee80ec64a5378251dafedf3a0e4#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@f03ee6d9c00d137de5985687ce98c8fe3b159381#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@00ef64786cf5751eff18bbd468a913862698617c#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@4ff469736509fe6bfe6a02dbd230ba4ea8b11660#egg=ckanext-datajson
 ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-geodatagov.git@d82eb45067f9b8335b6d767499f218431fb6c215#egg=ckanext-geodatagov
 -e git+https://github.com/ckan/ckanext-harvest.git@944f67c48d274df79a2719b5553698e3e6980a51#egg=ckanext-harvest
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
--e git+https://github.com/ckan/ckanext-spatial@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
 cryptography==2.7
@@ -28,6 +29,7 @@ flask==0.12.4
 flask-babel==0.11.2
 formencode==1.3.1
 funcsigs==1.0.2
+genshi==0.7.3
 geoalchemy==0.7.2
 geoalchemy2==0.5.0
 gunicorn==19.10.0
