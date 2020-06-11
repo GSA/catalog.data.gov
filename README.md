@@ -27,8 +27,8 @@ environment:
 - If you need to add or remove a plugin, you will also need to update
   the plugin list in
   [datagov-deploy](https://github.com/GSA/datagov-deploy) Currently,
-  that means updating the value of `catalog_ckan_plugins_default` in
-  `ansible/inventories/*/group_vars/catalog-web-next/vars.yml`
+  that means updating the value of `catalog_next_ckan_plugins_default` in
+  `ansible/inventories/sandbox/group_vars/all/vars.yml`
   
 - If you need to add or change configuration that lives in the
   application *ini* file, you will also need to update the
