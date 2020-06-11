@@ -16,7 +16,8 @@ ckanext-envvars = "*"
 ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git" }
 ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
 ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
-ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial" }
+ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git" }
+ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git"}
 
 # ckanext-harvest dependencies
 
@@ -27,6 +28,10 @@ pika = ">=1.1.0"
 pyOpenSSL = "18.0.0"
 redis = ">=3.3.0"
 urllib3 = "*"
+
+# ckanext-datagovtheme
+
+Genshi = "0.7.3"
 
 # ckanext-datajson
 
