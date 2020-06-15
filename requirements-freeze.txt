@@ -1,1 +1,101 @@
-ckan/requirements.txt
+amqp==1.4.9
+anyjson==0.3.3
+argparse==1.4.0
+asn1crypto==1.3.0
+babel==2.3.4
+beaker==1.11.0
+billiard==3.3.0.23
+bleach==3.1.1
+boto==2.49.0
+celery==3.1.25
+certifi==2020.4.5.2
+cffi==1.12.3
+chardet==3.0.4
+-e git+https://github.com/ckan/ckan.git@7900935de6270ee80ec64a5378251dafedf3a0e4#egg=ckan
+-e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@cf8cae1192735b496e4d6a4b30b7d5e75423706f#egg=ckanext-datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@00ef64786cf5751eff18bbd468a913862698617c#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datajson.git@4ff469736509fe6bfe6a02dbd230ba4ea8b11660#egg=ckanext-datajson
+ckanext-envvars==0.0.1
+-e git+https://github.com/GSA/ckanext-geodatagov.git@d82eb45067f9b8335b6d767499f218431fb6c215#egg=ckanext-geodatagov
+-e git+https://github.com/ckan/ckanext-harvest.git@944f67c48d274df79a2719b5553698e3e6980a51#egg=ckanext-harvest
+-e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
+-e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
+ckantoolkit==0.0.3
+click==6.7
+cryptography==2.7
+decorator==4.4.2
+enum34==1.1.10; python_version < "3"
+fanstatic==0.12
+flask==0.12.4
+flask-babel==0.11.2
+formencode==1.3.1
+funcsigs==1.0.2
+genshi==0.7.3
+geoalchemy==0.7.2
+geoalchemy2==0.5.0
+gunicorn==19.10.0
+html5lib==1.0.1
+idna==2.7
+ipaddress==1.0.23; python_version < "3"
+itsdangerous==1.1.0
+jinja2==2.10.3
+jsonschema==2.4.0
+kombu==3.0.37
+lepl==5.1.3
+lxml==4.5.1
+mako==1.1.3
+markdown==3.1.1
+markupsafe==1.1.1
+nose==1.3.7
+ofs==0.4.2
+owslib==0.8.6
+pairtree==0.7.1-T
+passlib==1.6.5
+paste==1.7.5.1
+pastedeploy==2.1.0
+pastescript==2.0.2
+pbr==1.10.0
+pika==1.1.0
+ply==3.4
+polib==1.0.7
+progressbar==2.3
+psycopg2==2.7.3.2
+pycparser==2.20
+pygments==2.5.2
+pylons==0.9.7
+pyopenssl==18.0.0
+pyparsing==2.4.7
+pysolr==3.6.0
+python-dateutil==1.5
+python-magic==0.4.15
+pytz==2016.7
+pyutilib.component.core==4.6.4
+pyyaml==5.3.1
+redis==3.5.3
+repoze.lru==0.7
+repoze.who==2.3
+repoze.who-friendlyform==1.0.8
+requests==2.20.1
+rfc3987==1.3.8
+routes==1.13
+rq==0.6.0
+shapely==1.7.0
+simplejson==3.10.0
+six==1.15.0
+sqlalchemy==1.1.11
+sqlalchemy-migrate==0.10.0
+sqlparse==0.2.2
+tempita==0.5.2
+tzlocal==1.3
+unicodecsv==0.14.1
+urllib3==1.24.3
+vdm==0.14
+webencodings==0.5.1
+weberror==0.13.1
+webhelpers==1.3
+webob==1.0.8
+webtest==1.4.3
+werkzeug==0.15.6
+zope.interface==4.3.2
+-e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
