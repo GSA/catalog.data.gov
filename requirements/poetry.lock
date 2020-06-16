@@ -244,9 +244,9 @@ python-versions = "*"
 version = "1.3.0"
 
 [package.source]
-reference = "944f67c48d274df79a2719b5553698e3e6980a51"
+reference = "ea6fc07e930b2eb659933bce8cbd850f72db8140"
 type = "git"
-url = "https://github.com/ckan/ckanext-harvest.git"
+url = "https://github.com/GSA/ckanext-harvest.git"
 [[package]]
 category = "main"
 description = "Framework for defining reports in CKAN"
@@ -1155,7 +1155,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "88c255376ad4ab258aa849e5f2cd5ec29b242d0ffbeae257a666ca71e34c08b3"
+content-hash = "2b755c4dc6cc5a13c9249e2fdb1e87f7b8ef2e88b24694ce95af6cd5c5edb3e4"
 python-versions = "^2.7"
 
 [metadata.files]
