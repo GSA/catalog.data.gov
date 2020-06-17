@@ -189,7 +189,7 @@ python-versions = "*"
 version = "0.0.1"
 
 [package.source]
-reference = "cf8cae1192735b496e4d6a4b30b7d5e75423706f"
+reference = "5112045212ce52e20c712fd31e8706b4387e7df0"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovcatalog.git"
 [[package]]
@@ -201,7 +201,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "00ef64786cf5751eff18bbd468a913862698617c"
+reference = "e938aa188181fbc1c7306f1c45129d8926cb2ad7"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -213,7 +213,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "4ff469736509fe6bfe6a02dbd230ba4ea8b11660"
+reference = "08a68f8f15a8e1e41e1914f55f94fa3890f8544a"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -233,7 +233,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "d82eb45067f9b8335b6d767499f218431fb6c215"
+reference = "45ffeb1cb26760030f38c8722a58befda2ef0c82"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
