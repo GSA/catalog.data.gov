@@ -3,8 +3,8 @@
 load globals
 load test_helper
 
-@test "Harvest extension is loaded" {
-  test_extension_loaded harvest
+@test "datagov_harvest extension is loaded" {
+  test_extension_loaded datagov_harvest
 }
 
 @test "Harvest URL exists" {
