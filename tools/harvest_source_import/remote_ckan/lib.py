@@ -12,6 +12,7 @@ class RemoteCKAN:
         self.user_agent = user_agent
         self.errors = []
         self.harvest_sources = {} 
+        self.organizations = {}
         logger.debug(f'New remote CKAN {url}')
         # save results temp data into a new folder
         self.temp_data = temp_data
@@ -137,11 +138,13 @@ class RemoteCKAN:
             self.errors.append(error)
             # yield incomplete version
             self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
+            self.organizations[org['name']] = org
             return org
         else:
             response = response.json()
             org = response['result']
             self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
+            self.organizations[org['name']] = org
             return org
 
     def get_request_headers(self, include_api_key=True):

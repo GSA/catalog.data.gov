@@ -29,6 +29,15 @@ def test_load_from_url():
     errors = len([k for k, v in ckan.harvest_sources.items() if v['error'] ])
     total = created + updated + errors
 
+    # test organization extras
+    extras = ckan.organizations['fdic-gov'].get('extras', [])
+    expected_email_list = 'dmentall@fdic.gov\r\njemartinez@fdic.gov'
+    assert expected_email_list in [extra['value'] for extra in extras if extra['key'] == 'email_list']
+
+    extras = ckan.organizations['fcc-gov'].get('extras', [])
+    expected_email_list = 'hyon.kim@gsa.gov\r\ncrystal.carter@gsa.gov'
+    assert expected_email_list in [extra['value'] for extra in extras if extra['key'] == 'email_list']
+
     print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(total, created, updated, errors))
 
     assert total == len(ckan.harvest_sources)
