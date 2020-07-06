@@ -136,16 +136,13 @@ class RemoteCKAN:
             error = f'Error [{response.status_code}] getting organization info:\n {params} \n{response.headers}\n {response.content}'
             logger.error(error)
             self.errors.append(error)
-            # yield incomplete version
-            self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
-            self.organizations[org['name']] = org
-            return org
         else:
             response = response.json()
             org = response['result']
-            self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
-            self.organizations[org['name']] = org
-            return org
+        
+        self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
+        self.organizations[org['name']] = org
+        return org
 
     def get_request_headers(self, include_api_key=True):
         headers = {'User-Agent': self.user_agent}
