@@ -49,7 +49,9 @@ test-import-tool:
 		python -m pytest --vcr-record=none tests/
 
 lint-all:
-	cd $(CKAN_HOME)/src && \
-		pip install --upgrade pip  && \
-		pip install flake8 && \
-		flake8 . --count --select=E9 --show-source --statistics
+	docker-compose up -d
+	docker-compose exec ckan \
+		bash -c "cd $(CKAN_HOME)/src && \
+		 		 pip install --upgrade pip  && \
+				 pip install flake8 && \
+				 flake8 . --count --select=E9 --show-source --statistics"
