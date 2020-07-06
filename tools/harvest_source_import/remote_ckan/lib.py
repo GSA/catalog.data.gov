@@ -81,7 +81,7 @@ class RemoteCKAN:
             logger.info(f'  [{source_type}] Harvest source: {title} [{state}]')
             if state == 'active':
                 # We don't get full harvest soure info here. We need a custom call
-                yield self.get_full_harvest_source(hs)                
+                yield self.get_full_harvest_source(hs)
                 
         # if the page is not full, it is the last one
         if count + 1 < page_size:
