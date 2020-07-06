@@ -6,6 +6,7 @@ jobs:
       - checkout
       - run: make build ci
       - run: make test
+      - run: make lint-all
 
   deploy-sandbox:
     docker:
