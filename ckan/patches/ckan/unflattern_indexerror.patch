@@ -1,13 +1,17 @@
+From 1e573fce60e2ae7169fa9811c2e080ab7e02a883 Mon Sep 17 00:00:00 2001
+From: Ian Ward <ian@excess.org>
+Date: Tue, 16 Jun 2020 17:28:55 -0400
+Subject: [PATCH] [#5443] simplify flatten, allow nesting >1 level
+
+---
+ ckan/lib/navl/dictization_functions.py | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
+
 diff --git a/ckan/lib/navl/dictization_functions.py b/ckan/lib/navl/dictization_functions.py
-index 00d6c067d..454e30f8c 100644
+index 43cce72ed..397cddf95 100644
 --- a/ckan/lib/navl/dictization_functions.py
 +++ b/ckan/lib/navl/dictization_functions.py
-@@ -437,29 +437,23 @@ def unflatten(data):
-     '''
- 
-     unflattened = {}
--    convert_to_list = []
- 
+@@ -410,24 +410,19 @@ def unflatten(data):
      for flattend_key in sorted(data.keys(), key=flattened_order_key):
          current_pos = unflattened
  
@@ -37,3 +41,5 @@ index 00d6c067d..454e30f8c 100644
      return unflattened
  
  
+-- 
+2.17.1
