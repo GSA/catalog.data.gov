@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 from remote_ckan.logs import get_logger
 
@@ -6,12 +7,17 @@ logger = get_logger(__name__)
 
 
 class RemoteCKAN:
-    def __init__(self, url, user_agent='Remote CKAN 1.0'):
+    def __init__(self, url, user_agent='Remote CKAN 1.0', temp_data='checks'):
         self.url = url
         self.user_agent = user_agent
         self.errors = []
         self.harvest_sources = {} 
+        self.organizations = {}
         logger.debug(f'New remote CKAN {url}')
+        # save results temp data into a new folder
+        self.temp_data = temp_data
+        if not os.path.isdir(self.temp_data):
+            os.mkdir(self.temp_data)
     
     def set_destination(self, ckan_url, ckan_api_key):
         self.destination_url = ckan_url
@@ -101,11 +107,42 @@ class RemoteCKAN:
             logger.error(error)
             self.errors.append(error)
             # yield incomplete version
+            self.save_temp_json('harvest-source', hs['name'], hs)
             return hs
         else:
             full_hs = response.json()
             self.harvest_sources[hs['name']] = full_hs['result']
+            self.save_temp_json('harvest-source', full_hs['result']['name'], full_hs['result'])
             return full_hs['result']
+    
+    def get_full_organization(self, org):
+        """ get full info (including job status) for a Harvest Source """
+        organization_show_url = f'{self.url}/api/3/action/organization_show'
+        org_id = org.get('name', org.get('id', None))
+        if org_id is None:
+            return None
+        
+        params = {'id': org_id}
+        headers = self.get_request_headers(include_api_key=False)
+        
+        logger.info(f'Get organization data {organization_show_url} {params}')
+        
+        # not sure why require this
+        headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        params = json.dumps(params)
+        response = requests.post(organization_show_url, data=params, headers=headers)
+        
+        if response.status_code >= 400:
+            error = f'Error [{response.status_code}] getting organization info:\n {params} \n{response.headers}\n {response.content}'
+            logger.error(error)
+            self.errors.append(error)
+        else:
+            response = response.json()
+            org = response['result']
+        
+        self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
+        self.organizations[org['name']] = org
+        return org
 
     def get_request_headers(self, include_api_key=True):
         headers = {'User-Agent': self.user_agent}
@@ -124,8 +161,9 @@ class RemoteCKAN:
                 status_code (int): request status code
                 error (str): None or error
             """
-    
-        created, status, error = self.create_organization(data=data['organization'])
+        
+        org = data['organization']
+        created, status, error = self.create_organization(data=org)
         if not created:
             return False, status, f'Unable to create organization: {error}'
 
@@ -171,6 +209,15 @@ class RemoteCKAN:
                 data (dics): Required fields to create
         """
 
+        # get more info about org, we miss organization extras
+        # We need the organization_type in some cases
+        full_org = self.get_full_organization(org=data)
+        extras = data.get('extras', [])
+        for extra in full_org.get('extras', []):
+            if extra.get('state', 'active') == 'active':
+                extras.append({'key': extra['key'], 'value': extra['value']})
+                logger.info('New extra found at org {}={}'.format(extra['key'], extra['value']))
+        
         org_create_url = f'{self.destination_url}/api/3/action/organization_create'
         logger.info('Creating organization {}'.format(data['title']))
 
@@ -179,7 +226,8 @@ class RemoteCKAN:
             'title': data['title'],
             'description': data['description'],
             'id': data['id'],
-            'image_url': data['image_url']
+            'image_url': data['image_url'],
+            'extras': extras
         }
 
         # TODO get the organization_type GSA field
@@ -211,6 +259,8 @@ class RemoteCKAN:
 
         try:
             if method == 'POST':
+                headers['Content-Type'] = 'application/x-www-form-urlencoded'
+                data = json.dumps(data)
                 req = requests.post(url, data=data, headers=headers)
             elif method == 'GET':
                 req = requests.get(url, params=data, headers=headers)
@@ -251,7 +301,7 @@ class RemoteCKAN:
         """ get full data package and return a final CKAN package """
 
         config = self.get_config(data)
-        extras = data.get('extras', {})
+        extras = data.get('extras', [])
         
         ret = {
             'name': data['name'],
@@ -266,3 +316,11 @@ class RemoteCKAN:
         } 
 
         return ret
+    
+    def save_temp_json(self, data_type, data_name,  data):
+        filename = '{}-{}.json'.format(data_type, data_name)
+        path = os.path.join(self.temp_data, filename)
+        f = open(path, 'w')
+        f.write(json.dumps(data, indent=4))
+        f.close()
+        logger.info('{} {} saved at /{}'.format(data_type, data_name, self.temp_data))
