@@ -59,6 +59,27 @@ load test_helper
   assert_json .success true
 }
 
+@test "Harvest create form" {
+  # create a waf-collection harvest source
+  # require the organization created in previous test
+
+  local api_key json_data existing_org
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  json_data=$(sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/waf-collection-source.json)
+
+  run curl --silent -X POST \
+    http://$HOST:$PORT/api/3/action/package_create \
+    -H "Authorization: $api_key" \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d "$json_data"
+
+  [ "$status" = 0 ]
+  assert_json .success true
+}
+
+
+
 @test "User can create dataset" {
   local api_key json_data
 
