@@ -1,0 +1,10 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-PYTHON-BEAKER-575115:
+    - '*':
+        reason: >-
+          No remediation available yet; Not affecting us since the storage is not accessible to any other client
+        expires: 2021-01-10T06:00:00.000Z
+patch: {}
