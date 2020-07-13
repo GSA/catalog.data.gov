@@ -43,7 +43,8 @@ load test_helper
 }
 
 @test "User can create org" {
-  create_organization
+  api_post_call "api/3/action/organization_create" "test-org-create-01"
+  api_delete_call "organization" "purge" "test-organization-$RNDCODE"
 }
 
 @test "Given an organization, a waf-collection harvest source is created successfully from form" {
@@ -51,19 +52,14 @@ load test_helper
   # asserts ckan/patches/ckan/unflattern_indexerror.patch is applied
   # require the organization created in previous test
 
-  local api_key json_data name existing_org
-  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
-  # we need to avoid name collition with other organization creating tests
-  local RND2=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1)
-  create_organization $RND2
-  
-  local org_id=$(echo "$created_organization" | jq --raw-output '.result.id')
+  api_post_call "api/3/action/organization_create" "test-org-create-01"
+  local org_id=$(echo "$api_results" | jq --raw-output '.result.id')
   
   # check the form
-  run curl --silent -H "Authorization: $api_key" --cookie $BATS_TMPDIR/cookie-jar http://$HOST:$PORT/harvest/new
+  api_get_call "harvest/new"
   
   # check if the missing field it's OK
-  if [[ "$output" != *"field-collection_metadata_url"* ]]
+  if [[ "$api_results" != *"field-collection_metadata_url"* ]]
   then
     echo "Missing required field: collection_metadata_url" >&3
     return 1
@@ -93,32 +89,27 @@ load test_helper
   fi
   
   # check the source we created exists
-  local url="http://$HOST:$PORT/api/3/action/harvest_source_show?id=$name"
-  run curl --silent $url
-
+  api_get_call "api/3/action/harvest_source_show?id=waf-collection-source-$RNDCODE"
+  
   if [ "$status" -ne 0 ]
   then
     echo "Error $status reading harvest source at $url" >&3
     return 1
   fi
   assert_json .success true
+
+  # delete harvest source
+  api_delete_call "harvest_source" "delete" "waf-collection-source-$RNDCODE"
+
+  # delete organization
+  api_delete_call "organization" "purge" "test-organization-$RNDCODE"
 }
 
 @test "User can create dataset" {
-  local api_key json_data
-
-  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
-  json_data=$(sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-package-create-01.json)
-
-  run curl --silent -X POST \
-    http://$HOST:$PORT/api/3/action/package_create \
-    -H "Authorization: $api_key" \
-    -H 'cache-control: no-cache' \
-    -H 'content-type: application/json' \
-    -d "$json_data"
-
-  [ "$status" = 0 ]
-  assert_json .success true
+  api_post_call "api/3/action/organization_create" "test-org-create-01"
+  api_post_call "api/3/action/package_create" "test-package-create-01"
+  api_delete_call "package" "delete" "test-dataset-$RNDCODE"
+  api_delete_call "organization" "purge" "test-organization-$RNDCODE"
 }
 
 @test "data is accessible for user" {
