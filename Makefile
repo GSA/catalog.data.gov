@@ -34,6 +34,11 @@ test:
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
+quick-test:
+	# if local environment is already build and running 
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml build test
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
+
 update-dependencies:
 	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
 	cp requirements/requirements.txt ckan/requirements.txt
