@@ -56,10 +56,8 @@ load test_helper
   local RND2=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1)
   create_organization $RND2
   
-  echo "CREATED $created_organization" >&3
   local org_id=$(echo "$created_organization" | jq --raw-output '.result.id')
-  echo "ORG ID: $org_id" >&3 
-
+  
   # check the form
   run curl --silent -H "Authorization: $api_key" --cookie $BATS_TMPDIR/cookie-jar http://$HOST:$PORT/harvest/new
   
@@ -80,9 +78,10 @@ load test_helper
     --data-urlencode "collection_metadata_url=http://coll-$RNDCODE.test.com" \
     --data-urlencode "frequency=MANUAL" \
     --data-urlencode "owner_org=$org_id" \
+    --data-urlencode "private_datasets=False" \
+    --data-urlencode "save=Save" \
     -X POST http://$HOST:$PORT/harvest/new \
     -H "Authorization: $api_key" \
-    -H 'cache-control: no-cache' \
     -H 'content-type: application/x-www-form-urlencoded' \
     --cookie $BATS_TMPDIR/cookie-jar
   
@@ -94,22 +93,16 @@ load test_helper
   
   local post_output=$output
   
-  echo "# Checking harvest source: $name" >&3
   # check the source exists
   local url="http://$HOST:$PORT/api/3/action/harvest_source_show?id=$name"
-
   run curl --silent $url
 
   if [ "$status" -ne 0 ]
   then
     echo "Error $status reading harvest source at $url" >&3
-    
     return 1
   fi
-  
   assert_json .success true
-  
-
 }
 
 @test "User can create dataset" {
