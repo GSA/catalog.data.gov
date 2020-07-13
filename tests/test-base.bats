@@ -43,20 +43,7 @@ load test_helper
 }
 
 @test "User can create org" {
-  local api_key
-  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
-
-  # Template the dataset JSON payload with a random code to provide uniqueness
-  # to the dataset.
-  local json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
-  run curl --silent -X POST \
-    http://$HOST:$PORT/api/3/action/organization_create \
-    -H "Authorization: $api_key" \
-    -H "cache-control: no-cache" \
-    -d "$json_data"
-
-  [ "$status" = 0 ]
-  assert_json .success true
+  create_organization
 }
 
 @test "Given an organization, a waf-collection harvest source is created successfully from form" {
@@ -64,22 +51,66 @@ load test_helper
   # asserts ckan/patches/ckan/unflattern_indexerror.patch is applied
   # require the organization created in previous test
 
-  local api_key json_data existing_org
+  local api_key json_data name existing_org
   api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
-  json_data=$(sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/waf-collection-source.json)
+  local RND2=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1)
+  create_organization $RND2
+  
+  echo "CREATED $created_organization" >&3
+  local org_id=$(echo "$created_organization" | jq --raw-output '.result.id')
+  echo "ORG ID: $org_id" >&3 
 
-  run curl --silent -X POST \
-    http://$HOST:$PORT/api/3/action/package_create \
+  # check the form
+  run curl --silent -H "Authorization: $api_key" --cookie $BATS_TMPDIR/cookie-jar http://$HOST:$PORT/harvest/new
+  
+  # check if the missing field it's OK
+  if [[ "$output" != *"field-collection_metadata_url"* ]]
+  then
+    echo "Missing required field: collection_metadata_url" >&3
+    return 1
+  fi
+
+  name="waf-collection-source-$RNDCODE"
+  
+  run curl --silent \
+    --data-urlencode "name=$name" \
+    --data-urlencode "url=http://test-$RNDCODE.com" \
+    --data-urlencode "source_type=waf-collection" \
+    --data-urlencode "title=WAF test $RNDCODE" \
+    --data-urlencode "collection_metadata_url=http://coll-$RNDCODE.test.com" \
+    --data-urlencode "frequency=MANUAL" \
+    --data-urlencode "owner_org=$org_id" \
+    -X POST http://$HOST:$PORT/harvest/new \
     -H "Authorization: $api_key" \
     -H 'cache-control: no-cache' \
     -H 'content-type: application/x-www-form-urlencoded' \
-    -d "$json_data"
+    --cookie $BATS_TMPDIR/cookie-jar
+  
+  if [ "$status" -ne 0 ]
+  then
+    echo "Error creating harvest source: $output" >&3
+    return 1
+  fi
+  
+  local post_output=$output
+  
+  echo "# Checking harvest source: $name" >&3
+  # check the source exists
+  local url="http://$HOST:$PORT/api/3/action/harvest_source_show?id=$name"
 
-  [ "$status" = 0 ]
+  run curl --silent $url
+
+  if [ "$status" -ne 0 ]
+  then
+    echo "Error $status reading harvest source at $url" >&3
+    
+    return 1
+  fi
+  
   assert_json .success true
+  
+
 }
-
-
 
 @test "User can create dataset" {
   local api_key json_data

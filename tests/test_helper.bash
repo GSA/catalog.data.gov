@@ -152,6 +152,28 @@ function test_extension_loaded() {
   fi
 }
 
+function create_organization() {
+  
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+
+  # Template the dataset JSON payload with a random code to provide uniqueness
+  # to the dataset.
+  if [ "$1" ]; then
+    RNDCODE=$1
+  fi
+  json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
+  run curl --silent -X POST \
+    http://$HOST:$PORT/api/3/action/organization_create \
+    -H "Authorization: $api_key" \
+    -H "cache-control: no-cache" \
+    -d "$json_data"
+
+  [ "$status" = 0 ]
+  assert_json .success true
+
+  created_organization="$output"
+}
+
 # to create (just once) random org and datasets
 if [ -z $RNDCODE ]; then
     export RNDCODE=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1)
