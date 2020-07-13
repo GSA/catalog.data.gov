@@ -59,7 +59,7 @@ load test_helper
   assert_json .success true
 }
 
-@test "Harvest create form" {
+@test "Given an organization, a waf-collection harvest source is created successfully from form" {
   # create a waf-collection harvest source
   # asserts ckan/patches/ckan/unflattern_indexerror.patch is applied
   # require the organization created in previous test
