@@ -61,6 +61,7 @@ load test_helper
 
 @test "Harvest create form" {
   # create a waf-collection harvest source
+  # asserts ckan/patches/ckan/unflattern_indexerror.patch is applied
   # require the organization created in previous test
 
   local api_key json_data existing_org
