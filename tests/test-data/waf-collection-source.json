@@ -1,9 +1,0 @@
-{
-    "name": "waf-collection-source-$RNDCODE",
-    "url": "http://test.com-$RNDCODE",
-    "source_type": "waf-collection",
-    "title": "WAF test $RNDCODE",
-    "collection_metadata_url": "http://coll.test.com-$RNDCODE",
-    "frequency": "MANUAL",
-    "owner_org": "test-organization-$RNDCODE"
-}

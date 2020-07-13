@@ -53,6 +53,7 @@ load test_helper
 
   local api_key json_data name existing_org
   api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  # we need to avoid name collition with other organization creating tests
   local RND2=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1)
   create_organization $RND2
   
@@ -91,9 +92,7 @@ load test_helper
     return 1
   fi
   
-  local post_output=$output
-  
-  # check the source exists
+  # check the source we created exists
   local url="http://$HOST:$PORT/api/3/action/harvest_source_show?id=$name"
   run curl --silent $url
 
