@@ -53,13 +53,13 @@ load test_helper
   # require the organization created in previous test
 
   api_post_call "api/3/action/organization_create" "test-org-create-01"
-  local org_id=$(echo "$api_results" | jq --raw-output '.result.id')
+  local org_id=$(echo "$output" | jq --raw-output '.result.id')
   
   # check the form
   api_get_call "harvest/new"
   
   # check if the missing field it's OK
-  if [[ "$api_results" != *"field-collection_metadata_url"* ]]
+  if [[ "$output" != *"field-collection_metadata_url"* ]]
   then
     echo "Missing required field: collection_metadata_url" >&3
     return 1

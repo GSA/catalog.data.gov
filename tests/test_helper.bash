@@ -152,29 +152,6 @@ function test_extension_loaded() {
   fi
 }
 
-function create_organization() {
-  
-  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
-
-  # Template the dataset JSON payload with a random code to provide uniqueness
-  # to the dataset.
-  if [ "$1" ]; then
-    RNDCODE=$1
-  fi
-  json_data=$( sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/test-org-create-01.json )
-  run curl --silent -X POST \
-    http://$HOST:$PORT/api/3/action/organization_create \
-    -H "Authorization: $api_key" \
-    -H "cache-control: no-cache" \
-    --cookie $BATS_TMPDIR/cookie-jar \
-    -d "$json_data"
-
-  [ "$status" = 0 ]
-  assert_json .success true
-
-  created_organization="$output"
-}
-
 function api_post_call() {
   # CKAN API CALL
   # $1 URL
@@ -195,8 +172,6 @@ function api_post_call() {
   
   # only expect JSON results for POST calls
   assert_json .success true
-  
-  api_results=$output 
 }
 
 function api_get_call() {
@@ -212,8 +187,6 @@ function api_get_call() {
     -H 'cache-control: no-cache' \
     
   [ "$status" = 0 ]
-  
-  api_results=$output 
 }
 
 function api_delete_call() {
@@ -237,8 +210,6 @@ function api_delete_call() {
   
   # only expect JSON results for POST calls
   assert_json .success true
-  
-  api_results=$output 
 }
 
 # to create (just once) random org and datasets
