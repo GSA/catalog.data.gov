@@ -152,6 +152,66 @@ function test_extension_loaded() {
   fi
 }
 
+function api_post_call() {
+  # CKAN API CALL
+  # $1 URL
+  # $2: json file name at /tests/test-data/ (without the .json extension)
+  local api_key json_data 
+
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  json_data=$(sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/$2.json)
+  
+  run curl --silent -X POST \
+    http://$HOST:$PORT/$1 \
+    -H "Authorization: $api_key" \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d "$json_data"
+
+  [ "$status" = 0 ]
+  
+  # only expect JSON results for POST calls
+  assert_json .success true
+}
+
+function api_get_call() {
+  # CKAN API CALL
+  # $1 URL
+  local api_key 
+
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  
+  run curl --silent \
+    http://$HOST:$PORT/$1 \
+    -H "Authorization: $api_key" \
+    -H 'cache-control: no-cache' \
+    
+  [ "$status" = 0 ]
+}
+
+function api_delete_call() {
+  # CKAN API CALL to delete
+  # $1 object to delete (organization | package)
+  # $2 delete method (purge|delete)
+  # $3: name or id
+
+  local api_key 
+
+  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  
+  run curl --silent -X POST \
+    http://$HOST:$PORT/api/3/action/$1_$2 \
+    -H "Authorization: $api_key" \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{"id": "'"$3"'"}'
+
+  [ "$status" = 0 ]
+  
+  # only expect JSON results for POST calls
+  assert_json .success true
+}
+
 # to create (just once) random org and datasets
 if [ -z $RNDCODE ]; then
     export RNDCODE=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1)
