@@ -231,8 +231,19 @@ class RemoteCKAN:
         }
         logger.info(f'Creating organization {organization}')
 
-        return self.request_ckan(method='POST', url=org_create_url, data=organization)
-    
+        created, status, error = self.request_ckan(method='POST', url=org_create_url, data=organization)
+
+        if error == 'Already exists':
+            return self.update_organization(data=organization)
+        
+        return created, status, error
+
+    def update_organization(self, data):
+        """ update an existing organization """
+
+        org_update_url = f'{self.destination_url}/api/3/action/organization_update'
+        return self.request_ckan(method='POST', url=org_update_url, data=data)
+        
     def get_config(self, data):
         """ get config and extras from full data package and return a final str config """
         config = data.get('config', {})
@@ -279,7 +290,7 @@ class RemoteCKAN:
             return False, 0, error
         
         if req.status_code >= 400:
-            if 'already in use' in str(content):
+            if 'already exists' in str(content) or 'already in use' in str(content):
                 return False, req.status_code, 'Already exists'
             error = ('ERROR status: {}'
                      '\n\t content:{}'
