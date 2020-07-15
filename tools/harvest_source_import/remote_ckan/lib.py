@@ -165,6 +165,7 @@ class RemoteCKAN:
         org = data['organization']
         created, status, error = self.create_organization(data=org)
         if not created:
+            self.harvest_sources[data['name']].update({'created': False, 'updated': False, 'error': True})
             return False, status, f'Unable to create organization: {error}'
 
         ckan_package = self.get_package_from_data(data)
@@ -219,8 +220,7 @@ class RemoteCKAN:
                 logger.info('New extra found at org {}={}'.format(extra['key'], extra['value']))
         
         org_create_url = f'{self.destination_url}/api/3/action/organization_create'
-        logger.info('Creating organization {}'.format(data['title']))
-
+        
         organization = {
             'name': data['name'],
             'title': data['title'],
@@ -229,8 +229,7 @@ class RemoteCKAN:
             'image_url': data['image_url'],
             'extras': extras
         }
-
-        # TODO get the organization_type GSA field
+        logger.info(f'Creating organization {organization}')
 
         return self.request_ckan(method='POST', url=org_create_url, data=organization)
     
@@ -283,7 +282,8 @@ class RemoteCKAN:
             if 'already in use' in str(content):
                 return False, req.status_code, 'Already exists'
             error = ('ERROR status: {}'
-                     '\n\t content:{}'.format(req.status_code, req.content))
+                     '\n\t content:{}'
+                     '\n\t sent: {}'.format(req.status_code, req.content, data))
             self.errors.append(error)
             logger.error(error)
             return False, req.status_code, error
