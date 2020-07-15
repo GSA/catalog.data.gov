@@ -59,11 +59,8 @@ load test_helper
   api_get_call "harvest/new"
   
   # check if the missing field it's OK
-  if [[ "$output" != *"field-collection_metadata_url"* ]]
-  then
-    echo "Missing required field: collection_metadata_url" >&3
-    return 1
-  fi
+
+  assert_output --regexp '^.*field-collection_metadata_url.*$'
 
   name="waf-collection-source-$RNDCODE"
   
