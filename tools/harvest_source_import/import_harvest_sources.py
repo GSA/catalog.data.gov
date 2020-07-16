@@ -15,6 +15,7 @@ parser.add_argument("--user_agent", type=str, default='CKAN-harvest-source-impor
 parser.add_argument("--destination_url", type=str, default='http://ckan:5000', help="CKAN destination instance URL")
 parser.add_argument("--destination_api_key", type=str, help="CKAN destination instance API KEY")
 parser.add_argument("--limit", type=int, default=0, help="Limit the amount of Harvest sources to import")
+parser.add_argument("--offset", type=int, default=0, help="Offset")
 
 args = parser.parse_args()
 
@@ -33,16 +34,20 @@ if args.names is not None:
     else:
         names = args.names.split(',')
     
+    if args.offset > 0:
+        names = names[args.offset:]
+    if args.limit > 0:
+        names = names[:args.limit]
+
     for hs in [{'name': name} for name in names]:
         rhs = ckan.get_full_harvest_source(hs)
         if rhs.get('title', None) is None:
             print('ERROR GETTING EXTERNAL SOURCE: {}'.format(hs['name']))
             continue
-        sources_to_import.append(rhs)
-        if args.limit > 0 and len(sources_to_import) >= args.limit:
-            break
+        sources_to_import.append(rhs)    
+        
 else:
-    for hs in ckan.list_harvest_sources(source_type=args.source_type, limit=args.limit):
+    for hs in ckan.list_harvest_sources(source_type=args.source_type, start=args.offset, limit=args.limit):
         sources_to_import.append(hs)
 
 for hs in sources_to_import:

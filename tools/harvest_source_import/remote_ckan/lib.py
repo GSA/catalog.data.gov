@@ -7,7 +7,10 @@ logger = get_logger(__name__)
 
 
 class RemoteCKAN:
-    def __init__(self, url, user_agent='Remote CKAN 1.0', temp_data='checks'):
+    def __init__(self, url,
+                 user_agent='Remote CKAN 1.0',
+                 temp_data='checks',
+                 requests_timeout=60):
         self.url = url
         self.user_agent = user_agent
         self.errors = []
@@ -18,6 +21,8 @@ class RemoteCKAN:
         self.temp_data = temp_data
         if not os.path.isdir(self.temp_data):
             os.mkdir(self.temp_data)
+        
+        self.requests_timeout = requests_timeout
     
     def set_destination(self, ckan_url, ckan_api_key):
         self.destination_url = ckan_url
@@ -44,8 +49,7 @@ class RemoteCKAN:
         headers = self.get_request_headers(include_api_key=False)
 
         logger.debug(f'request {package_search_url} {params}')
-        # response = requests.post(package_search_url, json=params, headers=headers)
-        response = requests.get(package_search_url, params=params, headers=headers)
+        response = requests.get(package_search_url, params=params, headers=headers, timeout=self.requests_timeout)
         if response.status_code >= 400:
             error = f'ERROR getting harvest sources: {response.status_code} {response.text}'
             self.errors.append(error)
@@ -101,7 +105,7 @@ class RemoteCKAN:
         headers = self.get_request_headers(include_api_key=False)
 
         logger.info(f'Get harvest source data {harvest_show_url} {params}')
-        response = requests.get(harvest_show_url, params=params, headers=headers)
+        response = requests.get(harvest_show_url, params=params, headers=headers, timeout=self.requests_timeout)
         if response.status_code >= 400:
             error = f'Error [{response.status_code}] trying to get full harvest source info: "{response.content}"'
             logger.error(error)
@@ -130,7 +134,7 @@ class RemoteCKAN:
         # not sure why require this
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         params = json.dumps(params)
-        response = requests.post(organization_show_url, data=params, headers=headers)
+        response = requests.post(organization_show_url, data=params, headers=headers, timeout=self.requests_timeout)
         
         if response.status_code >= 400:
             error = f'Error [{response.status_code}] getting organization info:\n {params} \n{response.headers}\n {response.content}'
@@ -264,21 +268,21 @@ class RemoteCKAN:
 
     def request_ckan(self, method, url, data):
         """ request CKAN and get results """
-
+        
         headers = self.get_request_headers(include_api_key=True)
+        # do not modify original data
+        data2 = data.copy()
 
         try:
             if method == 'POST':
-                headers['Content-Type'] = 'application/x-www-form-urlencoded'
-                data = json.dumps(data)
-                req = requests.post(url, data=data, headers=headers)
+                req = requests.post(url, json=data2, headers=headers, timeout=self.requests_timeout)
             elif method == 'GET':
-                req = requests.get(url, params=data, headers=headers)
+                req = requests.get(url, params=data2, headers=headers, timeout=self.requests_timeout)
             else:
                 raise ValueError(f'Invalid method {method}')
 
         except Exception as e:
-            error = 'ERROR at {} {}: {}'.format(url, data, e)
+            error = 'ERROR at {} {}: {}'.format(url, data2, e)
             return False, 0, error
 
         content = req.content
@@ -294,7 +298,7 @@ class RemoteCKAN:
                 return False, req.status_code, 'Already exists'
             error = ('ERROR status: {}'
                      '\n\t content:{}'
-                     '\n\t sent: {}'.format(req.status_code, req.content, data))
+                     '\n\t sent: {}'.format(req.status_code, req.content, data2))
             self.errors.append(error)
             logger.error(error)
             return False, req.status_code, error
