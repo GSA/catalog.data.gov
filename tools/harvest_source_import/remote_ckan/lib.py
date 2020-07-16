@@ -229,7 +229,7 @@ class RemoteCKAN:
             'image_url': data['image_url'],
             'extras': extras
         }
-        logger.info(f'Creating organization {organization}')
+        logger.info('Creating organization {}'.format(data['name']))
 
         created, status, error = self.request_ckan(method='POST', url=org_create_url, data=organization)
 
