@@ -343,6 +343,21 @@ class RemoteCKAN:
             'extras': extras
         } 
 
+        if data.get('collection_metadata_url', None) is not None:
+            ret['collection_metadata_url'] = data['collection_metadata_url']
+        
+        if data.get('database', None) is not None:
+            ret['database'] = data['database']
+        
+        if data.get('port', None) is not None:
+            ret['port'] = data['port']
+        
+        if data.get('extra_search_criteria', None) is not None:
+            ret['extra_search_criteria'] = data['extra_search_criteria']
+        
+        if data.get('id', None) is not None:
+            ret['id'] = data['id']
+
         return ret
     
     def save_temp_json(self, data_type, data_name,  data):
