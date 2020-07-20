@@ -62,10 +62,10 @@ for name in names:
 
     # check if already exists locally
     hs = local_ckan.get_full_harvest_source(hs={'name': name})
-    if hs.get('title', None) is None:
+    if hs is None:  # some error
         # not exists locally, import
         rhs = remote_ckan.get_full_harvest_source(hs={'name': name})
-        if rhs.get('title', None) is None:
+        if rhs is None:
             print(f'ERROR GETTING EXTERNAL SOURCE: {name}')
             row['status'] = 'Failed to get external source'
             writer.writerow(row)

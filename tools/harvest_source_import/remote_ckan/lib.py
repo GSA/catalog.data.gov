@@ -104,20 +104,33 @@ class RemoteCKAN:
 
         headers = self.get_request_headers(include_api_key=False)
 
+        error = None
         logger.info(f'Get harvest source data {harvest_show_url} {params}')
-        response = requests.get(harvest_show_url, params=params, headers=headers, timeout=self.requests_timeout)
-        if response.status_code >= 400:
-            error = f'Error [{response.status_code}] trying to get full harvest source info: "{response.content}"'
+        try:
+            response = requests.get(harvest_show_url, params=params, headers=headers, timeout=self.requests_timeout)
+        except Exception as e:
+            error = f'Request harvest source Error: {e}'
+        else:
+            if response.status_code >= 500:
+                error = f'Error [{response.status_code}] trying to get full harvest source info from {harvest_show_url}'
+            elif response.status_code >= 400:
+                error = f'Error [{response.status_code}] trying to get full harvest source info: "{response.content}"'
+        
+        if error is not None:
             logger.error(error)
             self.errors.append(error)
-            # yield incomplete version
-            self.save_temp_json('harvest-source', hs['name'], hs)
-            return hs
-        else:
-            full_hs = response.json()
-            self.harvest_sources[hs['name']] = full_hs['result']
-            self.save_temp_json('harvest-source', full_hs['result']['name'], full_hs['result'])
-            return full_hs['result']
+            name = hs['name']
+            source = {
+                'name': name, 'created': False,
+                'updated': False, 'error': True
+                }
+            self.harvest_sources[name] = source
+            return None
+        
+        full_hs = response.json()
+        self.harvest_sources[hs['name']] = full_hs['result']
+        self.save_temp_json('harvest-source', full_hs['result']['name'], full_hs['result'])
+        return full_hs['result']
     
     def get_full_organization(self, org):
         """ get full info (including job status) for a Harvest Source """

@@ -41,7 +41,7 @@ if args.names is not None:
 
     for hs in [{'name': name} for name in names]:
         rhs = ckan.get_full_harvest_source(hs)
-        if rhs.get('title', None) is None:
+        if rhs is None:
             print('ERROR GETTING EXTERNAL SOURCE: {}'.format(hs['name']))
             continue
         sources_to_import.append(rhs)    
