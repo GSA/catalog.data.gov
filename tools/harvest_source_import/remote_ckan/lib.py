@@ -94,9 +94,12 @@ class RemoteCKAN:
         # get next page   
         yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size, limit=limit)
     
-    def get_full_harvest_source(self, hs):
+    def get_full_harvest_source(self, hs, url=None):
         """ get full info (including job status) for a Harvest Source """
-        harvest_show_url = f'{self.url}/api/3/action/harvest_source_show'
+        if url is None:
+            url = self.url
+        harvest_show_url = f'{url}/api/3/action/harvest_source_show'
+
         if 'id' in hs.keys():
             params = {'id': hs['id']}
         else:
@@ -193,7 +196,10 @@ class RemoteCKAN:
         created, status, error = self.request_ckan(url=package_create_url, method='POST', data=ckan_package)
 
         if error == 'Already exists':
-            return self.update_harvest_source(data=data)
+            # get the ID of the Source (use destination URL)
+            del data['id']
+            local_hs = self.get_full_harvest_source(hs=data, url=self.destination_url)
+            return self.update_harvest_source(data=local_hs)
         else:
             name = ckan_package['name']
             self.harvest_sources[name].update({'created': created, 'updated': False, 'error': error is not None})
