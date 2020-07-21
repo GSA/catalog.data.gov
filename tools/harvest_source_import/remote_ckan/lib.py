@@ -188,7 +188,7 @@ class RemoteCKAN:
         org = data.get('organization', None)
         if org is None:
             self.harvest_sources[data['name']].update({'created': False, 'updated': False, 'error': True})
-            return False, status, f'Missing organization: {error} at \n\t{data}'
+            return False, 0, f'Missing organization at \n\t{data}'
 
         created, status, error = self.create_organization(data=org)
         if not created:
