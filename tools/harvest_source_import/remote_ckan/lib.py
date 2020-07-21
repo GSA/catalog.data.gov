@@ -317,6 +317,7 @@ class RemoteCKAN:
         except Exception as e:
             error = 'ERROR parsing JSON: {} {}: {}'.format(url, content, e)
             logger.error(error)
+            self.errors.append(error)
             return False, 0, error
         
         if req.status_code >= 400:
