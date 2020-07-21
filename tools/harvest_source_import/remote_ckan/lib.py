@@ -206,7 +206,8 @@ class RemoteCKAN:
             # get the ID of the Source (use destination URL)
             del data['id']
             local_hs = self.get_full_harvest_source(hs=data, url=self.destination_url)
-            return self.update_harvest_source(data=local_hs)
+            data['id'] = local_hs['id']
+            return self.update_harvest_source(data=data)
         else:
             name = ckan_package['name']
             self.harvest_sources[name].update({'created': created, 'updated': False, 'error': error is not None})
