@@ -52,7 +52,10 @@ else:
 
 for hs in sources_to_import:
     print(' ****** {}/{}'.format(len(ckan.harvest_sources), args.limit))
-    # save to destination CKAN    
+    # save to destination CKAN 
+    if hs.get('error', False):
+        print('Skipping failed source: {}'.format(hs['name']))
+        continue
     ckan.create_harvest_source(data=hs)
     assert 'created' in ckan.harvest_sources[hs['name']].keys()
     assert 'updated' in ckan.harvest_sources[hs['name']].keys()

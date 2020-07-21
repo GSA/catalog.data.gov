@@ -85,7 +85,10 @@ class RemoteCKAN:
             logger.info(f'  [{source_type}] Harvest source: {title} [{state}]')
             if state == 'active':
                 # We don't get full harvest soure info here. We need a custom call
-                yield self.get_full_harvest_source(hs)
+                source = self.get_full_harvest_source(hs)
+                if source is None:
+                    source = {'name': hs['name'], 'created': False,'updated': False, 'error': True}
+                yield source
                 
         # if the page is not full, it is the last one
         if count + 1 < page_size:
@@ -115,9 +118,9 @@ class RemoteCKAN:
             error = f'Request harvest source Error: {e}'
         else:
             if response.status_code >= 500:
-                error = f'Error [{response.status_code}] trying to get full harvest source info from {harvest_show_url}'
+                error = f'Error [{response.status_code}] getting harvest source info: {harvest_show_url}\n\t{params}'
             elif response.status_code >= 400:
-                error = f'Error [{response.status_code}] trying to get full harvest source info: "{response.content}"'
+                error = f'Error [{response.status_code}] getting harvest source info: "{response.content}"'
         
         if error is not None:
             logger.error(error)
@@ -182,7 +185,11 @@ class RemoteCKAN:
                 error (str): None or error
             """
         
-        org = data['organization']
+        org = data.get('organization', None)
+        if org is None:
+            self.harvest_sources[data['name']].update({'created': False, 'updated': False, 'error': True})
+            return False, status, f'Missing organization: {error} at \n\t{data}'
+
         created, status, error = self.create_organization(data=org)
         if not created:
             self.harvest_sources[data['name']].update({'created': False, 'updated': False, 'error': True})
