@@ -19,10 +19,10 @@ interactions:
         "revision_timestamp": null, "frequency": "WEEKLY", "id": "f1b2d147-163f-412c-9e7a-e76040076376",
         "metadata_created": "2019-05-14T20:41:21.732116", "metadata_modified": "2019-05-21T14:43:27.166412",
         "title": "FDIC data.json", "state": "active", "creator_user_id": "A041752",
-        "type": "harvest", "resources": [], "status": {"job_count": 57, "total_datasets":
-        6, "last_job": {"id": "de5371c7-0feb-492d-9ec6-3dbc13f12d59", "created": "2020-06-03
-        02:48:03.482513", "gather_started": "2020-06-03 02:48:12.221664", "gather_finished":
-        "2020-06-03 02:48:13.042967", "finished": "2020-06-03 02:52:53.391480", "source_id":
+        "type": "harvest", "resources": [], "status": {"job_count": 63, "total_datasets":
+        6, "last_job": {"id": "5779e37e-b201-4fbb-a98c-08b4950c1c0b", "created": "2020-07-15
+        02:54:04.497032", "gather_started": "2020-07-15 02:54:36.381876", "gather_finished":
+        "2020-07-15 02:54:37.067074", "finished": "2020-07-15 03:01:05.345388", "source_id":
         "f1b2d147-163f-412c-9e7a-e76040076376", "status": "Finished", "stats": {},
         "object_error_summary": [], "gather_error_summary": []}}, "tags": [], "source_type":
         "datajson", "tracking_summary": {"total": 1, "recent": 0}, "groups": [], "active":
@@ -51,7 +51,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:44 GMT
+      - Tue, 21 Jul 2020 00:29:28 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -61,9 +61,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 c0babd197d8672cba6ebf7f9833f1501.cloudfront.net (CloudFront)
+      - 1.1 ddbb445bfb4f50cdf7c8b96d2be519d4.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - -lsuyWAY0UKDqw884EtsqAMH_cDuDNuXRK7HH3BJlxaLPhFW3WwTDw==
+      - j7uQjaq7wJ6pJIUeinPQjQnuzU9T4Gz8ztHwfP94D_XzdINslIZTuQ==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -162,7 +162,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:45 GMT
+      - Tue, 21 Jul 2020 00:29:29 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -172,9 +172,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 5f971e914439865abbad332444c0fe9f.cloudfront.net (CloudFront)
+      - 1.1 a51cf918e1d38d447b84b59af10a84e8.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - 1OaeqEimCd9yaRyhMwafpo0oTEuMFdCCsTcXUcnhmqvl-I44cmYgxg==
+      - 5paH148IeHyktEUcgsapigdjqtrSgfyrXNsRrFz-7tycVobs-qfzBg==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -204,32 +204,32 @@ interactions:
       Content-Length:
       - '402'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/organization_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=organization_create",
         "success": true, "result": {"users": [{"email_hash": "7c512b13badc48258d94ef72d1c8889a",
-        "about": null, "capacity": "admin", "name": "admin", "created": "2020-06-08T16:15:06.820161",
+        "about": null, "capacity": "admin", "name": "admin", "created": "2020-07-21T00:14:45.421879",
         "sysadmin": true, "activity_streams_email_notifications": false, "state":
-        "active", "number_of_edits": 23, "display_name": "admin", "fullname": null,
-        "id": "cede1337-2a48-41f2-ae22-235877e29539", "number_created_packages": 4}],
+        "active", "number_of_edits": 27, "display_name": "admin", "fullname": null,
+        "id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a", "number_created_packages": 4}],
         "display_name": "Federal Deposit Insurance Corporation", "description": "",
         "image_display_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/US-FDIC-Logo.svg/150px-US-FDIC-Logo.svg.png",
-        "package_count": 0, "created": "2020-06-08T16:19:09.260596", "name": "fdic-gov",
+        "package_count": 0, "created": "2020-07-21T00:28:50.164396", "name": "fdic-gov",
         "is_organization": true, "state": "active", "extras": [{"value": "dmentall@fdic.gov\r\njemartinez@fdic.gov",
-        "state": "active", "key": "email_list", "revision_id": "5c4bc362-df44-4758-bb53-e8df33f7e163",
-        "group_id": "5021090a-be95-4013-946d-5ab92bac68ff", "id": "aae64c42-2662-46f7-ba12-75fd6607a912"},
+        "state": "active", "key": "email_list", "revision_id": "49e83595-b3b3-49d7-98c5-28d9b1c09659",
+        "group_id": "5021090a-be95-4013-946d-5ab92bac68ff", "id": "d30e50f6-32fc-494d-a339-ab72689856d2"},
         {"value": "Federal Government", "state": "active", "key": "organization_type",
-        "revision_id": "5c4bc362-df44-4758-bb53-e8df33f7e163", "group_id": "5021090a-be95-4013-946d-5ab92bac68ff",
-        "id": "66401cc8-86ae-4cb7-850c-b796ebbbb8e8"}], "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/US-FDIC-Logo.svg/150px-US-FDIC-Logo.svg.png",
+        "revision_id": "49e83595-b3b3-49d7-98c5-28d9b1c09659", "group_id": "5021090a-be95-4013-946d-5ab92bac68ff",
+        "id": "82872c78-98cf-4db9-87bb-3d756acd35f3"}], "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/US-FDIC-Logo.svg/150px-US-FDIC-Logo.svg.png",
         "groups": [], "type": "organization", "title": "Federal Deposit Insurance
-        Corporation", "revision_id": "5c4bc362-df44-4758-bb53-e8df33f7e163", "num_followers":
+        Corporation", "revision_id": "49e83595-b3b3-49d7-98c5-28d9b1c09659", "num_followers":
         0, "id": "5021090a-be95-4013-946d-5ab92bac68ff", "tags": [], "approval_status":
         "approved"}}'
     headers:
@@ -240,7 +240,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:46 GMT
+      - Tue, 21 Jul 2020 00:29:29 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
@@ -250,7 +250,7 @@ interactions:
     body: '{"name": "fdic-data-json", "owner_org": "fdic-gov", "title": "FDIC data.json",
       "url": "https://www.fdic.gov/data.json", "notes": "", "source_type": "datajson",
       "frequency": "WEEKLY", "config": "{\"private_datasets\": \"False\"}", "extras":
-      []}'
+      [], "id": "f1b2d147-163f-412c-9e7a-e76040076376"}'
     headers:
       Accept:
       - '*/*'
@@ -259,38 +259,86 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '243'
+      - '289'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/harvest_source_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_create",
-        "success": false, "error": {"name": ["That URL is already in use."], "__type":
-        "Validation Error"}}'
+        "success": false, "error": {"name": ["That URL is already in use."], "url":
+        ["There already is a Harvest Source for this URL (& config): url=https://www.fdic.gov/data.json
+        config={\"private_datasets\": \"False\"}"], "__type": "Validation Error"}}'
     headers:
       Cache-Control:
       - private
       Content-Length:
-      - '178'
+      - '325'
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:46 GMT
+      - Tue, 21 Jul 2020 00:29:29 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
       code: 409
       message: CONFLICT
 - request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: http://ckan:5000/api/3/action/harvest_source_show?name_or_id=fdic-data-json
+  response:
+    body:
+      string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "WEEKLY", "id": "60b2e262-41ab-4af2-a6a5-9413f195946e", "metadata_created":
+        "2020-07-21T00:28:50.466976", "metadata_modified": "2020-07-21T00:28:50.466985",
+        "title": "FDIC data.json", "state": "active", "creator_user_id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a",
+        "config": "{\"private_datasets\": \"False\"}", "resources": [], "status":
+        {"job_count": 0, "total_datasets": 0, "last_job": null}, "tags": [], "source_type":
+        "datajson", "groups": [], "active": true, "relationships_as_subject": [],
+        "name": "fdic-data-json", "url": "https://www.fdic.gov/data.json", "type":
+        "harvest", "notes": "", "owner_org": "5021090a-be95-4013-946d-5ab92bac68ff",
+        "private_datasets": "False", "extras": [], "organization": {"description":
+        "", "created": "2020-07-21T00:28:50.164396", "title": "Federal Deposit Insurance
+        Corporation", "name": "fdic-gov", "is_organization": true, "state": "active",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/US-FDIC-Logo.svg/150px-US-FDIC-Logo.svg.png",
+        "revision_id": "49e83595-b3b3-49d7-98c5-28d9b1c09659", "type": "organization",
+        "id": "5021090a-be95-4013-946d-5ab92bac68ff", "approval_status": "approved"},
+        "revision_id": "22568661-90fc-493f-bd31-04fb11d76d13"}}'
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '1377'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 21 Jul 2020 00:29:29 GMT
+      Server:
+      - PasteWSGIServer/0.5 Python/2.7.15
+    status:
+      code: 200
+      message: OK
+- request:
     body: '{"name": "fdic-data-json", "owner_org": "fdic-gov", "title": "FDIC data.json",
       "url": "https://www.fdic.gov/data.json", "notes": "", "source_type": "datajson",
-      "frequency": "WEEKLY", "config": "{}", "extras": []}'
+      "frequency": "WEEKLY", "config": "{\"private_datasets\": \"False\"}", "extras":
+      [], "id": "60b2e262-41ab-4af2-a6a5-9413f195946e"}'
     headers:
       Accept:
       - '*/*'
@@ -299,41 +347,42 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '212'
+      - '289'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/harvest_source_update
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_update",
         "success": true, "result": {"relationships_as_object": [], "private": false,
-        "frequency": "WEEKLY", "id": "1461259c-5b62-430a-8414-9bc42176faff", "metadata_created":
-        "2020-06-08T16:19:09.483367", "metadata_modified": "2020-06-08T16:21:46.261498",
-        "title": "FDIC data.json", "state": "active", "creator_user_id": "cede1337-2a48-41f2-ae22-235877e29539",
+        "frequency": "WEEKLY", "id": "60b2e262-41ab-4af2-a6a5-9413f195946e", "metadata_created":
+        "2020-07-21T00:28:50.466976", "metadata_modified": "2020-07-21T00:29:29.657554",
+        "title": "FDIC data.json", "state": "active", "creator_user_id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a",
         "type": "harvest", "resources": [], "status": {"job_count": 0, "total_datasets":
         0, "last_job": null}, "tags": [], "source_type": "datajson", "groups": [],
         "relationships_as_subject": [], "name": "fdic-data-json", "url": "https://www.fdic.gov/data.json",
-        "config": "{}", "notes": "", "owner_org": "5021090a-be95-4013-946d-5ab92bac68ff",
-        "extras": [], "organization": {"description": "", "title": "Federal Deposit
-        Insurance Corporation", "created": "2020-06-08T16:19:09.260596", "approval_status":
-        "approved", "is_organization": true, "state": "active", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/US-FDIC-Logo.svg/150px-US-FDIC-Logo.svg.png",
-        "revision_id": "5c4bc362-df44-4758-bb53-e8df33f7e163", "type": "organization",
+        "config": "{\"private_datasets\": \"False\"}", "notes": "", "owner_org": "5021090a-be95-4013-946d-5ab92bac68ff",
+        "private_datasets": "False", "extras": [], "organization": {"description":
+        "", "title": "Federal Deposit Insurance Corporation", "created": "2020-07-21T00:28:50.164396",
+        "approval_status": "approved", "is_organization": true, "state": "active",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/US-FDIC-Logo.svg/150px-US-FDIC-Logo.svg.png",
+        "revision_id": "49e83595-b3b3-49d7-98c5-28d9b1c09659", "type": "organization",
         "id": "5021090a-be95-4013-946d-5ab92bac68ff", "name": "fdic-gov"}, "revision_id":
-        "50c1e636-44fa-4ba3-995f-35ec9bd9d5f1"}}'
+        "22568661-90fc-493f-bd31-04fb11d76d13"}}'
     headers:
       Cache-Control:
       - private
       Content-Length:
-      - '1303'
+      - '1363'
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:46 GMT
+      - Tue, 21 Jul 2020 00:29:29 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
@@ -359,10 +408,10 @@ interactions:
         "revision_timestamp": null, "frequency": "DAILY", "id": "1cf10df3-9f67-421d-aa6e-d22540eb2445",
         "metadata_created": "2016-06-28T23:26:10.875636", "metadata_modified": "2019-02-19T20:13:27.687578",
         "title": "FCC Data.json", "state": "active", "creator_user_id": "69411", "type":
-        "harvest", "resources": [], "status": {"job_count": 480, "total_datasets":
-        29, "last_job": {"id": "5b8db1d4-344f-48e6-a5ae-1fb3c74319c7", "created":
-        "2020-06-08 15:57:04.329960", "gather_started": "2020-06-08 15:58:49.660097",
-        "gather_finished": "2020-06-08 15:58:52.523936", "finished": "2020-06-08 15:58:58.483650",
+        "harvest", "resources": [], "status": {"job_count": 518, "total_datasets":
+        29, "last_job": {"id": "c2d9fcf9-977b-45b2-aa92-b78a36f5bdbc", "created":
+        "2020-07-20 21:00:04.508899", "gather_started": "2020-07-20 21:20:46.670753",
+        "gather_finished": "2020-07-20 21:20:48.855397", "finished": "2020-07-20 21:20:54.764026",
         "source_id": "1cf10df3-9f67-421d-aa6e-d22540eb2445", "status": "Finished",
         "stats": {"updated": 7, "errored": 14}, "object_error_summary": [{"message":
         "Identifier: https://opendata.fcc.gov/api/views/acbv-jbb4; Title: Protected
@@ -439,7 +488,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:46 GMT
+      - Tue, 21 Jul 2020 00:29:30 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -449,9 +498,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 18e1bef4e2e2d57a9ce6f2c93010e995.cloudfront.net (CloudFront)
+      - 1.1 d404deded0486922d3f3f9e242fa9960.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - WbiMxMyYoXVrgvxzG1-j7TBMGHxcG_D86rgKg8wh3wOonai0HQ1RGQ==
+      - O2uTbAgmtxgSHrikrb3Fe24XxCSNPLgs4BSr-MVnUgp4_OyCnyzleg==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -557,7 +606,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:47 GMT
+      - Tue, 21 Jul 2020 00:29:38 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -567,9 +616,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 18e1bef4e2e2d57a9ce6f2c93010e995.cloudfront.net (CloudFront)
+      - 1.1 484643a10b77ad7d857afaccfc430e6c.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - VfPTzwkkaEcti0A5hp9U-nVeSof34Z5-60eM12uj55kflwqPo81nYg==
+      - 6QGs-O6gnTqWEZhcUK-xbC1FFUZsSLTih-vBXUYba4i7RsETx42Cxg==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -598,32 +647,32 @@ interactions:
       Content-Length:
       - '363'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/organization_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=organization_create",
         "success": true, "result": {"users": [{"email_hash": "7c512b13badc48258d94ef72d1c8889a",
-        "about": null, "capacity": "admin", "name": "admin", "created": "2020-06-08T16:15:06.820161",
+        "about": null, "capacity": "admin", "name": "admin", "created": "2020-07-21T00:14:45.421879",
         "sysadmin": true, "activity_streams_email_notifications": false, "state":
-        "active", "number_of_edits": 26, "display_name": "admin", "fullname": null,
-        "id": "cede1337-2a48-41f2-ae22-235877e29539", "number_created_packages": 4}],
+        "active", "number_of_edits": 30, "display_name": "admin", "fullname": null,
+        "id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a", "number_created_packages": 4}],
         "display_name": "Federal Communications Commission", "description": "", "image_display_url":
         "https://transition.fcc.gov/files/logos/fcc-logo_teal-on-white.jpg", "package_count":
-        0, "created": "2020-06-08T16:19:17.582489", "name": "fcc-gov", "is_organization":
+        0, "created": "2020-07-21T00:29:00.931514", "name": "fcc-gov", "is_organization":
         true, "state": "active", "extras": [{"value": "hyon.kim@gsa.gov\r\ncrystal.carter@gsa.gov",
-        "state": "active", "key": "email_list", "revision_id": "adef0991-536e-4a1b-a83f-36c7ca3f05dd",
-        "group_id": "3189c361-4893-4606-be3f-f7350cf4a175", "id": "75e30368-283e-43de-9a4f-7e36eb6a977c"},
+        "state": "active", "key": "email_list", "revision_id": "5647a33e-acac-4294-85ce-e5fb135cfd83",
+        "group_id": "3189c361-4893-4606-be3f-f7350cf4a175", "id": "1ebc73ce-dc24-4ae8-8c5a-04462444eda7"},
         {"value": "Federal Government", "state": "active", "key": "organization_type",
-        "revision_id": "adef0991-536e-4a1b-a83f-36c7ca3f05dd", "group_id": "3189c361-4893-4606-be3f-f7350cf4a175",
-        "id": "2437aca3-fba1-4d30-9299-a9ebd15ef930"}], "image_url": "https://transition.fcc.gov/files/logos/fcc-logo_teal-on-white.jpg",
+        "revision_id": "5647a33e-acac-4294-85ce-e5fb135cfd83", "group_id": "3189c361-4893-4606-be3f-f7350cf4a175",
+        "id": "06cf6bce-ad07-457e-8242-79f60f1633a7"}], "image_url": "https://transition.fcc.gov/files/logos/fcc-logo_teal-on-white.jpg",
         "groups": [], "type": "organization", "title": "Federal Communications Commission",
-        "revision_id": "adef0991-536e-4a1b-a83f-36c7ca3f05dd", "num_followers": 0,
+        "revision_id": "5647a33e-acac-4294-85ce-e5fb135cfd83", "num_followers": 0,
         "id": "3189c361-4893-4606-be3f-f7350cf4a175", "tags": [], "approval_status":
         "approved"}}'
     headers:
@@ -634,7 +683,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:47 GMT
+      - Tue, 21 Jul 2020 00:29:39 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
@@ -644,7 +693,7 @@ interactions:
     body: '{"name": "fcc", "owner_org": "fcc-gov", "title": "FCC Data.json", "url":
       "http://opendata.fcc.gov/data.json", "notes": "FCC Data.json harvest source",
       "source_type": "datajson", "frequency": "DAILY", "config": "{\"private_datasets\":
-      \"False\"}", "extras": []}'
+      \"False\"}", "extras": [], "id": "1cf10df3-9f67-421d-aa6e-d22540eb2445"}'
     headers:
       Accept:
       - '*/*'
@@ -653,38 +702,86 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '260'
+      - '306'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/harvest_source_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_create",
-        "success": false, "error": {"name": ["That URL is already in use."], "__type":
-        "Validation Error"}}'
+        "success": false, "error": {"name": ["That URL is already in use."], "url":
+        ["There already is a Harvest Source for this URL (& config): url=http://opendata.fcc.gov/data.json
+        config={\"private_datasets\": \"False\"}"], "__type": "Validation Error"}}'
     headers:
       Cache-Control:
       - private
       Content-Length:
-      - '178'
+      - '328'
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:47 GMT
+      - Tue, 21 Jul 2020 00:29:39 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
       code: 409
       message: CONFLICT
 - request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: http://ckan:5000/api/3/action/harvest_source_show?name_or_id=fcc
+  response:
+    body:
+      string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "DAILY", "id": "b3e42684-15a8-49d0-8037-29fb8f1c8db2", "metadata_created":
+        "2020-07-21T00:29:01.168753", "metadata_modified": "2020-07-21T00:29:01.168761",
+        "title": "FCC Data.json", "state": "active", "creator_user_id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a",
+        "config": "{\"private_datasets\": \"False\"}", "resources": [], "status":
+        {"job_count": 0, "total_datasets": 0, "last_job": null}, "tags": [], "source_type":
+        "datajson", "groups": [], "active": true, "relationships_as_subject": [],
+        "name": "fcc", "url": "http://opendata.fcc.gov/data.json", "type": "harvest",
+        "notes": "FCC Data.json harvest source", "owner_org": "3189c361-4893-4606-be3f-f7350cf4a175",
+        "private_datasets": "False", "extras": [], "organization": {"description":
+        "", "created": "2020-07-21T00:29:00.931514", "title": "Federal Communications
+        Commission", "name": "fcc-gov", "is_organization": true, "state": "active",
+        "image_url": "https://transition.fcc.gov/files/logos/fcc-logo_teal-on-white.jpg",
+        "revision_id": "5647a33e-acac-4294-85ce-e5fb135cfd83", "type": "organization",
+        "id": "3189c361-4893-4606-be3f-f7350cf4a175", "approval_status": "approved"},
+        "revision_id": "bed35c1f-fccf-46b8-86d5-921ec9dfef24"}}'
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '1354'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 21 Jul 2020 00:29:39 GMT
+      Server:
+      - PasteWSGIServer/0.5 Python/2.7.15
+    status:
+      code: 200
+      message: OK
+- request:
     body: '{"name": "fcc", "owner_org": "fcc-gov", "title": "FCC Data.json", "url":
       "http://opendata.fcc.gov/data.json", "notes": "FCC Data.json harvest source",
-      "source_type": "datajson", "frequency": "DAILY", "config": "{}", "extras": []}'
+      "source_type": "datajson", "frequency": "DAILY", "config": "{\"private_datasets\":
+      \"False\"}", "extras": [], "id": "b3e42684-15a8-49d0-8037-29fb8f1c8db2"}'
     headers:
       Accept:
       - '*/*'
@@ -693,41 +790,42 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '229'
+      - '306'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/harvest_source_update
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_update",
         "success": true, "result": {"relationships_as_object": [], "private": false,
-        "frequency": "DAILY", "id": "54c30210-efac-44df-bb0b-258f7cd2607a", "metadata_created":
-        "2020-06-08T16:19:17.959855", "metadata_modified": "2020-06-08T16:21:47.795643",
-        "title": "FCC Data.json", "state": "active", "creator_user_id": "cede1337-2a48-41f2-ae22-235877e29539",
+        "frequency": "DAILY", "id": "b3e42684-15a8-49d0-8037-29fb8f1c8db2", "metadata_created":
+        "2020-07-21T00:29:01.168753", "metadata_modified": "2020-07-21T00:29:39.787802",
+        "title": "FCC Data.json", "state": "active", "creator_user_id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a",
         "type": "harvest", "resources": [], "status": {"job_count": 0, "total_datasets":
         0, "last_job": null}, "tags": [], "source_type": "datajson", "groups": [],
         "relationships_as_subject": [], "name": "fcc", "url": "http://opendata.fcc.gov/data.json",
-        "config": "{}", "notes": "FCC Data.json harvest source", "owner_org": "3189c361-4893-4606-be3f-f7350cf4a175",
-        "extras": [], "organization": {"description": "", "title": "Federal Communications
-        Commission", "created": "2020-06-08T16:19:17.582489", "approval_status": "approved",
-        "is_organization": true, "state": "active", "image_url": "https://transition.fcc.gov/files/logos/fcc-logo_teal-on-white.jpg",
-        "revision_id": "adef0991-536e-4a1b-a83f-36c7ca3f05dd", "type": "organization",
+        "config": "{\"private_datasets\": \"False\"}", "notes": "FCC Data.json harvest
+        source", "owner_org": "3189c361-4893-4606-be3f-f7350cf4a175", "private_datasets":
+        "False", "extras": [], "organization": {"description": "", "title": "Federal
+        Communications Commission", "created": "2020-07-21T00:29:00.931514", "approval_status":
+        "approved", "is_organization": true, "state": "active", "image_url": "https://transition.fcc.gov/files/logos/fcc-logo_teal-on-white.jpg",
+        "revision_id": "5647a33e-acac-4294-85ce-e5fb135cfd83", "type": "organization",
         "id": "3189c361-4893-4606-be3f-f7350cf4a175", "name": "fcc-gov"}, "revision_id":
-        "1841d2cb-483e-47b6-a33a-52dd6adf512d"}}'
+        "bed35c1f-fccf-46b8-86d5-921ec9dfef24"}}'
     headers:
       Cache-Control:
       - private
       Content-Length:
-      - '1280'
+      - '1340'
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:47 GMT
+      - Tue, 21 Jul 2020 00:29:39 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
@@ -795,7 +893,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:48 GMT
+      - Tue, 21 Jul 2020 00:29:40 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -805,9 +903,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 2948d9a27a84204b2bc36934485844b4.cloudfront.net (CloudFront)
+      - 1.1 f6b609af5386084c468015964bce4ded.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - f8k7EDJelbNOcUii0x1oO015Lu8zXR4r2-X_Uz-iraftkxNXEHWApA==
+      - c5ac3nSjcCMmkIQ5wxo27wVWw4sB6K-grRf2H5aovV5zqI_85joyUQ==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -842,7 +940,7 @@ interactions:
     body:
       string: '{"help": "https://catalog.data.gov/api/3/action/help_show?name=organization_show",
         "success": true, "result": {"users": [{"email_hash": "ba8b9e64ac3c0b01ada31a5782df4d7e",
-        "about": null, "capacity": "admin", "name": "james_brown@ios.doi.gov", "created":
+        "about": null, "capacity": "member", "name": "james_brown@ios.doi.gov", "created":
         "2017-08-02T17:15:08.368338", "openid": null, "sysadmin": false, "activity_streams_email_notifications":
         false, "state": "active", "number_of_edits": 10, "display_name": "james_brown@ios.doi.gov",
         "fullname": null, "id": "A271389", "number_created_packages": 0}], "display_name":
@@ -855,7 +953,7 @@ interactions:
         American Indians, Alaska Natives, and affiliated island communities to help
         them prosper.\r\n\r\nSee more at https://www.doi.gov/", "image_display_url":
         "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
-        "package_count": 25419, "created": "2013-05-18T11:54:25.835360", "name": "doi-gov",
+        "package_count": 26429, "created": "2013-05-18T11:54:25.835360", "name": "doi-gov",
         "is_organization": true, "state": "active", "extras": [{"value": "doidata@xentity.com",
         "state": "active", "key": "email_list", "revision_id": "18aac2e9-2bb6-4ddb-8f98-155da40f7cab",
         "group_id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "id": "82ffab99-8cf0-4ac4-8fce-22827da90998"},
@@ -928,11 +1026,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '6336'
+      - '6337'
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:48 GMT
+      - Tue, 21 Jul 2020 00:29:40 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -942,9 +1040,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 b463298bf3a0448826c5d55c212abc61.cloudfront.net (CloudFront)
+      - 1.1 c6d1abd226b110d042fecd9b7c6f6b79.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - zZC6gXcaRwLsEe859ElWoc8M8OXtA7BrdYEt65BKZwpSBEFxb0tJhw==
+      - 8_4wfdjw78OohA5VqUyD7mG8kBPb33RzRetNOuP1wUHUdjbgOBYRIA==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -982,21 +1080,21 @@ interactions:
       Content-Length:
       - '1039'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/organization_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=organization_create",
         "success": true, "result": {"users": [{"email_hash": "7c512b13badc48258d94ef72d1c8889a",
-        "about": null, "capacity": "admin", "name": "admin", "created": "2020-06-08T16:15:06.820161",
+        "about": null, "capacity": "admin", "name": "admin", "created": "2020-07-21T00:14:45.421879",
         "sysadmin": true, "activity_streams_email_notifications": false, "state":
-        "active", "number_of_edits": 29, "display_name": "admin", "fullname": null,
-        "id": "cede1337-2a48-41f2-ae22-235877e29539", "number_created_packages": 4}],
+        "active", "number_of_edits": 33, "display_name": "admin", "fullname": null,
+        "id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a", "number_created_packages": 4}],
         "display_name": "Department of the Interior", "description": "DOI Data will
         be temporarily unavailable on data.gov from 4/30 - 5/2. Access will remain
         at [https://data.doi.gov](https://data.doi.gov).\r\n\r\nThe Department of
@@ -1008,15 +1106,15 @@ interactions:
         to American Indians, Alaska Natives, and affiliated island communities to
         help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "image_display_url":
         "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
-        "package_count": 0, "created": "2020-06-08T16:21:49.129934", "name": "doi-gov",
+        "package_count": 0, "created": "2020-07-21T00:29:06.007415", "name": "doi-gov",
         "is_organization": true, "state": "active", "extras": [{"value": "doidata@xentity.com",
-        "state": "active", "key": "email_list", "revision_id": "2b905901-0826-4403-8ccf-3494853aba26",
-        "group_id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "id": "8c47da97-af22-427c-9f04-dcfda7932d75"},
+        "state": "active", "key": "email_list", "revision_id": "9e4670ff-1ef8-4da2-962d-e4390a60057c",
+        "group_id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "id": "ff91ccc8-0a44-4b24-bab1-17b208e9f38a"},
         {"value": "Federal Government", "state": "active", "key": "organization_type",
-        "revision_id": "2b905901-0826-4403-8ccf-3494853aba26", "group_id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
-        "id": "f87ddb45-d2c2-4c89-9736-0a8470eb4ead"}], "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
+        "revision_id": "9e4670ff-1ef8-4da2-962d-e4390a60057c", "group_id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
+        "id": "63722afc-ce01-421a-b47d-a249d97b1647"}], "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
         "groups": [], "type": "organization", "title": "Department of the Interior",
-        "revision_id": "2b905901-0826-4403-8ccf-3494853aba26", "num_followers": 0,
+        "revision_id": "9e4670ff-1ef8-4da2-962d-e4390a60057c", "num_followers": 0,
         "id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "tags": [], "approval_status":
         "approved"}}'
     headers:
@@ -1027,7 +1125,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:49 GMT
+      - Tue, 21 Jul 2020 00:29:41 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
@@ -1037,7 +1135,7 @@ interactions:
     body: '{"name": "doi-cas-datajam", "owner_org": "doi-gov", "title": "DOI CAS datajam",
       "url": "https://raw.githubusercontent.com/gbinal/data/master/datasets/doi_cas.json",
       "notes": "", "source_type": "datajson", "frequency": "MANUAL", "config": "{\"private_datasets\":
-      \"False\"}", "extras": []}'
+      \"False\"}", "extras": [], "id": "0d58273e-fbe7-45dc-b46d-bdd106afbb72"}'
     headers:
       Accept:
       - '*/*'
@@ -1046,26 +1144,59 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '288'
+      - '334'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/harvest_source_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_create",
+        "success": false, "error": {"name": ["That URL is already in use."], "url":
+        ["There already is a Harvest Source for this URL (& config): url=https://raw.githubusercontent.com/gbinal/data/master/datasets/doi_cas.json
+        config={\"private_datasets\": \"False\"}"], "__type": "Validation Error"}}'
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '369'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 21 Jul 2020 00:29:41 GMT
+      Server:
+      - PasteWSGIServer/0.5 Python/2.7.15
+    status:
+      code: 409
+      message: CONFLICT
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: http://ckan:5000/api/3/action/harvest_source_show?name_or_id=doi-cas-datajam
+  response:
+    body:
+      string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_show",
         "success": true, "result": {"relationships_as_object": [], "private": false,
-        "frequency": "MANUAL", "id": "0f5c8d78-b01e-4a88-adc7-a0a31a06d3ad", "metadata_created":
-        "2020-06-08T16:21:49.374037", "metadata_modified": "2020-06-08T16:21:49.374046",
-        "title": "DOI CAS datajam", "state": "active", "creator_user_id": "cede1337-2a48-41f2-ae22-235877e29539",
+        "frequency": "MANUAL", "id": "ecc56f54-b550-4176-87ec-5c097e959d1e", "metadata_created":
+        "2020-07-21T00:29:06.226488", "metadata_modified": "2020-07-21T00:29:06.226499",
+        "title": "DOI CAS datajam", "state": "active", "creator_user_id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a",
         "config": "{\"private_datasets\": \"False\"}", "resources": [], "status":
         {"job_count": 0, "total_datasets": 0, "last_job": null}, "tags": [], "source_type":
-        "datajson", "groups": [], "relationships_as_subject": [], "name": "doi-cas-datajam",
-        "url": "https://raw.githubusercontent.com/gbinal/data/master/datasets/doi_cas.json",
+        "datajson", "groups": [], "active": true, "relationships_as_subject": [],
+        "name": "doi-cas-datajam", "url": "https://raw.githubusercontent.com/gbinal/data/master/datasets/doi_cas.json",
         "type": "harvest", "notes": "", "owner_org": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
         "private_datasets": "False", "extras": [], "organization": {"description":
         "DOI Data will be temporarily unavailable on data.gov from 4/30 - 5/2. Access
@@ -1076,12 +1207,74 @@ interactions:
         hazards to address societal challenges and create opportunities for the American
         people, and honors the Nation\u2019s trust responsibilities or special commitments
         to American Indians, Alaska Natives, and affiliated island communities to
-        help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "created": "2020-06-08T16:21:49.129934",
+        help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "created": "2020-07-21T00:29:06.007415",
         "title": "Department of the Interior", "name": "doi-gov", "is_organization":
         true, "state": "active", "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
-        "revision_id": "2b905901-0826-4403-8ccf-3494853aba26", "type": "organization",
+        "revision_id": "9e4670ff-1ef8-4da2-962d-e4390a60057c", "type": "organization",
         "id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "approval_status": "approved"},
-        "revision_id": "8a395731-13fc-4259-85e9-d3f0fea8d387"}}'
+        "revision_id": "b570f452-e0d6-4787-ade3-dc5bffcf9718"}}'
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '2081'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 21 Jul 2020 00:29:42 GMT
+      Server:
+      - PasteWSGIServer/0.5 Python/2.7.15
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"name": "doi-cas-datajam", "owner_org": "doi-gov", "title": "DOI CAS datajam",
+      "url": "https://raw.githubusercontent.com/gbinal/data/master/datasets/doi_cas.json",
+      "notes": "", "source_type": "datajson", "frequency": "MANUAL", "config": "{\"private_datasets\":
+      \"False\"}", "extras": [], "id": "ecc56f54-b550-4176-87ec-5c097e959d1e"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '334'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Remote CKAN 1.0
+      X-CKAN-API-Key:
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
+    method: POST
+    uri: http://ckan:5000/api/3/action/harvest_source_update
+  response:
+    body:
+      string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_update",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "ecc56f54-b550-4176-87ec-5c097e959d1e", "metadata_created":
+        "2020-07-21T00:29:06.226488", "metadata_modified": "2020-07-21T00:29:42.207770",
+        "title": "DOI CAS datajam", "state": "active", "creator_user_id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a",
+        "type": "harvest", "resources": [], "status": {"job_count": 0, "total_datasets":
+        0, "last_job": null}, "tags": [], "source_type": "datajson", "groups": [],
+        "relationships_as_subject": [], "name": "doi-cas-datajam", "url": "https://raw.githubusercontent.com/gbinal/data/master/datasets/doi_cas.json",
+        "config": "{\"private_datasets\": \"False\"}", "notes": "", "owner_org": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
+        "private_datasets": "False", "extras": [], "organization": {"description":
+        "DOI Data will be temporarily unavailable on data.gov from 4/30 - 5/2. Access
+        will remain at [https://data.doi.gov](https://data.doi.gov).\r\n\r\nThe Department
+        of the Interior (DOI) conserves and manages the Nation\u2019s natural resources
+        and cultural heritage for the benefit and enjoyment of the American people,
+        provides scientific and other information about natural resources and natural
+        hazards to address societal challenges and create opportunities for the American
+        people, and honors the Nation\u2019s trust responsibilities or special commitments
+        to American Indians, Alaska Natives, and affiliated island communities to
+        help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "title": "Department
+        of the Interior", "created": "2020-07-21T00:29:06.007415", "approval_status":
+        "approved", "is_organization": true, "state": "active", "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
+        "revision_id": "9e4670ff-1ef8-4da2-962d-e4390a60057c", "type": "organization",
+        "id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "name": "doi-gov"}, "revision_id":
+        "b570f452-e0d6-4787-ade3-dc5bffcf9718"}}'
     headers:
       Cache-Control:
       - private
@@ -1090,7 +1283,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:55 GMT
+      - Tue, 21 Jul 2020 00:29:42 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
@@ -1149,7 +1342,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:55 GMT
+      - Tue, 21 Jul 2020 00:29:42 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -1159,9 +1352,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 497df317a8c4aa16b607f33f0263f5be.cloudfront.net (CloudFront)
+      - 1.1 81f7e8f9cb8557c3a18e30e501f7e8c2.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - gu037Xv2YdRX83DmQ2e0whmXkjaY48MOq-O7wAG3gFJNE-OpTXQr0w==
+      - ivVFkpCpHzZBzdeG0ImljzF3-rRZiiCJ44N-TzAFIhjP3JJSC5Ie5Q==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -1258,7 +1451,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:56 GMT
+      - Tue, 21 Jul 2020 00:29:43 GMT
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -1268,9 +1461,9 @@ interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Via:
-      - 1.1 50422b3362db24ccd4a7fbc2662ef6d2.cloudfront.net (CloudFront)
+      - 1.1 a76f7802383ed39980bd6be3c254b34c.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - GteH_n8SUy-0BQ6wv4ee2OaIdPPWWO4w5nwOzoqZjVqEwWYzRsTFPw==
+      - nUiyEPa5MY7G5xpoumvvscpgy_6ToBsX_eISw8YqNhkxsqGvqa54fw==
       X-Amz-Cf-Pop:
       - EZE51-C1
       X-Cache:
@@ -1299,32 +1492,32 @@ interactions:
       Content-Length:
       - '423'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/organization_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=organization_create",
         "success": true, "result": {"users": [{"email_hash": "7c512b13badc48258d94ef72d1c8889a",
-        "about": null, "capacity": "admin", "name": "admin", "created": "2020-06-08T16:15:06.820161",
+        "about": null, "capacity": "admin", "name": "admin", "created": "2020-07-21T00:14:45.421879",
         "sysadmin": true, "activity_streams_email_notifications": false, "state":
-        "active", "number_of_edits": 32, "display_name": "admin", "fullname": null,
-        "id": "cede1337-2a48-41f2-ae22-235877e29539", "number_created_packages": 5}],
+        "active", "number_of_edits": 36, "display_name": "admin", "fullname": null,
+        "id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a", "number_created_packages": 4}],
         "display_name": "Federal Housing Finance Agency", "description": "", "image_display_url":
         "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/US-FederalHousingFinanceAgency-Seal.svg/200px-US-FederalHousingFinanceAgency-Seal.svg.png",
-        "package_count": 0, "created": "2020-06-08T16:15:47.267659", "name": "fhfa-gov",
+        "package_count": 0, "created": "2020-07-21T00:29:44.111512", "name": "fhfa-gov",
         "is_organization": true, "state": "active", "extras": [{"value": "crystal.carter@gsa.gov",
-        "state": "active", "key": "email_list", "revision_id": "5a7e3722-4a71-499c-95f1-0c7e6aca46ea",
-        "group_id": "eeee1888-fe06-494e-9ad1-524f41488639", "id": "86d282f2-ecaa-4052-bb56-8c0d6e944e8f"},
+        "state": "active", "key": "email_list", "revision_id": "8978ec3c-341c-4b21-84ce-bc7e63699884",
+        "group_id": "eeee1888-fe06-494e-9ad1-524f41488639", "id": "6df529bd-9936-4d6c-8b98-ea069da89b45"},
         {"value": "Federal Government", "state": "active", "key": "organization_type",
-        "revision_id": "5a7e3722-4a71-499c-95f1-0c7e6aca46ea", "group_id": "eeee1888-fe06-494e-9ad1-524f41488639",
-        "id": "f80287c1-b15d-4b8a-8824-72459224df19"}], "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/US-FederalHousingFinanceAgency-Seal.svg/200px-US-FederalHousingFinanceAgency-Seal.svg.png",
+        "revision_id": "8978ec3c-341c-4b21-84ce-bc7e63699884", "group_id": "eeee1888-fe06-494e-9ad1-524f41488639",
+        "id": "e01f93a9-ce4e-45c1-a01e-919eea106275"}], "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/US-FederalHousingFinanceAgency-Seal.svg/200px-US-FederalHousingFinanceAgency-Seal.svg.png",
         "groups": [], "type": "organization", "title": "Federal Housing Finance Agency",
-        "revision_id": "5a7e3722-4a71-499c-95f1-0c7e6aca46ea", "num_followers": 0,
+        "revision_id": "8978ec3c-341c-4b21-84ce-bc7e63699884", "num_followers": 0,
         "id": "eeee1888-fe06-494e-9ad1-524f41488639", "tags": [], "approval_status":
         "approved"}}'
     headers:
@@ -1335,7 +1528,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:56 GMT
+      - Tue, 21 Jul 2020 00:29:44 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
@@ -1344,7 +1537,8 @@ interactions:
 - request:
     body: '{"name": "fhfa-json", "owner_org": "fhfa-gov", "title": "FHFA JSON", "url":
       "http://www.fhfa.gov/data.json", "notes": "", "source_type": "datajson", "frequency":
-      "MANUAL", "config": "{\"private_datasets\": \"False\"}", "extras": []}'
+      "MANUAL", "config": "{\"private_datasets\": \"False\"}", "extras": [], "id":
+      "ed3cf881-6549-48e7-9268-903372a22fa5"}'
     headers:
       Accept:
       - '*/*'
@@ -1353,74 +1547,33 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '232'
+      - '278'
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - Remote CKAN 1.0
       X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
+      - 3ce7e6c1-d42d-414c-8b5b-7c8149945dd7
     method: POST
     uri: http://ckan:5000/api/3/action/harvest_source_create
   response:
     body:
       string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_create",
-        "success": false, "error": {"name": ["That URL is already in use."], "url":
-        ["There already is a Harvest Source for this URL (& config): url=http://www.fhfa.gov/data.json
-        config={\"private_datasets\": \"False\"}"], "__type": "Validation Error"}}'
-    headers:
-      Cache-Control:
-      - private
-      Content-Length:
-      - '324'
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Mon, 08 Jun 2020 16:21:57 GMT
-      Server:
-      - PasteWSGIServer/0.5 Python/2.7.15
-    status:
-      code: 409
-      message: CONFLICT
-- request:
-    body: '{"name": "fhfa-json", "owner_org": "fhfa-gov", "title": "FHFA JSON", "url":
-      "http://www.fhfa.gov/data.json", "notes": "", "source_type": "datajson", "frequency":
-      "MANUAL", "config": "{\"private_datasets\": \"False\"}", "extras": []}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '232'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Remote CKAN 1.0
-      X-CKAN-API-Key:
-      - 783b1397-3a9f-4ffe-81c3-c67cc85ef5f1
-    method: POST
-    uri: http://ckan:5000/api/3/action/harvest_source_update
-  response:
-    body:
-      string: '{"help": "http://ckan:5000/api/3/action/help_show?name=harvest_source_update",
         "success": true, "result": {"relationships_as_object": [], "private": false,
-        "frequency": "MANUAL", "id": "33c8cfb5-be9e-463e-a9c6-216b204f9b88", "metadata_created":
-        "2020-06-08T16:15:47.520823", "metadata_modified": "2020-06-08T16:21:57.224836",
-        "title": "FHFA JSON", "state": "active", "creator_user_id": "cede1337-2a48-41f2-ae22-235877e29539",
-        "type": "harvest", "resources": [], "status": {"job_count": 0, "total_datasets":
-        0, "last_job": null}, "tags": [], "source_type": "datajson", "groups": [],
-        "relationships_as_subject": [], "name": "fhfa-json", "url": "http://www.fhfa.gov/data.json",
-        "config": "{\"private_datasets\": \"False\"}", "notes": "", "owner_org": "eeee1888-fe06-494e-9ad1-524f41488639",
-        "private_datasets": "False", "extras": [], "organization": {"description":
-        "", "title": "Federal Housing Finance Agency", "created": "2020-06-08T16:15:47.267659",
-        "approval_status": "approved", "is_organization": true, "state": "active",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/US-FederalHousingFinanceAgency-Seal.svg/200px-US-FederalHousingFinanceAgency-Seal.svg.png",
-        "revision_id": "5a7e3722-4a71-499c-95f1-0c7e6aca46ea", "type": "organization",
-        "id": "eeee1888-fe06-494e-9ad1-524f41488639", "name": "fhfa-gov"}, "revision_id":
-        "cca89e16-1be7-43ee-86ac-7200449451fc"}}'
+        "frequency": "MANUAL", "id": "2511f06d-879f-4421-ba61-2edaccf17ba8", "metadata_created":
+        "2020-07-21T00:29:44.358906", "metadata_modified": "2020-07-21T00:29:44.358915",
+        "title": "FHFA JSON", "state": "active", "creator_user_id": "de6fd018-c88c-4aa6-8f69-4a7bfc809e5a",
+        "config": "{\"private_datasets\": \"False\"}", "resources": [], "status":
+        {"job_count": 0, "total_datasets": 0, "last_job": null}, "tags": [], "source_type":
+        "datajson", "groups": [], "relationships_as_subject": [], "name": "fhfa-json",
+        "url": "http://www.fhfa.gov/data.json", "type": "harvest", "notes": "", "owner_org":
+        "eeee1888-fe06-494e-9ad1-524f41488639", "private_datasets": "False", "extras":
+        [], "organization": {"description": "", "created": "2020-07-21T00:29:44.111512",
+        "title": "Federal Housing Finance Agency", "name": "fhfa-gov", "is_organization":
+        true, "state": "active", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/US-FederalHousingFinanceAgency-Seal.svg/200px-US-FederalHousingFinanceAgency-Seal.svg.png",
+        "revision_id": "8978ec3c-341c-4b21-84ce-bc7e63699884", "type": "organization",
+        "id": "eeee1888-fe06-494e-9ad1-524f41488639", "approval_status": "approved"},
+        "revision_id": "aed59e80-c773-4fdf-9ac3-82b58e6e1674"}}'
     headers:
       Cache-Control:
       - private
@@ -1429,7 +1582,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 08 Jun 2020 16:21:57 GMT
+      - Tue, 21 Jul 2020 00:29:47 GMT
       Server:
       - PasteWSGIServer/0.5 Python/2.7.15
     status:
