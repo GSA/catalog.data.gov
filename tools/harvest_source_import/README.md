@@ -38,18 +38,21 @@ Response:
 
 ```
 usage: import_harvest_sources.py [-h] [--origin_url ORIGIN_URL]
-                                 [--source_type SOURCE_TYPE]
+                                 [--source_type SOURCE_TYPE] [--names NAMES]
                                  [--user_agent USER_AGENT]
                                  [--destination_url DESTINATION_URL]
                                  [--destination_api_key DESTINATION_API_KEY]
-                                 [--limit LIMIT]
+                                 [--limit LIMIT] [--offset OFFSET]
 
 optional arguments:
   -h, --help            show this help message and exit
   --origin_url ORIGIN_URL
                         CKAN instance URL
   --source_type SOURCE_TYPE
-                        Type of harvest source: ALL|datajson|csw|waf etc
+                        Type of harvest source: ALL|datajson|csw|waf|arcgis|ck
+                        an|datajson|geoportal|single-doc|waf-collection|z3950
+  --names NAMES         Comma separated list of sources or path to a txt file
+                        with the list of harvest sources by name to test
   --user_agent USER_AGENT
                         User agent
   --destination_url DESTINATION_URL
@@ -57,9 +60,11 @@ optional arguments:
   --destination_api_key DESTINATION_API_KEY
                         CKAN destination instance API KEY
   --limit LIMIT         Limit the amount of Harvest sources to import
+  --offset OFFSET       Offset
+
 ```
 
-Run a CSW harvest source:
+Example: Run a CSW harvest source:
 
 ```
 $ python import_harvest_sources.py \
@@ -70,6 +75,15 @@ $ python import_harvest_sources.py \
     --limit=10
 ```
 
+Example: Import 3 harvest sources to the sandbox:
+
+```
+$ python import_harvest_sources.py \
+  --names=rrb-json,fcc,opm-json \
+  --destination_url=https://catalog-next.sandbox.datagov.us \
+  --destination_api_key=xxxxxxx
+
+```
 
 Response:
 

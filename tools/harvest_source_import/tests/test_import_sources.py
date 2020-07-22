@@ -11,10 +11,10 @@ def test_load_from_url():
 
     ckan = RemoteCKAN(url='https://catalog.data.gov')
     ckan.set_destination(ckan_url='http://ckan:5000',
-                         ckan_api_key='783b1397-3a9f-4ffe-81c3-c67cc85ef5f1')
+                         ckan_api_key='e489535e-1e5f-463a-a5ab-58454a27aeff')
 
     print('Getting harvest sources ...')
-    names = ['fdic-data-json', 'fcc', 'doi-cas-datajam', 'fhfa-json']
+    names = ['fdic-data-json', 'fcc', 'doi-cas-datajam' , 'fhfa-json', 'nc-onemap-csw']
     hss = [{'name': name} for name in names]
     for hs in hss:  # ckan.list_harvest_sources(source_type='datajson', limit=3):
         name = hs['name']
@@ -38,10 +38,14 @@ def test_load_from_url():
     expected_email_list = 'hyon.kim@gsa.gov\r\ncrystal.carter@gsa.gov'
     assert expected_email_list in [extra['value'] for extra in extras if extra['key'] == 'email_list']
 
+    assert len(ckan.groups), 1
+    assert 'local' in ckan.groups
+    assert ckan.groups['local']['display_name'] == 'Local Government'
+    
     print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(total, created, updated, errors))
 
     assert total == len(ckan.harvest_sources)
-    assert created == 1
+    assert created == 2
     assert updated == 3
     assert errors == 0
 
