@@ -159,9 +159,9 @@ python-versions = "*"
 version = "2.8.4"
 
 [package.source]
-reference = "7900935de6270ee80ec64a5378251dafedf3a0e4"
+reference = "f86e69bb0983c4859613385a66b6301225ba1fe0"
 type = "git"
-url = "https://github.com/ckan/ckan.git"
+url = "https://github.com/GSA/ckan.git"
 [[package]]
 category = "main"
 description = "Archives resources in CKAN (CKAN Extension)"
@@ -233,7 +233,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "60fbf62c88a23354e5c2c5635419e8e4c17405b6"
+reference = "03afaa4e2bfd6b212242c258ea18150a0e67a62e"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -1149,7 +1149,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "c2a07971e208a4244bfe53e4eb3461de54ed4537820f7ad64309e87acdaee598"
+content-hash = "14702fe21cde99574800b55aa1c37e03d433f5ff268098810fc30169b68b3d6a"
 python-versions = "^2.7"
 
 [metadata.files]
