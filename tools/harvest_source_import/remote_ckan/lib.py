@@ -199,6 +199,8 @@ class RemoteCKAN:
         if type(config) == str:
             config = json.loads(config)
         default_groups = config.get('default_groups', [])
+        if type(default_groups) == str:
+            default_groups = [default_groups]
         for group in default_groups:
             created, status, error = self.create_group(group_name=group)
             if not created:
