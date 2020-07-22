@@ -1,6 +1,8 @@
 import json
 import os
+
 import requests
+
 from remote_ckan.logs import get_logger
 
 logger = get_logger(__name__)
@@ -14,7 +16,7 @@ class RemoteCKAN:
         self.url = url
         self.user_agent = user_agent
         self.errors = []
-        self.harvest_sources = {} 
+        self.harvest_sources = {}
         self.organizations = {}
         self.groups = {}
         logger.debug(f'New remote CKAN {url}')
@@ -22,9 +24,9 @@ class RemoteCKAN:
         self.temp_data = temp_data
         if not os.path.isdir(self.temp_data):
             os.mkdir(self.temp_data)
-        
+
         self.requests_timeout = requests_timeout
-    
+
     def set_destination(self, ckan_url, ckan_api_key):
         self.destination_url = ckan_url
         self.api_key = ckan_api_key
@@ -33,16 +35,16 @@ class RemoteCKAN:
         """ Generator for a list of harvest sources at a CKAN instance
             Params:
                 source_type (str): datajson | csw | None=ALL
-                limit (int): max number of harvest sources to read 
-        """  
-        
+                limit (int): max number of harvest sources to read
+        """
+
         logger.debug(f'List harvest sources {start}-{page_size}')
 
         package_search_url = f'{self.url}/api/3/action/package_search'
         # TODO use harvest_source_list for harvester ext
-        
+
         if source_type is None or source_type == 'ALL':
-            q = f'(type:harvest)'
+            q = '(type:harvest)'
         else:
             q = f'(type:harvest source_type:{source_type})'
 
@@ -82,22 +84,22 @@ class RemoteCKAN:
             state = hs['state']
             name = hs['name']
             self.harvest_sources[name] = hs
-            
+
             logger.info(f'  [{source_type}] Harvest source: {title} [{state}]')
             if state == 'active':
                 # We don't get full harvest soure info here. We need a custom call
                 source = self.get_full_harvest_source(hs)
                 if source is None:
-                    source = {'name': hs['name'], 'created': False,'updated': False, 'error': True}
+                    source = {'name': hs['name'], 'created': False, 'updated': False, 'error': True}
                 yield source
-                
+
         # if the page is not full, it is the last one
         if count + 1 < page_size:
             return
 
-        # get next page   
+        # get next page
         yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size, limit=limit)
-    
+
     def get_full_harvest_source(self, hs, url=None):
         """ get full info (including job status) for a Harvest Source """
         if url is None:
@@ -122,40 +124,37 @@ class RemoteCKAN:
                 error = f'Error [{response.status_code}] getting harvest source info: {harvest_show_url}\n\t{params}'
             elif response.status_code >= 400:
                 error = f'Error [{response.status_code}] getting harvest source info: "{response.content}"'
-        
+
         if error is not None:
             logger.error(error)
             self.errors.append(error)
             name = hs['name']
-            source = {
-                'name': name, 'created': False,
-                'updated': False, 'error': True
-                }
+            source = {'name': name, 'created': False, 'updated': False, 'error': True}
             self.harvest_sources[name] = source
             return None
-        
+
         full_hs = response.json()
         self.harvest_sources[hs['name']] = full_hs['result']
         self.save_temp_json('harvest-source', full_hs['result']['name'], full_hs['result'])
         return full_hs['result']
-    
+
     def get_full_organization(self, org):
         """ get full info (including job status) for a Harvest Source """
         organization_show_url = f'{self.url}/api/3/action/organization_show'
         org_id = org.get('name', org.get('id', None))
         if org_id is None:
             return None
-        
+
         params = {'id': org_id}
         headers = self.get_request_headers(include_api_key=False)
-        
+
         logger.info(f'Get organization data {organization_show_url} {params}')
-        
+
         # not sure why require this
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         params = json.dumps(params)
         response = requests.post(organization_show_url, data=params, headers=headers, timeout=self.requests_timeout)
-        
+
         if response.status_code >= 400:
             error = f'Error [{response.status_code}] getting organization info:\n {params} \n{response.headers}\n {response.content}'
             logger.error(error)
@@ -163,7 +162,7 @@ class RemoteCKAN:
         else:
             response = response.json()
             org = response['result']
-        
+
         self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
         self.organizations[org['name']] = org
         return org
@@ -185,7 +184,7 @@ class RemoteCKAN:
                 status_code (int): request status code
                 error (str): None or error
             """
-        
+
         org = data.get('organization', None)
         if org is None:
             self.harvest_sources[data['name']].update({'created': False, 'updated': False, 'error': True})
@@ -245,21 +244,21 @@ class RemoteCKAN:
         self.harvest_sources[name].update({'created': False, 'updated': updated, 'error': error is not None})
 
         return updated, status, error
-    
+
     def get_full_group(self, group_name):
         """ get full info (including job status) for a Harvest Source """
         group_show_url = f'{self.url}/api/3/action/group_show'
-        
+
         params = {'id': group_name}
         headers = self.get_request_headers(include_api_key=False)
-        
+
         logger.info(f'Get group data {group_show_url} {params}')
-        
+
         # not sure why require this
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         params = json.dumps(params)
         response = requests.post(group_show_url, data=params, headers=headers, timeout=self.requests_timeout)
-        
+
         if response.status_code >= 400:
             error = f'Error [{response.status_code}] getting group info:\n {params} \n{response.headers}\n {response.content}'
             logger.error(error)
@@ -267,13 +266,13 @@ class RemoteCKAN:
         else:
             response = response.json()
             group = response['result']
-        
+
         self.save_temp_json('group', group.get('name', group.get('id', 'unnamed')), group)
         self.groups[group['name']] = group
         return group
-    
+
     def create_group(self, group_name):
-        """ Creates a new group in CKAN destination 
+        """ Creates a new group in CKAN destination
             Params:
                 data (dics): Required fields to create
         """
@@ -287,11 +286,11 @@ class RemoteCKAN:
         group_create_url = f'{self.destination_url}/api/3/action/group_create'
 
         created, status, error = self.request_ckan(method='POST', url=group_create_url, data=full_group)
-        
+
         return created, status, error
-        
+
     def create_organization(self, data):
-        """ Creates a new organization in CKAN destination 
+        """ Creates a new organization in CKAN destination
             Params:
                 data (dics): Required fields to create
         """
@@ -304,9 +303,9 @@ class RemoteCKAN:
             if extra.get('state', 'active') == 'active':
                 extras.append({'key': extra['key'], 'value': extra['value']})
                 logger.info('New extra found at org {}={}'.format(extra['key'], extra['value']))
-        
+
         org_create_url = f'{self.destination_url}/api/3/action/organization_create'
-        
+
         organization = {
             'name': data['name'],
             'title': data['title'],
@@ -321,7 +320,7 @@ class RemoteCKAN:
 
         if error == 'Already exists':
             return self.update_organization(data=organization)
-        
+
         return created, status, error
 
     def update_organization(self, data):
@@ -329,7 +328,7 @@ class RemoteCKAN:
 
         org_update_url = f'{self.destination_url}/api/3/action/organization_update'
         return self.request_ckan(method='POST', url=org_update_url, data=data)
-        
+
     def get_config(self, data):
         """ get config and extras from full data package and return a final str config """
         config = data.get('config', {})
@@ -338,19 +337,19 @@ class RemoteCKAN:
 
         # We may have config defined as extras
         extras = data.get('extras', [])
-        
+
         for extra in extras:
             if extra['key'] == 'config':
                 logger.info(f'Config found in extras: {extra}')
                 value = json.loads(extra['value'])
                 config.update(value)
                 extras.remove(extra)
-        
+
         return json.dumps(config)
 
     def request_ckan(self, method, url, data):
         """ request CKAN and get results """
-        
+
         headers = self.get_request_headers(include_api_key=True)
         # do not modify original data
         data2 = data.copy()
@@ -375,7 +374,7 @@ class RemoteCKAN:
             logger.error(error)
             self.errors.append(error)
             return False, 0, error
-        
+
         if req.status_code >= 400:
             if 'already exists' in str(content) or 'already in use' in str(content):
                 return False, req.status_code, 'Already exists'
@@ -394,13 +393,13 @@ class RemoteCKAN:
 
         logger.info('Request OK {}'.format(url))
         return True, req.status_code, None
-    
+
     def get_package_from_data(self, data):
         """ get full data package and return a final CKAN package """
 
         config = self.get_config(data)
         extras = data.get('extras', [])
-        
+
         ret = {
             'name': data['name'],
             'owner_org': data['organization']['name'],
@@ -411,26 +410,26 @@ class RemoteCKAN:
             'frequency': data['frequency'],
             'config': config,
             'extras': extras
-        } 
+        }
 
         if data.get('collection_metadata_url', None) is not None:
             ret['collection_metadata_url'] = data['collection_metadata_url']
-        
+
         if data.get('database', None) is not None:
             ret['database'] = data['database']
-        
+
         if data.get('port', None) is not None:
             ret['port'] = data['port']
-        
+
         if data.get('extra_search_criteria', None) is not None:
             ret['extra_search_criteria'] = data['extra_search_criteria']
-        
+
         if data.get('id', None) is not None:
             ret['id'] = data['id']
 
         return ret
-    
-    def save_temp_json(self, data_type, data_name,  data):
+
+    def save_temp_json(self, data_type, data_name, data):
         filename = '{}-{}.json'.format(data_type, data_name)
         path = os.path.join(self.temp_data, filename)
         f = open(path, 'w')
