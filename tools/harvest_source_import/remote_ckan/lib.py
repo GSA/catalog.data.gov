@@ -16,6 +16,7 @@ class RemoteCKAN:
         self.errors = []
         self.harvest_sources = {} 
         self.organizations = {}
+        self.groups = {}
         logger.debug(f'New remote CKAN {url}')
         # save results temp data into a new folder
         self.temp_data = temp_data
@@ -195,6 +196,16 @@ class RemoteCKAN:
             self.harvest_sources[data['name']].update({'created': False, 'updated': False, 'error': True})
             return False, status, f'Unable to create organization: {error}'
 
+        config = data.get('config', {})
+        if type(config) == str:
+            config = json.loads(config)
+        default_groups = config.get('default_groups', [])
+        for group in default_groups:
+            created, status, error = self.create_group(group_name=group)
+            if not created:
+                self.harvest_sources[data['name']].update({'created': False, 'updated': False, 'error': True})
+                return False, status, f'Unable to create group: {error}'
+
         ckan_package = self.get_package_from_data(data)
 
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
@@ -235,6 +246,50 @@ class RemoteCKAN:
 
         return updated, status, error
     
+    def get_full_group(self, group_name):
+        """ get full info (including job status) for a Harvest Source """
+        group_show_url = f'{self.url}/api/3/action/group_show'
+        
+        params = {'id': group_name}
+        headers = self.get_request_headers(include_api_key=False)
+        
+        logger.info(f'Get group data {group_show_url} {params}')
+        
+        # not sure why require this
+        headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        params = json.dumps(params)
+        response = requests.post(group_show_url, data=params, headers=headers, timeout=self.requests_timeout)
+        
+        if response.status_code >= 400:
+            error = f'Error [{response.status_code}] getting group info:\n {params} \n{response.headers}\n {response.content}'
+            logger.error(error)
+            self.errors.append(error)
+        else:
+            response = response.json()
+            group = response['result']
+        
+        self.save_temp_json('group', group.get('name', group.get('id', 'unnamed')), group)
+        self.groups[group['name']] = group
+        return group
+    
+    def create_group(self, group_name):
+        """ Creates a new group in CKAN destination 
+            Params:
+                data (dics): Required fields to create
+        """
+        full_group = self.get_full_group(group_name=group_name)
+
+        # remove packages from data because they are not harvested yet
+        full_group.pop('packages', None)
+
+        logger.info('Creating group {}'.format(full_group['name']))
+
+        group_create_url = f'{self.destination_url}/api/3/action/group_create'
+
+        created, status, error = self.request_ckan(method='POST', url=group_create_url, data=full_group)
+        
+        return created, status, error
+        
     def create_organization(self, data):
         """ Creates a new organization in CKAN destination 
             Params:
