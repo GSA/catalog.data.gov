@@ -49,7 +49,6 @@ load test_helper
 
 @test "Given an organization, a waf-collection harvest source is created successfully from form" {
   # create a waf-collection harvest source
-  # asserts ckan/patches/ckan/unflattern_indexerror.patch is applied
   # require the organization created in previous test
 
   api_post_call "api/3/action/organization_create" "test-org-create-01"

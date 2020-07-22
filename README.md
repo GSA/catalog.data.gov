@@ -135,12 +135,6 @@ pdb; pdb.set_trace()`) you will be able to inspect it in this terminal next time
 the code is executed.
 
 
-## Applying patches
-
-When building the project you can apply patches by placing them in the
-`/patches` directory.
-
-
 ## CI
 
 Continuous Integration via [Circle
