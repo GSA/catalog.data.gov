@@ -213,7 +213,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "37f2b7a16dfd49970a7b3348db78d77e25a1d359"
+reference = "bfaa62dd8f84abf01144cf1ebab2da2d1e11c245"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -233,7 +233,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "03afaa4e2bfd6b212242c258ea18150a0e67a62e"
+reference = "89b889e18d197721784479565fbd6cc548f7b060"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -1150,6 +1150,7 @@ testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
 content-hash = "14702fe21cde99574800b55aa1c37e03d433f5ff268098810fc30169b68b3d6a"
+lock-version = "1.0"
 python-versions = "^2.7"
 
 [metadata.files]
