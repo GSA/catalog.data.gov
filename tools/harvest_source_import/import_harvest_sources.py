@@ -5,6 +5,8 @@ Import for a specific list of harvest source names or by a type of source.
 
 import argparse
 import os
+import time
+
 from remote_ckan.lib import RemoteCKAN
 
 parser = argparse.ArgumentParser()
@@ -16,6 +18,7 @@ parser.add_argument("--destination_url", type=str, default='http://ckan:5000', h
 parser.add_argument("--destination_api_key", type=str, help="CKAN destination instance API KEY")
 parser.add_argument("--limit", type=int, default=0, help="Limit the amount of Harvest sources to import")
 parser.add_argument("--offset", type=int, default=0, help="Offset")
+parser.add_argument("--wait", type=int, default=0, help="Wait this number of seconds between API calls to prevent timeout")
 
 args = parser.parse_args()
 
@@ -26,44 +29,48 @@ ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destinatio
 sources_to_import = []
 
 if args.names is not None:
-    # we get a list of names from a file or list of source names 
+    # we get a list of names from a file or list of source names
     if os.path.isfile(args.names):
         f = open(args.names)
         names = f.read().splitlines()
         f.close()
     else:
         names = args.names.split(',')
-    
+
     if args.offset > 0:
         names = names[args.offset:]
     if args.limit > 0:
         names = names[:args.limit]
 
     for hs in [{'name': name} for name in names]:
+        time.sleep(args.wait)
         rhs = ckan.get_full_harvest_source(hs)
         if rhs is None:
             print('ERROR GETTING EXTERNAL SOURCE: {}'.format(hs['name']))
             continue
-        sources_to_import.append(rhs)    
-        
+        sources_to_import.append(rhs)
+
 else:
     for hs in ckan.list_harvest_sources(source_type=args.source_type, start=args.offset, limit=args.limit):
         sources_to_import.append(hs)
 
+source_list_position = 0
 for hs in sources_to_import:
-    print(' ****** {}/{}'.format(len(ckan.harvest_sources), args.limit))
-    # save to destination CKAN 
+    # save to destination CKAN
+    source_list_position = source_list_position + 1
+    print(' ****** creating {}: source {} of {} sources'.format(hs['name'], source_list_position, len(sources_to_import)))
     if hs.get('error', False):
         print('Skipping failed source: {}'.format(hs['name']))
         continue
+    time.sleep(args.wait)
     ckan.create_harvest_source(data=hs)
     assert 'created' in ckan.harvest_sources[hs['name']].keys()
     assert 'updated' in ckan.harvest_sources[hs['name']].keys()
     assert 'error' in ckan.harvest_sources[hs['name']].keys()
 
-created = len([k for k, v in ckan.harvest_sources.items() if v['created'] ])
-updated = len([k for k, v in ckan.harvest_sources.items() if v['updated'] ])
-errors = len([k for k, v in ckan.harvest_sources.items() if v['error'] ])
+created = len([k for k, v in ckan.harvest_sources.items() if v['created']])
+updated = len([k for k, v in ckan.harvest_sources.items() if v['updated']])
+errors = len([k for k, v in ckan.harvest_sources.items() if v['error']])
 total = created + updated + errors
 
 assert total == len(ckan.harvest_sources)
