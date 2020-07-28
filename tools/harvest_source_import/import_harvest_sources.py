@@ -18,7 +18,8 @@ parser.add_argument("--destination_url", type=str, default='http://ckan:5000', h
 parser.add_argument("--destination_api_key", type=str, help="CKAN destination instance API KEY")
 parser.add_argument("--limit", type=int, default=0, help="Limit the amount of Harvest sources to import")
 parser.add_argument("--offset", type=int, default=0, help="Offset")
-parser.add_argument("--wait", type=int, default=0, help="Wait this number of seconds between API calls to prevent timeout")
+parser.add_argument("--wait_for_show", type=int, default=1, help="Wait this number of seconds between API calls to prevent timeout")
+parser.add_argument("--wait_for_create", type=int, default=5, help="Wait this number of seconds between API calls to prevent timeout")
 
 args = parser.parse_args()
 
@@ -43,7 +44,7 @@ if args.names is not None:
         names = names[:args.limit]
 
     for hs in [{'name': name} for name in names]:
-        time.sleep(args.wait)
+        time.sleep(args.wait_for_show)
         rhs = ckan.get_full_harvest_source(hs)
         if rhs is None:
             print('ERROR GETTING EXTERNAL SOURCE: {}'.format(hs['name']))
@@ -62,7 +63,7 @@ for hs in sources_to_import:
     if hs.get('error', False):
         print('Skipping failed source: {}'.format(hs['name']))
         continue
-    time.sleep(args.wait)
+    time.sleep(args.wait_for_create)
     ckan.create_harvest_source(data=hs)
     assert 'created' in ckan.harvest_sources[hs['name']].keys()
     assert 'updated' in ckan.harvest_sources[hs['name']].keys()

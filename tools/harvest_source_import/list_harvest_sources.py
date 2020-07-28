@@ -36,12 +36,12 @@ for hs in ckan.list_harvest_sources(source_type=args.source_type):
     last_job = status.get('last_job', {})
     if last_job is None:
         last_job = {}
-
-    row = {'title': hs['title'],
+        
+    row = {'title': hs.get('title', 'undefined'),
            'name': hs['name'],
-           'type': hs['source_type'],
-           'url': hs['url'],
-           'frequency': hs['frequency'],
+           'type': hs.get('source_type', 'undefined'),
+           'url': hs.get('url', 'undefined'),
+           'frequency': hs.get('frequency', 'undefined'),
            'job_count': status.get('job_count', 'undefined'),
            'total_datasets': status.get('total_datasets', 'undefined'),
            'last_job_created': last_job.get('created', 'undefined'),
