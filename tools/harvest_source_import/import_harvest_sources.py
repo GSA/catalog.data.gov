@@ -43,8 +43,11 @@ if args.names is not None:
     if args.limit > 0:
         names = names[:args.limit]
 
+    source_list_position = 0
     for hs in [{'name': name} for name in names]:
         time.sleep(args.wait_for_show)
+        source_list_position = source_list_position + 1
+        print('****** collecting {}: {} of {} sources'.format(hs['name'], source_list_position, len(names)))
         rhs = ckan.get_full_harvest_source(hs)
         if rhs is None:
             print('ERROR GETTING EXTERNAL SOURCE: {}'.format(hs['name']))
@@ -59,7 +62,7 @@ source_list_position = 0
 for hs in sources_to_import:
     # save to destination CKAN
     source_list_position = source_list_position + 1
-    print(' ****** creating {}: source {} of {} sources'.format(hs['name'], source_list_position, len(sources_to_import)))
+    print(' ****** creating {}: {} of {} sources'.format(hs['name'], source_list_position, len(sources_to_import)))
     if hs.get('error', False):
         print('Skipping failed source: {}'.format(hs['name']))
         continue
