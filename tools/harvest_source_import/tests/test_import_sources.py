@@ -45,7 +45,7 @@ def test_load_from_url():
     print('Finished: {} harvest sources. {} Added, {} already exists, {} failed'.format(total, created, updated, errors))
 
     assert total == len(ckan.harvest_sources)
-    assert created == 1
-    assert updated == 4
+    assert created == 2
+    assert updated == 3
     assert errors == 0
 
