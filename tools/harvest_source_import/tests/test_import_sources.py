@@ -14,7 +14,7 @@ def test_load_from_url():
                          ckan_api_key='e489535e-1e5f-463a-a5ab-58454a27aeff')
 
     print('Getting harvest sources ...')
-    names = ['fdic-data-json', 'fcc', 'doi-cas-datajam' , 'fhfa-json', 'nc-onemap-csw']
+    names = ['fdic-data-json', 'fcc', 'fhfa-json', 'nc-onemap-csw', 'cfpb-json']
     hss = [{'name': name} for name in names]
     for hs in hss:  # ckan.list_harvest_sources(source_type='datajson', limit=3):
         name = hs['name']
