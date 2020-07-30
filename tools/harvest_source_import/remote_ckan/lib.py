@@ -158,15 +158,27 @@ class RemoteCKAN:
         # not sure why require this
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         params = json.dumps(params)
-        response = requests.post(organization_show_url, data=params, headers=headers, timeout=self.requests_timeout)
 
-        if response.status_code >= 400:
-            error = f'Error [{response.status_code}] getting organization info:\n {params} \n{response.headers}\n {response.content}'
+        error = None
+
+        try:
+            response = requests.post(organization_show_url, data=params, headers=headers, timeout=self.requests_timeout)
+        except Exception as e:
+            error = f'Request organization Error: {e}'
+        else:
+            if response.status_code >= 400:
+                error = f'Error [{response.status_code}] getting organization info:\n {params} \n{response.headers}\n {response.content}'
+                logger.error(error)
+                self.errors.append(error)
+            else:
+                response = response.json()
+                org = response['result']
+
+        if error is not None:
             logger.error(error)
             self.errors.append(error)
-        else:
-            response = response.json()
-            org = response['result']
+
+            return None
 
         self.save_temp_json('organization', org.get('name', org.get('id', 'unnamed')), org)
         self.organizations[org['name']] = org
@@ -267,15 +279,27 @@ class RemoteCKAN:
         # not sure why require this
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         params = json.dumps(params)
-        response = requests.post(group_show_url, data=params, headers=headers, timeout=self.requests_timeout)
 
-        if response.status_code >= 400:
-            error = f'Error [{response.status_code}] getting group info:\n {params} \n{response.headers}\n {response.content}'
+        error = None
+
+        try:
+            response = requests.post(group_show_url, data=params, headers=headers, timeout=self.requests_timeout)
+        except Exception as e:
+            error = f'Request group Error: {e}'
+        else:
+            if response.status_code >= 400:
+                error = f'Error [{response.status_code}] getting group info:\n {params} \n{response.headers}\n {response.content}'
+                logger.error(error)
+                self.errors.append(error)
+            else:
+                response = response.json()
+                group = response['result']
+
+        if error is not None:
             logger.error(error)
             self.errors.append(error)
-        else:
-            response = response.json()
-            group = response['result']
+
+            return None
 
         self.save_temp_json('group', group.get('name', group.get('id', 'unnamed')), group)
         self.groups[group['name']] = group
@@ -290,6 +314,7 @@ class RemoteCKAN:
 
         # remove packages from data because they are not harvested yet
         full_group.pop('packages', None)
+        full_group.pop('id', None)
 
         logger.info('Creating group {}'.format(full_group['name']))
 
@@ -299,7 +324,8 @@ class RemoteCKAN:
 
         group_at_destination = self.get_full_group(group_name=group_name, url=self.destination_url)
 
-        if group_at_destination:
+        if group_at_destination is not None:
+            full_group['id'] = group_at_destination['id']
             created, status, error = self.update_group(data=full_group)
         else:
             created, status, error = self.request_ckan(method='POST', url=group_create_url, data=full_group)
@@ -333,7 +359,6 @@ class RemoteCKAN:
             'name': data['name'],
             'title': data['title'],
             'description': data['description'],
-            'id': data['id'],
             'image_url': data['image_url'],
             'extras': extras
         }
@@ -341,7 +366,8 @@ class RemoteCKAN:
 
         organization_at_destination = self.get_full_organization(org=data, url=self.destination_url)
 
-        if organization_at_destination:
+        if organization_at_destination is not None:
+            organization['id'] = organization_at_destination['id']
             created, status, error = self.update_organization(data=organization)
         else:
             created, status, error = self.request_ckan(method='POST', url=org_create_url, data=organization)
