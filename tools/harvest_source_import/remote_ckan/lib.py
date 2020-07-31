@@ -225,9 +225,8 @@ class RemoteCKAN:
                 return False, status, f'Unable to create group: {error}'
 
         ckan_package = self.get_package_from_data(data)
-
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
-        logger.info('Creating harvest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], ckan_package['config']))
+        logger.info('Creating harvest source {}'.format(ckan_package['title']))
 
         created, status, error = self.request_ckan(url=package_create_url, method='POST', data=ckan_package)
 
@@ -235,8 +234,8 @@ class RemoteCKAN:
             # get the ID of the Source (use destination URL)
             del data['id']
             local_hs = self.get_full_harvest_source(hs=data, url=self.destination_url)
-            data['id'] = local_hs['id']
-            return self.update_harvest_source(data=data)
+            ckan_package['id'] = local_hs['id']
+            return self.update_harvest_source(data=ckan_package)
         else:
             name = ckan_package['name']
             self.harvest_sources[name].update({'created': created, 'updated': False, 'error': error is not None})
@@ -253,13 +252,11 @@ class RemoteCKAN:
                 error (str): None or error
             """
 
-        ckan_package = self.get_package_from_data(data)
-
         package_update_url = f'{self.destination_url}/api/3/action/harvest_source_update'
-        logger.info(' ** Updating harvest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], ckan_package['config']))
+        logger.info(' ** Updating source {}'.format(data['title']))
 
-        updated, status, error = self.request_ckan(url=package_update_url, method='POST', data=ckan_package)
-        name = ckan_package['name']
+        updated, status, error = self.request_ckan(url=package_update_url, method='POST', data=data)
+        name = data['name']
         self.harvest_sources[name].update({'created': False, 'updated': updated, 'error': error is not None})
 
         return updated, status, error
