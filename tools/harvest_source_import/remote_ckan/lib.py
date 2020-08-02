@@ -232,8 +232,8 @@ class RemoteCKAN:
 
         if error == 'Already exists':
             # get the ID of the Source (use destination URL)
-            del data['id']
-            local_hs = self.get_full_harvest_source(hs=data, url=self.destination_url)
+            del ckan_package['id']
+            local_hs = self.get_full_harvest_source(hs=ckan_package, url=self.destination_url)
             ckan_package['id'] = local_hs['id']
             return self.update_harvest_source(data=ckan_package)
         else:
@@ -395,6 +395,15 @@ class RemoteCKAN:
 
         return json.dumps(config)
 
+    def get_collection_metadata_url(self, config):
+        """ get collection_metadata_url from config """
+        if type(config) == str:
+            config = json.loads(config)
+
+        collection_metadata_url = config.get('collection_metadata_url', None)
+
+        return collection_metadata_url
+
     def request_ckan(self, method, url, data):
         """ request CKAN and get results """
 
@@ -460,8 +469,10 @@ class RemoteCKAN:
             'extras': extras
         }
 
-        if data.get('collection_metadata_url', None) is not None:
-            ret['collection_metadata_url'] = data['collection_metadata_url']
+        collection_metadata_url = self.get_collection_metadata_url(config)
+
+        if collection_metadata_url is not None:
+            ret['collection_metadata_url'] = collection_metadata_url
 
         if data.get('database', None) is not None:
             ret['database'] = data['database']
