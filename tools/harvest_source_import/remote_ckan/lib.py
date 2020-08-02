@@ -233,10 +233,10 @@ class RemoteCKAN:
 
         if error == 'Already exists':
             # get the ID of the Source (use destination URL)
-            del data['id']
-            local_hs = self.get_full_harvest_source(hs=data, url=self.destination_url)
-            data['id'] = local_hs['id']
-            return self.update_harvest_source(data=data)
+            del ckan_package['id']
+            local_hs = self.get_full_harvest_source(hs=ckan_package, url=self.destination_url)
+            ckan_package['id'] = local_hs['id']
+            return self.update_harvest_source(data=ckan_package)
         else:
             name = ckan_package['name']
             self.harvest_sources[name].update({'created': created, 'updated': False, 'error': error is not None})
@@ -253,13 +253,11 @@ class RemoteCKAN:
                 error (str): None or error
             """
 
-        ckan_package = self.get_package_from_data(data)
-
         package_update_url = f'{self.destination_url}/api/3/action/harvest_source_update'
-        logger.info(' ** Updating harvest source {} \n\t{} \n\t{}'.format(ckan_package['title'], data['url'], ckan_package['config']))
+        logger.info(' ** Updating harvest source {} \n\t{} \n\t{}'.format(data['title'], data['url'], data['config']))
 
-        updated, status, error = self.request_ckan(url=package_update_url, method='POST', data=ckan_package)
-        name = ckan_package['name']
+        updated, status, error = self.request_ckan(url=package_update_url, method='POST', data=data)
+        name = data['name']
         self.harvest_sources[name].update({'created': False, 'updated': updated, 'error': error is not None})
 
         return updated, status, error
