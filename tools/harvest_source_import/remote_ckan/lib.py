@@ -498,9 +498,6 @@ class RemoteCKAN:
         if cfg.get('private_datasets', None) is not None:
             ret['private_datasets'] = cfg['private_datasets']
             
-        if cfg.get('default_groups', None) is not None:
-            ret['default_groups'] = cfg['default_groups']
-            
         return ret
 
     def save_temp_json(self, data_type, data_name, data):
