@@ -344,6 +344,8 @@ class RemoteCKAN:
         # get more info about org, we miss organization extras
         # We need the organization_type in some cases
         full_org = self.get_full_organization(org=data)
+        if full_org is None:
+            return False, 0, f'Failed to get organization for {data}'
         extras = data.get('extras', [])
         for extra in full_org.get('extras', []):
             if extra.get('state', 'active') == 'active':
@@ -394,15 +396,6 @@ class RemoteCKAN:
                 extras.remove(extra)
 
         return json.dumps(config)
-
-    def get_collection_metadata_url(self, config):
-        """ get collection_metadata_url from config """
-        if type(config) == str:
-            config = json.loads(config)
-
-        collection_metadata_url = config.get('collection_metadata_url', None)
-
-        return collection_metadata_url
 
     def request_ckan(self, method, url, data):
         """ request CKAN and get results """
@@ -469,11 +462,6 @@ class RemoteCKAN:
             'extras': extras
         }
 
-        collection_metadata_url = self.get_collection_metadata_url(config)
-
-        if collection_metadata_url is not None:
-            ret['collection_metadata_url'] = collection_metadata_url
-
         if data.get('database', None) is not None:
             ret['database'] = data['database']
 
@@ -483,9 +471,33 @@ class RemoteCKAN:
         if data.get('extra_search_criteria', None) is not None:
             ret['extra_search_criteria'] = data['extra_search_criteria']
 
+        cfg = json.loads(config)
+        
+        if cfg.get('collection_metadata_url', None) is not None:
+            ret['collection_metadata_url'] = cfg['collection_metadata_url']
+
+        if cfg.get('database', None) is not None:
+            ret['database'] = cfg['database']
+
+        if cfg.get('port', None) is not None:
+            ret['port'] = cfg['port']
+
+        if cfg.get('extra_search_criteria', None) is not None:
+            ret['extra_search_criteria'] = cfg['extra_search_criteria']
+
         if data.get('id', None) is not None:
             ret['id'] = data['id']
 
+        if cfg.get('validator_profiles', None) is not None:
+            ret['validator_profiles'] = cfg['validator_profiles']
+            # remove this from here, Spatial ext will try to 
+            # validate and we are using custom profiles
+            cfg.pop('validator_profiles')
+            ret['config'] = json.dumps(cfg)
+
+        if cfg.get('private_datasets', None) is not None:
+            ret['private_datasets'] = cfg['private_datasets']
+            
         return ret
 
     def save_temp_json(self, data_type, data_name, data):
