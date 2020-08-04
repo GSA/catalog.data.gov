@@ -213,7 +213,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "bfaa62dd8f84abf01144cf1ebab2da2d1e11c245"
+reference = "ed5b2c4c5945f02cd2c37381d72a8939ea05d36d"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -236,6 +236,18 @@ version = "0.1"
 reference = "89b889e18d197721784479565fbd6cc548f7b060"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
+[[package]]
+category = "main"
+description = "Basic extension to add google analytics tracking code in page header"
+name = "ckanext-googleanalyticsbasic"
+optional = false
+python-versions = "*"
+version = "0.1"
+
+[package.source]
+reference = "526199abf2b052bf9807fb4330fd58e55371764f"
+type = "git"
+url = "https://github.com/datopian/ckanext-googleanalyticsbasic"
 [[package]]
 category = "main"
 description = "Harvesting interface plugin for CKAN"
@@ -1149,7 +1161,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "14702fe21cde99574800b55aa1c37e03d433f5ff268098810fc30169b68b3d6a"
+content-hash = "e666bef528d5432002ac44d52bb124b1c61c1724f564efd5d93fe5fef932520d"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1245,6 +1257,7 @@ ckanext-envvars = [
     {file = "ckanext-envvars-0.0.1.tar.gz", hash = "sha256:6b888149b32ecb4a3bf78700889321877fddf0b82ca4e952ba29a84eb2089837"},
 ]
 ckanext-geodatagov = []
+ckanext-googleanalyticsbasic = []
 ckanext-harvest = []
 ckanext-report = []
 ckanext-spatial = []
