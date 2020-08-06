@@ -233,7 +233,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "89b889e18d197721784479565fbd6cc548f7b060"
+reference = "0d4723651062e45670f9e11f889b38158b01667b"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
