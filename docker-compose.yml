@@ -14,6 +14,7 @@ services:
       - solr
       - redis
       - datapusher
+      - fgdc2iso
     ports:
       - "0.0.0.0:${CKAN_PORT}:5000"
     volumes:
@@ -49,6 +50,11 @@ services:
   redis:
     container_name: redis
     image: redis:alpine
+
+  fgdc2iso:
+    image: datagov/catalog-fgdc2iso:latest
+    environment:
+      SIGNATURE:
 
 volumes:
   ckan_storage:
