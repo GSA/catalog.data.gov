@@ -213,7 +213,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "0fb7cc0bdcc8fa9825173778c05f35d45f1a9838"
+reference = "8db3a37db588f35e752cb5d2f383aebd8afed312"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
