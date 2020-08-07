@@ -245,9 +245,9 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "f534e28cea837b4ea1c621e831da602071a56aae"
+reference = "54647da628609543e01731bfc37f0c3d0ad9f0e2"
 type = "git"
-url = "https://github.com/datopian/ckanext-googleanalyticsbasic"
+url = "https://github.com/GSA/ckanext-googleanalyticsbasic"
 [[package]]
 category = "main"
 description = "Harvesting interface plugin for CKAN"
@@ -1161,7 +1161,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "e666bef528d5432002ac44d52bb124b1c61c1724f564efd5d93fe5fef932520d"
+content-hash = "4671df7d9f5eefdb8294915219bbc622d666596d50aee6b8a54007b50b8c97bc"
 lock-version = "1.0"
 python-versions = "^2.7"
 
