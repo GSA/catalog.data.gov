@@ -1,10 +1,54 @@
-# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities. -*- mode: yaml -*-
 version: v1.13.5
+language-settings: 
+  python: "2.7"
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-PYTHON-BEAKER-575115:
     - '*':
         reason: >-
-          No remediation available yet; Not affecting us since the storage is not accessible to any other client
-        expires: 2021-01-10T06:00:00.000Z
+          No remediation available yet; Not affecting us 
+          since the storage is not accessible to any other client
+        expires: 2020-11-19T06:00:00.000Z
+  
+  SNYK-PYTHON-PYYAML-590151:
+    - '*':
+        reason: >-
+          No remediation available yet. YAML files are loaded only
+          as text fixtures (trusted source and execution context.)
+          Risk is acceptable.
+        expires: 2020-11-19T06:00:00.000Z
+
+  SNYK-PYTHON-SQLALCHEMY-173678:
+    - '*':
+        reason: >-
+          CKAN 2.8 doesn't appear to be compatible with SQLAlchemy 1.2.
+          CKAN 2.9 is, however.  To properly evaluate the risk,
+          we should examine all use of 'group_by' and 'order_by'
+          to determine that all input to those operators are sanitized.
+        expires: 2020-09-10T06:00:00.000Z
+
+  SNYK-PYTHON-PASSLIB-569603:
+    - '*':
+        reason: >-
+          Fix is created but not yet published
+        expires: 2020-11-19T06:00:00.000Z
+        
+  SNYK-PYTHON-WEBOB-40490:
+    - '*':
+        reason: >-
+          No remediation path available for CKAN2.8 (not compatible
+          with webob > 1.0.8).
+        expires: 2020-11-19T06:00:00.000Z
+
+  SNYK-PYTHON-IPADDRESS-590065:
+    - '*':
+        reason: >-
+          No remediation available yet.  To properly evaluate the risk
+          we should examine the Python cryptography package and assess
+          whether and how it uses the hash() method of the classes
+          IPv4Interface and IPv6Interface.
+        expires: 2020-11-19T06:00:00.000Z
+            
 patch: {}
+   
