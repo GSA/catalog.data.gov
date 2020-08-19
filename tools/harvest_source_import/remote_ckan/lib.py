@@ -395,6 +395,10 @@ class RemoteCKAN:
                 config.update(value)
                 extras.remove(extra)
 
+        # CKAN drop config values as boolean, move to string
+        for k, v in config.items():
+            if type(v) is bool:
+                config[k] = str(v)
         return json.dumps(config)
 
     def request_ckan(self, method, url, data):
