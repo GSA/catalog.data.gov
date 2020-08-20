@@ -14,10 +14,10 @@ chardet==3.0.4
 -e git+https://github.com/GSA/ckan.git@f86e69bb0983c4859613385a66b6301225ba1fe0#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@83af7b5ba3290862f117706552bfe69ba6b147e9#egg=ckanext-datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@e938aa188181fbc1c7306f1c45129d8926cb2ad7#egg=ckanext-datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@ee88620aa1dc06ca1aa3d2f4ac6f2e6f0703b196#egg=ckanext-datajson
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@40e3f9a9e49b0f943b4df42449fc81d8ef418d20#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datajson.git@1f2bb35f825bacc2a517ee7c98099cada3515e58#egg=ckanext-datajson
 ckanext-envvars==0.0.1
--e git+https://github.com/GSA/ckanext-geodatagov.git@0d4723651062e45670f9e11f889b38158b01667b#egg=ckanext-geodatagov
+-e git+https://github.com/GSA/ckanext-geodatagov.git@13ee64e313de111395c9ecb07a7053dcc7843354#egg=ckanext-geodatagov
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic@54647da628609543e01731bfc37f0c3d0ad9f0e2#egg=ckanext-googleanalyticsbasic
 -e git+https://github.com/GSA/ckanext-harvest.git@ea6fc07e930b2eb659933bce8cbd850f72db8140#egg=ckanext-harvest
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
