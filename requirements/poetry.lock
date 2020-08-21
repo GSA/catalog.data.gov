@@ -201,7 +201,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "40e3f9a9e49b0f943b4df42449fc81d8ef418d20"
+reference = "c3536bec916312d93bab88f56c45d422db7660b9"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
