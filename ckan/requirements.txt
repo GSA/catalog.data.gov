@@ -14,7 +14,7 @@ chardet==3.0.4
 -e git+https://github.com/GSA/ckan.git@f86e69bb0983c4859613385a66b6301225ba1fe0#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@83af7b5ba3290862f117706552bfe69ba6b147e9#egg=ckanext-datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@40e3f9a9e49b0f943b4df42449fc81d8ef418d20#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@c3536bec916312d93bab88f56c45d422db7660b9#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@214ec53c9071d18bc7f7a241a28f6d7f0038276e#egg=ckanext-datajson
 ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-geodatagov.git@1ab84ced52b69dcfccdb8060b10ca5ae87766c79#egg=ckanext-geodatagov
