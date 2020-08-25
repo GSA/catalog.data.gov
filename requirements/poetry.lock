@@ -233,7 +233,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "1ab84ced52b69dcfccdb8060b10ca5ae87766c79"
+reference = "263aa0f6e2ba9a9540ada8b20e934abfb4d498fd"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -1614,6 +1614,7 @@ rq = [
     {file = "rq-0.6.0.tar.gz", hash = "sha256:d6502f5041953b2e5f5411a59bfc9661f7fb2af2a7f412f0f7bc62b2e56d9341"},
 ]
 shapely = [
+    {file = "Shapely-1.7.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:4c10f317e379cc404f8fc510cd9982d5d3e7ba13a9cfd39aa251d894c6366798"},
     {file = "Shapely-1.7.1-cp35-cp35m-macosx_10_6_intel.whl", hash = "sha256:17df66e87d0fe0193910aeaa938c99f0b04f67b430edb8adae01e7be557b141b"},
     {file = "Shapely-1.7.1-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:da38ed3d65b8091447dc3717e5218cc336d20303b77b0634b261bc5c1aa2bae8"},
     {file = "Shapely-1.7.1-cp35-cp35m-win32.whl", hash = "sha256:8e7659dd994792a0aad8fb80439f59055a21163e236faf2f9823beb63a380e19"},
