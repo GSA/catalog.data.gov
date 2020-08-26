@@ -84,7 +84,7 @@ rq==0.6.0
 shapely==1.7.1
 simplejson==3.10.0
 six==1.15.0
-sqlalchemy==1.1.11
+sqlalchemy==1.3.19
 sqlalchemy-migrate==0.10.0
 sqlparse==0.2.2
 tempita==0.5.2
