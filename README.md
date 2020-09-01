@@ -102,6 +102,13 @@ To support sandbox installation via the ansible playbooks, there is a
 symbolic link `requirements-freeze.txt` that references
 `ckan/requirements.txt`.
 
+### Adding new extensions in requirements
+If you try to add and extension and it didn't work you should 
+try `chown user:user -R .` (in the _catalog.data.gov_ repo folder) 
+because if you run docker as 
+superuser and then as a regular user won't be able to add 
+the folder for the new extension
+
 ### Procedure for updating a dependency
 
 1.  Add/change the dependency in `requirements/pyproject.toml`
