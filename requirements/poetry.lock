@@ -201,7 +201,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "bc84ccaf626bdf6936fb7079d386bc9e2a3a40e4"
+reference = "ad0ede863138267367c57df06604184fe48687d6"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -233,7 +233,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "a64495b6cdbc63a8b30e549eb55fe428b44d545a"
+reference = "62fe66afb94ea29abd409af54159a7bbbdad35dd"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
