@@ -13,3 +13,5 @@ local-dev.yml
 ._*
 .Spotlight-V100
 .Trashes
+
+.env.local
