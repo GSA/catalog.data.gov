@@ -31,7 +31,10 @@ ignore:
   SNYK-PYTHON-PASSLIB-569603:
     - '*':
         reason: >-
-          Fix is created but not yet published
+          Fix is created but not yet published.
+          Risk appears to be very low.  The vulnerability is in the passlib
+          bcrypt() implementation, and CKAN (2.8) uses pbkdf2.  In addition,
+          in production environments we use a SAML provider for auth.
         expires: 2020-11-19T06:00:00.000Z
         
   SNYK-PYTHON-WEBOB-40490:
