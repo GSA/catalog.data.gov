@@ -31,7 +31,10 @@ ignore:
   SNYK-PYTHON-PASSLIB-569603:
     - '*':
         reason: >-
-          Fix is created but not yet published
+          Fix is created but not yet published.
+          Risk appears to be very low.  The vulnerability is in the passlib
+          bcrypt() implementation, and CKAN (2.8) uses pbkdf2.  In addition,
+          in production environments we use a SAML provider for auth.
         expires: 2020-11-19T06:00:00.000Z
         
   SNYK-PYTHON-WEBOB-40490:
@@ -44,10 +47,10 @@ ignore:
   SNYK-PYTHON-IPADDRESS-590065:
     - '*':
         reason: >-
-          No remediation available yet.  To properly evaluate the risk
-          we should examine the Python cryptography package and assess
-          whether and how it uses the hash() method of the classes
-          IPv4Interface and IPv6Interface.
+          No remediation available yet.  After inspecting the
+          Python cryptography package, I see no use of the vulnerable
+          method hash() on the classes IPv4Interface and IPv6Interface, 
+          so the risk here is very minimal.
         expires: 2020-11-19T06:00:00.000Z
             
 patch: {}
