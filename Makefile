@@ -1,6 +1,7 @@
 .PHONY: all build clean copy-src local requirements setup test up update-dependencies
 
 CKAN_HOME := /srv/app
+CKAN_INI := /srv/app/production.ini
 
 all: build
 
@@ -87,8 +88,7 @@ ckan-worker:
 	docker-compose exec ckan paster --plugin=ckan jobs worker bulk
 
 archiver-worker:
-	export C_FORCE_ROOT=1  # celery don't want to run as root
-	docker-compose exec ckan paster --plugin=ckanext-archiver celeryd2 run all
+	docker-compose exec ckan paster --plugin=ckanext-archiver celeryd2 run all --config=$(CKAN_INI)
 
 harvets-fetch-queue:
 	docker-compose exec ckan paster --plugin=ckanext-harvest harvester gather_consumer
