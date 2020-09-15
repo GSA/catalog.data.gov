@@ -376,11 +376,19 @@ version = "4.4.2"
 
 [[package]]
 category = "main"
+<<<<<<< HEAD
 description = "Distro - an OS platform information API"
 name = "distro"
 optional = false
 python-versions = "*"
 version = "1.5.0"
+=======
+description = "XML bomb protection for Python stdlib modules"
+name = "defusedxml"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "0.6.0"
+>>>>>>> Add pysaml2 and deps to requirements.
 
 [[package]]
 category = "main"
@@ -980,6 +988,30 @@ version = "2.4.7"
 
 [[package]]
 category = "main"
+description = "Python implementation of SAML Version 2 Standard"
+name = "pysaml2"
+optional = false
+python-versions = "*"
+version = "4.9.0"
+
+[package.dependencies]
+cryptography = ">=1.4"
+defusedxml = "*"
+pyOpenSSL = "*"
+python-dateutil = "*"
+pytz = "*"
+requests = ">=1.0.0"
+six = "*"
+
+[package.extras]
+s2repoze = ["paste", "zope.interface", "repoze.who"]
+
+[package.source]
+reference = "a8ae8b1b974c2dd7d462ca95daabd21ff37e38ae"
+type = "git"
+url = "https://github.com/GSA/pysaml2.git"
+[[package]]
+category = "main"
 description = "Lightweight python wrapper for Apache Solr."
 name = "pysolr"
 optional = false
@@ -1385,7 +1417,11 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
+<<<<<<< HEAD
 content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
+=======
+content-hash = "5e927a0c0748047163eb82ce4d7c49623a1a35c7b98d1e9a21e9caf5bb424a1d"
+>>>>>>> Add pysaml2 and deps to requirements.
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1516,9 +1552,15 @@ decorator = [
     {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
     {file = "decorator-4.4.2.tar.gz", hash = "sha256:e3a62f0520172440ca0dcc823749319382e377f37f140a0b99ef45fecb84bfe7"},
 ]
+<<<<<<< HEAD
 distro = [
     {file = "distro-1.5.0-py2.py3-none-any.whl", hash = "sha256:df74eed763e18d10d0da624258524ae80486432cd17392d9c3d96f5e83cd2799"},
     {file = "distro-1.5.0.tar.gz", hash = "sha256:0e58756ae38fbd8fc3020d54badb8eae17c5b9dcbed388b17bb55b8a5928df92"},
+=======
+defusedxml = [
+    {file = "defusedxml-0.6.0-py2.py3-none-any.whl", hash = "sha256:6687150770438374ab581bb7a1b327a847dd9c5749e396102de3fad4e8a3ef93"},
+    {file = "defusedxml-0.6.0.tar.gz", hash = "sha256:f684034d135af4c6cbb949b8a4d2ed61634515257a67299e5f940fbaa34377f5"},
+>>>>>>> Add pysaml2 and deps to requirements.
 ]
 enum34 = [
     {file = "enum34-1.1.10-py2-none-any.whl", hash = "sha256:a98a201d6de3f2ab3db284e70a33b0f896fbf35f8086594e8c9e74b909058d53"},
@@ -1869,6 +1911,7 @@ pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
 ]
+pysaml2 = []
 pysolr = [
     {file = "pysolr-3.6.0-py2.py3-none-any.whl", hash = "sha256:fd1233e80dcfb7405ca5a33982f485f2ab2f8dffc675c52eff3b33eec950c060"},
     {file = "pysolr-3.6.0.tar.gz", hash = "sha256:f94292c1002dbbbfaecaad18fec39cc4bff843b459c8851a2234f2799788ac6f"},
