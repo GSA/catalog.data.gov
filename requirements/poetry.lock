@@ -189,7 +189,7 @@ python-versions = "*"
 version = "0.0.1"
 
 [package.source]
-reference = "83af7b5ba3290862f117706552bfe69ba6b147e9"
+reference = "518a81f0ee1222e151993a290b06933188df08c6"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovcatalog.git"
 [[package]]
@@ -254,12 +254,12 @@ description = "Harvesting interface plugin for CKAN"
 name = "ckanext-harvest"
 optional = false
 python-versions = "*"
-version = "1.3.0"
+version = "1.3.1"
 
 [package.source]
-reference = "026d8eb5a8d76238a8c2e34fecd56ec7a6f49df6"
+reference = "dfd093aaa5c8fd76f32f8cb8461f311de8d3507c"
 type = "git"
-url = "https://github.com/GSA/ckanext-harvest.git"
+url = "https://github.com/ckan/ckanext-harvest.git"
 [[package]]
 category = "main"
 description = "Quality Assurance plugin for CKAN"
@@ -1236,7 +1236,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "cc7511f4e385dd194723f5efe71beb287bf3ccc0d2f198226a8a63ce4a2ef914"
+content-hash = "4a1a0a7c4897a5c81d1e925871caf7dde7ba8a087d35d75c49205d4c90649b25"
 lock-version = "1.0"
 python-versions = "^2.7"
 
