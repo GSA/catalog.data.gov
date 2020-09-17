@@ -11,7 +11,7 @@ celery==3.1.25
 certifi==2020.6.20
 cffi==1.12.3
 chardet==3.0.4
--e git+https://github.com/GSA/ckan.git@f86e69bb0983c4859613385a66b6301225ba1fe0#egg=ckan
+-e git+https://github.com/GSA/ckan.git@ba990630c68796f498e778f7b49b9efca7b24654#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@83af7b5ba3290862f117706552bfe69ba6b147e9#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@4b42e2e8477f2b023f91089a73486950ea3b872e#egg=ckanext-datagovtheme

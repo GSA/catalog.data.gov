@@ -159,7 +159,7 @@ python-versions = "*"
 version = "2.8.4"
 
 [package.source]
-reference = "f86e69bb0983c4859613385a66b6301225ba1fe0"
+reference = "ba990630c68796f498e778f7b49b9efca7b24654"
 type = "git"
 url = "https://github.com/GSA/ckan.git"
 [[package]]
