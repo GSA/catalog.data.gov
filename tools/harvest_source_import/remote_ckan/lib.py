@@ -86,12 +86,12 @@ class RemoteCKAN:
             if limit > 0 and total_sources >= limit:
                 return
             title = hs['title']
-            source_type = hs['source_type']  # datajosn, waf, etc
+            hs_source_type = hs['source_type']  # datajosn, waf, etc
             state = hs['state']
             name = hs['name']
             self.harvest_sources[name] = hs
 
-            logger.info(f'  [{source_type}] Harvest source: {title} [{state}]')
+            logger.info(f'  [{hs_source_type}] Harvest source: {title} [{state}]')
             if state == 'active':
                 # We don't get full harvest soure info here. We need a custom call
                 source = self.get_full_harvest_source(hs)
