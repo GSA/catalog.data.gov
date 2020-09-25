@@ -48,7 +48,13 @@ class RemoteCKAN:
         else:
             q = f'(type:harvest source_type:{source_type})'
 
-        params = {'start': start, 'rows': page_size, 'q': q, 'fq': '+dataset_type:harvest'}
+        params = {
+            'start': start,
+            'rows': page_size,
+            'q': q,
+            'fq': '+dataset_type:harvest',
+            'sort': 'metadata_created asc',
+        }
         headers = self.get_request_headers(include_api_key=False)
 
         logger.debug(f'request {package_search_url} {params}')
