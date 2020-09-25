@@ -1,3 +1,4 @@
+*.csv
 requirements/requirements.txt
 src/*
 .*.sw*
