@@ -27,6 +27,15 @@ def test_list_ckan_sources():
     assert results['doi-open-data']['status']['job_count'] == 2
 
 
+def test_requests_sent_for_ckan_sources():
+    cass = vcr.cassette.Cassette.load(path='tests/cassettes/test_list_ckan_sources.yaml')
+    search_request = cass.requests[0]
+    assert'/api/3/action/package_search' in search_request.uri
+    assert 'source_type%3Ackan' in search_request.uri
+    assert search_request.headers['User-Agent'] == 'Remote CKAN 1.0'
+    assert search_request.method == 'GET'
+
+
 @pytest.mark.vcr()
 def test_list_datajson_sources():
     """ Test the list of sources """
@@ -45,3 +54,12 @@ def test_list_datajson_sources():
     assert results['doj-json']['frequency'] == 'DAILY'
     assert results['doj-json']['status']['job_count'] == 44
     assert results['doj-json']['status']['total_datasets'] == 1243
+
+
+def test_requests_sent_for_datajson_soruces():
+    cass = vcr.cassette.Cassette.load(path='tests/cassettes/test_list_datajson_sources.yaml')
+    search_request = cass.requests[0]
+    assert'/api/3/action/package_search' in search_request.uri
+    assert 'source_type%3Adatajson' in search_request.uri
+    assert search_request.headers['User-Agent'] == 'Remote CKAN 1.0'
+    assert search_request.method == 'GET'
