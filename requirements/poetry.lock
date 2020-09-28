@@ -159,7 +159,7 @@ python-versions = "*"
 version = "2.8.4"
 
 [package.source]
-reference = "f86e69bb0983c4859613385a66b6301225ba1fe0"
+reference = "ba990630c68796f498e778f7b49b9efca7b24654"
 type = "git"
 url = "https://github.com/GSA/ckan.git"
 [[package]]
@@ -189,7 +189,7 @@ python-versions = "*"
 version = "0.0.1"
 
 [package.source]
-reference = "83af7b5ba3290862f117706552bfe69ba6b147e9"
+reference = "518a81f0ee1222e151993a290b06933188df08c6"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovcatalog.git"
 [[package]]
@@ -201,7 +201,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "bc84ccaf626bdf6936fb7079d386bc9e2a3a40e4"
+reference = "d9f3b2fd7bb15ea95a2262824b0c4a43e0991158"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -213,7 +213,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "214ec53c9071d18bc7f7a241a28f6d7f0038276e"
+reference = "e769f6a3ead4edb07fb88e63c534c05a92519923"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -233,7 +233,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "414856a5ac2f3944484d679347deffb7051d5ec2"
+reference = "5cbda5873fa1437d46b467d0f4879311ecfefac1"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -247,19 +247,42 @@ version = "0.1"
 [package.source]
 reference = "54647da628609543e01731bfc37f0c3d0ad9f0e2"
 type = "git"
-url = "https://github.com/GSA/ckanext-googleanalyticsbasic"
+url = "https://github.com/GSA/ckanext-googleanalyticsbasic.git"
 [[package]]
 category = "main"
 description = "Harvesting interface plugin for CKAN"
 name = "ckanext-harvest"
 optional = false
 python-versions = "*"
-version = "1.3.0"
+version = "1.3.1"
 
 [package.source]
-reference = "ea6fc07e930b2eb659933bce8cbd850f72db8140"
+reference = "dfd093aaa5c8fd76f32f8cb8461f311de8d3507c"
 type = "git"
-url = "https://github.com/GSA/ckanext-harvest.git"
+url = "https://github.com/ckan/ckanext-harvest.git"
+[[package]]
+category = "main"
+description = "Quality Assurance plugin for CKAN"
+name = "ckanext-qa"
+optional = false
+python-versions = "*"
+version = "2.0"
+
+[package.dependencies]
+SQLAlchemy = ">=0.6.6"
+ckanext-archiver = ">=2.0"
+ckanext-report = "*"
+messytables = ">=0.8"
+progressbar = "*"
+python-magic = ">=0.4"
+requests = "*"
+six = ">=1.9"
+xlrd = ">=0.8.0"
+
+[package.source]
+reference = "d7d384cb18a85243ea62ef0bcc76bc1775f1c806"
+type = "git"
+url = "https://github.com/ckan/ckanext-qa.git"
 [[package]]
 category = "main"
 description = "Framework for defining reports in CKAN"
@@ -455,6 +478,24 @@ tornado = ["tornado (>=0.2)"]
 
 [[package]]
 category = "main"
+description = "HTML parser based on the WHATWG HTML specification"
+name = "html5lib"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "1.1"
+
+[package.dependencies]
+six = ">=1.9"
+webencodings = "*"
+
+[package.extras]
+all = ["genshi", "chardet (>=2.2)", "lxml"]
+chardet = ["chardet (>=2.2)"]
+genshi = ["genshi"]
+lxml = ["lxml"]
+
+[[package]]
+category = "main"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
 optional = false
@@ -491,6 +532,14 @@ MarkupSafe = ">=0.23"
 
 [package.extras]
 i18n = ["Babel (>=0.8)"]
+
+[[package]]
+category = "main"
+description = "Python library for dealing with JSON Table Schema files"
+name = "json-table-schema"
+optional = false
+python-versions = "*"
+version = "0.2.1"
 
 [[package]]
 category = "main"
@@ -570,6 +619,27 @@ name = "markupsafe"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 version = "1.1.1"
+
+[[package]]
+category = "main"
+description = "Parse messy tabular data in various formats"
+name = "messytables"
+optional = false
+python-versions = "*"
+version = "0.15.2"
+
+[package.dependencies]
+chardet = ">=2.3.0"
+html5lib = "*"
+json-table-schema = ">=0.2,<=0.2.1"
+lxml = ">=3.2"
+python-dateutil = ">=1.5.0"
+python-magic = ">=0.4.12"
+requests = "*"
+xlrd = ">=0.8.0"
+
+[package.extras]
+pdf = ["pdftables (>=0.0.4)"]
 
 [[package]]
 category = "main"
@@ -861,11 +931,8 @@ category = "main"
 description = "Python client for Redis key-value store"
 name = "redis"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "3.5.3"
-
-[package.extras]
-hiredis = ["hiredis (>=0.1.3)"]
+python-versions = "*"
+version = "2.10.6"
 
 [[package]]
 category = "main"
@@ -1146,6 +1213,14 @@ watchdog = ["watchdog"]
 
 [[package]]
 category = "main"
+description = "Library for developers to extract data from Microsoft Excel (tm) spreadsheet files"
+name = "xlrd"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "1.2.0"
+
+[[package]]
+category = "main"
 description = "Interfaces for Python"
 name = "zope.interface"
 optional = false
@@ -1161,7 +1236,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "4671df7d9f5eefdb8294915219bbc622d666596d50aee6b8a54007b50b8c97bc"
+content-hash = "4a1a0a7c4897a5c81d1e925871caf7dde7ba8a087d35d75c49205d4c90649b25"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1259,6 +1334,7 @@ ckanext-envvars = [
 ckanext-geodatagov = []
 ckanext-googleanalyticsbasic = []
 ckanext-harvest = []
+ckanext-qa = []
 ckanext-report = []
 ckanext-spatial = []
 ckantoolkit = [
@@ -1329,6 +1405,10 @@ gunicorn = [
     {file = "gunicorn-19.10.0-py2.py3-none-any.whl", hash = "sha256:c3930fe8de6778ab5ea716cab432ae6335fa9f03b3f2c3e02529214c476f4bcb"},
     {file = "gunicorn-19.10.0.tar.gz", hash = "sha256:f9de24e358b841567063629cd0a656b26792a41e23a24d0dcb40224fc3940081"},
 ]
+html5lib = [
+    {file = "html5lib-1.1-py2.py3-none-any.whl", hash = "sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d"},
+    {file = "html5lib-1.1.tar.gz", hash = "sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f"},
+]
 idna = [
     {file = "idna-2.7-py2.py3-none-any.whl", hash = "sha256:156a6814fb5ac1fc6850fb002e0852d56c0c8d2531923a51032d1b70760e186e"},
     {file = "idna-2.7.tar.gz", hash = "sha256:684a38a6f903c1d71d6d5fac066b58d7768af4de2b832e426ec79c30daa94a16"},
@@ -1344,6 +1424,9 @@ itsdangerous = [
 jinja2 = [
     {file = "Jinja2-2.10.3-py2.py3-none-any.whl", hash = "sha256:74320bb91f31270f9551d46522e33af46a80c3d619f4a4bf42b3164d30b5911f"},
     {file = "Jinja2-2.10.3.tar.gz", hash = "sha256:9fe95f19286cfefaa917656583d020be14e7859c6b0252588391e47db34527de"},
+]
+json-table-schema = [
+    {file = "json-table-schema-0.2.1.tar.gz", hash = "sha256:519961cf21f6d45124ff73388538e6db78148e9ed95f43f1c0a2fc4d7e980d97"},
 ]
 jsonschema = [
     {file = "jsonschema-2.4.0-py2.py3-none-any.whl", hash = "sha256:5af36686c271097f25ec023546c397cb99bc67a5db3836e52e6b37bdb45ca21e"},
@@ -1433,6 +1516,9 @@ markupsafe = [
     {file = "MarkupSafe-1.1.1-cp38-cp38-win32.whl", hash = "sha256:596510de112c685489095da617b5bcbbac7dd6384aeebeda4df6025d0256a81b"},
     {file = "MarkupSafe-1.1.1-cp38-cp38-win_amd64.whl", hash = "sha256:e8313f01ba26fbbe36c7be1966a7b7424942f670f38e666995b88d012765b9be"},
     {file = "MarkupSafe-1.1.1.tar.gz", hash = "sha256:29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b"},
+]
+messytables = [
+    {file = "messytables-0.15.2.tar.gz", hash = "sha256:227a5aac364919a7d3faa6ce04027fcbd03e041efcd3d57fabb1d1067591a2cd"},
 ]
 nose = [
     {file = "nose-1.3.7-py2-none-any.whl", hash = "sha256:dadcddc0aefbf99eea214e0f1232b94f2fa9bd98fa8353711dacb112bfcbbb2a"},
@@ -1582,8 +1668,8 @@ pyyaml = [
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 redis = [
-    {file = "redis-3.5.3-py2.py3-none-any.whl", hash = "sha256:432b788c4530cfe16d8d943a09d40ca6c16149727e4afe8c2c9d5580c59d9f24"},
-    {file = "redis-3.5.3.tar.gz", hash = "sha256:0e7e0cfca8660dea8b7d5cd8c4f6c5e29e11f31158c0b0ae91a397f00e5a05a2"},
+    {file = "redis-2.10.6-py2.py3-none-any.whl", hash = "sha256:8a1900a9f2a0a44ecf6e8b5eb3e967a9909dfed219ad66df094f27f7d6f330fb"},
+    {file = "redis-2.10.6.tar.gz", hash = "sha256:a22ca993cea2962dbb588f9f30d0015ac4afcc45bee27d3978c0dbe9e97c6c0f"},
 ]
 "repoze.lru" = [
     {file = "repoze.lru-0.7-py3-none-any.whl", hash = "sha256:f77bf0e1096ea445beadd35f3479c5cff2aa1efe604a133e67150bc8630a62ea"},
@@ -1705,6 +1791,10 @@ webtest = [
 werkzeug = [
     {file = "Werkzeug-0.15.6-py2.py3-none-any.whl", hash = "sha256:00d32beac38fcd48d329566f80d39f10ec2ed994efbecfb8dd4b320062d05902"},
     {file = "Werkzeug-0.15.6.tar.gz", hash = "sha256:0a24d43be6a7dce81bae05292356176d6c46d63e42a0dd3f9504b210a9cfaa43"},
+]
+xlrd = [
+    {file = "xlrd-1.2.0-py2.py3-none-any.whl", hash = "sha256:e551fb498759fa3a5384a94ccd4c3c02eb7c00ea424426e212ac0c57be9dfbde"},
+    {file = "xlrd-1.2.0.tar.gz", hash = "sha256:546eb36cee8db40c3eaa46c351e67ffee6eeb5fa2650b71bc4c758a29a1b29b2"},
 ]
 "zope.interface" = [
     {file = "zope.interface-4.3.2-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:10aba8ab3e011b797656d3a6d0ff8709ee471024f32d6fd056326cca4123e95f"},

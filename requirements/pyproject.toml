@@ -14,12 +14,15 @@ ckanext-datagovtheme = {git = "https://github.com/GSA/ckanext-datagovtheme.git"}
 ckanext-datajson = {git = "https://github.com/GSA/ckanext-datajson.git" }
 ckanext-envvars = "*"
 ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git" }
-# ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
-ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "datagov-catalog" }
+ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
+# ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "datagov-catalog" }
 ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
 ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git" }
 ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git"}
-ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic" }
+ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git" }
+ckanext-qa = {git = "https://github.com/ckan/ckanext-qa.git" }
+# If you try to add and extension and it didn't work you should try `chown user:user -R .` because if you run docker as superuser and the as a regular user won't be able to add the folder for the new extension
+
 
 # ckanext-harvest dependencies
 
@@ -28,7 +31,7 @@ ckantoolkit = "0.0.3"
 cryptography = "2.7"
 pika = ">=1.1.0"
 pyOpenSSL = "18.0.0"
-redis = ">=3.3.0"
+redis = "2.10.6"
 urllib3 = "*"
 
 # ckanext-datagovtheme
@@ -68,6 +71,10 @@ OWSLib = "0.8.6"
 lxml = ">=2.3"
 argparse = "*"
 pyparsing = ">=2.1.10"
+
+#ckanext-qa
+xlrd = ">=1.0.0"
+messytables = ">=0.15.2"
 
 # ckan doesn't advertise its requirements correctly, so let's add them
 # here.

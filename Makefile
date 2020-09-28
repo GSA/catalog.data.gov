@@ -60,3 +60,41 @@ lint-all:
 		 		 pip install --upgrade pip  && \
 				 pip install flake8 && \
 				 flake8 . --count --select=E9 --show-source --statistics"
+
+generate-openess-report:
+	# generate report at /report/openness
+	docker-compose exec ckan paster --plugin=ckanext-report report generate openness
+
+
+update-tracking-info:
+	# https://docs.ckan.org/en/2.8/maintaining/tracking.html
+	docker-compose exec ckan paster --plugin=ckan tracking update
+
+rebuild-search-index:
+	docker-compose exec ckan paster --plugin=ckan search-index rebuild
+
+update-qa-info:
+	# QA is performed when a dataset/resource is archived, or you can run it manually using a paster command:
+	docker-compose exec ckan paster --plugin=ckanext-qa qa update
+
+update-archiver-info:
+	docker-compose exec ckan paster --plugin=ckanext-archiver archiver update
+
+generate-all-reports:
+	docker-compose exec ckan paster --plugin=ckanext-report report generate
+
+ckan-worker:
+	docker-compose exec ckan paster --plugin=ckan jobs worker bulk
+
+archiver-worker:
+	export C_FORCE_ROOT=1  # celery don't want to run as root
+	docker-compose exec ckan paster --plugin=ckanext-archiver celeryd2 run all
+
+harvets-fetch-queue:
+	docker-compose exec ckan paster --plugin=ckanext-harvest harvester gather_consumer
+
+harvets-gather-queue:
+	docker-compose exec ckan paster --plugin=ckanext-harvest harvester fetch_consumer
+
+harvets-check-finished-jobs:
+	docker-compose exec ckan paster --plugin=ckanext-harvest harvester run
