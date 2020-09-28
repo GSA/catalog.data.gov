@@ -31,14 +31,19 @@ class RemoteCKAN:
         self.destination_url = ckan_url
         self.api_key = ckan_api_key
 
-    def list_harvest_sources(self, source_type=None, start=0, page_size=100, limit=0):
+    def list_harvest_sources(self,
+                             source_type=None,
+                             start=0,
+                             page_size=100,
+                             limit=0,
+                             skip_full_source_info=False):
         """ Generator for a list of harvest sources at a CKAN instance
             Params:
                 source_type (str): datajson | csw | None=ALL
                 limit (int): max number of harvest sources to read
         """
 
-        logger.debug(f'List harvest sources {start}-{page_size}')
+        logger.info(f'List harvest sources {start}-{page_size}')
 
         package_search_url = f'{self.url}/api/3/action/package_search'
         # TODO use harvest_source_list for harvester ext
@@ -93,8 +98,14 @@ class RemoteCKAN:
 
             logger.info(f'  [{hs_source_type}] Harvest source: {title} [{state}]')
             if state == 'active':
-                # We don't get full harvest soure info here. We need a custom call
-                source = self.get_full_harvest_source(hs)
+                if not skip_full_source_info:
+                    # We don't get full harvest soure info here. We need a custom call
+                    source = self.get_full_harvest_source(hs)
+                else:
+                    logger.info('SKIPPING full havest source info')
+                    # faster, but incomplete
+                    source = hs
+
                 if source is None:
                     source = {'name': hs['name'], 'created': False, 'updated': False, 'error': True}
                 yield source
@@ -104,7 +115,12 @@ class RemoteCKAN:
             return
 
         # get next page
-        yield from self.list_harvest_sources(source_type=source_type, start=start + page_size, page_size=page_size, limit=limit)
+        yield from self.list_harvest_sources(
+            source_type=source_type,
+            start=start + page_size,
+            page_size=page_size,
+            limit=limit,
+            skip_full_source_info=skip_full_source_info)
 
     def get_full_harvest_source(self, hs, url=None):
         """ get full info (including job status) for a Harvest Source """

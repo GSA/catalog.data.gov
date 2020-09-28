@@ -4,6 +4,7 @@
 
 import pytest
 import vcr
+from time import sleep
 from remote_ckan.lib import RemoteCKAN
 import urllib.parse as urlparse
 
@@ -11,9 +12,9 @@ import urllib.parse as urlparse
 def test_list_ckan_sources():
     """ Test the list of sources """
 
-    ckan = RemoteCKAN(url='https://catalog-next.sandbox.datagov.us')
+    ckan = RemoteCKAN(url='https://catalog.data.gov')
     total = 0
-    expected_names = ['datos-argentina', 'doi-open-data' ,'sandbox-catalog-classic', 'test-2016']
+    expected_names = ['doi-open-data', 'test-2016']
 
     results = {}
     for hs in ckan.list_harvest_sources(source_type='ckan'):
@@ -22,9 +23,9 @@ def test_list_ckan_sources():
         assert hs['name'] in expected_names
         results[hs['name']] = hs
 
-    assert total == 4
+    assert total == 2
     assert results['doi-open-data']['url'] == 'https://data.doi.gov'
-    assert results['doi-open-data']['status']['job_count'] == 2
+    assert results['doi-open-data']['status']['job_count'] == 1
 
 
 def test_requests_sent_for_ckan_sources():
@@ -43,20 +44,24 @@ def test_requests_sent_for_ckan_sources():
 def test_list_datajson_sources():
     """ Test the list of sources """
 
-    ckan = RemoteCKAN(url='https://catalog-next.sandbox.datagov.us')
+    ckan = RemoteCKAN(url='https://catalog.data.gov')
     total = 0
     
     results = {}
     for hs in ckan.list_harvest_sources(source_type='datajson'):
         total += 1
-        assert hs['source_type'] == 'datajson'
+        # some sources fails in production (didn't return the full source)
+        assert hs.get('source_type', 'datajson') == 'datajson'
         results[hs['name']] = hs
+        # just for the real requests
+        # sleep(2)
         
-    assert total == 156
+    assert total == 152
     assert results['doj-json']['url'] == 'http://www.justice.gov/data.json'
     assert results['doj-json']['frequency'] == 'DAILY'
-    assert results['doj-json']['status']['job_count'] == 44
-    assert results['doj-json']['status']['total_datasets'] == 1243
+    assert results['doj-json']['status']['job_count'] == 235
+    assert results['doj-json']['status']['total_datasets'] == 1236
+
 
 def test_requests_sent_for_datajson_soruces():
     cass = vcr.cassette.Cassette.load(path='tests/cassettes/test_list_datajson_sources.yaml')
@@ -68,3 +73,20 @@ def test_requests_sent_for_datajson_soruces():
     assert params['fq'] == ['+dataset_type:harvest']
     assert search_request.headers['User-Agent'] == 'Remote CKAN 1.0'
     assert search_request.method == 'GET'
+
+
+@pytest.mark.vcr()
+def test_list_all_sources():
+    """ Test the list of sources """
+
+    ckan = RemoteCKAN(url='https://catalog.data.gov')
+    total = 0
+    
+    results = {}
+    for hs in ckan.list_harvest_sources(skip_full_source_info=True):
+        total += 1
+        results[hs['name']] = hs
+        
+    assert 'doi-open-data' in results
+    assert total == 1083
+    
