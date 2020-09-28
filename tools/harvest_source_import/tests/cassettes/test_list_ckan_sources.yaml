@@ -1,0 +1,810 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/package_search?start=0&rows=100&q=%28type%3Aharvest+source_type%3Ackan%29&fq=%2Bdataset_type%3Aharvest&sort=metadata_created+asc
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=package_search",
+        "success": true, "result": {"count": 4, "sort": "metadata_created asc", "facets":
+        {}, "results": [{"relationships_as_object": [], "private": false, "frequency":
+        "MANUAL", "id": "4b26cadc-df44-479d-8934-e3d8ea49b889", "metadata_created":
+        "2020-06-04T20:51:17.993044", "metadata_modified": "2020-06-04T20:51:17.993053",
+        "title": "Datos Argentina", "state": "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3",
+        "config": "", "resources": [], "tags": [], "source_type": "ckan", "groups":
+        [], "relationships_as_subject": [], "name": "datos-argentina", "url": "https://datos.gob.ar/",
+        "type": "harvest", "notes": "test of ckan harvester", "owner_org": "a186648c-3503-4ef8-9d74-a5165dcaa6f9",
+        "organization": {"description": "", "created": "2020-06-04T20:50:49.413218",
+        "title": "Datos Argentina", "name": "datos-argentina", "is_organization":
+        true, "state": "active", "image_url": "", "revision_id": "6d718a39-7131-469e-8aa1-4087b3a32a68",
+        "type": "organization", "id": "a186648c-3503-4ef8-9d74-a5165dcaa6f9", "approval_status":
+        "approved"}, "revision_id": "6123b04c-96d3-402b-9c44-de439ea1df1a"}, {"relationships_as_object":
+        [], "private": false, "frequency": "MANUAL", "id": "68fd35af-f59f-4ca0-bc61-459920ccefd7",
+        "metadata_created": "2020-06-12T16:20:13.295921", "metadata_modified": "2020-08-04T15:12:36.403696",
+        "title": "DOI Open Data", "state": "active", "creator_user_id": "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9",
+        "config": "{\"private_datasets\": \"False\"}", "resources": [], "tags": [],
+        "source_type": "ckan", "groups": [], "relationships_as_subject": [], "name":
+        "doi-open-data", "url": "https://data.doi.gov", "type": "harvest", "notes":
+        "The Open Data provided by the Department of the Interior", "owner_org": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
+        "private_datasets": "False", "organization": {"description": "DOI Data will
+        be temporarily unavailable on data.gov from 4/30 - 5/2. Access will remain
+        at [https://data.doi.gov](https://data.doi.gov).\r\n\r\nThe Department of
+        the Interior (DOI) conserves and manages the Nation\u2019s natural resources
+        and cultural heritage for the benefit and enjoyment of the American people,
+        provides scientific and other information about natural resources and natural
+        hazards to address societal challenges and create opportunities for the American
+        people, and honors the Nation\u2019s trust responsibilities or special commitments
+        to American Indians, Alaska Natives, and affiliated island communities to
+        help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "created": "2020-05-27T20:36:52.253549",
+        "title": "Department of the Interior", "name": "doi-gov", "is_organization":
+        true, "state": "active", "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
+        "revision_id": "b3eb1cfe-c03d-4a50-a3f3-fef98c1949f7", "type": "organization",
+        "id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "approval_status": "approved"},
+        "revision_id": "35605331-1752-41af-a830-e1fd182d419e"}, {"relationships_as_object":
+        [], "private": false, "frequency": "MANUAL", "id": "63e1e52a-8217-4419-b1f7-8c071c8a65ea",
+        "metadata_created": "2020-06-13T01:08:35.861964", "metadata_modified": "2020-06-13T01:08:35.861973",
+        "title": "sandbox catalog-classic", "state": "active", "creator_user_id":
+        "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9", "config": "", "resources": [], "tags":
+        [], "source_type": "ckan", "groups": [], "relationships_as_subject": [], "name":
+        "sandbox-catalog-classic", "url": "https://catalog.sandbox.datagov.us", "type":
+        "harvest", "notes": "", "owner_org": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "organization": {"description": "", "created": "2020-06-09T19:42:21.226717",
+        "title": "General Services Administration", "name": "general-services-administration",
+        "is_organization": true, "state": "active", "image_url": "", "revision_id":
+        "552b7297-d80a-4eab-96a1-f7ce30ccd54f", "type": "organization", "id": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "approval_status": "approved"}, "revision_id": "ebb9cddc-fe1b-4852-9ce3-def61396a54e"},
+        {"relationships_as_object": [], "private": false, "frequency": "MANUAL", "id":
+        "ff138ed6-aff6-4d65-92e9-dbf2d1ec17c6", "metadata_created": "2020-07-21T14:57:05.678164",
+        "metadata_modified": "2020-08-04T15:12:22.057080", "title": "test-2016", "state":
+        "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3", "config":
+        "{\"private_datasets\": \"True\"}", "resources": [], "tags": [], "source_type":
+        "ckan", "groups": [], "relationships_as_subject": [], "name": "test-2016",
+        "url": "test", "type": "harvest", "notes": "", "owner_org": "a376a95d-b898-4c79-adb5-3972a55b5953",
+        "private_datasets": "True", "organization": {"description": "In 2011, the
+        World-Wide Human Geography Data Working Group (WWHGD WG) was created to focus
+        on the need for human geography global foundation data in order to provide
+        a basis for a deeper understanding of cultures, activities, and attitudes.
+        Well-organized and comprehensive human geography data can be applied to analysis
+        that allows us to better anticipate the behavior of people over space and
+        time and to inform decision-making that supports human security, including
+        crisis mitigation and humanitarian response.  The Working Group will focus
+        on understanding why people do what they do where they do it.\r\n\r\nThe WWHGD
+        Working Group is designed to build voluntary partnerships around human geography
+        data and mapping focused on the general principle of making appropriate information
+        available at the appropriate scales to promote human security.  This involves
+        a voluntary \"whole-of-governments\" national and international approach to
+        create a human geography data framework that can leverage ongoing efforts
+        around the world to identify, capture, build, share, and disseminate the best
+        available structured and unstructured foundation data.", "created": "2020-05-27T20:42:53.520820",
+        "title": "World Wide Human Geography Data Working Group", "name": "wwhgd-nga-org",
+        "is_organization": true, "state": "active", "image_url": "http://wwhgd.org/sites/default/files/WWHGD_WorkingGroup_136pixel_Logo.png",
+        "revision_id": "81f0d48e-c35d-4fff-a686-44578f0ae4fa", "type": "organization",
+        "id": "a376a95d-b898-4c79-adb5-3972a55b5953", "approval_status": "approved"},
+        "revision_id": "97ed6291-4587-4eff-909e-4eb566d35309"}], "search_facets":
+        {}}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '6419'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:01:56 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=4b26cadc-df44-479d-8934-e3d8ea49b889
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "4b26cadc-df44-479d-8934-e3d8ea49b889", "metadata_created":
+        "2020-06-04T20:51:17.993044", "metadata_modified": "2020-06-04T20:51:17.993053",
+        "title": "Datos Argentina", "state": "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3",
+        "config": "", "resources": [], "status": {"job_count": 3, "total_datasets":
+        978, "last_job": {"id": "99b48fd3-5535-456c-be15-1be80024e215", "created":
+        "2020-06-24 02:02:06.112908", "gather_started": "2020-06-24 02:02:06.374779",
+        "gather_finished": "2020-06-24 02:02:11.728201", "finished": "2020-06-24 02:02:24.817676",
+        "source_id": "4b26cadc-df44-479d-8934-e3d8ea49b889", "status": "Finished",
+        "stats": {"deleted": 0, "updated": 51, "added": 0, "not modified": 0, "errored":
+        0}, "object_error_summary": [], "gather_error_summary": []}}, "tags": [],
+        "source_type": "ckan", "groups": [], "active": true, "relationships_as_subject":
+        [], "name": "datos-argentina", "url": "https://datos.gob.ar/", "type": "harvest",
+        "notes": "test of ckan harvester", "owner_org": "a186648c-3503-4ef8-9d74-a5165dcaa6f9",
+        "extras": [], "organization": {"description": "", "created": "2020-06-04T20:50:49.413218",
+        "title": "Datos Argentina", "name": "datos-argentina", "is_organization":
+        true, "state": "active", "image_url": "", "revision_id": "6d718a39-7131-469e-8aa1-4087b3a32a68",
+        "type": "organization", "id": "a186648c-3503-4ef8-9d74-a5165dcaa6f9", "approval_status":
+        "approved"}, "revision_id": "6123b04c-96d3-402b-9c44-de439ea1df1a"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1673'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:01:57 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=68fd35af-f59f-4ca0-bc61-459920ccefd7
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "68fd35af-f59f-4ca0-bc61-459920ccefd7", "metadata_created":
+        "2020-06-12T16:20:13.295921", "metadata_modified": "2020-08-04T15:12:36.403696",
+        "title": "DOI Open Data", "state": "active", "creator_user_id": "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9",
+        "config": "{\"private_datasets\": \"False\"}", "resources": [], "status":
+        {"job_count": 2, "total_datasets": 0, "last_job": {"id": "7243d838-2153-42aa-99b9-dc1342d319b4",
+        "created": "2020-08-07 12:19:17.394412", "gather_started": null, "gather_finished":
+        null, "finished": "2020-08-07 17:10:30.252713", "source_id": "68fd35af-f59f-4ca0-bc61-459920ccefd7",
+        "status": "Finished", "stats": {"deleted": 0, "updated": 0, "added": 0, "not
+        modified": 0, "errored": 1}, "object_error_summary": [], "gather_error_summary":
+        [{"message": "Job timeout: 7243d838-2153-42aa-99b9-dc1342d319b4 is taking
+        longer than 120 minutes", "error_count": 1}]}}, "tags": [], "source_type":
+        "ckan", "groups": [], "active": true, "relationships_as_subject": [], "name":
+        "doi-open-data", "url": "https://data.doi.gov", "type": "harvest", "notes":
+        "The Open Data provided by the Department of the Interior", "owner_org": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
+        "private_datasets": "False", "extras": [], "organization": {"description":
+        "DOI Data will be temporarily unavailable on data.gov from 4/30 - 5/2. Access
+        will remain at [https://data.doi.gov](https://data.doi.gov).\r\n\r\nThe Department
+        of the Interior (DOI) conserves and manages the Nation\u2019s natural resources
+        and cultural heritage for the benefit and enjoyment of the American people,
+        provides scientific and other information about natural resources and natural
+        hazards to address societal challenges and create opportunities for the American
+        people, and honors the Nation\u2019s trust responsibilities or special commitments
+        to American Indians, Alaska Natives, and affiliated island communities to
+        help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "created": "2020-05-27T20:36:52.253549",
+        "title": "Department of the Interior", "name": "doi-gov", "is_organization":
+        true, "state": "active", "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
+        "revision_id": "b3eb1cfe-c03d-4a50-a3f3-fef98c1949f7", "type": "organization",
+        "id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "approval_status": "approved"},
+        "revision_id": "35605331-1752-41af-a830-e1fd182d419e"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2603'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:01:58 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=63e1e52a-8217-4419-b1f7-8c071c8a65ea
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "63e1e52a-8217-4419-b1f7-8c071c8a65ea", "metadata_created":
+        "2020-06-13T01:08:35.861964", "metadata_modified": "2020-06-13T01:08:35.861973",
+        "title": "sandbox catalog-classic", "state": "active", "creator_user_id":
+        "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9", "config": "", "resources": [], "status":
+        {"job_count": 1, "total_datasets": 0, "last_job": {"id": "a7256a64-cf10-4b65-994d-3a4e932d7ead",
+        "created": "2020-06-13 01:08:41.057969", "gather_started": "2020-06-13 01:08:41.200409",
+        "gather_finished": "2020-06-13 01:08:41.310402", "finished": "2020-06-13 01:08:41.310402",
+        "source_id": "63e1e52a-8217-4419-b1f7-8c071c8a65ea", "status": "Finished",
+        "stats": {"deleted": 0, "updated": 0, "added": 0, "not modified": 0, "errored":
+        1}, "object_error_summary": [], "gather_error_summary": [{"message": "No datasets
+        found at CKAN: https://catalog.sandbox.datagov.us", "error_count": 1}]}},
+        "tags": [], "source_type": "ckan", "groups": [], "active": true, "relationships_as_subject":
+        [], "name": "sandbox-catalog-classic", "url": "https://catalog.sandbox.datagov.us",
+        "type": "harvest", "notes": "", "owner_org": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "extras": [], "organization": {"description": "", "created": "2020-06-09T19:42:21.226717",
+        "title": "General Services Administration", "name": "general-services-administration",
+        "is_organization": true, "state": "active", "image_url": "", "revision_id":
+        "552b7297-d80a-4eab-96a1-f7ce30ccd54f", "type": "organization", "id": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "approval_status": "approved"}, "revision_id": "ebb9cddc-fe1b-4852-9ce3-def61396a54e"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1803'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:01:59 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=ff138ed6-aff6-4d65-92e9-dbf2d1ec17c6
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "ff138ed6-aff6-4d65-92e9-dbf2d1ec17c6", "metadata_created":
+        "2020-07-21T14:57:05.678164", "metadata_modified": "2020-08-04T15:12:22.057080",
+        "title": "test-2016", "state": "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3",
+        "config": "{\"private_datasets\": \"True\"}", "resources": [], "status": {"job_count":
+        0, "total_datasets": 0, "last_job": null}, "tags": [], "source_type": "ckan",
+        "groups": [], "active": true, "relationships_as_subject": [], "name": "test-2016",
+        "url": "test", "type": "harvest", "notes": "", "owner_org": "a376a95d-b898-4c79-adb5-3972a55b5953",
+        "private_datasets": "True", "extras": [], "organization": {"description":
+        "In 2011, the World-Wide Human Geography Data Working Group (WWHGD WG) was
+        created to focus on the need for human geography global foundation data in
+        order to provide a basis for a deeper understanding of cultures, activities,
+        and attitudes. Well-organized and comprehensive human geography data can be
+        applied to analysis that allows us to better anticipate the behavior of people
+        over space and time and to inform decision-making that supports human security,
+        including crisis mitigation and humanitarian response.  The Working Group
+        will focus on understanding why people do what they do where they do it.\r\n\r\nThe
+        WWHGD Working Group is designed to build voluntary partnerships around human
+        geography data and mapping focused on the general principle of making appropriate
+        information available at the appropriate scales to promote human security.  This
+        involves a voluntary \"whole-of-governments\" national and international approach
+        to create a human geography data framework that can leverage ongoing efforts
+        around the world to identify, capture, build, share, and disseminate the best
+        available structured and unstructured foundation data.", "created": "2020-05-27T20:42:53.520820",
+        "title": "World Wide Human Geography Data Working Group", "name": "wwhgd-nga-org",
+        "is_organization": true, "state": "active", "image_url": "http://wwhgd.org/sites/default/files/WWHGD_WorkingGroup_136pixel_Logo.png",
+        "revision_id": "81f0d48e-c35d-4fff-a686-44578f0ae4fa", "type": "organization",
+        "id": "a376a95d-b898-4c79-adb5-3972a55b5953", "approval_status": "approved"},
+        "revision_id": "97ed6291-4587-4eff-909e-4eb566d35309"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2493'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:01:59 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/package_search?start=0&rows=100&q=%28type%3Aharvest+source_type%3Ackan%29&fq=%2Bdataset_type%3Aharvest&sort=metadata_created+asc
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=package_search",
+        "success": true, "result": {"count": 4, "sort": "metadata_created asc", "facets":
+        {}, "results": [{"relationships_as_object": [], "private": false, "frequency":
+        "MANUAL", "id": "4b26cadc-df44-479d-8934-e3d8ea49b889", "metadata_created":
+        "2020-06-04T20:51:17.993044", "metadata_modified": "2020-06-04T20:51:17.993053",
+        "title": "Datos Argentina", "state": "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3",
+        "config": "", "resources": [], "tags": [], "source_type": "ckan", "groups":
+        [], "relationships_as_subject": [], "name": "datos-argentina", "url": "https://datos.gob.ar/",
+        "type": "harvest", "notes": "test of ckan harvester", "owner_org": "a186648c-3503-4ef8-9d74-a5165dcaa6f9",
+        "organization": {"description": "", "created": "2020-06-04T20:50:49.413218",
+        "title": "Datos Argentina", "name": "datos-argentina", "is_organization":
+        true, "state": "active", "image_url": "", "revision_id": "6d718a39-7131-469e-8aa1-4087b3a32a68",
+        "type": "organization", "id": "a186648c-3503-4ef8-9d74-a5165dcaa6f9", "approval_status":
+        "approved"}, "revision_id": "6123b04c-96d3-402b-9c44-de439ea1df1a"}, {"relationships_as_object":
+        [], "private": false, "frequency": "MANUAL", "id": "68fd35af-f59f-4ca0-bc61-459920ccefd7",
+        "metadata_created": "2020-06-12T16:20:13.295921", "metadata_modified": "2020-08-04T15:12:36.403696",
+        "title": "DOI Open Data", "state": "active", "creator_user_id": "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9",
+        "config": "{\"private_datasets\": \"False\"}", "resources": [], "tags": [],
+        "source_type": "ckan", "groups": [], "relationships_as_subject": [], "name":
+        "doi-open-data", "url": "https://data.doi.gov", "type": "harvest", "notes":
+        "The Open Data provided by the Department of the Interior", "owner_org": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
+        "private_datasets": "False", "organization": {"description": "DOI Data will
+        be temporarily unavailable on data.gov from 4/30 - 5/2. Access will remain
+        at [https://data.doi.gov](https://data.doi.gov).\r\n\r\nThe Department of
+        the Interior (DOI) conserves and manages the Nation\u2019s natural resources
+        and cultural heritage for the benefit and enjoyment of the American people,
+        provides scientific and other information about natural resources and natural
+        hazards to address societal challenges and create opportunities for the American
+        people, and honors the Nation\u2019s trust responsibilities or special commitments
+        to American Indians, Alaska Natives, and affiliated island communities to
+        help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "created": "2020-05-27T20:36:52.253549",
+        "title": "Department of the Interior", "name": "doi-gov", "is_organization":
+        true, "state": "active", "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
+        "revision_id": "b3eb1cfe-c03d-4a50-a3f3-fef98c1949f7", "type": "organization",
+        "id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "approval_status": "approved"},
+        "revision_id": "35605331-1752-41af-a830-e1fd182d419e"}, {"relationships_as_object":
+        [], "private": false, "frequency": "MANUAL", "id": "63e1e52a-8217-4419-b1f7-8c071c8a65ea",
+        "metadata_created": "2020-06-13T01:08:35.861964", "metadata_modified": "2020-06-13T01:08:35.861973",
+        "title": "sandbox catalog-classic", "state": "active", "creator_user_id":
+        "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9", "config": "", "resources": [], "tags":
+        [], "source_type": "ckan", "groups": [], "relationships_as_subject": [], "name":
+        "sandbox-catalog-classic", "url": "https://catalog.sandbox.datagov.us", "type":
+        "harvest", "notes": "", "owner_org": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "organization": {"description": "", "created": "2020-06-09T19:42:21.226717",
+        "title": "General Services Administration", "name": "general-services-administration",
+        "is_organization": true, "state": "active", "image_url": "", "revision_id":
+        "552b7297-d80a-4eab-96a1-f7ce30ccd54f", "type": "organization", "id": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "approval_status": "approved"}, "revision_id": "ebb9cddc-fe1b-4852-9ce3-def61396a54e"},
+        {"relationships_as_object": [], "private": false, "frequency": "MANUAL", "id":
+        "ff138ed6-aff6-4d65-92e9-dbf2d1ec17c6", "metadata_created": "2020-07-21T14:57:05.678164",
+        "metadata_modified": "2020-08-04T15:12:22.057080", "title": "test-2016", "state":
+        "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3", "config":
+        "{\"private_datasets\": \"True\"}", "resources": [], "tags": [], "source_type":
+        "ckan", "groups": [], "relationships_as_subject": [], "name": "test-2016",
+        "url": "test", "type": "harvest", "notes": "", "owner_org": "a376a95d-b898-4c79-adb5-3972a55b5953",
+        "private_datasets": "True", "organization": {"description": "In 2011, the
+        World-Wide Human Geography Data Working Group (WWHGD WG) was created to focus
+        on the need for human geography global foundation data in order to provide
+        a basis for a deeper understanding of cultures, activities, and attitudes.
+        Well-organized and comprehensive human geography data can be applied to analysis
+        that allows us to better anticipate the behavior of people over space and
+        time and to inform decision-making that supports human security, including
+        crisis mitigation and humanitarian response.  The Working Group will focus
+        on understanding why people do what they do where they do it.\r\n\r\nThe WWHGD
+        Working Group is designed to build voluntary partnerships around human geography
+        data and mapping focused on the general principle of making appropriate information
+        available at the appropriate scales to promote human security.  This involves
+        a voluntary \"whole-of-governments\" national and international approach to
+        create a human geography data framework that can leverage ongoing efforts
+        around the world to identify, capture, build, share, and disseminate the best
+        available structured and unstructured foundation data.", "created": "2020-05-27T20:42:53.520820",
+        "title": "World Wide Human Geography Data Working Group", "name": "wwhgd-nga-org",
+        "is_organization": true, "state": "active", "image_url": "http://wwhgd.org/sites/default/files/WWHGD_WorkingGroup_136pixel_Logo.png",
+        "revision_id": "81f0d48e-c35d-4fff-a686-44578f0ae4fa", "type": "organization",
+        "id": "a376a95d-b898-4c79-adb5-3972a55b5953", "approval_status": "approved"},
+        "revision_id": "97ed6291-4587-4eff-909e-4eb566d35309"}], "search_facets":
+        {}}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '6419'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:18:13 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=4b26cadc-df44-479d-8934-e3d8ea49b889
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "4b26cadc-df44-479d-8934-e3d8ea49b889", "metadata_created":
+        "2020-06-04T20:51:17.993044", "metadata_modified": "2020-06-04T20:51:17.993053",
+        "title": "Datos Argentina", "state": "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3",
+        "config": "", "resources": [], "status": {"job_count": 3, "total_datasets":
+        978, "last_job": {"id": "99b48fd3-5535-456c-be15-1be80024e215", "created":
+        "2020-06-24 02:02:06.112908", "gather_started": "2020-06-24 02:02:06.374779",
+        "gather_finished": "2020-06-24 02:02:11.728201", "finished": "2020-06-24 02:02:24.817676",
+        "source_id": "4b26cadc-df44-479d-8934-e3d8ea49b889", "status": "Finished",
+        "stats": {"deleted": 0, "updated": 51, "added": 0, "not modified": 0, "errored":
+        0}, "object_error_summary": [], "gather_error_summary": []}}, "tags": [],
+        "source_type": "ckan", "groups": [], "active": true, "relationships_as_subject":
+        [], "name": "datos-argentina", "url": "https://datos.gob.ar/", "type": "harvest",
+        "notes": "test of ckan harvester", "owner_org": "a186648c-3503-4ef8-9d74-a5165dcaa6f9",
+        "extras": [], "organization": {"description": "", "created": "2020-06-04T20:50:49.413218",
+        "title": "Datos Argentina", "name": "datos-argentina", "is_organization":
+        true, "state": "active", "image_url": "", "revision_id": "6d718a39-7131-469e-8aa1-4087b3a32a68",
+        "type": "organization", "id": "a186648c-3503-4ef8-9d74-a5165dcaa6f9", "approval_status":
+        "approved"}, "revision_id": "6123b04c-96d3-402b-9c44-de439ea1df1a"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1673'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:18:15 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=68fd35af-f59f-4ca0-bc61-459920ccefd7
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "68fd35af-f59f-4ca0-bc61-459920ccefd7", "metadata_created":
+        "2020-06-12T16:20:13.295921", "metadata_modified": "2020-08-04T15:12:36.403696",
+        "title": "DOI Open Data", "state": "active", "creator_user_id": "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9",
+        "config": "{\"private_datasets\": \"False\"}", "resources": [], "status":
+        {"job_count": 2, "total_datasets": 0, "last_job": {"id": "7243d838-2153-42aa-99b9-dc1342d319b4",
+        "created": "2020-08-07 12:19:17.394412", "gather_started": null, "gather_finished":
+        null, "finished": "2020-08-07 17:10:30.252713", "source_id": "68fd35af-f59f-4ca0-bc61-459920ccefd7",
+        "status": "Finished", "stats": {"deleted": 0, "updated": 0, "added": 0, "not
+        modified": 0, "errored": 1}, "object_error_summary": [], "gather_error_summary":
+        [{"message": "Job timeout: 7243d838-2153-42aa-99b9-dc1342d319b4 is taking
+        longer than 120 minutes", "error_count": 1}]}}, "tags": [], "source_type":
+        "ckan", "groups": [], "active": true, "relationships_as_subject": [], "name":
+        "doi-open-data", "url": "https://data.doi.gov", "type": "harvest", "notes":
+        "The Open Data provided by the Department of the Interior", "owner_org": "01ca8df8-6248-41e6-baa2-8b682e4b5a08",
+        "private_datasets": "False", "extras": [], "organization": {"description":
+        "DOI Data will be temporarily unavailable on data.gov from 4/30 - 5/2. Access
+        will remain at [https://data.doi.gov](https://data.doi.gov).\r\n\r\nThe Department
+        of the Interior (DOI) conserves and manages the Nation\u2019s natural resources
+        and cultural heritage for the benefit and enjoyment of the American people,
+        provides scientific and other information about natural resources and natural
+        hazards to address societal challenges and create opportunities for the American
+        people, and honors the Nation\u2019s trust responsibilities or special commitments
+        to American Indians, Alaska Natives, and affiliated island communities to
+        help them prosper.\r\n\r\nSee more at https://www.doi.gov/", "created": "2020-05-27T20:36:52.253549",
+        "title": "Department of the Interior", "name": "doi-gov", "is_organization":
+        true, "state": "active", "image_url": "https://www.doi.gov/sites/doi.opengov.ibmcloud.com/themes/custom/doi_gov/logo.png",
+        "revision_id": "b3eb1cfe-c03d-4a50-a3f3-fef98c1949f7", "type": "organization",
+        "id": "01ca8df8-6248-41e6-baa2-8b682e4b5a08", "approval_status": "approved"},
+        "revision_id": "35605331-1752-41af-a830-e1fd182d419e"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2603'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:18:16 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=63e1e52a-8217-4419-b1f7-8c071c8a65ea
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "63e1e52a-8217-4419-b1f7-8c071c8a65ea", "metadata_created":
+        "2020-06-13T01:08:35.861964", "metadata_modified": "2020-06-13T01:08:35.861973",
+        "title": "sandbox catalog-classic", "state": "active", "creator_user_id":
+        "1a1c53a7-3a3c-45f3-947e-e2a86812ecd9", "config": "", "resources": [], "status":
+        {"job_count": 1, "total_datasets": 0, "last_job": {"id": "a7256a64-cf10-4b65-994d-3a4e932d7ead",
+        "created": "2020-06-13 01:08:41.057969", "gather_started": "2020-06-13 01:08:41.200409",
+        "gather_finished": "2020-06-13 01:08:41.310402", "finished": "2020-06-13 01:08:41.310402",
+        "source_id": "63e1e52a-8217-4419-b1f7-8c071c8a65ea", "status": "Finished",
+        "stats": {"deleted": 0, "updated": 0, "added": 0, "not modified": 0, "errored":
+        1}, "object_error_summary": [], "gather_error_summary": [{"message": "No datasets
+        found at CKAN: https://catalog.sandbox.datagov.us", "error_count": 1}]}},
+        "tags": [], "source_type": "ckan", "groups": [], "active": true, "relationships_as_subject":
+        [], "name": "sandbox-catalog-classic", "url": "https://catalog.sandbox.datagov.us",
+        "type": "harvest", "notes": "", "owner_org": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "extras": [], "organization": {"description": "", "created": "2020-06-09T19:42:21.226717",
+        "title": "General Services Administration", "name": "general-services-administration",
+        "is_organization": true, "state": "active", "image_url": "", "revision_id":
+        "552b7297-d80a-4eab-96a1-f7ce30ccd54f", "type": "organization", "id": "7284b70c-11d2-4687-8b62-5092773bdea8",
+        "approval_status": "approved"}, "revision_id": "ebb9cddc-fe1b-4852-9ce3-def61396a54e"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1803'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:18:18 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Remote CKAN 1.0
+    method: GET
+    uri: https://catalog-next.sandbox.datagov.us/api/3/action/harvest_source_show?id=ff138ed6-aff6-4d65-92e9-dbf2d1ec17c6
+  response:
+    body:
+      string: '{"help": "https://catalog-next.sandbox.datagov.us/api/3/action/help_show?name=harvest_source_show",
+        "success": true, "result": {"relationships_as_object": [], "private": false,
+        "frequency": "MANUAL", "id": "ff138ed6-aff6-4d65-92e9-dbf2d1ec17c6", "metadata_created":
+        "2020-07-21T14:57:05.678164", "metadata_modified": "2020-08-04T15:12:22.057080",
+        "title": "test-2016", "state": "active", "creator_user_id": "c8774253-2921-4650-af78-600f57482ec3",
+        "config": "{\"private_datasets\": \"True\"}", "resources": [], "status": {"job_count":
+        0, "total_datasets": 0, "last_job": null}, "tags": [], "source_type": "ckan",
+        "groups": [], "active": true, "relationships_as_subject": [], "name": "test-2016",
+        "url": "test", "type": "harvest", "notes": "", "owner_org": "a376a95d-b898-4c79-adb5-3972a55b5953",
+        "private_datasets": "True", "extras": [], "organization": {"description":
+        "In 2011, the World-Wide Human Geography Data Working Group (WWHGD WG) was
+        created to focus on the need for human geography global foundation data in
+        order to provide a basis for a deeper understanding of cultures, activities,
+        and attitudes. Well-organized and comprehensive human geography data can be
+        applied to analysis that allows us to better anticipate the behavior of people
+        over space and time and to inform decision-making that supports human security,
+        including crisis mitigation and humanitarian response.  The Working Group
+        will focus on understanding why people do what they do where they do it.\r\n\r\nThe
+        WWHGD Working Group is designed to build voluntary partnerships around human
+        geography data and mapping focused on the general principle of making appropriate
+        information available at the appropriate scales to promote human security.  This
+        involves a voluntary \"whole-of-governments\" national and international approach
+        to create a human geography data framework that can leverage ongoing efforts
+        around the world to identify, capture, build, share, and disseminate the best
+        available structured and unstructured foundation data.", "created": "2020-05-27T20:42:53.520820",
+        "title": "World Wide Human Geography Data Working Group", "name": "wwhgd-nga-org",
+        "is_organization": true, "state": "active", "image_url": "http://wwhgd.org/sites/default/files/WWHGD_WorkingGroup_136pixel_Logo.png",
+        "revision_id": "81f0d48e-c35d-4fff-a686-44578f0ae4fa", "type": "organization",
+        "id": "a376a95d-b898-4c79-adb5-3972a55b5953", "approval_status": "approved"},
+        "revision_id": "97ed6291-4587-4eff-909e-4eb566d35309"}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - X-CKAN-API-KEY, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2493'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 28 Sep 2020 12:18:19 GMT
+      Referrer-Policy:
+      - origin
+      Server:
+      - gunicorn/19.10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
