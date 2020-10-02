@@ -96,5 +96,5 @@ harvest-fetch-queue:
 harvest-gather-queue:
 	docker-compose exec ckan paster --plugin=ckanext-harvest harvester gather_consumer
 
-harvets-check-finished-jobs:
+harvest-check-finished-jobs:
 	docker-compose exec ckan paster --plugin=ckanext-harvest harvester run
