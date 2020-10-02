@@ -94,7 +94,7 @@ sqlparse==0.2.2
 tempita==0.5.2
 tzlocal==1.3
 unicodecsv==0.14.1
-urllib3==1.24.3
+urllib3==1.25.9
 vdm==0.14
 webencodings==0.5.1
 weberror==0.13.1
