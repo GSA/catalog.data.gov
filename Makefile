@@ -90,11 +90,11 @@ archiver-worker:
 	export C_FORCE_ROOT=1  # celery don't want to run as root
 	docker-compose exec ckan paster --plugin=ckanext-archiver celeryd2 run all
 
-harvets-fetch-queue:
-	docker-compose exec ckan paster --plugin=ckanext-harvest harvester gather_consumer
-
-harvets-gather-queue:
+harvest-fetch-queue:
 	docker-compose exec ckan paster --plugin=ckanext-harvest harvester fetch_consumer
 
-harvets-check-finished-jobs:
+harvest-gather-queue:
+	docker-compose exec ckan paster --plugin=ckanext-harvest harvester gather_consumer
+
+harvest-check-finished-jobs:
 	docker-compose exec ckan paster --plugin=ckanext-harvest harvester run
