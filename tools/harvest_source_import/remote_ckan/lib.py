@@ -421,6 +421,12 @@ class RemoteCKAN:
         for k, v in config.items():
             if type(v) is bool:
                 config[k] = str(v)
+            # DOI CKAN harvest source is setting force_all as a string and CKAN expects a boolean
+            if k == "force_all":
+                if v.lower() == "true":
+                    config[k] = True
+                elif v.lower() == "false":
+                    config[k] = False
         return json.dumps(config)
 
     def request_ckan(self, method, url, data):
