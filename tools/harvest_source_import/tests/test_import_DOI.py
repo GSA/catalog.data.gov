@@ -28,4 +28,5 @@ def test_load_from_name():
     # check the forde_all config
     cfg = ckan.harvest_sources[name]['ckan_package']['config']
     cfg_data = json.loads(cfg)
+    assert type(cfg_data['force_all']) == bool
     assert cfg_data['force_all']
