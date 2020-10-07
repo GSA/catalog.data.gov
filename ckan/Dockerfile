@@ -34,7 +34,7 @@ RUN cd ${SRC_DIR}/ckan && \
 RUN sed -i '/GSA\/ckan\.git/d' ${APP_DIR}/requirements.txt
 
 RUN pip install -r requirements.txt
-RUN pip install poetry
+RUN pip install poetry==1.0.10
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
