@@ -192,7 +192,11 @@ python-versions = "*"
 version = "0.0.1"
 
 [package.source]
+<<<<<<< HEAD
 reference = "2a599a5de96a9a4f5b3a73bb6f93bf509c08df4e"
+=======
+reference = "2c724d8c12b31642fc8b2820627fab6fedf15ee7"
+>>>>>>> Update ckanext-saml2
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovcatalog.git"
 [[package]]
@@ -248,7 +252,11 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
+<<<<<<< HEAD
 reference = "73fd9299092d7b33342bfc746c1def38389753f7"
+=======
+reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
+>>>>>>> Update ckanext-saml2
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -272,7 +280,11 @@ python-versions = "*"
 version = "1.3.2"
 
 [package.source]
+<<<<<<< HEAD
 reference = "373822409d7554f23d35b660ff347b0aefcd2e0e"
+=======
+reference = "2be8842270c1ec04d54049152b25738761bcb03b"
+>>>>>>> Update ckanext-saml2
 type = "git"
 url = "https://github.com/ckan/ckanext-harvest.git"
 [[package]]
