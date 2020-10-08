@@ -11,8 +11,10 @@ GROUP_ID=$2
 
 cd /requirements
 
-poetry lock
-poetry export --format requirements.txt --output requirements.txt --without-hashes
+echo "Running poetry lock ..."
+poetry lock -vvv
+echo "Running poetry export ..."
+poetry export -vvv --format requirements.txt --output requirements.txt --without-hashes
 
 # sadness -- pyz3950 is so old that poetry can't make sense of it's setup.py, so
 # we have to add the requirement manually
