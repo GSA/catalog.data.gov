@@ -253,10 +253,14 @@ version = "0.1"
 
 [package.source]
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "73fd9299092d7b33342bfc746c1def38389753f7"
 =======
 reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
 >>>>>>> Update ckanext-saml2
+=======
+reference = "28fc76c92671e9e2aa753446d75ab6901d168b49"
+>>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -281,10 +285,14 @@ version = "1.3.2"
 
 [package.source]
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "373822409d7554f23d35b660ff347b0aefcd2e0e"
 =======
 reference = "2be8842270c1ec04d54049152b25738761bcb03b"
 >>>>>>> Update ckanext-saml2
+=======
+reference = "8cde93c153d9f55f15dc68ff7583611b611de456"
+>>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
 type = "git"
 url = "https://github.com/ckan/ckanext-harvest.git"
 [[package]]
@@ -324,6 +332,24 @@ type = "git"
 url = "https://github.com/davidread/ckanext-report.git"
 [[package]]
 category = "main"
+<<<<<<< HEAD
+=======
+description = "Saml2 authentication extension"
+name = "ckanext-saml2"
+optional = false
+python-versions = "*"
+version = "0.4.0"
+
+[package.dependencies]
+python-memcached = "1.48"
+
+[package.source]
+reference = "6fed380be4fde53071a245e0f7c6f10f4eaa2b8b"
+type = "git"
+url = "https://github.com/GSA/ckanext-saml2.git"
+[[package]]
+category = "main"
+>>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
 description = "Geo-related plugins for CKAN"
 name = "ckanext-spatial"
 optional = false
@@ -1430,10 +1456,14 @@ testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
 <<<<<<< HEAD
+<<<<<<< HEAD
 content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
 =======
 content-hash = "5e927a0c0748047163eb82ce4d7c49623a1a35c7b98d1e9a21e9caf5bb424a1d"
 >>>>>>> Add pysaml2 and deps to requirements.
+=======
+content-hash = "1fa0a769cf3847bd5ae19d4cbd9a150ccc6166f64da030d93374a4d54a74a059"
+>>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
 lock-version = "1.0"
 python-versions = "^2.7"
 
