@@ -254,10 +254,10 @@ description = "Harvesting interface plugin for CKAN"
 name = "ckanext-harvest"
 optional = false
 python-versions = "*"
-version = "1.3.1"
+version = "1.3.2"
 
 [package.source]
-reference = "2be8842270c1ec04d54049152b25738761bcb03b"
+reference = "8cde93c153d9f55f15dc68ff7583611b611de456"
 type = "git"
 url = "https://github.com/ckan/ckanext-harvest.git"
 [[package]]
