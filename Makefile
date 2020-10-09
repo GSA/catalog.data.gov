@@ -7,8 +7,6 @@ all: build
 ci:
 	docker-compose up -d
 	sleep 40
-	docker-compose logs db
-	docker-compose logs ckan
 
 build:
 	docker-compose build
@@ -54,7 +52,6 @@ test-import-tool:
 		python -m pytest --vcr-record=none tests/
 
 lint-all:
-	docker-compose up -d
 	docker-compose exec ckan \
 		bash -c "cd $(CKAN_HOME)/src && \
 		 		 pip install --upgrade pip  && \

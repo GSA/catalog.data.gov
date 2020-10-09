@@ -1,14 +1,19 @@
 version: 2.1
 jobs:
+  bat_test:
+    machine: true
+    steps:
+      - checkout
+      - run: make test
+      
   build:
     machine: true
     steps:
       - checkout
       - run: make build ci
-      - run: make test-extensions
       - run: make lint-all
-      - run: make test
-      
+      - run: make test-extensions
+
   deploy-sandbox:
     docker:
       - image: circleci/python:3.6
@@ -41,3 +46,4 @@ workflows:
             branches:
               only: master
       - test_importer
+      - bat_test
