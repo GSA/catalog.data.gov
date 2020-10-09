@@ -5,10 +5,10 @@ jobs:
     steps:
       - checkout
       - run: make build ci
-      - run: make test
-      - run: make lint-all
       - run: make test-extensions
-
+      - run: make lint-all
+      - run: make test
+      
   deploy-sandbox:
     docker:
       - image: circleci/python:3.6
