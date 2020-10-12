@@ -122,6 +122,7 @@ werkzeug = "~0.15.3"
 
 gunicorn = "*"
 gevent = "*"
+greenlet = "*"
 
 
 [tool.poetry.dev-dependencies]
