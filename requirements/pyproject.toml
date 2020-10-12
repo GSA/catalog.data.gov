@@ -122,6 +122,8 @@ werkzeug = "~0.15.3"
 
 gunicorn = "*"
 
+# New Relic
+newrelic = "*"
 
 [tool.poetry.dev-dependencies]
 
