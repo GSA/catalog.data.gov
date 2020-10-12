@@ -36,8 +36,8 @@ funcsigs==1.0.2
 genshi==0.7.3
 geoalchemy==0.7.2
 geoalchemy2==0.5.0
-gevent==20.9.0
-greenlet==0.4.17
+gevent==1.2.2
+greenlet==0.4.12
 gunicorn==19.10.0
 html5lib==1.1
 idna==2.7
@@ -105,6 +105,5 @@ webob==1.0.8
 webtest==1.4.3
 werkzeug==0.15.6
 xlrd==1.2.0
-zope.event==4.5.0
 zope.interface==4.3.2
 -e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
