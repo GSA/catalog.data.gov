@@ -740,7 +740,10 @@ description = "Load, configure, and compose WSGI applications and servers"
 name = "pastedeploy"
 optional = false
 python-versions = "*"
-version = "2.1.0"
+version = "2.1.1"
+
+[package.dependencies]
+setuptools = "*"
 
 [package.extras]
 docs = ["Sphinx (>=1.7.5)", "pylons-sphinx-themes"]
@@ -1623,8 +1626,8 @@ paste = [
     {file = "Paste-1.7.5.1.tar.gz", hash = "sha256:11645842ba8ec986ae8cfbe4c6cacff5c35f0f4527abf4f5581ae8b4ad49c0b6"},
 ]
 pastedeploy = [
-    {file = "PasteDeploy-2.1.0-py2.py3-none-any.whl", hash = "sha256:bc6578735a32c77435a3e0769426983d3df6dc53a7229290c495ec10aefb81a5"},
-    {file = "PasteDeploy-2.1.0.tar.gz", hash = "sha256:e7559878b6e92023041484be9bcb6d767cf4492fc3de7257a5dae76a7cc11a9b"},
+    {file = "PasteDeploy-2.1.1-py2.py3-none-any.whl", hash = "sha256:14923cfd6ad4281b570693afc278bab5076fbdd4cd15aa9d99b042d694aa4217"},
+    {file = "PasteDeploy-2.1.1.tar.gz", hash = "sha256:6dead6ab9823a85d585ef27f878bc647f787edb9ca8da0716aa9f1261b464817"},
 ]
 pastescript = [
     {file = "PasteScript-2.0.2-py2.py3-none-any.whl", hash = "sha256:6533bb357d44fd8e0b10abf2775e8089252dd3ed58eba56d9c07e43d71758f48"},
