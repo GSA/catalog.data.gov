@@ -25,7 +25,7 @@ def test_load_from_name():
 
     print(ckan.harvest_sources[name])
     
-    # check the forde_all config
+    # check the force_all config
     cfg = ckan.harvest_sources[name]['ckan_package']['config']
     cfg_data = json.loads(cfg)
     assert type(cfg_data['force_all']) == bool
