@@ -237,6 +237,7 @@ class RemoteCKAN:
         config = data.get('config', {})
         if type(config) == str:
             config = json.loads(config)
+        
         default_groups = config.get('default_groups', [])
         if type(default_groups) == str:
             default_groups = [default_groups]
@@ -247,6 +248,8 @@ class RemoteCKAN:
                 return False, status, f'Unable to create group: {error}'
 
         ckan_package = self.get_package_from_data(data)
+        self.harvest_sources[data['name']]['ckan_package'] = ckan_package
+        
         package_create_url = f'{self.destination_url}/api/3/action/harvest_source_create'
         logger.info('Creating harvest source {}'.format(ckan_package['title']))
 
