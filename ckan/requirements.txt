@@ -36,6 +36,8 @@ funcsigs==1.0.2
 genshi==0.7.3
 geoalchemy==0.7.2
 geoalchemy2==0.5.0
+gevent==1.2.2
+greenlet==0.4.12
 gunicorn==19.10.0
 html5lib==1.1
 idna==2.7
@@ -59,7 +61,7 @@ packaging==20.4
 pairtree==0.7.1-T
 passlib==1.6.5
 paste==1.7.5.1
-pastedeploy==2.1.0
+pastedeploy==2.1.1
 pastescript==2.0.2
 pbr==1.10.0
 pika==1.1.0
