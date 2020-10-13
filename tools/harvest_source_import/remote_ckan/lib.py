@@ -160,6 +160,38 @@ class RemoteCKAN:
         self.save_temp_json('harvest-source', full_hs['result']['name'], full_hs['result'])
         return full_hs['result']
 
+    def get_full_package(self, name_or_id, url=None):
+        """ get full info (including job status) for a Harvest Source """
+        if url is None:
+            url = self.url
+
+        show_url = f'{url}/api/3/action/package_show'
+        params = {'id': name_or_id}
+        
+        headers = self.get_request_headers(include_api_key=False)
+
+        error = None
+        logger.info(f'Get package {show_url} {params}')
+        try:
+            response = requests.get(show_url, params=params, headers=headers, timeout=self.requests_timeout)
+        except Exception as e:
+            error = f'Request harvest source Error: {e}'
+        else:
+            if response.status_code >= 500:
+                error = f'Error [{response.status_code}] getting harvest source info: {show_url}\n\t{params}'
+            elif response.status_code == 404:
+                return None
+            elif response.status_code >= 400:
+                error = f'Error [{response.status_code}] getting harvest source info: "{response.content}"'
+
+        if error is not None:
+            logger.error(error)
+            self.errors.append(error)
+            return None
+
+        package_response = response.json()
+        return package_response['result']
+
     def get_full_organization(self, org, url=None):
         """ get full info (including job status) for a Harvest Source """
 
@@ -320,7 +352,14 @@ class RemoteCKAN:
         
         return groups
 
-    def get_full_group(self, group_name, url=None):
+    def assign_groups(self, group_name):
+        """ Connect datasets to a groups in use in the previous CKAN instance
+        """
+        # get group AND datasets
+        full_group = self.get_full_group(group_name=group_name, url=None, include_datasets=True)
+
+
+    def get_full_group(self, group_name, url=None, include_datasets=False):
         """ get full info (including job status) for a Harvest Source """
         if url is None:
             url = self.url
@@ -328,6 +367,9 @@ class RemoteCKAN:
         group_show_url = f'{url}/api/3/action/group_show'
 
         params = {'id': group_name}
+        if include_datasets:
+            params['include_datasets'] = True
+
         headers = self.get_request_headers(include_api_key=False)
 
         logger.info(f'Get group data {group_show_url} {params}')

@@ -1,9 +1,9 @@
 """
 Migrate groups from one CKAN instance to another
-/api/3/action/group_list (/api/3/action/group_list?all_fields=1)
 """
 
 import argparse
+import json
 import os
 import time
 
@@ -21,11 +21,37 @@ args = parser.parse_args()
 ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destination_api_key)
 
+not_found = []
 for group in ckan.get_group_list():
     print('Group Found {}'.format(group))
+    
+    # create this group at destination
+    ckan.create_group(group)
+    
+    # get all datasets from this group and (if exist) add dataset to this group
+    full_group = ckan.get_full_group(group_name=group, include_datasets=True)
 
+    print(json.dumps(full_group, indent=4))
+    packages = full_group.get('packages', [])
+    for package in packages:
+        name = package['name']
+        # if this dataset exists in the new CKAN instance we need to update to add this group
+        package = ckan.get_full_package(name_or_id=name, url=args.destination_ur)
+        if packages is None:
+            not_found.append({'group': group, 'dataset_name': name})
+        
+        # check if the groups already exist at the destination package
+        if group in [grp[name] for grp in package['groups']]:
+            print('Group {} already exists for {}'.format(group, name))
+            continue
+        
+        # TODO update the dataset at the new environment to set the group
+        
 
 if len(ckan.errors) > 0:
     print('*******\nWITH ERRORS\n*******')
     print('\n\t'.join(ckan.errors))
 
+print('Datasets not found: {}'.format(len(not_found)))
+for nf in not_found:
+    print('\tDataset {} at group {}'.format(nf['dataset_name', nf['group']]))
