@@ -254,6 +254,7 @@ version = "0.1"
 [package.source]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "73fd9299092d7b33342bfc746c1def38389753f7"
 =======
 reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
@@ -261,6 +262,9 @@ reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
 =======
 reference = "28fc76c92671e9e2aa753446d75ab6901d168b49"
 >>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
+=======
+reference = "bb0bdc1d58e189166150b509944ddc292a0d448c"
+>>>>>>> Update requirements for latest ckanext-saml2
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -344,7 +348,7 @@ version = "0.4.0"
 python-memcached = "1.48"
 
 [package.source]
-reference = "6fed380be4fde53071a245e0f7c6f10f4eaa2b8b"
+reference = "fb28beb35eed857b08b0315ed929c8ff3af4feed"
 type = "git"
 url = "https://github.com/GSA/ckanext-saml2.git"
 [[package]]
@@ -1457,6 +1461,7 @@ testing = ["zope.event", "nose", "coverage"]
 [metadata]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
 =======
 content-hash = "5e927a0c0748047163eb82ce4d7c49623a1a35c7b98d1e9a21e9caf5bb424a1d"
@@ -1464,6 +1469,9 @@ content-hash = "5e927a0c0748047163eb82ce4d7c49623a1a35c7b98d1e9a21e9caf5bb424a1d
 =======
 content-hash = "1fa0a769cf3847bd5ae19d4cbd9a150ccc6166f64da030d93374a4d54a74a059"
 >>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
+=======
+content-hash = "98f888af0ab305dee40b283842bbfc873fb6acb97722da0d6276009835f51e42"
+>>>>>>> Update requirements for latest ckanext-saml2
 lock-version = "1.0"
 python-versions = "^2.7"
 
