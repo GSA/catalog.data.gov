@@ -286,6 +286,40 @@ class RemoteCKAN:
 
         return updated, status, error
 
+    def get_group_list(self, url=None):
+        """ get all groups """
+        if url is None:
+            url = self.url
+
+        group_list_url = f'{url}/api/3/action/group_list'
+        headers = self.get_request_headers(include_api_key=False)
+        logger.info(f'Get group list from {group_list_url}')
+
+        error = None
+
+        try:
+            response = requests.get(group_list_url, headers=headers, timeout=self.requests_timeout)
+        except Exception as e:
+            error = f'Request group Error: {e}'
+        else:
+            if response.status_code >= 400:
+                error = f'Error [{response.status_code}] getting group info: \n{response.headers}\n {response.content}'
+                logger.error(error)
+                self.errors.append(error)
+            else:
+                response = response.json()
+                groups = response['result']
+
+        if error is not None:
+            logger.error(error)
+            self.errors.append(error)
+
+            return None
+
+        self.save_temp_json('group', 'list', groups)
+        
+        return groups
+
     def get_full_group(self, group_name, url=None):
         """ get full info (including job status) for a Harvest Source """
         if url is None:
