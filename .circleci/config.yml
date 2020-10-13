@@ -1,19 +1,17 @@
 version: 2.1
 jobs:
   bat_test:
-    machine: true
+    machine: 
+      docker_layer_caching: true 
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run: make test
       
   build:
-    machine: true
+    machine: 
+      docker_layer_caching: true 
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run: make build ci
       - run: make lint-all
       - run: make test-extensions
