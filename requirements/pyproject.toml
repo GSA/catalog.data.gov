@@ -119,8 +119,12 @@ werkzeug = "~0.15.3"
 "zope.interface" = "4.3.2"
 
 # we are running under gunicorn
+# Pinned greenlet version to match version delivered with OS,
+# preventing error with gevent dependency using newer version.
 
 gunicorn = "*"
+gevent = "*"
+greenlet = "0.4.12"
 
 
 [tool.poetry.dev-dependencies]
