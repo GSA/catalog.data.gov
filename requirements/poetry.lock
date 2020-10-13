@@ -348,7 +348,7 @@ version = "0.4.0"
 python-memcached = "1.48"
 
 [package.source]
-reference = "fb28beb35eed857b08b0315ed929c8ff3af4feed"
+reference = "ef7f2408f8b12227ba5805bdafc79b82fe27b3dd"
 type = "git"
 url = "https://github.com/GSA/ckanext-saml2.git"
 [[package]]

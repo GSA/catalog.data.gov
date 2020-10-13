@@ -39,11 +39,15 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
 <<<<<<< HEAD
+<<<<<<< HEAD
 -e git+https://github.com/GSA/ckanext-saml2.git@6fed380be4fde53071a245e0f7c6f10f4eaa2b8b#egg=ckanext-saml2
 >>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
 =======
 -e git+https://github.com/GSA/ckanext-saml2.git@fb28beb35eed857b08b0315ed929c8ff3af4feed#egg=ckanext-saml2
 >>>>>>> Update requirements for latest ckanext-saml2
+=======
+-e git+https://github.com/GSA/ckanext-saml2.git@ef7f2408f8b12227ba5805bdafc79b82fe27b3dd#egg=ckanext-saml2
+>>>>>>> Updates to pick up latest ckanext-saml2
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
