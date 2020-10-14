@@ -35,7 +35,7 @@ for group in ckan.get_group_list():
     # get all datasets from this group and (if exist) add dataset to this group
     full_group = ckan.get_full_group(group_name=group, include_datasets=True)
 
-    packages = full_group.get('packages', [])
+    packages = ckan.get_datasets_in_group(group_name=full_group['name'])
     for package in packages:
         name = package['name']
         # if this dataset exists in the new CKAN instance we need to update to add this group

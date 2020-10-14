@@ -352,6 +352,38 @@ class RemoteCKAN:
         
         return groups
 
+    def get_datasets_in_group(self, group_name):
+        
+        logger.info(f'List dataset in group {group_name}')
+
+        package_search_url = f'{self.url}/api/3/action/package_search'
+        
+        params = {
+            'start': 0,
+            'rows': 500,
+            'fq': 'groups:{}'.format(group_name)
+        }
+        
+        headers = self.get_request_headers(include_api_key=True)
+
+        logger.debug(f'request {package_search_url} {params}')
+        response = requests.get(package_search_url, params=params, headers=headers, timeout=self.requests_timeout)
+        if response.status_code >= 400:
+            error = f'ERROR getting dataset in groups: {response.status_code} {response.text}'
+            self.errors.append(error)
+            logger.error(error)
+            raise ValueError(error)
+
+        data = response.json()
+
+        if not data['success']:
+            error = 'ERROR searching datasets in group {}'.format(data['error'])
+            logger.error(error)
+            self.errors.append(error)
+            raise ValueError(error)
+
+        return data['result']['results']
+
     def get_full_group(self, group_name, url=None, include_datasets=False):
         """ get full info (including job status) for a Harvest Source """
         if url is None:
