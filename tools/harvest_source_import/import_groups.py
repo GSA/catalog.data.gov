@@ -36,9 +36,10 @@ for group in ckan.get_group_list():
     for package in packages:
         name = package['name']
         # if this dataset exists in the new CKAN instance we need to update to add this group
-        package = ckan.get_full_package(name_or_id=name, url=args.destination_ur)
-        if packages is None:
+        package = ckan.get_full_package(name_or_id=name, url=args.destination_url)
+        if package is None:
             not_found.append({'group': group, 'dataset_name': name})
+            continue
         
         # check if the groups already exist at the destination package
         if group in [grp[name] for grp in package['groups']]:
@@ -46,7 +47,14 @@ for group in ckan.get_group_list():
             continue
         
         # TODO update the dataset at the new environment to set the group
+        package_update_url = f'{self.destination_url}/api/3/action/package_update'
+        logger.info(' ** Updating package {}'.format(name))
+
+        package["groups"].append({'name': full_group['name']})
+
+        updated, status, error = self.request_ckan(url=package_update_url, method='POST', data=package)
         
+        print(' ** Updated {} ** Status {} ** Error {} **'.format(updated, status, error))
 
 if len(ckan.errors) > 0:
     print('*******\nWITH ERRORS\n*******')
@@ -54,4 +62,4 @@ if len(ckan.errors) > 0:
 
 print('Datasets not found: {}'.format(len(not_found)))
 for nf in not_found:
-    print('\tDataset {} at group {}'.format(nf['dataset_name', nf['group']]))
+    print('\tDataset {} at group {}'.format(nf['dataset_name'], nf['group']))
