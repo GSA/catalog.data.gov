@@ -429,12 +429,11 @@ class RemoteCKAN:
         return group
 
     def create_group(self, group_name):
-        """ Creates a new group in CKAN destination
-            Params:
-                data (dics): Required fields to create
-        """
-        full_group = self.get_full_group(group_name=group_name)
+        """ Creates a new group in CKAN destination """
 
+        full_group = self.get_full_group(group_name=group_name)
+        if full_group is None:
+            return None
         # remove packages from data because they are not harvested yet
         full_group.pop('packages', None)
         full_group.pop('id', None)
