@@ -126,6 +126,8 @@ gunicorn = "*"
 gevent = "*"
 greenlet = "0.4.12"
 
+# New Relic
+newrelic = "*"
 
 [tool.poetry.dev-dependencies]
 
