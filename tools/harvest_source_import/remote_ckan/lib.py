@@ -168,7 +168,7 @@ class RemoteCKAN:
         show_url = f'{url}/api/3/action/package_show'
         params = {'id': name_or_id}
         
-        headers = self.get_request_headers(include_api_key=False)
+        headers = self.get_request_headers(include_api_key=True)
 
         error = None
         logger.info(f'Get package {show_url} {params}')

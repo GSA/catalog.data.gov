@@ -22,6 +22,10 @@ ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destination_api_key)
 
 not_found = []
+already_in_group = []
+added_to_group = []
+failed_to_add = [] 
+
 for group in ckan.get_group_list():
     print('Group Found {}'.format(group))
     
@@ -31,7 +35,6 @@ for group in ckan.get_group_list():
     # get all datasets from this group and (if exist) add dataset to this group
     full_group = ckan.get_full_group(group_name=group, include_datasets=True)
 
-    print(json.dumps(full_group, indent=4))
     packages = full_group.get('packages', [])
     for package in packages:
         name = package['name']
@@ -45,6 +48,7 @@ for group in ckan.get_group_list():
         # check if the groups already exist at the destination package
         if group in [grp['name'] for grp in package.get('groups', [])]:
             print('Group {} already exists for {}'.format(group, name))
+            already_in_group.append(package)
             continue
         
         # TODO update the dataset at the new environment to set the group
@@ -54,7 +58,11 @@ for group in ckan.get_group_list():
         package["groups"].append({'name': full_group['name']})
 
         updated, status, error = ckan.request_ckan(url=package_update_url, method='POST', data=package)
-        
+        if updated:
+            added_to_group.append(package)
+        else:
+            failed_to_add.append(package)
+
         print(' ** Updated ** Status {} ** Error {} **'.format(status, error))
 
 if len(ckan.errors) > 0:
@@ -64,3 +72,9 @@ if len(ckan.errors) > 0:
 print('Datasets not found: {}'.format(len(not_found)))
 for nf in not_found:
     print('\tDataset {} at group {}'.format(nf['dataset_name'], nf['group']))
+
+print('Final results:')
+print('\tAdded to group: {}'.format(len(added_to_group)))
+print('\tFailed to add: {}'.format(len(failed_to_add)))
+print('\tPackage not found: {}'.format(len(not_found)))
+print('\tAlready in group: {}'.format(len(already_in_group)))
