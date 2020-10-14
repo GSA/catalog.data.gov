@@ -352,13 +352,6 @@ class RemoteCKAN:
         
         return groups
 
-    def assign_groups(self, group_name):
-        """ Connect datasets to a groups in use in the previous CKAN instance
-        """
-        # get group AND datasets
-        full_group = self.get_full_group(group_name=group_name, url=None, include_datasets=True)
-
-
     def get_full_group(self, group_name, url=None, include_datasets=False):
         """ get full info (including job status) for a Harvest Source """
         if url is None:
