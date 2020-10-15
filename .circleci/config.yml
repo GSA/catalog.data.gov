@@ -15,7 +15,7 @@ jobs:
       - run: make build ci
       - run: make lint-all
       - run: make test-extensions
-
+      
   deploy-sandbox:
     docker:
       - image: circleci/python:3.6
@@ -35,11 +35,23 @@ jobs:
       - run:
           name: tests 
           command: make test-import-tool
-
+  
+  start_ckan_28:
+    machine:
+      image: circleci/classic:201708-01
+    steps:
+      - checkout
+      - run:
+          name: Start CKAN 2.8
+          command: |
+            cd tools/ci-scripts
+            ./circleci-build-catalog-next.bash
+      
 workflows:
   version: 2
   commit:
     jobs:
+      - start_ckan_28
       - build
       - deploy-sandbox:
           requires:
