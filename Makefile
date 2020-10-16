@@ -102,17 +102,17 @@ test-extensions:
 	# deal with the CKAN path
 	docker-compose exec ckan bash -c "ln -sf $(CKAN_HOME)/src/ckan $(CKAN_HOME)/ckan"
 	
-	# full test geodatagov
-	docker-compose exec ckan bash -c \
-		"cd $(CKAN_HOME)/src/ckanext-geodatagov && \
-		 nosetests --ckan --with-pylons=test.ini ckanext/geodatagov/tests --nologcapture"
-	
 	# full test datajson
 	docker-compose exec ckan bash -c \
 		"cd $(CKAN_HOME)/src/ckanext-datajson && \
-		 nosetests --ckan --with-pylons=test.ini ckanext/datajson/tests --nologcapture"
+		 nosetests --ckan --with-pylons=test.ini ckanext/datajson/tests --debug=ckanext"
 	
 	# full test datagovtheme
 	docker-compose exec ckan bash -c \
 		"cd $(CKAN_HOME)/src/ckanext-datagovtheme && \
-		 nosetests --ckan --with-pylons=test.ini ckanext/datagovtheme/tests --nologcapture"
+		 nosetests --ckan --with-pylons=test.ini ckanext/datagovtheme/tests --debug=ckanext"
+
+	# full test geodatagov
+	docker-compose exec ckan bash -c \
+		"cd $(CKAN_HOME)/src/ckanext-geodatagov && \
+		 nosetests --ckan --with-pylons=test.ini ckanext/geodatagov/tests --debug=ckanext"

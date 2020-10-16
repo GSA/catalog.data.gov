@@ -160,6 +160,38 @@ class RemoteCKAN:
         self.save_temp_json('harvest-source', full_hs['result']['name'], full_hs['result'])
         return full_hs['result']
 
+    def get_full_package(self, name_or_id, url=None):
+        """ get full info (including job status) for a Harvest Source """
+        if url is None:
+            url = self.url
+
+        show_url = f'{url}/api/3/action/package_show'
+        params = {'id': name_or_id}
+        
+        headers = self.get_request_headers(include_api_key=True)
+
+        error = None
+        logger.info(f'Get package {show_url} {params}')
+        try:
+            response = requests.get(show_url, params=params, headers=headers, timeout=self.requests_timeout)
+        except Exception as e:
+            error = f'Request harvest source Error: {e}'
+        else:
+            if response.status_code >= 500:
+                error = f'Error [{response.status_code}] getting harvest source info: {show_url}\n\t{params}'
+            elif response.status_code == 404:
+                return None
+            elif response.status_code >= 400:
+                error = f'Error [{response.status_code}] getting harvest source info: "{response.content}"'
+
+        if error is not None:
+            logger.error(error)
+            self.errors.append(error)
+            return None
+
+        package_response = response.json()
+        return package_response['result']
+
     def get_full_organization(self, org, url=None):
         """ get full info (including job status) for a Harvest Source """
 
@@ -286,7 +318,73 @@ class RemoteCKAN:
 
         return updated, status, error
 
-    def get_full_group(self, group_name, url=None):
+    def get_group_list(self, url=None):
+        """ get all groups """
+        if url is None:
+            url = self.url
+
+        group_list_url = f'{url}/api/3/action/group_list'
+        headers = self.get_request_headers(include_api_key=False)
+        logger.info(f'Get group list from {group_list_url}')
+
+        error = None
+
+        try:
+            response = requests.get(group_list_url, headers=headers, timeout=self.requests_timeout)
+        except Exception as e:
+            error = f'Request group Error: {e}'
+        else:
+            if response.status_code >= 400:
+                error = f'Error [{response.status_code}] getting group info: \n{response.headers}\n {response.content}'
+                logger.error(error)
+                self.errors.append(error)
+            else:
+                response = response.json()
+                groups = response['result']
+
+        if error is not None:
+            logger.error(error)
+            self.errors.append(error)
+
+            return None
+
+        self.save_temp_json('group', 'list', groups)
+        
+        return groups
+
+    def get_datasets_in_group(self, group_name):
+        
+        logger.info(f'List dataset in group {group_name}')
+
+        package_search_url = f'{self.url}/api/3/action/package_search'
+        
+        params = {
+            'start': 0,
+            'rows': 500,
+            'fq': 'groups:{}'.format(group_name)
+        }
+        
+        headers = self.get_request_headers(include_api_key=True)
+
+        logger.debug(f'request {package_search_url} {params}')
+        response = requests.get(package_search_url, params=params, headers=headers, timeout=self.requests_timeout)
+        if response.status_code >= 400:
+            error = f'ERROR getting dataset in groups: {response.status_code} {response.text}'
+            self.errors.append(error)
+            logger.error(error)
+            raise ValueError(error)
+
+        data = response.json()
+
+        if not data['success']:
+            error = 'ERROR searching datasets in group {}'.format(data['error'])
+            logger.error(error)
+            self.errors.append(error)
+            raise ValueError(error)
+
+        return data['result']['results']
+
+    def get_full_group(self, group_name, url=None, include_datasets=False):
         """ get full info (including job status) for a Harvest Source """
         if url is None:
             url = self.url
@@ -294,6 +392,9 @@ class RemoteCKAN:
         group_show_url = f'{url}/api/3/action/group_show'
 
         params = {'id': group_name}
+        if include_datasets:
+            params['include_datasets'] = True
+
         headers = self.get_request_headers(include_api_key=False)
 
         logger.info(f'Get group data {group_show_url} {params}')
@@ -328,12 +429,11 @@ class RemoteCKAN:
         return group
 
     def create_group(self, group_name):
-        """ Creates a new group in CKAN destination
-            Params:
-                data (dics): Required fields to create
-        """
-        full_group = self.get_full_group(group_name=group_name)
+        """ Creates a new group in CKAN destination """
 
+        full_group = self.get_full_group(group_name=group_name)
+        if full_group is None:
+            return None
         # remove packages from data because they are not harvested yet
         full_group.pop('packages', None)
         full_group.pop('id', None)

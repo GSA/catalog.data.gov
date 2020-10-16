@@ -114,6 +114,36 @@ Finished: 7 harvest sources. 7 Added, 0 already exists, 0 failed
 
 ```
 
+## Import groups
+
+You can import groups from one CKAN instance to another. If the datasets using these 
+groups in the origin instance exists in the destination instance, the groups will be 
+connected with those datasets
+
+```
+python import_groups.py \
+  --destination_url=https://catalog-next.sandbox.datagov.us \
+  --destination_api_key=xxxx
+```
+You can also skip some groups with `--skip_groups`
+
+```
+python import_groups.py \
+  --destination_url=https://catalog-next.sandbox.datagov.us \
+  --destination_api_key=xxxx \
+  --skip_groups=group_01,group02
+```
+
+You can also select some groups to import with `--groups`
+
+```
+python import_groups.py \
+  --destination_url=https://catalog-next.sandbox.datagov.us \
+  --destination_api_key=xxxx \
+  --groups=group_11,group12
+```
+
+
 ## Check sources
 
 The `check_harvest_sources.py` file is a script to test harvest sources and write a report with results.
