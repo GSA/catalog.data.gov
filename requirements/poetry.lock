@@ -1061,7 +1061,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "baf78c54f117916c4d03440c27f8541b60fc7435"
+reference = "8afd1f16ce48b549ca3c5d124605579a140afc8c"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
