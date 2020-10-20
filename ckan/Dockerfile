@@ -25,7 +25,7 @@ RUN cd /geos && \
 
 COPY requirements.txt ${APP_DIR}
 
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 RUN pip install poetry==1.0.10
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
