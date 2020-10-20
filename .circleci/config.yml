@@ -46,6 +46,18 @@ jobs:
           command: |
             cd tools/ci-scripts
             ./circleci-build-catalog-next.bash
+  
+  docker_publish:
+    machine: true
+    steps:
+      - checkout
+      - run:
+        name: Tag and publish image
+        command: |
+          docker build -t datagov/catalog-next:latest ckan/
+          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker push datagov/catalog-next:latest
+
       
 workflows:
   version: 2
@@ -61,3 +73,9 @@ workflows:
               only: master
       - test_importer
       - bat_test
+      - docker_publish:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

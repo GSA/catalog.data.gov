@@ -4,13 +4,7 @@ FROM openknowledge/ckan-dev:2.8
 
 ENV GIT_BRANCH=ckan-2.8.6
 
-# Set timezone
-ARG TZ
-RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
-RUN echo $TZ > /etc/timezone
-
 # add dependencies for cryptography and vim
-
 RUN apk add libressl-dev musl-dev libffi-dev vim
 
 # Fix shapely lib error. Install geos
