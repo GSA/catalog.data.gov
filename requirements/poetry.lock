@@ -208,7 +208,11 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
+<<<<<<< HEAD
 reference = "490a8968941467ca6a493a9191d389f33e70e488"
+=======
+reference = "4a2379dd9d7f99b6aea995e1cd0712eeb7975f54"
+>>>>>>> Pick up debug version of pysaml2
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -220,7 +224,11 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
+<<<<<<< HEAD
 reference = "a66f314333862bc316086a25e735f472cb5b29fe"
+=======
+reference = "c10d8d151b92b92024e0b454dbbf5bfa219aa791"
+>>>>>>> Pick up debug version of pysaml2
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -255,6 +263,7 @@ version = "0.1"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "73fd9299092d7b33342bfc746c1def38389753f7"
 =======
 reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
@@ -265,6 +274,9 @@ reference = "28fc76c92671e9e2aa753446d75ab6901d168b49"
 =======
 reference = "bb0bdc1d58e189166150b509944ddc292a0d448c"
 >>>>>>> Update requirements for latest ckanext-saml2
+=======
+reference = "7f178a7e34f4309bb7f465ac935b8d030826be65"
+>>>>>>> Pick up debug version of pysaml2
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -1049,7 +1061,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "a8ae8b1b974c2dd7d462ca95daabd21ff37e38ae"
+reference = "baf78c54f117916c4d03440c27f8541b60fc7435"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
@@ -1462,6 +1474,7 @@ testing = ["zope.event", "nose", "coverage"]
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
 =======
 content-hash = "5e927a0c0748047163eb82ce4d7c49623a1a35c7b98d1e9a21e9caf5bb424a1d"
@@ -1472,6 +1485,9 @@ content-hash = "1fa0a769cf3847bd5ae19d4cbd9a150ccc6166f64da030d93374a4d54a74a059
 =======
 content-hash = "98f888af0ab305dee40b283842bbfc873fb6acb97722da0d6276009835f51e42"
 >>>>>>> Update requirements for latest ckanext-saml2
+=======
+content-hash = "3b24ab1104c781c79c167de8596f11426e90d2bee604d9ae2fa56af5a7d7529d"
+>>>>>>> Pick up debug version of pysaml2
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1788,7 +1804,10 @@ lxml = [
     {file = "lxml-4.6.1-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:e65c221b2115a91035b55a593b6eb94aa1206fa3ab374f47c6dc10d364583ff9"},
     {file = "lxml-4.6.1-cp38-cp38-win32.whl", hash = "sha256:d6f8c23f65a4bfe4300b85f1f40f6c32569822d08901db3b6454ab785d9117cc"},
     {file = "lxml-4.6.1-cp38-cp38-win_amd64.whl", hash = "sha256:573b2f5496c7e9f4985de70b9bbb4719ffd293d5565513e04ac20e42e6e5583f"},
+<<<<<<< HEAD
     {file = "lxml-4.6.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:098fb713b31050463751dcc694878e1d39f316b86366fb9fe3fbbe5396ac9fab"},
+=======
+>>>>>>> Pick up debug version of pysaml2
     {file = "lxml-4.6.1-cp39-cp39-manylinux1_i686.whl", hash = "sha256:1d87936cb5801c557f3e981c9c193861264c01209cb3ad0964a16310ca1b3301"},
     {file = "lxml-4.6.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:2d5896ddf5389560257bbe89317ca7bcb4e54a02b53a3e572e1ce4226512b51b"},
     {file = "lxml-4.6.1-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:9b06690224258db5cd39a84e993882a6874676f5de582da57f3df3a82ead9174"},
