@@ -52,11 +52,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Tag and publish image
-        command: |
-          docker build -t datagov/catalog-next:latest ckan/
-          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker push datagov/catalog-next:latest
+          name: Tag and publish image
+          command: |
+            docker build -t datagov/catalog-next:latest ckan/
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push datagov/catalog-next:latest
 
       
 workflows:
