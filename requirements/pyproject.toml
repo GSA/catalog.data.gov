@@ -7,7 +7,7 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^2.7"
 
-ckan = {tag = "ckan-2.8.6", git = "https://github.com/ckan/ckan.git"}
+ckan = {tag = "2.8", git = "https://github.com/ckan/ckan.git"}
 
 ckanext-archiver = {git = "https://github.com/ckan/ckanext-archiver.git"}
 ckanext-datagovtheme = {git = "https://github.com/GSA/ckanext-datagovtheme.git"}
@@ -61,6 +61,8 @@ progressbar = "2.3"
 
 ply = "3.4"
 boto = "*"
+# required to boto plugin to upload to S3 in some internal commands
+google_compute_engine = "2.8.13"
 
 # ckanext-spatial
 

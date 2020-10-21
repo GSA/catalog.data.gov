@@ -162,7 +162,7 @@ version = "2.8.6"
 readthedocs = ["Jinja2 (>=2.3)"]
 
 [package.source]
-reference = "c04b6d64aadc7a647b8896279002626ca3be0a56"
+reference = "eca78d5df65414249c5a76620c1acae1ddc76cc3"
 type = "git"
 url = "https://github.com/ckan/ckan.git"
 [[package]]
@@ -204,7 +204,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "d9f3b2fd7bb15ea95a2262824b0c4a43e0991158"
+reference = "4a2379dd9d7f99b6aea995e1cd0712eeb7975f54"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -236,7 +236,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "7f178a7e34f4309bb7f465ac935b8d030826be65"
+reference = "e11f2d773cb2b7d0f1b6dbe8e2d7d11ccb61aae8"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -364,6 +364,14 @@ version = "4.4.2"
 
 [[package]]
 category = "main"
+description = "Distro - an OS platform information API"
+name = "distro"
+optional = false
+python-versions = "*"
+version = "1.5.0"
+
+[[package]]
+category = "main"
 description = "Python 3.4 Enum backported to 3.3, 3.2, 3.1, 2.7, 2.6, 2.5, and 2.4"
 marker = "python_version < \"3\""
 name = "enum34"
@@ -479,6 +487,19 @@ version = "1.2.2"
 
 [package.dependencies]
 greenlet = ">=0.4.10"
+
+[[package]]
+category = "main"
+description = "Google Compute Engine"
+name = "google-compute-engine"
+optional = false
+python-versions = "*"
+version = "2.8.13"
+
+[package.dependencies]
+boto = "*"
+distro = "*"
+setuptools = "*"
 
 [[package]]
 category = "main"
@@ -1275,7 +1296,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "042608f0f596bffdb819e020c4b47ec8a6a2ebc82161018077abdd67e68bc921"
+content-hash = "3d0caf669b67329480009bcfe5c8957c49209dae25dec94878fb40600ad8d892"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1405,6 +1426,10 @@ decorator = [
     {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
     {file = "decorator-4.4.2.tar.gz", hash = "sha256:e3a62f0520172440ca0dcc823749319382e377f37f140a0b99ef45fecb84bfe7"},
 ]
+distro = [
+    {file = "distro-1.5.0-py2.py3-none-any.whl", hash = "sha256:df74eed763e18d10d0da624258524ae80486432cd17392d9c3d96f5e83cd2799"},
+    {file = "distro-1.5.0.tar.gz", hash = "sha256:0e58756ae38fbd8fc3020d54badb8eae17c5b9dcbed388b17bb55b8a5928df92"},
+]
 enum34 = [
     {file = "enum34-1.1.10-py2-none-any.whl", hash = "sha256:a98a201d6de3f2ab3db284e70a33b0f896fbf35f8086594e8c9e74b909058d53"},
     {file = "enum34-1.1.10-py3-none-any.whl", hash = "sha256:c3858660960c984d6ab0ebad691265180da2b43f07e061c0f8dca9ef3cffd328"},
@@ -1471,6 +1496,9 @@ gevent = [
     {file = "gevent-1.2.2.win32-py3.4.exe", hash = "sha256:a0ed8ba787b9c0c1c565c2675d71652e6c1e2d4e91f53530860d0303e867fe85"},
     {file = "gevent-1.2.2.win32-py3.5.exe", hash = "sha256:c35b29de49211014ec66d056fd4f9ba7a04795e2a654697f72879c0cf365d6d4"},
     {file = "gevent-1.2.2.win32-py3.6.exe", hash = "sha256:6892fabc9051e8c0a171d543b6536859aabeb6d169db79b2f45d64dc2a15808c"},
+]
+google-compute-engine = [
+    {file = "google-compute-engine-2.8.13.tar.gz", hash = "sha256:358363a10169f890bac78cf9d7105132cdd2c1546fa8d9caa35c04a7cf7cfba7"},
 ]
 greenlet = [
     {file = "greenlet-0.4.12-cp26-cp26m-manylinux1_x86_64.whl", hash = "sha256:96888e47898a471073b394ea641b7d675c1d054c580dd4a04a382bd34e67d89e"},

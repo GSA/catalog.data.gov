@@ -2,7 +2,7 @@ FROM openknowledge/ckan-dev:2.8
 # Inherit from here: https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.8/Dockerfile
 # And then from here: https://github.com/okfn/docker-ckan/blob/master/ckan-base/2.8/Dockerfile
 
-ENV GIT_BRANCH=ckan-2.8.6
+ENV GIT_BRANCH=2.8
 
 # add dependencies for cryptography and vim
 RUN apk add libressl-dev musl-dev libffi-dev vim
