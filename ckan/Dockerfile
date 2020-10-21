@@ -5,6 +5,7 @@ FROM openknowledge/ckan-dev:2.8
 MAINTAINER Your Name Here <you@example.com>
 
 ENV NEW_RELIC_MONITOR_MODE false
+ENV CKAN_PY_ENV /usr/bin
 
 # Set timezone
 ARG TZ
