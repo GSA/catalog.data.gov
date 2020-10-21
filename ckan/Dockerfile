@@ -2,15 +2,9 @@ FROM openknowledge/ckan-dev:2.8
 # Inherit from here: https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.8/Dockerfile
 # And then from here: https://github.com/okfn/docker-ckan/blob/master/ckan-base/2.8/Dockerfile
 
-MAINTAINER Your Name Here <you@example.com>
-
-# Set timezone
-ARG TZ
-RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
-RUN echo $TZ > /etc/timezone
+ENV GIT_BRANCH=2.8
 
 # add dependencies for cryptography and vim
-
 RUN apk add libressl-dev musl-dev libffi-dev vim
 
 # Fix shapely lib error. Install geos
@@ -25,15 +19,7 @@ RUN cd /geos && \
 
 COPY requirements.txt ${APP_DIR}
 
-RUN cd ${SRC_DIR}/ckan && \
-    git remote add gsa https://github.com/GSA/ckan.git && \
-    git fetch gsa && \
-    git checkout gsa/datagov-newcatalog
-
-# remove CKAN from req file. It fails because of the ckan/ckan repo from the base image.
-RUN sed -i '/GSA\/ckan\.git/d' ${APP_DIR}/requirements.txt
-
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 RUN pip install poetry==1.0.10
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
