@@ -76,6 +76,7 @@ workflows:
       - docker_publish:
           requires:
             - build
+            - bat_test
           filters:
             branches:
               only: master
