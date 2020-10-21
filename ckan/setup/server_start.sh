@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if test -f ".env"; then
-    set -o allexport; source .env; set +o allexport
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+if test -f "$DIR/.env"; then
+    set -o allexport; source $DIR/.env; set +o allexport
 fi
 
 # Run web application
