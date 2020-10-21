@@ -6,9 +6,9 @@ all: build
 
 ci:
 	docker-compose up -d
-	sleep 40
 
 build:
+	docker build -t datagov/catalog.data.gov:latest ckan/
 	docker-compose build
 
 clean:
@@ -18,10 +18,12 @@ copy-src:
 	docker cp catalog-app_ckan_1:$(CKAN_HOME)/src .
 
 dev:
+	docker build -t datagov/catalog.data.gov:latest ckan/
 	docker-compose build
 	docker-compose up
 
 debug:
+	docker build -t datagov/catalog.data.gov:latest ckan/
 	docker-compose build
 	docker-compose run --service-ports ckan
 
@@ -29,13 +31,14 @@ requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
 
 test:
+	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker-compose build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
-quick-test:
+quick-bat-test:
 	# if local environment is already build and running 
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml build test
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml up test
 
 update-dependencies:
 	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
