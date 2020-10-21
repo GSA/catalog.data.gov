@@ -4,9 +4,6 @@ FROM openknowledge/ckan-dev:2.8
 
 MAINTAINER Your Name Here <you@example.com>
 
-ENV NEW_RELIC_MONITOR_MODE false
-ENV CKAN_PY_ENV /usr/bin
-
 # Set timezone
 ARG TZ
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
@@ -41,5 +38,5 @@ RUN pip install poetry==1.0.10
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
-COPY setup/start_ckan_development.sh ${APP_DIR}/
+# Not currently in use in development
 COPY setup/server_start.sh ${APP_DIR}/
