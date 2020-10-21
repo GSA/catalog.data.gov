@@ -11,8 +11,8 @@ sudo apt-get install solr-jetty libcommons-fileupload-java libpq-dev postgresql 
 
 echo "-----------------------------------------------------------------"
 echo "Downliading settings"
-CKAN_ORG = "ckan"
-CKAN_BRANCH = "2.8"
+CKAN_ORG="ckan"
+CKAN_BRANCH="2.8"
 
 wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/master/ckan/requirements.txt
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/test-core.ini
