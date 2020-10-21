@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IF test -f ".env"; then
+if test -f ".env"; then
     set -o allexport; source .env; set +o allexport
 fi
 
