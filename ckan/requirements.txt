@@ -27,7 +27,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@4a2379dd9d7f99b6aea995e1cd0712eeb7975f54#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@c10d8d151b92b92024e0b454dbbf5bfa219aa791#egg=ckanext-datajson
 ckanext-envvars==0.0.1
--e git+https://github.com/GSA/ckanext-geodatagov.git@7f178a7e34f4309bb7f465ac935b8d030826be65#egg=ckanext-geodatagov
+-e git+https://github.com/GSA/ckanext-geodatagov.git@e11f2d773cb2b7d0f1b6dbe8e2d7d11ccb61aae8#egg=ckanext-geodatagov
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@54647da628609543e01731bfc37f0c3d0ad9f0e2#egg=ckanext-googleanalyticsbasic
 <<<<<<< HEAD
 -e git+https://github.com/ckan/ckanext-harvest.git@2be8842270c1ec04d54049152b25738761bcb03b#egg=ckanext-harvest
@@ -109,7 +109,7 @@ pygments==2.5.2
 pylons==0.9.7
 pyopenssl==18.0.0
 pyparsing==2.4.7
--e git+https://github.com/GSA/pysaml2.git@8afd1f16ce48b549ca3c5d124605579a140afc8c#egg=pysaml2
+-e git+https://github.com/GSA/pysaml2.git@ca466fcf033d8c4e713288fa4f8d3f437d233ff0#egg=pysaml2
 pysolr==3.6.0
 python-dateutil==1.5
 python-magic==0.4.15

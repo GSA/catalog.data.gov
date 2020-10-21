@@ -264,6 +264,7 @@ version = "0.1"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "73fd9299092d7b33342bfc746c1def38389753f7"
 =======
 reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
@@ -277,6 +278,9 @@ reference = "bb0bdc1d58e189166150b509944ddc292a0d448c"
 =======
 reference = "7f178a7e34f4309bb7f465ac935b8d030826be65"
 >>>>>>> Pick up debug version of pysaml2
+=======
+reference = "e11f2d773cb2b7d0f1b6dbe8e2d7d11ccb61aae8"
+>>>>>>> Pick up more debugging pysaml.
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -1061,7 +1065,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "8afd1f16ce48b549ca3c5d124605579a140afc8c"
+reference = "ca466fcf033d8c4e713288fa4f8d3f437d233ff0"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
