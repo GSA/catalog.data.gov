@@ -56,7 +56,7 @@ jobs:
           command: |
             docker build -t datagov/catalog.data.gov:latest ckan/
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog-next:latest
+            docker push datagov/catalog.data.gov:latest
 
       
 workflows:
