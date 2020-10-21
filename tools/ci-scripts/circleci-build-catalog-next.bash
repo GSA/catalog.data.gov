@@ -27,6 +27,7 @@ pip install -r full_requirements.txt
 
 # extra pip
 pip install flask_debugtoolbar
+pip install google_compute_engine
 
 # dev requirements
 pip install factory-boy==2.1.1
