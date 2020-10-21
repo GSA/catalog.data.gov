@@ -2,11 +2,7 @@ version: "3"
 
 services:
   ckan:
-    build:
-      context: ckan/
-      dockerfile: Dockerfile
-      args:
-        - TZ=${TZ}
+    image: datagov/catalog.data.gov:latest
     env_file:
       - .env
     depends_on:
@@ -26,7 +22,6 @@ services:
     image: keitaro/ckan-datapusher
 
   db:
-    container_name: db
     env_file:
       - .env
     build:
@@ -35,7 +30,6 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    container_name: solr
     build:
       context: solr/
     ports:
@@ -44,7 +38,6 @@ services:
       - solr_data:/opt/solr/server/solr/ckan/data/index
 
   redis:
-    container_name: redis
     image: redis:alpine
 
 volumes:

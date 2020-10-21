@@ -1,21 +1,27 @@
 version: 2.1
+
 jobs:
-  bat_test:
-    machine: 
-      docker_layer_caching: true 
+  test:
+    machine: true
     steps:
       - checkout
-      - run: make test
-      
-  build:
-    machine: 
-      docker_layer_caching: true 
-    steps:
-      - checkout
-      - run: make build ci
-      - run: make lint-all
-      - run: make test-extensions
-      
+      - run:
+          name: build
+          command: make build
+      - run:
+          name: Archive Docker image
+          command: docker save -o image.tar datagov/catalog.data.gov:latest
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./image.tar
+      - run: 
+          name: lint and test
+          command: |
+            docker-compose up -d
+            make lint-all
+            make quick-bat-test
+    
   deploy-sandbox:
     docker:
       - image: circleci/python:3.6
@@ -51,10 +57,14 @@ jobs:
     machine: true
     steps:
       - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Load archived Docker image
+          command: docker load -i /tmp/workspace/image.tar
       - run:
           name: Tag and publish image
           command: |
-            docker build -t datagov/catalog.data.gov:latest ckan/
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov:latest
 
@@ -64,19 +74,17 @@ workflows:
   commit:
     jobs:
       - start_ckan_28
-      - build
       - deploy-sandbox:
           requires:
-            - build
+            - test
           filters:
             branches:
               only: master
       - test_importer
-      - bat_test
+      - test
       - docker_publish:
           requires:
-            - build
-            - bat_test
+            - test
           filters:
             branches:
               only: master
