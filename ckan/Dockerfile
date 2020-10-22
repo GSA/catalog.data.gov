@@ -24,4 +24,5 @@ RUN pip install poetry==1.0.10
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
- 
+# Not currently in use in development
+COPY setup/server_start.sh ${APP_DIR}/
