@@ -83,6 +83,11 @@ dockerhub with the aformentioned tag, as referenced in [OKF's docker-ckan
 repository](https://github.com/okfn/docker-ckan).
 
 
+## Public docker image
+
+If build pass tests a docker-image will be published in the docker hub: https://hub.docker.com/r/datagov/catalog-next.  
+This image will be used in extensions to test.  
+
 ## Note on requirements
 
 The source of truth about package dependencies is managed with
