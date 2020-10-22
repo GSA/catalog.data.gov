@@ -32,7 +32,7 @@ cryptography = "2.7"
 pika = ">=1.1.0"
 pyOpenSSL = "18.0.0"
 redis = "2.10.6"
-urllib3 = "*"
+urllib3 = "1.25.9"
 
 # ckanext-datagovtheme
 
@@ -85,7 +85,7 @@ bleach = "~3.1.1"
 click = "6.7"
 fanstatic = "0.12"
 ofs = "0.4.2"
-passlib = "1.6.5"
+passlib = "1.7.3"
 polib = "1.0.7"
 psycopg2 = "2.7.3.2"
 python-magic = "0.4.15"
