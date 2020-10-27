@@ -26,3 +26,6 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 # Not currently in use in development
 COPY setup/server_start.sh ${APP_DIR}/
+
+# COPY the ini test file to the container 
+COPY test-catalog-next.ini ${SRC_DIR}/ckan

@@ -74,6 +74,16 @@ Stop and remove the containers and volumes associated with this setup.
  See `.env` to override settings. Some settings may require a re-build (`make
  clean build`).
 
+### Test extensions
+
+To test extensions locally you can run
+
+```
+docker-compose exec ckan bash
+nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datagovtheme/
+nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datajson/
+nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/geodatagov/
+```
 
 ## On Docker CKAN 2.8 images
 
