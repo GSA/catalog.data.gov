@@ -50,6 +50,7 @@ jobs:
       - run:
           name: Start CKAN 2.8
           command: |
+            cp ckan/test-catalog-next.ini tools/ci-scripts/
             cd tools/ci-scripts
             ./circleci-build-catalog-next.bash
   
