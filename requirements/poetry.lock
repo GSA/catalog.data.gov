@@ -193,10 +193,14 @@ version = "0.0.1"
 
 [package.source]
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "2a599a5de96a9a4f5b3a73bb6f93bf509c08df4e"
 =======
 reference = "2c724d8c12b31642fc8b2820627fab6fedf15ee7"
 >>>>>>> Update ckanext-saml2
+=======
+reference = "ee938f7214025a511e44651758b9de2f2cea37a7"
+>>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovcatalog.git"
 [[package]]
@@ -210,6 +214,7 @@ version = "0.1"
 [package.source]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "490a8968941467ca6a493a9191d389f33e70e488"
 =======
 reference = "4a2379dd9d7f99b6aea995e1cd0712eeb7975f54"
@@ -217,6 +222,9 @@ reference = "4a2379dd9d7f99b6aea995e1cd0712eeb7975f54"
 =======
 reference = "ea0a834bcfa26561abda7e3d74a10132c34a2b2d"
 >>>>>>> Pick up latest pysaml2
+=======
+reference = "7f560bdaa1fe82bbdf4ecc12e3b0145732be33f8"
+>>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -230,6 +238,7 @@ version = "0.1"
 [package.source]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "a66f314333862bc316086a25e735f472cb5b29fe"
 =======
 reference = "c10d8d151b92b92024e0b454dbbf5bfa219aa791"
@@ -237,6 +246,9 @@ reference = "c10d8d151b92b92024e0b454dbbf5bfa219aa791"
 =======
 reference = "2de35359d3a996cb8d463cdfb2935f3e0a94ca6f"
 >>>>>>> Pick up latest pysaml2
+=======
+reference = "8ef33f9fc1e6ecba0f53c2da3f26caacffc20d52"
+>>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -274,6 +286,7 @@ version = "0.1"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "73fd9299092d7b33342bfc746c1def38389753f7"
 =======
 reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
@@ -293,6 +306,9 @@ reference = "e11f2d773cb2b7d0f1b6dbe8e2d7d11ccb61aae8"
 =======
 reference = "9df6669b59f430348866b2be7bfa91bb743bc0fb"
 >>>>>>> Pick up latest pysaml2
+=======
+reference = "73fd9299092d7b33342bfc746c1def38389753f7"
+>>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -318,6 +334,7 @@ version = "1.3.2"
 [package.source]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 reference = "373822409d7554f23d35b660ff347b0aefcd2e0e"
 =======
 reference = "2be8842270c1ec04d54049152b25738761bcb03b"
@@ -325,6 +342,9 @@ reference = "2be8842270c1ec04d54049152b25738761bcb03b"
 =======
 reference = "8cde93c153d9f55f15dc68ff7583611b611de456"
 >>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
+=======
+reference = "373822409d7554f23d35b660ff347b0aefcd2e0e"
+>>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/ckan/ckanext-harvest.git"
 [[package]]
@@ -376,7 +396,7 @@ version = "0.4.0"
 python-memcached = "1.48"
 
 [package.source]
-reference = "ef7f2408f8b12227ba5805bdafc79b82fe27b3dd"
+reference = "8b5e2686ec4eaedbb7d0268ef1cb4de2bc6a3779"
 type = "git"
 url = "https://github.com/GSA/ckanext-saml2.git"
 [[package]]
@@ -1491,6 +1511,7 @@ testing = ["zope.event", "nose", "coverage"]
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
 =======
 content-hash = "5e927a0c0748047163eb82ce4d7c49623a1a35c7b98d1e9a21e9caf5bb424a1d"
@@ -1504,6 +1525,9 @@ content-hash = "98f888af0ab305dee40b283842bbfc873fb6acb97722da0d6276009835f51e42
 =======
 content-hash = "3b24ab1104c781c79c167de8596f11426e90d2bee604d9ae2fa56af5a7d7529d"
 >>>>>>> Pick up debug version of pysaml2
+=======
+content-hash = "39089dca6bb7aa98f571c65224ab79b0ae61e1b0f40b7d7bb097ac4c0a95d55a"
+>>>>>>> Update ckanext-saml2 version
 lock-version = "1.0"
 python-versions = "^2.7"
 

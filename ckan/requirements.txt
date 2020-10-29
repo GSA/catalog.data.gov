@@ -14,6 +14,7 @@ chardet==3.0.4
 -e git+https://github.com/ckan/ckan.git@eca78d5df65414249c5a76620c1acae1ddc76cc3#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
 <<<<<<< HEAD
+<<<<<<< HEAD
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@2a599a5de96a9a4f5b3a73bb6f93bf509c08df4e#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@490a8968941467ca6a493a9191d389f33e70e488#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@a66f314333862bc316086a25e735f472cb5b29fe#egg=ckanext-datajson
@@ -26,9 +27,15 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@2c724d8c12b31642fc8b2820627fab6fedf15ee7#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@ea0a834bcfa26561abda7e3d74a10132c34a2b2d#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@2de35359d3a996cb8d463cdfb2935f3e0a94ca6f#egg=ckanext-datajson
+=======
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@ee938f7214025a511e44651758b9de2f2cea37a7#egg=ckanext-datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@7f560bdaa1fe82bbdf4ecc12e3b0145732be33f8#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datajson.git@8ef33f9fc1e6ecba0f53c2da3f26caacffc20d52#egg=ckanext-datajson
+>>>>>>> Update ckanext-saml2 version
 ckanext-envvars==0.0.1
--e git+https://github.com/GSA/ckanext-geodatagov.git@9df6669b59f430348866b2be7bfa91bb743bc0fb#egg=ckanext-geodatagov
+-e git+https://github.com/GSA/ckanext-geodatagov.git@73fd9299092d7b33342bfc746c1def38389753f7#egg=ckanext-geodatagov
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@54647da628609543e01731bfc37f0c3d0ad9f0e2#egg=ckanext-googleanalyticsbasic
+<<<<<<< HEAD
 <<<<<<< HEAD
 -e git+https://github.com/ckan/ckanext-harvest.git@2be8842270c1ec04d54049152b25738761bcb03b#egg=ckanext-harvest
 >>>>>>> Update ckanext-saml2
@@ -48,6 +55,12 @@ ckanext-envvars==0.0.1
 =======
 -e git+https://github.com/GSA/ckanext-saml2.git@ef7f2408f8b12227ba5805bdafc79b82fe27b3dd#egg=ckanext-saml2
 >>>>>>> Updates to pick up latest ckanext-saml2
+=======
+-e git+https://github.com/ckan/ckanext-harvest.git@373822409d7554f23d35b660ff347b0aefcd2e0e#egg=ckanext-harvest
+-e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
+-e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
+-e git+https://github.com/GSA/ckanext-saml2.git@8b5e2686ec4eaedbb7d0268ef1cb4de2bc6a3779#egg=ckanext-saml2
+>>>>>>> Update ckanext-saml2 version
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
