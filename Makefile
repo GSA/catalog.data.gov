@@ -108,14 +108,14 @@ test-extensions:
 	# full test datajson
 	docker-compose exec ckan bash -c \
 		"cd $(CKAN_HOME)/src/ckanext-datajson && \
-		 nosetests --ckan --with-pylons=test.ini ckanext/datajson/tests --debug=ckanext"
+		 nosetests --ckan --with-pylons=$(CKAN_HOME)/src/ckan/test-catalog-next.ini ckanext/datajson/tests --debug=ckanext"
 	
 	# full test datagovtheme
 	docker-compose exec ckan bash -c \
 		"cd $(CKAN_HOME)/src/ckanext-datagovtheme && \
-		 nosetests --ckan --with-pylons=test.ini ckanext/datagovtheme/tests --debug=ckanext"
+		 nosetests --ckan --with-pylons=$(CKAN_HOME)/src/ckan/test-catalog-next.ini ckanext/datagovtheme/tests --debug=ckanext"
 
 	# full test geodatagov
 	docker-compose exec ckan bash -c \
 		"cd $(CKAN_HOME)/src/ckanext-geodatagov && \
-		 nosetests --ckan --with-pylons=test.ini ckanext/geodatagov/tests --debug=ckanext"
+		 nosetests --ckan --with-pylons=$(CKAN_HOME)/src/ckan/test-catalog-next.ini ckanext/geodatagov/tests --debug=ckanext"
