@@ -221,6 +221,18 @@ type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
 category = "main"
+description = "Plugins for exposing and consuming DCAT metadata on CKAN"
+name = "ckanext-dcat"
+optional = false
+python-versions = "*"
+version = "1.1.1"
+
+[package.source]
+reference = "6b7ec505f303fb18e0eebcebf67130d36b3dca82"
+type = "git"
+url = "https://github.com/ckan/ckanext-dcat"
+[[package]]
+category = "main"
 description = "CKAN configuration settings available from env vars"
 name = "ckanext-envvars"
 optional = false
@@ -445,6 +457,14 @@ version = "1.0.2"
 
 [[package]]
 category = "main"
+description = "Clean single-source support for Python 3 and 2"
+name = "future"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "0.18.2"
+
+[[package]]
+category = "main"
 description = "A toolkit for generation of output for the web"
 name = "genshi"
 optional = false
@@ -476,6 +496,18 @@ version = "0.5.0"
 
 [package.dependencies]
 SQLAlchemy = ">=0.8"
+
+[[package]]
+category = "main"
+description = "GeoJSON <-> WKT/WKB conversion utilities"
+name = "geomet"
+optional = false
+python-versions = ">2.6, !=3.3.*, <4"
+version = "0.2.1.post1"
+
+[package.dependencies]
+click = "*"
+six = "*"
 
 [[package]]
 category = "main"
@@ -556,6 +588,17 @@ name = "ipaddress"
 optional = false
 python-versions = "*"
 version = "1.0.23"
+
+[[package]]
+category = "main"
+description = "An ISO 8601 date/time/duration parser and formatter"
+name = "isodate"
+optional = false
+python-versions = "*"
+version = "0.6.0"
+
+[package.dependencies]
+six = "*"
 
 [[package]]
 category = "main"
@@ -994,6 +1037,31 @@ version = "5.3.1"
 
 [[package]]
 category = "main"
+description = "RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information."
+name = "rdflib"
+optional = false
+python-versions = "*"
+version = "4.2.1"
+
+[package.dependencies]
+SPARQLWrapper = "*"
+html5lib = "*"
+isodate = "*"
+pyparsing = "*"
+
+[[package]]
+category = "main"
+description = "rdflib extension adding JSON-LD parser and serializer"
+name = "rdflib-jsonld"
+optional = false
+python-versions = "*"
+version = "0.4.0"
+
+[package.dependencies]
+rdflib = ">=4.2"
+
+[[package]]
+category = "main"
 description = "Python client for Redis key-value store"
 name = "redis"
 optional = false
@@ -1119,6 +1187,20 @@ name = "six"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 version = "1.15.0"
+
+[[package]]
+category = "main"
+description = "SPARQL Endpoint interface to Python"
+name = "sparqlwrapper"
+optional = false
+python-versions = "*"
+version = "1.8.5"
+
+[package.dependencies]
+rdflib = ">=4.0"
+
+[package.extras]
+keepalive = ["keepalive (>=0.5)"]
 
 [[package]]
 category = "main"
@@ -1303,7 +1385,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "2004b03b4a1150bf14c9823d45ce596e55b55d56225fd36d0efca45cd92131d3"
+content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1395,6 +1477,7 @@ ckanext-archiver = []
 ckanext-datagovcatalog = []
 ckanext-datagovtheme = []
 ckanext-datajson = []
+ckanext-dcat = []
 ckanext-envvars = [
     {file = "ckanext-envvars-0.0.1.tar.gz", hash = "sha256:6b888149b32ecb4a3bf78700889321877fddf0b82ca4e952ba29a84eb2089837"},
 ]
@@ -1461,6 +1544,9 @@ funcsigs = [
     {file = "funcsigs-1.0.2-py2.py3-none-any.whl", hash = "sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca"},
     {file = "funcsigs-1.0.2.tar.gz", hash = "sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50"},
 ]
+future = [
+    {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
+]
 genshi = [
     {file = "Genshi-0.7.3-py3-none-any.whl", hash = "sha256:5e92e278ca1ea395349a451d54fc81dc3c1b543c48939a15bd36b7b3335e1560"},
     {file = "Genshi-0.7.3.tar.gz", hash = "sha256:7933c95151d7dd2124a2b4c8dd85bb6aec881ca17c0556da0b40e56434b313a0"},
@@ -1472,6 +1558,11 @@ geoalchemy = [
 geoalchemy2 = [
     {file = "GeoAlchemy2-0.5.0-py2.py3-none-any.whl", hash = "sha256:eed7a62f5a13d1bbfaff708b345da663fb32ef879b662db6254b46f22bb93fe1"},
     {file = "GeoAlchemy2-0.5.0.tar.gz", hash = "sha256:7d66d01af82d22bc37d3ebb1e73713b87ac5e116b3bc82ea4ec0584bbaa89f89"},
+]
+geomet = [
+    {file = "geomet-0.2.1.post1-py3-none-any.whl", hash = "sha256:a41a1e336b381416d6cbed7f1745c848e91defaa4d4c1bdc1312732e46ffad2b"},
+    {file = "geomet-0.2.1.post1-py3.6.egg", hash = "sha256:87ae0fc42e532b9e98969c0bbf895a5e0b2bb4f6f775cf51a74e6482f1f35c2b"},
+    {file = "geomet-0.2.1.post1.tar.gz", hash = "sha256:91d754f7c298cbfcabd3befdb69c641c27fe75e808b27aa55028605761d17e95"},
 ]
 gevent = [
     {file = "gevent-1.2.2-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:9b492bb1a043540abb6e54fdb5537531e24962ca49c09f3b47dc4f9c37f6297c"},
@@ -1545,6 +1636,10 @@ idna = [
 ipaddress = [
     {file = "ipaddress-1.0.23-py2.py3-none-any.whl", hash = "sha256:6e0f4a39e66cb5bb9a137b00276a2eff74f93b71dcbdad6f10ff7df9d3557fcc"},
     {file = "ipaddress-1.0.23.tar.gz", hash = "sha256:b7f8e0369580bb4a24d5ba1d7cc29660a4a6987763faf1d8a8046830e020e7e2"},
+]
+isodate = [
+    {file = "isodate-0.6.0-py2.py3-none-any.whl", hash = "sha256:aa4d33c06640f5352aca96e4b81afd8ab3b47337cc12089822d6f322ac772c81"},
+    {file = "isodate-0.6.0.tar.gz", hash = "sha256:2e364a3d5759479cdb2d37cce6b9376ea504db2ff90252a2e5b7cc89cc9ff2d8"},
 ]
 itsdangerous = [
     {file = "itsdangerous-1.1.0-py2.py3-none-any.whl", hash = "sha256:b12271b2047cb23eeb98c8b5622e2e5c5e9abd9784a153e9d8ef9cb4dd09d749"},
@@ -1816,6 +1911,12 @@ pyyaml = [
     {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
+rdflib = [
+    {file = "rdflib-4.2.1.tar.gz", hash = "sha256:eb02bd235606ef3b26e213da3e576557a6392ce103efd8c6c8ff1e08321608c8"},
+]
+rdflib-jsonld = [
+    {file = "rdflib-jsonld-0.4.0.tar.gz", hash = "sha256:144774786a2fc7de09b24a9309cbcccc78bc48b152536d2ea1c1df2ad715bc2d"},
+]
 redis = [
     {file = "redis-2.10.6-py2.py3-none-any.whl", hash = "sha256:8a1900a9f2a0a44ecf6e8b5eb3e967a9909dfed219ad66df094f27f7d6f330fb"},
     {file = "redis-2.10.6.tar.gz", hash = "sha256:a22ca993cea2962dbb588f9f30d0015ac4afcc45bee27d3978c0dbe9e97c6c0f"},
@@ -1892,6 +1993,13 @@ simplejson = [
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
+]
+sparqlwrapper = [
+    {file = "SPARQLWrapper-1.8.5-py2-none-any.whl", hash = "sha256:357ee8a27bc910ea13d77836dbddd0b914991495b8cc1bf70676578155e962a8"},
+    {file = "SPARQLWrapper-1.8.5-py2.7.egg", hash = "sha256:17ec44b08b8ae2888c801066249f74fe328eec25d90203ce7eadaf82e64484c7"},
+    {file = "SPARQLWrapper-1.8.5-py3-none-any.whl", hash = "sha256:c7f9c9d8ebb13428771bc3b6dee54197422507dcc3dea34e30d5dcfc53478dec"},
+    {file = "SPARQLWrapper-1.8.5-py3.4.egg", hash = "sha256:8cf6c21126ed76edc85c5c232fd6f77b9f61f8ad1db90a7147cdde2104aff145"},
+    {file = "SPARQLWrapper-1.8.5.tar.gz", hash = "sha256:d6a66b5b8cda141660e07aeb00472db077a98d22cb588c973209c7336850fb3c"},
 ]
 sqlalchemy = [
     {file = "SQLAlchemy-1.1.11.tar.gz", hash = "sha256:76f76965e9a968ba3aecd2a8bc0d991cea04fd9a182e6c95c81f1551487b0211"},

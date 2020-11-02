@@ -16,6 +16,7 @@ chardet==3.0.4
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@ee938f7214025a511e44651758b9de2f2cea37a7#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@0982fd5d3cc4a77b22b7b745845ba76047718c78#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@8ef33f9fc1e6ecba0f53c2da3f26caacffc20d52#egg=ckanext-datajson
+-e git+https://github.com/ckan/ckanext-dcat@6b7ec505f303fb18e0eebcebf67130d36b3dca82#egg=ckanext-dcat
 ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-geodatagov.git@73fd9299092d7b33342bfc746c1def38389753f7#egg=ckanext-geodatagov
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@54647da628609543e01731bfc37f0c3d0ad9f0e2#egg=ckanext-googleanalyticsbasic
@@ -34,9 +35,11 @@ flask==0.12.4
 flask-babel==0.11.2
 formencode==2.0.0
 funcsigs==1.0.2
+future==0.18.2
 genshi==0.7.3
 geoalchemy==0.7.2
 geoalchemy2==0.5.0
+geomet==0.2.1.post1
 gevent==1.2.2
 google-compute-engine==2.8.13
 greenlet==0.4.12
@@ -44,6 +47,7 @@ gunicorn==19.10.0
 html5lib==1.1
 idna==2.8
 ipaddress==1.0.23; python_version < "3"
+isodate==0.6.0
 itsdangerous==1.1.0
 jinja2==2.10.3
 json-table-schema==0.2.1
@@ -82,6 +86,8 @@ python-magic==0.4.15
 pytz==2016.7
 pyutilib.component.core==4.6.4
 pyyaml==5.3.1
+rdflib==4.2.1
+rdflib-jsonld==0.4.0
 redis==2.10.6
 repoze.lru==0.7
 repoze.who==2.3
@@ -93,6 +99,7 @@ rq==0.6.0
 shapely==1.7.1
 simplejson==3.10.0
 six==1.15.0
+sparqlwrapper==1.8.5
 sqlalchemy==1.1.11
 sqlalchemy-migrate==0.10.0
 sqlparse==0.2.2
