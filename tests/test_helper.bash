@@ -110,6 +110,28 @@ function wait_for_app () {
 function test_url () {
   local url="http://$HOST:$PORT/$1"
   run curl --silent --fail $url
+  
+  [ "$status" -ne 22 ]
+}
+
+function test_content () {
+  # get data from url ($1) and test content ($2)
+  local url="http://$HOST:$PORT/$1"
+  run curl -L $url
+
+  if [[ "$status" -eq 22 ]];
+  then
+    echo "Error URL $url" >&3
+  else
+    if [[ "$output" == *"$2"* ]]; then
+      echo "$2 found OK at $url" >&3
+      return 0;
+    else
+      echo "$2 NOT found OK $url -> '$output'" >&3
+      return 1;
+    fi
+  fi
+
   [ "$status" -ne 22 ]
 }
 
