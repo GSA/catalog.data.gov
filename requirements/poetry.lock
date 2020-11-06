@@ -192,7 +192,7 @@ python-versions = "*"
 version = "0.0.1"
 
 [package.source]
-reference = "b7456823f2f642067c751ec05eed5fd63339ace8"
+reference = "73c6949559bab1ef571656b1c30220eef20685d8"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovcatalog.git"
 [[package]]
@@ -216,7 +216,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "cc360697a17530f0a1d8c126c28402845961f203"
+reference = "a66f314333862bc316086a25e735f472cb5b29fe"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]

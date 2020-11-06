@@ -119,3 +119,8 @@ test-extensions:
 	docker-compose exec ckan bash -c \
 		"cd $(CKAN_HOME)/src/ckanext-geodatagov && \
 		 nosetests --ckan --with-pylons=$(CKAN_HOME)/src/ckan/test-catalog-next.ini ckanext/geodatagov/tests --debug=ckanext"
+
+	# full test geodatagov
+	docker-compose exec ckan bash -c \
+		"cd $(CKAN_HOME)/src/ckanext-datagovdatalog && \
+		 nosetests --ckan --with-pylons=$(CKAN_HOME)/src/ckan/test-catalog-next.ini ckanext/datagovdatalog/tests --debug=ckanext"
