@@ -1,0 +1,23 @@
+version: "3"
+services:
+  master:
+    image: locustio/locust
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - "8089:8089"
+    
+    # Example with current catalog as target host
+    #command: -f /scripts/locustfile.py --master -H https://catalog.data.gov/dataset
+    
+    # Example command if we want this to run headless
+    #command: -f /scripts/locustfile.py --master -H https://catalog-next.sandbox.datagov.us --headless -u 1000 -r 100 --run-time 1h30m
+
+    # Target host of catalog-next sandbox
+    command: -f /scripts/locustfile.py --master -H https://catalog-next.sandbox.datagov.us
+
+  worker:
+    image: locustio/locust
+    command: -f /scripts/locustfile.py --worker --master-host=master
+    volumes:
+      - ./scripts:/scripts
