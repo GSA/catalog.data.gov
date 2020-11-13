@@ -21,4 +21,18 @@ class AnonUser(HttpUser):
         except StopIteration:
             # finish 
             self.environment.runner.quit()
-        self.client.get(next_url)
+        
+        # to skip thousand of lines we need to group this call using names
+        name = 'others'
+        if next_url.startswith('/organization'):
+            name ='org'
+        elif next_url.startswith('/group'):
+            name ='group'
+        elif next_url.startswith('/dataset'):
+            name ='dataset'
+        elif next_url.startswith('/harvest'):
+            name ='harvest'
+        elif next_url.startswith('/api'):
+            name ='api'
+            
+        self.client.get(next_url, name=name)
