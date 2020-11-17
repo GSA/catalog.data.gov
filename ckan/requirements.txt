@@ -8,12 +8,12 @@ billiard==3.3.0.23
 bleach==3.1.5
 boto==2.49.0
 celery==3.1.25
-certifi==2020.6.20
+certifi==2020.11.8
 cffi==1.12.3
 chardet==3.0.4
 -e git+https://github.com/ckan/ckan.git@eca78d5df65414249c5a76620c1acae1ddc76cc3#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@73c6949559bab1ef571656b1c30220eef20685d8#egg=ckanext-datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@2a599a5de96a9a4f5b3a73bb6f93bf509c08df4e#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@490a8968941467ca6a493a9191d389f33e70e488#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@a66f314333862bc316086a25e735f472cb5b29fe#egg=ckanext-datajson
 -e git+https://github.com/ckan/ckanext-dcat@6b7ec505f303fb18e0eebcebf67130d36b3dca82#egg=ckanext-dcat
