@@ -192,15 +192,7 @@ python-versions = "*"
 version = "0.0.1"
 
 [package.source]
-<<<<<<< HEAD
-<<<<<<< HEAD
 reference = "2a599a5de96a9a4f5b3a73bb6f93bf509c08df4e"
-=======
-reference = "2c724d8c12b31642fc8b2820627fab6fedf15ee7"
->>>>>>> Update ckanext-saml2
-=======
-reference = "ee938f7214025a511e44651758b9de2f2cea37a7"
->>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovcatalog.git"
 [[package]]
@@ -212,19 +204,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 reference = "490a8968941467ca6a493a9191d389f33e70e488"
-=======
-reference = "4a2379dd9d7f99b6aea995e1cd0712eeb7975f54"
->>>>>>> Pick up debug version of pysaml2
-=======
-reference = "ea0a834bcfa26561abda7e3d74a10132c34a2b2d"
->>>>>>> Pick up latest pysaml2
-=======
-reference = "7f560bdaa1fe82bbdf4ecc12e3b0145732be33f8"
->>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -236,19 +216,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 reference = "a66f314333862bc316086a25e735f472cb5b29fe"
-=======
-reference = "c10d8d151b92b92024e0b454dbbf5bfa219aa791"
->>>>>>> Pick up debug version of pysaml2
-=======
-reference = "2de35359d3a996cb8d463cdfb2935f3e0a94ca6f"
->>>>>>> Pick up latest pysaml2
-=======
-reference = "8ef33f9fc1e6ecba0f53c2da3f26caacffc20d52"
->>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -280,35 +248,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 reference = "73fd9299092d7b33342bfc746c1def38389753f7"
-=======
-reference = "11d6c7067d59c6e121f1e71512290f6e1302d342"
->>>>>>> Update ckanext-saml2
-=======
-reference = "28fc76c92671e9e2aa753446d75ab6901d168b49"
->>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
-=======
-reference = "bb0bdc1d58e189166150b509944ddc292a0d448c"
->>>>>>> Update requirements for latest ckanext-saml2
-=======
-reference = "7f178a7e34f4309bb7f465ac935b8d030826be65"
->>>>>>> Pick up debug version of pysaml2
-=======
-reference = "e11f2d773cb2b7d0f1b6dbe8e2d7d11ccb61aae8"
->>>>>>> Pick up more debugging pysaml.
-=======
-reference = "9df6669b59f430348866b2be7bfa91bb743bc0fb"
->>>>>>> Pick up latest pysaml2
-=======
-reference = "73fd9299092d7b33342bfc746c1def38389753f7"
->>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -332,19 +272,7 @@ python-versions = "*"
 version = "1.3.2"
 
 [package.source]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 reference = "373822409d7554f23d35b660ff347b0aefcd2e0e"
-=======
-reference = "2be8842270c1ec04d54049152b25738761bcb03b"
->>>>>>> Update ckanext-saml2
-=======
-reference = "8cde93c153d9f55f15dc68ff7583611b611de456"
->>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
-=======
-reference = "373822409d7554f23d35b660ff347b0aefcd2e0e"
->>>>>>> Update ckanext-saml2 version
 type = "git"
 url = "https://github.com/ckan/ckanext-harvest.git"
 [[package]]
@@ -384,8 +312,6 @@ type = "git"
 url = "https://github.com/davidread/ckanext-report.git"
 [[package]]
 category = "main"
-<<<<<<< HEAD
-=======
 description = "Saml2 authentication extension"
 name = "ckanext-saml2"
 optional = false
@@ -396,12 +322,11 @@ version = "0.4.0"
 python-memcached = "1.48"
 
 [package.source]
-reference = "8b5e2686ec4eaedbb7d0268ef1cb4de2bc6a3779"
+reference = "abc44e86b308897f4dbc20ac929befae47f383d4"
 type = "git"
 url = "https://github.com/GSA/ckanext-saml2.git"
 [[package]]
 category = "main"
->>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
 description = "Geo-related plugins for CKAN"
 name = "ckanext-spatial"
 optional = false
@@ -466,19 +391,19 @@ version = "4.4.2"
 
 [[package]]
 category = "main"
-<<<<<<< HEAD
-description = "Distro - an OS platform information API"
-name = "distro"
-optional = false
-python-versions = "*"
-version = "1.5.0"
-=======
 description = "XML bomb protection for Python stdlib modules"
 name = "defusedxml"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.6.0"
->>>>>>> Add pysaml2 and deps to requirements.
+
+[[package]]
+category = "main"
+description = "Distro - an OS platform information API"
+name = "distro"
+optional = false
+python-versions = "*"
+version = "1.5.0"
 
 [[package]]
 category = "main"
@@ -1097,7 +1022,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "3bce320aa3e158d8f2fe157350afeb1486121ce5"
+reference = "00fb231af778905d44832536b71a94912aed7198"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
@@ -1129,6 +1054,14 @@ name = "python-magic"
 optional = false
 python-versions = "*"
 version = "0.4.15"
+
+[[package]]
+category = "main"
+description = "Pure python memcached client"
+name = "python-memcached"
+optional = false
+python-versions = "*"
+version = "1.48"
 
 [[package]]
 category = "main"
@@ -1507,27 +1440,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
-=======
-content-hash = "5e927a0c0748047163eb82ce4d7c49623a1a35c7b98d1e9a21e9caf5bb424a1d"
->>>>>>> Add pysaml2 and deps to requirements.
-=======
-content-hash = "1fa0a769cf3847bd5ae19d4cbd9a150ccc6166f64da030d93374a4d54a74a059"
->>>>>>> Use ckanext-saml2@datagov/v0.4.0-login.gov
-=======
-content-hash = "98f888af0ab305dee40b283842bbfc873fb6acb97722da0d6276009835f51e42"
->>>>>>> Update requirements for latest ckanext-saml2
-=======
-content-hash = "3b24ab1104c781c79c167de8596f11426e90d2bee604d9ae2fa56af5a7d7529d"
->>>>>>> Pick up debug version of pysaml2
-=======
-content-hash = "39089dca6bb7aa98f571c65224ab79b0ae61e1b0f40b7d7bb097ac4c0a95d55a"
->>>>>>> Update ckanext-saml2 version
+content-hash = "d27226e52f733f481bf69f22e91767527800c271b401b0a7931397408300302c"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1628,6 +1541,7 @@ ckanext-googleanalyticsbasic = []
 ckanext-harvest = []
 ckanext-qa = []
 ckanext-report = []
+ckanext-saml2 = []
 ckanext-spatial = []
 ckantoolkit = [
     {file = "ckantoolkit-0.0.3.tar.gz", hash = "sha256:35510c9358c9933f4543640409e58df934c40717656e373f42149eb53ec34acb"},
@@ -1658,15 +1572,13 @@ decorator = [
     {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
     {file = "decorator-4.4.2.tar.gz", hash = "sha256:e3a62f0520172440ca0dcc823749319382e377f37f140a0b99ef45fecb84bfe7"},
 ]
-<<<<<<< HEAD
-distro = [
-    {file = "distro-1.5.0-py2.py3-none-any.whl", hash = "sha256:df74eed763e18d10d0da624258524ae80486432cd17392d9c3d96f5e83cd2799"},
-    {file = "distro-1.5.0.tar.gz", hash = "sha256:0e58756ae38fbd8fc3020d54badb8eae17c5b9dcbed388b17bb55b8a5928df92"},
-=======
 defusedxml = [
     {file = "defusedxml-0.6.0-py2.py3-none-any.whl", hash = "sha256:6687150770438374ab581bb7a1b327a847dd9c5749e396102de3fad4e8a3ef93"},
     {file = "defusedxml-0.6.0.tar.gz", hash = "sha256:f684034d135af4c6cbb949b8a4d2ed61634515257a67299e5f940fbaa34377f5"},
->>>>>>> Add pysaml2 and deps to requirements.
+]
+distro = [
+    {file = "distro-1.5.0-py2.py3-none-any.whl", hash = "sha256:df74eed763e18d10d0da624258524ae80486432cd17392d9c3d96f5e83cd2799"},
+    {file = "distro-1.5.0.tar.gz", hash = "sha256:0e58756ae38fbd8fc3020d54badb8eae17c5b9dcbed388b17bb55b8a5928df92"},
 ]
 enum34 = [
     {file = "enum34-1.1.10-py2-none-any.whl", hash = "sha256:a98a201d6de3f2ab3db284e70a33b0f896fbf35f8086594e8c9e74b909058d53"},
@@ -1844,10 +1756,7 @@ lxml = [
     {file = "lxml-4.6.1-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:e65c221b2115a91035b55a593b6eb94aa1206fa3ab374f47c6dc10d364583ff9"},
     {file = "lxml-4.6.1-cp38-cp38-win32.whl", hash = "sha256:d6f8c23f65a4bfe4300b85f1f40f6c32569822d08901db3b6454ab785d9117cc"},
     {file = "lxml-4.6.1-cp38-cp38-win_amd64.whl", hash = "sha256:573b2f5496c7e9f4985de70b9bbb4719ffd293d5565513e04ac20e42e6e5583f"},
-<<<<<<< HEAD
     {file = "lxml-4.6.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:098fb713b31050463751dcc694878e1d39f316b86366fb9fe3fbbe5396ac9fab"},
-=======
->>>>>>> Pick up debug version of pysaml2
     {file = "lxml-4.6.1-cp39-cp39-manylinux1_i686.whl", hash = "sha256:1d87936cb5801c557f3e981c9c193861264c01209cb3ad0964a16310ca1b3301"},
     {file = "lxml-4.6.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:2d5896ddf5389560257bbe89317ca7bcb4e54a02b53a3e572e1ce4226512b51b"},
     {file = "lxml-4.6.1-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:9b06690224258db5cd39a84e993882a6874676f5de582da57f3df3a82ead9174"},
@@ -2032,6 +1941,9 @@ python-magic = [
     {file = "python-magic-0.4.15.tar.gz", hash = "sha256:f3765c0f582d2dfc72c15f3b5a82aecfae9498bd29ca840d72f37d7bd38bfcd5"},
     {file = "python_magic-0.4.15-py2.py3-none-any.whl", hash = "sha256:f2674dcfad52ae6c49d4803fa027809540b130db1dec928cfbb9240316831375"},
 ]
+python-memcached = [
+    {file = "python-memcached-1.48.tar.gz", hash = "sha256:66bbc62d9519f9d531b1f77e687d9f2f5e521cb906f1fd7231f403997e0110c4"},
+]
 pytz = [
     {file = "pytz-2016.7-py2.4.egg", hash = "sha256:cfe881048e0bcb348b901bc1972a54b5e5389274315acbe9384d68569b8ed1f9"},
     {file = "pytz-2016.7-py2.5.egg", hash = "sha256:e16a04228fa684f14e5b4c9cd8057a28c5ec08c1a58890d2f4c30f5bf62ffbf9"},
@@ -2062,6 +1974,8 @@ pyyaml = [
     {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
     {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
     {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win32.whl", hash = "sha256:ad9c67312c84def58f3c04504727ca879cb0013b2517c85a9a253f0cb6380c0a"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win_amd64.whl", hash = "sha256:6034f55dab5fea9e53f436aa68fa3ace2634918e8b5994d82f3621c04ff5ed2e"},
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 rdflib = [
