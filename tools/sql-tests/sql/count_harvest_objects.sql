@@ -1,0 +1,1 @@
+SELECT count(id) AS total FROM harvest_object;

@@ -1,0 +1,1 @@
+SELECT package_id_idx, indexdef FROM pg_indexes WHERE tablename = 'harvest_object';
