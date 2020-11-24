@@ -6,5 +6,5 @@ This table was deleted from the repo but is still available from old commits: [l
 This table could be dd to database with
 
 ```
-./install-locations-table.sh HOST DB_NAME DB_USER PASS"
+./install-locations-table.sh HOST DB_NAME DB_USER PASS
 ```
