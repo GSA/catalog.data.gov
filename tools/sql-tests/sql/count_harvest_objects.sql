@@ -1,1 +1,1 @@
-SELECT count(id) AS total FROM harvest_object;
+SELECT count(id) AS total_harvest_objects FROM harvest_object;
