@@ -9,19 +9,13 @@ Search datasets
  - 4 QTime in 0.03s
  - 20 Hits
  - 20 Results
- - Facets 
-	{'facet_queries': {}, 'facet_fields': {'groups': [], 'vocab_category_all': [], 'metadata_type': [], 'tags': ['__', 20, 'railroad-employees', 14, 'railroad', 5, 'railroad-retirement-board', 5, 'demographic', 3, 'finance', 3, 'railroad-employee-disability', 3, 'railroad-occupational-disability', 3, 'railroad-total-disability', 3, 'consumer', 2, 'county', 2, 'loan', 2, 'mortgage', 2, 'active-railroad-employees', 1, 'bank-account', 1, 'bank-service', 1, 'complaint', 1, 'congressional-district', 1, 'credit-card', 1, 'credit-report', 1, 'debt-collection', 1, 'employment', 1, 'financial-behaviors', 1, 'financial-freedom', 1, 'financial-security', 1, 'freedom-of-choice', 1, 'hmda', 1, 'home-mortgage-disclosure-act', 1, 'income', 1, 'life-expectancy', 1, 'money-transfer', 1, 'past-financial-experiences', 1, 'railroad-retirement-annuitants', 1, 'railroad-retirement-beneficiaries', 1, 'railroad-retirement-beneficiary', 1, 'railroad-survivor-disability', 1, 'safety-nets', 1, 'savings', 1, 'skills', 1, 'state', 1, 'student-loan', 1, 'well-being', 1], 'res_format': ['EXCEL', 13, 'CSV', 3, 'PDF', 3, 'API', 2, 'JSON', 2, 'XML', 1], 'organization_type': [], 'organization': ['org', 19], 'publisher': ['Railroad Retirement Board', 16, 'Consumer Financial Protection Bureau', 3], 'bureauCode': ['446:00', 16, '581:00', 3]}, 'facet_ranges': {}, 'facet_intervals': {}, 'facet_heatmaps': {}}
  - 1 QTime in 0.02s
  - 23 Hits
  - 21 Results
- - Facets 
-	{'facet_queries': {}, 'facet_fields': {'groups': [], 'owner_org': ['3b3ec259-0bec-4b18-9f10-3bf0a9caefad', 22]}, 'facet_ranges': {}, 'facet_intervals': {}, 'facet_heatmaps': {}}
 Search harvest sources
  - 1 QTime in 0.01s
  - 3 Hits
  - 3 Results
- - Facets 
-	{'facet_queries': {}, 'facet_fields': {'organization_type': [], 'frequency': ['MANUAL', 3], 'source_type': ['datajson', 3], 'organization': ['org', 3]}, 'facet_ranges': {}, 'facet_intervals': {}, 'facet_heatmaps': {}}
 ```
 
 ## SQL queries tests for catalog-next
