@@ -1,6 +1,6 @@
 # Data (psql and SOLR) tests
 
-## SOLOR tests
+## SOLR tests
 
 ```
 python3 solr-test.py --solr_url http://solr:8983/solr/ckan
