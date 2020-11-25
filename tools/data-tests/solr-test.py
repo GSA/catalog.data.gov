@@ -31,7 +31,7 @@ def run_query(query):
     print(' - {} Results'.format(len(ret['results'])))
     # for result in ret['results']:
     #     print(' - result: {}'.format(result))
-    print(' - Facets \n\t{}'.format(ret['results'].facets))
+    # print(' - Facets \n\t{}'.format(ret['results'].facets))
     # print(' - {}'.format(res.raw_response['response']['numFound']))
     
     return ret
