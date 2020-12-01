@@ -6,8 +6,8 @@ echo "-----------------------------------------------------------------"
 echo "Installing the packages that CKAN requires..."
 sudo apt-get update -qq
 sudo apt-get install solr-jetty libcommons-fileupload-java libpq-dev postgresql \
-	 postgresql-contrib python-lxml postgresql-9.3-postgis-2.1 \
- 	 python-dev libxml2-dev libxslt1-dev libgeos-c1 redis-server
+	 postgresql-contrib python-lxml postgresql-10-postgis-2.4 \
+ 	 python-dev libxml2-dev libxslt1-dev libgeos-c1v5 redis-server python-pip
 
 echo "-----------------------------------------------------------------"
 echo "Downliading settings"
@@ -40,8 +40,15 @@ echo "Setting up Solr..."
 # see https://github.com/ckan/ckan/issues/2972
 sed -i -e 's/solr_url.*/solr_url = http:\/\/127.0.0.1:8983\/solr/' test-core.ini
 printf "NO_START=0\nJETTY_HOST=127.0.0.1\nJETTY_PORT=8983\nJAVA_HOME=$JAVA_HOME" | sudo tee /etc/default/jetty
-sudo wget -O /etc/solr/conf/schema.xml https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/solr/schema.xml
-sudo service jetty restart
+sudo wget -O /etc/solr/conf/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/master/solr/schema.xml
+
+jetty_restarted=0
+sudo service jetty9 restart && jetty_restarted=1
+
+if [ $jetty_restarted -eq 0 ]
+then
+	sudo service jetty9 status
+fi
 
 echo "-----------------------------------------------------------------"
 echo "Creating the PostgreSQL user and database..."

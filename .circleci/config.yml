@@ -43,8 +43,9 @@ jobs:
           command: make test-import-tool
   
   start_ckan_28:
-    machine:
-      image: circleci/classic:201708-01
+    docker:
+      # this image should be used in all extensions 
+      - image: cimg/base:stable-18.04
     steps:
       - checkout
       - run:
