@@ -30,8 +30,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    build:
-      context: solr/
+    image: datagov/catalog.data.gov.solr
     ports:
       - "8983:8983"
     volumes:

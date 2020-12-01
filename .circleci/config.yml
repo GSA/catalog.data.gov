@@ -68,6 +68,7 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov:latest
+            docker push datagov/catalog.data.gov.solr:latest
 
       
 workflows:
