@@ -9,6 +9,7 @@ ci:
 
 build:
 	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker build -t datagov/catalog.data.gov.solr:latest solr/
 	docker-compose build
 
 clean:
