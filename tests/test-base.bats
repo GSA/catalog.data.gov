@@ -12,6 +12,10 @@ load test_helper
   test_url user/login
 }
 
+@test "Location search is working" {
+  test_content api/3/action/location_search?q=california "California City"
+}
+
 @test "when the admin user logs in then the auth_tkt cookie is set" {
   local url="http://$HOST:$PORT/login_generic?came_from=/user/logged_in"
 
