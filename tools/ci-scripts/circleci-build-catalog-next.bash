@@ -40,7 +40,7 @@ echo "Setting up Solr..."
 # see https://github.com/ckan/ckan/issues/2972
 sed -i -e 's/solr_url.*/solr_url = http:\/\/127.0.0.1:8983\/solr/' test-core.ini
 printf "NO_START=0\nJETTY_HOST=127.0.0.1\nJETTY_PORT=8983\nJAVA_HOME=$JAVA_HOME" | sudo tee /etc/default/jetty
-sudo wget -O /etc/solr/conf/schema.xml https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/solr/schema.xml
+sudo wget -O /etc/solr/conf/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/master/solr/schema.xml
 sudo service jetty restart
 
 echo "-----------------------------------------------------------------"
@@ -80,5 +80,21 @@ echo "-----------------------------------------------------------------"
 echo "Initializing QA"
 paster --plugin=ckanext-qa qa init -c test-catalog-next.ini
 
+echo "-----------------------------------------------------------------"
+echo "Installing locations table"
+DEST_FOLDER=/tmp
+HOST=localhost
+DB_NAME=ckan_test
+DB_USER=ckan_default
+PASS=pass
+
+echo "Downloading locations table"
+wget https://github.com/GSA/datagov-deploy/raw/71936f004be1882a506362670b82c710c64ef796/ansible/roles/software/ec2/ansible/files/locations.sql.gz -O $DEST_FOLDER/locations.sql.gz
+
+echo "Creating locations table"
+gunzip -c ${DEST_FOLDER}/locations.sql.gz | PGPASSWORD=${PASS} psql -h $HOST -U $DB_USER -d $DB_NAME -v ON_ERROR_STOP=1
+
+echo "Cleaning"
+rm -f $DEST_FOLDER/locations.sql.gz
 
 echo "travis-build.bash is done."
