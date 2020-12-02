@@ -22,6 +22,7 @@ jobs:
           paths:
             - ./image-catalog.tar
             - ./image-solr.tar
+            - ./image-db.tar
       - run: 
           name: lint and test
           command: |
