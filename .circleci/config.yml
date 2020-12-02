@@ -82,7 +82,13 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov:latest
+            
+            docker logout
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov.solr:latest
+            
+            docker logout
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov.db:latest
 
       
