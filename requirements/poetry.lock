@@ -216,7 +216,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "a99b5ab86dbb111813429be9edf6307fe4335aec"
+reference = "e93b4129bee3d1ca9241ce026112c1eeb7674e95"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -312,6 +312,21 @@ type = "git"
 url = "https://github.com/davidread/ckanext-report.git"
 [[package]]
 category = "main"
+description = "Saml2 authentication extension"
+name = "ckanext-saml2"
+optional = false
+python-versions = "*"
+version = "0.4.0"
+
+[package.dependencies]
+python-memcached = "1.48"
+
+[package.source]
+reference = "063935d1836eaeebf4b00305c9e13ce27cf0ea66"
+type = "git"
+url = "https://github.com/GSA/ckanext-saml2.git"
+[[package]]
+category = "main"
 description = "Geo-related plugins for CKAN"
 name = "ckanext-spatial"
 optional = false
@@ -373,6 +388,14 @@ name = "decorator"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*"
 version = "4.4.2"
+
+[[package]]
+category = "main"
+description = "XML bomb protection for Python stdlib modules"
+name = "defusedxml"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "0.6.0"
 
 [[package]]
 category = "main"
@@ -979,6 +1002,30 @@ version = "2.4.7"
 
 [[package]]
 category = "main"
+description = "Python implementation of SAML Version 2 Standard"
+name = "pysaml2"
+optional = false
+python-versions = "*"
+version = "4.9.0"
+
+[package.dependencies]
+cryptography = ">=1.4"
+defusedxml = "*"
+pyOpenSSL = "*"
+python-dateutil = "*"
+pytz = "*"
+requests = ">=1.0.0"
+six = "*"
+
+[package.extras]
+s2repoze = ["paste", "zope.interface", "repoze.who"]
+
+[package.source]
+reference = "51b7e09d0f6d3af31c9d60b09a3f335eb6ecfa5c"
+type = "git"
+url = "https://github.com/GSA/pysaml2.git"
+[[package]]
+category = "main"
 description = "Lightweight python wrapper for Apache Solr."
 name = "pysolr"
 optional = false
@@ -1006,6 +1053,14 @@ name = "python-magic"
 optional = false
 python-versions = "*"
 version = "0.4.15"
+
+[[package]]
+category = "main"
+description = "Pure python memcached client"
+name = "python-memcached"
+optional = false
+python-versions = "*"
+version = "1.48"
 
 [[package]]
 category = "main"
@@ -1384,7 +1439,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "7d9470e566400f801e859231ab9fc698aca4d0f33b876c6529809cc11a869eb3"
+content-hash = "6972cc89783ca12250210fd7009903c79905e2ed269810b3a95b3bf42924d8d0"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1485,6 +1540,7 @@ ckanext-googleanalyticsbasic = []
 ckanext-harvest = []
 ckanext-qa = []
 ckanext-report = []
+ckanext-saml2 = []
 ckanext-spatial = []
 ckantoolkit = [
     {file = "ckantoolkit-0.0.3.tar.gz", hash = "sha256:35510c9358c9933f4543640409e58df934c40717656e373f42149eb53ec34acb"},
@@ -1514,6 +1570,10 @@ cryptography = [
 decorator = [
     {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
     {file = "decorator-4.4.2.tar.gz", hash = "sha256:e3a62f0520172440ca0dcc823749319382e377f37f140a0b99ef45fecb84bfe7"},
+]
+defusedxml = [
+    {file = "defusedxml-0.6.0-py2.py3-none-any.whl", hash = "sha256:6687150770438374ab581bb7a1b327a847dd9c5749e396102de3fad4e8a3ef93"},
+    {file = "defusedxml-0.6.0.tar.gz", hash = "sha256:f684034d135af4c6cbb949b8a4d2ed61634515257a67299e5f940fbaa34377f5"},
 ]
 distro = [
     {file = "distro-1.5.0-py2.py3-none-any.whl", hash = "sha256:df74eed763e18d10d0da624258524ae80486432cd17392d9c3d96f5e83cd2799"},
@@ -1868,6 +1928,7 @@ pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
 ]
+pysaml2 = []
 pysolr = [
     {file = "pysolr-3.6.0-py2.py3-none-any.whl", hash = "sha256:fd1233e80dcfb7405ca5a33982f485f2ab2f8dffc675c52eff3b33eec950c060"},
     {file = "pysolr-3.6.0.tar.gz", hash = "sha256:f94292c1002dbbbfaecaad18fec39cc4bff843b459c8851a2234f2799788ac6f"},
@@ -1878,6 +1939,9 @@ python-dateutil = [
 python-magic = [
     {file = "python-magic-0.4.15.tar.gz", hash = "sha256:f3765c0f582d2dfc72c15f3b5a82aecfae9498bd29ca840d72f37d7bd38bfcd5"},
     {file = "python_magic-0.4.15-py2.py3-none-any.whl", hash = "sha256:f2674dcfad52ae6c49d4803fa027809540b130db1dec928cfbb9240316831375"},
+]
+python-memcached = [
+    {file = "python-memcached-1.48.tar.gz", hash = "sha256:66bbc62d9519f9d531b1f77e687d9f2f5e521cb906f1fd7231f403997e0110c4"},
 ]
 pytz = [
     {file = "pytz-2016.7-py2.4.egg", hash = "sha256:cfe881048e0bcb348b901bc1972a54b5e5389274315acbe9384d68569b8ed1f9"},
