@@ -62,7 +62,7 @@ jobs:
             cd tools/ci-scripts
             ./circleci-build-catalog-next.bash
   
-  docker_publish:
+  docker_publish_catalog:
     machine: true
     steps:
       - checkout
@@ -72,26 +72,42 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image-catalog.tar
       - run:
+          name: Tag and publish catalog image
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push datagov/catalog.data.gov:latest
+
+  docker_publish_solr:
+    machine: true
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
           name: Load archived Docker SOLR image
           command: docker load -i /tmp/workspace/image-solr.tar
+      - run:
+          name: Tag and publish SOLR image
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push datagov/catalog.data.gov.solr:latest
+            
+
+  docker_publish_db:
+    machine: true
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Load archived Docker DB image
           command: docker load -i /tmp/workspace/image-db.tar
       - run:
-          name: Tag and publish image
+          name: Tag and publish DB image
           command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov:latest
-            
-            docker logout
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov.solr:latest
-            
-            docker logout
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov.db:latest
 
-      
 workflows:
   version: 2
   commit:
@@ -105,7 +121,19 @@ workflows:
               only: master
       - test_importer
       - test
-      - docker_publish:
+      - docker_publish_catalog:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - docker_publish_solr:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - docker_publish_db:
           requires:
             - test
           filters:
