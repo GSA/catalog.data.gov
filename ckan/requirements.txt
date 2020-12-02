@@ -27,7 +27,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
-cryptography==2.7
+cryptography==3.2
 decorator==4.4.2
 defusedxml==0.6.0
 distro==1.5.0
