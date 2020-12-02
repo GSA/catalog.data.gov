@@ -9,12 +9,19 @@ jobs:
           name: build
           command: make build
       - run:
-          name: Archive Docker image
-          command: docker save -o image.tar datagov/catalog.data.gov:latest
+          name: Archive Catalog Docker image
+          command: docker save -o image-catalog.tar datagov/catalog.data.gov:latest
+      - run:
+          name: Archive Solr Docker image
+          command: docker save -o image-solr.tar datagov/catalog.data.gov.solr:latest
+      - run:
+          name: Archive DB Docker image
+          command: docker save -o image-db.tar datagov/catalog.data.gov.db:latest
       - persist_to_workspace:
           root: .
           paths:
-            - ./image.tar
+            - ./image-catalog.tar
+            - ./image-solr.tar
       - run: 
           name: lint and test
           command: |
@@ -62,13 +69,20 @@ jobs:
           at: /tmp/workspace
       - run:
           name: Load archived Docker image
-          command: docker load -i /tmp/workspace/image.tar
+          command: docker load -i /tmp/workspace/image-catalog.tar
+      - run:
+          name: Load archived Docker SOLR image
+          command: docker load -i /tmp/workspace/image-solr.tar
+      - run:
+          name: Load archived Docker DB image
+          command: docker load -i /tmp/workspace/image-db.tar
       - run:
           name: Tag and publish image
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov:latest
             docker push datagov/catalog.data.gov.solr:latest
+            docker push datagov/catalog.data.gov.db:latest
 
       
 workflows:
