@@ -322,7 +322,7 @@ version = "0.4.0"
 python-memcached = "1.48"
 
 [package.source]
-reference = "d94417117f47f28cc673eb86448aa7b6ea62217c"
+reference = "07df14dba0d42c83cd6cdd95a16279198a8d5349"
 type = "git"
 url = "https://github.com/GSA/ckanext-saml2.git"
 [[package]]
@@ -1021,7 +1021,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "0dfcae05eadc08fb75ed1c9e7d81968fc137aca8"
+reference = "1f876cb6936d9dd6bd798ce83f5a61ce77274e56"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
@@ -1439,7 +1439,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "6972cc89783ca12250210fd7009903c79905e2ed269810b3a95b3bf42924d8d0"
+content-hash = "fcb04b2a17661a28e88b7f41a531a60b0b4b91e0bb2f8c8499c2e2f0a3321d72"
 lock-version = "1.0"
 python-versions = "^2.7"
 
