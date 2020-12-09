@@ -129,7 +129,7 @@ description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
 optional = false
 python-versions = "*"
-version = "2020.11.8"
+version = "2020.12.5"
 
 [[package]]
 category = "main"
@@ -204,7 +204,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "81f33566e963c824ad76f90fd5a3c69c9f98ef8c"
+reference = "a268f37444be59dcbfd4a8d8068d29c8a1fc329a"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -248,7 +248,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "a6bed668c872016995231ff64eae84ddf3c545c6"
+reference = "5393def8735fd151f9f9a70fa72bd795d9375342"
 type = "git"
 url = "https://github.com/GSA/ckanext-geodatagov.git"
 [[package]]
@@ -322,7 +322,7 @@ version = "0.4.0"
 python-memcached = "1.48"
 
 [package.source]
-reference = "063935d1836eaeebf4b00305c9e13ce27cf0ea66"
+reference = "d94417117f47f28cc673eb86448aa7b6ea62217c"
 type = "git"
 url = "https://github.com/GSA/ckanext-saml2.git"
 [[package]]
@@ -1021,7 +1021,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "51b7e09d0f6d3af31c9d60b09a3f335eb6ecfa5c"
+reference = "0dfcae05eadc08fb75ed1c9e7d81968fc137aca8"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
@@ -1489,8 +1489,8 @@ celery = [
     {file = "celery-3.1.25.tar.gz", hash = "sha256:6ced63033bc663e60c992564954dbb5c84c43899f7f1a04b739957350f6b55f3"},
 ]
 certifi = [
-    {file = "certifi-2020.11.8-py2.py3-none-any.whl", hash = "sha256:1f422849db327d534e3d0c5f02a263458c3955ec0aae4ff09b95f195c59f4edd"},
-    {file = "certifi-2020.11.8.tar.gz", hash = "sha256:f05def092c44fbf25834a51509ef6e631dc19765ab8a57b4e7ab85531f0a9cf4"},
+    {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},
+    {file = "certifi-2020.12.5.tar.gz", hash = "sha256:1a4995114262bffbc2413b159f2a1a480c969de6e6eb13ee966d470af86af59c"},
 ]
 cffi = [
     {file = "cffi-1.12.3-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:5662ad4e4e84f1eaa8efce5da695c5d2e229c563f9d5ce5b0113f71321bcf753"},
