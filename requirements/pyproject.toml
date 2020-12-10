@@ -89,7 +89,7 @@ future = ">=0.18.2"
 six = ">=1.15.0"
 
 # ckanext-pysaml2
-pysaml2 = {git = "https://github.com/GSA/pysaml2.git", branch = "datagov/v4.9.0-remove-bad-commits" }
+pysaml2 = {git = "https://github.com/GSA/pysaml2.git", branch = "feature/ci-login-gov" }
 
 # ckan doesn't advertise its requirements correctly, so let's add them
 # here.

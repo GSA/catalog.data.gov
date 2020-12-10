@@ -1021,7 +1021,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "c30a9d3ffcbc6b1692379e5dd5af885296514c33"
+reference = "0dfcae05eadc08fb75ed1c9e7d81968fc137aca8"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
@@ -1439,7 +1439,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "7b2e055738899e2882e7ad55f775bdda8b1191c91f84a4042ce408b713f857f7"
+content-hash = "37548bdc60da63370a0e538712a6c40194ad9a8e14db7606b60f8b7cf050d90e"
 lock-version = "1.0"
 python-versions = "^2.7"
 
