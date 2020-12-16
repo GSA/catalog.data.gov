@@ -57,5 +57,5 @@ sort_orders = sorted(results.iteritems(), key=lambda x: x[1], reverse=True)
 
 print("--------------------")
 print("Big parents")
-for res in sort_orders:
+for res in sort_orders[:100]:
     print(res)
