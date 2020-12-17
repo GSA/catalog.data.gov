@@ -1,0 +1,65 @@
+<EntityDescriptor 
+    ID="_a8fd91c0-22d2-0139-dfe0-02a205ce3e3d" 
+    xmlns="urn:oasis:names:tc:SAML:2.0:metadata" 
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
+    entityID="https://idp.int.identitysandbox.gov/api/saml">
+    
+    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:SignedInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:CanonicalizationMethod>
+            <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+            <ds:Reference URI="#_a8fd91c0-22d2-0139-dfe0-02a205ce3e3d">
+                <ds:Transforms>
+                    <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+                    <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+                </ds:Transforms>
+                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+                <ds:DigestValue>GluLQEwDhPjf0mit0JdgVff7IwCshPPI8LEf6T+eilA=</ds:DigestValue>
+            </ds:Reference>
+        </ds:SignedInfo>
+        <ds:SignatureValue>JT9CHJHMtwv2V2/ssIfyqwOttVO5UVzhkwj7v0PJfAK+OGbwPy72Frv3QYsCY9qJPLNnIqXSrgG0iQgOJnVql0xgJxke5dKPSbtcxL0Dk/WSQfvLguFBGBndLdremvQnSYcVNc24XvgYkSyLqKwQubTNAI/5DmEImTgYLKQMakHZ8TtFdA6JRjgU9LvCKO+ubekwC7ap1yAJLh8E+XByU/WE0XxOGouOJcUwEEuAk3l3hE3Pxxvzk63oRENKrsO+b0Z7v+PJ0RWOefM6gGP3w7cgvYrf4ZnaGA3TTqCpJNOpK/h4rK3sN5xYuj80Dj0WNW9Sl9bf0aEu8Fk9HKMPng==</ds:SignatureValue>
+        <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+                <ds:X509Certificate>MIIDgDCCAmgCCQCBwmwOs+Ve3DANBgkqhkiG9w0BAQsFADCBgTELMAkGA1UEBhMCVVMxHTAbBgNVBAgMFERpc3RyaWN0IG9mIENvbHVtYmlhMQwwCgYDVQQKDANHU0ExDDAKBgNVBAsMA1RUUzESMBAGA1UECwwJTG9naW4uZ292MSMwIQYDVQQDDBpzZWN1cmUuaWRlbnRpdHlzYW5kYm94LmdvdjAeFw0yMDAzMTAxOTE0MzhaFw0yMTA0MDExOTE0MzhaMIGBMQswCQYDVQQGEwJVUzEdMBsGA1UECAwURGlzdHJpY3Qgb2YgQ29sdW1iaWExDDAKBgNVBAoMA0dTQTEMMAoGA1UECwwDVFRTMRIwEAYDVQQLDAlMb2dpbi5nb3YxIzAhBgNVBAMMGnNlY3VyZS5pZGVudGl0eXNhbmRib3guZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnpLbLzqL+7Xxa8HrxhX6DNBmpWvpldrT9Z8JKgFOjPuZZT1TPYpE6b2fL1M49SDCXudFssbgcX2BBGZsvZ96UGtKP0dz4Sy+RqWwSUBrptMwcayM5TGu0AW5kGDbb0ZC2M7jspHOZ1bdPdT3BGbyHIrCwBVwlyLSBeztACQTebmCaW5fioJnpigbMmGCpLm4zFYOLYmR1fEHgWNrw51rhxhb3OEODX5Wjp6F86oEqgJFmV4pq8ggL3qEKbNwpvm3QMUvQ1QmZh8bIBvp9BYcgTjCBFDYwTdR5KQpZHtSqdHjaxfDq3TJPUqVB+LMb9STjU/qKcvg/IbmwzQ0tDdzgQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBqcIhjTzbUOugSx7bkKwiS0qjpVgmZnvbb//eQeTmKuMquvy/DW1Lon9X6QBIvkwJMKMfgZVfTwV9C3h4kkPXnhZNt4HH0TPBqZZwprFoEOhqkjmx6jD5OdrVw/d505Q11lsb7yN7sOwJ0/Q26Ru3BA5sFCtAXM3TB9JGCZs2s/5Geut2Q6MTUMVutjsCPRRwpJ0ls22e5hxQRIuXjJf6tAOCVdt4YYbkYgcXYNe36N/zoZmnJOPZDtumCBcB9XsQw14G4kWHW38EaFpIY8yFt5p4k+8DbC6DTqgxOfYUWpmY9IGGS4A2Buwqh7rJcjv1g3f68Tz2vXphnfi5rmN4Y</ds:X509Certificate>
+            </ds:X509Data>
+        </KeyInfo>
+    </ds:Signature>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>MIIDgDCCAmgCCQCBwmwOs+Ve3DANBgkqhkiG9w0BAQsFADCBgTELMAkGA1UEBhMCVVMxHTAbBgNVBAgMFERpc3RyaWN0IG9mIENvbHVtYmlhMQwwCgYDVQQKDANHU0ExDDAKBgNVBAsMA1RUUzESMBAGA1UECwwJTG9naW4uZ292MSMwIQYDVQQDDBpzZWN1cmUuaWRlbnRpdHlzYW5kYm94LmdvdjAeFw0yMDAzMTAxOTE0MzhaFw0yMTA0MDExOTE0MzhaMIGBMQswCQYDVQQGEwJVUzEdMBsGA1UECAwURGlzdHJpY3Qgb2YgQ29sdW1iaWExDDAKBgNVBAoMA0dTQTEMMAoGA1UECwwDVFRTMRIwEAYDVQQLDAlMb2dpbi5nb3YxIzAhBgNVBAMMGnNlY3VyZS5pZGVudGl0eXNhbmRib3guZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnpLbLzqL+7Xxa8HrxhX6DNBmpWvpldrT9Z8JKgFOjPuZZT1TPYpE6b2fL1M49SDCXudFssbgcX2BBGZsvZ96UGtKP0dz4Sy+RqWwSUBrptMwcayM5TGu0AW5kGDbb0ZC2M7jspHOZ1bdPdT3BGbyHIrCwBVwlyLSBeztACQTebmCaW5fioJnpigbMmGCpLm4zFYOLYmR1fEHgWNrw51rhxhb3OEODX5Wjp6F86oEqgJFmV4pq8ggL3qEKbNwpvm3QMUvQ1QmZh8bIBvp9BYcgTjCBFDYwTdR5KQpZHtSqdHjaxfDq3TJPUqVB+LMb9STjU/qKcvg/IbmwzQ0tDdzgQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBqcIhjTzbUOugSx7bkKwiS0qjpVgmZnvbb//eQeTmKuMquvy/DW1Lon9X6QBIvkwJMKMfgZVfTwV9C3h4kkPXnhZNt4HH0TPBqZZwprFoEOhqkjmx6jD5OdrVw/d505Q11lsb7yN7sOwJ0/Q26Ru3BA5sFCtAXM3TB9JGCZs2s/5Geut2Q6MTUMVutjsCPRRwpJ0ls22e5hxQRIuXjJf6tAOCVdt4YYbkYgcXYNe36N/zoZmnJOPZDtumCBcB9XsQw14G4kWHW38EaFpIY8yFt5p4k+8DbC6DTqgxOfYUWpmY9IGGS4A2Buwqh7rJcjv1g3f68Tz2vXphnfi5rmN4Y</X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress</NameIDFormat>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.int.identitysandbox.gov/api/saml/auth2020"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.int.identitysandbox.gov/api/saml/auth2020"/>
+    </IDPSSODescriptor>
+    <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>MIIDgDCCAmgCCQCBwmwOs+Ve3DANBgkqhkiG9w0BAQsFADCBgTELMAkGA1UEBhMCVVMxHTAbBgNVBAgMFERpc3RyaWN0IG9mIENvbHVtYmlhMQwwCgYDVQQKDANHU0ExDDAKBgNVBAsMA1RUUzESMBAGA1UECwwJTG9naW4uZ292MSMwIQYDVQQDDBpzZWN1cmUuaWRlbnRpdHlzYW5kYm94LmdvdjAeFw0yMDAzMTAxOTE0MzhaFw0yMTA0MDExOTE0MzhaMIGBMQswCQYDVQQGEwJVUzEdMBsGA1UECAwURGlzdHJpY3Qgb2YgQ29sdW1iaWExDDAKBgNVBAoMA0dTQTEMMAoGA1UECwwDVFRTMRIwEAYDVQQLDAlMb2dpbi5nb3YxIzAhBgNVBAMMGnNlY3VyZS5pZGVudGl0eXNhbmRib3guZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnpLbLzqL+7Xxa8HrxhX6DNBmpWvpldrT9Z8JKgFOjPuZZT1TPYpE6b2fL1M49SDCXudFssbgcX2BBGZsvZ96UGtKP0dz4Sy+RqWwSUBrptMwcayM5TGu0AW5kGDbb0ZC2M7jspHOZ1bdPdT3BGbyHIrCwBVwlyLSBeztACQTebmCaW5fioJnpigbMmGCpLm4zFYOLYmR1fEHgWNrw51rhxhb3OEODX5Wjp6F86oEqgJFmV4pq8ggL3qEKbNwpvm3QMUvQ1QmZh8bIBvp9BYcgTjCBFDYwTdR5KQpZHtSqdHjaxfDq3TJPUqVB+LMb9STjU/qKcvg/IbmwzQ0tDdzgQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBqcIhjTzbUOugSx7bkKwiS0qjpVgmZnvbb//eQeTmKuMquvy/DW1Lon9X6QBIvkwJMKMfgZVfTwV9C3h4kkPXnhZNt4HH0TPBqZZwprFoEOhqkjmx6jD5OdrVw/d505Q11lsb7yN7sOwJ0/Q26Ru3BA5sFCtAXM3TB9JGCZs2s/5Geut2Q6MTUMVutjsCPRRwpJ0ls22e5hxQRIuXjJf6tAOCVdt4YYbkYgcXYNe36N/zoZmnJOPZDtumCBcB9XsQw14G4kWHW38EaFpIY8yFt5p4k+8DbC6DTqgxOfYUWpmY9IGGS4A2Buwqh7rJcjv1g3f68Tz2vXphnfi5rmN4Y</X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        <Organization>
+            <OrganizationName xml:lang="en">18F</OrganizationName>
+            <OrganizationDisplayName xml:lang="en">18F</OrganizationDisplayName>
+            <OrganizationURL xml:lang="en">http://18f.gsa.gov</OrganizationURL>
+        </Organization>
+        <ContactPerson contactType="technical"></ContactPerson>
+        <AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.int.identitysandbox.gov/api/saml/attributes"/>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress</NameIDFormat>
+    </AttributeAuthorityDescriptor>
+    <Organization>
+        <OrganizationName xml:lang="en">18F</OrganizationName>
+        <OrganizationDisplayName xml:lang="en">18F</OrganizationDisplayName>
+        <OrganizationURL xml:lang="en">http://18f.gsa.gov</OrganizationURL>
+    </Organization>
+    <ContactPerson contactType="technical"></ContactPerson>
+</EntityDescriptor>
