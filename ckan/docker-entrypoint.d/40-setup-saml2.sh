@@ -3,7 +3,11 @@
 set -o errexit
 set -o pipefail
 set -o nounset
-set -x
+
+if [ -z "${ENABLE_SAML2:-}" ]; then
+  # Nothing to do if SAML2 is not enabled
+  return 0
+fi
 
 tmp_saml=$(mktemp)
 
@@ -33,6 +37,7 @@ EOF
 
 paster --plugin=ckan config-tool production.ini -f "$tmp_saml"
 # paster config-tool doesn't seem to handle multiline configuration. Hack it.
+# TODO this is not idempotent and might screw up your config after a stop/start.
 sed -i -e '/saml2.user_mapping/ a \
 \ \ email~email\
 \ \ fullname~email\

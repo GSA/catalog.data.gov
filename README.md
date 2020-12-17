@@ -157,6 +157,11 @@ pdb; pdb.set_trace()`) you will be able to inspect it in this terminal next time
 the code is executed.
 
 
+## SAML2
+
+To enable the ckanext-saml2 extension, set `ENABLE_SAML2` in your `.env`.
+
+
 ## CI
 
 Continuous Integration via [Circle
