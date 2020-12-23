@@ -1,5 +1,5 @@
 HOST="ckan"
-PORT="5000"
+# PORT=  # DEFINED in DockerFile.test
 CKAN_DB="ckan"
 CKAN_DB_PW="ckan"
 DB_HOST='db'

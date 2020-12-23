@@ -312,19 +312,16 @@ type = "git"
 url = "https://github.com/davidread/ckanext-report.git"
 [[package]]
 category = "main"
-description = "Saml2 authentication extension"
-name = "ckanext-saml2"
+description = "An extension to enable Single Sign On(SSO) for CKAN data portals via SAML2 Authentication."
+name = "ckanext-saml2auth"
 optional = false
 python-versions = "*"
-version = "0.4.0"
-
-[package.dependencies]
-python-memcached = "1.48"
+version = "0.0.2"
 
 [package.source]
-reference = "1a2aa1fe84ac43dd2865f2f529505739909c3dad"
+reference = "1dae14187db20d98f40cd0a77f29eb736848e100"
 type = "git"
-url = "https://github.com/GSA/ckanext-saml2.git"
+url = "https://github.com/datopian/ckanext-saml2auth.git"
 [[package]]
 category = "main"
 description = "Geo-related plugins for CKAN"
@@ -526,7 +523,7 @@ description = "GeoJSON <-> WKT/WKB conversion utilities"
 name = "geomet"
 optional = false
 python-versions = ">2.6, !=3.3.*, <4"
-version = "0.2.1.post1"
+version = "0.3.0"
 
 [package.dependencies]
 click = "*"
@@ -1020,10 +1017,6 @@ six = "*"
 [package.extras]
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
-[package.source]
-reference = "45d0ea01b3e3c1fba2757387f8068d57153ce2ce"
-type = "git"
-url = "https://github.com/GSA/pysaml2.git"
 [[package]]
 category = "main"
 description = "Lightweight python wrapper for Apache Solr."
@@ -1056,11 +1049,11 @@ version = "0.4.15"
 
 [[package]]
 category = "main"
-description = "Pure python memcached client"
-name = "python-memcached"
+description = "Backport of secrets for python2"
+name = "python2-secrets"
 optional = false
-python-versions = "*"
-version = "1.48"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "1.0.5"
 
 [[package]]
 category = "main"
@@ -1444,7 +1437,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "fcb04b2a17661a28e88b7f41a531a60b0b4b91e0bb2f8c8499c2e2f0a3321d72"
+content-hash = "8db878a08b8fa547bee562afcdb4ede437f5a481a22990e05df553c406d25801"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1545,7 +1538,7 @@ ckanext-googleanalyticsbasic = []
 ckanext-harvest = []
 ckanext-qa = []
 ckanext-report = []
-ckanext-saml2 = []
+ckanext-saml2auth = []
 ckanext-spatial = []
 ckantoolkit = [
     {file = "ckantoolkit-0.0.3.tar.gz", hash = "sha256:35510c9358c9933f4543640409e58df934c40717656e373f42149eb53ec34acb"},
@@ -1624,9 +1617,9 @@ geoalchemy2 = [
     {file = "GeoAlchemy2-0.5.0.tar.gz", hash = "sha256:7d66d01af82d22bc37d3ebb1e73713b87ac5e116b3bc82ea4ec0584bbaa89f89"},
 ]
 geomet = [
-    {file = "geomet-0.2.1.post1-py3-none-any.whl", hash = "sha256:a41a1e336b381416d6cbed7f1745c848e91defaa4d4c1bdc1312732e46ffad2b"},
-    {file = "geomet-0.2.1.post1-py3.6.egg", hash = "sha256:87ae0fc42e532b9e98969c0bbf895a5e0b2bb4f6f775cf51a74e6482f1f35c2b"},
-    {file = "geomet-0.2.1.post1.tar.gz", hash = "sha256:91d754f7c298cbfcabd3befdb69c641c27fe75e808b27aa55028605761d17e95"},
+    {file = "geomet-0.3.0-py3-none-any.whl", hash = "sha256:a3e55f5f7a5da116f05874acae93f612e2b5bdaa0724d008dfe13e68cb63f9b1"},
+    {file = "geomet-0.3.0-py3.7.egg", hash = "sha256:eb47ed9e22f3e4fa88333f5540c65aa0b6ec33ef6e9e1f2217b9b6df26e47461"},
+    {file = "geomet-0.3.0.tar.gz", hash = "sha256:cb52411978ee01ff104ab48f108d7333b14423ae7a15a65fee25b7d29bda2e1b"},
 ]
 gevent = [
     {file = "gevent-1.2.2-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:9b492bb1a043540abb6e54fdb5537531e24962ca49c09f3b47dc4f9c37f6297c"},
@@ -1933,7 +1926,10 @@ pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
 ]
-pysaml2 = []
+pysaml2 = [
+    {file = "pysaml2-4.9.0-py2.py3-none-any.whl", hash = "sha256:a909ea3098c9d78d88ba622b3f86b39ab032910335427a6eda74e4a787aa6eba"},
+    {file = "pysaml2-4.9.0.tar.gz", hash = "sha256:aaf41cdef9a46f44f1553e84ad43bf2aff5cec051050a05f8263374eadc01d5a"},
+]
 pysolr = [
     {file = "pysolr-3.6.0-py2.py3-none-any.whl", hash = "sha256:fd1233e80dcfb7405ca5a33982f485f2ab2f8dffc675c52eff3b33eec950c060"},
     {file = "pysolr-3.6.0.tar.gz", hash = "sha256:f94292c1002dbbbfaecaad18fec39cc4bff843b459c8851a2234f2799788ac6f"},
@@ -1945,8 +1941,10 @@ python-magic = [
     {file = "python-magic-0.4.15.tar.gz", hash = "sha256:f3765c0f582d2dfc72c15f3b5a82aecfae9498bd29ca840d72f37d7bd38bfcd5"},
     {file = "python_magic-0.4.15-py2.py3-none-any.whl", hash = "sha256:f2674dcfad52ae6c49d4803fa027809540b130db1dec928cfbb9240316831375"},
 ]
-python-memcached = [
-    {file = "python-memcached-1.48.tar.gz", hash = "sha256:66bbc62d9519f9d531b1f77e687d9f2f5e521cb906f1fd7231f403997e0110c4"},
+python2-secrets = [
+    {file = "python2-secrets-1.0.5.tar.gz", hash = "sha256:82405f28fa613ea7788d3bb6cc468668e7a8baed101e994e5f77e99db96093bb"},
+    {file = "python2_secrets-1.0.5-py2.7.egg", hash = "sha256:a5e96120a865a111b5272c5b8a206ce4549d8c95c54d279a8b85a301a93e08a6"},
+    {file = "python2_secrets-1.0.5-py2.py3-none-any.whl", hash = "sha256:d7448efe9b64c2bf4062e805f482ebe13477a33a8a36b8f2e885347802f67ac7"},
 ]
 pytz = [
     {file = "pytz-2016.7-py2.4.egg", hash = "sha256:cfe881048e0bcb348b901bc1972a54b5e5389274315acbe9384d68569b8ed1f9"},

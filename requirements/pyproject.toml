@@ -21,7 +21,7 @@ ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git" }
 ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git"}
 ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git" }
 ckanext-qa = {git = "https://github.com/ckan/ckanext-qa.git" }
-ckanext-saml2 = { git = "https://github.com/GSA/ckanext-saml2.git", tag = "datagov/v0.4.0" }
+ckanext-saml2auth = { git = "https://github.com/datopian/ckanext-saml2auth.git", tag = "ckan_2.8" }
 ckanext-dcat = {git="https://github.com/ckan/ckanext-dcat" }
 # If you try to add and extension and it didn't work you should try `chown user:user -R .` because if you run docker as superuser and the as a regular user won't be able to add the folder for the new extension
 
@@ -89,7 +89,10 @@ future = ">=0.18.2"
 six = ">=1.15.0"
 
 # ckanext-pysaml2
-pysaml2 = {git = "https://github.com/GSA/pysaml2.git", branch = "datagov/v4.9.0" }
+pysaml2 = "4.9.0"
+
+# to backport saml2auth to CKAN 2.8 and python2
+python2-secrets = "1.0.5"
 
 # ckan doesn't advertise its requirements correctly, so let's add them
 # here.

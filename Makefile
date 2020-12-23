@@ -8,7 +8,20 @@ ci:
 	docker-compose up -d
 
 build:
-	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker build \
+		-t datagov/catalog.data.gov:latest \
+		--build-arg CKAN_URL=http://ckan:5000 \
+		ckan/
+	docker build -t datagov/catalog.data.gov.solr:latest solr/
+	docker build -t datagov/catalog.data.gov.db:latest postgresql/
+	docker-compose build
+
+build-saml2:
+	docker build \
+		-t datagov/catalog.data.gov:latest \
+		--build-arg CKAN_URL=https://localhost:8443 \
+		--build-arg EXTRA_PLUGINS=saml2auth \
+		ckan/
 	docker build -t datagov/catalog.data.gov.solr:latest solr/
 	docker build -t datagov/catalog.data.gov.db:latest postgresql/
 	docker-compose build
@@ -33,18 +46,22 @@ requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
 
 test:
-	docker build -t datagov/catalog.data.gov:latest ckan/
-	docker-compose build
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
+	docker build \
+		-t datagov/catalog.data.gov:latest \
+		--build-arg CKAN_URL=http://ckan:5000 \
+		ckan/
+	
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml build --build-arg CKAN_PORT=5000
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 quick-bat-test:
 	# if local environment is already build and running 
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml up test
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 update-dependencies:
 	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
 	cp requirements/requirements.txt ckan/requirements.txt
+
 up:
 	docker-compose up
 

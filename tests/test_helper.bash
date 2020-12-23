@@ -24,15 +24,15 @@ output   : $output
 EOF
 }
 
-# db [psql-args]
+# query_db [psql-args]
 #
 # stdin: SQL
 #
 # Wrapper for psql (defaults to ckan DB) for better shell support. A SQL error
 # will cause psql to error. Removes headers and column delimiters from the
 # output format for better parsing of the query response.
-function db () {
-  PGPASSWORD=ckan psql --no-align --quiet --tuples-only --set ON_ERROR_STOP=1 --host db --user ckan "$@"
+function query_db () {
+  PGPASSWORD=ckan psql --no-align --quiet --tuples-only --set ON_ERROR_STOP=1 --host $DB_HOST --port $DB_PORT --user ckan "$@"
 }
 
 # log <msg>...
@@ -75,7 +75,8 @@ function wait_for_app () {
   local len_api_key=0
   
   while [ $len_api_key -le 10 ]; do
-    run db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
+    
+    run query_db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';"
 
     if [ "$status" = 0 ]; then
       api_key="$output"
@@ -180,7 +181,7 @@ function api_post_call() {
   # $2: json file name at /tests/test-data/ (without the .json extension)
   local api_key json_data 
 
-  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  api_key=$(query_db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
   json_data=$(sed s/\$RNDCODE/$RNDCODE/g /tests/test-data/$2.json)
   
   run curl --silent -X POST \
@@ -201,7 +202,7 @@ function api_get_call() {
   # $1 URL
   local api_key 
 
-  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  api_key=$(query_db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
   
   run curl --silent \
     http://$HOST:$PORT/$1 \
@@ -219,7 +220,7 @@ function api_delete_call() {
 
   local api_key 
 
-  api_key=$(db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
+  api_key=$(query_db -c "select apikey from public.user where name='$CKAN_SYSADMIN_NAME';")
   
   run curl --silent -X POST \
     http://$HOST:$PORT/api/3/action/$1_$2 \
