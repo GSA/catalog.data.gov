@@ -46,7 +46,22 @@ update-dependencies:
 	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
 	cp requirements/requirements.txt ckan/requirements.txt
 up:
+	docker build \
+		-t datagov/catalog.data.gov:latest \
+		--build-arg CKAN_URL=http://localhost:5000 \
+		ckan/
 	docker-compose up
+
+up-saml2:
+	
+	docker build \
+		-t datagov/catalog.data.gov:latest \
+		--build-arg CKAN_URL=https://localhost:8443 \
+		--build-arg ENABLE_SAML2=1 \
+		--build-arg EXTRA_PLUGINS=saml2 \
+		ckan/
+	docker-compose up
+
 
 test-import-tool:
 	cd tools/harvest_source_import && \

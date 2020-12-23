@@ -31,3 +31,11 @@ COPY saml2 ${APP_DIR}/saml2
 
 # COPY the ini test file to the container 
 COPY test-catalog-next.ini ${SRC_DIR}/ckan
+
+ARG EXTRA_PLUGINS
+ARG ENABLE_SAML2
+ARG CKAN_URL
+
+ENV CKAN_SITE_URL=${CKAN_URL:-http://localhost:5000}
+ENV ENABLE_SAML2=${ENABLE_SAML2:-}
+ENV CKAN__PLUGINS="envvars image_view text_view recline_view datastore datapusher datagov_harvest ckan_harvester geodatagov datajson datajson_harvest geodatagov_miscs z3950_harvester arcgis_harvester geodatagov_geoportal_harvester waf_harvester_collection geodatagov_csw_harvester geodatagov_doc_harvester geodatagov_waf_harvester spatial_metadata spatial_query report qa archiver spatial_harvest_metadata_api datagovtheme datagovcatalog googleanalyticsbasic dcat dcat_json_interface structured_data ${EXTRA_PLUGINS:-}"
