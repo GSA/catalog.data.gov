@@ -157,7 +157,7 @@ the code is executed.
 
 ## SAML2
 
-To enable the ckanext-saml2 extension, run the environment with `make up-saml2` and then access to https://localhost:8443/dataset
+To enable the ckanext-saml2 extension, run the environment with `make clean build-saml2 up` and then access to https://localhost:8443/dataset
 
 
 ## CI

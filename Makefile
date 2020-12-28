@@ -8,7 +8,20 @@ ci:
 	docker-compose up -d
 
 build:
-	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker build \
+		-t datagov/catalog.data.gov:latest \
+		--build-arg CKAN_URL=https://ckan:5000 \
+		ckan/
+	docker build -t datagov/catalog.data.gov.solr:latest solr/
+	docker build -t datagov/catalog.data.gov.db:latest postgresql/
+	docker-compose build
+
+build-saml2:
+	docker build \
+		-t datagov/catalog.data.gov:latest \
+		--build-arg CKAN_URL=https://localhost:8443 \
+		--build-arg EXTRA_PLUGINS=saml2 \
+		ckan/
 	docker build -t datagov/catalog.data.gov.solr:latest solr/
 	docker build -t datagov/catalog.data.gov.db:latest postgresql/
 	docker-compose build
@@ -44,8 +57,7 @@ test:
 test-saml2:
 	docker build \
 		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=https://ckan:8443 \
-		--build-arg ENABLE_SAML2=1 \
+		--build-arg CKAN_URL=https://localhost:8443 \
 		--build-arg EXTRA_PLUGINS=saml2 \
 		ckan/
 	
@@ -61,21 +73,7 @@ update-dependencies:
 	cp requirements/requirements.txt ckan/requirements.txt
 
 up:
-	docker build \
-		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=http://ckan:5000 \
-		ckan/
 	docker-compose up
-
-up-saml2:
-	docker build \
-		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=https://ckan:8443 \
-		--build-arg ENABLE_SAML2=1 \
-		--build-arg EXTRA_PLUGINS=saml2 \
-		ckan/
-	docker-compose up
-
 
 test-import-tool:
 	cd tools/harvest_source_import && \
