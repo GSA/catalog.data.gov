@@ -11,10 +11,11 @@ FROM bash
 RUN apk add curl jq ncurses parallel postgresql-client
 
 COPY --from=bats /bats/ /bats/
-
 RUN ln -s /bats/bin/bats /usr/local/bin/bats
-
 COPY tests/ /tests/
+
+ARG CKAN_PORT
+ENV PORT=${CKAN_PORT:-5000}
 
 ENTRYPOINT ["bash", "/usr/local/bin/bats"]
 CMD ["-r", "/tests"]

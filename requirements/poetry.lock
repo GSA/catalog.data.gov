@@ -204,7 +204,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "a268f37444be59dcbfd4a8d8068d29c8a1fc329a"
+reference = "86fa62619139a4c0d494b6a9f4edd7b8eff35a37"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -216,7 +216,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "563b49f50be86f77bff2ee9859c6004bcc94b7f7"
+reference = "4d5994c3f1a5787fbfcf64336d1cfdffe161b4ea"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -260,7 +260,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "54647da628609543e01731bfc37f0c3d0ad9f0e2"
+reference = "b84b93098e80b61c1073236958c33b096987ac3a"
 type = "git"
 url = "https://github.com/GSA/ckanext-googleanalyticsbasic.git"
 [[package]]
@@ -272,7 +272,7 @@ python-versions = "*"
 version = "1.3.2"
 
 [package.source]
-reference = "d3432e9c845938f4c8fcbd25073f91afbd3451b8"
+reference = "d00553831e20ae7c6737206ddb8a613b494f2b86"
 type = "git"
 url = "https://github.com/ckan/ckanext-harvest.git"
 [[package]]
@@ -322,7 +322,7 @@ version = "0.4.0"
 python-memcached = "1.48"
 
 [package.source]
-reference = "07df14dba0d42c83cd6cdd95a16279198a8d5349"
+reference = "1a2aa1fe84ac43dd2865f2f529505739909c3dad"
 type = "git"
 url = "https://github.com/GSA/ckanext-saml2.git"
 [[package]]
@@ -759,7 +759,7 @@ description = "New Relic Python Agent"
 name = "newrelic"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
-version = "5.22.1.152"
+version = "5.24.0.153"
 
 [package.extras]
 infinite-tracing = ["grpcio (<2)", "protobuf (<4)"]
@@ -801,7 +801,7 @@ description = "Core utilities for Python packages"
 name = "packaging"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "20.7"
+version = "20.8"
 
 [package.dependencies]
 pyparsing = ">=2.0.2"
@@ -1021,7 +1021,7 @@ six = "*"
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
 [package.source]
-reference = "08883cda0a8c0743b8a9cfa6ec176ddf9b9e7a56"
+reference = "45d0ea01b3e3c1fba2757387f8068d57153ce2ce"
 type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
@@ -1416,11 +1416,16 @@ watchdog = ["watchdog"]
 
 [[package]]
 category = "main"
-description = "Library for developers to extract data from Microsoft Excel (tm) spreadsheet files"
+description = "Library for developers to extract data from Microsoft Excel (tm) .xls spreadsheet files"
 name = "xlrd"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.2.0"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+version = "2.0.1"
+
+[package.extras]
+build = ["wheel", "twine"]
+docs = ["sphinx"]
+test = ["pytest", "pytest-cov"]
 
 [[package]]
 category = "main"
@@ -1810,19 +1815,19 @@ messytables = [
     {file = "messytables-0.15.2.tar.gz", hash = "sha256:227a5aac364919a7d3faa6ce04027fcbd03e041efcd3d57fabb1d1067591a2cd"},
 ]
 newrelic = [
-    {file = "newrelic-5.22.1.152-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:1ee7aa93f39da366ba051fe97e62c87c16c6a6344e22204454df5e162c580928"},
-    {file = "newrelic-5.22.1.152-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:8097a86ca1ad547bee12043a1abf85c3be34d9000ae74d4c03ed9099da4dd320"},
-    {file = "newrelic-5.22.1.152-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:990f238b3e62ee8b6d93878848e4c36ee6ef48103f7592b2132cb7215da7385e"},
-    {file = "newrelic-5.22.1.152-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:344d3fe149e7c327e58824a0f77cccdf86b6b42e092cfe3f17608e996d08b159"},
-    {file = "newrelic-5.22.1.152-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:6e25f398c5844bb326feeac75de0d6dd3ad0e89c4e5746e22e70c38da81088ef"},
-    {file = "newrelic-5.22.1.152-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:c1961afc267d210972f8bf5f21ebeeca567a10242ca81e98d4c556ab03e3e55f"},
-    {file = "newrelic-5.22.1.152-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:152d475d3f638fc312a995e3e6db0c3d81d1f0c379314d3daad3f89e249e6d3f"},
-    {file = "newrelic-5.22.1.152-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:fccba6e61efce265b90f45ed4f4007621213f9bf5dead3f2e4b17eb0e05fabd9"},
-    {file = "newrelic-5.22.1.152-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:ba4b22483c5506c17c1d1387aaaa39b6f06931a47b0b3592077ffaeba9ab9069"},
-    {file = "newrelic-5.22.1.152-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:359de086148aa4c0a02bdfd41e00effa37f9373f40ca187f1d27b4591975ba83"},
-    {file = "newrelic-5.22.1.152-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:1d1023c13b71c428fe28f5b68c80f7e1112c4ef361265e2045bfde35144dbdf7"},
-    {file = "newrelic-5.22.1.152-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:5ec2e6fa77b8918c910b36d962864e01db2c01248aafa64e28bbae4d55c4ce0b"},
-    {file = "newrelic-5.22.1.152.tar.gz", hash = "sha256:0cedc2df0b54c5fd451a5c6baefb11eb9fb3aa817f6fa0708e407f3917874358"},
+    {file = "newrelic-5.24.0.153-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:044084bd7d2ea12239c24e0a04c6d6bc208fb83981feeca46748d1a8e6c2b4c5"},
+    {file = "newrelic-5.24.0.153-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:f8522fe7e1794e8d7a85d81ded8d166ac9e7f1bdcd3fd48295396a4e5d1938aa"},
+    {file = "newrelic-5.24.0.153-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:4c0fc83af3a88d76544d5c2225b480194ffc2193cfea966c3c61a7c4681e892b"},
+    {file = "newrelic-5.24.0.153-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:4daa2f4123cd52f221acc8176630171e6e88a0a8519f6d45ef1e2c95feb66c67"},
+    {file = "newrelic-5.24.0.153-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:677a8646e25b35eaf8dd167d57fc53adc20cf596821c56201afe68423cb75617"},
+    {file = "newrelic-5.24.0.153-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:bf83cb95952f71039e984507330a8a47766e3a744db8b9f199536355b076c1a0"},
+    {file = "newrelic-5.24.0.153-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:6c8be8e7df3f5dd1ec4c9fe321c118c2fd35ed43e0affa037c77af0595a526ba"},
+    {file = "newrelic-5.24.0.153-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:4ed6248863e3276b5f52573fbaaa2c2a1116080157fe7067956d725f969c665b"},
+    {file = "newrelic-5.24.0.153-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:4ed91d820d6ca6ed3bd2adb6ee8b07129eca7eda4a2e6327bcaf5476845fcfc8"},
+    {file = "newrelic-5.24.0.153-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:dd0571f9a2b036b3bb238b99a669f44e393e8f63451d6ce1e113515a1942eb66"},
+    {file = "newrelic-5.24.0.153-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:585f7a303b4ee7cefbcb2bf15d3f0e4b0a3f70878297b7516746036ed3657be8"},
+    {file = "newrelic-5.24.0.153-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:76ca893803d7a738844e5a49f51bde36fa98c8f55c203d2bf9a7f246770689c6"},
+    {file = "newrelic-5.24.0.153.tar.gz", hash = "sha256:a8ef9509258a8f0c952fe36c7d3c774552b65a5ca5e0348694b651170b8472dc"},
 ]
 nose = [
     {file = "nose-1.3.7-py2-none-any.whl", hash = "sha256:dadcddc0aefbf99eea214e0f1232b94f2fa9bd98fa8353711dacb112bfcbbb2a"},
@@ -1836,8 +1841,8 @@ owslib = [
     {file = "OWSLib-0.8.6.tar.gz", hash = "sha256:8646672fe2ec91cad8e0f80199d001d485c0ae7c32c5cbd5cba6c019a6d84ac6"},
 ]
 packaging = [
-    {file = "packaging-20.7-py2.py3-none-any.whl", hash = "sha256:eb41423378682dadb7166144a4926e443093863024de508ca5c9737d6bc08376"},
-    {file = "packaging-20.7.tar.gz", hash = "sha256:05af3bb85d320377db281cf254ab050e1a7ebcbf5410685a9a407e18a1f81236"},
+    {file = "packaging-20.8-py2.py3-none-any.whl", hash = "sha256:24e0da08660a87484d1602c30bb4902d74816b6985b93de36926f5bc95741858"},
+    {file = "packaging-20.8.tar.gz", hash = "sha256:78598185a7008a470d64526a8059de9aaa449238f280fc9eb6b13ba6c4109093"},
 ]
 pairtree = [
     {file = "Pairtree-0.7.1-T.tar.gz", hash = "sha256:24f3778addb09b68fc82dcc905ecee2b9783b324995cfd31dd0cf68226b4f5c8"},
@@ -2016,6 +2021,7 @@ rq = [
     {file = "rq-0.6.0.tar.gz", hash = "sha256:d6502f5041953b2e5f5411a59bfc9661f7fb2af2a7f412f0f7bc62b2e56d9341"},
 ]
 shapely = [
+    {file = "Shapely-1.7.1-1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:46da0ea527da9cf9503e66c18bab6981c5556859e518fe71578b47126e54ca93"},
     {file = "Shapely-1.7.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:4c10f317e379cc404f8fc510cd9982d5d3e7ba13a9cfd39aa251d894c6366798"},
     {file = "Shapely-1.7.1-cp35-cp35m-macosx_10_6_intel.whl", hash = "sha256:17df66e87d0fe0193910aeaa938c99f0b04f67b430edb8adae01e7be557b141b"},
     {file = "Shapely-1.7.1-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:da38ed3d65b8091447dc3717e5218cc336d20303b77b0634b261bc5c1aa2bae8"},
@@ -2033,6 +2039,7 @@ shapely = [
     {file = "Shapely-1.7.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:90a3e2ae0d6d7d50ff2370ba168fbd416a53e7d8448410758c5d6a5920646c1d"},
     {file = "Shapely-1.7.1-cp38-cp38-win32.whl", hash = "sha256:a3774516c8a83abfd1ddffb8b6ec1b0935d7fe6ea0ff5c31a18bfdae567b4eba"},
     {file = "Shapely-1.7.1-cp38-cp38-win_amd64.whl", hash = "sha256:6593026cd3f5daaea12bcc51ae5c979318070fefee210e7990cb8ac2364e79a1"},
+    {file = "Shapely-1.7.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:b40cc7bb089ae4aa9ddba1db900b4cd1bce3925d2a4b5837b639e49de054784f"},
     {file = "Shapely-1.7.1-cp39-cp39-win32.whl", hash = "sha256:2df5260d0f2983309776cb41bfa85c464ec07018d88c0ecfca23d40bfadae2f1"},
     {file = "Shapely-1.7.1-cp39-cp39-win_amd64.whl", hash = "sha256:a5c3a50d823c192f32615a2a6920e8c046b09e07a58eba220407335a9cd2e8ea"},
     {file = "Shapely-1.7.1.tar.gz", hash = "sha256:1641724c1055459a7e2b8bbe47ba25bdc89554582e62aec23cb3f3ca25f9b129"},
@@ -2118,8 +2125,8 @@ werkzeug = [
     {file = "Werkzeug-0.15.6.tar.gz", hash = "sha256:0a24d43be6a7dce81bae05292356176d6c46d63e42a0dd3f9504b210a9cfaa43"},
 ]
 xlrd = [
-    {file = "xlrd-1.2.0-py2.py3-none-any.whl", hash = "sha256:e551fb498759fa3a5384a94ccd4c3c02eb7c00ea424426e212ac0c57be9dfbde"},
-    {file = "xlrd-1.2.0.tar.gz", hash = "sha256:546eb36cee8db40c3eaa46c351e67ffee6eeb5fa2650b71bc4c758a29a1b29b2"},
+    {file = "xlrd-2.0.1-py2.py3-none-any.whl", hash = "sha256:6a33ee89877bd9abc1158129f6e94be74e2679636b8a205b43b85206c3f0bbdd"},
+    {file = "xlrd-2.0.1.tar.gz", hash = "sha256:f72f148f54442c6b056bf931dbc34f986fd0c3b0b6b5a58d013c9aef274d0c88"},
 ]
 "zope.interface" = [
     {file = "zope.interface-4.3.2-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:10aba8ab3e011b797656d3a6d0ff8709ee471024f32d6fd056326cca4123e95f"},

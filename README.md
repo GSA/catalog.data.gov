@@ -56,12 +56,10 @@ We assume your environment is already setup with these tools.
 
 Build and start the docker containers.
 
-    $ make build up
+    $ make up
 
-Add `127.0.0.1 ckan` to your `/etc/hosts` file.
-
-Open your web browser to [ckan:5000](http://ckan:5000/user/login). You can log
-into your instance with user `admin`, password `password`.
+Open your web browser to [localhost:5000](http://localhost:5000).  
+You can log into your instance with user `admin`, password `password`.
 
 Run the integration tests.
 
@@ -159,8 +157,7 @@ the code is executed.
 
 ## SAML2
 
-To enable the ckanext-saml2 extension, set `ENABLE_SAML2` in your `.env`.
-
+To enable the ckanext-saml2 extension, run the environment with `make clean build-saml2 up` and then access to https://localhost:8443/dataset
 
 ## CI
 
