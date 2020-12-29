@@ -58,7 +58,7 @@ Build and start the docker containers.
 
     $ make up
 
-Open your web browser to [localhost:5000](http://localhost:5000).  
+Open your web browser to [localhost:5000](http://localhost:5000) (or [ckan:5000](http://ckan:5000) if you add ckan to your `hosts` file).  
 You can log into your instance with user `admin`, password `password`.
 
 Run the integration tests.
@@ -158,6 +158,8 @@ the code is executed.
 ## SAML2
 
 To enable the ckanext-saml2 extension, run the environment with `make clean build-saml2 up` and then access to https://localhost:8443/dataset
+Open your web browser to [localhost:8443](https://localhost:8443).  
+You can log into your instance with you login.gov user. 
 
 ## CI
 

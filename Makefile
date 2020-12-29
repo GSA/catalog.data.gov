@@ -10,7 +10,7 @@ ci:
 build:
 	docker build \
 		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=https://ckan:5000 \
+		--build-arg CKAN_URL=http://ckan:5000 \
 		ckan/
 	docker build -t datagov/catalog.data.gov.solr:latest solr/
 	docker build -t datagov/catalog.data.gov.db:latest postgresql/
@@ -48,21 +48,11 @@ requirements:
 test:
 	docker build \
 		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=https://ckan:5000 \
+		--build-arg CKAN_URL=http://ckan:5000 \
 		ckan/
 	
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build --build-arg CKAN_PORT=5000
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
-
-test-saml2:
-	docker build \
-		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=https://localhost:8443 \
-		--build-arg EXTRA_PLUGINS=saml2 \
-		ckan/
-	
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml build --build-arg CKAN_PORT=8443
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test	
 
 quick-bat-test:
 	# if local environment is already build and running 
