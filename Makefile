@@ -21,6 +21,7 @@ build-saml2:
 		-t datagov/catalog.data.gov:latest \
 		--build-arg CKAN_URL=https://localhost:8443 \
 		--build-arg EXTRA_PLUGINS=saml2auth \
+		--build-arg ENABLE_CKAN_LOGIN=false \
 		ckan/
 	docker build -t datagov/catalog.data.gov.solr:latest solr/
 	docker build -t datagov/catalog.data.gov.db:latest postgresql/

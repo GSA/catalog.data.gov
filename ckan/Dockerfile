@@ -34,6 +34,9 @@ COPY test-catalog-next.ini ${SRC_DIR}/ckan
 
 ARG EXTRA_PLUGINS
 ARG CKAN_URL
+ARG ENABLE_CKAN_LOGIN
 
 ENV CKAN_SITE_URL=${CKAN_URL:-http://ckan:5000}
 ENV CKAN__PLUGINS="envvars image_view text_view recline_view datastore datapusher datagov_harvest ckan_harvester geodatagov datajson datajson_harvest geodatagov_miscs z3950_harvester arcgis_harvester geodatagov_geoportal_harvester waf_harvester_collection geodatagov_csw_harvester geodatagov_doc_harvester geodatagov_waf_harvester spatial_metadata spatial_query report qa archiver spatial_harvest_metadata_api datagovtheme datagovcatalog googleanalyticsbasic dcat dcat_json_interface structured_data ${EXTRA_PLUGINS:-}"
+# Configuration setting that enables CKAN's internal register/login functionality as well
+ENV CKANEXT__SAML2AUTH__ENABLE_CKAN_INTERNAL_LOGIN=${ENABLE_CKAN_LOGIN:-true}
