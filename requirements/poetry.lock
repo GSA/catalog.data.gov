@@ -319,9 +319,9 @@ python-versions = "*"
 version = "0.0.2"
 
 [package.source]
-reference = "1dae14187db20d98f40cd0a77f29eb736848e100"
+reference = "201b8b23aacf798a0d71a53b835717e23f84ca00"
 type = "git"
-url = "https://github.com/datopian/ckanext-saml2auth.git"
+url = "https://github.com/keitaroinc/ckanext-saml2auth.git"
 [[package]]
 category = "main"
 description = "Geo-related plugins for CKAN"
@@ -1437,7 +1437,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "8db878a08b8fa547bee562afcdb4ede437f5a481a22990e05df553c406d25801"
+content-hash = "8aaeb1b7fa0ca0c572e89a19544226087ba425b18f699ce7b947b1646f9cf3f6"
 lock-version = "1.0"
 python-versions = "^2.7"
 
