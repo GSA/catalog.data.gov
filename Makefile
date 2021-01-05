@@ -8,21 +8,7 @@ ci:
 	docker-compose up -d
 
 build:
-	docker build \
-		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=http://ckan:5000 \
-		ckan/
-	docker build -t datagov/catalog.data.gov.solr:latest solr/
-	docker build -t datagov/catalog.data.gov.db:latest postgresql/
-	docker-compose build
-
-build-saml2:
-	docker build \
-		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=https://localhost:8443 \
-		--build-arg EXTRA_PLUGINS=saml2auth \
-		--build-arg ENABLE_CKAN_LOGIN=false \
-		ckan/
+	docker build -t datagov/catalog.data.gov:latest ckan/
 	docker build -t datagov/catalog.data.gov.solr:latest solr/
 	docker build -t datagov/catalog.data.gov.db:latest postgresql/
 	docker-compose build

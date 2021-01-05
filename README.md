@@ -157,7 +157,7 @@ the code is executed.
 
 ## SAML2
 
-To enable the ckanext-saml2 extension, run the environment with `make clean build-saml2 up` and then access to https://localhost:8443/dataset
+To enable the ckanext-saml2 extension, add `saml2auth` to `CKAN__PLUGINS` list in the `.env` file and then access to https://localhost:8443/dataset
 Open your web browser to [localhost:8443](https://localhost:8443).  
 You can log into your instance with you login.gov user. 
 
