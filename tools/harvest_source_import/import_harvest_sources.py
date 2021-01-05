@@ -118,4 +118,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    import_sources(vars(args))
+    import_sources(**vars(args))
