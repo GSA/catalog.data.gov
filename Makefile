@@ -33,12 +33,8 @@ requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
 
 test:
-	docker build \
-		-t datagov/catalog.data.gov:latest \
-		--build-arg CKAN_URL=http://ckan:5000 \
-		ckan/
-	
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml build --build-arg CKAN_PORT=5000
+	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 quick-bat-test:

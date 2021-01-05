@@ -18,7 +18,6 @@ services:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
       - ./requirements:/requirements
-      #- /Users/aarondborden/projects/datagov/ckan:/srv/app/src_extensions/ckan
 
   datapusher:
     container_name: datapusher
