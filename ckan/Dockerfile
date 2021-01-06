@@ -5,7 +5,7 @@ FROM openknowledge/ckan-dev:2.8
 ENV GIT_BRANCH=2.8
 
 # add dependencies for cryptography and vim
-RUN apk add libressl-dev musl-dev libffi-dev vim
+RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim
 
 # Fix shapely lib error. Install geos
 # TODO consider moving to Alpine>=3.11 or to Bionic
@@ -26,6 +26,8 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 # Not currently in use in development
 COPY setup/server_start.sh ${APP_DIR}/
+
+COPY saml2 ${APP_DIR}/saml2
 
 # COPY the ini test file to the container 
 COPY test-catalog-next.ini ${SRC_DIR}/ckan

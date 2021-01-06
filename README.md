@@ -58,10 +58,8 @@ Build and start the docker containers.
 
     $ make build up
 
-Add `127.0.0.1 ckan` to your `/etc/hosts` file.
-
-Open your web browser to [ckan:5000](http://ckan:5000/user/login). You can log
-into your instance with user `admin`, password `password`.
+Open your web browser to [localhost:5000](http://localhost:5000) (or [ckan:5000](http://ckan:5000) if you add ckan to your `hosts` file).  
+You can log into your instance with user `admin`, password `password`.
 
 Run the integration tests.
 
@@ -155,6 +153,13 @@ This will start a new container, displaying the standard output in your
 terminal. If you add a breakpoint in a source file in the `src` folder (`import
 pdb; pdb.set_trace()`) you will be able to inspect it in this terminal next time
 the code is executed.
+
+
+## SAML2
+
+To enable the ckanext-saml2 extension, add `saml2auth` to `CKAN__PLUGINS` list in the `.env` file and then access to https://localhost:8443/dataset
+Open your web browser to [localhost:8443](https://localhost:8443).  
+You can log into your instance with you login.gov user. 
 
 
 ## CI
