@@ -89,7 +89,8 @@ future = ">=0.18.2"
 six = ">=1.15.0"
 
 # ckanext-pysaml2
-pysaml2 = "4.9.0"
+# Using a patched 4.9 version due to a security issue: https://github.com/GSA/datagov-ckan-multi/issues/544
+pysaml2 = { git = "https://github.com/GSA/pysaml2.git", tag = "upstream-4.9-patched" }
 
 # to backport saml2auth to CKAN 2.8 and python2
 python2-secrets = "1.0.5"

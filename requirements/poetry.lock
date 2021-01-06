@@ -1017,6 +1017,10 @@ six = "*"
 [package.extras]
 s2repoze = ["paste", "zope.interface", "repoze.who"]
 
+[package.source]
+reference = "c26a4893ff4c8d97e5f7994809ccb96a9d12caa3"
+type = "git"
+url = "https://github.com/GSA/pysaml2.git"
 [[package]]
 category = "main"
 description = "Lightweight python wrapper for Apache Solr."
@@ -1437,7 +1441,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "8aaeb1b7fa0ca0c572e89a19544226087ba425b18f699ce7b947b1646f9cf3f6"
+content-hash = "fe7fb1cf7d8242005ef28fd6443677ddc482e9eb25b725c1bcf4eeaa5a96d5ea"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1926,10 +1930,7 @@ pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
 ]
-pysaml2 = [
-    {file = "pysaml2-4.9.0-py2.py3-none-any.whl", hash = "sha256:a909ea3098c9d78d88ba622b3f86b39ab032910335427a6eda74e4a787aa6eba"},
-    {file = "pysaml2-4.9.0.tar.gz", hash = "sha256:aaf41cdef9a46f44f1553e84ad43bf2aff5cec051050a05f8263374eadc01d5a"},
-]
+pysaml2 = []
 pysolr = [
     {file = "pysolr-3.6.0-py2.py3-none-any.whl", hash = "sha256:fd1233e80dcfb7405ca5a33982f485f2ab2f8dffc675c52eff3b33eec950c060"},
     {file = "pysolr-3.6.0.tar.gz", hash = "sha256:f94292c1002dbbbfaecaad18fec39cc4bff843b459c8851a2234f2799788ac6f"},

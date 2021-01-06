@@ -82,7 +82,7 @@ pygments==2.5.2
 pylons==0.9.7
 pyopenssl==18.0.0
 pyparsing==2.4.7
-pysaml2==4.9.0
+-e git+https://github.com/GSA/pysaml2.git@c26a4893ff4c8d97e5f7994809ccb96a9d12caa3#egg=pysaml2
 pysolr==3.6.0
 python-dateutil==1.5
 python-magic==0.4.15
