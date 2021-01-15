@@ -204,7 +204,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "97f2dbafe962713f68d757e4e88d80d72380fe76"
+reference = "1de8df73ffdff24a246f0b1e08254be4ed6abde6"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -1441,7 +1441,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "fe7fb1cf7d8242005ef28fd6443677ddc482e9eb25b725c1bcf4eeaa5a96d5ea"
+content-hash = "325948ee864758c4047c31e521d43123afd6e70189231712a8ac86ad304efb34"
 lock-version = "1.0"
 python-versions = "^2.7"
 
