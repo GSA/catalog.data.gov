@@ -4,6 +4,16 @@ language-settings:
   python: "2.7"
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
+  SNYK-PYTHON-SQLALCHEMY-590109:
+    - '*':
+        reason: >-
+          CKAN 2.8 is not compatible with SQLAlchemy 1.3 but it will be fixed: https://github.com/ckan/ckan/issues/5796#issuecomment-758844107.
+          CKAN 2.9 require an upate from 1.3.5 to 1.3.19. 
+          We examined all use of 'group_by' and 'order_by'
+          and determine that all input to those operators are sanitized.
+          Also, an email was sent to CKAN core team to cover this in next CKAN releases
+        expires: 2021-02-18T06:00:00.000Z
+  
   SNYK-PYTHON-BEAKER-575115:
     - '*':
         reason: >-
@@ -22,11 +32,12 @@ ignore:
   SNYK-PYTHON-SQLALCHEMY-173678:
     - '*':
         reason: >-
-          CKAN 2.8 doesn't appear to be compatible with SQLAlchemy 1.2.
-          CKAN 2.9 is, however.  To properly evaluate the risk,
-          we should examine all use of 'group_by' and 'order_by'
-          to determine that all input to those operators are sanitized.
-        expires: 2020-09-10T06:00:00.000Z
+          CKAN 2.8 is not compatible with SQLAlchemy 1.2 but it will be fixed: https://github.com/ckan/ckan/issues/5796#issuecomment-758844107.
+          CKAN 2.9 is already using a safe SQLAlchemy version. 
+          We examined all use of 'group_by' and 'order_by'
+          and determine that all input to those operators are sanitized.
+          Also, an email was sent to CKAN core team to cover this in next CKAN releases
+        expires: 2021-02-18T06:00:00.000Z
 
   SNYK-PYTHON-PASSLIB-569603:
     - '*':
