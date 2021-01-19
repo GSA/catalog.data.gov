@@ -30,9 +30,9 @@ ckanext-dcat = {git="https://github.com/ckan/ckanext-dcat" }
 
 cffi = "1.12.3"
 ckantoolkit = "0.0.3"
-cryptography = "2.7"
+cryptography = "3.2"
 pika = ">=1.1.0"
-pyOpenSSL = "18.0.0"
+pyOpenSSL = "20.0.1"
 redis = "2.10.6"
 urllib3 = "1.25.9"
 
