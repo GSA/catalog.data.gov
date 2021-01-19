@@ -1,7 +1,6 @@
 amqp==1.4.9
 anyjson==0.3.3
 argparse==1.4.0
-asn1crypto==1.4.0
 babel==2.3.4
 beaker==1.11.0
 billiard==3.3.0.23
@@ -23,11 +22,11 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-harvest.git@d00553831e20ae7c6737206ddb8a613b494f2b86#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
--e git+https://github.com/keitaroinc/ckanext-saml2auth.git@700b82c6069d263d81d4b193785d53702ff41a8f#egg=ckanext-saml2auth
+-e git+https://github.com/keitaroinc/ckanext-saml2auth.git@2c28a16d5740e74dff73e4cef21f20077c923bda#egg=ckanext-saml2auth
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
-cryptography==2.7
+cryptography==3.2
 decorator==4.4.2
 defusedxml==0.6.0
 distro==1.5.0
@@ -80,7 +79,7 @@ psycopg2==2.7.3.2
 pycparser==2.20
 pygments==2.5.2
 pylons==0.9.7
-pyopenssl==18.0.0
+pyopenssl==20.0.1
 pyparsing==2.4.7
 -e git+https://github.com/GSA/pysaml2.git@c26a4893ff4c8d97e5f7994809ccb96a9d12caa3#egg=pysaml2
 pysolr==3.6.0
