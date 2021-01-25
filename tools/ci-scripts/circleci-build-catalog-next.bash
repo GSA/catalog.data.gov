@@ -21,7 +21,7 @@ wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/w
 echo "-----------------------------------------------------------------"
 echo "Installing CKAN and its Python dependencies..."
 
-pip install --upgrade pip
+pip install pip==20.3.3
 pip install setuptools -U
 pip install -r full_requirements.txt
 
