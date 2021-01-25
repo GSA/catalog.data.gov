@@ -32,8 +32,6 @@ defusedxml==0.6.0
 distro==1.5.0
 enum34==1.1.10; python_version < "3"
 fanstatic==0.12
-flask==0.12.4
-flask-babel==0.11.2
 formencode==2.0.0
 funcsigs==1.0.2
 future==0.18.2
@@ -49,7 +47,6 @@ html5lib==1.1
 idna==2.8
 ipaddress==1.0.23; python_version < "3"
 isodate==0.6.0
-itsdangerous==1.1.0
 jinja2==2.10.3
 json-table-schema==0.2.1
 jsonschema==2.4.0

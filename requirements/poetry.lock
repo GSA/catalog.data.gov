@@ -419,33 +419,6 @@ test = ["pytest (>=2.0)"]
 
 [[package]]
 category = "main"
-description = "A microframework based on Werkzeug, Jinja2 and good intentions"
-name = "flask"
-optional = false
-python-versions = "*"
-version = "0.12.4"
-
-[package.dependencies]
-Jinja2 = ">=2.4"
-Werkzeug = ">=0.7"
-click = ">=2.0"
-itsdangerous = ">=0.21"
-
-[[package]]
-category = "main"
-description = "Adds i18n/l10n support to Flask applications"
-name = "flask-babel"
-optional = false
-python-versions = "*"
-version = "0.11.2"
-
-[package.dependencies]
-Babel = ">=2.3"
-Flask = "*"
-Jinja2 = ">=2.5"
-
-[[package]]
-category = "main"
 description = "HTML form validation, generation, and conversion package"
 name = "formencode"
 optional = false
@@ -610,14 +583,6 @@ version = "0.6.0"
 
 [package.dependencies]
 six = "*"
-
-[[package]]
-category = "main"
-description = "Various helpers to pass data to untrusted environments and back."
-name = "itsdangerous"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.1.0"
 
 [[package]]
 category = "main"
@@ -1436,7 +1401,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "e0746dbd7f4da846db6106eb4524ab62bdbca162e0e281528fce58bae1874e93"
+content-hash = "284bf62dd385bd0ce2f98afd5a1aefc3854f087e45dd16b625c5d74288ef51b3"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1586,14 +1551,6 @@ enum34 = [
 fanstatic = [
     {file = "fanstatic-0.12.tar.gz", hash = "sha256:b9d4b2507163489a869502f1744fb3818ee07db434a705e50cbf5169fc8f4751"},
 ]
-flask = [
-    {file = "Flask-0.12.4-py2.py3-none-any.whl", hash = "sha256:6c02dbaa5a9ef790d8219bdced392e2d549c10cd5a5ba4b6aa65126b2271af29"},
-    {file = "Flask-0.12.4.tar.gz", hash = "sha256:2ea22336f6d388b4b242bc3abf8a01244a8aa3e236e7407469ef78c16ba355dd"},
-]
-flask-babel = [
-    {file = "Flask-Babel-0.11.2.tar.gz", hash = "sha256:c0d75710bd4b0fe866f9f2347de6e19208712f9cec006436b4c1c15d4cb0c939"},
-    {file = "Flask_Babel-0.11.2-py2.py3-none-any.whl", hash = "sha256:462a3c599b0ccf426ca1757cc612f1db383844efd346d14170da04c8c76dd521"},
-]
 formencode = [
     {file = "FormEncode-2.0.0-py2.py3-none-any.whl", hash = "sha256:8d032bd1cfe8bddd8aaf738bc5ddaacfe0a2ba58d18df7435eff56cb3cac8e96"},
     {file = "FormEncode-2.0.0.tar.gz", hash = "sha256:f2eb92297417eb64e4aa8e368783a5ac1311e385d4f3ff3a181090608ea83711"},
@@ -1698,10 +1655,6 @@ ipaddress = [
 isodate = [
     {file = "isodate-0.6.0-py2.py3-none-any.whl", hash = "sha256:aa4d33c06640f5352aca96e4b81afd8ab3b47337cc12089822d6f322ac772c81"},
     {file = "isodate-0.6.0.tar.gz", hash = "sha256:2e364a3d5759479cdb2d37cce6b9376ea504db2ff90252a2e5b7cc89cc9ff2d8"},
-]
-itsdangerous = [
-    {file = "itsdangerous-1.1.0-py2.py3-none-any.whl", hash = "sha256:b12271b2047cb23eeb98c8b5622e2e5c5e9abd9784a153e9d8ef9cb4dd09d749"},
-    {file = "itsdangerous-1.1.0.tar.gz", hash = "sha256:321b033d07f2a4136d3ec762eac9f16a10ccd60f53c0c91af90217ace7ba1f19"},
 ]
 jinja2 = [
     {file = "Jinja2-2.10.3-py2.py3-none-any.whl", hash = "sha256:74320bb91f31270f9551d46522e33af46a80c3d619f4a4bf42b3164d30b5911f"},
