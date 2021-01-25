@@ -43,7 +43,7 @@ Genshi = "0.7.3"
 
 # ckanext-datajson
 
-pyyaml = "*"
+pyyaml = "5.4"
 lepl = "*"
 jsonschema = "2.4.0"
 rfc3987 = "*"
