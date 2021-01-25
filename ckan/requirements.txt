@@ -32,7 +32,7 @@ defusedxml==0.6.0
 distro==1.5.0
 enum34==1.1.10; python_version < "3"
 fanstatic==0.12
-flask==0.12.4
+flask==1.0
 flask-babel==0.11.2
 formencode==2.0.0
 funcsigs==1.0.2
