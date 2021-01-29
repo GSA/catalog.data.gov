@@ -13,7 +13,7 @@ chardet==3.0.4
 -e git+https://github.com/ckan/ckan.git@eca78d5df65414249c5a76620c1acae1ddc76cc3#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@531d20c925b4b8954e71a25f992ebbf9000b4c30#egg=ckanext-datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@a89917e07f7df106399192c79166bf92aceb0e71#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@32b890a7c24dfbe58f01e46f5003325d70b2fb45#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@4ca1ca31cfcc23d6610c13693049fcfc83696d08#egg=ckanext-datajson
 -e git+https://github.com/ckan/ckanext-dcat@6b7ec505f303fb18e0eebcebf67130d36b3dca82#egg=ckanext-dcat
 ckanext-envvars==0.0.1
@@ -22,7 +22,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-harvest.git@d00553831e20ae7c6737206ddb8a613b494f2b86#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
--e git+https://github.com/keitaroinc/ckanext-saml2auth.git@d9d7db603fe41b2c4c35ab21fdaf8ea005ad5f7c#egg=ckanext-saml2auth
+-e git+https://github.com/keitaroinc/ckanext-saml2auth.git@a9bc575be31d2099650e6ca9a3b484bc0034717e#egg=ckanext-saml2auth
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
