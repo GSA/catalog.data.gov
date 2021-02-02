@@ -50,7 +50,7 @@ idna==2.8
 ipaddress==1.0.23; python_version < "3"
 isodate==0.6.0
 itsdangerous==1.1.0
-jinja2==2.10.3
+jinja2==2.11.3
 json-table-schema==0.2.1
 jsonschema==2.4.0
 kombu==3.0.37
