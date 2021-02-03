@@ -22,7 +22,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-harvest.git@d00553831e20ae7c6737206ddb8a613b494f2b86#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
--e git+https://github.com/keitaroinc/ckanext-saml2auth.git@a9bc575be31d2099650e6ca9a3b484bc0034717e#egg=ckanext-saml2auth
+-e git+https://github.com/keitaroinc/ckanext-saml2auth.git@8a55c23daa1818c7a3843e44550fd79b3f9469a6#egg=ckanext-saml2auth
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
@@ -64,7 +64,7 @@ newrelic==5.24.0.153
 nose==1.3.7
 ofs==0.4.2
 owslib==0.8.6
-packaging==20.8
+packaging==20.9
 pairtree==0.7.1-T
 passlib==1.7.3
 paste==1.7.5.1
@@ -82,7 +82,7 @@ pylons==0.9.7
 pyopenssl==20.0.1
 pyparsing==2.4.7
 -e git+https://github.com/GSA/pysaml2.git@c26a4893ff4c8d97e5f7994809ccb96a9d12caa3#egg=pysaml2
-pysolr==3.6.0
+pysolr==3.9.0
 python-dateutil==1.5
 python-magic==0.4.15
 python2-secrets==1.0.5
