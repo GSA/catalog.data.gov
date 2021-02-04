@@ -4,7 +4,7 @@ argparse==1.4.0
 babel==2.3.4
 beaker==1.11.0
 billiard==3.3.0.23
-bleach==3.1.5
+bleach==3.3.0
 boto==2.49.0
 celery==3.1.25
 certifi==2020.12.5
@@ -19,7 +19,7 @@ chardet==3.0.4
 ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-geodatagov.git@020e54d330c96f17f9ca6cd5429f2aa335ad37d0#egg=ckanext-geodatagov
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@f0b75cf965e477a84f044885b27880782a48969c#egg=ckanext-googleanalyticsbasic
--e git+https://github.com/ckan/ckanext-harvest.git@d00553831e20ae7c6737206ddb8a613b494f2b86#egg=ckanext-harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@6222e38c85f04027f3fd9b2894a9c26ee7bd172f#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
 -e git+https://github.com/keitaroinc/ckanext-saml2auth.git@8a55c23daa1818c7a3843e44550fd79b3f9469a6#egg=ckanext-saml2auth
@@ -50,7 +50,7 @@ idna==2.8
 ipaddress==1.0.23; python_version < "3"
 isodate==0.6.0
 itsdangerous==1.1.0
-jinja2==2.10.3
+jinja2==2.11.3
 json-table-schema==0.2.1
 jsonschema==2.4.0
 kombu==3.0.37
