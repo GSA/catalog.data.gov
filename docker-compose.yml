@@ -9,17 +9,12 @@ services:
       - db
       - solr
       - redis
-      - datapusher
     ports:
       - "0.0.0.0:${CKAN_PORT}:5000"
     volumes:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
       - ./requirements:/requirements
-
-  datapusher:
-    container_name: datapusher
-    image: keitaro/ckan-datapusher
 
   db:
     env_file:
