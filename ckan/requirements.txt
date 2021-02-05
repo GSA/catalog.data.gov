@@ -71,7 +71,7 @@ paste==1.7.5.1
 pastedeploy==2.1.1
 pastescript==2.0.2
 pbr==1.10.0
-pika==1.1.0
+pika==1.2.0
 ply==3.4
 polib==1.0.7
 progressbar==2.3
@@ -82,7 +82,7 @@ pylons==0.9.7
 pyopenssl==20.0.1
 pyparsing==2.4.7
 -e git+https://github.com/GSA/pysaml2.git@c26a4893ff4c8d97e5f7994809ccb96a9d12caa3#egg=pysaml2
-pysolr==3.9.0
+pysolr==3.6.0
 python-dateutil==1.5
 python-magic==0.4.15
 python2-secrets==1.0.5
