@@ -877,9 +877,10 @@ description = "Pika Python AMQP Client Library"
 name = "pika"
 optional = false
 python-versions = "*"
-version = "1.1.0"
+version = "1.2.0"
 
 [package.extras]
+gevent = ["gevent"]
 tornado = ["tornado"]
 twisted = ["twisted"]
 
@@ -1014,17 +1015,17 @@ type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
 category = "main"
-description = "Lightweight Python client for Apache Solr"
+description = "Lightweight python wrapper for Apache Solr."
 name = "pysolr"
 optional = false
 python-versions = "*"
-version = "3.9.0"
+version = "3.6.0"
 
 [package.dependencies]
 requests = ">=2.9.1"
 
 [package.extras]
-solrcloud = ["kazoo (>=2.5.0)"]
+solrcloud = ["kazoo (2.2)"]
 
 [[package]]
 category = "main"
@@ -1436,7 +1437,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "bb69c8ddb95b3fbecb9a16647615493378fb6d0d59acb7aa21d74627666bd43f"
+content-hash = "2d7c4a7a9d8930279af81dffbe19443cc002b1461a6442f37035710c1e5150df"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1879,8 +1880,8 @@ pbr = [
     {file = "pbr-1.10.0.tar.gz", hash = "sha256:186428c270309e6fdfe2d5ab0949ab21ae5f7dea831eab96701b86bd666af39c"},
 ]
 pika = [
-    {file = "pika-1.1.0-py2.py3-none-any.whl", hash = "sha256:4e1a1a6585a41b2341992ec32aadb7a919d649eb82904fd8e4a4e0871c8cf3af"},
-    {file = "pika-1.1.0.tar.gz", hash = "sha256:9fa76ba4b65034b878b2b8de90ff8660a59d925b087c5bb88f8fdbb4b64a1dbf"},
+    {file = "pika-1.2.0-py2.py3-none-any.whl", hash = "sha256:59da6701da1aeaf7e5e93bb521cc03129867f6e54b7dd352c4b3ecb2bd7ec624"},
+    {file = "pika-1.2.0.tar.gz", hash = "sha256:f023d6ac581086b124190cb3dc81dd581a149d216fa4540ac34f9be1e3970b89"},
 ]
 ply = [
     {file = "ply-3.4.tar.gz", hash = "sha256:af435f11b7bdd69da5ffbc3fecb8d70a7073ec952e101764c88720cdefb2546b"},
@@ -1947,7 +1948,8 @@ pyparsing = [
 ]
 pysaml2 = []
 pysolr = [
-    {file = "pysolr-3.9.0.tar.gz", hash = "sha256:6ef05feb87c614894243eddc62e9b0a6134a889c159ae868655cf6cd749545e6"},
+    {file = "pysolr-3.6.0-py2.py3-none-any.whl", hash = "sha256:fd1233e80dcfb7405ca5a33982f485f2ab2f8dffc675c52eff3b33eec950c060"},
+    {file = "pysolr-3.6.0.tar.gz", hash = "sha256:f94292c1002dbbbfaecaad18fec39cc4bff843b459c8851a2234f2799788ac6f"},
 ]
 python-dateutil = [
     {file = "python-dateutil-1.5.tar.gz", hash = "sha256:6f197348b46fb8cdf9f3fcfc2a7d5a97da95db3e2e8667cf657216274fe1b009"},
