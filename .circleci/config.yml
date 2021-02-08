@@ -118,7 +118,7 @@ workflows:
             - test
           filters:
             branches:
-              only: master
+              only: fcs
       - test_importer
       - test
       - docker_publish_catalog:
@@ -126,16 +126,16 @@ workflows:
             - test
           filters:
             branches:
-              only: master
+              only: fcs
       - docker_publish_solr:
           requires:
             - test
           filters:
             branches:
-              only: master
+              only: fcs
       - docker_publish_db:
           requires:
             - test
           filters:
             branches:
-              only: master
+              only: fcs
