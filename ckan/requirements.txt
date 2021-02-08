@@ -10,10 +10,10 @@ celery==3.1.25
 certifi==2020.12.5
 cffi==1.12.3
 chardet==3.0.4
--e git+https://github.com/ckan/ckan.git@eca78d5df65414249c5a76620c1acae1ddc76cc3#egg=ckan
+-e git+https://github.com/ckan/ckan.git@15d77a9163a15edd0efd9acba90db3842bbd15cb#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@531d20c925b4b8954e71a25f992ebbf9000b4c30#egg=ckanext-datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@32b890a7c24dfbe58f01e46f5003325d70b2fb45#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@2225231e129e4aacb35939dcd2765ed7f9216bb1#egg=ckanext-datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@b8795d30d9636ec79b419cd92f519e0559268f13#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@4ca1ca31cfcc23d6610c13693049fcfc83696d08#egg=ckanext-datajson
 -e git+https://github.com/ckan/ckanext-dcat@6b7ec505f303fb18e0eebcebf67130d36b3dca82#egg=ckanext-dcat
 ckanext-envvars==0.0.1
