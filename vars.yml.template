@@ -1,0 +1,6 @@
+# Copy this file to vars.yml and then edit in your own values here
+
+# This is the name to use for the catalog app in Cloud Foundry. You might want to customize this
+# (eg "catalog-<yourname>") to avoid collisions with others are also working on 
+# catalog in the same space.
+app_name: catalog
