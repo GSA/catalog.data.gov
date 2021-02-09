@@ -1,6 +1,8 @@
 *.csv
 requirements/requirements.txt
 src/*
+vendor/*
+vars.yml
 .*.sw*
 
 *.pyc

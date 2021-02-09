@@ -83,6 +83,38 @@ nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datago
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/geodatagov/
 ```
 
+## Deploying to cloud.gov
+
+Copy `vars.yml.template` to `vars.yml`, and customize the values in that file. Then, assuming [you're logged in for the Cloud Foundry CLI](https://cloud.gov/docs/getting-started/setup/):
+
+Update and cache all the Python package requirements
+
+```sh
+./vendor-requirements.sh
+```
+
+Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available. (See [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time).)
+```sh
+$ cf create-service csb-aws-postgresql small ${app_name}-db -c '{"postgres_version": "9.6", "publicly_accessible": true, "storage_encrypted": true}'
+```
+
+Create the Redis service for cache
+```sh
+$ cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
+```
+
+Deploy the Solr instance and the app.
+```sh
+$ cf push --vars-file vars.yml
+```
+
+Ensure the inventory app can reach the Solr app.
+```sh
+$ cf add-network-policy ${app_name} --destination-app ${app_name}-solr --protocol tcp --port 8983
+```
+
+You should now be able to visit `https://[ROUTE]`, where `[ROUTE]` is the route reported by `cf app ${app_name}`.
+
 ## On Docker CKAN 2.8 images
 
 The repository extends the Open Knowledge Foundation `ckan-dev:2.8` docker
