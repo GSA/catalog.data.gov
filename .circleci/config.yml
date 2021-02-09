@@ -29,17 +29,6 @@ jobs:
             docker-compose up -d
             make lint-all
             make quick-bat-test
-    
-  deploy-sandbox:
-    docker:
-      - image: circleci/python:3.6
-    environment:
-      JENKINS_URL: https://ci.sandbox.datagov.us
-    steps:
-      - checkout
-      - deploy:
-          name: Trigger Jenkins deploy
-          command: bin/jenkins_build deploy-ci-app-catalog-next
   
   test_importer: 
     docker:
@@ -113,12 +102,6 @@ workflows:
   commit:
     jobs:
       - start_ckan_28
-      - deploy-sandbox:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
       - test_importer
       - test
       - docker_publish_catalog:
