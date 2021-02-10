@@ -49,8 +49,9 @@ up:
 	docker-compose up
 
 test-import-tool:
-	cd tools/harvest_source_import && \
-		pip install pip==20.3.3  && \
+	cd ../tools/harvest_source_import && \
+		pip install -U pip  && \
+		pip install -r requirements.txt && \
 		pip install -r dev-requirements.txt && \
 		flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics  && \
 		flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics  && \

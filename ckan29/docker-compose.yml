@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+  ckan:
+    build:
+      context: ckan/
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - solr
+      - redis
+    expose:
+      - "5000"
+    ports:
+      - "0.0.0.0:5000:5000"
+    volumes:
+      - ./src:/srv/app/src_extensions
+      - ckan_storage:/var/lib/ckan
+      - ./requirements:/requirements
+      #- /Users/aarondborden/projects/datagov/ckan:/srv/app/src_extensions/ckan
+
+  db:
+    env_file:
+      - .env
+    build:
+      context: postgresql/
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  solr:
+    build:
+      context: solr/
+    env_file:
+      - .env
+    ports:
+      - "8983:8983"
+    volumes:
+      - solr_data:/opt/solr/server/solr/ckan/data/index
+
+  redis:
+    image: redis:alpine
+
+  nginx:
+    image: nginx
+    links:
+      - ckan
+    ports:
+      - "8443:443"
+    volumes:
+      - ./nginx:/nginx
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/ckan.conf
+
+volumes:
+  ckan_storage:
+  pg_data:
+  solr_data:

@@ -1,43 +1,80 @@
 version: 2.1
 
 jobs:
-  test:
+  test-ckan-28:
     machine: true
     steps:
       - checkout
       - run:
-          name: build
-          command: make build
+          name: build CKAN 2.8
+          command: | 
+            cd ckan28
+            make build
       - run:
           name: Archive Catalog Docker image
-          command: docker save -o image-catalog.tar datagov/catalog.data.gov:latest
+          command: docker save -o image-catalog-28.tar datagov/catalog.data.gov:latest
       - run:
           name: Archive Solr Docker image
-          command: docker save -o image-solr.tar datagov/catalog.data.gov.solr:latest
+          command: docker save -o image-solr-28.tar datagov/catalog.data.gov.solr:latest
       - run:
           name: Archive DB Docker image
-          command: docker save -o image-db.tar datagov/catalog.data.gov.db:latest
+          command: docker save -o image-db-28.tar datagov/catalog.data.gov.db:latest
       - persist_to_workspace:
-          root: .
+          root: catalog.data.gov/ckan28
           paths:
-            - ./image-catalog.tar
-            - ./image-solr.tar
-            - ./image-db.tar
+            - ./image-catalog-28.tar
+            - ./image-solr-28.tar
+            - ./image-db-28.tar
       - run: 
-          name: lint and test
+          name: lint and test CKAN 2.8
           command: |
+            cd ckan28
             docker-compose up -d
             make lint-all
             make quick-bat-test
   
-  test_importer: 
+  test-ckan-29:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: build CKAN 2.9
+          command: | 
+            cd ckan29
+            make build
+      - run:
+          name: Archive Catalog Docker image
+          command: docker save -o image-catalog-29.tar datagov/catalog.data.gov:ckan29
+      - run:
+          name: Archive Solr Docker image
+          command: docker save -o image-solr-29.tar datagov/catalog.data.gov.solr:ckan29
+      - run:
+          name: Archive DB Docker image
+          command: docker save -o image-db-29.tar datagov/catalog.data.gov.db:ckan29
+      - persist_to_workspace:
+          root: catalog.data.gov/ckan29
+          paths:
+            - ./image-catalog-29.tar
+            - ./image-solr-29.tar
+            - ./image-db-29.tar
+      - run: 
+          name: lint and test CKAN 2.9
+          command: |
+            cd ckan29
+            docker-compose up -d
+            make lint-all
+            make quick-bat-test
+  
+  test_importer_ckan_28: 
     docker:
       - image: circleci/python:3.6
     steps:
       - checkout
       - run:
           name: tests 
-          command: make test-import-tool
+          command: |
+            cd ckan28
+            make test-import-tool
   
   start_ckan_28:
     machine:
@@ -47,7 +84,7 @@ jobs:
       - run:
           name: Start CKAN 2.8
           command: |
-            cp ckan/test-catalog-next.ini tools/ci-scripts/
+            cp ckan28/ckan/test-catalog-next.ini tools/ci-scripts/
             cd tools/ci-scripts
             ./circleci-build-catalog-next.bash
   
@@ -59,9 +96,9 @@ jobs:
           at: /tmp/workspace
       - run:
           name: Load archived Docker image
-          command: docker load -i /tmp/workspace/image-catalog.tar
+          command: docker load -i /tmp/workspace/image-catalog-28.tar
       - run:
-          name: Tag and publish catalog image
+          name: Tag and publish catalog CKAN 2.8 image
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push datagov/catalog.data.gov:latest
@@ -74,7 +111,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: Load archived Docker SOLR image
-          command: docker load -i /tmp/workspace/image-solr.tar
+          command: docker load -i /tmp/workspace/image-solr-28.tar
       - run:
           name: Tag and publish SOLR image
           command: |
@@ -90,7 +127,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: Load archived Docker DB image
-          command: docker load -i /tmp/workspace/image-db.tar
+          command: docker load -i /tmp/workspace/image-db-28.tar
       - run:
           name: Tag and publish DB image
           command: |
@@ -102,23 +139,24 @@ workflows:
   commit:
     jobs:
       - start_ckan_28
-      - test_importer
-      - test
+      - test_importer_ckan_28
+      - test-ckan-28
+      - test-ckan-29
       - docker_publish_catalog:
           requires:
-            - test
+            - test-ckan-28
           filters:
             branches:
               only: master
       - docker_publish_solr:
           requires:
-            - test
+            - test-ckan-28
           filters:
             branches:
               only: master
       - docker_publish_db:
           requires:
-            - test
+            - test-ckan-28
           filters:
             branches:
               only: master

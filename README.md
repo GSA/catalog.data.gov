@@ -5,7 +5,10 @@
 
 
 This is a local development harness for catalog.data.gov.
+CKAN 2.8 and 2.9 version are included.
 
+For CKAN 2.8 version you must `cd ckan28` before run make or docker commands.  
+For CKAN 2.9 version you must `cd ckan29` before run make or docker commands. Some commands for this version will fails since this environment is still in progress.  
 
 ## Usage
 
@@ -70,9 +73,9 @@ Stop and remove the containers and volumes associated with this setup.
     $ make clean
 
  See `.env` to override settings. Some settings may require a re-build (`make
- clean build`).
+ clean build`). For CKAN 2.8 environment use the `ckan/.env` file and `ckan29/ckan/.env` for CKAN 2.9.
 
-### Test extensions
+### Test extensions for CKAN 2.8
 
 To test extensions locally you can run
 
@@ -117,6 +120,9 @@ $ cf add-network-policy ${app_name} --destination-app ${app_name}-solr --protoco
 ```
 
 You should now be able to visit `https://[ROUTE]`, where `[ROUTE]` is the route reported by `cf app ${app_name}`.
+### Test extensions for CKAN 2.9
+
+Not ready yet.
 
 ## On Docker CKAN 2.8 images
 
@@ -125,6 +131,10 @@ image. The `ckan-base:2.8` image, if needed for some reasons, is available via
 dockerhub with the aformentioned tag, as referenced in [OKF's docker-ckan
 repository](https://github.com/okfn/docker-ckan).
 
+## On Docker CKAN 2.9 images
+
+The repository copy the Open Knowledge Foundation `ckan-base:2.9` [docker
+image](https://github.com/okfn/docker-ckan/blob/2.9-support/ckan-base/2.9/Dockerfile).
 
 ## Public docker image
 

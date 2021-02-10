@@ -6,29 +6,63 @@ on:
 
 
 jobs:
-  test:
-    name: lint and test
+  test-ckan-28:
+    name: lint and test CKAN 2.8
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ckan28
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: build
         run: make build
       - name: Archive Catalog Docker image
-        run: docker save -o ckan/image-catalog.tar datagov/catalog.data.gov:latest
+        run: docker save -o image-catalog-28.tar datagov/catalog.data.gov:latest
       - name: Archive Solr Docker image
-        run: docker save -o ckan/image-solr.tar datagov/catalog.data.gov.solr:latest
+        run: docker save -o image-solr-28.tar datagov/catalog.data.gov.solr:latest
       - name: Archive DB Docker image
-        run: docker save -o ckan/image-db.tar datagov/catalog.data.gov.db:latest
+        run: docker save -o image-db-28.tar datagov/catalog.data.gov.db:latest
       - uses: actions/upload-artifact@v2
         with:
           name: docker-images
           path: |
-            ckan/image-catalog.tar
-            ckan/image-solr.tar
-            ckan/image-solr.tar
+            image-catalog-28.tar
+            image-solr-28.tar
+            image-db-28.tar
           if-no-files-found: error
-      - name: lint and test
+      - name: lint and test CKAN 2.8
+        run: |
+          docker-compose up -d
+          make lint-all
+          make quick-bat-test
+
+  test-ckan-29:
+    name: lint and test CKAN 2.9
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ckan29
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: build
+        run: make build
+      - name: Archive Catalog Docker image
+        run: docker save -o image-catalog-29.tar datagov/catalog.data.gov:ckan29
+      - name: Archive Solr Docker image
+        run: docker save -o image-solr-29.tar datagov/catalog.data.gov.solr:ckan29
+      - name: Archive DB Docker image
+        run: docker save -o image-db-29.tar datagov/catalog.data.gov.db:ckan29
+      - uses: actions/upload-artifact@v2
+        with:
+          name: docker-images
+          path: |
+            image-catalog-29.tar
+            image-solr-29.tar
+            image-db-29.tar
+          if-no-files-found: error
+      - name: lint and test CKAN 2.9
         run: |
           docker-compose up -d
           make lint-all
@@ -37,9 +71,16 @@ jobs:
   test_importer:
     name: test importer
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ckan28
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
       - name: test_importer
         run: make test-import-tool
 
@@ -63,7 +104,7 @@ jobs:
     environment: development
     runs-on: ubuntu-latest
     needs:
-      - test
+      - test-ckan-28
       - vendor
     steps:
       - name: checkout
@@ -91,7 +132,7 @@ jobs:
     environment: staging
     runs-on: ubuntu-latest
     needs:
-      - test
+      - test-ckan-28
       - vendor
     steps:
       - name: checkout

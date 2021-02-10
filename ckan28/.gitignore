@@ -1,0 +1,7 @@
+requirements/requirements.txt
+src/*
+
+*.pyc
+*.pyo
+*.egg-info
+local-dev.yml

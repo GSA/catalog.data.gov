@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "ckan-catalog-29"
+version = "0.2.0"
+description = "GSA catalog.data.gov"
+authors = ["Your Name <you@example.csom>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+ckan = {tag = "2.9", git = "https://github.com/ckan/ckan.git"}
+
+# CKAN requirements
+
+# The file contains the direct ckan requirements (python3).
+alembic = "1.0.0"
+Babel = "2.7.0"
+Beaker = "1.11.0"
+bleach = "3.1.4"
+click = "7.1.2"
+dominate = "2.4.0"
+fanstatic = "1.1"
+feedgen = "0.9.0"
+Flask = "1.1.1"
+Flask-Babel = "1.0.0"
+flask-multistatic = "1.0"
+Jinja2 = "2.10.1"
+PyJWT = "1.7.1"
+Markdown = "2.6.7"
+passlib = "1.6.5"
+polib = "1.0.7"
+psycopg2 = "2.8.2"
+python-magic = "0.4.15"
+pysolr = "3.6.0"
+python-dateutil = ">=1.5.0"
+pytz = "2016.7"
+PyUtilib = "5.7.1"
+pyyaml = "5.3.1"
+"repoze.who" = "2.3"
+requests = "2.22.0"
+Routes = "1.13"
+rq = "1.0"
+simplejson = "3.10.0"
+sqlalchemy-migrate = "0.12.0"
+SQLAlchemy = "1.3.5"
+sqlparse = "0.2.2"
+tzlocal = "1.3"
+unicodecsv = ">=0.9"
+webassets = "0.12.1"
+werkzeug = {extras = ["watchdog"], version = "1.0.0"}
+"zope.interface" = "4.3.2"
+
+# New Relic
+newrelic = "<6"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

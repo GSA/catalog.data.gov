@@ -1,0 +1,21 @@
+{
+  "private": false,
+  "resources": [
+    {
+      "description": "",
+      "format": "CSV",
+      "name": "Test Public Resource",
+      "url": "https://www.bia.gov/tribal-leaders-csv"
+    }
+  ],
+  "notes": "The description of the test dataset",
+  "owner_org": "test-organization-$RNDCODE",
+  "bureau_code": "010:00",
+  "contact_email": "tester@fake.com",
+  "contact_name": "Tester",
+  "publisher": "Department of the Interior",
+  "unique_id": "doi-public-$RNDCODE",
+  "title": "Test Dataset Public $RNDCODE",
+  "name": "test-dataset-public-$RNDCODE",
+  "program_code": "010:001"
+}

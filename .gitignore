@@ -1,6 +1,4 @@
 *.csv
-requirements/requirements.txt
-src/*
 vendor/*
 vars.yml
 .*.sw*
@@ -9,12 +7,9 @@ vars.yml
 *.pyo
 *.egg-info
 .vscode/
-local-dev.yml
 
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-
-.env.local
