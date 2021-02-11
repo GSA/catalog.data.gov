@@ -57,7 +57,7 @@ test-import-tool:
 		python -m pytest --vcr-record=none tests/
 
 lint-all:
-	docker-compose exec ckan \
+	docker-compose exec -T ckan \
 		bash -c "cd $(CKAN_HOME)/src && \
 		 		 pip install pip==20.3.3  && \
 				 pip install flake8 && \
