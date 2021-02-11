@@ -93,7 +93,7 @@ Update and cache all the Python package requirements
 ./vendor-requirements.sh
 ```
 
-Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available. (See [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time).)
+Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available. (See [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time).) _TODO: replace this with the cloud.gov broker [#2760](https://github.com/GSA/datagov-deploy/issues/2760).
 ```sh
 $ cf create-service csb-aws-postgresql small ${app_name}-db -c '{"postgres_version": "9.6", "publicly_accessible": true, "storage_encrypted": true}'
 ```
