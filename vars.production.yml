@@ -1,7 +1,7 @@
 # This is the name to use for the staging catalog app in Cloud Foundry
 app_name: catalog
 
-instances: 2
+instances: 1
 
 routes:
   - route: catalog-prod-datagov.app.cloud.gov

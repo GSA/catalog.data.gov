@@ -31,6 +31,15 @@ jobs:
           make lint-all
           make quick-bat-test
 
+  test_importer:
+    name: test importer
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: test_importer
+        run: make test-import-tool
+
   vendor:
     name: vendor dependencies
     runs-on: ubuntu-latest
