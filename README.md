@@ -107,6 +107,8 @@ Deploy the Solr instance and the app.
 ```sh
 $ cf push --vars-file vars.yml
 ```
+**Note that the automated deployment only deploys the application, any solr changes**
+**(temporary until ssb is ready) needs to be deployed manually using `cf push --vars-file vars.yml catalog-solr`**
 
 Ensure the inventory app can reach the Solr app.
 ```sh

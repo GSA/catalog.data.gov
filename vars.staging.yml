@@ -1,0 +1,10 @@
+# This is the name to use for the staging catalog app in Cloud Foundry
+app_name: catalog
+
+instances: 1
+
+routes:
+  - route: catalog-stage-datagov.app.cloud.gov
+
+# TODO remove this https://github.com/GSA/datagov-deploy/issues/2778
+solr_route: catalog-stage-solr.apps.internal
