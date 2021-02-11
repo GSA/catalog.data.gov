@@ -24,7 +24,7 @@ curl -sSL https://bootstrap.pypa.io/2.7/get-pip.py -o /tmp/get-pip.py
 python /tmp/get-pip.py
 
 # As the VCAP user, cache .whls based on the frozen requirements for vendoring
-# mkdir vendor
+mkdir vendor
 chown vcap.vcap vendor
 # mkdir src
 chown vcap.vcap src
