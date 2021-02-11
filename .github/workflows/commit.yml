@@ -35,7 +35,7 @@ jobs:
           if-no-files-found: error
 
   deploy-development:
-    if: github.ref == 'refs/heads/feature/github-actions'
+    # if: github.ref == 'refs/heads/develop'
     name: deploy (development)
     environment: development
     runs-on: ubuntu-latest
@@ -58,5 +58,7 @@ jobs:
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
       - name: smoke test
-        run: curl --fail --silent https://catalog-dev-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-dev-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
 
