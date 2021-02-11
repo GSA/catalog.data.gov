@@ -5,7 +5,7 @@ FROM openknowledge/ckan-dev:2.8
 ENV GIT_BRANCH=2.8
 
 # add dependencies for cryptography and vim
-RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim
+RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim xmlsec-dev
 
 # Fix shapely lib error. Install geos
 # TODO consider moving to Alpine>=3.11 or to Bionic
