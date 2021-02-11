@@ -54,34 +54,33 @@ jobs:
           path: vendor/
           if-no-files-found: error
 
-  # TODO: start deployment of this when org memory quota allows
-  # deploy-development:
-  #   if: github.ref == 'refs/heads/develop'
-  #   name: deploy (development)
-  #   environment: development
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     - test
-  #     - vendor
-  #   steps:
-  #     - name: checkout
-  #       uses: actions/checkout@v2
-  #     - uses: actions/download-artifact@v2
-  #       with:
-  #         name: python-vendored
-  #         path: vendor
-  #     - name: deploy
-  #       uses: usds/cloud-gov-cli@master
-  #       with:
-  #         command: push catalog --vars-file vars.development.yml --strategy rolling
-  #         org: gsa-datagov
-  #         space: development
-  #         user: ${{secrets.CF_SERVICE_USER}}
-  #         password: ${{secrets.CF_SERVICE_AUTH}}
-  #     - name: smoke test
-  #       run: |
-  #         sleep 10
-  #         curl --fail --silent https://catalog-dev-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+  deploy-development:
+    if: github.ref == 'refs/heads/develop'
+    name: deploy (development)
+    environment: development
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - vendor
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor
+      - name: deploy
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push catalog --vars-file vars.development.yml --strategy rolling
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-dev-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
 
   deploy-staging:
     if: github.ref == 'refs/heads/main'
