@@ -23,7 +23,10 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: docker-images
-          path: ckan/
+          path: |
+            ckan/image-catalog.tar
+            ckan/image-solr.tar
+            ckan/image-solr.tar
           if-no-files-found: error
       - name: lint and test
         run: |
