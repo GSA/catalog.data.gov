@@ -22,12 +22,7 @@ jobs:
         run: docker save -o ckan/image-db.tar datagov/catalog.data.gov.db:latest
       - uses: actions/upload-artifact@v2
         with:
-          name: python-vendored
-          path: vendor/
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v2
-        with:
-          name: python-vendored
+          name: docker-images
           path: ckan/
           if-no-files-found: error
       - name: lint and test
