@@ -13,6 +13,7 @@ applications:
     services:
       - ((app_name))-db        # cf create-service aws-rds micro-psql ((app_name))-db
       - ((app_name))-redis     # cf create-service aws-elasticache-redis redis-dev ((app_name))-redis
+      - ((app_name))-secrets   # cf cups ${app_name}-secrets -p "BEAKER__SESSION__SECRET"
     routes: ((routes))
     env:
       SOLR_URL: http://((solr_route)):8983/solr/ckan
