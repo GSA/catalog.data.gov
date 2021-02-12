@@ -44,11 +44,8 @@ DATABASE_URL=$CKAN_SQLALCHEMY_URL ./configure-postgis.py
 # Edit the config file to use our values
 export CKAN_INI=ckan/setup/production.ini
 ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
-# ckan config-tool ckan/setup/production.ini \
-#     "ckan.storage_path=/home/vcap/app/files"
 
 # Run migrations
-# paster --plugin=ckan db upgrade -c $CKAN_INI
 ckan db upgrade -c $CKAN_INI
 paster --plugin=ckanext-harvest harvester initdb --config=$CKAN_INI
 paster --plugin=ckanext-report report initdb --config=$CKAN_INI
@@ -56,7 +53,5 @@ paster --plugin=ckanext-archiver archiver init --config=$CKAN_INI
 paster --plugin=ckanext-qa qa init --config=$CKAN_INI
 
 # Fire it up!
-# exec ckan -c $CKAN_INI run -H 0.0.0.0 -p $PORT
-# exec paster --plugin=ckan serve $CKAN_INI
 
 exec ckan/setup/server_start.sh -b 0.0.0.0:$PORT -t 9000
