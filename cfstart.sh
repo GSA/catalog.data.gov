@@ -54,4 +54,4 @@ paster --plugin=ckanext-qa qa init --config=$CKAN_INI
 
 # Fire it up!
 
-exec ckan/setup/server_start.sh -b 0.0.0.0:$PORT -t 9000
+exec ckan/setup/server_start.sh --bind 0.0.0.0:$PORT --timeout 30
