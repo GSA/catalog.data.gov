@@ -103,6 +103,11 @@ Create the Redis service for cache
 $ cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
 ```
 
+Create the user provided service for secrets
+```sh
+$ cf cups ${app_name}-secrets -p "CKAN___BEAKER__SESSION__SECRET"
+```
+
 Deploy the Solr instance and the app.
 ```sh
 $ cf push --vars-file vars.yml
