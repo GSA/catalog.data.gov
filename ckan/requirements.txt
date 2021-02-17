@@ -22,7 +22,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-harvest.git@6222e38c85f04027f3fd9b2894a9c26ee7bd172f#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
--e git+https://github.com/keitaroinc/ckanext-saml2auth.git@8a55c23daa1818c7a3843e44550fd79b3f9469a6#egg=ckanext-saml2auth
+-e git+https://github.com/keitaroinc/ckanext-saml2auth.git@fc2f3447b14872215b766fdef9150bc1b34afcfd#egg=ckanext-saml2auth
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
