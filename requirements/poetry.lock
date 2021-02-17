@@ -311,7 +311,7 @@ python-versions = "*"
 version = "0.0.2"
 
 [package.source]
-reference = "8a55c23daa1818c7a3843e44550fd79b3f9469a6"
+reference = "0b4ffc846b6b88190d4d06f043eb05d20716169c"
 type = "git"
 url = "https://github.com/keitaroinc/ckanext-saml2auth.git"
 [[package]]
