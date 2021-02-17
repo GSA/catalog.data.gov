@@ -23,6 +23,7 @@ APP_URL=$(echo $VCAP_APPLICATION | jq -r '.application_uris[0]')
 
 SVC_DATABASE="${APP_NAME}-db"
 SVC_REDIS="${APP_NAME}-redis"
+SVC_SECRETS="${APP_NAME}-secrets"
 
 # ckan reads some environment variables... https://docs.ckan.org/en/2.8/maintaining/configuration.html#environment-variables
 export CKAN_SQLALCHEMY_URL=$(echo $VCAP_SERVICES | jq -r --arg SVC_DATABASE $SVC_DATABASE '.[][] | select(.name == $SVC_DATABASE) | .credentials.uri')
@@ -35,6 +36,9 @@ REDIS_HOST=$(echo $VCAP_SERVICES | jq -r --arg SVC_REDIS $SVC_REDIS '.[][] | sel
 REDIS_PASSWORD=$(echo $VCAP_SERVICES | jq -r --arg SVC_REDIS $SVC_REDIS '.[][] | select(.name == $SVC_REDIS) | .credentials.password')
 REDIS_PORT=$(echo $VCAP_SERVICES | jq -r --arg SVC_REDIS $SVC_REDIS '.[][] | select(.name == $SVC_REDIS) | .credentials.port')
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
+
+# We need the secret credentials for various application components (DB configuration, license keys, etc)
+export CKAN___BEAKER__SESSION__SECRET=$(echo $VCAP_SERVICES | jq -r --arg SVC_SECRETS $SVC_SECRETS '.[][] | select(.name == $SVC_SECRETS) | .credentials.CKAN___BEAKER__SESSION__SECRET')
 
 # ckanext-envvars can read environment variables with the correct format...
 

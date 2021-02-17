@@ -18,3 +18,4 @@ local-dev.yml
 .Trashes
 
 .env.local
+secrets.json
