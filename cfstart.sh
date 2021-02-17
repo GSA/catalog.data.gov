@@ -46,15 +46,16 @@ export CKAN___BEAKER__SESSION__SECRET=$(echo $VCAP_SERVICES | jq -r --arg SVC_SE
 DATABASE_URL=$CKAN_SQLALCHEMY_URL ./configure-postgis.py
 
 # Edit the config file to use our values
-ckan config-tool ckan/setup/production.ini -s server:main -e port=${PORT}
-# ckan config-tool ckan/setup/production.ini \
-#     "ckan.storage_path=/home/vcap/app/files"
+export CKAN_INI=ckan/setup/production.ini
+ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
 
 # Run migrations
-# paster --plugin=ckan db upgrade -c ckan/setup/production.ini
-ckan db upgrade -c ckan/setup/production.ini 
+ckan db upgrade -c $CKAN_INI
+paster --plugin=ckanext-harvest harvester initdb --config=$CKAN_INI
+paster --plugin=ckanext-report report initdb --config=$CKAN_INI
+paster --plugin=ckanext-archiver archiver init --config=$CKAN_INI
+paster --plugin=ckanext-qa qa init --config=$CKAN_INI
 
 # Fire it up!
-# exec ckan -c ckan/setup/production.ini run -H 0.0.0.0 -p $PORT
-exec paster --plugin=ckan serve ckan/setup/production.ini
 
+exec ckan/setup/server_start.sh --bind 0.0.0.0:$PORT --timeout 30
