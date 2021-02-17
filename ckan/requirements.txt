@@ -10,7 +10,7 @@ celery==3.1.25
 certifi==2020.12.5
 cffi==1.12.3
 chardet==3.0.4
--e git+https://github.com/ckan/ckan.git@15d77a9163a15edd0efd9acba90db3842bbd15cb#egg=ckan
+-e git+https://github.com/ckan/ckan.git@1e10689a4e9936069cb1c0b2fc8bf630c530c246#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@2225231e129e4aacb35939dcd2765ed7f9216bb1#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@b8795d30d9636ec79b419cd92f519e0559268f13#egg=ckanext-datagovtheme
@@ -26,7 +26,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
-cryptography==3.2
+cryptography==3.3.2
 decorator==4.4.2
 defusedxml==0.6.0
 distro==1.5.0
