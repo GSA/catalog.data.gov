@@ -31,7 +31,7 @@ webob = {git = "https://github.com/GSA/webob.git", branch = "ckan-patch" }
 
 cffi = "1.12.3"
 ckantoolkit = "0.0.3"
-cryptography = "3.2"
+cryptography = "3.3.2"
 pika = ">=1.1.0"
 pyOpenSSL = "20.0.1"
 redis = "2.10.6"
