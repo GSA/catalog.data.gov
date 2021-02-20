@@ -16,4 +16,4 @@ applications:
       - ((app_name))-secrets
     routes: ((routes))
     env:
-      SOLR_URL: http://((solr_route)):8983/solr/ckan
+      CKAN_SOLR_URL: http://((solr_route)):8983/solr/ckan
