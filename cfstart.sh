@@ -24,10 +24,11 @@ SHARED_DIR=$(mktemp -d)
 APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
 APP_URL=$(echo $VCAP_APPLICATION | jq -r '.application_uris[0]')
 
-# We need the redis credentials for ckan to access redis, and we need to build the url
+# Extract credentials from VCAP_SERVICES
 REDIS_HOST=$(vcap_get_service redis .credentials.host)
 REDIS_PASSWORD=$(vcap_get_service redis .credentials.password)
 REDIS_PORT=$(vcap_get_service redis .credentials.port)
+SAML2_PRIVATE_KEY=$(vcap_get_service secrets .credentials.SAML2_PRIVATE_KEY)
 
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
@@ -36,6 +37,13 @@ export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
 export CKAN_STORAGE_PATH=${SHARED_DIR}/files
 export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
+export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
+export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
+
+# Write out any files and directories
+mkdir -p $CKAN_STORAGE_PATH
+echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
+echo "$SAML2_CERTIFICATE" > $CKANEXT__SAML2AUTH__CERT_FILE_PATH
 
 # Setting up PostGIS
 DATABASE_URL=$CKAN_SQLALCHEMY_URL ./configure-postgis.py

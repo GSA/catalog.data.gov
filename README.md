@@ -125,11 +125,12 @@ ips on managing
 When creating the service for the first time, use `create-user-provided-service`
 instead of update.
 
-    $ cf update-user-provided-service ${app_name}-secrets -p 'CKAN___BEAKER__SESSION_SECRET'
+    $ cf update-user-provided-service ${app_name}-secrets -p 'CKAN___BEAKER__SESSION_SECRET, SAML2_PRIVATE_KEY'
 
 Name | Description | Where to find
 ---- | ----------- | -------------
 CKAN___BEAKER__SESSION__SECRET | Session secret for encrypting CKAN sessions. | `pwgen -s 32 1`
+SAML2_PRIVATE_KEY | Base64 encoded SAML2 key matching the certificate configured for Login.gov | [Google Drive](https://drive.google.com/drive/u/0/folders/1VguFPRiRb1Ljnm_6UShryHWDofX0xBnU)
 
 
 ## Login.gov integration

@@ -18,3 +18,6 @@ applications:
     routes: ((routes))
     env:
       CKAN_SOLR_URL: http://((solr_route)):8983/solr/ckan
+      CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
+      CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
+      SAML2_CERTIFICATE: ((saml2_certificate))

@@ -1,10 +1,48 @@
 # This is the name to use for the staging catalog app in Cloud Foundry
 app_name: catalog
 
+ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-stage-catalog
+ckanext__saml2auth__idp_metadata__local_path: config/login.sandbox.idp.xml
+
 instances: 1
 
 routes:
   - route: catalog-stage-datagov.app.cloud.gov
+
+saml2_certificate: |
+  -----BEGIN CERTIFICATE-----
+  MIIFuDCCA6ACCQC7UnLUckM4OjANBgkqhkiG9w0BAQsFADCBnTELMAkGA1UEBhMC
+  VVMxCzAJBgNVBAgMAkRDMRMwEQYDVQQHDApXYXNoaW5ndG9uMQwwCgYDVQQKDANH
+  U0ExDDAKBgNVBAsMA1RUUzEsMCoGA1UEAwwjY2F0YWxvZy1zdGFnZS1kYXRhZ292
+  LmFwcC5jbG91ZC5nb3YxIjAgBgkqhkiG9w0BCQEWE2RhdGFnb3ZoZWxwQGdzYS5n
+  b3YwHhcNMjEwMjIyMTcyNzA5WhcNMjMwMjIyMTcyNzA5WjCBnTELMAkGA1UEBhMC
+  VVMxCzAJBgNVBAgMAkRDMRMwEQYDVQQHDApXYXNoaW5ndG9uMQwwCgYDVQQKDANH
+  U0ExDDAKBgNVBAsMA1RUUzEsMCoGA1UEAwwjY2F0YWxvZy1zdGFnZS1kYXRhZ292
+  LmFwcC5jbG91ZC5nb3YxIjAgBgkqhkiG9w0BCQEWE2RhdGFnb3ZoZWxwQGdzYS5n
+  b3YwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDGp6p1UZNUkRhOdDf9
+  qVK8zgDQJGtTaKdFuqk90+X5A4gzoV746OFNC+MPDJaMlsuyN5CJ96Y2R+4JRtGa
+  G+BXjWpDIeEd80R2q1zesg+L21GfpXCBduefkL/3C0pOZKOWZPixbn++AN7tSDkJ
+  JiC+mMrBd9MI9o3zJjBbK8Pq3Lpqv3MUMklItfQnZunyA/U95x1ndKSJfTa2M6fv
+  OxsBbK9/vUOlCJcGcpnKmq1crYN8gtfTYzP8+jbBlQmDkBDXUmQXOg1G1RLCgu7y
+  vAFpeZpBwpMY7JwoSJQDthTOeen5qcRUkA/6RIA1RHtCF4Y6CFzTiWY2PjdGmjbc
+  fsXkyrlAdHgFsHMdMgcb3VC0ejHuXLZaZfxfLFUqA2eua0G6N3xM+fL7KPZ7prDS
+  9fo35MzX3bB3vld7bIFqNImeaxjlnKO3hUyzr8bXAoiA8LXuH7DQHCrJ5P6jXLdK
+  k8NHt7LovqvF7TkTemUg1VhpRjrgIrYL6vxXXgwCaGgBP79nJO2wxbWnDhK31AED
+  EFAZnHGemLM8NQLDm3M5aSkQe8xRhWe9MCKH2xWsrs64E93yeIZ1NIOKPiDS3129
+  SBPzI6zis/FtCcEHsMxImnHbpmvZ1P5TyH/cD3nJJE/IYT/WNHUyy1HOwSCzz1xt
+  6vebH6SEDTYDy3onIgxjTMc/lwIDAQABMA0GCSqGSIb3DQEBCwUAA4ICAQCQz+Py
+  FXuqo/zm8IKt9qmXhaXLztyE1zLOIRH/nlbCnCIBUp3laXUcaxDoZdJaNk+cjY7q
+  UJtSaRBBpAtMee4sv9Y5LJmTw1O3YztCxFwACqR6Jzd9I3fiT2rt++1/euJR2bns
+  2hbxJf68/jEn96nswqjbUEg+wKmNAy1//elJl6fbwa8LNAaRgzv1Z5APjGC33X2x
+  evwkVhGTJlWgHNG8xtm+IydTRCYGkM3KyAkoLem/M1nkaR5rWOGNkbSDwD7zh7GN
+  VI5/tj0R0pkrd+jbxzPnqfDjy03JxHGy3T0nbj25CHu+r9I7EzoraDftw6uMbx7c
+  nOc6ovrbr7kurzbtpFI7WIpJj+tE16J24RsQNRajH6vITFVBWjvMSEGKuLdKzwDk
+  r5v6ADwqE66SyzWqOeoFMeZvYZS/n2ihcMajIWfJIljZr7pApThRx3DJPyIUOtov
+  1QuB2MJJamChZPk1D35D0YgWFV1ermfUF9vfHao1rXLZ0w9jub/sL0/HTQss68vb
+  Fj7uRqyLao25SbYMz8MUCsE8mwrXjvUjjtW0njXLMEK4UxdQib9xUTyuYlAct1mo
+  qXtYlZzamvC+nOyTAl3pxycPQ34+PNgnu3VZvwQY9+d4QYQaOZ4S0rRCk8nEmXJk
+  lFP9udKQWvleSWHJIm2bmMYpDZ91KQz+ChEalQ==
+  -----END CERTIFICATE-----
 
 # TODO remove this https://github.com/GSA/datagov-deploy/issues/2778
 solr_route: catalog-stage-solr.apps.internal
