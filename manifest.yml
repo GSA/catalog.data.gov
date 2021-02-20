@@ -9,6 +9,7 @@ applications:
   - name: ((app_name))
     instances: ((instances))
     buildpacks:
+      - https://github.com/cloudfoundry/apt-buildpack
       - https://github.com/cloudfoundry/python-buildpack#v1.7.6
     services:
       - ((app_name))-db
