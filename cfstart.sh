@@ -40,7 +40,7 @@ export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CK
 DATABASE_URL=$CKAN_SQLALCHEMY_URL ./configure-postgis.py
 
 # Edit the config file to use our values
-export CKAN_INI=ckan/setup/production.ini
+export CKAN_INI=config/production.ini
 ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
 
 # Run migrations
