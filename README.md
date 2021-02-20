@@ -101,9 +101,8 @@ Create the Redis service for cache
 
     $ cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
 
-Create the user provided service for secrets
-
-    $ cf cups ${app_name}-secrets -p "CKAN___BEAKER__SESSION__SECRET"
+Create the secrets service to store secret environment variables. See
+[Secrets](#secrets) below.
 
 Deploy the Solr instance and the app.
 
@@ -117,6 +116,38 @@ Ensure the inventory app can reach the Solr app.
     $ cf add-network-policy ${app_name} --destination-app ${app_name}-solr --protocol tcp --port 8983
 
 You should now be able to visit `https://[ROUTE]`, where `[ROUTE]` is the route reported by `cf app ${app_name}`.
+
+
+### Secrets
+
+ips on managing
+[secrets](https://github.com/GSA/datagov-deploy/wiki/Cloud.gov-Cheat-Sheet#secrets-management).
+When creating the service for the first time, use `create-user-provided-service`
+instead of update.
+
+    $ cf update-user-provided-service ${app_name}-secrets -p 'CKAN___BEAKER__SESSION_SECRET'
+
+Name | Description | Where to find
+---- | ----------- | -------------
+CKAN___BEAKER__SESSION__SECRET | Session secret for encrypting CKAN sessions. | `pwgen -s 32 1`
+
+
+## Login.gov integration
+
+We use Login.gov as our
+[SAML2](https://github.com/GSA/datagov-deploy/wiki/SAML2-authentication)
+Identity Provider (IdP). Production apps use the production Login.gov instance
+while other apps use the Login.gov identity sandbox.
+
+Each year in March, Login.gov rotates their credentials. See our
+[wiki](https://github.com/GSA/datagov-deploy/wiki/SAML2-authentication#working-with-logingov)
+for details.
+
+Our Service Provider (SP) certificate and key are provided in through
+environment variable and user-provided service.
+
+The Login.gov IdP metadata is stored in file under `config/`.
+
 
 ## On Docker CKAN 2.8 images
 
