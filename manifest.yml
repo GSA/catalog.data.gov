@@ -9,6 +9,7 @@ applications:
   - name: ((app_name))
     instances: ((instances))
     buildpacks:
+      - https://github.com/cloudfoundry/apt-buildpack
       - https://github.com/cloudfoundry/python-buildpack#v1.7.6
     services:
       - ((app_name))-db
@@ -16,4 +17,7 @@ applications:
       - ((app_name))-secrets
     routes: ((routes))
     env:
-      SOLR_URL: http://((solr_route)):8983/solr/ckan
+      CKAN_SOLR_URL: http://((solr_route)):8983/solr/ckan
+      CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
+      CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
+      SAML2_CERTIFICATE: ((saml2_certificate))
