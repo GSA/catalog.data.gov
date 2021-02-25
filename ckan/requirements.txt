@@ -22,7 +22,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/ckan/ckanext-harvest.git@6222e38c85f04027f3fd9b2894a9c26ee7bd172f#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
--e git+https://github.com/keitaroinc/ckanext-saml2auth.git@0b4ffc846b6b88190d4d06f043eb05d20716169c#egg=ckanext-saml2auth
+-e git+https://github.com/keitaroinc/ckanext-saml2auth.git@d77d85349c7a6fcfa5a14c19a56b53eacf137a7c#egg=ckanext-saml2auth
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
 click==6.7
@@ -82,7 +82,7 @@ pylons==0.9.7
 pyopenssl==20.0.1
 pyparsing==2.4.7
 -e git+https://github.com/GSA/pysaml2.git@c26a4893ff4c8d97e5f7994809ccb96a9d12caa3#egg=pysaml2
-pysolr==3.9.0
+pysolr==3.8.0
 python-dateutil==1.5
 python-magic==0.4.15
 python2-secrets==1.0.5

@@ -311,7 +311,7 @@ python-versions = "*"
 version = "0.0.2"
 
 [package.source]
-reference = "0b4ffc846b6b88190d4d06f043eb05d20716169c"
+reference = "d77d85349c7a6fcfa5a14c19a56b53eacf137a7c"
 type = "git"
 url = "https://github.com/keitaroinc/ckanext-saml2auth.git"
 [[package]]
@@ -1015,17 +1015,17 @@ type = "git"
 url = "https://github.com/GSA/pysaml2.git"
 [[package]]
 category = "main"
-description = "Lightweight Python client for Apache Solr"
+description = "Lightweight python wrapper for Apache Solr."
 name = "pysolr"
 optional = false
 python-versions = "*"
-version = "3.9.0"
+version = "3.8.0"
 
 [package.dependencies]
 requests = ">=2.9.1"
 
 [package.extras]
-solrcloud = ["kazoo (>=2.5.0)"]
+solrcloud = ["kazoo (2.2)"]
 
 [[package]]
 category = "main"
@@ -1437,7 +1437,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "2b564a79500290226324432f2208f7180527425531c766ce968e041931123c0c"
+content-hash = "2eeda4988a636718c3e00a9ac9f20896c2f929517df8fe72c13a66de860eec38"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1940,7 +1940,8 @@ pyparsing = [
 ]
 pysaml2 = []
 pysolr = [
-    {file = "pysolr-3.9.0.tar.gz", hash = "sha256:6ef05feb87c614894243eddc62e9b0a6134a889c159ae868655cf6cd749545e6"},
+    {file = "pysolr-3.8.0-py2.py3-none-any.whl", hash = "sha256:aaee89ac3fa6aec53de497eabbb9e68f1d7d61e38599ca8459157e55146be99a"},
+    {file = "pysolr-3.8.0.tar.gz", hash = "sha256:93c720cf80d63dfcb75fc0e8c90256de072eab5f4862448c064ff0aa6f536303"},
 ]
 python-dateutil = [
     {file = "python-dateutil-1.5.tar.gz", hash = "sha256:6f197348b46fb8cdf9f3fcfc2a7d5a97da95db3e2e8667cf657216274fe1b009"},
