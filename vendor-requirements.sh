@@ -20,7 +20,7 @@ apt-get -y install swig build-essential python-dev libssl-dev
 echo "Past apt-get, downloading pip..."
 
 # Install PIP
-curl -sSL https://bootstrap.pypa.io/2.7/get-pip.py -o /tmp/get-pip.py
+curl -sSL https://bootstrap.pypa.io/pip/2.7/get-pip.py -o /tmp/get-pip.py
 python /tmp/get-pip.py
 
 # As the VCAP user, cache .whls based on the frozen requirements for vendoring
