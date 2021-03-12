@@ -20,14 +20,6 @@ ignore:
           No remediation available yet; Not affecting us 
           since the storage is not accessible to any other client
         expires: 2021-03-20T06:00:00.000Z
-  
-  SNYK-PYTHON-PYYAML-590151:
-    - '*':
-        reason: >-
-          No remediation available yet. YAML files are loaded only
-          as text fixtures (trusted source and execution context.)
-          Risk is acceptable.
-        expires: 2020-11-19T06:00:00.000Z
 
   SNYK-PYTHON-SQLALCHEMY-173678:
     - '*':
@@ -38,22 +30,6 @@ ignore:
           and determine that all input to those operators are sanitized.
           Also, an email was sent to CKAN core team to cover this in next CKAN releases
         expires: 2021-03-20T06:00:00.000Z
-
-  SNYK-PYTHON-PASSLIB-569603:
-    - '*':
-        reason: >-
-          Fix is created but not yet published.
-          Risk appears to be very low.  The vulnerability is in the passlib
-          bcrypt() implementation, and CKAN (2.8) uses pbkdf2.  In addition,
-          in production environments we use a SAML provider for auth.
-        expires: 2020-11-19T06:00:00.000Z
-        
-  SNYK-PYTHON-WEBOB-40490:
-    - '*':
-        reason: >-
-          No remediation path available for CKAN2.8 (not compatible
-          with webob > 1.0.8).
-        expires: 2020-11-19T06:00:00.000Z
 
   SNYK-PYTHON-IPADDRESS-590065:
     - '*':
@@ -69,6 +45,15 @@ ignore:
         reason: >-
           No fixed version. Created issue: https://github.com/gsa/datagov-deploy/issues/2828
         expires: 2021-05-18T06:00:00.000Z
+
+  SNYK-PYTHON-CRYPTOGRAPHY-1022152:
+    - '*':
+        reason: >-
+          Patched to version 3.2; long term fix expected later.
+          Version 3.2 of this package contains an incomplete fix,
+          which might help reduce the chances of this vulnerability 
+          being exploited.
+        expires: 2021-04-10T06:00:00.000Z
             
 patch: {}
    
