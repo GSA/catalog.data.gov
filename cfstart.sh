@@ -40,6 +40,8 @@ export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
 export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
 
+export NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_LICENSE_KEY)
+
 # Write out any files and directories
 mkdir -p $CKAN_STORAGE_PATH
 echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
