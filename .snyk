@@ -69,6 +69,15 @@ ignore:
         reason: >-
           No fixed version. Created issue: https://github.com/gsa/datagov-deploy/issues/2828
         expires: 2021-05-18T06:00:00.000Z
+  
+  SNYK-PYTHON-CRYPTOGRAPHY-1022152:
+    - '*':
+        reason: >-
+          Patched to version 3.2; long term fix expected later.
+          Version 3.2 of this package contains an incomplete fix,
+          which might help reduce the chances of this vulnerability 
+          being exploited.
+        expires: 2021-04-10T06:00:00.000Z
             
 patch: {}
    
