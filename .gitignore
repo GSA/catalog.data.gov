@@ -2,6 +2,7 @@
 requirements/requirements.txt
 src/*
 .*.sw*
+vendor/*
 
 *.pyc
 *.pyo
