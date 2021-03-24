@@ -159,9 +159,9 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: docker-images
-          path: ckan/image-catalog.tar
+          path: image-catalog.tar
       - name: load docker image
-        run: docker load -i ckan/image-catalog.tar
+        run: docker load -i image-catalog.tar
       - name: push docker image
         env:
           DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
