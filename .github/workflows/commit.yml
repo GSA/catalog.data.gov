@@ -146,22 +146,25 @@ jobs:
           curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
 
   docker_publish_catalog:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main'
     name: publish catalog on DockerHub
     environment: production
     runs-on: ubuntu-latest
     needs:
-      - deploy-production
+      - test
+      # - deploy-production
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
         with:
-          name: python-vendored
+          name: docker-images
           path: ckan/image-catalog.tar
       - name: load docker image
         run: docker load -i ckan/image-catalog.tar
       - name: push docker image
+        env:
+          DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
         run: |
-          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          echo "$DOCKERHUB_PASS" | docker login -u "datagovbot" --password-stdin
           docker push datagov/catalog.data.gov:latest
