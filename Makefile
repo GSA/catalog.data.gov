@@ -8,9 +8,9 @@ ci:
 	docker-compose up -d
 
 build:
-	docker build -t datagov/catalog.data.gov:latest ckan/
-	docker build -t datagov/catalog.data.gov.solr:latest solr/
-	docker build -t datagov/catalog.data.gov.db:latest postgresql/
+	docker build -t datagov/catalog.data.gov:fcs ckan/
+	docker build -t datagov/catalog.data.gov.solr:fcs solr/
+	docker build -t datagov/catalog.data.gov.db:fcs postgresql/
 	docker-compose build
 
 clean:
@@ -20,12 +20,12 @@ copy-src:
 	docker cp catalog-app_ckan_1:$(CKAN_HOME)/src .
 
 dev:
-	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker build -t datagov/catalog.data.gov:fcs ckan/
 	docker-compose build
 	docker-compose up
 
 debug:
-	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker build -t datagov/catalog.data.gov:fcs ckan/
 	docker-compose build
 	docker-compose run --service-ports ckan
 
@@ -33,7 +33,7 @@ requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
 
 test:
-	docker build -t datagov/catalog.data.gov:latest ckan/
+	docker build -t datagov/catalog.data.gov:fcs ckan/
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
