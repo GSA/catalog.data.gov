@@ -2,7 +2,7 @@ version: "3"
 
 services:
   ckan:
-    image: datagov/catalog.data.gov:latest
+    image: datagov/catalog.data.gov:fcs
     env_file:
       - .env
     depends_on:
@@ -30,7 +30,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    image: datagov/catalog.data.gov.solr
+    image: datagov/catalog.data.gov.solr:fcs
     ports:
       - "8983:8983"
     volumes:

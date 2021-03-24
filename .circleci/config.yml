@@ -10,13 +10,13 @@ jobs:
           command: make build
       - run:
           name: Archive Catalog Docker image
-          command: docker save -o image-catalog.tar datagov/catalog.data.gov:latest
+          command: docker save -o image-catalog.tar datagov/catalog.data.gov:fcs
       - run:
           name: Archive Solr Docker image
-          command: docker save -o image-solr.tar datagov/catalog.data.gov.solr:latest
+          command: docker save -o image-solr.tar datagov/catalog.data.gov.solr:fcs
       - run:
           name: Archive DB Docker image
-          command: docker save -o image-db.tar datagov/catalog.data.gov.db:latest
+          command: docker save -o image-db.tar datagov/catalog.data.gov.db:fcs
       - persist_to_workspace:
           root: .
           paths:
@@ -75,7 +75,7 @@ jobs:
           name: Tag and publish catalog image
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov:latest
+            docker push datagov/catalog.data.gov:fcs
 
   docker_publish_solr:
     machine: true
@@ -90,7 +90,7 @@ jobs:
           name: Tag and publish SOLR image
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov.solr:latest
+            docker push datagov/catalog.data.gov.solr:fcs
             
 
   docker_publish_db:
@@ -106,7 +106,7 @@ jobs:
           name: Tag and publish DB image
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov.db:latest
+            docker push datagov/catalog.data.gov.db:fcs
 
 workflows:
   version: 2
