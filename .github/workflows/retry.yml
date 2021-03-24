@@ -1,0 +1,47 @@
+---
+name: restart application
+
+on:
+  schedule:
+    - cron: '11/15 * * * *'
+
+jobs:
+  restart-staging:
+    name: restart (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: restart
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: restart catalog --strategy rolling
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+  
+  restart-prod:
+    name: restart (prod)
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: restart
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: restart catalog --strategy rolling
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
