@@ -1,0 +1,75 @@
+---
+name: publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  vendor:
+    name: vendor dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: vendor dependencies
+        run: ./vendor-requirements.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor/
+          if-no-files-found: error
+  
+  deploy-staging:
+    if: github.ref == 'refs/heads/main'
+    name: deploy (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    needs:
+      - vendor
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor
+      - name: deploy
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push catalog --vars-file vars.staging.yml --strategy rolling
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+
+  deploy-production:
+    name: deploy (production)
+    environment: production
+    runs-on: ubuntu-latest
+    needs:
+      - deploy-staging
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor
+      - name: deploy
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push catalog --vars-file vars.production.yml --strategy rolling
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
