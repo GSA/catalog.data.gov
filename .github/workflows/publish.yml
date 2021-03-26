@@ -1,5 +1,5 @@
 ---
-name: publish
+name: publish & deploy
 
 on:
   push:
@@ -73,3 +73,43 @@ jobs:
         run: |
           sleep 10
           curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+
+  ghcr_publish_catalog:
+    name: publish catalog on GHCR
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: publish catalog.data.gov
+        uses: docker/build-push-action@v2
+        with:
+          context: ckan
+          push: true
+          tags: ghcr.io/gsa/catalog.data.gov:latest
+  
+  ghcr_publish_solr:
+    name: publish solr on GHCR
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: publish catalog.data.gov.solr
+        uses: docker/build-push-action@v2
+        with:
+          context: solr
+          push: true
+          tags: ghcr.io/gsa/catalog.data.gov.solr:latest

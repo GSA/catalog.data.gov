@@ -3,7 +3,7 @@
 applications:
   - name: ((app_name))-solr
     docker:
-      image: datagov/catalog.data.gov.solr
+      image: ghcr.io/gsa/catalog.data.gov.solr
     routes:
       - route: ((solr_route))
   - name: ((app_name))
