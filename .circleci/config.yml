@@ -1,7 +1,27 @@
 ---
 version: 2
 jobs:
-  build:
+  test:
+    docker:
+      - image: circleci/python
+    steps:
+      - run:
+          name: N/A
+          command: |
+            echo See GitHub actions for CI.
+            echo ok
+
+  start_ckan_28:
+    docker:
+      - image: circleci/python
+    steps:
+      - run:
+          name: N/A
+          command: |
+            echo See GitHub actions for CI.
+            echo ok
+
+  test_importer:
     docker:
       - image: circleci/python
     steps:
