@@ -19,8 +19,7 @@ services:
   db:
     env_file:
       - .env
-    build:
-      context: postgresql/
+    image: ghcr.io/gsa/catalog.data.gov.db:latest
     volumes:
       - pg_data:/var/lib/postgresql/data
 

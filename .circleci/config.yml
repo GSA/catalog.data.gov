@@ -1,45 +1,12 @@
-version: 2.1
-
+---
+version: 2
 jobs:
-  test:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: build
-          command: make build
-      - run: 
-          name: lint and test
-          command: |
-            docker-compose up -d
-            make lint-all
-            make quick-bat-test
-  
-  test_importer: 
+  build:
     docker:
-      - image: circleci/python:3.6
+      - image: circleci/python
     steps:
-      - checkout
       - run:
-          name: tests 
-          command: make test-import-tool
-  
-  start_ckan_28:
-    machine:
-      image: circleci/classic:201708-01
-    steps:
-      - checkout
-      - run:
-          name: Start CKAN 2.8
+          name: N/A
           command: |
-            cp ckan/test-catalog-next.ini tools/ci-scripts/
-            cd tools/ci-scripts
-            ./circleci-build-catalog-next.bash
-
-workflows:
-  version: 2
-  commit:
-    jobs:
-      - start_ckan_28
-      - test_importer
-      - test
+            echo See GitHub actions for CI.
+            echo ok
