@@ -30,3 +30,11 @@ jobs:
           command: |
             echo See GitHub actions for CI.
             echo ok
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - start_ckan_28
+      - test_importer
+      - test
