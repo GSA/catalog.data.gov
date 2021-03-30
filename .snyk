@@ -19,6 +19,13 @@ ignore:
           Ticket to address issue: https://github.com/GSA/datagov-deploy/issues/2713
         expires: 2021-04-23T06:00:00.000Z
 
+  SNYK-PYTHON-PYGMENTS-1088505:
+    - '*':
+        reason: >-
+          Upgrade remediation requires Python 3, Python2 dropped in v2.6.
+          Ticket to address issue: https://github.com/GSA/datagov-deploy/issues/2713
+        expires: 2021-04-23T06:00:00.000Z
+
   SNYK-PYTHON-SQLALCHEMY-173678:
     - '*':
         reason: >-
