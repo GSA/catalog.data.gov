@@ -1,101 +1,35 @@
-version: 2.1
-
+---
+version: 2
 jobs:
   test:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: build
-          command: make build
-      - run:
-          name: Archive Catalog Docker image
-          command: docker save -o image-catalog.tar datagov/catalog.data.gov:latest
-      - run:
-          name: Archive Solr Docker image
-          command: docker save -o image-solr.tar datagov/catalog.data.gov.solr:latest
-      - run:
-          name: Archive DB Docker image
-          command: docker save -o image-db.tar datagov/catalog.data.gov.db:latest
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./image-catalog.tar
-            - ./image-solr.tar
-            - ./image-db.tar
-      - run: 
-          name: lint and test
-          command: |
-            docker-compose up -d
-            make lint-all
-            make quick-bat-test
-  
-  test_importer: 
     docker:
-      - image: circleci/python:3.6
+      - image: circleci/python
     steps:
-      - checkout
       - run:
-          name: tests 
-          command: make test-import-tool
-  
+          name: N/A
+          command: |
+            echo See GitHub actions for CI.
+            echo ok
+
   start_ckan_28:
-    machine:
-      image: circleci/classic:201708-01
+    docker:
+      - image: circleci/python
     steps:
-      - checkout
       - run:
-          name: Start CKAN 2.8
+          name: N/A
           command: |
-            cp ckan/test-catalog-next.ini tools/ci-scripts/
-            cd tools/ci-scripts
-            ./circleci-build-catalog-next.bash
-  
-  docker_publish_catalog:
-    machine: true
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: Load archived Docker image
-          command: docker load -i /tmp/workspace/image-catalog.tar
-      - run:
-          name: Tag and publish catalog image
-          command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov:latest
+            echo See GitHub actions for CI.
+            echo ok
 
-  docker_publish_solr:
-    machine: true
+  test_importer:
+    docker:
+      - image: circleci/python
     steps:
-      - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - run:
-          name: Load archived Docker SOLR image
-          command: docker load -i /tmp/workspace/image-solr.tar
-      - run:
-          name: Tag and publish SOLR image
+          name: N/A
           command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov.solr:latest
-            
-
-  docker_publish_db:
-    machine: true
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: Load archived Docker DB image
-          command: docker load -i /tmp/workspace/image-db.tar
-      - run:
-          name: Tag and publish DB image
-          command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push datagov/catalog.data.gov.db:latest
+            echo See GitHub actions for CI.
+            echo ok
 
 workflows:
   version: 2
@@ -104,21 +38,3 @@ workflows:
       - start_ckan_28
       - test_importer
       - test
-      - docker_publish_catalog:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
-      - docker_publish_solr:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
-      - docker_publish_db:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master

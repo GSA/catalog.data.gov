@@ -2,7 +2,7 @@ version: "3"
 
 services:
   ckan:
-    image: datagov/catalog.data.gov:latest
+    image: ghcr.io/gsa/catalog.data.gov:latest
     env_file:
       - .env
     depends_on:
@@ -19,13 +19,12 @@ services:
   db:
     env_file:
       - .env
-    build:
-      context: postgresql/
+    image: ghcr.io/gsa/catalog.data.gov.db:latest
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    image: datagov/catalog.data.gov.solr
+    image: ghcr.io/gsa/catalog.data.gov.solr
     ports:
       - "8983:8983"
     volumes:
