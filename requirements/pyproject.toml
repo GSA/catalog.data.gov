@@ -23,6 +23,7 @@ ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanal
 ckanext-qa = {git = "https://github.com/ckan/ckanext-qa.git" }
 ckanext-saml2auth = { git = "https://github.com/keitaroinc/ckanext-saml2auth.git", tag = "ckan-2.8" }
 ckanext-dcat = {git="https://github.com/ckan/ckanext-dcat" }
+pygments = {git = "https://github.com/GSA/pygments.git", branch = "datagov/v2.2.x" }
 webob = {git = "https://github.com/GSA/webob.git", branch = "ckan-patch" }
 # If you try to add and extension and it didn't work you should try `chown user:user -R .` because if you run docker as superuser and the as a regular user won't be able to add the folder for the new extension
 

@@ -15,11 +15,11 @@ chardet==3.0.4
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@2225231e129e4aacb35939dcd2765ed7f9216bb1#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@1853971076dc65c34bbf9864336c8de15bf9e6c9#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@4ca1ca31cfcc23d6610c13693049fcfc83696d08#egg=ckanext-datajson
--e git+https://github.com/ckan/ckanext-dcat@dfeae13248b93fe542486262254cda7e627da2f6#egg=ckanext-dcat
+-e git+https://github.com/ckan/ckanext-dcat@c285382e0c893a2dea7005729156f8bd3348ec54#egg=ckanext-dcat
 ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-geodatagov.git@020e54d330c96f17f9ca6cd5429f2aa335ad37d0#egg=ckanext-geodatagov
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@f0b75cf965e477a84f044885b27880782a48969c#egg=ckanext-googleanalyticsbasic
--e git+https://github.com/ckan/ckanext-harvest.git@44bf78865ff49ff4313c22c6ece8c736e2e41f0f#egg=ckanext-harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@e2e8acbb6d87d44663e92c5ff5cbd67401588c2d#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@b67875b2a5b4c9b9ab2cf255f074226255ca9398#egg=ckanext-report
 -e git+https://github.com/keitaroinc/ckanext-saml2auth.git@d77d85349c7a6fcfa5a14c19a56b53eacf137a7c#egg=ckanext-saml2auth
@@ -77,11 +77,11 @@ polib==1.0.7
 progressbar==2.3
 psycopg2==2.7.3.2
 pycparser==2.20
-pygments==2.5.2
+-e git+https://github.com/GSA/pygments.git@f9f800a18ed795f6d9579f0acf934f8103a964bf#egg=pygments
 pylons==0.9.7
 pyopenssl==20.0.1
 pyparsing==2.4.7
--e git+https://github.com/GSA/pysaml2.git@c26a4893ff4c8d97e5f7994809ccb96a9d12caa3#egg=pysaml2
+-e git+https://github.com/GSA/pysaml2.git@ba144b7d5c804fd45808914e8562d1d26300c8a8#egg=pysaml2
 pysolr==3.8.0
 python-dateutil==1.5
 python-magic==0.4.15
