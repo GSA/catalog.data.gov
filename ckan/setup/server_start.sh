@@ -7,4 +7,4 @@ if test -f "$DIR/.env"; then
 fi
 
 # Run web application
-exec newrelic-admin run-program gunicorn --worker-class gevent --paste $CKAN_INI "$@"
+exec newrelic-admin run-program gunicorn -c "$DIR/gunicorn.conf.py" --worker-class gevent --paste $CKAN_INI "$@"
