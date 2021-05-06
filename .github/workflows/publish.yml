@@ -50,7 +50,6 @@ jobs:
 
   ghcr_publish_catalog:
     name: publish catalog on GHCR
-    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -70,7 +69,6 @@ jobs:
   
   ghcr_publish_solr:
     name: publish solr on GHCR
-    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -91,7 +89,6 @@ jobs:
   ghcr_publish_db:
     # TODO: move to publish.yml
     name: publish catalog db on GHCR
-    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: checkout
