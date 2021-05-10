@@ -25,6 +25,7 @@ COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 # Not currently in use in development
+COPY setup/gunicorn.conf.py ${APP_DIR}/
 COPY setup/server_start.sh ${APP_DIR}/
 
 COPY saml2 ${APP_DIR}/saml2
