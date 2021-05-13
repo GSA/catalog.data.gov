@@ -178,6 +178,8 @@ The Makefile target *update-dependencies* will use poetry to generate a new
 poetry can take several minutes to re-generate a lock file (in once case even up
 to 17 minutes)._
 
+    $ make update-dependencies
+
 To support sandbox installation via the ansible playbooks, there is a
 symbolic link `requirements-freeze.txt` that references
 `ckan/requirements.txt`.
