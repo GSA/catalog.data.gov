@@ -77,7 +77,7 @@ polib==1.0.7
 progressbar==2.3
 psycopg2==2.7.3.2
 pycparser==2.20
--e git+https://github.com/GSA/pygments.git@f9f800a18ed795f6d9579f0acf934f8103a964bf#egg=pygments
+-e git+https://github.com/GSA/pygments.git@f6ccbc8c73b6b0a3c86ba7f1cfc36ac98ff5f122#egg=pygments
 pylons==0.9.7
 pyopenssl==20.0.1
 pyparsing==2.4.7
