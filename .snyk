@@ -10,21 +10,21 @@ ignore:
         reason: >-
           No remediation available yet; Not affecting us 
           since the storage is not accessible to any other client
-        expires: 2021-05-05T06:00:00.000Z
+        expires: 2021-06-01T06:00:00.000Z
 
   SNYK-PYTHON-PYGMENTS-1086606:
     - '*':
         reason: >-
           Upgrade remediation requires Python 3, Python2 dropped in v2.6.
           Ticket to address issue: https://github.com/GSA/datagov-deploy/issues/2713
-        expires: 2021-05-05T06:00:00.000Z
+        expires: 2021-06-01T06:00:00.000Z
 
   SNYK-PYTHON-PYGMENTS-1088505:
     - '*':
         reason: >-
           Upgrade remediation requires Python 3, Python2 dropped in v2.6.
           Ticket to address issue: https://github.com/GSA/datagov-deploy/issues/2713
-        expires: 2021-05-05T06:00:00.000Z
+        expires: 2021-06-01T06:00:00.000Z
 
   SNYK-PYTHON-SQLALCHEMY-173678:
     - '*':
@@ -34,7 +34,7 @@ ignore:
           We examined all use of 'group_by' and 'order_by'
           and determine that all input to those operators are sanitized.
           Also, an email was sent to CKAN core team to cover this in next CKAN releases
-        expires: 2021-05-05T06:00:00.000Z
+        expires: 2021-06-01T06:00:00.000Z
 
   SNYK-PYTHON-IPADDRESS-590065:
     - '*':
@@ -58,6 +58,13 @@ ignore:
           Version 3.2 of this package contains an incomplete fix,
           which might help reduce the chances of this vulnerability 
           being exploited.
-        expires: 2021-05-05T06:00:00.000Z
+        expires: 2021-06-01T06:00:00.000Z
+
+  SNYK-PYTHON-BABEL-1278589:
+    - '*':
+        reason: >-
+          Wait for upstream CKAN to update Babel requirement to 2.9.1 or higher.
+          Ticket to address issue: https://github.com/GSA/datagov-deploy/issues/3231
+        expires: 2021-06-01T06:00:00.000Z
             
 patch: {}
