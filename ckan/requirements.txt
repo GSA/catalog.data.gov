@@ -10,7 +10,7 @@ celery==3.1.25
 certifi==2020.12.5
 cffi==1.12.3
 chardet==3.0.4
--e git+https://github.com/ckan/ckan.git@1e10689a4e9936069cb1c0b2fc8bf630c530c246#egg=ckan
+-e git+https://github.com/ckan/ckan.git@756776201f36653440bf4f13db2df335300d3d86#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@4cb10ac9f96fc78bc7be4b3dee8fbc56049b2865#egg=ckanext-archiver
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@2225231e129e4aacb35939dcd2765ed7f9216bb1#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@50955d2d862fe880bda6b27e6c958432ef6da22c#egg=ckanext-datagovtheme
@@ -77,7 +77,7 @@ polib==1.0.7
 progressbar==2.3
 psycopg2==2.7.3.2
 pycparser==2.20
--e git+https://github.com/GSA/pygments.git@f9f800a18ed795f6d9579f0acf934f8103a964bf#egg=pygments
+-e git+https://github.com/GSA/pygments.git@f6ccbc8c73b6b0a3c86ba7f1cfc36ac98ff5f122#egg=pygments
 pylons==0.9.7
 pyopenssl==20.0.1
 pyparsing==2.4.7
