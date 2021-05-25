@@ -14,7 +14,6 @@ echo "Downliading settings"
 CKAN_ORG="ckan"
 CKAN_BRANCH="2.8"
 
-wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/master/ckan/requirements.txt
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/test-core.ini
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/who.ini
 
@@ -23,7 +22,7 @@ echo "Installing CKAN and its Python dependencies..."
 
 pip install pip==20.3.3
 pip install setuptools -U
-pip install -r full_requirements.txt
+pip install -r ../../requirements-freeze.txt
 
 # extra pip
 pip install flask_debugtoolbar
@@ -40,7 +39,7 @@ echo "Setting up Solr..."
 # see https://github.com/ckan/ckan/issues/2972
 sed -i -e 's/solr_url.*/solr_url = http:\/\/127.0.0.1:8983\/solr/' test-core.ini
 printf "NO_START=0\nJETTY_HOST=127.0.0.1\nJETTY_PORT=8983\nJAVA_HOME=$JAVA_HOME" | sudo tee /etc/default/jetty
-sudo wget -O /etc/solr/conf/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/master/solr/schema.xml
+sudo cp ../../solr/schema.xml /etc/solr/conf/schema.xml
 sudo service jetty restart
 
 echo "-----------------------------------------------------------------"
