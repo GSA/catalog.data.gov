@@ -16,6 +16,7 @@ CKAN_BRANCH="2.8"
 
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/test-core.ini
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/who.ini
+wget -P ckanext/datastore/tests/ https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckanext/datastore/tests/allowed_functions.txt
 
 echo "-----------------------------------------------------------------"
 echo "Installing CKAN and its Python dependencies..."
