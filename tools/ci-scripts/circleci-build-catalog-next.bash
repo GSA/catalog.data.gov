@@ -20,6 +20,7 @@ wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/w
 
 # TODO link to upstream issue
 # Stub this missing file
+mkdir -p ckanext/datastore/tests/
 touch ckanext/datastore/tests/allowed_functions.txt
 
 echo "-----------------------------------------------------------------"
