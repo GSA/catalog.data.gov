@@ -14,14 +14,9 @@ echo "Downliading settings"
 CKAN_ORG="ckan"
 CKAN_BRANCH="2.8"
 
-wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/requirements.txt
+wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/fcs/ckan/requirements.txt
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/test-core.ini
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/who.ini
-
-# TODO link to upstream issue
-# Stub this missing file
-mkdir -p ckanext/datastore/tests/
-touch ckanext/datastore/tests/allowed_functions.txt
 
 echo "-----------------------------------------------------------------"
 echo "Installing CKAN and its Python dependencies..."
