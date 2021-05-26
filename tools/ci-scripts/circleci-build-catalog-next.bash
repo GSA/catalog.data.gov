@@ -18,6 +18,10 @@ wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/test-core.ini
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/who.ini
 
+# TODO link to upstream issue
+# Stub this missing file
+touch ckanext/datastore/tests/allowed_functions.txt
+
 echo "-----------------------------------------------------------------"
 echo "Installing CKAN and its Python dependencies..."
 
