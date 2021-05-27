@@ -1,40 +1,10 @@
 ---
+# TODO remove this after fcs branch is removed and CircleCI building is disabled.
+# Includa a CI config so that a build error is not reported to GitHub. This is
+# only necessary while the fcs branch continues to use CircleCI.
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/python
+  build:
+    machine: true
     steps:
-      - run:
-          name: N/A
-          command: |
-            echo See GitHub actions for CI.
-            echo ok
-
-  start_ckan_28:
-    docker:
-      - image: circleci/python
-    steps:
-      - run:
-          name: N/A
-          command: |
-            echo See GitHub actions for CI.
-            echo ok
-
-  test_importer:
-    docker:
-      - image: circleci/python
-    steps:
-      - run:
-          name: N/A
-          command: |
-            echo See GitHub actions for CI.
-            echo ok
-
-workflows:
-  version: 2
-  commit:
-    jobs:
-      - start_ckan_28
-      - test_importer
-      - test
+      - run: echo See GitHub actions for CI.
