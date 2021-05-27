@@ -1,4 +1,10 @@
 #!/bin/bash
+# This shared script is considered legacy. It is used to configure a VM for
+# testing in a catalog.data.gov environment (simliar configuration and
+# extensions).
+#
+# TODO delete this once extensions are CKAN 2.9 compatible
+
 set -e
 echo "Building catalog next environment..."
 
@@ -10,7 +16,7 @@ sudo apt-get install solr-jetty libcommons-fileupload-java libpq-dev postgresql 
  	 python-dev libxml2-dev libxslt1-dev libgeos-c1 redis-server
 
 echo "-----------------------------------------------------------------"
-echo "Downliading settings"
+echo "Downloading settings"
 CKAN_ORG="ckan"
 CKAN_BRANCH="2.8"
 
