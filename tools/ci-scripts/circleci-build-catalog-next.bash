@@ -1,4 +1,10 @@
 #!/bin/bash
+# This shared script is considered legacy. It is used to configure a VM for
+# testing in a catalog.data.gov environment (simliar configuration and
+# extensions).
+#
+# TODO delete this once extensions are CKAN 2.9 compatible
+
 set -e
 echo "Building catalog next environment..."
 
@@ -10,12 +16,16 @@ sudo apt-get install solr-jetty libcommons-fileupload-java libpq-dev postgresql 
  	 python-dev libxml2-dev libxslt1-dev libgeos-c1 redis-server
 
 echo "-----------------------------------------------------------------"
-echo "Downliading settings"
+echo "Downloading settings"
 CKAN_ORG="ckan"
 CKAN_BRANCH="2.8"
 
-wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/master/ckan/requirements.txt
+wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/fcs/ckan/requirements.txt
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/test-core.ini
+# TODO link to bug upstream
+# Delete problematic test setting from CKAN test-core.ini
+sed -i '/^ckan.datastore.sqlsearch.allowed_functions_file\s*=/ d' test-core.ini
+
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/who.ini
 
 echo "-----------------------------------------------------------------"
@@ -40,7 +50,7 @@ echo "Setting up Solr..."
 # see https://github.com/ckan/ckan/issues/2972
 sed -i -e 's/solr_url.*/solr_url = http:\/\/127.0.0.1:8983\/solr/' test-core.ini
 printf "NO_START=0\nJETTY_HOST=127.0.0.1\nJETTY_PORT=8983\nJAVA_HOME=$JAVA_HOME" | sudo tee /etc/default/jetty
-sudo wget -O /etc/solr/conf/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/master/solr/schema.xml
+sudo wget -O /etc/solr/conf/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/fcs/solr/schema.xml
 sudo service jetty restart
 
 echo "-----------------------------------------------------------------"

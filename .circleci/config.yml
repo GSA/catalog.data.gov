@@ -47,21 +47,22 @@ jobs:
     steps:
       - checkout
       - run:
-          name: tests 
+          name: tests
           command: make test-import-tool
-  
-  start_ckan_28:
+
+  # Test the shared CI setup script completes successfully
+  test_legacy_ci_script:
     machine:
       image: circleci/classic:201708-01
     steps:
       - checkout
       - run:
-          name: Start CKAN 2.8
+          name: Setup CI with legacy script
           command: |
             cp ckan/test-catalog-next.ini tools/ci-scripts/
             cd tools/ci-scripts
             ./circleci-build-catalog-next.bash
-  
+
   docker_publish_catalog:
     machine: true
     steps:
@@ -112,7 +113,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - start_ckan_28
+      - test_legacy_ci_script
       - deploy-sandbox:
           requires:
             - test
