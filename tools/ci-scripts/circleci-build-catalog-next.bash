@@ -22,6 +22,10 @@ CKAN_BRANCH="2.8"
 
 wget -O full_requirements.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/fcs/ckan/requirements.txt
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/test-core.ini
+# TODO link to bug upstream
+# Delete problematic test setting from CKAN test-core.ini
+sed -i '/^ckan.datastore.sqlsearch.allowed_functions_file\s*=/ d' test-core.ini
+
 wget https://raw.githubusercontent.com/$CKAN_ORG/ckan/$CKAN_BRANCH/ckan/config/who.ini
 
 echo "-----------------------------------------------------------------"
