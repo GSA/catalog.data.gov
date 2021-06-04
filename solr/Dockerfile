@@ -6,7 +6,7 @@ MAINTAINER Open Knowledge
 ENV SOLR_CORE ckan
 ENV CKAN_VERSION dev-v2.7
 
-# User
+# Change permissions for Solr user
 USER root
 
 # Create Directories
@@ -27,11 +27,13 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/
 RUN echo name=$SOLR_CORE > /opt/solr/server/solr/$SOLR_CORE/core.properties
 
 # Override running Solr as root
-ADD solr /opt/solr/bin/solr
-ADD start-local-solr /opt/docker-solr/scripts/start-local-solr
-ADD infinite.sh /opt/solr
+#ADD solr /opt/solr/bin/solr
+#ADD start-local-solr /opt/docker-solr/scripts/start-local-solr
+#ADD infinite.sh /opt/solr
 
 # Giving ownership to Solr
 RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/$SOLR_CORE
 
-ENTRYPOINT ["bash", "/opt/solr/infinite.sh"]
+#CMD ["bash", "/opt/solr/infinite.sh"]
+RUN mkdir /opt/solr/server/solr/ckan/data/index && chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/ckan/data/index
+USER solr
