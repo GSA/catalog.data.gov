@@ -23,7 +23,11 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/
 /opt/solr/server/solr/$SOLR_CORE/conf/
 
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3283
-RUN perl -0777  -i -pe "s/<param-name>dirAllowed<\/param-name>\n.*<param-value>true<\/param-value>/<param-name>dirAllowed<\/param-name>\n<param-value>false<\/param-value>/igs" /opt/solr/server/etc/webdefault.xml
+# Disable directory listing
+RUN perl -0777  -i -pe 's/ \
+    <param-name>dirAllowed<\/param-name>\n.*<param-value>true<\/param-value>/ \
+    <param-name>dirAllowed<\/param-name>\n      <param-value>false<\/param-value>/igs' \
+    /opt/solr/server/etc/webdefault.xml
 
 # Create Core.properties
 RUN echo name=$SOLR_CORE > /opt/solr/server/solr/$SOLR_CORE/core.properties
