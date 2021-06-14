@@ -1,4 +1,4 @@
-FROM solr:6.6.6
+FROM solr:6.6.6-slim
 MAINTAINER Open Knowledge
 
 # Enviroment
@@ -21,6 +21,19 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/
 https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/basic_configs/conf/protwords.txt \
 https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/data_driven_schema_configs/conf/elevate.xml \
 /opt/solr/server/solr/$SOLR_CORE/conf/
+
+# Fix Issue https://github.com/GSA/datagov-deploy/issues/3285
+# Update the angularjs library files
+ADD https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.2/angular-cookies.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.2/angular-cookies.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js \
+/opt/solr/server/solr-webapp/webapp/libs/
 
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3283
 # Disable directory listing
