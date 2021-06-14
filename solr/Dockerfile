@@ -35,6 +35,23 @@ https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.2/angular-cookies.min
 https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js \
 /opt/solr/server/solr-webapp/webapp/libs/
 
+# Fix Issue 
+# Update jQuery library files
+# 'chosen.jquery', 'jquery.cookie', 'jquery.blockui', 'jquery.timeago',
+# 'jquery.sammy', 'jquery.ajaxfileupload' NO known vulnerabilities
+# 'jquery.form' ALL versions vulnerable -- https://snyk.io/vuln/npm:jquery-form
+# 'jquery.min.js' is used in two place (1x each), but it's easier to keep the
+# old name than to do an in-place string replacement with perl like below
+ADD https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js \
+/opt/solr/server/solr-webapp/webapp/libs/jquery-2.1.3.min.js
+ADD https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js \
+/opt/solr/server/solr-webapp/webapp/js/lib/jquery-1.7.2.min.js
+# https://snyk.io/vuln/npm:jstree
+ADD https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js \
+/opt/solr/server/solr-webapp/webapp/libs/jquery.jstree.js
+ADD https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js \
+/opt/solr/server/solr-webapp/webapp/js/lib/jquery.jstree.js
+
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3283
 # Disable directory listing
 RUN perl -0777  -i -pe 's/ \
