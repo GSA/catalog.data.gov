@@ -51,6 +51,9 @@ ADD https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js \
 /opt/solr/server/solr-webapp/webapp/libs/jquery.jstree.js
 ADD https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js \
 /opt/solr/server/solr-webapp/webapp/js/lib/jquery.jstree.js
+RUN chmod -R 644 /opt/solr/server/solr-webapp/webapp/libs/*.js
+RUN chmod -R 644 /opt/solr/server/solr-webapp/webapp/js/lib/*.js
+RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr-webapp/webapp/
 
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3283
 # Disable directory listing
