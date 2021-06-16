@@ -1,4 +1,4 @@
-FROM solr:6.6.6
+FROM solr:6.6.6-slim
 MAINTAINER Open Knowledge
 
 # Enviroment
@@ -22,6 +22,50 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/
 https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/data_driven_schema_configs/conf/elevate.xml \
 /opt/solr/server/solr/$SOLR_CORE/conf/
 
+
+# Fix Issue https://github.com/GSA/datagov-deploy/issues/3285
+# Update the angularjs library files
+ADD https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.2/angular-cookies.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.2/angular-cookies.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js \
+/opt/solr/server/solr-webapp/webapp/libs/
+
+
+# Fix Issue 
+# Update jQuery library files
+#   'chosen.jquery', 'jquery.cookie', 'jquery.blockui', 'jquery.timeago',
+#   'jquery.sammy', 'jquery.ajaxfileupload' NO known vulnerabilities
+#   'jquery.form' ALL versions vulnerable -- https://snyk.io/vuln/npm:jquery-form
+# 'jquery.min.js' is used in two place (1x each), but it's easier to keep the
+# old name than to do an in-place string replacement with perl like below
+ADD https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js \
+/opt/solr/server/solr-webapp/webapp/libs/jquery-3.6.0.min.js
+ADD https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js \
+/opt/solr/server/solr-webapp/webapp/js/lib/jquery-3.6.0.min.js
+# https://snyk.io/vuln/npm:jstree
+ADD https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js \
+/opt/solr/server/solr-webapp/webapp/libs/jquery.jstree.js
+ADD https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js \
+/opt/solr/server/solr-webapp/webapp/js/lib/jquery.jstree.js
+# Make sure user 'solr' owns and has permissions for the new libraries
+RUN chmod -R 644 /opt/solr/server/solr-webapp/webapp/libs/*.js
+RUN chmod -R 644 /opt/solr/server/solr-webapp/webapp/js/lib/*.js
+RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr-webapp/webapp/
+# Update references to jquery
+RUN sed -i 's/jquery-2.1.3.min.js/jquery-3.6.0.min.js/' \
+    /opt/solr/server/solr-webapp/webapp/index.html
+RUN sed -i 's/jquery-1.7.2.min.js/jquery-3.6.0.min.js/' \
+    /opt/solr/example/files/conf/velocity/head.vm
+RUN sed -i 's/jquery-1.7.2.min.js/jquery-3.6.0.min.js/' \
+    /opt/solr/server/solr/configsets/sample_techproducts_configs/conf/velocity/head.vm
+
+
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3283
 # Disable directory listing
 RUN perl -0777  -i -pe 's/ \
@@ -29,10 +73,11 @@ RUN perl -0777  -i -pe 's/ \
     <param-name>dirAllowed<\/param-name>\n      <param-value>false<\/param-value>/igs' \
     /opt/solr/server/etc/webdefault.xml
 
+
 # Create Core.properties
 RUN echo name=$SOLR_CORE > /opt/solr/server/solr/$SOLR_CORE/core.properties
 
-# Giving ownership to Solr
+# Giving ownership to user 'solr'
 RUN mkdir /opt/solr/server/solr/$SOLR_CORE/data/index
 RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/
 
