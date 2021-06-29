@@ -97,7 +97,15 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy
+      - name: deploy-solr
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push catalog-solr --vars-file vars.staging.yml --strategy rolling
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy-ckan
         uses: usds/cloud-gov-cli@master
         with:
           command: push catalog --vars-file vars.staging.yml --strategy rolling
@@ -123,7 +131,15 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy
+      - name: deploy-solr
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push catalog-solr --vars-file vars.production.yml --strategy rolling
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy-ckan
         uses: usds/cloud-gov-cli@master
         with:
           command: push catalog --vars-file vars.production.yml --strategy rolling
