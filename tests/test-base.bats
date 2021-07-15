@@ -51,28 +51,24 @@ load test_helper
   api_delete_call "organization" "purge" "test-organization-$RNDCODE"
 }
 
-@test "Given an organization, a waf-collection harvest source is created successfully from form" {
-  # create a waf-collection harvest source
-  # require the organization created in previous test
+@test "Given an organization, Demo CKAN harvest source is created and harvested successfully" {
+  # create a ckan harvest source
 
   api_post_call "api/3/action/organization_create" "test-org-create-01"
   local org_id=$(echo "$output" | jq --raw-output '.result.id')
-  
+
   # check the form
   api_get_call "harvest/new"
   
-  # check if the missing field it's OK
-
-  assert_output --regexp '^.*field-collection_metadata_url.*$'
-
-  name="waf-collection-source-$RNDCODE"
+  local source_name="demo-ckan"
+  local source_title="Demo CKAN"
+  local source_url="https://demo.ckan.org"
   
   run curl --silent \
-    --data-urlencode "name=$name" \
-    --data-urlencode "url=http://test-$RNDCODE.com" \
-    --data-urlencode "source_type=waf-collection" \
-    --data-urlencode "title=WAF test $RNDCODE" \
-    --data-urlencode "collection_metadata_url=http://coll-$RNDCODE.test.com" \
+    --data-urlencode "name=$source_name" \
+    --data-urlencode "url=$source_url" \
+    --data-urlencode "source_type=ckan" \
+    --data-urlencode "title=$source_title" \
     --data-urlencode "frequency=MANUAL" \
     --data-urlencode "owner_org=$org_id" \
     --data-urlencode "private_datasets=False" \
@@ -89,7 +85,7 @@ load test_helper
   fi
   
   # check the source we created exists
-  api_get_call "api/3/action/harvest_source_show?id=waf-collection-source-$RNDCODE"
+  api_get_call "api/3/action/harvest_source_show?id=$source_name"
   
   if [ "$status" -ne 0 ]
   then
@@ -98,8 +94,62 @@ load test_helper
   fi
   assert_json .success true
 
+  local source_id=$(echo "$output" | jq --raw-output '.result.id')
+
+  # start a harvesting job
+  run curl --silent \
+    -X POST http://$HOST:$PORT/harvest/refresh/$source_id \
+    -H "Authorization: $api_key" \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    --cookie $BATS_TMPDIR/cookie-jar
+
+  if [ "$status" -ne 0 ]
+  then
+    echo "Error starting harvest job: $output" >&3
+    return 1
+  fi
+
+  # check the job status
+  api_get_call "api/3/action/harvest_source_show?id=$source_name"
+
+  if [ "$status" -ne 0 ]
+  then
+    echo "Error $status reading harvest source at $url" >&3
+    return 1
+  fi
+  assert_json .success true
+
+  echo "# Waiting for harvest job to complete" >&3
+  local retries=5
+  local count_harvested_datasets=0
+
+  while [ $count_harvested_datasets -lt 1 ]; do
+    api_get_call "api/3/action/harvest_source_show?id=$source_name"
+
+    if [ "$status" = 0 ]; then
+      count_harvested_datasets=$(echo "$output" | jq --raw-output '.result.status.total_datasets')
+    fi
+
+    if [ "$retries" -le 0 ]; then
+      return 1
+    fi
+
+    retries=$(( $retries - 1 ))
+    sleep 3
+  done
+
+  echo "# Harvested $count_harvested_datasets datasets from $source_name" >&3
+
+
+  # clear the harvest source
+  run curl --silent \
+    -X POST http://$HOST:$PORT/harvest/clear/$source_id \
+    -H "Authorization: $api_key" \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    --cookie $BATS_TMPDIR/cookie-jar
+
   # delete harvest source
-  api_delete_call "harvest_source" "delete" "waf-collection-source-$RNDCODE"
+  api_delete_call "harvest_source" "delete" "$source_name"
 
   # delete organization
   api_delete_call "organization" "purge" "test-organization-$RNDCODE"
