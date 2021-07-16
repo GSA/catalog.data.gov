@@ -105,6 +105,31 @@ load test_helper
   api_get_call "api/action/package_search?fq=(dataset_type:dataset+collection_package_id:$collection_id)"
   assert_json .result.count 2
 
+  # verify collections on UI
+  api_get_call "dataset"
+  if [ "$status" -ne 0 ]
+  then
+    echo "Error $status at $url" >&3
+    return 1
+  fi
+  assert_output --regexp '^.*<i class="icon-collection"></i>.*$'
+
+  api_get_call "dataset/$collection_id"
+  if [ "$status" -ne 0 ]
+  then
+    echo "Error $status at reading collection dataset at $url" >&3
+    return 1
+  fi
+  assert_output --regexp '^.*class="btn-collection">Search datasets within this collection.*$'
+
+  api_get_call "dataset?collection_package_id=$collection_id"
+  if [ "$status" -ne 0 ]
+  then
+    echo "Error $status at reading collection dataset at $url" >&3
+    return 1
+  fi
+  assert_output --regexp '^.*2 datasets found.*$'
+
   # clear the harvest source
   run curl --silent \
     -X POST http://$HOST:$PORT/harvest/clear/$source_id \
