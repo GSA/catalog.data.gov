@@ -121,7 +121,7 @@ description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
 optional = false
 python-versions = "*"
-version = "2020.12.5"
+version = "2021.5.30"
 
 [[package]]
 category = "main"
@@ -199,7 +199,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "a36ea77cf6e13d69c11dcd6985f082e06269f43f"
+reference = "15c7e7efb90824b3a311f64a59f23c41b7b265d7"
 type = "git"
 url = "https://github.com/GSA/ckanext-datagovtheme.git"
 [[package]]
@@ -211,7 +211,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "4ca1ca31cfcc23d6610c13693049fcfc83696d08"
+reference = "f49fb1754deca4168deeceb93f10b548034b9730"
 type = "git"
 url = "https://github.com/GSA/ckanext-datajson.git"
 [[package]]
@@ -220,10 +220,10 @@ description = "Plugins for exposing and consuming DCAT metadata on CKAN"
 name = "ckanext-dcat"
 optional = false
 python-versions = "*"
-version = "1.1.1"
+version = "1.1.2"
 
 [package.source]
-reference = "c285382e0c893a2dea7005729156f8bd3348ec54"
+reference = "c4e7319aff55e5315831b28e918299092f2d5805"
 type = "git"
 url = "https://github.com/ckan/ckanext-dcat"
 [[package]]
@@ -302,7 +302,7 @@ python-versions = "*"
 version = "0.1"
 
 [package.source]
-reference = "b67875b2a5b4c9b9ab2cf255f074226255ca9398"
+reference = "2abba3fa2ddf29f4decc4a0c4c39101fb994db23"
 type = "git"
 url = "https://github.com/davidread/ckanext-report.git"
 [[package]]
@@ -323,10 +323,10 @@ description = "Geo-related plugins for CKAN"
 name = "ckanext-spatial"
 optional = false
 python-versions = "*"
-version = "0.2"
+version = "1.0.0"
 
 [package.source]
-reference = "4ac25f19aa4eb9c798451f5eeb3084f907ccc003"
+reference = "5a987828cb8e76f4904c6f23542a593255171a94"
 type = "git"
 url = "https://github.com/ckan/ckanext-spatial.git"
 [[package]]
@@ -933,7 +933,7 @@ description = "Pygments is a syntax highlighting package written in Python."
 name = "Pygments"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "2.5.2.dev20210527"
+version = "2.5.2.dev20210716"
 
 [package.source]
 reference = "f6ccbc8c73b6b0a3c86ba7f1cfc36ac98ff5f122"
@@ -1444,7 +1444,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "41c98d19dac4f6382827051e36a33e6b91769069b43f86731a09fbd129204425"
+content-hash = "18fc1221b8f44e5c67d342b479b453bb1865548d2aa4f4f84cc649b1c193055a"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1490,8 +1490,8 @@ celery = [
     {file = "celery-3.1.25.tar.gz", hash = "sha256:6ced63033bc663e60c992564954dbb5c84c43899f7f1a04b739957350f6b55f3"},
 ]
 certifi = [
-    {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},
-    {file = "certifi-2020.12.5.tar.gz", hash = "sha256:1a4995114262bffbc2413b159f2a1a480c969de6e6eb13ee966d470af86af59c"},
+    {file = "certifi-2021.5.30-py2.py3-none-any.whl", hash = "sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8"},
+    {file = "certifi-2021.5.30.tar.gz", hash = "sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee"},
 ]
 cffi = [
     {file = "cffi-1.12.3-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:5662ad4e4e84f1eaa8efce5da695c5d2e229c563f9d5ce5b0113f71321bcf753"},
