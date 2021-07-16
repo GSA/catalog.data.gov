@@ -1,0 +1,177 @@
+{
+	"conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+	"describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+	"@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+	"@type": "dcat:Catalog",
+	"dataset": [{
+			"@type": "dcat:Dataset",
+			"title": "2015 GSA Common Baseline Implementation Plan and CIO Assignment Plan",
+			"description": "This is GSA's 2015 Common Baseline Implementation Plan and its CIO Assignment Plan per the requirements set forth in FITARA legislation.",
+			"modified": "2017-05-15",
+			"accessLevel": "public",
+			"identifier": "GSA-2016-01-22-01",
+			"dataQuality": true,
+			"license": "https://creativecommons.org/publicdomain/zero/1.0/",
+			"publisher": {
+				"@type": "org:Organization",
+				"name": "General Services Administration"
+			},
+			"accrualPeriodicity": "R/P1Y",
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "Mick Harris",
+				"hasEmail": "mailto:michael.harris@gsa.gov"
+			},
+			"distribution": [{
+					"@type": "dcat:Distribution",
+					"mediaType": "application/pdf",
+					"format": "pdf",
+					"title": "2015 GSA Common Baseline Implementation Plan and CIO Assignment Plan",
+					"description": "This is GSA's 2015 Common Baseline Implementation Plan and its CIO Assignment Plan per the requirements set forth in FITARA legislation. Updated April 2017. Last Major Change to version updated on March 4, 2019. Last Major change to version update don 8/5/2020.",
+					"downloadURL": "https://inventory.data.gov/dataset/64c56cec-4b8f-44c7-ba69-090517f9f32e/resource/87e53999-aff1-4560-8bf0-42d9dc8e4a69/download/2015gsafitaraimplementationandcioassignmentplan.pdf"
+				}
+			],
+			"keyword": ["Assignment Plan", "CIO", "Common Baseline", "FITARA", "GSA IT", "Implementation Plan"],
+			"bureauCode": ["023:00"],
+			"programCode": ["023:000"],
+			"theme": ["IT Initiatives"]
+		}, {
+			"@type": "dcat:Dataset",
+			"title": "Concur - Reporting Voucher Model",
+			"description": "The data dictionary for the reporting voucher model within Concur.",
+			"modified": "2016-02-23",
+			"accessLevel": "non-public",
+			"identifier": "GSA - 139048",
+			"dataQuality": true,
+			"license": "http://www.usa.gov/publicdomain/label/1.0/",
+			"rights": "Trade secrets & commercial/financial info obtained from a person and privileged or confidential.",
+			"publisher": {
+				"@type": "org:Organization",
+				"name": "General Services Administration"
+			},
+			"accrualPeriodicity": "R/P1Y",
+			"isPartOf": "GSA-2015-09-11-01",
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "Norma H Tolson",
+				"hasEmail": "mailto:norma.tolson@gsa.gov"
+			},
+			"keyword": ["Credit Card", "Travel Card"],
+			"bureauCode": ["023:00"],
+			"programCode": ["023:010"],
+			"language": ["en-us"],
+			"theme": ["Travel and Transportation"]
+		}, {
+			"@type": "dcat:Dataset",
+			"title": "Concur - Reporting Travel Model",
+			"description": "The data dictionary for the reporting travel model  within Concur.",
+			"modified": "2016-01-20",
+			"accessLevel": "non-public",
+			"identifier": "GSA - 139046",
+			"dataQuality": true,
+			"license": "http://www.usa.gov/publicdomain/label/1.0/",
+			"rights": "Trade secrets & commercial/financial info obtained from a person and privileged or confidential.",
+			"publisher": {
+				"@type": "org:Organization",
+				"name": "General Services Administration"
+			},
+			"accrualPeriodicity": "R/P1Y",
+			"isPartOf": "GSA-2015-09-11-01",
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "Norma H Tolson",
+				"hasEmail": "mailto:norma.tolson@gsa.gov"
+			},
+			"keyword": ["Credit Card", "travel card"],
+			"bureauCode": ["023:00"],
+			"programCode": ["023:010"],
+			"language": ["en-us"],
+			"theme": ["Travel and Transportation"]
+		}, {
+			"@type": "dcat:Dataset",
+			"title": "Concur Travel Parent",
+			"description": "This is the Parent folder for Concur datasets reporting on; Closed-Paid Vouchers in Concur Government Edition (CGE), Authorization Model, Travel Model, User Profile, and Voucher Model.",
+			"modified": "2016-02-23",
+			"accessLevel": "non-public",
+			"identifier": "GSA-2015-09-11-01",
+			"dataQuality": true,
+			"license": "http://www.usa.gov/publicdomain/label/1.0/",
+			"rights": "Trade secrets & commercial/financial info obtained from a person and privileged or confidential.",
+			"publisher": {
+				"@type": "org:Organization",
+				"name": "General Services Administration"
+			},
+			"accrualPeriodicity": "R/P1Y",
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "Norma H Tolson",
+				"hasEmail": "mailto:norma.tolson@gsa.gov"
+			},
+			"keyword": ["Authorization", "Closed", "Concur", "Paid", "Travel", "Voucher"],
+			"bureauCode": ["023:00"],
+			"programCode": ["023:010"],
+			"language": ["en-us"],
+			"theme": ["Travel and Transportation"]
+		}, {
+			"@type": "dcat:Dataset",
+			"title": "Data.gov Daily Sessions",
+			"description": "Data.gov Daily Sessions 20120101-20151231",
+			"modified": "2016-08-01",
+			"accessLevel": "public",
+			"identifier": "GSA - DATA.GOVMETRICS1",
+			"license": "https://creativecommons.org/publicdomain/zero/1.0/",
+			"publisher": {
+				"@type": "org:Organization",
+				"name": "General Services Administration"
+			},
+			"isPartOf": "GSA-2015-09-14-01",
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "Hyon Joo Kim",
+				"hasEmail": "mailto:hyon.kim@gsa.gov"
+			},
+			"distribution": [{
+					"@type": "dcat:Distribution",
+					"mediaType": "text/csv",
+					"title": "Data.gov Daily Sessions",
+					"description": "Data.gov Daily Sessions 20120101-20151231",
+					"downloadURL": "https://inventory.data.gov/dataset/e0de4198-eaaa-423a-9154-7af76ab8d822/resource/a78ae43e-0ceb-4f2d-83ac-99c61b249afa/download/analytics-www.data.gov-data.gov-daily-sessions-20120101-20151231-analytics-www.data.gov-data.g.csv"
+				}, {
+					"@type": "dcat:Distribution",
+					"mediaType": "text/csv",
+					"title": "Data.gov Daily Sessions Day Index",
+					"description": "Data.gov Daily Sessions 20120101-20151231 Day Index",
+					"downloadURL": "https://inventory.data.gov/dataset/e0de4198-eaaa-423a-9154-7af76ab8d822/resource/925f6204-5240-4dd1-8604-c279843c8974/download/analytics-www.data.gov-data.gov-daily-sessions-20120101-20151231b-sheet1.csv"
+				}
+			],
+			"keyword": ["Data.gov Analytics", "metrics"],
+			"bureauCode": ["023:00"],
+			"programCode": ["023:019"]
+		}, {
+			"@type": "dcat:Dataset",
+			"title": "Data.gov Statistics Parent",
+			"description": "Various reports regarding the Data.gov sites, from Daily Visitors, to Top 10 Countries, and States.",
+			"modified": "2015-09-14",
+			"accessLevel": "public",
+			"identifier": "GSA-2015-09-14-01",
+			"dataQuality": true,
+			"issued": "2013-04-11",
+			"license": "https://creativecommons.org/publicdomain/zero/1.0/",
+			"spatial": "Worldwide",
+			"publisher": {
+				"@type": "org:Organization",
+				"name": "General Services Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "Hyon Joo Kim",
+				"hasEmail": "mailto:hyon.kim@gsa.gov"
+			},
+			"keyword": ["Countries", "States", "Statistics", "Visitors", "data.gov"],
+			"bureauCode": ["023:00"],
+			"programCode": ["023:019"],
+			"language": ["en-us"],
+			"theme": ["Data.gov Site"]
+		}
+	]
+}
