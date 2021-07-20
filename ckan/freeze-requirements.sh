@@ -6,6 +6,8 @@
 #
 # <user id> and <group id> are passed to make sure Pipfile.lock is owned by the correct user!
 
+set -e
+
 USER_ID=$1
 GROUP_ID=$2
 
