@@ -11,3 +11,12 @@ services:
       dockerfile: Dockerfile.test
     depends_on:
       - ckan
+
+  nginx-harvest-source:
+    image: nginx
+    volumes:
+      - ./tests/harvest-sources:/usr/share/nginx/html
+
+  ckan:
+    links:
+      - nginx-harvest-source

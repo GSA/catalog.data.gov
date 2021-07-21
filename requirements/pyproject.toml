@@ -13,7 +13,7 @@ ckanext-archiver = {git = "https://github.com/ckan/ckanext-archiver.git"}
 ckanext-datagovtheme = {git = "https://github.com/GSA/ckanext-datagovtheme.git", branch = "main" }
 ckanext-datajson = {git = "https://github.com/GSA/ckanext-datajson.git", branch = "main" }
 ckanext-envvars = "*"
-ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git" }
+ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git", branch = "main" }
 ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
 # ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "datagov-catalog" }
 ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }

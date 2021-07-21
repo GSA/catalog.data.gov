@@ -51,60 +51,6 @@ load test_helper
   api_delete_call "organization" "purge" "test-organization-$RNDCODE"
 }
 
-@test "Given an organization, a waf-collection harvest source is created successfully from form" {
-  # create a waf-collection harvest source
-  # require the organization created in previous test
-
-  api_post_call "api/3/action/organization_create" "test-org-create-01"
-  local org_id=$(echo "$output" | jq --raw-output '.result.id')
-  
-  # check the form
-  api_get_call "harvest/new"
-  
-  # check if the missing field it's OK
-
-  assert_output --regexp '^.*field-collection_metadata_url.*$'
-
-  name="waf-collection-source-$RNDCODE"
-  
-  run curl --silent \
-    --data-urlencode "name=$name" \
-    --data-urlencode "url=http://test-$RNDCODE.com" \
-    --data-urlencode "source_type=waf-collection" \
-    --data-urlencode "title=WAF test $RNDCODE" \
-    --data-urlencode "collection_metadata_url=http://coll-$RNDCODE.test.com" \
-    --data-urlencode "frequency=MANUAL" \
-    --data-urlencode "owner_org=$org_id" \
-    --data-urlencode "private_datasets=False" \
-    --data-urlencode "save=Save" \
-    -X POST http://$HOST:$PORT/harvest/new \
-    -H "Authorization: $api_key" \
-    -H 'content-type: application/x-www-form-urlencoded' \
-    --cookie $BATS_TMPDIR/cookie-jar
-  
-  if [ "$status" -ne 0 ]
-  then
-    echo "Error creating harvest source: $output" >&3
-    return 1
-  fi
-  
-  # check the source we created exists
-  api_get_call "api/3/action/harvest_source_show?id=waf-collection-source-$RNDCODE"
-  
-  if [ "$status" -ne 0 ]
-  then
-    echo "Error $status reading harvest source at $url" >&3
-    return 1
-  fi
-  assert_json .success true
-
-  # delete harvest source
-  api_delete_call "harvest_source" "delete" "waf-collection-source-$RNDCODE"
-
-  # delete organization
-  api_delete_call "organization" "purge" "test-organization-$RNDCODE"
-}
-
 @test "User can create dataset" {
   api_post_call "api/3/action/organization_create" "test-org-create-01"
   api_post_call "api/3/action/package_create" "test-package-create-01"
