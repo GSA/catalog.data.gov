@@ -95,7 +95,7 @@ Update and cache all the Python package requirements
 
 Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available (see [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time)).
 
-    $ cf create-service aws-rds small-psql ${app_name}-db -c '{"version": 11}'
+    $ cf create-service aws-rds small-psql ${app_name}-db -c '{"version": "11"}'
 
 Create the Redis service for cache
 
