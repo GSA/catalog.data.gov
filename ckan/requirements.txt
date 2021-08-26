@@ -12,7 +12,7 @@ cffi==1.12.3
 chardet==3.0.4; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
 ckan @ git+https://github.com/ckan/ckan.git@ckan-2.9.3
 ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@main
-ckanext-harvest @ git+https://github.com/ckan/ckanext-harvest.git@main
+ckanext-harvest @ git+https://github.com/ckan/ckanext-harvest.git@master
 ckantoolkit==0.0.3
 click==7.1.2; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.5.0")
 # cryptography==3.3.2; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.6.0")

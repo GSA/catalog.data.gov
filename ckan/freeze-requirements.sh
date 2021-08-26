@@ -11,6 +11,9 @@ set -e
 USER_ID=$1
 GROUP_ID=$2
 
+# Make sure poetry is installed
+pip3 install poetry
+
 cd /requirements
 
 echo "Running poetry lock ..."

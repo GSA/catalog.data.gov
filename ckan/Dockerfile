@@ -20,7 +20,7 @@ RUN cd /geos && \
 COPY requirements.txt ${APP_DIR}
 
 RUN pip3 install --upgrade pip && sudo -u ckan -EH pip3 install -r requirements.txt --ignore-installed
-RUN pip3 install poetry==1.0.10
+
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
