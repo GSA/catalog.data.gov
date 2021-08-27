@@ -27,11 +27,11 @@ category = "main"
 description = "Internationalization utilities"
 name = "babel"
 optional = false
-python-versions = "*"
-version = "2.3.4"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.9.1"
 
 [package.dependencies]
-pytz = ">=0a"
+pytz = ">=2015.7"
 
 [[package]]
 category = "main"
@@ -1444,7 +1444,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "5393242baf59e0a794e5744189eb03a803f4c36065e0f7322611c8547dcb41f8"
+content-hash = "551d99c417c667e4e72b70415ca17b9fa2a868877662ec0b7d16b1c56d319704"
 lock-version = "1.0"
 python-versions = "^2.7"
 
@@ -1461,8 +1461,8 @@ argparse = [
     {file = "argparse-1.4.0.tar.gz", hash = "sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4"},
 ]
 babel = [
-    {file = "Babel-2.3.4-py2.py3-none-any.whl", hash = "sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975"},
-    {file = "Babel-2.3.4.tar.gz", hash = "sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875"},
+    {file = "Babel-2.9.1-py2.py3-none-any.whl", hash = "sha256:ab49e12b91d937cd11f0b67cb259a57ab4ad2b59ac7a3b41d6c06c0ac5b0def9"},
+    {file = "Babel-2.9.1.tar.gz", hash = "sha256:bc0c176f9f6a994582230df350aa6e05ba2ebe4b3ac317eab29d9be5d2768da0"},
 ]
 beaker = [
     {file = "Beaker-1.11.0.tar.gz", hash = "sha256:ad5d1c05027ee3be3a482ea39f8cb70339b41e5d6ace0cb861382754076d187e"},
