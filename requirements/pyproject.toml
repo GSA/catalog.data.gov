@@ -18,8 +18,8 @@ ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
 # ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "datagov-catalog" }
 ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
 ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git" }
-ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git"}
-ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git" }
+ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git", branch = "main" }
+ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git", branch = "main" }
 ckanext-qa = {git = "https://github.com/ckan/ckanext-qa.git" }
 ckanext-saml2auth = { git = "https://github.com/keitaroinc/ckanext-saml2auth.git", tag = "ckan-2.8" }
 ckanext-dcat = {git="https://github.com/ckan/ckanext-dcat" }
@@ -119,7 +119,7 @@ sqlparse = "0.2.2"
 tzlocal = "1.3"
 unicodecsv = ">=0.9"
 vdm = "0.14"
-Babel = "2.3.4"
+Babel = "2.9.1"
 Flask = "0.12.4"
 Flask-Babel = "0.11.2"
 Jinja2 = "2.11.3"
