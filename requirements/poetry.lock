@@ -921,6 +921,21 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [[package]]
+name = "PyZ3950"
+version = "2.5.1a1"
+description = "Z39.50 (ZOOM API), ASN.1, and MARC implementations"
+category = "main"
+optional = false
+python-versions = "*"
+develop = false
+
+[package.source]
+type = "git"
+url = "https://github.com/danizen/PyZ3950.git"
+reference = "master"
+resolved_reference = "6d44a4ab85c8bda3a7542c2c9efdfad46c830219"
+
+[[package]]
 name = "rdflib"
 version = "4.2.1"
 description = "RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information."
@@ -1233,7 +1248,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "ae6fb145e1531b611371b5bb4d5ea2c62f692631858817c77fa3af7f6b389e17"
+content-hash = "4b32b7b3a901f592da18aeaabb9768e0b1ede8156a34e95da7576cb79284d3da"
 
 [metadata.files]
 alembic = [
@@ -1803,6 +1818,7 @@ pyyaml = [
     {file = "PyYAML-5.4-cp39-cp39-win_amd64.whl", hash = "sha256:8bf38641b4713d77da19e91f8b5296b832e4db87338d6aeffe422d42f1ca896d"},
     {file = "PyYAML-5.4.tar.gz", hash = "sha256:3c49e39ac034fd64fd576d63bb4db53cda89b362768a67f07749d55f128ac18a"},
 ]
+PyZ3950 = []
 rdflib = [
     {file = "rdflib-4.2.1.tar.gz", hash = "sha256:eb02bd235606ef3b26e213da3e576557a6392ce103efd8c6c8ff1e08321608c8"},
 ]

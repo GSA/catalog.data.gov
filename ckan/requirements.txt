@@ -76,7 +76,7 @@ python2-secrets==1.0.5; (python_version >= "2.7" and python_full_version < "3.0.
 pytz==2016.7
 pyutilib==5.7.1; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.4.0")
 pyyaml==5.4; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.6.0")
-PyZ3950 @ git+https://github.com/danizen/PyZ3950.git
+pyz3950 @ git+https://github.com/danizen/PyZ3950.git@master
 rdflib-jsonld==0.4.0
 rdflib==4.2.1
 redis==3.5.3; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "2.7"
