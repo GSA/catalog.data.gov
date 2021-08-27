@@ -12,13 +12,13 @@ cffi==1.12.3
 chardet==3.0.4
 -e git+https://github.com/ckan/ckan.git@e5105334fbdfd312412da4e05221ce0588dc2dfd#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@035728ddd739c5029f89e65fcb1d9048934c9ed9#egg=ckanext-archiver
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@2225231e129e4aacb35939dcd2765ed7f9216bb1#egg=ckanext-datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@15c7e7efb90824b3a311f64a59f23c41b7b265d7#egg=ckanext-datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@f49fb1754deca4168deeceb93f10b548034b9730#egg=ckanext-datajson
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext-datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@c9d80fc05039fb4021c90e24eab2d446aac5f8b3#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datajson.git@a842fa67ff8e3e9e85e80ebc3b34d3c17a38dd2f#egg=ckanext-datajson
 -e git+https://github.com/ckan/ckanext-dcat@c4e7319aff55e5315831b28e918299092f2d5805#egg=ckanext-dcat
 ckanext-envvars==0.0.1
--e git+https://github.com/GSA/ckanext-geodatagov.git@020e54d330c96f17f9ca6cd5429f2aa335ad37d0#egg=ckanext-geodatagov
--e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@f0b75cf965e477a84f044885b27880782a48969c#egg=ckanext-googleanalyticsbasic
+-e git+https://github.com/GSA/ckanext-geodatagov.git@0853bee402148f7ccabc8f37ca8c10088e6dcb42#egg=ckanext-geodatagov
+-e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@10ebfe25744b0f6e4cb1294f4a16654eb13119f6#egg=ckanext-googleanalyticsbasic
 -e git+https://github.com/ckan/ckanext-harvest.git@e2e8acbb6d87d44663e92c5ff5cbd67401588c2d#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@2abba3fa2ddf29f4decc4a0c4c39101fb994db23#egg=ckanext-report
@@ -29,7 +29,7 @@ click==6.7
 cryptography==3.3.2
 decorator==4.4.2
 defusedxml==0.7.1
-distro==1.5.0
+distro==1.6.0
 enum34==1.1.10; python_version < "3"
 fanstatic==0.12
 flask==0.12.4
@@ -56,7 +56,7 @@ jsonschema==2.4.0
 kombu==3.0.37
 lepl==5.1.3
 lxml==4.6.3
-mako==1.1.4
+mako==1.1.5
 markdown==3.1.1
 markupsafe==1.1.1
 messytables==0.15.2
