@@ -16,7 +16,7 @@ ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@main
 ckanext-geodatagov @ git+https://github.com/GSA/ckanext-geodatagov.git@main
 ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@main
 ckanext-harvest @ git+https://github.com/GSA/ckanext-harvest.git@json-serialization-fix
-ckanext-spatial @ git+https://github.com/ckan/ckanext-spatial.git@master
+ckanext-spatial @ git+https://github.com/gsa/ckanext-spatial.git@datagov
 ckantoolkit==0.0.3
 click==7.1.2; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.5.0")
 cryptography==3.4.8; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"

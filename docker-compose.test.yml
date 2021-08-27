@@ -1,16 +1,24 @@
 # run with make test
 version: '3'
 services:
-  test:
+  ckan:
     environment:
-      TERM: ${TERM}
-    env_file:
-      .env
-    build:
-      context: .
-      dockerfile: Dockerfile.test
+      - CKAN_SITE_URL=http://ckan:5000
+  test:
+    image: cypress/included:7.3.0
+    entrypoint: []
+    command: /bin/bash -c "npx wait-on http://ckan:5000 && cypress run"
+    # To run specific test, use the following syntax:
+    # command: /bin/bash -c "npx wait-on http://ckan:5000 && cypress run --spec cypress/integration/login.spec.js"
+    environment:
+      # Created cypress user and password, setup in 00-setup-cypress-user.sh
+      - CYPRESS_USER=admin
+      - CYPRESS_USER_PASSWORD=password
+    working_dir: /e2e
     depends_on:
       - ckan
+    volumes:
+    - ./e2e:/e2e
 
   nginx-harvest-source:
     image: nginx

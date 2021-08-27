@@ -111,7 +111,7 @@ Deploy the Solr instance and the app.
 **Note that the automated deployment only deploys the application, any solr changes**
 **(temporary until ssb is ready) needs to be deployed manually using `cf push --vars-file vars.yml catalog-solr`**
 
-Ensure the inventory app can reach the Solr app.
+Ensure the Catalog app can reach the Solr app.
 
     $ cf add-network-policy ${app_name} --destination-app ${app_name}-solr --protocol tcp --port 8983
 

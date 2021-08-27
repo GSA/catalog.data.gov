@@ -17,7 +17,7 @@ ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git", bra
 # ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
 ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "json-serialization-fix" }
 # ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
-ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git" }
+ckanext-spatial = {git = "https://github.com/gsa/ckanext-spatial.git", branch = "datajson" }
 ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git", branch = "main", develop = true}
 ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git", branch = "main" }
 # ckanext-qa = {git = "https://github.com/ckan/ckanext-qa.git" }
