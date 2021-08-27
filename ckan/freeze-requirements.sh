@@ -24,7 +24,8 @@ poetry export -vvv --format requirements.txt --output requirements.txt --without
 # sadness -- pyz3950 is so old that poetry can't make sense of it's setup.py, so
 # we have to add the requirement manually
 
-echo "-e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950" >> requirements.txt
+# echo "-e git+https://github.com/danizen/PyZ3950.git@6d44a4ab85c8bda3a7542c2c9efdfad46c830219#egg=PyZ3950" >> requirements.txt
+sed 's/ckanext-datagovcatalog \@ git\+https\:\/\/github.com\/GSA\/ckanext-datagovcatalog.git\@main/-e git+https://github.com/GSA/ckanext-datagovcatalog.git@main#egg=ckanext-datagovcatalog/g' requirements.txt > requirements.txt
 
 poetry show --tree
 chown ${USER_ID}:${GROUP_ID} poetry.lock requirements.txt

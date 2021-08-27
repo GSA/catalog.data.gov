@@ -18,8 +18,8 @@ ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git", bra
 ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "json-serialization-fix" }
 # ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
 ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git" }
-ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git", develop = true}
-ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git" }
+ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git", branch = "main", develop = true}
+ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git", branch = "main" }
 # ckanext-qa = {git = "https://github.com/ckan/ckanext-qa.git" }
 # ckanext-saml2auth = { git = "https://github.com/keitaroinc/ckanext-saml2auth.git", tag = "ckan-2.8" }
 ckanext-dcat = {git="https://github.com/ckan/ckanext-dcat" }
@@ -54,7 +54,7 @@ rfc3987 = "*"
 # ckanext-geodatagov
 # Unfortunately, this code is 17 years old, and poetry isn't able to
 # determine the version number.
-# PyZ3950 = {git = "https://github.com/asl2/PyZ3950.git" }
+PyZ3950 = {git = "https://github.com/danizen/PyZ3950.git" }
 # pip equivalent:
 # pip install -e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
 boto = "*"
