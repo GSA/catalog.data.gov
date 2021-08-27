@@ -7,15 +7,17 @@ ENV GIT_BRANCH=2.9
 # add dependencies for cryptography and vim
 RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim xmlsec-dev
 
+# Add dependencies for ckanext-spatial and geodatagov
+RUN apk add geos-dev proj proj-util proj-dev
+
 # Fix shapely lib error. Install geos
 # TODO consider moving to Alpine>=3.11 or to Bionic
-
-ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
-RUN tar xf /geos/geos.tar.bz2 -C /geos --strip-components=1
-RUN cd /geos && \
-    ./configure && \
-    make -j 1 && \
-    make install
+# ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
+# RUN tar xf /geos/geos.tar.bz2 -C /geos --strip-components=1
+# RUN cd /geos && \
+#     ./configure && \
+#     make -j 1 && \
+#     make install
 
 COPY requirements.txt ${APP_DIR}
 
@@ -32,3 +34,5 @@ COPY saml2 ${APP_DIR}/saml2
 
 # COPY the ini test file to the container 
 COPY test-catalog-next.ini ${SRC_DIR}/ckan
+
+# RUN sudo -u ckan -EH pip3 install git+https://github.com/nickumia-reisys/werkzeug@e1f6527604ab30e4b46b5430a5fb97e7a7055cd7#egg=werkzeug

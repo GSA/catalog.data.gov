@@ -33,7 +33,7 @@ requirements:
 	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
 
 test:
-	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
+	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
