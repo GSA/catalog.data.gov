@@ -5,8 +5,6 @@ services:
     image: ghcr.io/gsa/catalog.data.gov:latest
     env_file:
       - .env
-    environment:
-      - CKAN_SITE_URL=http://localhost:5000
     depends_on:
       - db
       - solr
