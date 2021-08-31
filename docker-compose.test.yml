@@ -20,11 +20,6 @@ services:
     volumes:
     - ./e2e:/e2e
 
-  nginx-harvest-source:
-    image: nginx
-    volumes:
-      - ./tests/harvest-sources:/usr/share/nginx/html
-
   ckan:
     links:
       - nginx-harvest-source

@@ -3,10 +3,6 @@
 load globals
 load test_helper
 
-@test "datajson_harvest extension is loaded" {
-  test_extension_loaded datajson_harvest
-}
-
 @test "data.json harvest source is created and harvested successfully" {
 
   # create a data.json harvest source

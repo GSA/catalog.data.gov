@@ -93,13 +93,13 @@ archiver-worker:
 	docker-compose exec ckan paster --plugin=ckanext-archiver celeryd2 run all
 
 harvest-fetch-queue:
-	docker-compose exec ckan paster --plugin=ckanext-harvest harvester fetch_consumer
+	docker-compose exec ckan ckan harvester fetch-consumer
 
 harvest-gather-queue:
-	docker-compose exec ckan paster --plugin=ckanext-harvest harvester gather_consumer
+	docker-compose exec ckan ckan harvester gather-consumer
 
 harvest-check-finished-jobs:
-	docker-compose exec ckan paster --plugin=ckanext-harvest harvester run
+	docker-compose exec ckan ckan harvester run
 
 test-extensions:
 	# test our extensions

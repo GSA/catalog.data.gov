@@ -26,8 +26,27 @@ COPY saml2 ${APP_DIR}/saml2
 # COPY the ini test file to the container 
 COPY test-catalog-next.ini ${SRC_DIR}/ckan
 
+COPY setup/ckan_setup.sh ${APP_DIR}/
+
 # In order for dependencies to be managed, python
 # needs to be mapped to python3
 RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# In order to run CKAN harvester command to finalize
+# harvests, we need to setup a cron for the ckan user
+RUN apk --no-cache add dcron libcap
+
+RUN chown ckan:ckan /usr/sbin/crond \
+    && setcap cap_setgid=ep /usr/sbin/crond
+
+RUN mkdir /home/ckan \
+    && chown ckan /home/ckan
+
+COPY --chown=ckan:ckan setup/harvest-check-cron /home/ckan/cronjob
+RUN crontab -u ckan /home/ckan/cronjob && chown ckan:root /usr/bin/crontab && chown -R ckan:root /etc/crontabs/
+
+# Since the application is run as a CKAN user,
+# only allow ckan permissions once started.
+USER ckan
 
 # RUN sudo -u ckan -EH pip3 install git+https://github.com/nickumia-reisys/werkzeug@e1f6527604ab30e4b46b5430a5fb97e7a7055cd7#egg=werkzeug

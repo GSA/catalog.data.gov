@@ -1,11 +1,15 @@
-function verify_element_exists() {
+function check_harvest_done(retries) {
     cy.get('td').eq(4).then(($td) => {
         if ($td.text() == 'Finished') {
             cy.wrap($td.text()).should('eq', 'Finished');
+        } else if (retries == 0) {
+            cy.log('Retried too many times, give up');
+            expect(true).to.be.false()
         } else {
+            // Not done, check again in 10 seconds
             cy.wait(10000);
             cy.reload(true);
-            verify_element_exists();
+            check_harvest_done(retries - 1);
         }  
     })
 }
@@ -21,7 +25,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
         https://github.com/GSA/ckanext-datagovtheme/blob/main/ckanext/datagovtheme/fanstatic_library/scripts/spatial_query.js
     */
     // returning false here prevents Cypress from
-    // failing the test
+    // failing all tests
     return false
   })
 
@@ -185,9 +189,18 @@ Cypress.Commands.add('delete_harvest_source', (harvestName) => {
 
 Cypress.Commands.add('start_harvest_job', (harvestName) => {
     cy.visit('/harvest/' + harvestName)
+    // Hide flask debug toolbar
+    cy.get('#flHideToolBarButton').click();
+
     cy.contains('Admin').click()
     cy.get('.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle)').click({force:true})
-    verify_element_exists();
+    // Confirm harvest start
+    cy.wait(1000)
+    cy.contains(/^Confirm$/).click()
+    // Confirm stop button exists, harvest is started/queued
+    cy.contains('Stop')
+    // Wait up to 2 minutes checking if harvest is complete.
+    check_harvest_done(12);
 })
 
 

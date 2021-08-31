@@ -3,8 +3,11 @@ version: "3"
 services:
   ckan:
     image: ghcr.io/gsa/catalog.data.gov:latest
+    command: ./ckan_setup.sh ckan run -H 0.0.0.0
     env_file:
       - .env
+    environment:
+      - CKAN_SITE_URL=http://localhost:5000
     depends_on:
       - db
       - solr
@@ -42,6 +45,11 @@ services:
     volumes:
       - ./nginx:/nginx
       - ./nginx/nginx.conf:/etc/nginx/conf.d/ckan.conf
+
+  nginx-harvest-source:
+    image: nginx
+    volumes:
+      - ./tests/harvest-sources:/usr/share/nginx/html
 
 volumes:
   ckan_storage:
