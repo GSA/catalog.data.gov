@@ -36,7 +36,7 @@ cryptography = "3.3.2"
 pika = ">=1.1.0"
 pyOpenSSL = "20.0.1"
 redis = "2.10.6"
-urllib3 = "1.25.9"
+urllib3 = "1.26.5"
 
 # ckanext-datagovtheme
 
