@@ -15,7 +15,7 @@ describe('Login', () => {
         cy.login()
         cy.get('.nav-tabs>li>a').should('contain', 'My Organizations')
         // Validate cookie is set, in development secure is set to false
-        cy.getCookie('auth_tkt').should('have.property', 'secure', 'false');
+        cy.getCookie('auth_tkt').should('have.property', 'secure', false);
     })
 
 })
