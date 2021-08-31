@@ -193,6 +193,11 @@ url = "https://github.com/GSA/ckanext-envvars.git"
 reference = "main"
 resolved_reference = "33f7e190ab332244cb961a425e09af592d9b647b"
 
+[package.source]
+reference = "10ebfe25744b0f6e4cb1294f4a16654eb13119f6"
+type = "git"
+url = "https://github.com/GSA/ckanext-googleanalyticsbasic.git"
+
 [[package]]
 name = "ckanext-geodatagov"
 version = "0.1"
