@@ -75,6 +75,7 @@ Stop and remove the containers and volumes associated with this setup.
 ### Test extensions
 
 To test extensions locally you can run
+_TODO: update this for pytest_
 
 ```
 docker-compose exec ckan bash
@@ -82,6 +83,24 @@ nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datago
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datajson/
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/geodatagov/
 ```
+
+### Run Cypress Tests
+
+To test the UI and e2e user tests, run
+
+    $ make test
+
+#### Run Cypress tests interactively
+
+To run cypress tests locally, cypress needs to be installed first.
+Run `npm install cypress`.
+
+At this point, you will need to manually change the .env file to
+have `CKAN_SITE_URL=http://localhost:5000`. This is to cover for 
+a docker bug upstream: https://github.com/docker/compose/issues/7423
+
+Then, you can run `make cypress`. For WSL or complex installation, please see
+a data.gov team member.
 
 ## Deploying to cloud.gov
 
@@ -152,8 +171,8 @@ The Login.gov IdP metadata is stored in file under `config/`.
 
 ## On Docker CKAN 2.8 images
 
-The repository extends the Open Knowledge Foundation `ckan-dev:2.8` docker
-image. The `ckan-base:2.8` image, if needed for some reasons, is available via
+The repository extends the Open Knowledge Foundation `ckan-dev:2.9` docker
+image. The `ckan-base:2.9` image, if needed for some reasons, is available via
 dockerhub with the aformentioned tag, as referenced in [OKF's docker-ckan
 repository](https://github.com/okfn/docker-ckan).
 
@@ -194,7 +213,7 @@ the folder for the new extension
 ### Procedure for updating a dependency
 
 1.  Add/change the dependency in `requirements/pyproject.toml`
-2.  Run `make update-dependencies build test`
+2.  Run `make update-dependencies build clean test`
 3.  Make sure to commit `ckan/requirements.txt` `requirements/pyproject.toml`
     and `requirements/poetry.lock` to make the change permanent.
 

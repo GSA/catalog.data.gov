@@ -4,8 +4,7 @@ services:
   ckan:
     image: ghcr.io/gsa/catalog.data.gov:latest
     command: ./ckan_setup.sh ckan run -H 0.0.0.0
-    env_file:
-      - .env
+    env_file: .env
     depends_on:
       - db
       - solr

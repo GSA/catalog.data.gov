@@ -19,6 +19,10 @@ clean:
 copy-src:
 	docker cp catalog-app_ckan_1:$(CKAN_HOME)/src .
 
+cypress:
+	# Turn on local system, and open cypress in interactive mode
+	docker-compose up -d && cd e2e && CYPRESS_USER=admin CYPRESS_USER_PASSWORD=password CYPRESS_BASE_URL=http://localhost:5000 npx cypress open
+
 dev:
 	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
 	docker-compose build
