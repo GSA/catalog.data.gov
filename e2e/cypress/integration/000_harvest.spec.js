@@ -1,8 +1,8 @@
 describe('Harvest', () => {
     // Rename this only if necessary, various test dependencies
-    const harvestOrg = 'cypress-harvest-org'
+    const harvestOrg = 'test-harvest-org'
     const dataJsonHarvestSoureName = 'test-harvest-datajson'
-    const wafIsoHarvestSourceName = 'cypress-harvest-waf-iso'
+    const wafIsoHarvestSourceName = 'test-harvest-waf-iso'
 
     before(() => {
         /**
@@ -22,7 +22,8 @@ describe('Harvest', () => {
     })
     after(() => {
         /**
-         * Do not clear harvest sources so other tests can use
+         * Do not clear harvest sources so other tests can
+         * evaluate the created datasets
          */
         // cy.delete_harvest_source(wafIsoHarvestSourceName)
         // cy.delete_harvest_source(dataJsonHarvestSoureName)
@@ -90,7 +91,7 @@ describe('Harvest', () => {
         cy.get('a[class="btn btn-primary"]').click()
         cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
         cy.get('a[class="btn btn-primary"]').click()
-        cy.create_harvest_source('https://www.sciencebase.gov/data/lcc/california/iso2/',
+        cy.create_harvest_source('http://nginx-harvest-source/iso-waf/',
            wafIsoHarvestSourceName,
            'cypress test waf iso',
            'waf',

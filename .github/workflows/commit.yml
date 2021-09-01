@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: lint and test
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: checkout

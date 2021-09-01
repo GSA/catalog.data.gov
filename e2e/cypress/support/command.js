@@ -182,6 +182,7 @@ Cypress.Commands.add('create_harvest_source', (dataSourceUrl, harvestTitle, harv
 
 Cypress.Commands.add('delete_harvest_source', (harvestName) => {
     cy.visit('/harvest/admin/' + harvestName)
+    cy.wait(3000)
     cy.contains('Clear').click({force:true})
     cy.visit('/harvest/delete/'+harvestName+'?clear=True')
 })
@@ -193,10 +194,17 @@ Cypress.Commands.add('start_harvest_job', (harvestName) => {
     cy.get('#flHideToolBarButton').click();
 
     cy.contains('Admin').click()
+    // Wait for all pages to load, avoid bug
+    // https://github.com/ckan/ckanext-harvest/issues/440
+    cy.wait(3000)
     cy.get('.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle)').click({force:true})
     // Confirm harvest start
     cy.wait(1000)
     cy.contains(/^Confirm$/).click()
+
+    // Redirects back to public page for some reason, back to admin
+    cy.contains('Admin').click()
+
     // Confirm stop button exists, harvest is started/queued
     cy.contains('Stop')
     // Wait up to 2 minutes checking if harvest is complete.
