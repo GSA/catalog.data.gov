@@ -184,6 +184,12 @@ Cypress.Commands.add('delete_harvest_source', (harvestName) => {
     cy.visit('/harvest/admin/' + harvestName)
     cy.wait(3000)
     cy.contains('Clear').click({force:true})
+
+    // Confirm harvest clear
+    cy.wait(1000)
+    cy.contains(/^Confirm$/).click()
+
+    cy.wait(3000)
     cy.visit('/harvest/delete/'+harvestName+'?clear=True')
 })
 

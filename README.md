@@ -235,13 +235,15 @@ the owner of its folder to have the appropriate permissions.
 To run a container and be able to add a breakpoint with `pdb` or `ipdb`, run the
 `ckan-dev` container with the `--service-ports` option:
 
-    docker-compose -f docker-compose.dev.yml run --service-ports ckan-dev
+    docker-compose run --service-ports ckan
 
 This will start a new container, displaying the standard output in your
 terminal. If you add a breakpoint in a source file in the `src` folder (`import
 pdb; pdb.set_trace()`) you will be able to inspect it in this terminal next time
 the code is executed.
-
+If you are testing a harvest process (gather/fetch/run), try turning off the command
+to start in the background in the `ckan/docker-entrypoint.d/10-setup-harvest.sh`.
+Then, run the relevant command manually (`make harvest-fetch-queue`) after startup.
 
 ## SAML2
 

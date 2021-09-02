@@ -12,27 +12,15 @@ for i in $SRC_EXTENSIONS_DIR/*
 do
     if [ -d $i ];
     then
-
-        if [ -f $i/pip-requirements.txt ];
-        then
-            pip install -r $i/pip-requirements.txt
-            echo "Found requirements file in $i"
-        fi
-        if [ -f $i/requirements.txt ];
-        then
-            pip install -r $i/requirements.txt
-            echo "Found requirements file in $i"
-        fi
-        if [ -f $i/dev-requirements.txt ];
-        then
-            pip install -r $i/dev-requirements.txt
-            echo "Found dev-requirements file in $i"
-        fi
         if [ -f $i/setup.py ];
         then
             cd $i
-            python3 $i/setup.py develop
             echo "Found setup.py file in $i"
+            # Uninstall any current implementation of the code
+            echo uninstalling "${PWD##*/}"
+            pip3 uninstall "${PWD##*/}"
+            # Install the extension in editable mode
+            pip3 install -e .
             cd $APP_DIR
         fi
 

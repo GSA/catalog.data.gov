@@ -12,7 +12,7 @@ RUN apk add geos-dev proj proj-util proj-dev
 
 COPY requirements.txt ${APP_DIR}
 
-RUN pip3 install --upgrade pip && sudo -u ckan -EH pip3 install -r requirements.txt --ignore-installed
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt --ignore-installed
 
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
@@ -33,20 +33,7 @@ COPY setup/ckan_setup.sh ${APP_DIR}/
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # In order to run CKAN harvester command to finalize
-# harvests, we need to setup a cron for the ckan user
-RUN apk --no-cache add dcron libcap
-
-RUN chown ckan:ckan /usr/sbin/crond \
-    && setcap cap_setgid=ep /usr/sbin/crond
-
-RUN mkdir /home/ckan \
-    && chown ckan /home/ckan
-
-COPY --chown=ckan:ckan setup/harvest-check-cron /home/ckan/cronjob
-RUN crontab -u ckan /home/ckan/cronjob && chown ckan:root /usr/bin/crontab && chown -R ckan:root /etc/crontabs/
-
-# Since the application is run as a CKAN user,
-# only allow ckan permissions once started.
-USER ckan
+# harvests, we need to setup a cron for the run command
+COPY setup/harvest-check-cron /etc/crontabs/root
 
 # RUN sudo -u ckan -EH pip3 install git+https://github.com/nickumia-reisys/werkzeug@e1f6527604ab30e4b46b5430a5fb97e7a7055cd7#egg=werkzeug
