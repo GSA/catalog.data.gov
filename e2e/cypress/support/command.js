@@ -14,21 +14,6 @@ function check_harvest_done(retries) {
     })
 }
 
-Cypress.on('uncaught:exception', (err, runnable) => {
-    /*
-        Currently there is a bug in datagovtheme
-        that tries to create a module for spatial queries
-        but either ckan is not loaded or it is not implemented
-        properly. See best practices 
-        https://docs.ckan.org/en/2.9/contributing/frontend/javascript-module-tutorial.html
-        and the current implmentation 
-        https://github.com/GSA/ckanext-datagovtheme/blob/main/ckanext/datagovtheme/fanstatic_library/scripts/spatial_query.js
-    */
-    // returning false here prevents Cypress from
-    // failing all tests
-    return false
-  })
-
 Cypress.Commands.add('login', (userName, password, loginTest) => {
     /**
      * Method to fill and submit the CKAN Login form

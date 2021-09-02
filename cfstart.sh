@@ -3,11 +3,6 @@
 set -o errexit
 set -o pipefail
 
-# Utilize paster command, can remove when on ckan 2.9
-function ckan () {
-    paster --plugin=ckan "$@"
-}
-
 function vcap_get_service () {
   local path name
   name="$1"
@@ -55,12 +50,11 @@ export CKAN_INI=config/production.ini
 ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
 
 # Run migrations
-ckan db upgrade -c $CKAN_INI
-paster --plugin=ckanext-harvest harvester initdb --config=$CKAN_INI
-paster --plugin=ckanext-report report initdb --config=$CKAN_INI
-paster --plugin=ckanext-archiver archiver init --config=$CKAN_INI
-paster --plugin=ckanext-qa qa init --config=$CKAN_INI
+ckan db upgrade
+ckan harvester initdb
+ckan report initdb
+ckan archiver init
+ckan qa init
 
-# Fire it up!
-
-exec ckan/setup/server_start.sh --bind 0.0.0.0:$PORT --timeout 30
+# Run your command (typically harvester job or server)
+exec $@

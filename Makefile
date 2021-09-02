@@ -69,32 +69,32 @@ lint-all:
 
 generate-openess-report:
 	# generate report at /report/openness
-	docker-compose exec ckan paster --plugin=ckanext-report report generate openness
+	docker-compose exec ckan report generate openness
 
 
 update-tracking-info:
 	# https://docs.ckan.org/en/2.8/maintaining/tracking.html
-	docker-compose exec ckan paster --plugin=ckan tracking update
+	docker-compose exec ckan ckan tracking update
 
 rebuild-search-index:
-	docker-compose exec ckan paster --plugin=ckan search-index rebuild
+	docker-compose exec ckan ckan search-index rebuild
 
 update-qa-info:
-	# QA is performed when a dataset/resource is archived, or you can run it manually using a paster command:
-	docker-compose exec ckan paster --plugin=ckanext-qa qa update
+	# QA is performed when a dataset/resource is archived, or you can run it manually using a ckan command:
+	docker-compose exec ckan ckan qa update
 
 update-archiver-info:
-	docker-compose exec ckan paster --plugin=ckanext-archiver archiver update
+	docker-compose exec ckan ckan archiver update
 
 generate-all-reports:
-	docker-compose exec ckan paster --plugin=ckanext-report report generate
+	docker-compose exec ckan ckan report generate
 
 ckan-worker:
-	docker-compose exec ckan paster --plugin=ckan jobs worker bulk
+	docker-compose exec ckan ckan jobs worker bulk
 
 archiver-worker:
 	export C_FORCE_ROOT=1  # celery don't want to run as root
-	docker-compose exec ckan paster --plugin=ckanext-archiver celeryd2 run all
+	docker-compose exec ckan ckan celeryd2 run all
 
 harvest-fetch-queue:
 	docker-compose exec ckan ckan harvester fetch-consumer

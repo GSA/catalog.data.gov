@@ -219,12 +219,12 @@ the folder for the new extension
 
 ## Create an extension
 
-You can use the paster template in much the same way as a source install, only
+You can use the ckan template in much the same way as a source install, only
 executing the command inside the CKAN container and setting the mounted `src/`
 folder as output:
 
-    $ docker-compose -f docker-compose.yml exec ckan-dev /bin/bash -c \
-    "paster --plugin=ckan create -t ckanext ckanext-myext -o /srv/app/src_extensions"
+    $ docker-compose exec ckan /bin/bash -c \
+    "ckan generate extension"
 
 The new extension will be created in the `src/` folder. You might need to change
 the owner of its folder to have the appropriate permissions.
