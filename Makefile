@@ -1,4 +1,4 @@
-.PHONY: all build clean copy-src local requirements setup test up update-dependencies
+.PHONY: all build clean copy-src local setup test up update-dependencies
 
 CKAN_HOME := /srv/app
 

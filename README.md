@@ -10,7 +10,7 @@ This is a local development harness for catalog.data.gov.
 ## Usage
 
 The _only_  deployable artifact associated with this repository is the
-`requirements-freeze.txt` file. See [datagov-deploy](https://github.com/GSA/datagov-deploy)
+`requirements.txt` file. See github actions
 for full configuration in live environments.
 
 The live environment is different than the development environment in
@@ -20,26 +20,17 @@ order to make sure the application is deployable to the live
 environment:
 
 - If you need to add or change a dependency, you should make that
-  change in the `requirements/pyproject.toml`, run `make update-dependencies`
+  change in the `ckan/requirements.in`, run `make update-dependencies`
   and commit the changed files.  (See the section below on
   requirements for details.)  Good news: no other changes are required!
   
-- If you need to add or remove a plugin, you will also need to update
-  the plugin list in
-  [datagov-deploy](https://github.com/GSA/datagov-deploy) Currently,
-  that means updating the value of `catalog_next_ckan_plugins_default` in
-  `ansible/inventories/sandbox/group_vars/all/vars.yml`
-  
 - If you need to add or change configuration that lives in the
-  application *ini* file, you will also need to update the
-  configuration file template in
-  [datagov-deploy](https://github.com/GSA/datagov-deploy) Currently,
-  this means modifying
-  `ansible/roles/software/ckan/catalog/ckan-app/templates/catalog-next/etc_ckan_production_ini.j2`.
+  application *ini* file (such as a plugin), you will also need to 
+  update the configuration file template at `config/production.ini`.
   
 - If you find you need to modify the `ckan/Dockerfile` to add OS
   packages or install software, other changes may need to be made to
-  the ansible playbooks.  Please bring these situations to the team's
+  the cloud.gov buildpack.  Please bring these situations to the team's
   attention.
 
 ## Development
@@ -185,22 +176,19 @@ This image will be used in extensions to test.
 ## Note on requirements
 
 The source of truth about package dependencies is managed with
-*poetry* kept in `requirements/pyproject.toml` and
-`requirements/poetry.lock`.  The base OKFN Docker image we are using,
-though, doesn't know about *poetry*.  We have modified our ckan image
+*pip* kept in `ckan/requirements.txt`.  The base OKFN Docker image we are using,
+though, doesn't install all dependencies we need.  We have modified our ckan image
 (`ckan/Dockerfile`) to install frozen requirements from
 `ckan/requirements.txt` at image build time to help ensure all
 developers are working with the same set of requirements.
 
-The Makefile target *update-dependencies* will use poetry to generate a new
-`poetry.lock` and update `ckan/requirements.txt`. _Note: Please be patient.
-poetry can take several minutes to re-generate a lock file (in once case even up
-to 17 minutes)._
+The Makefile target *update-dependencies* will use pip to generate a new
+`requirements.txt` and update `ckan/requirements.txt`.
 
     $ make update-dependencies
 
-To support sandbox installation via the ansible playbooks, there is a
-symbolic link `requirements-freeze.txt` that references
+To support cloud.gov installation via normal python buildpack, there is a
+symbolic link `requirements.txt` that references
 `ckan/requirements.txt`.
 
 ### Adding new extensions in requirements
@@ -212,10 +200,10 @@ the folder for the new extension
 
 ### Procedure for updating a dependency
 
-1.  Add/change the dependency in `requirements/pyproject.toml`
+1.  Add/change the dependency in `ckan/requirements.in`
 2.  Run `make update-dependencies build clean test`
-3.  Make sure to commit `ckan/requirements.txt` `requirements/pyproject.toml`
-    and `requirements/poetry.lock` to make the change permanent.
+3.  Make sure to commit `ckan/requirements.txt` and `ckan/requirements.in`
+    to make the change permanent.
 
 ## Create an extension
 

@@ -36,8 +36,6 @@ rfc3987
 # progressbar==2.3
 
 # ckanext-geodatagov
-# Unfortunately, this code is 17 years old, and poetry isn't able to
-# determine the version number.
 PyZ3950 @ git+https://github.com/danizen/PyZ3950
 # pip equivalent:
 # pip install -e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
