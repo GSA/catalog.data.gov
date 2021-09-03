@@ -3,6 +3,8 @@
 set -o errexit
 set -o pipefail
 
+echo "Running setup script..."
+
 function vcap_get_service () {
   local path name
   name="$1"
@@ -43,18 +45,23 @@ echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
 echo "$SAML2_CERTIFICATE" > $CKANEXT__SAML2AUTH__CERT_FILE_PATH
 
 # Setting up PostGIS
-DATABASE_URL=$CKAN_SQLALCHEMY_URL ./configure-postgis.py
+echo Setting up PostGIS
+DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py
 
 # Edit the config file to use our values
 export CKAN_INI=config/production.ini
 ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
 
+echo Running ckan setup commands
+
 # Run migrations
 ckan db upgrade
 ckan harvester initdb
-ckan report initdb
-ckan archiver init
-ckan qa init
+# TODO: add once extensions integrated
+# ckan report initdb
+# ckan archiver init
+# ckan qa init
 
 # Run your command (typically harvester job or server)
+echo Running given command: $1 $2
 exec $@

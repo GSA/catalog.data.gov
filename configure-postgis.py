@@ -8,7 +8,7 @@ import os
 import psycopg2
 from psycopg2.sql import Identifier
 import sys
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 
 def identifier(s, connection):
