@@ -33,9 +33,6 @@ debug:
 	docker-compose build
 	docker-compose run --service-ports ckan
 
-requirements:
-	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
-
 test:
 	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
@@ -47,7 +44,6 @@ quick-bat-test:
 
 update-dependencies:
 	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
-	cp requirements/requirements.txt ckan/requirements.txt
 
 up:
 	docker-compose up
