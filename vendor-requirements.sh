@@ -27,6 +27,6 @@ python3 /tmp/get-pip.py
 mkdir -p src vendor
 chown vcap.vcap vendor
 chown vcap.vcap src
-su - vcap -c 'cd app && pip download -r requirements-freeze.txt --no-binary=:none: -d vendor --exists-action=w'
+su - vcap -c 'cd app && pip download -r requirements.txt --no-binary=:none: -d vendor --exists-action=w'
 
 EOF
