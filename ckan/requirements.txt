@@ -1,5 +1,5 @@
 alembic==1.0.0
-Babel==2.7.0
+Babel==2.9.1
 Beaker==1.11.0
 bleach==3.3.0
 boto==2.49.0
@@ -8,7 +8,7 @@ cffi==1.14.6
 chardet==3.0.4
 ckan @ git+https://github.com/ckan/ckan.git@e8b7970423e2cce9731441edd13f7fcfd3be58e9
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext_datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@11970d8ed6ad7e75f3889cdd73e23cd6d6dd7a18#egg=ckanext_datagovtheme
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@97d90780b736f17aa75607a36ef4d57057635453#egg=ckanext_datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@34b003239cb80cd5edc758855c3cf6b5e04fbb6a#egg=ckanext_datajson
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@c4e7319aff55e5315831b28e918299092f2d5805
 ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@33f7e190ab332244cb961a425e09af592d9b647b
@@ -19,7 +19,6 @@ ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalytic
 ckantoolkit==0.0.3
 click==7.1.2
 cryptography==3.4.8
-decorator==5.0.9
 defusedxml==0.7.1
 distro==1.6.0
 dominate==2.4.0
@@ -47,7 +46,7 @@ jsonschema==2.4.0
 LEPL==5.1.3
 lxml==4.6.3
 Mako==1.1.5
-Markdown==2.6.7
+Markdown==3.1.1
 MarkupSafe==2.0.1
 messytables==0.15.2
 newrelic==6.8.1.164
@@ -57,11 +56,10 @@ packaging==21.0
 passlib==1.7.3
 PasteDeploy==2.0.1
 pathtools==0.1.2
-pbr==5.6.0
 pika==1.2.0
 ply==3.4
 polib==1.0.7
-psycopg2==2.8.2
+psycopg2==2.8.6
 pycparser==2.20
 PyJWT==1.7.1
 pyOpenSSL==20.0.1
@@ -78,7 +76,6 @@ PyUtilib==5.7.1
 PyYAML==5.4
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==4.2.1
-rdflib-jsonld==0.4.0
 redis==3.5.3
 repoze.lru==0.7
 repoze.who==2.3
@@ -91,9 +88,7 @@ shutilwhich==1.1.0
 simplejson==3.10.0
 six==1.16.0
 SQLAlchemy==1.3.5
-sqlalchemy-migrate==0.12.0
 sqlparse==0.2.2
-Tempita==0.5.2
 tzlocal==1.3
 unicodecsv==0.14.1
 urllib3==1.26.6
