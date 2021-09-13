@@ -10,7 +10,7 @@ applications:
     instances: ((instances))
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - https://github.com/cloudfoundry/python-buildpack#v1.7.6
+      - python_buildpack
     services:
       - ((app_name))-db
       - ((app_name))-redis

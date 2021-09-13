@@ -10,7 +10,7 @@ This is a local development harness for catalog.data.gov.
 ## Usage
 
 The _only_  deployable artifact associated with this repository is the
-`requirements-freeze.txt` file. See [datagov-deploy](https://github.com/GSA/datagov-deploy)
+`requirements.txt` file. See github actions
 for full configuration in live environments.
 
 The live environment is different than the development environment in
@@ -20,26 +20,17 @@ order to make sure the application is deployable to the live
 environment:
 
 - If you need to add or change a dependency, you should make that
-  change in the `requirements/pyproject.toml`, run `make update-dependencies`
+  change in the `ckan/requirements.in`, run `make update-dependencies`
   and commit the changed files.  (See the section below on
   requirements for details.)  Good news: no other changes are required!
   
-- If you need to add or remove a plugin, you will also need to update
-  the plugin list in
-  [datagov-deploy](https://github.com/GSA/datagov-deploy) Currently,
-  that means updating the value of `catalog_next_ckan_plugins_default` in
-  `ansible/inventories/sandbox/group_vars/all/vars.yml`
-  
 - If you need to add or change configuration that lives in the
-  application *ini* file, you will also need to update the
-  configuration file template in
-  [datagov-deploy](https://github.com/GSA/datagov-deploy) Currently,
-  this means modifying
-  `ansible/roles/software/ckan/catalog/ckan-app/templates/catalog-next/etc_ckan_production_ini.j2`.
+  application *ini* file (such as a plugin), you will also need to 
+  update the configuration file template at `config/production.ini`.
   
 - If you find you need to modify the `ckan/Dockerfile` to add OS
   packages or install software, other changes may need to be made to
-  the ansible playbooks.  Please bring these situations to the team's
+  the cloud.gov buildpack.  Please bring these situations to the team's
   attention.
 
 ## Development
@@ -75,6 +66,7 @@ Stop and remove the containers and volumes associated with this setup.
 ### Test extensions
 
 To test extensions locally you can run
+_TODO: update this for pytest_
 
 ```
 docker-compose exec ckan bash
@@ -82,6 +74,24 @@ nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datago
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datajson/
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/geodatagov/
 ```
+
+### Run Cypress Tests
+
+To test the UI and e2e user tests, run
+
+    $ make test
+
+#### Run Cypress tests interactively
+
+To run cypress tests locally, cypress needs to be installed first.
+Run `npm install cypress`.
+
+At this point, you will need to manually change the .env file to
+have `CKAN_SITE_URL=http://localhost:5000`. This is to cover for 
+a docker bug upstream: https://github.com/docker/compose/issues/7423
+
+Then, you can run `make cypress`. For WSL or complex installation, please see
+a data.gov team member.
 
 ## Deploying to cloud.gov
 
@@ -111,7 +121,7 @@ Deploy the Solr instance and the app.
 **Note that the automated deployment only deploys the application, any solr changes**
 **(temporary until ssb is ready) needs to be deployed manually using `cf push --vars-file vars.yml catalog-solr`**
 
-Ensure the inventory app can reach the Solr app.
+Ensure the Catalog app can reach the Solr app.
 
     $ cf add-network-policy ${app_name} --destination-app ${app_name}-solr --protocol tcp --port 8983
 
@@ -152,8 +162,8 @@ The Login.gov IdP metadata is stored in file under `config/`.
 
 ## On Docker CKAN 2.8 images
 
-The repository extends the Open Knowledge Foundation `ckan-dev:2.8` docker
-image. The `ckan-base:2.8` image, if needed for some reasons, is available via
+The repository extends the Open Knowledge Foundation `ckan-dev:2.9` docker
+image. The `ckan-base:2.9` image, if needed for some reasons, is available via
 dockerhub with the aformentioned tag, as referenced in [OKF's docker-ckan
 repository](https://github.com/okfn/docker-ckan).
 
@@ -166,22 +176,19 @@ This image will be used in extensions to test.
 ## Note on requirements
 
 The source of truth about package dependencies is managed with
-*poetry* kept in `requirements/pyproject.toml` and
-`requirements/poetry.lock`.  The base OKFN Docker image we are using,
-though, doesn't know about *poetry*.  We have modified our ckan image
+*pip* kept in `ckan/requirements.txt`.  The base OKFN Docker image we are using,
+though, doesn't install all dependencies we need.  We have modified our ckan image
 (`ckan/Dockerfile`) to install frozen requirements from
 `ckan/requirements.txt` at image build time to help ensure all
 developers are working with the same set of requirements.
 
-The Makefile target *update-dependencies* will use poetry to generate a new
-`poetry.lock` and update `ckan/requirements.txt`. _Note: Please be patient.
-poetry can take several minutes to re-generate a lock file (in once case even up
-to 17 minutes)._
+The Makefile target *update-dependencies* will use pip to generate a new
+`requirements.txt` and update `ckan/requirements.txt`.
 
     $ make update-dependencies
 
-To support sandbox installation via the ansible playbooks, there is a
-symbolic link `requirements-freeze.txt` that references
+To support cloud.gov installation via normal python buildpack, there is a
+symbolic link `requirements.txt` that references
 `ckan/requirements.txt`.
 
 ### Adding new extensions in requirements
@@ -193,19 +200,19 @@ the folder for the new extension
 
 ### Procedure for updating a dependency
 
-1.  Add/change the dependency in `requirements/pyproject.toml`
-2.  Run `make update-dependencies build test`
-3.  Make sure to commit `ckan/requirements.txt` `requirements/pyproject.toml`
-    and `requirements/poetry.lock` to make the change permanent.
+1.  Add/change the dependency in `ckan/requirements.in`
+2.  Run `make update-dependencies build clean test`
+3.  Make sure to commit `ckan/requirements.txt` and `ckan/requirements.in`
+    to make the change permanent.
 
 ## Create an extension
 
-You can use the paster template in much the same way as a source install, only
+You can use the ckan template in much the same way as a source install, only
 executing the command inside the CKAN container and setting the mounted `src/`
 folder as output:
 
-    $ docker-compose -f docker-compose.yml exec ckan-dev /bin/bash -c \
-    "paster --plugin=ckan create -t ckanext ckanext-myext -o /srv/app/src_extensions"
+    $ docker-compose exec ckan /bin/bash -c \
+    "ckan generate extension"
 
 The new extension will be created in the `src/` folder. You might need to change
 the owner of its folder to have the appropriate permissions.
@@ -216,13 +223,15 @@ the owner of its folder to have the appropriate permissions.
 To run a container and be able to add a breakpoint with `pdb` or `ipdb`, run the
 `ckan-dev` container with the `--service-ports` option:
 
-    docker-compose -f docker-compose.dev.yml run --service-ports ckan-dev
+    docker-compose run --service-ports ckan
 
 This will start a new container, displaying the standard output in your
 terminal. If you add a breakpoint in a source file in the `src` folder (`import
 pdb; pdb.set_trace()`) you will be able to inspect it in this terminal next time
 the code is executed.
-
+If you are testing a harvest process (gather/fetch/run), try turning off the command
+to start in the background in the `ckan/docker-entrypoint.d/10-setup-harvest.sh`.
+Then, run the relevant command manually (`make harvest-fetch-queue`) after startup.
 
 ## SAML2
 

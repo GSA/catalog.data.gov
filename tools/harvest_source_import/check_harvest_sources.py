@@ -88,8 +88,7 @@ for name in names:
     print(info)
     
     command = (['docker-compose', 'exec', 'ckan', 
-                'paster', '--plugin=ckanext-harvest', 
-                'harvester', 'run_test',
+                'ckan', 'harvester', 'run_test',
                 hs.get("id"), '--config=/srv/app/production.ini'])
     out = subprocess.Popen(
         command,

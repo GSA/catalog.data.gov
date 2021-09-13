@@ -1,4 +1,4 @@
-.PHONY: all build clean copy-src local requirements setup test up update-dependencies
+.PHONY: all build clean copy-src local setup test up update-dependencies
 
 CKAN_HOME := /srv/app
 
@@ -19,6 +19,10 @@ clean:
 copy-src:
 	docker cp catalog-app_ckan_1:$(CKAN_HOME)/src .
 
+cypress:
+	# Turn on local system, and open cypress in interactive mode
+	docker-compose up -d && cd e2e && CYPRESS_USER=admin CYPRESS_USER_PASSWORD=password CYPRESS_BASE_URL=http://localhost:5000 npx cypress open
+
 dev:
 	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
 	docker-compose build
@@ -29,11 +33,8 @@ debug:
 	docker-compose build
 	docker-compose run --service-ports ckan
 
-requirements:
-	docker-compose run --rm -T ckan pip --quiet freeze > requirements-freeze.txt
-
 test:
-	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
+	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
@@ -43,7 +44,6 @@ quick-bat-test:
 
 update-dependencies:
 	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
-	cp requirements/requirements.txt ckan/requirements.txt
 
 up:
 	docker-compose up
@@ -65,41 +65,41 @@ lint-all:
 
 generate-openess-report:
 	# generate report at /report/openness
-	docker-compose exec ckan paster --plugin=ckanext-report report generate openness
+	docker-compose exec ckan report generate openness
 
 
 update-tracking-info:
 	# https://docs.ckan.org/en/2.8/maintaining/tracking.html
-	docker-compose exec ckan paster --plugin=ckan tracking update
+	docker-compose exec ckan ckan tracking update
 
 rebuild-search-index:
-	docker-compose exec ckan paster --plugin=ckan search-index rebuild
+	docker-compose exec ckan ckan search-index rebuild
 
 update-qa-info:
-	# QA is performed when a dataset/resource is archived, or you can run it manually using a paster command:
-	docker-compose exec ckan paster --plugin=ckanext-qa qa update
+	# QA is performed when a dataset/resource is archived, or you can run it manually using a ckan command:
+	docker-compose exec ckan ckan qa update
 
 update-archiver-info:
-	docker-compose exec ckan paster --plugin=ckanext-archiver archiver update
+	docker-compose exec ckan ckan archiver update
 
 generate-all-reports:
-	docker-compose exec ckan paster --plugin=ckanext-report report generate
+	docker-compose exec ckan ckan report generate
 
 ckan-worker:
-	docker-compose exec ckan paster --plugin=ckan jobs worker bulk
+	docker-compose exec ckan ckan jobs worker bulk
 
 archiver-worker:
 	export C_FORCE_ROOT=1  # celery don't want to run as root
-	docker-compose exec ckan paster --plugin=ckanext-archiver celeryd2 run all
+	docker-compose exec ckan ckan celeryd2 run all
 
 harvest-fetch-queue:
-	docker-compose exec ckan paster --plugin=ckanext-harvest harvester fetch_consumer
+	docker-compose exec ckan ckan harvester fetch-consumer
 
 harvest-gather-queue:
-	docker-compose exec ckan paster --plugin=ckanext-harvest harvester gather_consumer
+	docker-compose exec ckan ckan harvester gather-consumer
 
 harvest-check-finished-jobs:
-	docker-compose exec ckan paster --plugin=ckanext-harvest harvester run
+	docker-compose exec ckan ckan harvester run
 
 test-extensions:
 	# test our extensions

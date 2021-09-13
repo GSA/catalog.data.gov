@@ -1,0 +1,1 @@
+*/1 * * * * ckan harvester run &> /tmp/harvester_run.log

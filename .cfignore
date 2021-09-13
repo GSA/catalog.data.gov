@@ -1,0 +1,6 @@
+*.swp
+e2e
+.git
+node_modules
+src
+tools

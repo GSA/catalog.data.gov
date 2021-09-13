@@ -1,5 +1,7 @@
+# TODO: run when extensions are implemented
+
 echo "Setup Report database table"
-paster --plugin=ckanext-report report initdb --config=$CKAN_INI
+# ckan report initdb --config=$CKAN_INI
 
 echo "Setup Archiver database table"
-paster --plugin=ckanext-archiver archiver init --config=$CKAN_INI
+# ckan archiver init --config=$CKAN_INI

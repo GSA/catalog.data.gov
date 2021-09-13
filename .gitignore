@@ -1,5 +1,4 @@
 *.csv
-requirements/requirements.txt
 src/*
 vendor/*
 vars.yml
@@ -19,3 +18,10 @@ local-dev.yml
 
 .env.local
 secrets.json
+
+# Cypress
+e2e/cypress/videos/*
+e2e/cypress/screenshots/*
+e2e/cypress/results/output.xml
+node_modules
+package-lock.json

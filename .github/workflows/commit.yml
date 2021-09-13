@@ -7,18 +7,15 @@ on:
 
 jobs:
   test:
-    name: lint and test
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: build
         run: make build
-      - name: lint and test
-        run: |
-          docker-compose up -d
-          make lint-all
-          make quick-bat-test
+      - name: test
+        run: make test
 
   test_importer:
     name: test importer

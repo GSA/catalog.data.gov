@@ -3,10 +3,7 @@
 set -o errexit
 set -o pipefail
 
-# Utilize paster command, can remove when on ckan 2.9
-function ckan () {
-    paster --plugin=ckan "$@"
-}
+echo "Running setup script..."
 
 function vcap_get_service () {
   local path name
@@ -48,19 +45,23 @@ echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
 echo "$SAML2_CERTIFICATE" > $CKANEXT__SAML2AUTH__CERT_FILE_PATH
 
 # Setting up PostGIS
-DATABASE_URL=$CKAN_SQLALCHEMY_URL ./configure-postgis.py
+echo Setting up PostGIS
+DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py
 
 # Edit the config file to use our values
 export CKAN_INI=config/production.ini
 ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
 
+echo Running ckan setup commands
+
 # Run migrations
-ckan db upgrade -c $CKAN_INI
-paster --plugin=ckanext-harvest harvester initdb --config=$CKAN_INI
-paster --plugin=ckanext-report report initdb --config=$CKAN_INI
-paster --plugin=ckanext-archiver archiver init --config=$CKAN_INI
-paster --plugin=ckanext-qa qa init --config=$CKAN_INI
+ckan db upgrade
+ckan harvester initdb
+# TODO: add once extensions integrated
+# ckan report initdb
+# ckan archiver init
+# ckan qa init
 
-# Fire it up!
-
-exec ckan/setup/server_start.sh --bind 0.0.0.0:$PORT --timeout 30
+# Run your command (typically harvester job or server)
+echo Running given command: $1 $2
+exec $@
