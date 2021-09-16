@@ -43,7 +43,7 @@ quick-bat-test:
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 update-dependencies:
-	docker-compose run --rm -T ckan freeze-requirements.sh $(shell id -u) $(shell id -g)
+	docker-compose run --rm -T ckan /app/ckan/freeze-requirements.sh $(shell id -u) $(shell id -g)
 
 up:
 	docker-compose up
