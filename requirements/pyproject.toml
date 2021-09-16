@@ -36,7 +36,7 @@ cryptography = "3.3.2"
 pika = ">=1.1.0"
 pyOpenSSL = "20.0.1"
 redis = "2.10.6"
-urllib3 = "1.26.5"
+urllib3 = "1.25.9"
 
 # ckanext-datagovtheme
 
@@ -111,8 +111,7 @@ python-magic = "0.4.15"
 pysolr = "3.8.0"
 python-dateutil = "<2.0.0,>=1.5.0"
 pytz = "2016.7"
-# Upgrade for vulnerability
-requests = "2.25.0"
+requests = "2.22.0"
 rq = "0.6.0"
 simplejson = "3.10.0"
 sqlalchemy-migrate = "0.10.0"
