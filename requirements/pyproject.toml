@@ -17,7 +17,7 @@ ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git", bra
 ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
 # ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "datagov-catalog" }
 ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
-ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git", rev = "4ac25f19" }
+ckanext-spatial = {git = "https://github.com/gsa/ckanext-spatial.git", branch = "datagov" }
 ckanext-datagovcatalog = {git = "https://github.com/GSA/ckanext-datagovcatalog.git", branch = "main" }
 ckanext-googleanalyticsbasic = {git = "https://github.com/GSA/ckanext-googleanalyticsbasic.git", branch = "main" }
 ckanext-qa = {git = "https://github.com/ckan/ckanext-qa.git" }
@@ -73,10 +73,11 @@ google_compute_engine = "2.8.13"
 GeoAlchemy = ">=0.6"
 GeoAlchemy2 = "0.5.0"
 Shapely = ">=1.2.13"
-OWSLib = "0.8.6"
+OWSLib = "0.18.0"
 lxml = ">=2.3"
 argparse = "*"
 pyparsing = ">=2.1.10"
+pyproj = "2.2.2"
 
 #ckanext-qa
 xlrd = ">=1.0.0"
