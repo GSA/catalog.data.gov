@@ -123,20 +123,15 @@ Cypress.Commands.add('delete_dataset', (datasetName) => {
 })
 
 
-Cypress.Commands.add('create_harvest_source', (dataSourceUrl, harvestTitle, harvestDesc, harvestType, org, harvestTest, invalidTest) => {
+Cypress.Commands.add('create_harvest_source', (dataSourceUrl, harvestTitle, harvestDesc, harvestType, harvestPrivate, invalidTest) => {
     /**
      * Method to create a new CKAN harvest source via the CKAN harvest form
      * :PARAM dataSourceUrl String: URL to source the data that will be harvested
      * :PARAM harvestTitle String: Title of the organization's harvest
      * :PARAM harvestDesc String: Description of the harvest being created
      * :PARAM harvestType String: Harvest source type. Ex: waf, datajson
-     * :PARAM org String: Organization that is creating the harvest source
-     * :PARAM harvestTest Boolean: Determines if to use UI in harvest source creation test or to follow the UI to create a source
      * :RETURN null:
      */
-    if (!harvestTest) {
-        cy.visit('/harvest/new')
-    }
     if (!invalidTest) {
         cy.get('#field-url').type(dataSourceUrl)
     }
@@ -158,8 +153,7 @@ Cypress.Commands.add('create_harvest_source', (dataSourceUrl, harvestTitle, harv
         cy.get('[type="radio"]').check('iso19139ngdc')
     }
 
-    // Set harvest to be public always, per best practices
-    cy.get('#field-private_datasets').select('False')
+    cy.get('#field-private_datasets').select(harvestPrivate)
     
     cy.get('input[name=save]').click()
 })
