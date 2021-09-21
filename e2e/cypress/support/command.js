@@ -153,6 +153,9 @@ Cypress.Commands.add('create_harvest_source', (dataSourceUrl, harvestTitle, harv
         cy.get('[type="radio"]').check('iso19139ngdc')
     }
 
+    // Validate private_datasets defaults to Private
+    cy.get('#field-private_datasets').find(':selected').contains('Private')
+
     cy.get('#field-private_datasets').select(harvestPrivate)
     
     cy.get('input[name=save]').click()

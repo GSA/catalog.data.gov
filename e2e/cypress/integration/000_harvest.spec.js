@@ -50,13 +50,6 @@ describe('Harvest', () => {
         cy.location('pathname').should('eq', '/harvest/' + dataJsonHarvestSoureName)
     })
 
-    it('Keeps the Dataset visilibity flag', () => {
-        // Go to previously created harvest source
-        cy.visit(`/harvest/edit/${dataJsonHarvestSourceName}`)
-
-        cy.get('#field-private_datasets').find(':selected').contains('False')
-    })
-
     it('Create a datajson harvest source INVALID', () => {
         cy.visit('/organization/'+harvestOrg)
         // Hide flask debug toolbar
@@ -104,6 +97,13 @@ describe('Harvest', () => {
            false)
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
         cy.location('pathname').should('eq', '/harvest/' + wafIsoHarvestSourceName)
+    })
+
+    it('Keeps the Dataset visilibity flag', () => {
+        // Go to previously created harvest source
+        cy.visit(`/harvest/edit/${wafIsoHarvestSourceName}`)
+
+        cy.get('#field-private_datasets').find(':selected').contains('Public')
     })
 
     it('Start WAF ISO Harvest Job', () => {
