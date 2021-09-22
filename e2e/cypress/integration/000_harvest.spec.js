@@ -125,10 +125,11 @@ describe('Harvest', () => {
          * how many harvest sources are created for CSW by going to
          * https://catalog.data.gov/harvest?source_type=csw
          */
-        cy.visit(`/organization/${harvestOrg}`)
-        cy.get('a[class="btn btn-primary"]').click()
-        cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
-        cy.get('a[class="btn btn-primary"]').click()
+        cy.visit(`/harvest/new`);
+        
+        // Hide flask debug toolbar
+        cy.get('#flHideToolBarButton').click();
+
         cy.create_harvest_source('https://portal.opentopography.org/geoportal/csw',
                         cswHarvestSoureName,
                         'cypress test csw',
