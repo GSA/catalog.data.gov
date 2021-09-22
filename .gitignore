@@ -17,3 +17,5 @@ local-dev.yml
 .Trashes
 
 .env.local
+
+e2e/
