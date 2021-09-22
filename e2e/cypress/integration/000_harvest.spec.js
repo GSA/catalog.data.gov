@@ -3,6 +3,7 @@ describe('Harvest', () => {
     const harvestOrg = 'test-harvest-org'
     const dataJsonHarvestSoureName = 'test-harvest-datajson'
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso'
+    const cswHarvestSoureName = 'test-harvest-csw'
 
     before(() => {
         /**
@@ -109,5 +110,37 @@ describe('Harvest', () => {
     it('Start WAF ISO Harvest Job', () => {
 
         cy.start_harvest_job(wafIsoHarvestSourceName)
+    })
+
+    it('Create CSW Harvest Source', () => {
+        /**
+         * Test creating a valid csw harvest source.
+         * Mocking a CSW harvest source is extremely complex,
+         * we took a shortcut and used a public endpoint.
+         * This test may fail in the future due to removal of
+         * the service not under our control, at that point we should
+         * remove the test or create a CSW service locally.
+         * Currently only 1 harvest endpoint is working for data.gov,
+         * so testing that use case seems appropriate. You can check
+         * how many harvest sources are created for CSW by going to
+         * https://catalog.data.gov/harvest?source_type=csw
+         */
+        cy.visit(`/organization/${harvestOrg}`)
+        cy.get('a[class="btn btn-primary"]').click()
+        cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
+        cy.get('a[class="btn btn-primary"]').click()
+        cy.create_harvest_source('https://portal.opentopography.org/geoportal/csw',
+                        cswHarvestSoureName,
+                        'cypress test csw',
+                        'csw',
+                        'False',
+                        false)
+
+        // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
+        cy.location('pathname').should('eq', '/harvest/' + cswHarvestSoureName)
+    })
+
+    it('Start CSW Harvest Job', () => {
+        cy.start_harvest_job(cswHarvestSoureName)
     })
 })
