@@ -43,8 +43,7 @@ describe('Harvest', () => {
                         dataJsonHarvestSoureName,
                         'cypress test datajson',
                         'datajson',
-                        harvestOrg,
-                        true,
+                        'False',
                         false)
 
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
@@ -63,8 +62,7 @@ describe('Harvest', () => {
                         'invalid datajson',
                         'invalid datajson',
                         'datajson',
-                        harvestOrg,
-                        true,
+                        'False',
                         true)
         cy.contains('URL: Missing value')
     })
@@ -95,11 +93,17 @@ describe('Harvest', () => {
            wafIsoHarvestSourceName,
            'cypress test waf iso',
            'waf',
-           harvestOrg,
-           true,
+           'False',
            false)
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
         cy.location('pathname').should('eq', '/harvest/' + wafIsoHarvestSourceName)
+    })
+
+    it('Keeps the Dataset visilibity flag', () => {
+        // Go to previously created harvest source
+        cy.visit(`/harvest/edit/${wafIsoHarvestSourceName}`)
+
+        cy.get('#field-private_datasets').find(':selected').contains('Public')
     })
 
     it('Start WAF ISO Harvest Job', () => {
