@@ -22,10 +22,9 @@ services:
     image: keitaro/ckan-datapusher
 
   db:
+    image: datagov/catalog.data.gov.db:latest
     env_file:
       - .env
-    build:
-      context: postgresql/
     volumes:
       - pg_data:/var/lib/postgresql/data
 
