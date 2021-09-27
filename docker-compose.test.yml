@@ -1,6 +1,9 @@
 # run with make test
 version: '3'
 services:
+  ckan:
+    environment:
+      - CKAN_SITE_URL=http://ckan:5000
   test:
     image: cypress/included:7.3.0
     entrypoint: []
