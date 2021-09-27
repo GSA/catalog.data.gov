@@ -131,7 +131,7 @@ describe('Harvest', () => {
         cy.get('#flHideToolBarButton').click();
 
         cy.create_harvest_source('https://portal.opentopography.org/geoportal/csw',
-                        cswHarvestSoureName,
+                        cswHarvestSourceName,
                         'cypress test csw',
                         'csw',
                         'False',
