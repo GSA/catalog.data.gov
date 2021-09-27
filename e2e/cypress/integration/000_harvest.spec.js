@@ -138,7 +138,7 @@ describe('Harvest', () => {
                         false)
 
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
-        cy.location('pathname').should('eq', '/harvest/' + cswHarvestSoureName)
+        cy.location('pathname').should('eq', '/harvest/' + cswHarvestSourceName)
     })
 
     it('Start CSW Harvest Job', () => {
