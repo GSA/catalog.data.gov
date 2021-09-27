@@ -13,7 +13,7 @@ describe('Cleanup site', () => {
         // Clear and remove all harvested data
         cy.delete_harvest_source(dataJsonHarvestSoureName);
         cy.delete_harvest_source(wafIsoHarvestSourceName);
-        cy.delete_harvest_source(cswHarvestSoureName);
+        cy.delete_harvest_source(cswHarvestSourceName);
 
         // Sometimes things are left in the DB locally, you can use this to delete 1-off datasets
         // cy.delete_dataset("invasive-plant-prioritization-for-inventory-and-early-detection-at-guadalupe-nipomo-dunes-");
