@@ -142,6 +142,6 @@ describe('Harvest', () => {
     })
 
     it('Start CSW Harvest Job', () => {
-        cy.start_harvest_job(cswHarvestSoureName)
+        cy.start_harvest_job(cswHarvestSourceName)
     })
 })
