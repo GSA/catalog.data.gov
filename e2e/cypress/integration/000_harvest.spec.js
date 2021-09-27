@@ -3,7 +3,7 @@ describe('Harvest', () => {
     const harvestOrg = 'test-harvest-org'
     const dataJsonHarvestSoureName = 'test-harvest-datajson'
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso'
-    const cswHarvestSoureName = 'test-harvest-csw'
+    const cswHarvestSourceName = 'test-harvest-csw'
 
     before(() => {
         /**
