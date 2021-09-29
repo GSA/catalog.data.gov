@@ -10,16 +10,16 @@ celery==3.1.25
 certifi==2021.5.30
 cffi==1.12.3
 chardet==3.0.4
--e git+https://github.com/ckan/ckan.git@e5105334fbdfd312412da4e05221ce0588dc2dfd#egg=ckan
+-e git+https://github.com/ckan/ckan.git@e50b79651090c5d5946660a4107915c5d59dda86#egg=ckan
 -e git+https://github.com/ckan/ckanext-archiver.git@035728ddd739c5029f89e65fcb1d9048934c9ed9#egg=ckanext-archiver
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext-datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@704c45921a9246fd6072ea99711992e57d3bc416#egg=ckanext-datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@a842fa67ff8e3e9e85e80ebc3b34d3c17a38dd2f#egg=ckanext-datajson
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@29d7454afd516b63cdabb41e7b1dfd4f69daffd4#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datajson.git@a5d8c9458a7efe955c31b90eeac1e7797881d014#egg=ckanext-datajson
 -e git+https://github.com/ckan/ckanext-dcat@c4e7319aff55e5315831b28e918299092f2d5805#egg=ckanext-dcat
 ckanext-envvars==0.0.1
--e git+https://github.com/GSA/ckanext-geodatagov.git@0853bee402148f7ccabc8f37ca8c10088e6dcb42#egg=ckanext-geodatagov
--e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@10ebfe25744b0f6e4cb1294f4a16654eb13119f6#egg=ckanext-googleanalyticsbasic
--e git+https://github.com/ckan/ckanext-harvest.git@e2e8acbb6d87d44663e92c5ff5cbd67401588c2d#egg=ckanext-harvest
+-e git+https://github.com/GSA/ckanext-geodatagov.git@bc700f671cd1d890db265c65f5db1cba121297f4#egg=ckanext-geodatagov
+-e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4#egg=ckanext-googleanalyticsbasic
+-e git+https://github.com/ckan/ckanext-harvest.git@d91ea66cf083b6618c5dab7ba56f6d7a8b468378#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
 -e git+https://github.com/davidread/ckanext-report.git@2abba3fa2ddf29f4decc4a0c4c39101fb994db23#egg=ckanext-report
 -e git+https://github.com/keitaroinc/ckanext-saml2auth.git@d77d85349c7a6fcfa5a14c19a56b53eacf137a7c#egg=ckanext-saml2auth
