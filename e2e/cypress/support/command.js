@@ -195,8 +195,8 @@ Cypress.Commands.add('start_harvest_job', (harvestName) => {
 
     // Confirm stop button exists, harvest is started/queued
     cy.contains('Stop')
-    // Wait up to 2 minutes checking if harvest is complete.
-    check_harvest_done(12);
+    // Wait up to 10 minutes checking if harvest is complete.
+    check_harvest_done(60);
 })
 
 
