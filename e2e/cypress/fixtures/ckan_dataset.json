@@ -1,0 +1,43 @@
+{
+    "license_title": "License not specified",
+    "maintainer": null,
+    "relationships_as_object": [],
+    "private": true,
+    "maintainer_email": null,
+    "num_tags": 1,
+    "metadata_created": "2019-12-18T19:01:33.429530",
+    "metadata_modified": "2019-12-18T19:02:54.841495",
+    "author": null,
+    "author_email": null,
+    "state": "active",
+    "version": null,
+    "type": "dataset",
+    "tags": [
+        {
+            "vocabulary_id": null,
+            "state": "active",
+            "display_name": "test",
+            "id": "65c76784-e271-4eb1-9778-a738622a1a3d",
+            "name": "test"
+        }
+    ],
+    "tag_string": "test",
+    "groups": [],
+    "license_id": "notspecified",
+    "relationships_as_subject": [],
+    "organization": "test-organization",
+    "isopen": false,
+    "url": null,
+    "notes": "The description of the first test dataset",
+    "owner_org": "test-organization",
+    "bureau_code": "010:00",
+    "contact_email": "tester@fake.com",
+    "contact_name": "Tester",
+    "modified": "2019-12-18",
+    "public_access_level": "public",
+    "publisher": "Department of the Interior",
+    "unique_id": "doi-123456789",
+    "title": "Test Dataset 1",
+    "name": "test-dataset-1",
+    "program_code": "010:001"
+}

@@ -1,1 +1,1 @@
-requirements-freeze.txt
+ckan/requirements.txt

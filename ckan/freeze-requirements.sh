@@ -1,26 +1,19 @@
-#! /bin/bash
+#!/bin/bash
 
-# Updates the Pipfile.lock and writes a "frozen" pip style requirements.txt to stdout
-#
-# Usage: freeze-requirements.sh <user id> <group id>
-#
-# <user id> and <group id> are passed to make sure Pipfile.lock is owned by the correct user!
+set -o errexit
+set -o pipefail
 
-USER_ID=$1
-GROUP_ID=$2
+venv=$(mktemp -d)
 
-cd /requirements
+function cleanup () {
+  rm -rf $venv
+}
 
-echo "Running poetry lock ..."
-poetry lock -vvv
-echo "Running poetry export ..."
-poetry export -vvv --format requirements.txt --output requirements.txt --without-hashes
+trap cleanup EXIT
 
-# sadness -- pyz3950 is so old that poetry can't make sense of it's setup.py, so
-# we have to add the requirement manually
+pip3 install virtualenv
 
-echo "-e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950" >> requirements.txt
+virtualenv $venv
+${venv}/bin/pip3 install -r /app/ckan/requirements.in
 
-poetry show --tree
-chown ${USER_ID}:${GROUP_ID} poetry.lock requirements.txt
-
+${venv}/bin/pip3 freeze --quiet > /app/ckan/requirements.txt

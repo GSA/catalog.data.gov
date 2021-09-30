@@ -1,2 +1,4 @@
+# TODO: run when extensions are implemented
+
 echo "Setup ckanext-qa"
-paster --plugin=ckanext-qa qa init --config=$CKAN_INI
+# ckan qa init

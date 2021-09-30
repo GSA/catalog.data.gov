@@ -1,33 +1,39 @@
-FROM openknowledge/ckan-dev:2.8
-# Inherit from here: https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.8/Dockerfile
-# And then from here: https://github.com/okfn/docker-ckan/blob/master/ckan-base/2.8/Dockerfile
+FROM openknowledge/ckan-dev:2.9
+# Inherit from here: https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.9/Dockerfile
+# And then from here: https://github.com/okfn/docker-ckan/blob/master/ckan-base/2.9/Dockerfile
 
-ENV GIT_BRANCH=2.8
+ENV GIT_BRANCH=2.9
 
 # add dependencies for cryptography and vim
 RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim xmlsec-dev
 
-# Fix shapely lib error. Install geos
-# TODO consider moving to Alpine>=3.11 or to Bionic
-
-ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
-RUN tar xf /geos/geos.tar.bz2 -C /geos --strip-components=1
-RUN cd /geos && \
-    ./configure && \
-    make -j 1 && \
-    make install
+# Add dependencies for ckanext-spatial and geodatagov
+RUN apk add geos-dev proj proj-util proj-dev
 
 COPY requirements.txt ${APP_DIR}
 
-RUN pip install pip==20.3.3 && pip install -r requirements.txt
-RUN pip install poetry==1.0.10
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt --ignore-installed
+
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 # Not currently in use in development
+COPY setup/gunicorn.conf.py ${APP_DIR}/
 COPY setup/server_start.sh ${APP_DIR}/
 
 COPY saml2 ${APP_DIR}/saml2
 
 # COPY the ini test file to the container 
 COPY test-catalog-next.ini ${SRC_DIR}/ckan
+
+COPY setup/ckan_setup.sh ${APP_DIR}/
+
+# In order for dependencies to be managed, python
+# needs to be mapped to python3
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# In order to run CKAN harvester command to finalize
+# harvests, we need to setup a cron for the run command
+COPY setup/harvest-check-cron /etc/crontabs/root
+
+# RUN sudo -u ckan -EH pip3 install git+https://github.com/nickumia-reisys/werkzeug@e1f6527604ab30e4b46b5430a5fb97e7a7055cd7#egg=werkzeug
