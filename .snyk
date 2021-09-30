@@ -4,6 +4,31 @@ language-settings:
   python: "2.7"
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  
+  SNYK-PYTHON-BEAKER-575115:
+    - '*':
+        reason: >-
+          No remediation available yet; Not affecting us since the storage is not accessible to any other client
+        expires: 2021-12-30T06:00:00.000Z
+  SNYK-PYTHON-IPADDRESS-590065:
+    - '*':
+        reason: >-
+          No remediation available yet.  After inspecting the
+          Python cryptography package, we see no use of the vulnerable
+          method hash() on the classes IPv4Interface and IPv6Interface, 
+          so the risk here is very minimal.
+        expires: 2021-12-30T06:00:00.000Z
+  SNYK-PYTHON-CRYPTOGRAPHY-1022152:
+    - '*':
+        reason: >-
+          Patched to version 3.2; long term fix expected later.
+          Version 3.2 of this package contains an incomplete fix,
+          which might help reduce the chances of this vulnerability 
+          being exploited.
+        expires: 2021-12-30T06:00:00.000Z
+  SNYK-PYTHON-IPADDRESS-1041793:
+    - '*':
+        reason: >-
+          No fixed version. Created issue: https://github.com/GSA/datagov-deploy/issues/2844
+        expires: 2021-12-30T06:00:00.000Z
 patch: {}
    
