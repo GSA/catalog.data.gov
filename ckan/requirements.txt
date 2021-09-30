@@ -14,11 +14,11 @@ ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@c4e7319aff55e5315831b28e
 ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@33f7e190ab332244cb961a425e09af592d9b647b
 -e git+https://github.com/GSA/ckanext-geodatagov.git@bc700f671cd1d890db265c65f5db1cba121297f4#egg=ckanext_geodatagov
 ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4
--e git+https://github.com/GSA/ckanext-harvest.git@fd5a6b739666a62cff486873877eef10523aec1a#egg=ckanext_harvest
+-e git+https://github.com/GSA/ckanext-harvest.git@b653113abc059f58917732f33a3ae2c84a476746#egg=ckanext_harvest
 -e git+https://github.com/gsa/ckanext-spatial.git@36981c39d624685bc85b84f801f2a2d6eaea67f6#egg=ckanext_spatial
 ckantoolkit==0.0.3
 click==7.1.2
-cryptography==3.4.8
+cryptography==35.0.0
 defusedxml==0.7.1
 distro==1.6.0
 dominate==2.4.0
@@ -33,7 +33,7 @@ GeoAlchemy2==0.5.0
 geomet==0.3.0
 gevent==21.8.0
 google-compute-engine==2.8.13
-greenlet==1.1.1
+greenlet==1.1.2
 gunicorn==20.1.0
 html5lib==1.1
 idna==2.10
@@ -49,7 +49,7 @@ Mako==1.1.5
 Markdown==3.1.1
 MarkupSafe==2.0.1
 messytables==0.15.2
-newrelic==6.10.0.165
+newrelic==7.0.0.166
 nose==1.3.7
 OWSLib==0.18.0
 packaging==21.0
@@ -91,13 +91,13 @@ SQLAlchemy==1.3.5
 sqlparse==0.2.2
 tzlocal==1.3
 unicodecsv==0.14.1
-urllib3==1.26.6
+urllib3==1.26.7
 webassets==0.12.1
 webencodings==0.5.1
 WebOb==1.8.7
 Werkzeug==1.0.0
 xlrd==2.0.1
-xmlschema==1.7.1
-zipp==3.5.0
+xmlschema==1.8.0
+zipp==3.6.0
 zope.event==4.5.0
 zope.interface==5.4.0
