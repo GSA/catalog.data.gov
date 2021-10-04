@@ -21,4 +21,21 @@ describe('Dataset', () => {
         cy.contains('About this Resource');
         cy.contains("Download");
     })
+
+    it('Can get harvest information via API', () => {
+        cy.request('/api/action/package_show?id=ek500-water-column-sonar-data-collected-during-al0001').should((response) => {
+            expect(response.body).to.have.property('success', true);
+            // CKAN extras are complicated to parse, make sure we have
+            //  the necessary harvest info
+            let harvest_info = {};
+            for (extra of temp1.extras) { 
+                if(extra.key.includes('harvest_')) {
+                    harvest_info[key] = true;
+                }
+            }
+            expect(harvest_info).to.have.property('harvest_object_id', true);
+            expect(harvest_info).to.have.property('harvest_source_id', true);
+            expect(harvest_info).to.have.property('harvest_source_title', true);
+        });
+    })
 })
