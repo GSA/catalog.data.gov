@@ -28,9 +28,9 @@ describe('Dataset', () => {
             // CKAN extras are complicated to parse, make sure we have
             //  the necessary harvest info
             let harvest_info = {};
-            for (extra of temp1.extras) { 
+            for (let extra of response.body.result.extras) { 
                 if(extra.key.includes('harvest_')) {
-                    harvest_info[key] = true;
+                    harvest_info[extra.key] = true;
                 }
             }
             expect(harvest_info).to.have.property('harvest_object_id', true);
