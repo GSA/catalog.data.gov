@@ -304,7 +304,7 @@ version = "0.1"
 [package.source]
 reference = "82af48608b99e7176f1d76f70e59fcfdadf11dfd"
 type = "git"
-url = "https://github.com/davidread/ckanext-report.git"
+url = "https://github.com/ckan/ckanext-report.git"
 [[package]]
 category = "main"
 description = "An extension to enable Single Sign On(SSO) for CKAN data portals via SAML2 Authentication."
@@ -1444,7 +1444,7 @@ test = ["zope.event"]
 testing = ["zope.event", "nose", "coverage"]
 
 [metadata]
-content-hash = "d03fb18bae1b3aa271fcd991bc05e7289cf68100eb840dcddf8add1559d3bb29"
+content-hash = "0fb6592863a86ecbc6d8db63ab39646dfb0f139c8dff6536162fbdcebc3a6cc7"
 lock-version = "1.0"
 python-versions = "^2.7"
 

@@ -21,7 +21,7 @@ ckanext-envvars==0.0.1
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4#egg=ckanext-googleanalyticsbasic
 -e git+https://github.com/ckan/ckanext-harvest.git@63701adaba22af6c82f699aa0d9c045ced9be4a3#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
--e git+https://github.com/davidread/ckanext-report.git@82af48608b99e7176f1d76f70e59fcfdadf11dfd#egg=ckanext-report
+-e git+https://github.com/ckan/ckanext-report.git@82af48608b99e7176f1d76f70e59fcfdadf11dfd#egg=ckanext-report
 -e git+https://github.com/keitaroinc/ckanext-saml2auth.git@d77d85349c7a6fcfa5a14c19a56b53eacf137a7c#egg=ckanext-saml2auth
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
 ckantoolkit==0.0.3
