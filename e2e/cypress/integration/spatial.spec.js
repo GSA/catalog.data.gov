@@ -5,7 +5,7 @@ describe('Spatial', () => {
             expect(response.body.result[0]).to.have.property('text', 'California');
         });
     });
-    it('Can put a package in an organization', () => {
+    it('Can put a package with weird tags in an group', () => {
         const group_name = 'climate';
         cy.logout();
         cy.login();
