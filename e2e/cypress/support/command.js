@@ -39,6 +39,10 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
     cy.get('.btn-primary').eq(1).click()
 })
 
+Cypress.Commands.add('logout', () => {
+    cy.clearCookies();
+})
+
 Cypress.Commands.add('create_organization_ui', (orgName, orgDesc) => {
     /**
      * Method to fill out the form to create a CKAN organization
@@ -78,6 +82,46 @@ Cypress.Commands.add('create_organization', (orgName, orgDesc) => {
             "approval_status": "approved",
             "state": "active",
             "name": orgName
+        }
+    })
+})
+
+
+Cypress.Commands.add('create_group', (groupName, groupDesc) => {
+    /**
+     * Method to create organization via CKAN API
+     * :PARAM groupName String: Name of the organization being created
+     * :PARAM groupDesc String: Description of the organization being created
+     * :RETURN null:
+     */
+
+     cy.request({
+        url: '/api/action/group_create',
+        method: 'POST',
+        body: {
+            "description": groupDesc,
+            "title": groupName,
+            "approval_status": "approved",
+            "state": "active",
+            "name": groupName
+        }
+    })
+})
+
+Cypress.Commands.add('delete_group', (groupName) => {
+    /**
+     * Method to create organization via CKAN API
+     * :PARAM groupName String: Name of the organization being created
+     * :PARAM groupDesc String: Description of the organization being created
+     * :RETURN null:
+     */
+
+     cy.request({
+        url: '/api/action/group_purge',
+        method: 'POST',
+        failOnStatusCode: false,
+        body: {
+            "id": groupName
         }
     })
 })
