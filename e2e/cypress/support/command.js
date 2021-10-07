@@ -31,8 +31,7 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
     if(!password) {
         password = Cypress.env('USER_PASSWORD');
     }
-    // Hide flask debug toolbar
-    cy.get('#flHideToolBarButton').click();
+    cy.hide_debug_toolbar();
 
     cy.get('#field-login').type(userName)
     cy.get('#field-password').type(password)
@@ -222,8 +221,7 @@ Cypress.Commands.add('delete_harvest_source', (harvestName) => {
 
 Cypress.Commands.add('start_harvest_job', (harvestName) => {
     cy.visit('/harvest/' + harvestName)
-    // Hide flask debug toolbar
-    cy.get('#flHideToolBarButton').click();
+    cy.hide_debug_toolbar();
 
     cy.contains('Admin').click()
     // Wait for all pages to load, avoid bug
@@ -270,4 +268,12 @@ Cypress.Commands.add('form_request', (method, url, formData, done) => {
         done(xhr);
     };
     xhr.send(formData);
+})
+
+Cypress.Commands.add('hide_debug_toolbar', () => {
+    cy.get("#flHideToolBarButton").then($button => {
+        if ($button.is(':visible')) {
+            cy.get("#flHideToolBarButton").click();
+        }
+    })
 })
