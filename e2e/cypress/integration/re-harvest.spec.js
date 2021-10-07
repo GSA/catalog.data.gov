@@ -45,7 +45,7 @@ describe('Harvest', () => {
                     extra_keys.push(extra.key);
                 }
             }
-            expect(duplicate_keys).to.eq([]);
+            expect(duplicate_keys).to.be.empty;
         });
     })
 })
