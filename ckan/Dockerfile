@@ -5,7 +5,12 @@ FROM openknowledge/ckan-dev:2.9
 ENV GIT_BRANCH=2.9
 
 # add dependencies for cryptography and vim
-RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim xmlsec-dev
+RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim xmlsec-dev openjdk11
+# Download Saxon jar for FGDC2ISO transform (geodatagov)
+ARG saxon_ver=9.9.1-7
+ADD \
+  https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${saxon_ver}/Saxon-HE-${saxon_ver}.jar \
+  /usr/lib/jvm/java-11-openjdk/saxon/saxon.jar
 
 # Add dependencies for ckanext-spatial and geodatagov
 RUN apk add geos-dev proj proj-util proj-dev
