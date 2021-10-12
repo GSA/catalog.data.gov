@@ -117,8 +117,7 @@ describe('Harvest', () => {
          * Create a WAF ISO Harvest Source
          */
         cy.visit('/organization/'+harvestOrg)
-        // Hide flask debug toolbar
-        cy.get('#flHideToolBarButton').click();
+        cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click()
         cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
