@@ -9,6 +9,7 @@ describe('Harvest', () => {
         /**
          * Login as cypress user and create an organization for testing harvest source creation and running the jobs
          */
+        cy.logout()
         cy.login()
         // Make sure organization does not exist before creating
         cy.delete_organization(harvestOrg)
@@ -53,8 +54,7 @@ describe('Harvest', () => {
 
     it('Create a datajson harvest source INVALID', () => {
         cy.visit('/organization/'+harvestOrg)
-        // Hide flask debug toolbar
-        cy.get('#flHideToolBarButton').click();
+        cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click()
         cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
@@ -84,8 +84,7 @@ describe('Harvest', () => {
          * Create a WAF ISO Harvest Source
          */
         cy.visit('/organization/'+harvestOrg)
-        // Hide flask debug toolbar
-        cy.get('#flHideToolBarButton').click();
+        cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click()
         cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
@@ -127,8 +126,7 @@ describe('Harvest', () => {
          */
         cy.visit(`/harvest/new`);
         
-        // Hide flask debug toolbar
-        cy.get('#flHideToolBarButton').click();
+        cy.hide_debug_toolbar();
 
         cy.create_harvest_source('https://portal.opentopography.org/geoportal/csw',
                         cswHarvestSourceName,
