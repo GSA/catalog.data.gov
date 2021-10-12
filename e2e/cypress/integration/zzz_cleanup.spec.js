@@ -9,6 +9,7 @@ describe('Cleanup site', () => {
         /**
          * Login as cypress user and create an organization for testing harvest source creation and running the jobs
          */
+        cy.logout()
         cy.login()
 
         // Clear and remove all harvested data
