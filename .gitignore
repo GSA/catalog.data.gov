@@ -25,3 +25,6 @@ e2e/cypress/screenshots/*
 e2e/cypress/results/output.xml
 node_modules
 package-lock.json
+cflinuxfs3-fhs-fixup/.bash_history
+cflinuxfs3-fhs-fixup/.lesshst
+cflinuxfs3-fhs-fixup/*.deb
