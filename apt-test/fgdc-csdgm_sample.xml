@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE metadata SYSTEM "https://thor-f5.er.usgs.gov/ngtoc/metadata/fgdc-std-001-1998.dtd">
+<metadata>
+   <idinfo>
+      <citation>
+         <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2017</pubdate>
+            <title>USGS Watershed Boundary Dataset (WBD) Overlay Map Service from The National Map - 
+               National Geospatial Data Asset (NGDA) Watershed Boundary Dataset (WBD)</title>
+            <geoform>vector digital data, map service</geoform>
+            <pubinfo>
+               <pubplace>Rolla, MO and Denver, CO</pubplace>
+               <publish>USGS - National Geospatial Technical Operations Center (NGTOC)</publish>
+            </pubinfo>
+            <onlink>https://viewer.nationalmap.gov</onlink>
+            <onlink>https://nhd.usgs.gov/NHDv2.2_poster_052714.pdf</onlink>
+         </citeinfo>
+      </citation>
+      <descript>
+         <abstract>The Watershed Boundary Dataset (WBD) from The National Map (TNM) defines the
+            perimeter of drainage areas formed by the terrain and other landscape characteristics.
+            The drainage areas are nested within each other so that a large drainage area, such as
+            the Upper Mississippi River, will be composed of multiple smaller drainage areas, such
+            as the Wisconsin River. Each of these smaller areas can further be subdivided into
+            smaller and smaller drainage areas. The WBD uses six different levels in this hierarchy,
+            with the smallest averaging about 30,000 acres. The WBD is made up of polygons nested
+            into six levels of data respectively defined by Regions, Subregions, Basins, Subbasins,
+            Watersheds, and Subwatersheds. For additional information on the WBD, go to
+            https://nhd.usgs.gov/wbd.html. 
+            
+            The USGS National Hydrography Dataset (NHD) service is a
+            companion dataset to the WBD. The NHD is a comprehensive set of digital spatial data
+            that encodes information about naturally occurring and constructed bodies of surface
+            water (lakes, ponds, and reservoirs), paths through which water flows (canals, ditches,
+            streams, and rivers), and related entities such as point features (springs, wells,
+            stream gages, and dams). The information encoded about these features includes
+            classification and other characteristics, delineation, geographic name, position and
+            related measures, a "reach code" through which other information can be related to the
+            NHD, and the direction of water flow. The network of reach codes delineating water and
+            transported material flow allows users to trace movement in upstream and downstream
+            directions. In addition to this geographic information, the dataset contains metadata
+            that supports the exchange of future updates and improvements to the data. The NHD is
+            available nationwide in two seamless datasets, one based on 1:24,000-scale maps and
+            referred to as high resolution NHD, and the other based on 1:100,000-scale maps and
+            referred to as medium resolution NHD. Additional selected areas in the United States are
+            available based on larger scales, such as 1:5,000-scale or greater, and referred to as
+            local resolution NHD. For more information on the NHD, go to
+            https://nhd.usgs.gov/index.html. 
+            
+            Hydrography data from The National Map supports many
+            applications, such as making maps, geocoding observations, flow modeling, data
+            maintenance, and stewardship. Hydrography data is commonly combined with other data
+            themes, such as boundaries, elevation, structures, and transportation, to produce
+            general reference base maps. The National Map viewer allows free downloads of public
+            domain WBD and NHD data in either Esri File or Personal Geodatabase, or Shapefile
+            formats.</abstract>
+         <purpose>This dynamic overlay map service provides visualization of the free data that is
+            available for download from The National Map at https://viewer.nationalmap.gov. </purpose>
+         <supplinf>See https://viewer.nationalmap.gov/help for assistance with The National Map
+            viewer, services, or metadata.</supplinf>
+      </descript>
+      <timeperd>
+         <timeinfo>
+            <sngdate>
+               <caldate>2016</caldate>
+            </sngdate>
+         </timeinfo>
+         <current>publication date</current>
+      </timeperd>
+      <status>
+         <progress>Complete</progress>
+         <update>As needed</update>
+      </status>
+      <spdom>
+         <bounding>
+            <westbc>-179.999</westbc>
+            <eastbc>-65</eastbc>
+            <northbc>71.5</northbc>
+            <southbc>17.625</southbc>
+         </bounding>
+      </spdom>
+      <keywords>
+         <theme>
+            <themekt>NGDA Portfolio Themes</themekt>
+            <themekey>National Geospatial Data Asset</themekey>
+            <themekey>NGDA</themekey>
+            <themekey>Water Inland Theme</themekey>
+         </theme>
+         <theme>
+            <themekt>19115 Topic Category</themekt>
+            <themekey>inlandWaters</themekey>
+         </theme>
+         <theme>
+            <themekt>none</themekt>
+            <themekey>a-16</themekey>
+            <themekey>water - inland</themekey>
+            <themekey>hydrography</themekey>
+            <themekey>NHD</themekey>
+            <themekey>water</themekey>
+            <themekey>drainage</themekey>
+            <themekey>river</themekey>
+            <themekey>stream</themekey>
+            <themekey>canal</themekey>
+            <themekey>ditch</themekey>
+            <themekey>lake</themekey>
+            <themekey>pond</themekey>
+            <themekey>reservoir</themekey>
+            <themekey>swamp</themekey>
+            <themekey>marsh</themekey>
+            <themekey>spring</themekey>
+            <themekey>well</themekey>
+            <themekey>dam</themekey>
+            <themekey>gage</themekey>
+            <themekey>gaging station</themekey>
+            <themekey>WBD</themekey>
+            <themekey>HU</themekey>
+            <themekey>hydrologic unit</themekey>
+            <themekey>region</themekey>
+            <themekey>subregion</themekey>
+            <themekey>basin</themekey>
+            <themekey>subbasin</themekey>
+            <themekey>watershed</themekey>
+            <themekey>subwatershed</themekey>
+            <themekey>NGP-TNM</themekey>
+            <themekey>REST</themekey>
+            <themekey>WMS</themekey>
+            <themekey>HU10</themekey>
+            <themekey>HU12</themekey>           
+            <themekey>HU14</themekey>
+            <themekey>HU16</themekey>
+            <themekey>HU2</themekey>
+            <themekey>HU4</themekey>
+            <themekey>HU6</themekey>
+            <themekey>HU8</themekey>            
+         </theme>
+         <theme>
+            <themekt>The National Map Theme Thesaurus</themekt>
+            <themekey>Hydrography</themekey>
+         </theme>
+         <theme>
+            <themekt>The National Map Type Thesaurus</themekt>
+            <themekey>Overlay Map Service</themekey>
+         </theme>
+         <place>
+            <placekt>Geographic Names Information System</placekt>
+            <placekey>US</placekey>
+            <placekey>United States</placekey>
+         </place>
+      </keywords>
+      <accconst>None</accconst>
+      <useconst>None. Acknowledgement of the originating agencies would be appreciated in products
+         derived from these data. </useconst>
+      <browse>
+         <browsen>https://nhd.usgs.gov/images/WatershedBoundaryDataset.jpg</browsen>
+         <browsed>Browse graphic.</browsed>
+         <browset>JPG</browset>
+      </browse>
+      <datacred>USGS TNM â National Hydrography Dataset</datacred>
+      <native>ArcGIS 10.2</native>
+   </idinfo>
+   <spdoinfo>
+      <direct>Vector</direct>
+   </spdoinfo>
+   <spref>
+      <horizsys>
+         <planar>
+            <mapproj>
+               <mapprojn>WGS84 Web Mercator (Auxiliary Sphere)</mapprojn>
+               <mercator>
+                  <stdparll>0</stdparll>
+                  <longcm>0</longcm>
+                  <feast>0</feast>
+                  <fnorth>0</fnorth>
+               </mercator>
+            </mapproj>
+            <planci>
+               <plance>coordinate pair</plance>
+               <coordrep>
+                  <absres>1.000000</absres>
+                  <ordres>1.000000</ordres>
+               </coordrep>
+               <plandu>meters</plandu>
+            </planci>
+         </planar>
+      </horizsys>
+   </spref>
+   <distinfo>
+      <distrib>
+         <cntinfo>
+            <cntorgp>
+               <cntorg>U.S. Geological Survey</cntorg>
+               <cntper>Not Provided</cntper>
+            </cntorgp>
+            <cntaddr>
+               <addrtype>mailing and physical</addrtype>
+               <address>PO Box 25046 Denver Federal Center</address>
+               <city>Lakewood</city>
+               <state>CO</state>
+               <postal>80225</postal>
+            </cntaddr>
+            <cntvoice>1-888-ASK-USGS (1-888-275-8747)</cntvoice>
+            <cntemail>tnm_help@usgs.gov</cntemail>
+         </cntinfo>
+      </distrib>
+      <resdesc>USGS TNM Hydrography (NHD) Map Service</resdesc>
+      <distliab>Although these data have been processed successfully on a computer system at the
+         U.S. Geological Survey, no warranty expressed or implied is made regarding the accuracy or
+         utility of the data on any other system or for general or scientific purposes, nor shall
+         the act of distribution constitute any such warranty. This disclaimer applies both to
+         individual use of the data and aggregate use with other data. It is strongly recommended
+         that these data are directly acquired from a U.S. Geological Survey server, and not
+         indirectly through other sources which may have changed the data in some way. It is also
+         strongly recommended that careful attention be paid to the contents of the metadata file
+         associated with these data. The U.S. Geological Survey shall not be held liable for
+         improper or incorrect use of the data described and/or contained herein.</distliab>
+      <stdorder>
+         <digform>
+            <digtinfo>
+               <formname>NHD Map Service (ArcGIS)</formname>
+               <formvern>10.21</formvern>
+               <formspec>https://developers.arcgis.com/rest/</formspec>               
+            </digtinfo>
+            <digtopt>
+               <onlinopt>
+                  <computer>
+                     <networka>
+                        <networkr>https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer</networkr>
+                     </networka>
+                  </computer>
+               </onlinopt>
+            </digtopt>
+         </digform>
+         <digform>
+            <digtinfo>
+               <formname>NHD Map Service (WMS)</formname>
+               <formvern>1.3.0</formvern>
+               <formspec>http://www.opengeospatial.org/standards/wms</formspec>              
+            </digtinfo>
+            <digtopt>
+               <onlinopt>
+                  <computer>
+                     <networka>
+                        <networkr>https://hydro.nationalmap.gov/arcgis/services/wbd/MapServer/WMSServer?request=GetCapabilities&#38;service=WMS</networkr>
+                     </networka>
+                  </computer>
+               </onlinopt>
+            </digtopt>
+         </digform>
+         <fees>None</fees>
+      </stdorder>
+   </distinfo>
+   <metainfo>
+      <metd>20180906</metd>
+      <metc>
+         <cntinfo>
+            <cntorgp>
+               <cntorg>U.S. Geological Survey, National Geospatial Technical Operations
+                  Center</cntorg>
+               <cntper>Not Provided</cntper>
+            </cntorgp>
+            <cntaddr>
+               <addrtype>mailing and physical</addrtype>
+               <address>1400 Independence Road</address>
+               <city>Rolla</city>
+               <state>MO</state>
+               <postal>65401</postal>
+            </cntaddr>
+            <cntaddr>
+               <addrtype>mailing and physical</addrtype>
+               <address>PO Box 25046 Denver Federal Center</address>
+               <city>Lakewood</city>
+               <state>CO</state>
+               <postal>80225</postal>
+            </cntaddr>
+            <cntvoice>1-888-ASK-USGS (1-888-275-8747)</cntvoice>
+            <cntemail>tnm_help@usgs.gov</cntemail>
+            <hours>Monday through Friday, 8:00 AM to 4:30 PM CT</hours>
+            <cntinst>Metadata information can also be obtained through online services using The
+               National Map viewer at https://nationalmap.usgs.gov, or EarthExplorer at
+               https://earthexplorer.usgs.gov, or Ask USGS at https://www.usgs.gov/ask.</cntinst>
+         </cntinfo>
+      </metc>
+      <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+      <metstdv>FGDC-STD-001-1998</metstdv>
+   </metainfo>
+</metadata>

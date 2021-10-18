@@ -1,0 +1,10 @@
+---
+# To apply this manifest: cf push --vars-file vars.yml
+applications:
+  - name: apt-test
+    disk_quota: 500M
+    instances: 1
+    health-check-type: process
+    buildpacks:
+      - https://github.com/cloudfoundry/apt-buildpack
+      - binary_buildpack
