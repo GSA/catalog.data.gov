@@ -1,4 +1,5 @@
 ---
 packages:
   - xmlsec1  # required for pysaml2
-  - openjdk-11-jdk # required for geodatagov fgdc2iso transform
+  - default-jre-headless # required for geodatagov fgdc2iso transform
+  - libsaxonhe-java # required for geodatagov fgdc2iso transform

@@ -1,4 +1,0 @@
----
-packages:
-- default-jre-headless
-- libsaxonhe-java # required for geodatagov fgdc2iso transform

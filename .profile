@@ -14,7 +14,7 @@ export CLASSPATH=$CLASSPATH:/home/vcap/deps/0/apt/usr/share/java/Saxon-HE.jar
 #       wrangling env vars to point to the non-root locations that it expects to find.
 if [ ! -f ../deps/0/apt/etc/ssl/certs/java/cacerts ]; then
     mkdir -p ../deps/0/apt/etc/ssl/certs/java
-    cp ./cacerts ../deps/0/apt/etc/ssl/certs/java/cacerts
+    cp ./config/cacerts ../deps/0/apt/etc/ssl/certs/java/cacerts
 fi
 
 # echo BEFORE:
