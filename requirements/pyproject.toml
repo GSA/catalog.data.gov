@@ -13,10 +13,10 @@ ckanext-archiver = {git = "https://github.com/ckan/ckanext-archiver.git"}
 ckanext-datagovtheme = {git = "https://github.com/GSA/ckanext-datagovtheme.git", branch = "main" }
 ckanext-datajson = {git = "https://github.com/GSA/ckanext-datajson.git", branch = "main" }
 ckanext-envvars = "*"
-ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git", branch = "main" }
+ckanext-geodatagov = {git = "https://github.com/GSA/ckanext-geodatagov.git", rev = "ded11ffd3e4c97b8d418e45bfeeea0c3f4f10796" }
 ckanext-harvest = {git = "https://github.com/ckan/ckanext-harvest.git" }
 # ckanext-harvest = {git = "https://github.com/GSA/ckanext-harvest.git", branch = "datagov-catalog" }
-ckanext-report = {git = "https://github.com/davidread/ckanext-report.git" }
+ckanext-report = {git = "https://github.com/ckan/ckanext-report.git" }
 # Pin ckanext-spatial for csw harvest on ckan2.8
 # https://github.com/GSA/datagov-deploy/issues/3376
 ckanext-spatial = {git = "https://github.com/ckan/ckanext-spatial.git", rev = "4ac25f19" }
