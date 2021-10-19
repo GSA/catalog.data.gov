@@ -39,9 +39,6 @@ export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
 
 export NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_LICENSE_KEY)
 
-# Add saxon jar for transformation from CSDGM/FGDC to ISO
-curl https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/9.9.1-7/Saxon-HE-9.9.1-7.jar --output /usr/lib/jvm/java-11-openjdk/saxon/saxon.jar
-
 # Write out any files and directories
 mkdir -p $CKAN_STORAGE_PATH
 echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
