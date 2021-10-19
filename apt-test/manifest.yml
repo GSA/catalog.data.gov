@@ -1,7 +1,7 @@
 ---
 # To apply this manifest: cf push --vars-file vars.yml
 applications:
-  - name: apt-test
+  - name: apt-test-((name))
     disk_quota: 500M
     instances: 1
     health-check-type: process

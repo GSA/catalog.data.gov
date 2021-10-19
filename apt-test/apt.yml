@@ -1,7 +1,7 @@
 ---
-cleancache: true # calls apt-get clean and apt-get autoclean
 packages:
-  - https://github.com/GSA/catalog.data.gov/releases/download/v0.0.1-alpha/cflinuxfs3-fhs-fixup_1.0_all.deb
-  # - libsaxonb-java
-  - default-jre-headless # required for geodatagov fgdc2iso transform
+- ca-certificates
+- ca-certificates-java
+- default-jre-headless
+- libsaxon-java # required for geodatagov fgdc2iso transform
   # - xmlsec1  # required for pysaml2
