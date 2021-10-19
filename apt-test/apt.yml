@@ -1,7 +1,4 @@
 ---
 packages:
-- ca-certificates
-- ca-certificates-java
 - default-jre-headless
-- libsaxon-java # required for geodatagov fgdc2iso transform
-  # - xmlsec1  # required for pysaml2
+- libsaxonhe-java # required for geodatagov fgdc2iso transform

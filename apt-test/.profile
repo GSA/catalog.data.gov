@@ -3,6 +3,9 @@
 export JAVA_HOME=/home/vcap/deps/0/apt/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME/bin
 
+# Setup saxon jar file on classpath
+export CLASSPATH=$CLASSPATH:/home/vcap/deps/0/apt/usr/share/java/Saxon-HE.jar
+
 # Copy our provided JKS cacerts to the expected location 
 #
 # TODO: Generate this file on the fly the way that ca-certificates-java package
@@ -25,4 +28,5 @@ find /home/vcap/deps/0 -xtype l -exec bash -c 'target="$(readlink "{}")"; link="
 # find /home/vcap/deps/0 -xtype l | wc -l
 # find /home/vcap/deps/0 -xtype l
 
-./prepsaxon.sh
+# Test java + saxon installation with test transform:
+# java net.sf.saxon.Transform fgdc-csdgm_sample.xml fgdcrse2iso19115-2.xslt
