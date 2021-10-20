@@ -2,7 +2,7 @@
 
 set -o errexit
 set -o pipefail
-
+# TODO: convert to .profile
 echo "Running setup script..."
 
 function vcap_get_service () {

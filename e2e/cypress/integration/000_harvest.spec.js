@@ -3,6 +3,7 @@ describe('Harvest', () => {
     const harvestOrg = 'test-harvest-org'
     const dataJsonHarvestSoureName = 'test-harvest-datajson'
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso'
+    const wafFgdcHarvestSourceName = 'test-harvest-waf-fgdc'
     const cswHarvestSourceName = 'test-harvest-csw'
 
     before(() => {
@@ -109,6 +110,30 @@ describe('Harvest', () => {
     it('Start WAF ISO Harvest Job', () => {
 
         cy.start_harvest_job(wafIsoHarvestSourceName)
+    })
+
+    it('Create WAF FGDC Harvest Source', () => {
+        /**
+         * Create a WAF ISO Harvest Source
+         */
+        cy.visit('/organization/'+harvestOrg)
+        cy.hide_debug_toolbar();
+
+        cy.get('a[class="btn btn-primary"]').click()
+        cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
+        cy.get('a[class="btn btn-primary"]').click()
+        cy.create_harvest_source('http://nginx-harvest-source/fgdc-waf/',
+            wafFgdcHarvestSourceName,
+           'cypress test waf FGDC',
+           'waf',
+           'False',
+           false)
+        // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
+        cy.location('pathname').should('eq', '/harvest/' + wafFgdcHarvestSourceName)
+    })
+
+    it('Start WAF FGDC Harvest Job', () => {
+        cy.start_harvest_job(wafFgdcHarvestSourceName)
     })
 
     it('Create CSW Harvest Source', () => {

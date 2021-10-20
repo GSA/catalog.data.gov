@@ -2,6 +2,7 @@ describe('Cleanup site', () => {
     const harvestOrg = 'test-harvest-org'
     const dataJsonHarvestSoureName = 'test-harvest-datajson'
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso'
+    const wafFgdcHarvestSourceName = 'test-harvest-waf-fgdc'
     const cswHarvestSourceName = 'test-harvest-csw'
 
     before(() => {
@@ -14,6 +15,7 @@ describe('Cleanup site', () => {
         // Clear and remove all harvested data
         cy.delete_harvest_source(dataJsonHarvestSoureName);
         cy.delete_harvest_source(wafIsoHarvestSourceName);
+        cy.delete_harvest_source(wafFgdcHarvestSourceName);
         cy.delete_harvest_source(cswHarvestSourceName);
 
         // Sometimes things are left in the DB locally, you can use this to delete 1-off datasets

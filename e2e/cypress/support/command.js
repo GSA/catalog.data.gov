@@ -187,14 +187,6 @@ Cypress.Commands.add('create_harvest_source', (dataSourceUrl, harvestTitle, harv
 
     cy.get('#field-notes').type(harvestDesc)
     cy.get('[type="radio"]').check(harvestType)
-    if(harvestType == 'waf'){
-        //cy.get('#text').then($text => {
-        //    if($text.val() == 'Validation'){
-        //        
-        //    }
-        //})
-        cy.get('[type="radio"]').check('iso19139ngdc')
-    }
 
     // Validate private_datasets defaults to Private
     cy.get('#field-private_datasets').find(':selected').contains('Private')
