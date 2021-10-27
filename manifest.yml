@@ -28,7 +28,7 @@ applications:
       health-check-type: process
       timeout: 15
     - type: harvest-fetch
-      instances: 2
+      instances: 1
       command: ./cfsetup.sh ckan harvester fetch-consumer
       health-check-type: process
       timeout: 15
