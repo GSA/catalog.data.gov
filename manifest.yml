@@ -19,6 +19,9 @@ applications:
     - type: web
       instances: ((instances))
       command: ./cfsetup.sh ckan run --host "0.0.0.0" --port $PORT
+      health-check-type: http
+      health-check-http-endpoint: /dataset
+      health-check-invocation-timeout: 10
     - type: harvest-gather
       instances: 1
       command: ./cfsetup.sh ckan harvester gather-consumer
