@@ -17,19 +17,19 @@ applications:
     routes: ((routes))
     processes:
     - type: web
-      instances: ((instances))
-      command: ./cfsetup.sh ckan run --host "0.0.0.0" --port $PORT
+      instances: ((web-instances))
+      command: ckan run --host "0.0.0.0" --port $PORT
       health-check-type: http
       health-check-http-endpoint: /dataset
       health-check-invocation-timeout: 10
     - type: harvest-gather
-      instances: 1
-      command: ./cfsetup.sh ckan harvester gather-consumer
+      instances: ((gather-instances))
+      command: ckan harvester gather-consumer
       health-check-type: process
       timeout: 15
     - type: harvest-fetch
-      instances: 1
-      command: ./cfsetup.sh ckan harvester fetch-consumer
+      instances: ((fetch-instances))
+      command: ckan harvester fetch-consumer
       health-check-type: process
       timeout: 15
     env:
