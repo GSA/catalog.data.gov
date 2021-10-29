@@ -15,7 +15,7 @@ ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@33f7e190ab33224
 -e git+https://github.com/GSA/ckanext-geodatagov.git@af6378074fcbc2705e7e33960d5ddd2c8e46ed4c#egg=ckanext_geodatagov
 ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4
 -e git+https://github.com/GSA/ckanext-harvest.git@925b0eefa10139bb7868639e8085a4f18ae05dff#egg=ckanext_harvest
--e git+https://github.com/gsa/ckanext-spatial.git@964c65284e8105bf6823457ee8053ecc978d591d#egg=ckanext_spatial
+-e git+https://github.com/gsa/ckanext-spatial.git@fa53b7c836d4cc3f34b0c5f156b04f9bacb8a67e#egg=ckanext_spatial
 ckantoolkit==0.0.3
 click==7.1.2
 cryptography==35.0.0
