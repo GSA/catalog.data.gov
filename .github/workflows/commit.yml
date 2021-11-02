@@ -124,8 +124,6 @@ jobs:
       - vendor
       - dev-db-setup
       - dev-redis-setup
-    env:
-      app_name: catalog
     steps:
       - name: checkout
         uses: actions/checkout@v2
