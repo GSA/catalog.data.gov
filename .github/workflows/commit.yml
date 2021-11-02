@@ -55,25 +55,25 @@ jobs:
 
   dev-db-setup:
     if: github.ref == 'refs/heads/develop'
-    name: deploy (development)
+    name: db setup (development)
     environment: development
     runs-on: ubuntu-latest
-    env:
-      app_name: catalog
     steps:
       - name: Check catalog-db
+        id: check-catalog-db-dev
         uses: usds/cloud-gov-cli@master
+        continue-on-error: true
         with:
-          command: service ${app_name}-db
+          command: service catalog-db
           org: gsa-datagov
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Create catalog-db if necessary
-        if: failure()
+        if: steps.check-catalog-db-dev.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: create-service aws-rds small-psql ${app_name}-db
+          command: create-service aws-rds small-psql catalog-db
           org: gsa-datagov
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
@@ -81,25 +81,25 @@ jobs:
   
   dev-redis-setup:
     if: github.ref == 'refs/heads/develop'
-    name: deploy (development)
+    name: redis setup (development)
     environment: development
     runs-on: ubuntu-latest
-    env:
-      app_name: catalog
     steps:
       - name: Check catalog-redis
+        id: check-catalog-redis-dev
         uses: usds/cloud-gov-cli@master
+        continue-on-error: true
         with:
-          command: service ${app_name}-redis
+          command: service catalog-redis
           org: gsa-datagov
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Create catalog-redis if necessary
-        if: failure()
+        if: steps.check-catalog-redis-dev.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
+          command: cf create-service aws-elasticache-redis redis-dev catalog-redis
           org: gsa-datagov
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
