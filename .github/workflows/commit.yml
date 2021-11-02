@@ -78,6 +78,11 @@ jobs:
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Wait for DB to come up
+        if: steps.check-catalog-db-dev.outcome == 'failure'
+        run: sleep 10m
+        # Should be able to use --wait in cf cli v8
+        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
   
   dev-redis-setup:
     if: github.ref == 'refs/heads/develop'
@@ -104,6 +109,11 @@ jobs:
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Wait for Redis to come up
+        if: steps.check-catalog-redis-dev.outcome == 'failure'
+        run: sleep 10m
+        # Should be able to use --wait in cf cli v8
+        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
   deploy-development:
     if: github.ref == 'refs/heads/develop'
@@ -112,6 +122,8 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - vendor
+      - dev-db-setup
+      - dev-redis-setup
     env:
       app_name: catalog
     steps:
