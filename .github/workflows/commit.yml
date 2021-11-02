@@ -104,7 +104,7 @@ jobs:
         if: steps.check-catalog-redis-dev.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: cf create-service aws-elasticache-redis redis-dev catalog-redis
+          command: create-service aws-elasticache-redis redis-dev catalog-redis
           org: gsa-datagov
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
