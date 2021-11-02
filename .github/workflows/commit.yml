@@ -53,6 +53,58 @@ jobs:
           path: vendor/
           if-no-files-found: error
 
+  dev-db-setup:
+    if: github.ref == 'refs/heads/develop'
+    name: deploy (development)
+    environment: development
+    runs-on: ubuntu-latest
+    env:
+      app_name: catalog
+    steps:
+      - name: Check catalog-db
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: service ${app_name}-db
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create catalog-db if necessary
+        if: failure()
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: create-service aws-rds small-psql ${app_name}-db
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+  
+  dev-redis-setup:
+    if: github.ref == 'refs/heads/develop'
+    name: deploy (development)
+    environment: development
+    runs-on: ubuntu-latest
+    env:
+      app_name: catalog
+    steps:
+      - name: Check catalog-redis
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: service ${app_name}-redis
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create catalog-redis if necessary
+        if: failure()
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
@@ -69,30 +121,6 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy
-        uses: usds/cloud-gov-cli@master
-        with:
-          command: service ${app_name}-db || cf create-service aws-rds small-psql ${app_name}-db
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy
-        uses: usds/cloud-gov-cli@master
-        with:
-          command: service ${app_name}-redis || cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy
-        uses: usds/cloud-gov-cli@master
-        with:
-          command: service ${app_name}-redis || cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy
         uses: usds/cloud-gov-cli@master
         with:
