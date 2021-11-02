@@ -71,6 +71,9 @@ export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CK
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
 export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
+export CKAN_SOLR_URL=$(vcap_get_service solr .credentials.uri)
+export CKAN_SOLR_USER=$(vcap_get_service solr .credentials.username)
+export CKAN_SOLR_PASSWORD=$(vcap_get_service solr .credentials.password)
 
 export NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_LICENSE_KEY)
 # Get sysadmins list by a user-provided-service per environment

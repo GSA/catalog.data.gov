@@ -1,11 +1,6 @@
 ---
 # To apply this manifest: cf push --vars-file vars.yml
 applications:
-  - name: ((app_name))-solr
-    docker:
-      image: ghcr.io/gsa/catalog.data.gov.solr
-    routes:
-      - route: ((solr_route))
   - name: ((app_name))
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack

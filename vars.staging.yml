@@ -48,6 +48,3 @@ saml2_certificate: |
   qXtYlZzamvC+nOyTAl3pxycPQ34+PNgnu3VZvwQY9+d4QYQaOZ4S0rRCk8nEmXJk
   lFP9udKQWvleSWHJIm2bmMYpDZ91KQz+ChEalQ==
   -----END CERTIFICATE-----
-
-# TODO remove this https://github.com/GSA/datagov-deploy/issues/2778
-solr_route: catalog-stage-solr.apps.internal
