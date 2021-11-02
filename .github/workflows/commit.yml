@@ -67,14 +67,6 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy-solr
-        uses: usds/cloud-gov-cli@master
-        with:
-          command: push catalog-solr --vars-file vars.development.yml --strategy rolling
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy
         uses: usds/cloud-gov-cli@master
         with:
