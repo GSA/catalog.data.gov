@@ -74,7 +74,7 @@ export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
 
 export NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_LICENSE_KEY)
 # Get sysadmins list by a user-provided-service per environment
-export CKANEXT__SAML2AUTH__SYSADMINS_LIST=$(echo $VCAP_SERVICES | jq --raw-output "sysadmin-users" ".[][] | select(.name == \sysadmin-users) | CKANEXT__SAML2AUTH__SYSADMINS_LIST")
+export CKANEXT__SAML2AUTH__SYSADMINS_LIST=$(echo $VCAP_SERVICES | jq --raw-output ".[][] | select(.name == \"sysadmin-users\") | .credentials.CKANEXT__SAML2AUTH__SYSADMINS_LIST")
 
 # Write out any files and directories
 mkdir -p $CKAN_STORAGE_PATH
