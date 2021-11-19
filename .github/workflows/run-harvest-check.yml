@@ -1,0 +1,38 @@
+---
+name: Execute harvest run job
+
+on:
+  schedule:
+    - cron: '11/15 * * * *'
+
+jobs:
+  harvest-run-staging:
+    name: harvest-run (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: harvest-run
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: run-task catalog --command "ckan harvester run" --name "harvester-check-completed"
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+  harvest-run-prod:
+    name: harvest-run (prod)
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: harvest-run
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: run-task catalog --command "ckan harvester run" --name "harvester-check-completed"
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
