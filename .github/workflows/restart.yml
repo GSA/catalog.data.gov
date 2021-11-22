@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: restart web
+      - name: restart
         uses: usds/cloud-gov-cli@master
         with:
           command: restart catalog --strategy rolling
