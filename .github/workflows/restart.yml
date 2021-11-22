@@ -13,10 +13,26 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: restart
+      - name: restart web
         uses: usds/cloud-gov-cli@master
         with:
           command: restart catalog --strategy rolling
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: restart gather
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: restart catalog-gather
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: restart fetch
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: restart catalog-fetch
           org: gsa-datagov
           space: staging
           user: ${{secrets.CF_SERVICE_USER}}
@@ -37,6 +53,22 @@ jobs:
         uses: usds/cloud-gov-cli@master
         with:
           command: restart catalog --strategy rolling
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: restart gather
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: restart catalog-gather
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: restart fetch
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: restart catalog-fetch
           org: gsa-datagov
           space: prod
           user: ${{secrets.CF_SERVICE_USER}}

@@ -75,6 +75,22 @@ jobs:
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy-gather
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push catalog-gather --vars-file vars.development.yml
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy-fetch
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push catalog-fetch --vars-file vars.development.yml
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
       - name: smoke test
         run: |
           sleep 10
