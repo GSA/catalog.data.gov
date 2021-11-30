@@ -97,16 +97,11 @@ jobs:
         if: steps.check-catalog-db-staging.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: create-service aws-rds small-psql catalog-db
+          command: create-service aws-rds small-psql catalog-db --wait
           org: gsa-datagov
           space: staging
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Wait for DB to come up
-        if: steps.check-catalog-db-staging.outcome == 'failure'
-        run: sleep 10m
-        # Should be able to use --wait in cf cli v8
-        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
   
   staging-redis-setup:
     name: redis setup (staging)
@@ -127,16 +122,11 @@ jobs:
         if: steps.check-catalog-redis-staging.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: create-service aws-elasticache-redis redis-dev catalog-redis
+          command: create-service aws-elasticache-redis redis-dev catalog-redis --wait
           org: gsa-datagov
           space: staging
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Wait for Redis to come up
-        if: steps.check-catalog-redis-staging.outcome == 'failure'
-        run: sleep 10m
-        # Should be able to use --wait in cf cli v8
-        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
   staging-solr-setup:
     name: solr setup (staging)
@@ -157,16 +147,11 @@ jobs:
         if: steps.check-catalog-solr-staging.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: 'create-service solr-cloud base catalog-solr -c {"solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr"} -b ssb-solr-gsa-datagov-staging'
+          command: create-service solr-cloud base catalog-solr -c '{"solrImageRepo":"ghcr.io/gsa/catalog.data.gov.solr"}' -b ssb-solr-gsa-datagov-staging --wait
           org: gsa-datagov
           space: staging
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Wait for Solr to come up
-        if: steps.check-catalog-solr-staging.outcome == 'failure'
-        run: sleep 10m
-        # Should be able to use --wait in cf cli v8
-        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
   deploy-staging:
     name: deploy (staging)
@@ -218,16 +203,11 @@ jobs:
         with:
           # Note the larger db here for prod, options are here
           # https://cloud.gov/docs/services/relational-database/
-          command: create-service aws-rds large-gp-psql catalog-db
+          command: create-service aws-rds large-gp-psql catalog-db --wait
           org: gsa-datagov
           space: prod
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Wait for DB to come up
-        if: steps.check-catalog-db-production.outcome == 'failure'
-        run: sleep 10m
-        # Should be able to use --wait in cf cli v8
-        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
   
   production-redis-setup:
     name: redis setup (production)
@@ -250,16 +230,11 @@ jobs:
         with:
           # Note the larger redis here for prod, options are here
           # https://cloud.gov/docs/services/aws-elasticache/
-          command: create-service aws-elasticache-redis redis-3node catalog-redis
+          command: create-service aws-elasticache-redis redis-3node catalog-redis --wait
           org: gsa-datagov
           space: prod
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Wait for Redis to come up
-        if: steps.check-catalog-redis-production.outcome == 'failure'
-        run: sleep 10m
-        # Should be able to use --wait in cf cli v8
-        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
   production-solr-setup:
     name: solr setup (staging)
@@ -280,16 +255,11 @@ jobs:
         if: steps.check-catalog-solr-production.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: 'create-service solr-cloud base catalog-solr -c {"solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr"} -b ssb-solr-gsa-datagov-prod'
+          command: create-service solr-cloud base catalog-solr -c '{"solrImageRepo":"ghcr.io/gsa/catalog.data.gov.solr"}' -b ssb-solr-gsa-datagov-prod --wait
           org: gsa-datagov
           space: prod
           user: ${{secrets.CF_SERVICE_USER}}
           password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Wait for Solr to come up
-        if: steps.check-catalog-solr-production.outcome == 'failure'
-        run: sleep 10m
-        # Should be able to use --wait in cf cli v8
-        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
   deploy-production:
     name: deploy (production)
