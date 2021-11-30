@@ -138,6 +138,36 @@ jobs:
         # Should be able to use --wait in cf cli v8
         # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
+  staging-solr-setup:
+    name: solr setup (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check catalog-solr
+        id: check-catalog-solr-staging
+        uses: usds/cloud-gov-cli@master
+        continue-on-error: true
+        with:
+          command: service catalog-solr
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create catalog-solr if necessary
+        if: steps.check-catalog-solr-staging.outcome == 'failure'
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: 'create-service solr-cloud base catalog-solr -c {"solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr"} -b ssb-solr-gsa-datagov-staging'
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Wait for Solr to come up
+        if: steps.check-catalog-solr-staging.outcome == 'failure'
+        run: sleep 10m
+        # Should be able to use --wait in cf cli v8
+        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
+
   deploy-staging:
     name: deploy (staging)
     environment: staging
@@ -146,6 +176,7 @@ jobs:
       - vendor
       - staging-db-setup
       - staging-redis-setup
+      - staging-solr-setup
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -230,6 +261,36 @@ jobs:
         # Should be able to use --wait in cf cli v8
         # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
+  production-solr-setup:
+    name: solr setup (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check catalog-solr
+        id: check-catalog-solr-production
+        uses: usds/cloud-gov-cli@master
+        continue-on-error: true
+        with:
+          command: service catalog-solr
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create catalog-solr if necessary
+        if: steps.check-catalog-solr-production.outcome == 'failure'
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: 'create-service solr-cloud base catalog-solr -c {"solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr"} -b ssb-solr-gsa-datagov-prod'
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Wait for Solr to come up
+        if: steps.check-catalog-solr-production.outcome == 'failure'
+        run: sleep 10m
+        # Should be able to use --wait in cf cli v8
+        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
+
   deploy-production:
     name: deploy (production)
     environment: production
@@ -238,6 +299,7 @@ jobs:
       - deploy-staging
       - production-db-setup
       - production-redis-setup
+      - production-solr-setup
     steps:
       - name: checkout
         uses: actions/checkout@v2

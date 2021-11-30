@@ -115,6 +115,37 @@ jobs:
         # Should be able to use --wait in cf cli v8
         # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
 
+  dev-solr-setup:
+    if: github.ref == 'refs/heads/develop'
+    name: solr setup (development)
+    environment: development
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check catalog-solr
+        id: check-catalog-solr-dev
+        uses: usds/cloud-gov-cli@master
+        continue-on-error: true
+        with:
+          command: service catalog-solr
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create catalog-solr if necessary
+        if: steps.check-catalog-solr-dev.outcome == 'failure'
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: 'create-service solr-cloud base catalog-solr -c {"solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr"} -b ssb-solr-gsa-datagov-development'
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Wait for Solr to come up
+        if: steps.check-catalog-solr-dev.outcome == 'failure'
+        run: sleep 10m
+        # Should be able to use --wait in cf cli v8
+        # https://github.com/cloudfoundry/cli/issues/1354#issuecomment-716664658
+
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
@@ -124,6 +155,7 @@ jobs:
       - vendor
       - dev-db-setup
       - dev-redis-setup
+      - dev-solr-setup
     steps:
       - name: checkout
         uses: actions/checkout@v2
