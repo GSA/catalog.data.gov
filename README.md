@@ -113,7 +113,7 @@ Create the Redis service for cache
     $ cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
 
 Create the SOLR service for data search
-    $ cf create-service solr-cloud base ${app_name}-solr -c '{"solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr"}' -b ssb-solr-gsa-datagov-staging
+    $ cf create-service solr-cloud base ${app_name}-solr -c '{"solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr"}' -b ssb-solr-gsa-datagov-development
 
 Create the secrets service to store secret environment variables. See
 [Secrets](#secrets) below.
