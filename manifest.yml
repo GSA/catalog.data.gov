@@ -34,7 +34,7 @@ applications:
       - ((app_name))-secrets
       - ((app_name))-solr
       - sysadmin-users
-    routes: ((routes))
+    no-route: true
     instances: ((gather-instances))
     command: ckan harvester gather-consumer
     health-check-type: process
@@ -57,6 +57,7 @@ applications:
       - ((app_name))-secrets
       - ((app_name))-solr
       - sysadmin-users
+    no-route: true
     instances: ((fetch-instances))
     command: ckan harvester fetch-consumer
     health-check-type: process
