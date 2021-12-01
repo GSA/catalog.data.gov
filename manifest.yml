@@ -9,6 +9,7 @@ applications:
       - ((app_name))-db
       - ((app_name))-redis
       - ((app_name))-secrets
+      - ((app_name))-solr
       - sysadmin-users
     routes: ((routes))
     health-check-type: http
@@ -31,6 +32,7 @@ applications:
       - ((app_name))-db
       - ((app_name))-redis
       - ((app_name))-secrets
+      - ((app_name))-solr
       - sysadmin-users
     routes: ((routes))
     instances: ((gather-instances))
@@ -53,6 +55,7 @@ applications:
       - ((app_name))-db
       - ((app_name))-redis
       - ((app_name))-secrets
+      - ((app_name))-solr
       - sysadmin-users
     instances: ((fetch-instances))
     command: ckan harvester fetch-consumer
