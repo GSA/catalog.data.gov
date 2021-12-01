@@ -133,6 +133,8 @@ jobs:
     environment: staging
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: Check catalog-solr
         id: check-catalog-solr-staging
         uses: usds/cloud-gov-cli@master
@@ -241,6 +243,8 @@ jobs:
     environment: staging
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: Check catalog-solr
         id: check-catalog-solr-production
         uses: usds/cloud-gov-cli@master

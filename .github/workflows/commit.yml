@@ -111,6 +111,8 @@ jobs:
     environment: development
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: Check catalog-solr
         id: check-catalog-solr-dev
         uses: usds/cloud-gov-cli@master
