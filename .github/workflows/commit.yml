@@ -125,7 +125,7 @@ jobs:
         if: steps.check-catalog-solr-dev.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: create-service solr-cloud base catalog-solr -c '{"solrImageRepo":"ghcr.io/gsa/catalog.data.gov.solr", "solrImageTag":"latest"}' -b ssb-solr-gsa-datagov-development --wait
+          command: create-service solr-cloud base catalog-solr -c solr/service-config.json -b ssb-solr-gsa-datagov-development --wait
           org: gsa-datagov
           space: development
           user: ${{secrets.CF_SERVICE_USER}}
