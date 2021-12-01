@@ -147,7 +147,7 @@ jobs:
         if: steps.check-catalog-solr-staging.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: create-service solr-cloud base catalog-solr -c '{"solrImageRepo":"ghcr.io/gsa/catalog.data.gov.solr"}' -b ssb-solr-gsa-datagov-staging --wait
+          command: create-service solr-cloud base catalog-solr -c '{"solrImageRepo":"ghcr.io/gsa/catalog.data.gov.solr", "solrImageTag":"latest"}' -b ssb-solr-gsa-datagov-staging --wait
           org: gsa-datagov
           space: staging
           user: ${{secrets.CF_SERVICE_USER}}
@@ -255,7 +255,7 @@ jobs:
         if: steps.check-catalog-solr-production.outcome == 'failure'
         uses: usds/cloud-gov-cli@master
         with:
-          command: create-service solr-cloud base catalog-solr -c '{"solrImageRepo":"ghcr.io/gsa/catalog.data.gov.solr"}' -b ssb-solr-gsa-datagov-prod --wait
+          command: create-service solr-cloud base catalog-solr -c '{"solrImageRepo":"ghcr.io/gsa/catalog.data.gov.solr", "solrImageTag":"latest"}' -b ssb-solr-gsa-datagov-prod --wait
           org: gsa-datagov
           space: prod
           user: ${{secrets.CF_SERVICE_USER}}
