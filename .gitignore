@@ -25,3 +25,5 @@ e2e/cypress/screenshots/*
 e2e/cypress/results/output.xml
 node_modules
 package-lock.json
+
+solr/*.zip

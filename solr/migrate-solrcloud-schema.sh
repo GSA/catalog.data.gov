@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+cd $(dirname $0)
 COLLECTION_NAME=${1:-ckan}
 
 # https://gist.github.com/adborden/4b2ecc9d679556ac436b0616d9ddd3b2
