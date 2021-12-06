@@ -18,7 +18,6 @@ elif [[ -z "$CKAN_SOLR_PASSWORD" ]]; then
 fi
 
 # Check if the solr core exists.
-# TODO: add curl to follow redirect
 if ! (curl --get --fail --location-trusted --silent --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
     $CKAN_SOLR_URL/solr/admin/collections \
     --data-urlencode action=list \
