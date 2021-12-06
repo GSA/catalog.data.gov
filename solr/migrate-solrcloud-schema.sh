@@ -35,7 +35,7 @@ if ! (curl --get --fail --location-trusted --silent --user $CKAN_SOLR_USER:$CKAN
         --data-binary @ckan_2.9_solr_config.zip --header 'Content-Type:application/octet-stream' \
         > /dev/null
 
-    echo "Creating solr connection..."
+    echo "Creating solr collection..."
     curl --fail --silent --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
         "$CKAN_SOLR_URL/solr/admin/collections?action=create&name=$COLLECTION_NAME&collection.configName=$COLLECTION_NAME&numShards=1" \
         -X POST \
