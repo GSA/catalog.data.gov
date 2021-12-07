@@ -52,87 +52,24 @@ jobs:
           name: python-vendored
           path: vendor/
           if-no-files-found: error
-
-  dev-db-setup:
-    if: github.ref == 'refs/heads/develop'
-    name: db setup (development)
+  create-cloudgov-services-development:
+    name: create services (development)
     environment: development
     runs-on: ubuntu-latest
-    steps:
-      - name: Check catalog-db
-        id: check-catalog-db-dev
-        uses: usds/cloud-gov-cli@master
-        continue-on-error: true
-        with:
-          command: service catalog-db
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Create catalog-db if necessary
-        if: steps.check-catalog-db-dev.outcome == 'failure'
-        uses: usds/cloud-gov-cli@master
-        with:
-          command: create-service aws-rds small-psql catalog-db --wait
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-  
-  dev-redis-setup:
-    if: github.ref == 'refs/heads/develop'
-    name: redis setup (development)
-    environment: development
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check catalog-redis
-        id: check-catalog-redis-dev
-        uses: usds/cloud-gov-cli@master
-        continue-on-error: true
-        with:
-          command: service catalog-redis
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Create catalog-redis if necessary
-        if: steps.check-catalog-redis-dev.outcome == 'failure'
-        uses: usds/cloud-gov-cli@master
-        with:
-          command: create-service aws-elasticache-redis redis-dev catalog-redis --wait
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-
-  dev-solr-setup:
-    if: github.ref == 'refs/heads/develop'
-    name: solr setup (development)
-    environment: development
-    runs-on: ubuntu-latest
+    container:
+      image: cloudfoundry/cli:8
+      env:
+        org: gsa-datagov
+        space: development
+        user: ${{secrets.CF_SERVICE_USER}}
+        password: ${{secrets.CF_SERVICE_AUTH}}
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: Check catalog-solr
-        id: check-catalog-solr-dev
-        uses: usds/cloud-gov-cli@master
-        continue-on-error: true
-        with:
-          command: service catalog-solr
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Create catalog-solr if necessary
-        if: steps.check-catalog-solr-dev.outcome == 'failure'
-        uses: usds/cloud-gov-cli@master
-        with:
-          command: create-service solr-cloud base catalog-solr -c solr/service-config.json -b ssb-solr-gsa-datagov-development --wait
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
-
+      - name: auth
+        run: ./cfauth.sh
+      - name: create services
+        run: ./create-cloudgov-services.sh
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
@@ -140,9 +77,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - vendor
-      - dev-db-setup
-      - dev-redis-setup
-      - dev-solr-setup
+      - create-cloudgov-services-development
     steps:
       - name: checkout
         uses: actions/checkout@v2
