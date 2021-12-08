@@ -19,6 +19,11 @@ else
 fi
 cf service "${app_name}-solr"      > /dev/null 2>&1 || cf create-service solr-cloud base "${app_name}-solr" -c solr/service-config.json -b "ssb-solr-gsa-datagov-${space}" --wait&
 
-# Wait until all three services are ready
+# Wait until all the services are ready
 wait
 
+# Check that all the services are in a healthy state. (The OSBAPI spec says that
+# the "last operation" should include "succeeded".)
+cf service "${app_name}-db"         | grep -q "status:.*succeeded$"
+cf service "${app_name}-redis"      | grep -q "status:.*succeeded$"
+cf service "${app_name}-solr"       | grep -q "status:.*succeeded$"
