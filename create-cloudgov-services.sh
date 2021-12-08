@@ -11,7 +11,7 @@ space=$(cf target | grep space | cut -d : -f 2 | xargs)
 
 # Production and staging should use bigger DB and Redis instances
 if [ "$space" = "prod" ] || [ "$space" = "staging" ]; then
-    cf service "${app_name}-db"    > /dev/null 2>&1 || cf create-service aws-rds large-psql-redundant "${app_name}-db"                 --wait&
+    cf service "${app_name}-db"    > /dev/null 2>&1 || cf create-service aws-rds medium-psql-redundant "${app_name}-db"                 --wait&
     cf service "${app_name}-redis" > /dev/null 2>&1 || cf create-service aws-elasticache-redis redis-3node "${app_name}-redis"  --wait&
 else
     cf service "${app_name}-db"    > /dev/null 2>&1 || cf create-service aws-rds small-psql "${app_name}-db"                    --wait&
