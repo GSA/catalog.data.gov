@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/GSA/catalog.data.gov.svg?style=svg)](https://circleci.com/gh/GSA/catalog.data.gov)
+[![GitHub Actions](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)
 
 
 # catalog.data.gov
@@ -91,7 +91,8 @@ have `CKAN_SITE_URL=http://localhost:5000`. This is to cover for
 a docker bug upstream: https://github.com/docker/compose/issues/7423
 
 Then, you can run `make cypress`. For WSL or complex installation, please see
-a data.gov team member.
+a data.gov team member or follow the steps laid out
+[here](https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv).
 
 ## Deploying to cloud.gov
 
@@ -111,19 +112,12 @@ Create the Redis service for cache
 
     $ cf create-service aws-elasticache-redis redis-dev ${app_name}-redis
 
+Create the SOLR service for data search
+
+    $ cf create-service solr-cloud base ${app_name}-solr -c solr/service-config.json -b ssb-solr-gsa-datagov-development
+
 Create the secrets service to store secret environment variables. See
 [Secrets](#secrets) below.
-
-Deploy the Solr instance and the app.
-
-    $ cf push --vars-file vars.yml
-
-**Note that the automated deployment only deploys the application, any solr changes**
-**(temporary until ssb is ready) needs to be deployed manually using `cf push --vars-file vars.yml catalog-solr`**
-
-Ensure the Catalog app can reach the Solr app.
-
-    $ cf add-network-policy ${app_name} --destination-app ${app_name}-solr --protocol tcp --port 8983
 
 You should now be able to visit `https://[ROUTE]`, where `[ROUTE]` is the route reported by `cf app ${app_name}`.
 
@@ -160,7 +154,7 @@ environment variable and user-provided service.
 The Login.gov IdP metadata is stored in file under `config/`.
 
 
-## On Docker CKAN 2.8 images
+## On Docker CKAN 2.9 images
 
 The repository extends the Open Knowledge Foundation `ckan-dev:2.9` docker
 image. The `ckan-base:2.9` image, if needed for some reasons, is available via
@@ -242,9 +236,6 @@ You can log into your instance with you login.gov user.
 
 ## CI
 
-Continuous Integration via [Circle
-CI](https://app.circleci.com/pipelines/github/GSA/catalog.data.gov).
+Continuous Integration via [GitHub Actions](https://github.com/GSA/catalog.data.gov/actions/workflows/commit.yml).
 
-To configure Continuous Delivery, see
-[datagov-deploy](https://github.com/GSA/datagov-deploy#circleci-setup) for how
-to setup CircleCI.
+Continuous Deployment via [GitHub Actions](https://github.com/GSA/catalog.data.gov/actions/workflows/publish.yml).
