@@ -4,7 +4,7 @@ app_name: catalog
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-stage-catalog
 ckanext__saml2auth__idp_metadata__local_path: config/login.sandbox.idp.xml
 
-web-instances: 1
+web-instances: 2
 gather-instances: 1
 fetch-instances: 1
 
