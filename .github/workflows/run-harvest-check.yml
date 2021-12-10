@@ -14,13 +14,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: harvest-run
-        uses: usds/cloud-gov-cli@master
+        # pinned to cf7 until --wait is available for run-task on cf8...
+        uses: cloud-gov/cg-cli-tools@main
         with:
-          command: run-task catalog --command "ckan harvester run" --name "harvester-check-completed"
-          org: gsa-datagov
-          space: staging
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf run-task catalog --command "ckan harvester run" --name "harvester-check-completed"
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
   harvest-run-prod:
     name: harvest-run (prod)
     environment: production
@@ -29,10 +30,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: harvest-run
-        uses: usds/cloud-gov-cli@master
+        # pinned to cf7 until --wait is available for run-task on cf8...
+        uses: cloud-gov/cg-cli-tools@main
         with:
-          command: run-task catalog --command "ckan harvester run" --name "harvester-check-completed"
-          org: gsa-datagov
-          space: prod
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf run-task catalog --command "ckan harvester run" --name "harvester-check-completed"
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
