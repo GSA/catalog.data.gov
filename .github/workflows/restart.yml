@@ -14,29 +14,29 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: restart
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: restart catalog --strategy rolling
-          org: gsa-datagov
-          space: staging
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf restart catalog --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: restart gather
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: restart catalog-gather
-          org: gsa-datagov
-          space: staging
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf restart catalog-gather
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: restart fetch
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: restart catalog-fetch
-          org: gsa-datagov
-          space: staging
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf restart catalog-fetch
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: smoke test
         run: |
           sleep 10
@@ -50,29 +50,29 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: restart
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: restart catalog --strategy rolling
-          org: gsa-datagov
-          space: prod
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf restart catalog --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: restart gather
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: restart catalog-gather
-          org: gsa-datagov
-          space: prod
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf restart catalog-gather
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: restart fetch
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: restart catalog-fetch
-          org: gsa-datagov
-          space: prod
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf restart catalog-fetch
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: smoke test
         run: |
           sleep 10

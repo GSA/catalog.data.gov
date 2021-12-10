@@ -56,20 +56,17 @@ jobs:
     name: create services (development)
     environment: development
     runs-on: ubuntu-latest
-    container:
-      image: cloudfoundry/cli:8
-      env:
-        org: gsa-datagov
-        space: development
-        user: ${{secrets.CF_SERVICE_USER}}
-        password: ${{secrets.CF_SERVICE_AUTH}}
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: auth
-        run: ./cfauth.sh
       - name: create services
-        run: ./create-cloudgov-services.sh
+        uses: cloud-gov/cg-cli-tools@cli-v8
+        with:
+          command: ./create-cloudgov-services.sh
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
@@ -86,29 +83,29 @@ jobs:
           name: python-vendored
           path: vendor
       - name: deploy
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: push catalog --vars-file vars.development.yml --strategy rolling
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf push catalog --vars-file vars.development.yml --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-gather
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: push catalog-gather --vars-file vars.development.yml
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf push catalog-gather --vars-file vars.development.yml
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-fetch
-        uses: usds/cloud-gov-cli@master
+        uses: cloud-gov/cg-cli-tools@cli-v8
         with:
-          command: push catalog-fetch --vars-file vars.development.yml
-          org: gsa-datagov
-          space: development
-          user: ${{secrets.CF_SERVICE_USER}}
-          password: ${{secrets.CF_SERVICE_AUTH}}
+          command: cf push catalog-fetch --vars-file vars.development.yml
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: smoke test
         run: |
           sleep 10
