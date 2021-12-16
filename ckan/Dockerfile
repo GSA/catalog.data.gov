@@ -31,8 +31,6 @@ COPY saml2 ${APP_DIR}/saml2
 # COPY the ini test file to the container 
 COPY test-catalog-next.ini ${SRC_DIR}/ckan
 
-COPY setup/ckan_setup.sh ${APP_DIR}/
-
 # In order for dependencies to be managed, python
 # needs to be mapped to python3
 RUN ln -s /usr/bin/python3 /usr/bin/python

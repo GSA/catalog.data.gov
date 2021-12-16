@@ -66,4 +66,4 @@ then
     done
 fi
 
-exec $@
+exec /app/ckan/setup/server_start.sh
