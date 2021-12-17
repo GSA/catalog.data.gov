@@ -95,7 +95,7 @@ echo Setting up PostGIS
 DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py
 
 # Edit the config file to use our values
-export CKAN_INI=ckan/setup/ckan.ini
+export CKAN_INI="${HOME}/ckan/setup/ckan.ini"
 # ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
 ckan config-tool $CKAN_INI -s DEFAULT -e debug=false
 
