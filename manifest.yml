@@ -14,7 +14,7 @@ applications:
     routes: ((routes))
     health-check-type: http
     health-check-http-endpoint: /dataset
-    health-check-invocation-timeout: 10
+    health-check-invocation-timeout: 30
     instances: ((web-instances))
     command: ./ckan/setup/server_start.sh
     env:
