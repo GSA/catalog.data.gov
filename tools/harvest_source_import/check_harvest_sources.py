@@ -89,7 +89,7 @@ for name in names:
     
     command = (['docker-compose', 'exec', 'ckan', 
                 'ckan', 'harvester', 'run_test',
-                hs.get("id"), '--config=/srv/app/production.ini'])
+                hs.get("id"), '--config=/app/ckan/setup/ckan.ini'])
     out = subprocess.Popen(
         command,
         stdout=subprocess.PIPE,

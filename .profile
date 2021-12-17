@@ -21,7 +21,7 @@ export CLASSPATH=$CLASSPATH:/home/vcap/deps/0/apt/usr/share/java/Saxon-HE.jar
 #       wrangling env vars to point to the non-root locations that it expects to find.
 if [ ! -f ../deps/0/apt/etc/ssl/certs/java/cacerts ]; then
     mkdir -p ../deps/0/apt/etc/ssl/certs/java
-    cp ./config/cacerts ../deps/0/apt/etc/ssl/certs/java/cacerts
+    cp ./ckan/setup/cacerts ../deps/0/apt/etc/ssl/certs/java/cacerts
 fi
 
 # echo BEFORE:
@@ -95,7 +95,7 @@ echo Setting up PostGIS
 DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py
 
 # Edit the config file to use our values
-export CKAN_INI=config/production.ini
+export CKAN_INI=ckan/setup/ckan.ini
 ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
 
 echo Running ckan setup commands
