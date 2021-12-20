@@ -26,7 +26,7 @@ environment:
   
 - If you need to add or change configuration that lives in the
   application *ini* file (such as a plugin), you will also need to 
-  update the configuration file template at `config/production.ini`.
+  update the configuration file template at `ckan/setup/ckan.ini`.
   
 - If you find you need to modify the `ckan/Dockerfile` to add OS
   packages or install software, other changes may need to be made to
@@ -151,7 +151,7 @@ for details.
 Our Service Provider (SP) certificate and key are provided in through
 environment variable and user-provided service.
 
-The Login.gov IdP metadata is stored in file under `config/`.
+The Login.gov IdP metadata is stored in file under `ckan/setup/`.
 
 
 ## On Docker CKAN 2.9 images
