@@ -14,14 +14,15 @@ docker run --mount type=bind,source="$(pwd)",target=/home/vcap/app --tmpfs /home
 cd ~vcap/app
 
 # Install any packaged dependencies for our vendored packages
+# Install python3.7 because that's what the buildpak uses
 apt-get -y update
-apt-get -y install swig build-essential python-dev libssl-dev
+apt-get -y install swig build-essential python-dev libssl-dev python3.7
 
 echo "Past apt-get, downloading pip..."
 
 # Install PIP
 curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-python3 /tmp/get-pip.py
+python3.7 /tmp/get-pip.py
 
 # As the VCAP user, cache .whls based on the frozen requirements for vendoring
 mkdir -p src vendor
