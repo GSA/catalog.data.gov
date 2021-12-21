@@ -1,4 +1,4 @@
-[![GitHub Actions](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)
+[![GitHub Actions](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)](https://github.com/GSA/catalog.data.gov/actions/workflows/publish.yml)
 
 
 # catalog.data.gov
