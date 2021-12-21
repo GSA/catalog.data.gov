@@ -13,6 +13,9 @@ jobs:
     name: harvest-run (staging)
     environment: staging
     runs-on: ubuntu-latest
+    env:
+      harvest_command: ${{ '''ckan harvester run''' }}
+      harvest_name: ${{ '''harvester-check-completed''' }}
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -21,7 +24,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
-            cf run-task catalog --command ${{ '''ckan harvester run''' }} --name ${{ '''harvester-check-completed''' }}
+            cf run-task catalog --command ${harvest_command} --name ${harvest_name}
           cf_org: gsa-datagov
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
