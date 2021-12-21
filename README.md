@@ -98,10 +98,10 @@ a data.gov team member or follow the steps laid out
 
 Copy `vars.yml.template` to `vars.yml`, and customize the values in that file. Then, assuming [you're logged in for the Cloud Foundry CLI](https://cloud.gov/docs/getting-started/setup/):
 
-Update and cache all the Python package requirements
+To make sure that python packages are compatible with cloud.gov buildpaks, the following script updates and caches all the Python package requirements.  The script has an optional parameter `[build]` to build the base cloudfoundry image.  This parameter must be invoked at least once before the requirements can be vendored.
 
 ```sh
-./vendor-requirements.sh
+./vendor-requirements.sh [build]
 ```
 
 Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available (see [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time)).

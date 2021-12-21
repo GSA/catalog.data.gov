@@ -46,7 +46,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: vendor dependencies
-        run: ./vendor-requirements.sh
+        run: ./vendor-requirements.sh build
       - uses: actions/upload-artifact@v2
         with:
           name: python-vendored
