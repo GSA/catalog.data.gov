@@ -12,6 +12,3 @@ RUN apt-get -y install swig build-essential python-dev libssl-dev python3.7
 RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
 RUN python3.7 /tmp/get-pip.py
 
-RUN mkdir -p src vendor
-RUN chown vcap.vcap vendor
-RUN chown vcap.vcap src
