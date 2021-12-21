@@ -4,9 +4,6 @@ name: Execute harvest run job
 on:
   schedule:
     - cron: '11/15 * * * *'
-  push:
-    branches:
-      - bugfix/harvester
 
 jobs:
   harvest-run-staging:
