@@ -1,4 +1,4 @@
-FROM solr:6.6.6-slim
+FROM solr:8.11-slim
 MAINTAINER Open Knowledge
 
 # Enviroment
