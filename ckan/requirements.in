@@ -1,6 +1,6 @@
 
 # CKAN requirements and extensions
-ckan @ git+https://github.com/ckan/ckan.git@ckan-2.9.4
+ckan @ git+https://github.com/ckan/ckan.git@dev-v2.9
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@main#egg=ckanext-datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@main#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@main#egg=ckanext-datajson
