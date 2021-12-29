@@ -8,9 +8,13 @@ ENV CKAN_VERSION dev-v2.9
 # Set user to root for initial configuration
 USER root
 
+# Add curl to access API routes
+RUN apt-get update && apt-get install -y curl
+
 # Create Directories
 RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/conf
 RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/data
+RUN mkdir -p /var/solr/data/$SOLR_CORE/
 
 # Adding Files
 ADD solrconfig.xml \
@@ -20,7 +24,8 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/
 https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/basic_configs/conf/stopwords.txt \
 https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/basic_configs/conf/protwords.txt \
 https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/data_driven_schema_configs/conf/elevate.xml \
-/opt/solr/server/solr/$SOLR_CORE/conf/
+/var/solr/data/$SOLR_CORE/
+#/opt/solr/server/solr/$SOLR_CORE/conf/
 
 
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3285

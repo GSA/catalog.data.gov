@@ -24,7 +24,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    image: ghcr.io/gsa/catalog.data.gov.solr
+    image: ghcr.io/gsa/catalog.data.gov.solr:8-curl
     ports:
       - "8983:8983"
     volumes:
