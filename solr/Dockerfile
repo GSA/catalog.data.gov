@@ -84,8 +84,10 @@ RUN perl -0777  -i -pe 's/ \
     /opt/solr/server/etc/webdefault.xml
 
 
-# Fix from https://stackoverflow.com/a/31320697
+# Incorporate Fix from https://stackoverflow.com/a/31320697
 ADD solrconfig.xml $SOLR_CONFIG_DIR/ckan/conf/solrconfig.xml
+
+# Fim from https://github.com/ckan/ckan/issues/5585#issuecomment-953586246
 RUN sed -i "s/<defaultSearchField>text<\/defaultSearchField>/<df>text<\/df>/" $SOLR_SCHEMA_FILE
 RUN sed -i "s/<solrQueryParser defaultOperator=\"AND\"\/>/<solrQueryParser q.op=\"AND\"\/>/" $SOLR_SCHEMA_FILE
 
