@@ -1,0 +1,21 @@
+
+name: Download Cypress Results
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    name: 'Download'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: my-artifact
+        path: ./e2e/cypress/videos/
+
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./e2e/cypress/
