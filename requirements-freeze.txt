@@ -1,1 +1,123 @@
-ckan/requirements.txt
+amqp==1.4.9
+anyjson==0.3.3
+argparse==1.4.0
+babel==2.9.1
+beaker==1.11.0
+billiard==3.3.0.23
+bleach==3.3.0
+boto==2.49.0
+celery==3.1.25
+certifi==2021.10.8
+cffi==1.12.3
+chardet==3.0.4
+-e git+https://github.com/ckan/ckan.git@e50b79651090c5d5946660a4107915c5d59dda86#egg=ckan
+-e git+https://github.com/ckan/ckanext-archiver.git@035728ddd739c5029f89e65fcb1d9048934c9ed9#egg=ckanext-archiver
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext-datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@a7c7cdd92117b26a729ea08fa717bcf455a2c423#egg=ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datajson.git@a5d8c9458a7efe955c31b90eeac1e7797881d014#egg=ckanext-datajson
+-e git+https://github.com/ckan/ckanext-dcat@b50bd2420df9c317f78b46f36cc0e376f3b2f4f7#egg=ckanext-dcat
+ckanext-envvars==0.0.1
+-e git+https://github.com/GSA/ckanext-geodatagov.git@ded11ffd3e4c97b8d418e45bfeeea0c3f4f10796#egg=ckanext-geodatagov
+-e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4#egg=ckanext-googleanalyticsbasic
+-e git+https://github.com/ckan/ckanext-harvest.git@9d5679f0461f5aac05b7f800e11b6a62afb7feeb#egg=ckanext-harvest
+-e git+https://github.com/ckan/ckanext-qa.git@d7d384cb18a85243ea62ef0bcc76bc1775f1c806#egg=ckanext-qa
+-e git+https://github.com/ckan/ckanext-report.git@82af48608b99e7176f1d76f70e59fcfdadf11dfd#egg=ckanext-report
+-e git+https://github.com/keitaroinc/ckanext-saml2auth.git@d77d85349c7a6fcfa5a14c19a56b53eacf137a7c#egg=ckanext-saml2auth
+-e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext-spatial
+ckantoolkit==0.0.3
+click==6.7
+cryptography==3.3.2
+decorator==4.4.2
+defusedxml==0.7.1
+distro==1.6.0
+enum34==1.1.10; python_version < "3"
+fanstatic==0.12
+flask==0.12.4
+flask-babel==0.11.2
+formencode==2.0.1
+funcsigs==1.0.2
+future==0.18.2
+genshi==0.7.3
+geoalchemy==0.7.2
+geoalchemy2==0.5.0
+geomet==0.3.0
+gevent==1.2.2
+google-compute-engine==2.8.13
+greenlet==0.4.12
+gunicorn==19.10.0
+html5lib==1.1
+idna==2.10
+ipaddress==1.0.23; python_version < "3"
+isodate==0.6.0
+itsdangerous==1.1.0
+jinja2==2.11.3
+json-table-schema==0.2.1
+jsonschema==2.4.0
+kombu==3.0.37
+lepl==5.1.3
+lxml==4.6.3
+mako==1.1.5
+markdown==3.1.1
+markupsafe==1.1.1
+messytables==0.15.2
+newrelic==5.24.0.153
+nose==1.3.7
+ofs==0.4.2
+owslib==0.8.6
+packaging==20.9
+pairtree==0.7.1-T
+passlib==1.7.3
+paste==1.7.5.1
+pastedeploy==2.1.1
+pastescript==2.0.2
+pbr==1.10.0
+pika==1.2.0
+ply==3.4
+polib==1.0.7
+progressbar==2.3
+psycopg2==2.7.3.2
+pycparser==2.20
+-e git+https://github.com/GSA/pygments.git@f6ccbc8c73b6b0a3c86ba7f1cfc36ac98ff5f122#egg=pygments
+pylons==0.9.7
+pyopenssl==20.0.1
+pyparsing==2.4.7
+-e git+https://github.com/GSA/pysaml2.git@ba144b7d5c804fd45808914e8562d1d26300c8a8#egg=pysaml2
+pysolr==3.8.0
+python-dateutil==1.5
+python-magic==0.4.15
+python2-secrets==1.0.5
+pytz==2016.7
+pyutilib.component.core==4.6.4
+pyyaml==5.4
+rdflib==4.2.1
+rdflib-jsonld==0.4.0
+redis==2.10.6
+repoze.lru==0.7
+repoze.who==2.3
+repoze.who-friendlyform==1.0.8
+requests==2.25.0
+rfc3987==1.3.8
+routes==1.13
+rq==0.6.0
+shapely==1.7.1
+simplejson==3.10.0
+six==1.16.0
+sparqlwrapper==1.8.5
+sqlalchemy==1.2.18
+sqlalchemy-migrate==0.10.0
+sqlparse==0.4.2
+tempita==0.5.2
+tzlocal==1.3
+unicodecsv==0.14.1
+urllib3==1.26.5
+vdm==0.14
+webencodings==0.5.1
+weberror==0.13.1
+webhelpers==1.3
+-e git+https://github.com/GSA/webob.git@90d895f9a85c8bea11c80efa4e2f6bdd04eabbe4#egg=webob
+webtest==1.4.3
+werkzeug==0.15.6
+xlrd==2.0.1
+zope.interface==4.3.2
+-e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
+pygments>=2.7.4 # not directly required, pinned by Snyk to avoid a vulnerability
