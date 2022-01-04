@@ -23,7 +23,7 @@ if ! (curl --get --fail --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PA
     --data-urlencode action=list \
     --data-urlencode wt=json | grep -q $COLLECTION_NAME); then
 
-    cd solr
+    cd $(dirname $0)/solr
 
     CKAN_BRANCH="dev-v2.9"
     curl https://raw.githubusercontent.com/ckan/ckan/$CKAN_BRANCH/ckan/config/solr/schema.xml -o managed-schema

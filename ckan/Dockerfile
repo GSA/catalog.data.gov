@@ -26,10 +26,6 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 COPY setup/gunicorn.conf.py ${APP_DIR}/
 COPY setup/server_start.sh ${APP_DIR}/
 
-# Add ckan solr core files
-ADD setup/solr/* ${APP_DIR}/solr/
-ADD setup/migrate-solrcloud-schema.sh ${APP_DIR}/
-
 # Custom prerun script for Solr 8
 COPY setup/GSA_prerun.py ${APP_DIR}/
 

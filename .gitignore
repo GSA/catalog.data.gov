@@ -26,4 +26,5 @@ e2e/cypress/results/output.xml
 node_modules
 package-lock.json
 
-solr/*.zip
+ckan/setup/solr/*.zip
+ckan/setup/solr/managed-schema
