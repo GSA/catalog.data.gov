@@ -1,6 +1,7 @@
 FROM solr:8.11-slim
 MAINTAINER Open Knowledge
 
+USER root
 
 #######################
 ## GSA Specific Changes (also need root user)

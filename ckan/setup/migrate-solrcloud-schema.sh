@@ -23,6 +23,8 @@ if ! (curl --get --fail --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PA
     --data-urlencode action=list \
     --data-urlencode wt=json | grep -q $COLLECTION_NAME); then
 
+    cd solr
+
     CKAN_BRANCH="dev-v2.9"
     curl https://raw.githubusercontent.com/ckan/ckan/$CKAN_BRANCH/ckan/config/solr/schema.xml -o managed-schema
 
@@ -43,4 +45,6 @@ if ! (curl --get --fail --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PA
     curl --fail  --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
         "$CKAN_SOLR_BASE_URL/solr/admin/collections?action=create&name=$COLLECTION_NAME&collection.configName=$COLLECTION_NAME&numShards=1" \
         -X POST
+
+    cd -
 fi
