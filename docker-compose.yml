@@ -24,8 +24,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    # image: ghcr.io/gsa/catalog.data.gov.solr:8-curl
-    image: ghcr.io/gsa/catalog.data.gov.solr:latest
+    image: ghcr.io/gsa/catalog.data.gov.solr:8-curl
     environment:
       - ZK_HOST=zookeeper1:2181,zookeeper2:2182,zookeeper3:2183
     ports:
