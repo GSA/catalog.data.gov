@@ -15,7 +15,7 @@ jobs:
       - name: build
         run: make build
       - name: test
-        run: docker-compose -f docker-compose.yml -f docker-compose.test.yml up ckan
+        run: make test
       - name: cypress-artifacs
         uses: actions/upload-artifact@v2
         if: failure()
