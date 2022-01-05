@@ -1,27 +1,14 @@
-FROM solr:6.6.6-slim
+FROM solr:8.11-slim
 MAINTAINER Open Knowledge
 
-# Enviroment
-ENV SOLR_CORE ckan
-ENV CKAN_VERSION dev-v2.9
-
-# Set user to root for initial configuration
 USER root
 
-# Create Directories
-RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/conf
-RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/data
+#######################
+## GSA Specific Changes (also need root user)
+#######################
 
-# Adding Files
-ADD solrconfig.xml \
-schema.xml \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/basic_configs/conf/currency.xml \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/basic_configs/conf/synonyms.txt \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/basic_configs/conf/stopwords.txt \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/basic_configs/conf/protwords.txt \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/solr/server/solr/configsets/data_driven_schema_configs/conf/elevate.xml \
-/opt/solr/server/solr/$SOLR_CORE/conf/
-
+# Add curl to access API routes
+RUN apt-get update && apt-get install -y curl
 
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3285
 # Update the angularjs library files
@@ -74,12 +61,11 @@ RUN perl -0777  -i -pe 's/ \
     /opt/solr/server/etc/webdefault.xml
 
 
-# Create Core.properties
-RUN echo name=$SOLR_CORE > /opt/solr/server/solr/$SOLR_CORE/core.properties
-
 # Giving ownership to user 'solr'
-RUN mkdir /opt/solr/server/solr/$SOLR_CORE/data/index
+RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/data/index
 RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/
-
+# 
 # Set user to 'solr' for to comply with solr security
 USER solr
+
+# CMD ["sh", "-c", "solr-precreate ckan $SOLR_CONFIG_DIR/ckan"]
