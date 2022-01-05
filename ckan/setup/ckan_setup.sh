@@ -53,9 +53,12 @@ ckan config-tool $SRC_DIR/ckan/test-core.ini \
 # Add ckan core to solr
 /app/ckan/setup/migrate-solrcloud-schema.sh
 
+sleep 20
+
 # Run the prerun script to init CKAN and create the default admin user
 python GSA_prerun.py
 
+sleep 20
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
 then
