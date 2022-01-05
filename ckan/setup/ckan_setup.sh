@@ -50,6 +50,8 @@ ckan config-tool $SRC_DIR/ckan/test-core.ini \
     "solr_url = $TEST_CKAN_SOLR_URL" \
     "ckan.redis.url = $TEST_CKAN_REDIS_URL"
 
+sleep 20 # SOLR takes a while to boot up in zookeeper mode
+
 # Add ckan core to solr
 /app/ckan/setup/migrate-solrcloud-schema.sh
 
