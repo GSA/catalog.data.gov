@@ -21,7 +21,7 @@ export CLASSPATH=$CLASSPATH:/home/vcap/deps/0/apt/usr/share/java/Saxon-HE.jar
 #       wrangling env vars to point to the non-root locations that it expects to find.
 if [ ! -f ../deps/0/apt/etc/ssl/certs/java/cacerts ]; then
     mkdir -p ../deps/0/apt/etc/ssl/certs/java
-    cp ./config/cacerts ../deps/0/apt/etc/ssl/certs/java/cacerts
+    cp ./ckan/setup/cacerts ../deps/0/apt/etc/ssl/certs/java/cacerts
 fi
 
 # echo BEFORE:
@@ -82,7 +82,7 @@ export CKANEXT__SAML2AUTH__SYSADMINS_LIST=$(echo $VCAP_SERVICES | jq --raw-outpu
 # Set up the collection in Solr
 echo Setting up Solr collection
 export SOLR_COLLECTION=ckan
-./solr/migrate-solrcloud-schema.sh $SOLR_COLLECTION
+./ckan/setup/migrate-solrcloud-schema.sh $SOLR_COLLECTION
 export CKAN_SOLR_URL=$CKAN_SOLR_BASE_URL/solr/$SOLR_COLLECTION
 
 # Write out any files and directories
@@ -95,8 +95,9 @@ echo Setting up PostGIS
 DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py
 
 # Edit the config file to use our values
-export CKAN_INI=config/production.ini
-ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
+export CKAN_INI="${HOME}/ckan/setup/ckan.ini"
+# ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
+ckan config-tool $CKAN_INI -s DEFAULT -e debug=false
 
 echo Running ckan setup commands
 

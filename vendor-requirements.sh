@@ -5,23 +5,15 @@
 # container; Docker is the only local prerequisite.
 
 # Get the latest version of the cflinuxfs3 image
-docker pull cloudfoundry/cflinuxfs3
+if [[ "$1" == "build" ]]; then
+  docker build -t catalog-vendor .
+fi
 
 # The bind mount here enables us to write back to the host filesystem
-docker run --mount type=bind,source="$(pwd)",target=/home/vcap/app --tmpfs /home/vcap/app/src --name cf_bash --rm -i cloudfoundry/cflinuxfs3  /bin/bash -eu <<EOF
+docker run --mount type=bind,source="$(pwd)",target=/home/vcap/app --tmpfs /home/vcap/app/src --name cf_bash --rm -i catalog-vendor:latest  /bin/bash -eu <<EOF
 
 # Go where the app files are
 cd ~vcap/app
-
-# Install any packaged dependencies for our vendored packages
-apt-get -y update
-apt-get -y install swig build-essential python-dev libssl-dev
-
-echo "Past apt-get, downloading pip..."
-
-# Install PIP
-curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-python3 /tmp/get-pip.py
 
 # As the VCAP user, cache .whls based on the frozen requirements for vendoring
 mkdir -p src vendor

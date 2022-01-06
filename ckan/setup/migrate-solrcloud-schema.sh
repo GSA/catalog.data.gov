@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-cd $(dirname $0)
 COLLECTION_NAME=${1:-ckan}
 
 # https://gist.github.com/adborden/4b2ecc9d679556ac436b0616d9ddd3b2
@@ -19,25 +18,33 @@ elif [[ -z "$CKAN_SOLR_PASSWORD" ]]; then
 fi
 
 # Check if the solr core exists.
-if ! (curl --get --fail --location-trusted --silent --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
+if ! (curl --get --fail --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
     $CKAN_SOLR_BASE_URL/solr/admin/collections \
     --data-urlencode action=list \
     --data-urlencode wt=json | grep -q $COLLECTION_NAME); then
 
+    cd $(dirname $0)/solr
+
+    CKAN_BRANCH="dev-v2.9"
+    curl https://raw.githubusercontent.com/ckan/ckan/$CKAN_BRANCH/ckan/config/solr/schema.xml -o managed-schema
+
+    # Fix from https://github.com/ckan/ckan/issues/5585#issuecomment-953586246
+    sed -i "s/<defaultSearchField>text<\/defaultSearchField>/<df>text<\/df>/" managed-schema
+    sed -i "s/<solrQueryParser defaultOperator=\"AND\"\/>/<solrQueryParser q.op=\"AND\"\/>/" managed-schema
+
     # Zip solr configSet
     zip ckan_2.9_solr_config.zip \
-        currency.xml  elevate.xml  protwords.txt  schema.xml  solrconfig.xml stopwords.txt  synonyms.txt \
-        > /dev/null
+      managed-schema solrconfig.xml protwords.txt stopwords.txt  synonyms.txt
 
     echo "Uploading config set..."
-    curl --fail --silent --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
+    curl --fail  --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
         "$CKAN_SOLR_BASE_URL/solr/admin/configs?action=upload&name=$COLLECTION_NAME" \
-        --data-binary @ckan_2.9_solr_config.zip --header 'Content-Type:application/octet-stream' \
-        > /dev/null
+        --data-binary @ckan_2.9_solr_config.zip --header 'Content-Type:application/octet-stream'
 
     echo "Creating solr collection..."
-    curl --fail --silent --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
+    curl --fail  --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
         "$CKAN_SOLR_BASE_URL/solr/admin/collections?action=create&name=$COLLECTION_NAME&collection.configName=$COLLECTION_NAME&numShards=1" \
-        -X POST \
-        > /dev/null
+        -X POST
+
+    cd -
 fi

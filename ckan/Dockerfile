@@ -5,7 +5,7 @@ FROM openknowledge/ckan-dev:2.9
 ENV GIT_BRANCH=2.9
 
 # add dependencies for cryptography and vim
-RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim xmlsec-dev openjdk11
+RUN apk add libressl-dev musl-dev libffi-dev xmlsec vim xmlsec-dev openjdk11 zip
 # Download Saxon jar for FGDC2ISO transform (geodatagov)
 ARG saxon_ver=9.9.1-7
 ADD \
@@ -26,12 +26,13 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 COPY setup/gunicorn.conf.py ${APP_DIR}/
 COPY setup/server_start.sh ${APP_DIR}/
 
+# Custom prerun script for Solr 8
+COPY setup/GSA_prerun.py ${APP_DIR}/
+
 COPY saml2 ${APP_DIR}/saml2
 
 # COPY the ini test file to the container 
 COPY test-catalog-next.ini ${SRC_DIR}/ckan
-
-COPY setup/ckan_setup.sh ${APP_DIR}/
 
 # In order for dependencies to be managed, python
 # needs to be mapped to python3

@@ -1,4 +1,4 @@
-[![GitHub Actions](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)
+[![GitHub Actions](https://github.com/gsa/catalog.data.gov/actions/workflows/publish.yml/badge.svg)](https://github.com/GSA/catalog.data.gov/actions/workflows/publish.yml)
 
 
 # catalog.data.gov
@@ -26,7 +26,7 @@ environment:
   
 - If you need to add or change configuration that lives in the
   application *ini* file (such as a plugin), you will also need to 
-  update the configuration file template at `config/production.ini`.
+  update the configuration file template at `ckan/setup/ckan.ini`.
   
 - If you find you need to modify the `ckan/Dockerfile` to add OS
   packages or install software, other changes may need to be made to
@@ -98,10 +98,10 @@ a data.gov team member or follow the steps laid out
 
 Copy `vars.yml.template` to `vars.yml`, and customize the values in that file. Then, assuming [you're logged in for the Cloud Foundry CLI](https://cloud.gov/docs/getting-started/setup/):
 
-Update and cache all the Python package requirements
+To make sure that python packages are compatible with cloud.gov buildpaks, the following script updates and caches all the Python package requirements.  The script has an optional parameter `[build]` to build the base cloudfoundry image.  This parameter must be invoked at least once before the requirements can be vendored.
 
 ```sh
-./vendor-requirements.sh
+./vendor-requirements.sh [build]
 ```
 
 Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available (see [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time)).
@@ -151,7 +151,7 @@ for details.
 Our Service Provider (SP) certificate and key are provided in through
 environment variable and user-provided service.
 
-The Login.gov IdP metadata is stored in file under `config/`.
+The Login.gov IdP metadata is stored in file under `ckan/setup/`.
 
 
 ## On Docker CKAN 2.9 images

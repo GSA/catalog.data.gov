@@ -50,8 +50,23 @@ ckan config-tool $SRC_DIR/ckan/test-core.ini \
     "solr_url = $TEST_CKAN_SOLR_URL" \
     "ckan.redis.url = $TEST_CKAN_REDIS_URL"
 
+# SOLR takes a while to boot up in zookeeper mode, make sure it's up before
+echo "Validating SOLR is up..."
+NEXT_WAIT_TIME=0
+until [ $NEXT_WAIT_TIME -eq 10 ] || curl --get --fail --quiet --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
+    $CKAN_SOLR_BASE_URL/solr/admin/collections \
+    --data-urlencode action=list \
+    --data-urlencode wt=json; do
+    sleep $(( NEXT_WAIT_TIME++ ))
+    echo "SOLR still not up, trying for the $NEXT_WAIT_TIME time"
+done
+[ $NEXT_WAIT_TIME -lt 10 ]
+
+# Add ckan core to solr
+/app/ckan/setup/migrate-solrcloud-schema.sh
+
 # Run the prerun script to init CKAN and create the default admin user
-python3 prerun.py
+python GSA_prerun.py
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
@@ -66,4 +81,4 @@ then
     done
 fi
 
-exec $@
+exec /app/ckan/setup/server_start.sh

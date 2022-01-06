@@ -1,4 +1,4 @@
 {
     "solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr",
-    "solrImageTag": "latest"
+    "solrImageTag": "8-curl"
 }
