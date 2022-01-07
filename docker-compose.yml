@@ -27,14 +27,16 @@ services:
     image: ghcr.io/gsa/catalog.data.gov.solr:8-curl
     environment:
       - ZK_HOST=zookeeper1:2181,zookeeper2:2182,zookeeper3:2183
-    ports:
-      - "8983:8983"
+    # ports:
+    #   - "8983:8983"
+    deploy:
+      replicas: 4
     depends_on:
       - zookeeper1
       - zookeeper2
       - zookeeper3
-    volumes:
-      - solr_data:/var/solr
+    # volumes:
+    #   - solr_data:/var/solr
 
   zookeeper1:
     image: zookeeper:3.7
@@ -97,7 +99,6 @@ services:
 volumes:
   ckan_storage:
   pg_data:
-  solr_data:
   zookeeperdata:
   zookeeperdatalog:
   zookeeperdata2:
