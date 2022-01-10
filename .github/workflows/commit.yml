@@ -52,7 +52,9 @@ jobs:
           name: python-vendored
           path: vendor/
           if-no-files-found: error
+
   create-cloudgov-services-development:
+    if: github.ref == 'refs/heads/develop'
     name: create services (development)
     environment: development
     runs-on: ubuntu-latest
@@ -67,6 +69,7 @@ jobs:
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
