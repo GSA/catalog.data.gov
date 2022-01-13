@@ -24,6 +24,12 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+  - name: ((app_name))-proxy
+    buildpacks:
+      - https://github.com/cloudfoundry/nginx-buildpack
+    path: ./proxy
+    # TODO: update route
+    routes: ((routes))
   - name: ((app_name))-gather
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
