@@ -16,6 +16,7 @@ applications:
     health-check-http-endpoint: /dataset
     health-check-invocation-timeout: 30
     instances: ((web-instances))
+    disk_quota: 2G
     command: ./ckan/setup/server_start.sh
     env:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
