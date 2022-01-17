@@ -28,6 +28,8 @@ applications:
     buildpacks:
       - https://github.com/cloudfoundry/nginx-buildpack
     path: ./proxy
+    # TODO: tweak with load testing
+    memory: 100M
     routes: ((routes-external))
     env:
       SERVER_NAME: ((server-name))
