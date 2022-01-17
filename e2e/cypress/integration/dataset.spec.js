@@ -9,7 +9,7 @@ describe('Dataset', () => {
         cy.contains('Identifier');
         cy.contains('Publisher');
         cy.contains('Bureau Code');
-    })
+    });
 
     it('Can see resource pages', () => {
         cy.visit('/dataset/2015-gsa-common-baseline-implementation-plan-and-cio-assignment-plan');
@@ -18,7 +18,7 @@ describe('Dataset', () => {
         cy.contains('2015 GSA Common Baseline Implementation Plan...').click();
         cy.contains('About this Resource');
         cy.contains("Download");
-    })
+    });
 
     it('Can get harvest information via API', () => {
         cy.request('/api/action/package_show?id=ek500-water-column-sonar-data-collected-during-al0001').should((response) => {
@@ -35,5 +35,16 @@ describe('Dataset', () => {
             expect(harvest_info).to.have.property('harvest_source_id', true);
             expect(harvest_info).to.have.property('harvest_source_title', true);
         });
-    })
+    });
+
+    it('Can click on items on the sidebar (e.g. tags filter)', () => {
+        cy.visit('/dataset');
+        // Find tag filter and click on it.
+
+    });
+
+    it('Can click on items on the dataset\'s sidebar (e.g. )', () => {
+        cy.visit('/dataset/2015-gsa-common-baseline-implementation-plan-and-cio-assignment-plan');
+        // Find sidebar element and click on it.
+    });
 })
