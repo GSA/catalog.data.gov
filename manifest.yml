@@ -11,7 +11,7 @@ applications:
       - ((app_name))-secrets
       - ((app_name))-solr
       - sysadmin-users
-    routes: ((routes))
+    routes: ((routes-internal))
     health-check-type: http
     health-check-http-endpoint: /dataset
     health-check-invocation-timeout: 30
@@ -28,8 +28,10 @@ applications:
     buildpacks:
       - https://github.com/cloudfoundry/nginx-buildpack
     path: ./proxy
-    # TODO: update route
-    routes: ((routes))
+    routes: ((routes-external))
+    env:
+      SERVER_NAME: ((server-name))
+      SERVER_URI: ((server-uri))
   - name: ((app_name))-gather
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack

@@ -11,8 +11,16 @@ fetch-instances: 1
 new_relic_app_name: catalog (staging)
 new_relic_monitor_mode: true
 
-routes:
+routes-external:
   - route: catalog-stage-datagov.app.cloud.gov
+
+routes-internal:
+  - route: catalog-stage-datagov.apps.internal
+
+# Name of external server
+server-name: catalog-stage-datagov.app.cloud.gov
+# Name of internal ckan app
+server-uri: https://catalog-stage-datagov.apps.internal:61443
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
