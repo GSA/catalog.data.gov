@@ -54,6 +54,9 @@ SHARED_DIR=$(mktemp -d)
 
 # We need to know the application name ...
 export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
+if [[ $APP_NAME = "catalog-gather" ]] || [[ $APP_NAME = "catalog-fetch" ]]; then
+  APP_NAME=catalog
+fi
 export APP_URL=$(echo $VCAP_APPLICATION | jq -r '.application_uris[0]')
 
 # Extract credentials from VCAP_SERVICES
