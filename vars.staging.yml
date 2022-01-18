@@ -15,12 +15,12 @@ routes-external:
   - route: catalog-stage-datagov.app.cloud.gov
 
 routes-internal:
-  - route: catalog-stage-datagov.apps.internal
+  - route: catalog-stage-cdd4197f-65a7-450e-a34c-f24c9042f9ef.app.cloud.gov
 
 # Name of external server
 server-name: catalog-stage-datagov.app.cloud.gov
 # Name of internal ckan app
-server-uri: https://catalog-stage-datagov.apps.internal:61443
+server-uri: https://catalog-stage-cdd4197f-65a7-450e-a34c-f24c9042f9ef.app.cloud.gov
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
