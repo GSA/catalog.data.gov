@@ -9,10 +9,10 @@ jobs:
   # TODO: delete when reenabled
   blank:
     name: absolutely nothing
-      runs-on: ubuntu-latest
-      steps:
-        - name: hmm
-          run: echo "hi"
+    runs-on: ubuntu-latest
+    steps:
+      - name: hmm
+        run: echo "hi"
 #    restart-staging:
 #      name: restart (staging)
 #      environment: staging
