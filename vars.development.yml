@@ -11,16 +11,19 @@ fetch-instances: 1
 new_relic_app_name: catalog (develop)
 new_relic_monitor_mode: false
 
-routes-external:
+routes-internal:
   - route: catalog-dev-datagov.app.cloud.gov
 
-routes-internal:
-  - route: catalog-dev-9a24aaa4-5023-4bd5-9d45-dec0258786ed.app.cloud.gov
-
-# Name of external server
-server-name: catalog-dev-datagov.app.cloud.gov
-# Name of internal ckan app
-server-uri: https://catalog-dev-9a24aaa4-5023-4bd5-9d45-dec0258786ed.app.cloud.gov
+# In case we ever want to have proxy in development, uncomment this
+# routes-external:
+#   - route: catalog-dev-datagov.app.cloud.gov
+# routes-internal:
+#   - route: catalog-dev-9a24aaa4-5023-4bd5-9d45-dec0258786ed.app.cloud.gov
+# 
+# # Name of external server
+# server-name: catalog-dev-datagov.app.cloud.gov
+# # Name of internal ckan app
+# server-uri: https://catalog-dev-9a24aaa4-5023-4bd5-9d45-dec0258786ed.app.cloud.gov
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
