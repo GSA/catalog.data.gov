@@ -26,7 +26,7 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: ((ckan_site_url))
+      CKAN_SITE_URL: https://((routes-external))
 
   - name: ((app_name))-proxy
     buildpacks:
@@ -62,7 +62,7 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: ((ckan_site_url))
+      CKAN_SITE_URL: https://((routes-external))
 
   - name: ((app_name))-fetch
     buildpacks:
@@ -86,4 +86,4 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: ((ckan_site_url))
+      CKAN_SITE_URL: https://((routes-external))
