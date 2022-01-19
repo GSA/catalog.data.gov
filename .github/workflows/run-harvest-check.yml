@@ -10,7 +10,7 @@ jobs:
   # TODO: delete when reenabled
   blank:
     name: absolutely nothing
-      environemnt: not-important
+      environemnt: development
       runs-on: ubuntu-latest
       steps:
         - name: hmm
