@@ -11,8 +11,8 @@ fetch-instances: 1
 new_relic_app_name: catalog (develop)
 new_relic_monitor_mode: false
 
-routes-internal:
-  - route: catalog-dev-datagov.app.cloud.gov
+routes-internal: catalog-dev-datagov.app.cloud.gov
+routes-external: catalog-dev-datagov.app.cloud.gov
 
 # In case we ever want to have proxy in development, uncomment this
 # routes-external:
