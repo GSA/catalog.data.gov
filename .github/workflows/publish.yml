@@ -115,6 +115,14 @@ jobs:
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy-proxy
+        uses: cloud-gov/cg-cli-tools@cli-v8
+        with:
+          command: cf push catalog-proxy --vars-file vars.staging.yml --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-gather
         uses: cloud-gov/cg-cli-tools@cli-v8
         with:
@@ -170,6 +178,14 @@ jobs:
         uses: cloud-gov/cg-cli-tools@cli-v8
         with:
           command: cf push catalog --vars-file vars.production.yml --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy-proxy
+        uses: cloud-gov/cg-cli-tools@cli-v8
+        with:
+          command: cf push catalog-proxy --vars-file vars.production.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
