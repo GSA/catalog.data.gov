@@ -1,11 +1,19 @@
-# ---
-# name: restart application
-# 
-# on:
-#   schedule:
-#     - cron: '11/15 * * * *'
-# 
-# jobs:
+---
+name: restart application
+
+on:
+  schedule:
+    - cron: '11/15 * * * *'
+
+jobs:
+  # TODO: delete when reenabled
+  blank:
+    name: absolutely nothing
+      environemnt: not-important
+      runs-on: ubuntu-latest
+      steps:
+        - name: hmm
+          run: echo "hi"
 #    restart-staging:
 #      name: restart (staging)
 #      environment: staging

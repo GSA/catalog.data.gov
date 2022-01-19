@@ -1,12 +1,20 @@
-# ---
-# name: Execute harvest run job
-# 
-# on:
-#   schedule:
-#     - cron: '11/15 * * * *'
-#   workflow_dispatch:
-#
-# jobs:
+---
+name: Execute harvest run job
+
+on:
+  schedule:
+    - cron: '11/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  # TODO: delete when reenabled
+  blank:
+    name: absolutely nothing
+      environemnt: not-important
+      runs-on: ubuntu-latest
+      steps:
+        - name: hmm
+          run: echo "hi"
 #    harvest-run-staging:
 #      name: harvest-run (staging)
 #      environment: staging
