@@ -46,7 +46,7 @@ update-dependencies:
 	docker-compose run --rm -T ckan /app/ckan/freeze-requirements.sh $(shell id -u) $(shell id -g)
 
 up:
-	docker-compose up ckan
+	docker-compose up
 
 test-import-tool:
 	cd tools/harvest_source_import && \
