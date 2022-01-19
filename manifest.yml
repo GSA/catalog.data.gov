@@ -11,7 +11,7 @@ applications:
       - ((app_name))-secrets
       - ((app_name))-solr
       - sysadmin-users
-    routes: ((routes))
+    routes: ((routes-internal))
     health-check-type: http
     health-check-http-endpoint: /dataset
     health-check-invocation-timeout: 30
@@ -25,6 +25,16 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+  - name: ((app_name))-proxy
+    buildpacks:
+      - https://github.com/cloudfoundry/nginx-buildpack
+    path: ./proxy
+    # TODO: tweak with load testing
+    memory: 100M
+    routes: ((routes-external))
+    env:
+      SERVER_NAME: ((server-name))
+      SERVER_URI: ((server-uri))
   - name: ((app_name))-gather
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
