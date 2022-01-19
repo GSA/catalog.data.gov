@@ -57,7 +57,6 @@ export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
 if [[ $APP_NAME = "catalog-gather" ]] || [[ $APP_NAME = "catalog-fetch" ]]; then
   APP_NAME=catalog
 fi
-export APP_URL=$(echo $VCAP_APPLICATION | jq -r '.application_uris[0]')
 
 # Extract credentials from VCAP_SERVICES
 export REDIS_HOST=$(vcap_get_service redis .credentials.host)
@@ -67,7 +66,6 @@ export SAML2_PRIVATE_KEY=$(vcap_get_service secrets .credentials.SAML2_PRIVATE_K
 
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
-export CKAN_SITE_URL=https://$APP_URL
 export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
 export CKAN_STORAGE_PATH=${SHARED_DIR}/files
 export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
