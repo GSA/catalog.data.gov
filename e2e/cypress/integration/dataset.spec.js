@@ -39,13 +39,13 @@ describe('Dataset', () => {
 
     it('Can click on items on the sidebar (e.g. tags filter)', () => {
         cy.visit('/dataset');
-        cy.contains('sdf').click();
-        cy.get('div[class="filter-list"] span[class="filtered pill"]').contains('sdf');
+        cy.contains('test-harvest-org').click();
+        cy.get('div[class="filter-list"] span[class="filtered pill"]').contains('test-harvest-org');
     });
 
     it('Can click on items on the dataset\'s sidebar (e.g. )', () => {
         cy.visit('/dataset/2019-ridgecrest-ca-m7-1-earthquake-structure-from-motion-data-off-base');
-        cy.contains('Web Resource').click();
+        cy..get('a[class="heading"]').contains('Web Resource').click();
         cy.get('ul[class="list-unstyled nav nav-simple"] li:second').click();
     });
 })
