@@ -6,15 +6,15 @@ boto==2.49.0
 certifi==2021.10.8
 cffi==1.15.0
 chardet==3.0.4
-ckan @ git+https://github.com/ckan/ckan.git@ef1432fa4177edbd0a2f457bad363a33b6b61344
+ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext_datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@4d7537425fe0160eebd0d97e609ea75843a15082#egg=ckanext_datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@a5d8c9458a7efe955c31b90eeac1e7797881d014#egg=ckanext_datajson
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@2d2c8a894bea8c97b0c8544465094f9979ac516b
+-e git+https://github.com/GSA/ckanext-datajson.git@af68093f1502cd548b0d379a24d59edfabe3449c#egg=ckanext_datajson
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@56eb2459293754a57a47bb2b7c0273d2d7263ae0
 ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@33f7e190ab332244cb961a425e09af592d9b647b
 -e git+https://github.com/GSA/ckanext-geodatagov.git@af6378074fcbc2705e7e33960d5ddd2c8e46ed4c#egg=ckanext_geodatagov
 ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4
--e git+https://github.com/ckan/ckanext-harvest.git@d84d847b09f28ab97bf1ca0baa651fdc05693d03#egg=ckanext_harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@694a8cc139f42dce4c38eca3cf69b24ff3df347b#egg=ckanext_harvest
 ckanext-saml2auth @ git+https://github.com/keitaroinc/ckanext-saml2auth.git@7412ff7aba3d215f95a08f99216410e72e60c5bc
 -e git+https://github.com/gsa/ckanext-spatial.git@3828c6e7efe7c4b5cef02f4e7163339c7b5c5710#egg=ckanext_spatial
 ckantoolkit==0.0.3
@@ -51,7 +51,7 @@ Mako==1.1.6
 Markdown==3.1.1
 MarkupSafe==2.0.1
 messytables==0.15.2
-newrelic==7.2.4.171
+newrelic==7.4.0.172
 nose==1.3.7
 OWSLib==0.18.0
 packaging==21.3
@@ -65,7 +65,7 @@ psycopg2==2.8.6
 pycparser==2.21
 PyJWT==1.7.1
 pyOpenSSL==20.0.1
-pyparsing==3.0.6
+pyparsing==3.0.7
 pyproj==2.6.1
 pysaml2==7.0.1
 pysolr==3.6.0
@@ -78,7 +78,7 @@ PyUtilib==5.7.1
 PyYAML==5.4
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==4.2.2
-redis==4.0.2
+redis==4.1.2
 repoze.lru==0.7
 repoze.who==2.3
 requests==2.25.0
@@ -93,14 +93,14 @@ SQLAlchemy==1.3.5
 sqlparse==0.4.2
 tzlocal==1.3
 unicodecsv==0.14.1
-urllib3==1.26.7
+urllib3==1.26.8
 webassets==0.12.1
 webencodings==0.5.1
 WebOb==1.8.7
 Werkzeug==1.0.0
 wrapt==1.13.3
 xlrd==2.0.1
-xmlschema==1.9.1
-zipp==3.6.0
+xmlschema==1.9.2
+zipp==3.7.0
 zope.event==4.5.0
 zope.interface==5.4.0
