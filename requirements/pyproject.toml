@@ -7,7 +7,7 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^2.7"
 
-ckan = {tag = "ckan-2.8.9", git = "https://github.com/ckan/ckan.git"}
+ckan = {tag = "ckan-2.8.10", git = "https://github.com/ckan/ckan.git"}
 
 ckanext-archiver = {git = "https://github.com/ckan/ckanext-archiver.git"}
 ckanext-datagovtheme = {git = "https://github.com/GSA/ckanext-datagovtheme.git", branch = "main" }
