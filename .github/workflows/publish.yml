@@ -86,7 +86,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: create services
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: ./create-cloudgov-services.sh
           cf_org: gsa-datagov
@@ -108,7 +108,7 @@ jobs:
           name: python-vendored
           path: vendor
       - name: deploy-ckan
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog --vars-file vars.staging.yml --strategy rolling
           cf_org: gsa-datagov
@@ -116,7 +116,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-proxy
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-proxy --vars-file vars.staging.yml --strategy rolling
           cf_org: gsa-datagov
@@ -124,7 +124,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-gather
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-gather --vars-file vars.staging.yml
           cf_org: gsa-datagov
@@ -132,7 +132,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-fetch
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-fetch --vars-file vars.staging.yml
           cf_org: gsa-datagov
@@ -152,7 +152,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: create services
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: ./create-cloudgov-services.sh
           cf_org: gsa-datagov
@@ -175,7 +175,7 @@ jobs:
           name: python-vendored
           path: vendor
       - name: deploy-ckan
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog --vars-file vars.production.yml --strategy rolling
           cf_org: gsa-datagov
@@ -183,7 +183,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-proxy
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-proxy --vars-file vars.production.yml --strategy rolling
           cf_org: gsa-datagov
@@ -191,7 +191,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-gather
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-gather --vars-file vars.production.yml
           cf_org: gsa-datagov
@@ -199,7 +199,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-fetch
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-fetch --vars-file vars.production.yml
           cf_org: gsa-datagov
