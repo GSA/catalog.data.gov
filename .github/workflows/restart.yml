@@ -21,7 +21,7 @@ jobs:
 #        - name: checkout
 #          uses: actions/checkout@v2
 #        - name: restart
-#          uses: cloud-gov/cg-cli-tools@cli-v8
+#          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: cf restart catalog --strategy rolling
 #            cf_org: gsa-datagov
@@ -29,7 +29,7 @@ jobs:
 #            cf_username: ${{secrets.CF_SERVICE_USER}}
 #            cf_password: ${{secrets.CF_SERVICE_AUTH}}
 #        - name: restart gather
-#          uses: cloud-gov/cg-cli-tools@cli-v8
+#          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: cf restart catalog-gather
 #            cf_org: gsa-datagov
@@ -37,7 +37,7 @@ jobs:
 #            cf_username: ${{secrets.CF_SERVICE_USER}}
 #            cf_password: ${{secrets.CF_SERVICE_AUTH}}
 #        - name: restart fetch
-#          uses: cloud-gov/cg-cli-tools@cli-v8
+#          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: cf restart catalog-fetch
 #            cf_org: gsa-datagov
@@ -57,7 +57,7 @@ jobs:
 #        - name: checkout
 #          uses: actions/checkout@v2
 #        - name: restart
-#          uses: cloud-gov/cg-cli-tools@cli-v8
+#          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: cf restart catalog --strategy rolling
 #            cf_org: gsa-datagov
@@ -65,7 +65,7 @@ jobs:
 #            cf_username: ${{secrets.CF_SERVICE_USER}}
 #            cf_password: ${{secrets.CF_SERVICE_AUTH}}
 #        - name: restart gather
-#          uses: cloud-gov/cg-cli-tools@cli-v8
+#          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: cf restart catalog-gather
 #            cf_org: gsa-datagov
@@ -73,7 +73,7 @@ jobs:
 #            cf_username: ${{secrets.CF_SERVICE_USER}}
 #            cf_password: ${{secrets.CF_SERVICE_AUTH}}
 #        - name: restart fetch
-#          uses: cloud-gov/cg-cli-tools@cli-v8
+#          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: cf restart catalog-fetch
 #            cf_org: gsa-datagov
