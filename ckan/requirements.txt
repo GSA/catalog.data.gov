@@ -48,7 +48,7 @@ gunicorn==19.10.0
 html5lib==1.1
 idna==2.10
 ipaddress==1.0.23; python_version < "3"
-isodate==0.6.0
+isodate==0.6.1
 itsdangerous==1.1.0
 jinja2==2.11.3
 json-table-schema==0.2.1
