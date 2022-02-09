@@ -9,7 +9,6 @@ applications:
       - ((app_name))-db
       - ((app_name))-redis
       - ((app_name))-secrets
-      - ((app_name))-solr
       - sysadmin-users
     routes:
       - route: ((routes-internal))
@@ -18,6 +17,7 @@ applications:
     health-check-invocation-timeout: 30
     instances: ((web-instances))
     disk_quota: 2G
+    memory: ((memory_quota))
     command: ./ckan/setup/server_start.sh
     env:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
