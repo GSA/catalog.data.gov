@@ -63,6 +63,7 @@ export REDIS_HOST=$(vcap_get_service redis .credentials.host)
 export REDIS_PASSWORD=$(vcap_get_service redis .credentials.password)
 export REDIS_PORT=$(vcap_get_service redis .credentials.port)
 export SAML2_PRIVATE_KEY=$(vcap_get_service secrets .credentials.SAML2_PRIVATE_KEY)
+export CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH="${HOME}/${CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH}"
 
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
