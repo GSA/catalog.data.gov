@@ -9,6 +9,7 @@ applications:
       - ((app_name))-db
       - ((app_name))-redis
       - ((app_name))-secrets
+      - ((app_name))-solr
       - sysadmin-users
     routes:
       - route: ((routes-internal))

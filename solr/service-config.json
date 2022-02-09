@@ -4,5 +4,8 @@
     "replicas": 10,
     "solrJavaMem": "-Xms12g -Xmx16g",
     "solrMem": "20G",
-    "solrCpu": "3000m"
+    "solrCpu": "5000m",
+    "mng_min_capacity": 8,
+    "mng_max_capacity": 12,
+    "mng_desired_capacity": 10
 }
