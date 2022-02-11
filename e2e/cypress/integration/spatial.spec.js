@@ -10,7 +10,7 @@ describe('Spatial', () => {
         // cy.wait(3);
         // It's really hard to mock clicking on a map and drawing a rectangle;
         //  just start the process and then visit a URL that would result.
-        cy.get('.leaflet-control-draw-rectangle').click();
+        cy.get('.leaflet-draw-draw-rectangle').click();
         cy.wait(1);
         cy.visit('/dataset/?q=&sort=views_recent+desc&ext_location=&ext_bbox=-127.265625%2C25.16517336866393%2C-63.6328125%2C50.51342652633956&ext_prev_extent=-133.2421875%2C5.61598581915534%2C-57.65624999999999%2C60.23981116999893');
         cy.contains('datasets found');
