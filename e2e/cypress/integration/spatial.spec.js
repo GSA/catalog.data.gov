@@ -32,6 +32,8 @@ describe('Spatial', () => {
         cy.get('#select2-drop').find('input').type('wash');
         cy.get('#select2-results-1').find('div').contains('Washington, DC').click();
         cy.url().should('include', 'ext_location=Washington%2C+DC+%2820001%29&ext_bbox=-77.0275');
+        cy.get('#select2-chosen-1').contains('Washington, DC (20001)');
+        cy.contains('datasets found');
     });
 
     it('Can put a package with weird tags in an group', () => {
