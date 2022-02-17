@@ -28,18 +28,6 @@ applications:
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((routes-external))
 
-  - name: ((app_name))-proxy
-    buildpacks:
-      - https://github.com/cloudfoundry/nginx-buildpack
-    path: ./proxy
-    # TODO: tweak with load testing
-    memory: 100M
-    routes:
-      - route: ((routes-external))
-    env:
-      SERVER_NAME: ((server-name))
-      SERVER_URI: ((server-uri))
-
   - name: ((app_name))-gather
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
