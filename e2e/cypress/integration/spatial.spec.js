@@ -5,17 +5,37 @@ describe('Spatial', () => {
             expect(response.body.result[0]).to.have.property('text', 'California');
         });
     });
-    it('The map view works and can filter (start only)', () => {
-        cy.visit('/dataset');
-        // cy.wait(3);
-        // It's really hard to mock clicking on a map and drawing a rectangle;
-        //  just start the process and then visit a URL that would result.
-        cy.get('.leaflet-control-draw-rectangle').click();
-        cy.wait(1);
-        cy.visit('/dataset/?q=&sort=views_recent+desc&ext_location=&ext_bbox=-127.265625%2C25.16517336866393%2C-63.6328125%2C50.51342652633956&ext_prev_extent=-133.2421875%2C5.61598581915534%2C-57.65624999999999%2C60.23981116999893');
-        cy.contains('datasets found');
 
-    })
+    it('The map view works and can draw box and search', () => {
+        cy.visit('/dataset');
+        cy.get('.leaflet-draw-draw-rectangle').click();
+        cy.get('#dataset-map-edit-buttons').find('.disabled')
+        cy.get('#dataset-map-container')
+            .trigger('mousedown', {which: 1})
+            .trigger('mousemove', {clientX: 500, clientY: 153})
+            .trigger('mouseup');
+        // hide the overlaying debugging layer to expose the apply button
+        if (cy.get('#flHideToolBarButton')) {
+            cy.get('#flHideToolBarButton').click();
+        }
+        // click the apply button then on the next redirected page find the box
+        // on the map and content in the body
+        cy.get('#dataset-map-edit-buttons').find('[class="btn apply btn-primary"]').click();
+        cy.get('#dataset-map-container').find('svg.leaflet-zoom-animated');
+        cy.contains('datasets found');
+    });
+
+    it('Can search in the location dropdown', () => {
+        // find location search box and find "Washington, DC" by term 'wash'
+        cy.visit('/dataset');
+        cy.get('#dataset-map-edit').find('span').contains('Enter location...').click();
+        cy.get('#select2-drop').find('input').type('wash');
+        cy.get('#select2-results-1').find('div').contains('Washington, DC').click();
+        cy.url().should('include', 'ext_location=Washington%2C+DC+%2820001%29&ext_bbox=-77.0275');
+        cy.get('#select2-chosen-1').contains('Washington, DC (20001)');
+        cy.contains('datasets found');
+    });
+
     it('Can put a package with weird tags in an group', () => {
         const group_name = 'climate';
         cy.logout();
