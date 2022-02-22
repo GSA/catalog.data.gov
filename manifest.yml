@@ -29,6 +29,11 @@ applications:
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_PORT: 50005
       CKAN_SITE_URL: https://((routes-external))
+    sidecars:
+      - name: nginx-proxy
+        process_types:
+          - web
+        command: 'nginx -c proxy/nginx.conf'
 
   - name: ((app_name))-proxy
     buildpacks:

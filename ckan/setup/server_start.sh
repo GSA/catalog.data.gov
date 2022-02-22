@@ -9,7 +9,6 @@ DIR="$(dirname "${BASH_SOURCE[0]}")"
 #   - 4 Morkers needs total 550MB RAM
 # Threads RAM requirement unknown at this time
 # exec newrelic-admin run-program gunicorn -c "$DIR/gunicorn.conf.py" --worker-class gevent --paste $CKAN_INI "$@"
-exec newrelic-admin run-program nginx -c ../../proxy/nginx.conf
 if [[ "$CKAN_SITE_URL" = "http://ckan:5000" ]]; then
   exec newrelic-admin run-program gunicorn "wsgi:application" --config "$DIR/gunicorn.conf.py" -b "0.0.0.0:$CKAN_PORT" --chdir $DIR  --timeout 120 --workers 2
 else
