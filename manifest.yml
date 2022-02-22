@@ -13,7 +13,7 @@ applications:
       - ((app_name))-solr
       - sysadmin-users
     routes:
-      - route: ((routes-internal))
+      - route: ((route))
     health-check-type: http
     health-check-http-endpoint: /dataset
     health-check-invocation-timeout: 30
@@ -27,25 +27,14 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+      ROUTE: ((route))
       CKAN_PORT: 50005
-      CKAN_SITE_URL: https://((routes-external))
+      CKAN_SITE_URL: https://((route))
     sidecars:
       - name: nginx-proxy
         process_types:
           - web
         command: 'nginx -c proxy/nginx.conf'
-
-  - name: ((app_name))-proxy
-    buildpacks:
-      - https://github.com/cloudfoundry/nginx-buildpack
-    path: ./proxy
-    # TODO: tweak with load testing
-    memory: 100M
-    routes:
-      - route: ((routes-external))
-    env:
-      SERVER_NAME: ((server-name))
-      SERVER_URI: ((server-uri))
 
   - name: ((app_name))-gather
     buildpacks:
@@ -69,7 +58,7 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: https://((routes-external))
+      CKAN_SITE_URL: https://((route))
 
   - name: ((app_name))-fetch
     buildpacks:
@@ -93,4 +82,4 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: https://((routes-external))
+      CKAN_SITE_URL: https://((route))

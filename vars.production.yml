@@ -11,13 +11,7 @@ fetch-instances: 1
 new_relic_app_name: catalog
 new_relic_monitor_mode: true
 
-routes-external: catalog-prod-datagov.app.cloud.gov
-routes-internal: catalog-prod-1041c49a-20d2-4f21-8bbc-e64bf739d8dd.app.cloud.gov
-
-# Name of external server
-server-name: catalog-prod-datagov.app.cloud.gov
-# Name of internal ckan app
-server-uri: https://catalog-prod-1041c49a-20d2-4f21-8bbc-e64bf739d8dd.app.cloud.gov
+route: catalog-dev-datagov.app.cloud.gov
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
