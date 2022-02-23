@@ -32,9 +32,8 @@ applications:
       CKAN_SITE_URL: https://((route))
     sidecars:
       - name: nginx-proxy
-        process_types:
-          - web
-        command: 'nginx -c proxy/nginx.conf'
+        process_types: ['web']
+        command: 'nginx -c ./proxy/nginx.conf'
 
   - name: ((app_name))-gather
     buildpacks:
