@@ -6,6 +6,10 @@ describe('Facets', () => {
     beforeEach(() => {
         Cypress.Cookies.preserveOnce('auth_tkt', 'ckan')
     })
+    after(() => {
+        cy.delete_organization('org-tags');
+        cy.delete_group('group-facets');
+    })
 
     it('Show datagov facet list on dataset page', () => {
         cy.visit('/dataset');
@@ -21,7 +25,6 @@ describe('Facets', () => {
         cy.get('.filters h2').first().contains('Topics');
         cy.get('.filters h2').contains('Harvest Source');
         cy.get('.filters h2').last().contains('Bureaus');
-        cy.delete_organization('org-tags');
     });
 
     it('Show datagov facet list on group page', () => {
@@ -30,6 +33,11 @@ describe('Facets', () => {
         cy.get('.filters h2').its('length').should('be.equal', 6)
         cy.get('.filters h2').first().contains('Categories');
         cy.get('.filters h2').last().contains('Organizations');
-        cy.delete_group('group-facets');
+    });
+
+    // https://github.com/GSA/datagov-deploy/issues/3672
+    it('Can visit organization and group facet link', () => {
+        cy.visit('/organization/org-tags?tags=_');
+        cy.visit('/group/group-facets?tags=_');
     });
 });
