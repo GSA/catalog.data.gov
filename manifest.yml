@@ -38,8 +38,8 @@ applications:
     routes:
       - route: ((routes-external))
     env:
-      SERVER_NAME: ((server-name))
-      SERVER_URI: ((server-uri))
+      SERVER_NAME: ((routes-external))
+      SERVER_URI: ((routes-internal))
 
   - name: ((app_name))-gather
     buildpacks:
