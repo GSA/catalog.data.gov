@@ -12,7 +12,7 @@ new_relic_app_name: catalog (develop)
 new_relic_monitor_mode: false
 
 routes-internal: catalog-dev-internal.apps.internal
-routes-external: catalog-dev-datagov.app.cloud.gov
+routes-external: catalog-dev-internal.app.cloud.gov
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----

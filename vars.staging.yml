@@ -12,7 +12,7 @@ new_relic_app_name: catalog (staging)
 new_relic_monitor_mode: true
 
 routes-external: catalog-stage-datagov.app.cloud.gov
-routes-internal: catalog-stage-cdd4197f-65a7-450e-a34c-f24c9042f9ef.app.cloud.gov
+routes-internal: catalog-stage-datagov.apps.internal
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
