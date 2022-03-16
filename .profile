@@ -87,6 +87,10 @@ export SOLR_COLLECTION=ckan
 ./ckan/setup/migrate-solrcloud-schema.sh $SOLR_COLLECTION
 export CKAN_SOLR_URL=$CKAN_SOLR_BASE_URL/solr/$SOLR_COLLECTION
 
+# Explicitly don't proxy solr,
+# Reference: https://github.com/ckan/ckan/issues/3653
+export NO_PROXY=$NO_PROXY,$CKAN_SOLR_URL
+
 # Write out any files and directories
 mkdir -p $CKAN_STORAGE_PATH
 echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
