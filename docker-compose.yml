@@ -30,7 +30,7 @@ services:
     # ports:
     #   - "8983:8983"
     deploy:
-      replicas: 2
+      replicas: 3
     depends_on:
       - zookeeper1
       - zookeeper2
