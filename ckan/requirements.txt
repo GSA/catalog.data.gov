@@ -8,13 +8,13 @@ cffi==1.15.0
 chardet==3.0.4
 ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext_datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@1922df8370f7e09a1cecc685c963eac8eb2f3519#egg=ckanext_datagovtheme
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@18e1447028a5c07d8ae8f2bfde74d7c1297fa60d#egg=ckanext_datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@af68093f1502cd548b0d379a24d59edfabe3449c#egg=ckanext_datajson
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@56eb2459293754a57a47bb2b7c0273d2d7263ae0
 ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@33f7e190ab332244cb961a425e09af592d9b647b
 -e git+https://github.com/GSA/ckanext-geodatagov.git@d31689ba8a68ea86a641501ca145c92189de92e0#egg=ckanext_geodatagov
 ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4
--e git+https://github.com/ckan/ckanext-harvest.git@694a8cc139f42dce4c38eca3cf69b24ff3df347b#egg=ckanext_harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@ed6c4e19011f9405fb889dbcea75354ca91f3b0b#egg=ckanext_harvest
 ckanext-saml2auth @ git+https://github.com/keitaroinc/ckanext-saml2auth.git@7412ff7aba3d215f95a08f99216410e72e60c5bc
 -e git+https://github.com/gsa/ckanext-spatial.git@3828c6e7efe7c4b5cef02f4e7163339c7b5c5710#egg=ckanext_spatial
 ckantoolkit==0.0.3
@@ -22,12 +22,12 @@ click==7.1.2
 cryptography==36.0.1
 defusedxml==0.7.1
 Deprecated==1.2.13
-distro==1.6.0
+distro==1.7.0
 dominate==2.4.0
-elementpath==2.4.0
+elementpath==2.5.0
 fanstatic==1.1
 feedgen==0.9.0
-Flask==1.1.1
+Flask==2.0.0
 Flask-Babel==1.0.0
 flask-multistatic==1.0
 future==0.18.2
@@ -41,17 +41,17 @@ html5lib==1.1
 idna==2.10
 importlib-resources==5.4.0
 isodate==0.6.1
-itsdangerous==2.0.1
-Jinja2==2.11.3
+itsdangerous==2.1.0
+Jinja2==3.0.0
 json-table-schema==0.2.1
 jsonschema==2.4.0
 LEPL==5.1.3
-lxml==4.7.1
+lxml==4.8.0
 Mako==1.1.6
 Markdown==3.1.1
-MarkupSafe==2.0.1
+MarkupSafe==2.1.0
 messytables==0.15.2
-newrelic==7.4.0.172
+newrelic==7.6.0.173
 nose==1.3.7
 OWSLib==0.18.0
 packaging==21.3
@@ -78,14 +78,14 @@ PyUtilib==5.7.1
 PyYAML==5.4
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==4.2.2
-redis==4.1.2
+redis==4.1.4
 repoze.lru==0.7
 repoze.who==2.3
 requests==2.25.0
 rfc3987==1.3.8
 Routes==1.13
 rq==1.0
-Shapely==1.8.0
+Shapely==1.8.1.post1
 shutilwhich==1.1.0
 simplejson==3.10.0
 six==1.16.0
@@ -97,10 +97,10 @@ urllib3==1.26.8
 webassets==0.12.1
 webencodings==0.5.1
 WebOb==1.8.7
-Werkzeug==1.0.0
+Werkzeug==2.0.0
 wrapt==1.13.3
 xlrd==2.0.1
-xmlschema==1.9.2
+xmlschema==1.10.0
 zipp==3.7.0
 zope.event==4.5.0
 zope.interface==5.4.0
