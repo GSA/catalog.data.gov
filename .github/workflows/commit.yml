@@ -52,7 +52,9 @@ jobs:
           name: python-vendored
           path: vendor/
           if-no-files-found: error
+
   create-cloudgov-services-development:
+    if: github.ref == 'refs/heads/develop'
     name: create services (development)
     environment: development
     runs-on: ubuntu-latest
@@ -60,13 +62,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: create services
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: ./create-cloudgov-services.sh
           cf_org: gsa-datagov
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
@@ -83,7 +86,7 @@ jobs:
           name: python-vendored
           path: vendor
       - name: deploy
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog --vars-file vars.development.yml --strategy rolling
           cf_org: gsa-datagov
@@ -91,7 +94,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-gather
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-gather --vars-file vars.development.yml
           cf_org: gsa-datagov
@@ -99,7 +102,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: deploy-fetch
-        uses: cloud-gov/cg-cli-tools@cli-v8
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-fetch --vars-file vars.development.yml
           cf_org: gsa-datagov

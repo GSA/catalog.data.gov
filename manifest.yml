@@ -11,11 +11,14 @@ applications:
       - ((app_name))-secrets
       - ((app_name))-solr
       - sysadmin-users
-    routes: ((routes))
+    routes:
+      - route: ((routes-internal))
     health-check-type: http
     health-check-http-endpoint: /dataset
     health-check-invocation-timeout: 30
     instances: ((web-instances))
+    disk_quota: 2G
+    memory: ((memory_quota))
     command: ./ckan/setup/server_start.sh
     env:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
@@ -24,6 +27,20 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+      CKAN_SITE_URL: https://((routes-external))
+
+  - name: ((app_name))-proxy
+    buildpacks:
+      - https://github.com/cloudfoundry/nginx-buildpack
+    path: ./proxy
+    # TODO: tweak with load testing
+    memory: 100M
+    routes:
+      - route: ((routes-external))
+    env:
+      EXTERNAL_ROUTE: ((routes-external))
+      INTERNAL_ROUTE: ((routes-internal))
+
   - name: ((app_name))-gather
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
@@ -39,7 +56,6 @@ applications:
     command: ckan harvester gather-consumer
     health-check-type: process
     timeout: 15
-    
     env:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
@@ -47,6 +63,8 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+      CKAN_SITE_URL: https://((routes-external))
+
   - name: ((app_name))-fetch
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
@@ -69,3 +87,4 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+      CKAN_SITE_URL: https://((routes-external))

@@ -54,17 +54,19 @@ SHARED_DIR=$(mktemp -d)
 
 # We need to know the application name ...
 export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
-export APP_URL=$(echo $VCAP_APPLICATION | jq -r '.application_uris[0]')
+if [[ $APP_NAME = "catalog-gather" ]] || [[ $APP_NAME = "catalog-fetch" ]]; then
+  APP_NAME=catalog
+fi
 
 # Extract credentials from VCAP_SERVICES
 export REDIS_HOST=$(vcap_get_service redis .credentials.host)
 export REDIS_PASSWORD=$(vcap_get_service redis .credentials.password)
 export REDIS_PORT=$(vcap_get_service redis .credentials.port)
 export SAML2_PRIVATE_KEY=$(vcap_get_service secrets .credentials.SAML2_PRIVATE_KEY)
+export CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH="${HOME}/${CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH}"
 
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
-export CKAN_SITE_URL=https://$APP_URL
 export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
 export CKAN_STORAGE_PATH=${SHARED_DIR}/files
 export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
@@ -84,6 +86,10 @@ echo Setting up Solr collection
 export SOLR_COLLECTION=ckan
 ./ckan/setup/migrate-solrcloud-schema.sh $SOLR_COLLECTION
 export CKAN_SOLR_URL=$CKAN_SOLR_BASE_URL/solr/$SOLR_COLLECTION
+
+# Explicitly don't proxy solr,
+# Reference: https://github.com/ckan/ckan/issues/3653
+export NO_PROXY=$NO_PROXY,$CKAN_SOLR_URL
 
 # Write out any files and directories
 mkdir -p $CKAN_STORAGE_PATH
