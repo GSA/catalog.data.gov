@@ -8,7 +8,7 @@ ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@master
 ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@main
 -e git+https://github.com/GSA/ckanext-geodatagov.git@main#egg=ckanext-geodatagov
 ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@main
--e git+https://github.com/ckan/ckanext-harvest.git#egg=ckanext-harvest
+-e git+https://github.com/GSA/ckanext-harvest.git@render-jinja2#egg=ckanext-harvest
 -e git+https://github.com/gsa/ckanext-spatial.git@datagov#egg=ckanext-spatial
 git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
 
