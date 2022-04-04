@@ -1,7 +1,7 @@
 # This is the name to use for the staging catalog app in Cloud Foundry
 app_name: catalog
 
-ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-prod-catalog
+ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-production-catalog
 ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.sandbox.idp.xml
 
 web-instances: 5
@@ -17,38 +17,5 @@ routes-internal: catalog-prod-datagov.apps.internal
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
-  MIIGWTCCBEECFAlhrXpPhQHFG+zVm9pWt/C4gyZqMA0GCSqGSIb3DQEBCwUAMIHo
-  MQswCQYDVQQGEwJVUzEdMBsGA1UECAwURGlzdHJpY3Qgb2YgQ29sdW1iaWExEzAR
-  BgNVBAcMCldhc2hpbmd0b24xKDAmBgNVBAoMH0dlbmVyYWwgU2VydmljZXMgQWRt
-  aW5pc3RyYXRpb24xKjAoBgNVBAsMIVRlY2hub2xvZ3kgVHJhbnNmb3JtYXRpb24g
-  U2VydmljZTEiMCAGCSqGSIb3DQEJARYTZGF0YWdvdmhlbHBAZ3NhLmdvdjErMCkG
-  A1UEAwwiY2F0YWxvZy1wcm9kLWRhdGFnb3YuYXBwLmNsb3VkLmdvdjAeFw0yMjAz
-  MTYxNTE0NDlaFw0yNDAzMTUxNTE0NDlaMIHoMQswCQYDVQQGEwJVUzEdMBsGA1UE
-  CAwURGlzdHJpY3Qgb2YgQ29sdW1iaWExEzARBgNVBAcMCldhc2hpbmd0b24xKDAm
-  BgNVBAoMH0dlbmVyYWwgU2VydmljZXMgQWRtaW5pc3RyYXRpb24xKjAoBgNVBAsM
-  IVRlY2hub2xvZ3kgVHJhbnNmb3JtYXRpb24gU2VydmljZTEiMCAGCSqGSIb3DQEJ
-  ARYTZGF0YWdvdmhlbHBAZ3NhLmdvdjErMCkGA1UEAwwiY2F0YWxvZy1wcm9kLWRh
-  dGFnb3YuYXBwLmNsb3VkLmdvdjCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoC
-  ggIBANoZG7PloMgSNwykuxC17vZte+SE8blDX9ValyNc5Y6vNmUqi895pmsbTXW/
-  MLA1QBrr8zIE1BJRijP2rMLMp/cEmEe0DoV+H38y55CK5ZmjwGBrmI1OGXYo3z40
-  oMmkIAO383zZOpXIZ8XOtEtrMH9F8zsSIErUCyV3F13JlWD3phtyOBHa9VpUPRSd
-  V8HsCc7l+twlSHhbGIGZjYTZgEkMsD/+4F/7ck58aquM7Rk1dOK1JKdGWaCCn+1B
-  XnFgBoZ5Ej2E1yMCYth3CHzoVArYRcGwkYnX5PyYpWUPyTX5zcDOFpv5RxEncDXB
-  62d14qWg+ngDd3zbEcHVQOUIvka2bE3hsrg5VWnM7MQtRJeqOMshjTL5qgaMBv/S
-  P+qZ4hW5RXIWeKIDakTNWJSqVjcX5aCllZmCh9gLjUQDn8RmIKXa+rTuuK2Ar6wq
-  TnZ+FnMzYeIkqcfJwIYcyy6QWGSq7isQd7C/zElYGY8BU61FTAr7SJOQHT4JeEg4
-  qsDbwvhb1Wz6TjyBE+FZj1zO1yZKZUZ8VEZKO7CmZuVtKzrctKTP0XkfXGcxttX0
-  00dDWdJKf2N0IifLd6GaQ8HFG19N7nVGINqNGqBRYPLu81LVa4tDmto/Us7atPyF
-  J1Kjw5MrCqfTyqniFzSgKTHDZWgdMKxsALmnnP3/ttFet1qZAgMBAAEwDQYJKoZI
-  hvcNAQELBQADggIBAIq5dBBEzpkNte/CtzIbwk6NA/9Y3fS/Q7fh+0eOVD9yDprr
-  qIh6IoOKoQlfnDxrzKdY1ZxbksiT80fEw1GO/jxOmECQse71QWTeTmCsYQgYT6WI
-  RM3g9LlVKotlZvE9sCU/cs027084TXHZtWJTBnLGQ8yuKSGLR2mrL4wotcunhzqV
-  yQOdvfHHoThdnjAo4wVNxQfdE3JkgjvNELOrNDyJ4RaMmrg2JhAQfSOBgLR01mSf
-  EbPti+IhbuFmd4eFwTykKutXKIcoAToMTTo8h2wr/pEc9ESNWLkDibP6KiH4lsB0
-  SVh5uGypt1v5z4dHwF2PqlFgrHOAQCaR3SBXy5hCpfZzpFMFs7v0FpYCVWme5t6n
-  8Zl4+Qcogjk7p6arh+4b6fC8VLFgVa+zRwkzGHJAic5HdJ9OIYO8Hc84WW7ACDs2
-  d0A76OBvBPkQ0K3DAmtvseSNCvND2GXum2d+wyoPq/pUOgYJZ0/SGiRCrxBEOXg2
-  yHFry5XIwu0szZ7csvdYUXWMWG1R7HHEt76Se7j3rKoiVIVUxfULY2TEo8jvfbUp
-  ZpUmOO7SkUiBZe3EAlwkACTjbFxrCqGgDLsvxSEDJkLlCK2fOUHFRo3l4OcAUd4/
-  60FuWkQnVjpkvSsp8xHdb9huBvPqK+fV4i9O7v1z96Z1LSGLiYsRD2PKpTNz
+  placeholder
   -----END CERTIFICATE-----
