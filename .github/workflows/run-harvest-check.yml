@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # TODO: delete when reenabled
+  # Note: run this action if the harvesters need to be commented out
   blank:
     name: absolutely nothing
     runs-on: ubuntu-latest
@@ -18,18 +18,13 @@ jobs:
 #      name: harvest-run (staging)
 #      environment: staging
 #      runs-on: ubuntu-latest
-#      env:
-#        harvest_command: ${{ '''ckan harvester run''' }}
-#        harvest_name: ${{ '''harvester-check-completed''' }}
 #      steps:
-#        - name: checkout
-#          uses: actions/checkout@v2
 #        - name: harvest-run
 #          # pinned to cf7 until --wait is available for run-task on cf8...
 #          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: |
-#              cf run-task catalog --command ${{harvest_command}} --name ${{harvest_name}}
+#              cf run-task catalog --command 'ckan harvester run' --name 'harvester-check-completed (CI)'
 #            cf_org: gsa-datagov
 #            cf_space: staging
 #            cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -38,18 +33,13 @@ jobs:
 #      name: harvest-run (prod)
 #      environment: production
 #      runs-on: ubuntu-latest
-#      env:
-#        harvest_command: ${{ '''ckan harvester run''' }}
-#        harvest_name: ${{ '''harvester-check-completed''' }}
 #      steps:
-#        - name: checkout
-#          uses: actions/checkout@v2
 #        - name: harvest-run
 #          # pinned to cf7 until --wait is available for run-task on cf8...
 #          uses: cloud-gov/cg-cli-tools@main
 #          with:
 #            command: |
-#              cf run-task catalog --command ${{harvest_command}} --name ${{harvest_name}}
+#              cf run-task catalog --command 'ckan harvester run' --name 'harvester-check-completed (CI)'
 #            cf_org: gsa-datagov
 #            cf_space: prod
 #            cf_username: ${{secrets.CF_SERVICE_USER}}
