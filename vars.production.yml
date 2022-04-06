@@ -12,6 +12,7 @@ memory_quota: 850M
 new_relic_app_name: catalog
 new_relic_monitor_mode: true
 
+routes-public: catalog.data.gov
 routes-external: catalog-prod-datagov.app.cloud.gov
 routes-internal: catalog-prod-datagov.apps.internal
 
