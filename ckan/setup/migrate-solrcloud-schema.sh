@@ -25,12 +25,13 @@ if ! (curl --get --fail --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PA
 
     cd $(dirname $0)/solr
 
-    CKAN_BRANCH="dev-v2.9"
-    curl https://raw.githubusercontent.com/ckan/ckan/$CKAN_BRANCH/ckan/config/solr/schema.xml -o managed-schema
-
-    # Fix from https://github.com/ckan/ckan/issues/5585#issuecomment-953586246
-    sed -i "s/<defaultSearchField>text<\/defaultSearchField>/<df>text<\/df>/" managed-schema
-    sed -i "s/<solrQueryParser defaultOperator=\"AND\"\/>/<solrQueryParser q.op=\"AND\"\/>/" managed-schema
+    # This is the vanilla solr config.  We are diverging from this to implement
+    # geospatial searching in solr. See tracked managed-schema file.
+    # CKAN_BRANCH="dev-v2.9"
+    # curl https://raw.githubusercontent.com/ckan/ckan/$CKAN_BRANCH/ckan/config/solr/schema.xml -o managed-schema
+    # # Fix from https://github.com/ckan/ckan/issues/5585#issuecomment-953586246
+    # sed -i "s/<defaultSearchField>text<\/defaultSearchField>/<df>text<\/df>/" managed-schema
+    # sed -i "s/<solrQueryParser defaultOperator=\"AND\"\/>/<solrQueryParser q.op=\"AND\"\/>/" managed-schema
 
     # Zip solr configSet
     zip ckan_2.9_solr_config.zip \

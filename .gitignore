@@ -27,5 +27,4 @@ node_modules
 package-lock.json
 
 ckan/setup/solr/*.zip
-ckan/setup/solr/managed-schema
 *kubeconfig*
