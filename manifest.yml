@@ -38,6 +38,7 @@ applications:
     routes:
       - route: ((routes-external))
     env:
+      PUBLIC_ROUTE: ((routes-public))
       EXTERNAL_ROUTE: ((routes-external))
       INTERNAL_ROUTE: ((routes-internal))
 
