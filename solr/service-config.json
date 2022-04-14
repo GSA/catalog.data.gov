@@ -1,7 +1,7 @@
 {
     "solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr",
     "solrImageTag": "8-curl",
-    "replicas": 5,
+    "replicas": 6,
     "solrJavaMem": "-Xms7g -Xmx10g",
     "solrMem": "14G",
     "solrCpu": "3250m"
