@@ -3,10 +3,6 @@ set -e
 
 COLLECTION_NAME=${1:-ckan}
 
-CKAN_SOLR_BASE_URL=http://default-solr-e424cd22ef1c76ed-solrcloud.solrcloud2.ssb.data.gov
-CKAN_SOLR_USER=597b469e-1e27-bbeb-3967-883e4b43a8d0
-CKAN_SOLR_PASSWORD=kAjL61PbrXJaFGJK
-
 # https://gist.github.com/adborden/4b2ecc9d679556ac436b0616d9ddd3b2
 
 # error out if environment variables not set
