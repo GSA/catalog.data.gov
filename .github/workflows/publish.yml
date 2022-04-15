@@ -93,8 +93,9 @@ jobs:
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}} 
-  deploy-staging:
-    name: deploy (staging)
+
+  deploy-staging-main:
+    name: deploy catalog (staging)
     environment: staging
     runs-on: ubuntu-latest
     needs:
@@ -123,6 +124,25 @@ jobs:
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+
+  deploy-staging-gather:
+    name: deploy catalog-gather (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    needs:
+      - vendor
+      - create-cloudgov-services-staging
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor
       - name: deploy-gather
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -131,6 +151,21 @@ jobs:
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+
+  deploy-staging-fetch:
+    name: deploy catalog-fetch (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    needs:
+      - vendor
+      - create-cloudgov-services-staging
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor
       - name: deploy-fetch
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -139,10 +174,6 @@ jobs:
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: smoke test
-        run: |
-          sleep 10
-          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
 
   create-cloudgov-services-production:
     name: create services (production)
@@ -160,13 +191,13 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
 
-  deploy-production:
-    name: deploy (production)
+  deploy-production-main:
+    name: deploy catalog (production)
     environment: production
     runs-on: ubuntu-latest
     needs:
       - create-cloudgov-services-production
-      - deploy-staging
+      - deploy-staging-main
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -190,6 +221,25 @@ jobs:
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl -H "Host: catalog.data.gov" --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+
+  deploy-production-gather:
+    name: deploy (production)
+    environment: production
+    runs-on: ubuntu-latest
+    needs:
+      - create-cloudgov-services-production
+      - deploy-staging-gather
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor
       - name: deploy-gather
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -198,6 +248,21 @@ jobs:
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+
+  deploy-production-fetch:
+    name: deploy catalog-fetch (production)
+    environment: production
+    runs-on: ubuntu-latest
+    needs:
+      - create-cloudgov-services-production
+      - deploy-staging-fetch
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-vendored
+          path: vendor
       - name: deploy-fetch
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -206,7 +271,3 @@ jobs:
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: smoke test
-        run: |
-          sleep 10
-          curl -H "Host: catalog.data.gov" --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
