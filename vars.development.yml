@@ -8,6 +8,7 @@ web-instances: 1
 gather-instances: 1
 fetch-instances: 1
 memory_quota: 750M
+gather_memory_quota: 1G
 
 new_relic_app_name: catalog (develop)
 new_relic_monitor_mode: false
