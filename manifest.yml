@@ -54,6 +54,8 @@ applications:
       - sysadmin-users
     no-route: true
     instances: ((gather-instances))
+    disk_quota: 1.2G
+    memory: ((gather_memory_quota))
     command: ckan harvester gather-consumer
     health-check-type: process
     timeout: 15
