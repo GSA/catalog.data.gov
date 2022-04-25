@@ -3,7 +3,7 @@ name: restart application
 
 on:
   schedule:
-    - cron: '11 */2 * * *'
+    - cron: '11/30 * * * *'
 
 jobs:
    restart-staging:
@@ -21,14 +21,14 @@ jobs:
            cf_space: staging
            cf_username: ${{secrets.CF_SERVICE_USER}}
            cf_password: ${{secrets.CF_SERVICE_AUTH}}
-       - name: restart gather
-         uses: cloud-gov/cg-cli-tools@main
-         with:
-           command: cf restart catalog-gather
-           cf_org: gsa-datagov
-           cf_space: staging
-           cf_username: ${{secrets.CF_SERVICE_USER}}
-           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+       # - name: restart gather
+       #   uses: cloud-gov/cg-cli-tools@main
+       #   with:
+       #     command: cf restart catalog-gather
+       #     cf_org: gsa-datagov
+       #     cf_space: staging
+       #     cf_username: ${{secrets.CF_SERVICE_USER}}
+       #     cf_password: ${{secrets.CF_SERVICE_AUTH}}
        - name: restart fetch
          uses: cloud-gov/cg-cli-tools@main
          with:
@@ -57,14 +57,14 @@ jobs:
            cf_space: prod
            cf_username: ${{secrets.CF_SERVICE_USER}}
            cf_password: ${{secrets.CF_SERVICE_AUTH}}
-       - name: restart gather
-         uses: cloud-gov/cg-cli-tools@main
-         with:
-           command: cf restart catalog-gather
-           cf_org: gsa-datagov
-           cf_space: prod
-           cf_username: ${{secrets.CF_SERVICE_USER}}
-           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+       # - name: restart gather
+       #   uses: cloud-gov/cg-cli-tools@main
+       #   with:
+       #     command: cf restart catalog-gather
+       #     cf_org: gsa-datagov
+       #     cf_space: prod
+       #     cf_username: ${{secrets.CF_SERVICE_USER}}
+       #     cf_password: ${{secrets.CF_SERVICE_AUTH}}
        - name: restart fetch
          uses: cloud-gov/cg-cli-tools@main
          with:
