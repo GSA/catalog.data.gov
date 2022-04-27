@@ -4,5 +4,6 @@
     "replicas": 6,
     "solrJavaMem": "-Xms7g -Xmx10g",
     "solrMem": "14G",
-    "solrCpu": "3250m"
+    "solrCpu": "3250m",
+    "restartCron": "0 0 1 1 5"
 }
