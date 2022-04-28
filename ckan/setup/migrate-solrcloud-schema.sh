@@ -38,7 +38,7 @@ if ! (curl --get --fail --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PA
       managed-schema solrconfig.xml protwords.txt stopwords.txt  synonyms.txt
 
     echo "Uploading config set..."
-    curl --fail  --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
+    curl --location-trusted --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
         "$CKAN_SOLR_BASE_URL/solr/admin/configs?action=upload&name=$COLLECTION_NAME" \
         --data-binary @ckan_2.9_solr_config.zip --header 'Content-Type:application/octet-stream'
 
