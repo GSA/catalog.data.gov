@@ -81,6 +81,14 @@ export NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_L
 # Get sysadmins list by a user-provided-service per environment
 export CKANEXT__SAML2AUTH__SYSADMINS_LIST=$(echo $VCAP_SERVICES | jq --raw-output ".[][] | select(.name == \"sysadmin-users\") | .credentials.CKANEXT__SAML2AUTH__SYSADMINS_LIST")
 
+# SMTP Settings
+export CKAN_SMTP_SERVER=$(vcap_get_service smtp .credentials.smtp_server)
+export CKAN_SMTP_STARTTLS=True
+export CKAN_SMTP_USER=$(vcap_get_service smtp .credentials.smtp_user)
+export CKAN_SMTP_PASSWORD=$(vcap_get_service smtp .credentials.smtp_password)
+export CKAN_SMTP_MAIL_FROM=$(vcap_get_service smtp .credentials.domain_arn | grep -o "ses-[[:alnum:]]\+.ssb.data.gov")
+export CKAN_SMTP_REPLY_TO=datagovhelp@gsa.gov
+
 # Set up the collection in Solr
 echo Setting up Solr collection
 export SOLR_COLLECTION=ckan
