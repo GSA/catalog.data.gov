@@ -86,7 +86,7 @@ export CKAN_SMTP_SERVER=$(vcap_get_service smtp .credentials.smtp_server)
 export CKAN_SMTP_STARTTLS=True
 export CKAN_SMTP_USER=$(vcap_get_service smtp .credentials.smtp_user)
 export CKAN_SMTP_PASSWORD=$(vcap_get_service smtp .credentials.smtp_password)
-export CKAN_SMTP_MAIL_FROM=$(vcap_get_service smtp .credentials.domain_arn | grep -o "ses-[[:alnum:]]\+.ssb.data.gov")
+export CKAN_SMTP_MAIL_FROM=harvester@$(vcap_get_service smtp .credentials.domain_arn | grep -o "ses-[[:alnum:]]\+.ssb.data.gov")
 export CKAN_SMTP_REPLY_TO=datagovhelp@gsa.gov
 
 # Set up the collection in Solr
