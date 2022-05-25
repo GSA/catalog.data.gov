@@ -8,7 +8,14 @@ USER root
 #######################
 
 # Add curl to access API routes
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl vim stunnel4 git
+
+# Install EFS Dependencies
+RUN git clone https://github.com/aws/efs-utils && \
+  cd efs-utils && \
+  apt-get -y install binutils && \
+  ./build-deb.sh && \
+  apt-get -y install ./build/amazon-efs-utils*deb
 
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3285
 # Update the angularjs library files
@@ -64,8 +71,11 @@ RUN perl -0777  -i -pe 's/ \
 # Giving ownership to user 'solr'
 RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/data/index
 RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/
-# 
-# Set user to 'solr' for to comply with solr security
-USER solr
+
+# Set user to 'root' since we need to mount EFS volume which requires root
+USER root
+# The user will be set back to 'solr' before solr is started
+# Something like...
+# su -c "init-var-solr; precreate-core ckan /tmp/ckan_config; chown -R 8983:8983 /var/solr/data; solr-fg -m <ram>" -m solr
 
 # CMD ["sh", "-c", "solr-precreate ckan $SOLR_CONFIG_DIR/ckan"]
