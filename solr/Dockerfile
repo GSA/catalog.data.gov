@@ -75,10 +75,9 @@ RUN perl -0777  -i -pe 's/ \
 RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/data/index
 RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/
 
-# Set user to 'root' since we need to mount EFS volume which requires root
-USER root
+# Leave user as 'root' since we need to mount EFS volume which requires root
 # The user will be set back to 'solr' before solr is started
-# Something like...
+# Starting Solr can be done with something like...
 # su -c "init-var-solr; precreate-core ckan /tmp/ckan_config; chown -R 8983:8983 /var/solr/data; solr-fg -m <ram>" -m solr
 
 # CMD ["sh", "-c", "solr-precreate ckan $SOLR_CONFIG_DIR/ckan"]
