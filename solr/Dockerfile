@@ -17,6 +17,9 @@ RUN git clone https://github.com/aws/efs-utils && \
   ./build-deb.sh && \
   apt-get -y install ./build/amazon-efs-utils*deb
 
+# Install hostname resolution dependencies
+RUN apt-get install -y dnsutils
+
 # Fix Issue https://github.com/GSA/datagov-deploy/issues/3285
 # Update the angularjs library files
 ADD https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js \

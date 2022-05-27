@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Comes from https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.9/setup/start_ckan_development.sh
 # This replaces running commands as user ckan and
 # allows the user to run any command they want after ckan is setup
@@ -54,16 +56,14 @@ ckan config-tool $SRC_DIR/ckan/test-core.ini \
 echo "Validating SOLR is up..."
 NEXT_WAIT_TIME=0
 until [ $NEXT_WAIT_TIME -eq 20 ] || curl --get --fail --location-trusted  --user $CKAN_SOLR_USER:$CKAN_SOLR_PASSWORD \
-    $CKAN_SOLR_BASE_URL/solr/admin/collections \
-    --data-urlencode action=list \
-    --data-urlencode wt=json; do
+    $CKAN_SOLR_BASE_URL/solr/admin/cores; do
     sleep $(( NEXT_WAIT_TIME++ ))
     echo "SOLR still not up, trying for the $NEXT_WAIT_TIME time"
 done
 [ $NEXT_WAIT_TIME -lt 20 ]
 
 # Add ckan core to solr
-/app/ckan/setup/migrate-solrcloud-schema.sh $COLLECTION_NAME
+# /app/ckan/setup/migrate-solrcloud-schema.sh $COLLECTION_NAME
 
 # Run the prerun script to init CKAN and create the default admin user
 python GSA_prerun.py

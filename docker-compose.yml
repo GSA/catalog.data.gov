@@ -24,58 +24,15 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    image: ghcr.io/gsa/catalog.data.gov.solr:8-curl
-    environment:
-      - ZK_HOST=zookeeper1:2181,zookeeper2:2182,zookeeper3:2183
-    # ports:
-    #   - "8983:8983"
+    image: ghcr.io/gsa/catalog.data.gov.solr:8-stunnel-root
+    command: /app/solr/local_setup.sh
+    ports:
+      - "8983:8983"
     deploy:
-      replicas: 3
-    depends_on:
-      - zookeeper1
-      - zookeeper2
-      - zookeeper3
-    # volumes:
-    #   - solr_data:/var/solr
-
-  zookeeper1:
-    image: zookeeper:3.7
-    restart: always
-    ports:
-      - 2181:2181
-    hostname: zookeeper1
-    environment:
-      ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 server.2=zookeeper2:2888:3888;2181 server.3=zookeeper3:2888:3888;2181
+      replicas: 1
     volumes:
-      - zookeeperdata:/data
-      - zookeeperdatalog:/datalog
-
-  zookeeper2:
-    image: zookeeper:3.7
-    restart: always
-    ports:
-      - 2182:2181
-    hostname: zookeeper2
-    environment:
-      ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zookeeper1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zookeeper3:2888:3888;2181
-    volumes:
-      - zookeeperdata2:/data
-      - zookeeperdatalog2:/datalog
-
-  zookeeper3:
-    image: zookeeper:3.7
-    restart: always
-    ports:
-      - 2183:2181
-    hostname: zookeeper3
-    environment:
-      ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zookeeper1:2888:3888;2181 server.2=zookeeper2:2888:3888;2181 server.3=0.0.0.0:2888:3888;2181
-    volumes:
-      - zookeeperdata3:/data
-      - zookeeperdatalog3:/datalog
+      - solr_data:/var/solr
+      - .:/app
 
   redis:
     image: redis:alpine
@@ -99,9 +56,4 @@ services:
 volumes:
   ckan_storage:
   pg_data:
-  zookeeperdata:
-  zookeeperdatalog:
-  zookeeperdata2:
-  zookeeperdatalog2:
-  zookeeperdata3:
-  zookeeperdatalog3:
+  solr_data:

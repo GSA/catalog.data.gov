@@ -1,0 +1,14 @@
+{
+  "authentication":{
+  "blockUnknown": true,
+  "class":"solr.BasicAuthPlugin",
+  "credentials":{"catalog":"rJzrn+HooKn79Q+cfysdGKmMhJbtj0Q1bTokFud6f9o= eKuBUjAoBIkJAMYZxJU6HOKSchTAce+DoQrY5Vewu7I="},
+  "realm":"data.gov users",
+  "forwardCredentials": false
+  },
+  "authorization":{
+  "class":"solr.RuleBasedAuthorizationPlugin",
+  "permissions":[{"name":"security-edit", "role":"admin"}],
+  "user-role":{"catalog":"admin"}
+  }
+}
