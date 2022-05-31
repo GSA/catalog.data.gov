@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import requests
 try:
     from urllib.request import urlopen
     from urllib.error import URLError
@@ -20,11 +21,14 @@ def check_solr_connection(retry=None):
         print("[prerun] Giving up after 5 tries...")
         sys.exit(1)
 
-    url = os.environ.get("CKAN_SOLR_URL", "")
+    CKAN_SOLR_USER = os.environ.get("CKAN_SOLR_USER", "")
+    CKAN_SOLR_PASSWORD = os.environ.get("CKAN_SOLR_PASSWORD", "")
+    url = os.environ.get("CKAN_SOLR_URL", "").replace('http://', f'http://{CKAN_SOLR_USER}:{CKAN_SOLR_PASSWORD}@')
     search_url = "{url}/select/?q=*&wt=json".format(url=url)
 
     try:
-        connection = urlopen(search_url)
+        # Using requests to add username and password to URL
+        connection = requests.request("GET", search_url)
     except URLError as e:
         print(str(e))
         print("[prerun] Unable to connect to solr, waiting...")
@@ -32,7 +36,7 @@ def check_solr_connection(retry=None):
         check_solr_connection(retry=retry - 1)
     else:
         try:
-            pythonified = str(connection.read()).replace('true', 'True')
+            pythonified = str(connection.text).replace('true', 'True')
             eval(pythonified)
         except TypeError:
             pass
@@ -51,5 +55,5 @@ if __name__ == "__main__":
         pr.check_datastore_db_connection()
         pr.init_datastore_db()
         # This function does not work, but solr is up
-        # check_solr_connection()
+        check_solr_connection()
         pr.create_sysadmin()
