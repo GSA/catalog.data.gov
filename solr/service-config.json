@@ -2,5 +2,5 @@
     "solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr",
     "solrImageTag": "8-stunnel-root",
     "solrMem": 12288,
-    "solrCpu": 3072
+    "solrCpu": 4096
 }
