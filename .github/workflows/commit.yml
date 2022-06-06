@@ -3,7 +3,18 @@ name: commit
 
 on:
   push:
-
+    paths:
+      - 'ckan'
+      - 'e2e'
+      - 'proxy'
+      - 'tests'
+      - 'postgresql'
+      - 'solr/Dockerfile'
+      - 'solr/local_setup.sh'
+      - 'configure-postgis.py'
+      - 'configure-postgis.sql'
+      - 'docker-compose.test.yml'
+      - 'docker-compose.yml'
 
 jobs:
   test:
