@@ -18,7 +18,7 @@ else
     cf service "${app_name}-redis" > /dev/null 2>&1 || cf create-service aws-elasticache-redis redis-dev "${app_name}-redis"    --wait&
 fi
 # TODO: update if and when the service broker reverts to `ssb-solr-gsa-datagov-<space>`
-cf service "${app_name}-solr"      > /dev/null 2>&1 || cf create-service solr-cloud base "${app_name}-solr" -c solr/service-config.json -b "ssb-solrcloud-gsa-datagov-${space}" --wait&
+cf service "${app_name}-solr"      > /dev/null 2>&1 || cf create-service solr-on-ecs base "${app_name}-solr" -c solr/service-config.json -b "ssb-solrcloud-gsa-datagov-${space}" --wait&
 
 # Wait until all the services are ready
 wait
