@@ -16,10 +16,10 @@ jobs:
         id: verify-changed-files
         with:
           files: |
-            ckan
-            e2e
-            proxy
-            tests
+            ckan/*
+            e2e/*
+            proxy/*
+            tests/*
             postgresql
             solr/Dockerfile
             solr/local_setup.sh
