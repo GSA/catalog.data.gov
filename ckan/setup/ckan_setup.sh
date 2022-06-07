@@ -20,7 +20,7 @@ do
             echo "Found setup.py file in $i"
             # Uninstall any current implementation of the code
             echo uninstalling "${PWD##*/}"
-            pip3 uninstall -y "${PWD##*/}"
+            pip3 uninstall -y "${PWD##*/}" # Add -y
             # Install the extension in editable mode
             pip3 install -e .
             cd $APP_DIR
