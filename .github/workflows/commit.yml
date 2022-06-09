@@ -11,28 +11,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v9.1
-        id: verify-changed-files
-        with:
-          files: |
-            ckan
-            e2e
-            proxy
-            tests
-            postgresql
-            solr/Dockerfile
-            solr/local_setup.sh
-            configure-postgis.py
-            configure-postgis.sql
-            docker-compose.test.yml
-            docker-compose.yml
-
       - name: build
-        if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: make build
       - name: test
-        if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: make test
       - name: cypress-artifacs
         uses: actions/upload-artifact@v2
