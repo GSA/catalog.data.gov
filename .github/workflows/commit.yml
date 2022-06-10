@@ -4,7 +4,6 @@ name: commit
 on:
   push:
 
-
 jobs:
   test:
     name: Build and Test
