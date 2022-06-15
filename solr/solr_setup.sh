@@ -2,8 +2,14 @@
 
 mkdir -p /tmp/ckan_config
 
+SECURITY_FILE=/var/solr/data/security.json
+if [ -f "$SECURITY_FILE" ]; then
+  echo "Solr ckan and authentication are set up already :)"
+  exit 0;
+fi
+
 # add solr authentication
-cat <<SOLRAUTH > /var/solr/data/security.json
+cat <<SOLRAUTH > $SECURITY_FILE
 {
 "authentication":{
    "blockUnknown": true,
