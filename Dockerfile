@@ -9,9 +9,5 @@ RUN apt-get -y update --fix-missing
 RUN apt-get -y install software-properties-common && \
   add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get -y update
-RUN apt-get -y install swig build-essential python-dev libssl-dev python3.10
-
-# Install PIP
-RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-RUN python3 /tmp/get-pip.py
-
+RUN apt-get -y install swig build-essential python-dev libssl-dev python3.9 python3.9-distutils
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9
