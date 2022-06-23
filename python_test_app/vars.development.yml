@@ -1,0 +1,8 @@
+# This is the name to use for the development catalog app in Cloud Foundry
+app_name: python_test_app
+
+web-instances: 1
+gather-instances: 1
+fetch-instances: 1
+memory_quota: 750M
+gather_memory_quota: 1G

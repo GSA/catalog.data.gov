@@ -1,0 +1,11 @@
+---
+# To apply this manifest: cf push --vars-file vars.yml
+applications:
+  - name: ((app_name))
+    buildpack: python_buildpack
+    #path: ./python_test_app
+    instances: 1
+    disk_quota: 256M
+    memory: 256M
+    health-check-type: process
+    command: sleep 1000000
