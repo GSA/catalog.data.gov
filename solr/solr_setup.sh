@@ -2,6 +2,11 @@
 
 mkdir -p /tmp/ckan_config
 
+# Remove any restored EFS backups
+rm -rf /var/solr/data/aws-backup-restore*
+# TODO: replace existing (bad) core with the correct (good) restore directory
+
+# Check if users already exist
 SECURITY_FILE=/var/solr/data/security.json
 if [ -f "$SECURITY_FILE" ]; then
   echo "Solr ckan and authentication are set up already :)"
