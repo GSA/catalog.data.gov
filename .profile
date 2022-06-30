@@ -5,6 +5,9 @@ set -o pipefail
 
 echo "Running setup script..."
 
+echo "Setting CA Bundle.."
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
 echo "java setup"
 
 export JAVA_HOME=/home/vcap/deps/0/apt/usr/lib/jvm/java-11-openjdk-amd64
