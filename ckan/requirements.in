@@ -10,7 +10,8 @@ ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@main
 ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@main
 -e git+https://github.com/ckan/ckanext-harvest.git@89b1a322acfcdabdf3274d3c47dd95291c9c5427#egg=ckanext-harvest
 -e git+https://github.com/gsa/ckanext-spatial.git@datagov#egg=ckanext-spatial
-git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
+# git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
+git+https://github.com/gsa/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
 
 
 # ckanext-harvest dependencies
