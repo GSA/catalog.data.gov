@@ -62,7 +62,6 @@ google_compute_engine==2.8.13
 # GeoAlchemy>=0.6 # Unnecessary
 argparse
 GeoAlchemy2==0.5.0
-lxml>=2.3
 OWSLib==0.18.0
 pyparsing>=2.1.10
 pyproj==2.6.1
@@ -102,6 +101,7 @@ Flask==2.0
 Flask-Babel==1.0.0
 flask-multistatic==1.0
 Jinja2==3.0
+lxml==4.9.1
 PyJWT==1.7.1
 Markdown==3.1.1           # Upgraded from CKAN pin
 passlib==1.7.3
