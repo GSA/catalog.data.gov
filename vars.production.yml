@@ -5,8 +5,8 @@ ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-
 ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.sandbox.idp.xml
 
 web-instances: 5
-gather-instances: 1
-fetch-instances: 1
+gather-instances: 0
+fetch-instances: 0
 memory_quota: 850M
 gather_memory_quota: 3G
 
