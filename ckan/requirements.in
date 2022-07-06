@@ -102,7 +102,7 @@ Flask-Babel==1.0.0
 flask-multistatic==1.0
 Jinja2==3.0
 lxml==4.9.1
-PyJWT==1.7.1
+pyjwt==2.4.0
 Markdown==3.1.1           # Upgraded from CKAN pin
 passlib==1.7.3
 pastedeploy==2.0.1        # manually kept - remove when #4802 is complete
