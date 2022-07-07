@@ -71,6 +71,9 @@ export CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH="${HOME}/${CKANEXT__SAML2AUT
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
 export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
+export CKAN_SQLALCHEMY_POOL_SIZE=0
+export CKAN_SQLALCHEMY_MAX_OVERFLOW=0
+
 export CKAN_STORAGE_PATH=${SHARED_DIR}/files
 export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
