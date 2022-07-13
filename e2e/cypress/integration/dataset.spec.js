@@ -50,8 +50,8 @@ describe('Dataset', () => {
     });
 
     it('Can click on items on the dataset\'s sidebar (e.g. )', () => {
-        cy.visit('/dataset/2019-ridgecrest-ca-m7-1-earthquake-structure-from-motion-data-off-base');
-        cy.get('a[class="heading"]').contains('Web Resource').click();
+        cy.visit('/dataset/ek500-water-column-sonar-data-collected-during-al0001');
+        cy.get('a[class="heading"]').contains('NCEI Contact Information').click();
         cy.get('ul[class="list-unstyled nav nav-simple"] li').eq(1).click();
     });
 })

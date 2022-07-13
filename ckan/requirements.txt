@@ -8,13 +8,13 @@ certifi==2022.6.15
 cffi==1.15.1
 chardet==3.0.4
 ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext_datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@47c8ee24e4b61e69d680295e393a3d3bb971983f#egg=ckanext_datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@4054ac953e0731f0402e678ad6b33e32d15dc249#egg=ckanext_datajson
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@cd3922ad860aa45de01070b425b5a47a7ec3d673#egg=ckanext_datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@09062621ed354e1618d9aca5edf1351a2791deeb#egg=ckanext_datagovtheme
+-e git+https://github.com/GSA/ckanext-datajson.git@eccbdacea4f64a122a8c883427b08447d6056dd4#egg=ckanext_datajson
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@27db0318ccfeb9ffde6ab70357be3572d82092c8
-ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@33f7e190ab332244cb961a425e09af592d9b647b
--e git+https://github.com/GSA/ckanext-geodatagov.git@9482b89da3fde68ff26df4b23febdc2af0605770#egg=ckanext_geodatagov
-ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4
+ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@0ac2f99aadbb9f82f1e69521877a18198c4ab5f9
+-e git+https://github.com/GSA/ckanext-geodatagov.git@9691843d93b8fff9ae032a3bdcb9e9e78dfcf86d#egg=ckanext_geodatagov
+ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@5a22bdab2065c5f679dd69f2b253a1117aadfb93
 -e git+https://github.com/ckan/ckanext-harvest.git@89b1a322acfcdabdf3274d3c47dd95291c9c5427#egg=ckanext_harvest
 ckanext-saml2auth @ git+https://github.com/gsa/ckanext-saml2auth.git@0493d1d7ad321760911bed8b189ecbf02099033d
 -e git+https://github.com/gsa/ckanext-spatial.git@3828c6e7efe7c4b5cef02f4e7163339c7b5c5710#egg=ckanext_spatial
@@ -64,7 +64,7 @@ ply==3.4
 polib==1.0.7
 psycopg2==2.8.6
 pycparser==2.21
-pyjwt==2.4.0
+PyJWT==2.4.0
 pyOpenSSL==20.0.1
 pyparsing==3.0.9
 pyproj==2.6.1

@@ -331,6 +331,56 @@
 				"geospatial"
 			],
 			"title": "Raw HYPACK navigation logs (text) collected by the U.S. Geological Survey - St. Petersburg Coastal and Marine Science Center offshore of the Gulf Islands, MS, 2010"
+		},
+		{
+			"@type": "dcat:Dataset",
+			"title": "ConformsTo ISO Example: TIGER/Line Shapefile, 2013, nation, U.S., Current County and Equivalent National Shapefile",
+			"description": "The TIGER/Line shapefiles and related database files (.dbf) are an extract of selected geographic and cartographic information from the U.S. Census Bureau's Master Address File / Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB represents a seamless national file with no overlaps or gaps between parts, however, each TIGER/Line shapefile is designed to stand alone as an independent data set, or they can be combined to cover the entire nation. The primary legal divisions of most states are termed counties. In Louisiana, these divisions are known as parishes. In Alaska, which has no counties, the equivalent entities are the organized boroughs, city and boroughs, municipalities, and for the unorganized area, census areas. The latter are delineated cooperatively for statistical purposes by the State of Alaska and the Census Bureau. In four states (Maryland, Missouri, Nevada, and Virginia), there are one or more incorporated places that are independent of any county organization and thus constitute primary divisions of their states. These incorporated places are known as independent cities and are treated as equivalent entities for purposes of data presentation. The District of Columbia and Guam have no primary divisions, and each area is considered an equivalent entity for purposes of data presentation. The Census Bureau treats the following entities as equivalents of counties for purposes of data presentation: Municipios in Puerto Rico, Districts and Islands in American Samoa, Municipalities in the Commonwealth of the Northern Mariana Islands, and Islands in the U.S. Virgin Islands. The entire area of the United States, Puerto Rico, and the Island Areas is covered by counties or equivalent entities. The boundaries for counties and equivalent entities are as of January 1of the shapefile release year, primarily as reported through the Census Bureau's Boundary and Annexation Survey (BAS).",
+			"modified": "2013",
+			"bureauCode": [
+				"006:07"
+			],
+			"programCode": [
+				"006:012"
+			],
+			"keyword": [
+				"Nation",
+				"Polygon",
+				"United States",
+				"U.S."
+			],
+			"theme": [
+				"geospatial"
+			],
+			"identifier": "tl_2013_us_county.shp.xml",
+			"accessLevel": "public",
+			"spatial": "[[-14.601813, -179.231086], [71.441059, 179.859681]]",
+			"publisher": {
+				"@type": "org:Organization",
+				"name": "U.S. Department of Commerce, U.S. Census Bureau, Geography Division"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "pointOfContact - U.S. Department of Commerce, U.S. Census Bureau, Geography Division",
+				"hasEmail": "mailto:ask@census.gov"
+			},
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "Census Tiger County Lines for 2013",
+					"downloadURL": "http://www2.census.gov/geo/tiger/TIGER2013/COUNTY/tl_2013_us_county.zip",
+					"mediaType": "application/zip"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "[Anything valid here] Original Metadata",
+					"downloadURL": "https://meta.geo.census.gov/data/existing/decennial/GEO/GPMB/TIGERline/TIGER2013/county/tl_2013_us_county.shp.iso.xml",
+					"conformsTo": "http://www.isotc211.org/2005/gmi",
+					"description": "[Not required] The metadata original format",
+					"mediaType": "text/xml",
+					"format": "XML"
+				}
+			]
 		}
 	]
 }

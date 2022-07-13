@@ -1,5 +1,5 @@
 describe('CKAN Extensions', () => {
-    
+
     it('Uses CKAN 2.9', () => {
         cy.request('/api/action/status_show').should((response) => {
             expect(response.body).to.have.property('success', true);

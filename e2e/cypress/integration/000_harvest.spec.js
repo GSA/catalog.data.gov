@@ -10,7 +10,6 @@ describe('Harvest', () => {
         /**
          * Login as cypress user and create an organization for testing harvest source creation and running the jobs
          */
-        cy.logout()
         cy.login()
         // Make sure organization does not exist before creating
         cy.delete_organization(harvestOrg)
@@ -24,6 +23,7 @@ describe('Harvest', () => {
         Cypress.Cookies.preserveOnce('auth_tkt', 'ckan')
     })
     after(() => {
+        cy.logout()
         /**
          * Do not clear harvest sources so other tests can
          * evaluate the created datasets
@@ -40,32 +40,32 @@ describe('Harvest', () => {
         //cy.get('a[href="/organization/edit/'+harvestOrg+'"]').click()
         cy.visit(`/organization/${harvestOrg}`)
         cy.get('a[class="btn btn-primary"]').click()
-        cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
+        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click()
         cy.get('a[class="btn btn-primary"]').click()
         cy.create_harvest_source('http://nginx-harvest-source/data.json',
-                        dataJsonHarvestSoureName,
-                        'cypress test datajson',
-                        'datajson',
-                        'False',
-                        false)
+            dataJsonHarvestSoureName,
+            'cypress test datajson',
+            'datajson',
+            'False',
+            false)
 
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
         cy.location('pathname').should('eq', '/harvest/' + dataJsonHarvestSoureName)
     })
 
     it('Create a datajson harvest source INVALID', () => {
-        cy.visit('/organization/'+harvestOrg)
+        cy.visit('/organization/' + harvestOrg)
         cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click()
-        cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
+        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click()
         cy.get('a[class="btn btn-primary"]').click()
         cy.create_harvest_source('😀',
-                        'invalid datajson',
-                        'invalid datajson',
-                        'datajson',
-                        'False',
-                        true)
+            'invalid datajson',
+            'invalid datajson',
+            'datajson',
+            'False',
+            true)
         cy.contains('URL: Missing value')
     })
 
@@ -84,18 +84,18 @@ describe('Harvest', () => {
         /**
          * Create a WAF ISO Harvest Source
          */
-        cy.visit('/organization/'+harvestOrg)
+        cy.visit('/organization/' + harvestOrg)
         cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click()
-        cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
+        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click()
         cy.get('a[class="btn btn-primary"]').click()
         cy.create_harvest_source('http://nginx-harvest-source/iso-waf/',
-           wafIsoHarvestSourceName,
-           'cypress test waf iso',
-           'waf',
-           'False',
-           false)
+            wafIsoHarvestSourceName,
+            'cypress test waf iso',
+            'waf',
+            'False',
+            false)
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
         cy.location('pathname').should('eq', '/harvest/' + wafIsoHarvestSourceName)
     })
@@ -116,18 +116,18 @@ describe('Harvest', () => {
         /**
          * Create a WAF ISO Harvest Source
          */
-        cy.visit('/organization/'+harvestOrg)
+        cy.visit('/organization/' + harvestOrg)
         cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click()
-        cy.get('a[href="/harvest?organization='+harvestOrg+'"]').click()
+        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click()
         cy.get('a[class="btn btn-primary"]').click()
         cy.create_harvest_source('http://nginx-harvest-source/fgdc-waf/',
             wafFgdcHarvestSourceName,
-           'cypress test waf FGDC',
-           'waf',
-           'False',
-           false)
+            'cypress test waf FGDC',
+            'waf',
+            'False',
+            false)
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
         cy.location('pathname').should('eq', '/harvest/' + wafFgdcHarvestSourceName)
     })
@@ -150,15 +150,15 @@ describe('Harvest', () => {
          * https://catalog.data.gov/harvest?source_type=csw
          */
         cy.visit(`/harvest/new`);
-        
+
         cy.hide_debug_toolbar();
 
-        cy.create_harvest_source('https://portal.opentopography.org/geoportal/csw',
-                        cswHarvestSourceName,
-                        'cypress test csw',
-                        'csw',
-                        'False',
-                        false)
+        cy.create_harvest_source('https://geonode.state.gov/catalogue/csw',
+            cswHarvestSourceName,
+            'cypress test csw',
+            'csw',
+            'False',
+            false)
 
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
         cy.location('pathname').should('eq', '/harvest/' + cswHarvestSourceName)

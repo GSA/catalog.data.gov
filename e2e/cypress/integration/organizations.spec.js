@@ -1,13 +1,16 @@
 describe('Organization', () => {
+
     before(() => {
-        cy.logout()
         cy.login()
     })
+
     beforeEach(() => {
         Cypress.Cookies.preserveOnce('auth_tkt', 'ckan')
     })
+
     after(() => {
         cy.delete_organization('cypress-test-org')
+        cy.logout()
     })
 
     it('Create Organization', () => {
@@ -23,13 +26,13 @@ describe('Organization', () => {
         cy.contains('0')
         cy.get('a[href="/organization/cypress-test-org"]')
     })
-    
+
     it('Edit Organization Description', () => {
         cy.visit('/organization/edit/cypress-test-org')
         cy.get('#field-description').clear()
         cy.get('#field-description').type('the new description')
         cy.hide_debug_toolbar();
-        
+
         cy.get('button[name=save]').click()
     })
 })

@@ -1,14 +1,18 @@
 describe('Facets', () => {
+    
     before(() => {
-        cy.logout()
         cy.login()
     })
+    
     beforeEach(() => {
         Cypress.Cookies.preserveOnce('auth_tkt', 'ckan')
     })
+    
     after(() => {
         cy.delete_organization('org-tags');
         cy.delete_group('group-facets');
+        cy.logout()
+
     })
 
     it('Show datagov facet list on dataset page', () => {

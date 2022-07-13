@@ -1,5 +1,5 @@
 describe('Main Page', () => {
-    
+
     it('Redirects from / to /dataset', () => {
         cy.visit('/')
         cy.url().should(
@@ -17,6 +17,5 @@ describe('Main Page', () => {
         cy.request('/dataset').then((response) => {
             expect(response.body).to.have.string('UA-1010101-1')
         })
-        // cy.contains()
     });
 })
