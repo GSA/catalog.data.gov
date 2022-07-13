@@ -1,5 +1,4 @@
 {
     "baseUrl": "http://ckan:5000",
-    "chromeWebSecurity": false,
     "videoCompression": false
 }
