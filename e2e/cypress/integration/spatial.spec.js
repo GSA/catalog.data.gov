@@ -1,4 +1,19 @@
 describe('Spatial', () => {
+    before(() => {
+        cy.login();
+    });
+
+    beforeEach(() => {
+        /**
+         * Preserve the cookies to stay logged in
+         */
+        Cypress.Cookies.preserveOnce('auth_tkt', 'ckan');
+    });
+
+    after(() => {
+        cy.logout();
+    });
+
     it('Can search geographies by name', () => {
         cy.request('/api/3/action/location_search?q=california').should((response) => {
             expect(response.body).to.have.property('success', true);
@@ -9,10 +24,10 @@ describe('Spatial', () => {
     it('The map view works and can draw box and search', () => {
         cy.visit('/dataset');
         cy.get('.leaflet-draw-draw-rectangle').click();
-        cy.get('#dataset-map-edit-buttons').find('.disabled')
+        cy.get('#dataset-map-edit-buttons').find('.disabled');
         cy.get('#dataset-map-container')
-            .trigger('mousedown', {which: 1})
-            .trigger('mousemove', {clientX: 500, clientY: 153})
+            .trigger('mousedown', { which: 1 })
+            .trigger('mousemove', { clientX: 500, clientY: 153 })
             .trigger('mouseup');
         // hide the overlaying debugging layer to expose the apply button
         if (cy.get('#flHideToolBarButton')) {
@@ -38,24 +53,40 @@ describe('Spatial', () => {
 
     it('Can put a package with weird tags in an group', () => {
         const group_name = 'climate';
-        cy.logout();
-        cy.login();
         cy.delete_group(group_name);
-        cy.create_group(group_name, "Climate Group");
+        cy.create_group(group_name, 'Climate Group');
         cy.request({
             url: '/api/action/package_patch',
             method: 'POST',
             body: {
-                "id": "nefsc-2000-spring-bottom-trawl-survey-al0002-ek500",
-                "groups": [{"name": group_name}]
-            }
+                id: 'nefsc-2000-spring-bottom-trawl-survey-al0002-ek500',
+                groups: [{ name: group_name }],
+            },
         }).should((response) => {
             expect(response.body).to.have.property('success', true);
-            expect(response.body.result.groups[0]).to.have.property("name", "climate");
+            expect(response.body.result.groups[0]).to.have.property('name', 'climate');
 
             // Cleanup
             cy.delete_group(group_name);
-            cy.logout();
-        })
-    })
+        });
+    });
+
+    it('Can parse a harvest source with spacial tags in a list', () => {
+        cy.request(
+            '/api/action/package_show?id=conformsto-iso-example-tiger-line-shapefile-2013-nation-u-s-current-county-and-equivalent-'
+        ).should((response) => {
+            let extras = response.body.result.extras;
+            let spatail_info = {};
+            for (let extra of response.body.result.extras) {
+                if (['old-spatial', 'spatial'].includes(extra.key)) {
+                    spatail_info[extra.key] = extra.value;
+                }
+            }
+            expect(spatail_info).to.have.property('old-spatial', '[[-14.601813, -179.231086], [71.441059, 179.859681]]');
+            expect(spatail_info).to.have.property(
+                'spatial',
+                '{"type": "Polygon", "coordinates": [[[-14.601813, -179.231086], [-14.601813, 179.859681], [71.441059, 179.859681], [71.441059, -179.231086], [-14.601813, -179.231086]]]}'
+            );
+        });
+    });
 });
