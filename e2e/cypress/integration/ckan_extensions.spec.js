@@ -1,11 +1,13 @@
 describe('CKAN Extensions', () => {
-
     it('Uses CKAN 2.9', () => {
         cy.request('/api/action/status_show').should((response) => {
             expect(response.body).to.have.property('success', true);
-            expect(response.body.result).to.have.property('ckan_version', '2.9.5');
+            expect(response.body.result).to.have.property(
+                'ckan_version',
+                '2.9.5'
+            );
         });
-    })
+    });
 
     it('Has all necessary extensions installed', () => {
         cy.request('/api/action/status_show').should((response) => {
@@ -23,14 +25,18 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('geodatagov_miscs');
             expect(installed_extensions).to.include('z3950_harvester');
             expect(installed_extensions).to.include('arcgis_harvester');
-            expect(installed_extensions).to.include('geodatagov_geoportal_harvester');
+            expect(installed_extensions).to.include(
+                'geodatagov_geoportal_harvester'
+            );
             expect(installed_extensions).to.include('waf_harvester_collection');
             expect(installed_extensions).to.include('geodatagov_csw_harvester');
             expect(installed_extensions).to.include('geodatagov_doc_harvester');
             expect(installed_extensions).to.include('geodatagov_waf_harvester');
             expect(installed_extensions).to.include('spatial_metadata');
             expect(installed_extensions).to.include('spatial_query');
-            expect(installed_extensions).to.include('spatial_harvest_metadata_api');
+            expect(installed_extensions).to.include(
+                'spatial_harvest_metadata_api'
+            );
             expect(installed_extensions).to.include('googleanalyticsbasic');
             expect(installed_extensions).to.include('dcat');
             expect(installed_extensions).to.include('dcat_json_interface');
@@ -42,5 +48,5 @@ describe('CKAN Extensions', () => {
             // expect(installed_extensions).to.include('archiver');
             // expect(installed_extensions).to.include('qa');
         });
-    })
-})
+    });
+});
