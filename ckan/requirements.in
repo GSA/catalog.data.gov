@@ -7,7 +7,7 @@ ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@master
 # git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
 git+https://github.com/gsa/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
 
-ckanext-datagovcatalog>=0.0.2
+ckanext-datagovcatalog>=0.0.3
 ckanext-datagovtheme
 ckanext-datajson
 ckanext-envvars>=0.0.2
