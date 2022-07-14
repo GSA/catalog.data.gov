@@ -23,9 +23,6 @@ pyOpenSSL==20.0.1
 # requests>=2.11.1 # included in ckan core
 # six>=1.12.0 # included in dcat
 
-# ckanext-datagovtheme
-# future==* # included in dcat
-
 # ckanext-archiver
 # celery==3.1.25
 # kombu==3.0.37
@@ -33,9 +30,6 @@ pyOpenSSL==20.0.1
 
 # ckanext-geodatagov
 PyZ3950 @ git+https://github.com/danizen/PyZ3950
-
-# required to boto plugin to upload to S3 in some internal commands
-# google_compute_engine==2.8.13
 
 # ckanext-spatial
 # GeoAlchemy>=0.6 # Unnecessary
