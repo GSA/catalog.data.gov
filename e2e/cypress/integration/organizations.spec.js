@@ -15,10 +15,7 @@ describe('Organization', () => {
     it('Create Organization', () => {
         cy.visit('/organization');
         cy.get('a[class="btn btn-primary"]').click();
-        cy.create_organization_ui(
-            'cypress-test-org',
-            'cypress test description'
-        );
+        cy.create_organization_ui('cypress-test-org', 'cypress test description');
         cy.visit('/organization/cypress-test-org');
     });
 

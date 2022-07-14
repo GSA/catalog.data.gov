@@ -3,10 +3,7 @@ describe('Login', () => {
         cy.visit('/dataset');
         cy.get('a[href="/user/login"]').click();
         cy.login('not-user', 'not-password', true);
-        cy.get('.flash-messages .alert').should(
-            'contain',
-            'Login failed. Bad username or password.'
-        );
+        cy.get('.flash-messages .alert').should('contain', 'Login failed. Bad username or password.');
         // Validate cookie is not set
         cy.getCookie('auth_tkt').should('not.exist');
     });

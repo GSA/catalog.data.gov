@@ -14,11 +14,7 @@ describe('Harvest', () => {
         // Make sure organization does not exist before creating
         cy.delete_organization(harvestOrg);
         // Create the organization
-        cy.create_organization(
-            harvestOrg,
-            'cypress harvest org description',
-            false
-        );
+        cy.create_organization(harvestOrg, 'cypress harvest org description', false);
     });
     beforeEach(() => {
         /**
@@ -56,10 +52,7 @@ describe('Harvest', () => {
         );
 
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
-        cy.location('pathname').should(
-            'eq',
-            '/harvest/' + dataJsonHarvestSoureName
-        );
+        cy.location('pathname').should('eq', '/harvest/' + dataJsonHarvestSoureName);
     });
 
     it('Create a datajson harvest source INVALID', () => {
@@ -69,14 +62,7 @@ describe('Harvest', () => {
         cy.get('a[class="btn btn-primary"]').click();
         cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
         cy.get('a[class="btn btn-primary"]').click();
-        cy.create_harvest_source(
-            '😀',
-            'invalid datajson',
-            'invalid datajson',
-            'datajson',
-            'False',
-            true
-        );
+        cy.create_harvest_source('😀', 'invalid datajson', 'invalid datajson', 'datajson', 'False', true);
         cy.contains('URL: Missing value');
     });
 
@@ -110,10 +96,7 @@ describe('Harvest', () => {
             false
         );
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
-        cy.location('pathname').should(
-            'eq',
-            '/harvest/' + wafIsoHarvestSourceName
-        );
+        cy.location('pathname').should('eq', '/harvest/' + wafIsoHarvestSourceName);
     });
 
     it('Keeps the Dataset visilibity flag', () => {
@@ -146,10 +129,7 @@ describe('Harvest', () => {
             false
         );
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
-        cy.location('pathname').should(
-            'eq',
-            '/harvest/' + wafFgdcHarvestSourceName
-        );
+        cy.location('pathname').should('eq', '/harvest/' + wafFgdcHarvestSourceName);
     });
 
     it('Start WAF FGDC Harvest Job', () => {
@@ -183,10 +163,7 @@ describe('Harvest', () => {
         );
 
         // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
-        cy.location('pathname').should(
-            'eq',
-            '/harvest/' + cswHarvestSourceName
-        );
+        cy.location('pathname').should('eq', '/harvest/' + cswHarvestSourceName);
     });
 
     it('Start CSW Harvest Job', () => {
