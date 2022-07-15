@@ -15,10 +15,10 @@ ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@27db0318ccfeb9ffde6ab703
 ckanext-envvars==0.0.2
 ckanext-geodatagov==0.1.2
 ckanext-googleanalyticsbasic==0.1.0
--e git+https://github.com/ckan/ckanext-harvest.git@89b1a322acfcdabdf3274d3c47dd95291c9c5427#egg=ckanext_harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@7b6097ad987d7d55780ee6d6f2129602b9bea870#egg=ckanext_harvest
 ckanext-saml2auth @ git+https://github.com/gsa/ckanext-saml2auth.git@0493d1d7ad321760911bed8b189ecbf02099033d
 -e git+https://github.com/gsa/ckanext-spatial.git@3828c6e7efe7c4b5cef02f4e7163339c7b5c5710#egg=ckanext_spatial
-ckantoolkit==0.0.3
+ckantoolkit==0.0.7
 click==7.1.2
 cryptography==37.0.4
 defusedxml==0.7.1
