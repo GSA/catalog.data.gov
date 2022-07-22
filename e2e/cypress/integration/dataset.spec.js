@@ -1,6 +1,6 @@
 describe('Dataset', () => {
     // Uses datasets from data.json local harvest to check
-    
+
     it('Has a details page with core metadata', () => {
         cy.visit('/dataset/data-gov-statistics-parent');
         cy.contains('Data.gov Statistics Parent');
@@ -17,7 +17,7 @@ describe('Dataset', () => {
         // Click on the resource link
         cy.contains('2015 GSA Common Baseline Implementation Plan...').click();
         cy.contains('About this Resource');
-        cy.contains("Download");
+        cy.contains('Download');
     });
 
     it('Can get harvest information via API', () => {
@@ -26,8 +26,8 @@ describe('Dataset', () => {
             // CKAN extras are complicated to parse, make sure we have
             //  the necessary harvest info
             let harvest_info = {};
-            for (let extra of response.body.result.extras) { 
-                if(extra.key.includes('harvest_')) {
+            for (let extra of response.body.result.extras) {
+                if (extra.key.includes('harvest_')) {
                     harvest_info[extra.key] = true;
                 }
             }
@@ -46,12 +46,12 @@ describe('Dataset', () => {
     it('Can click on Show More Tags on the sidebar (e.g. tags filter)', () => {
         cy.visit('/dataset');
         cy.contains('Show More Tags').click();
-        cy.url().should('include', '?_tags_limit=0')
+        cy.url().should('include', '?_tags_limit=0');
     });
 
-    it('Can click on items on the dataset\'s sidebar (e.g. )', () => {
-        cy.visit('/dataset/2019-ridgecrest-ca-m7-1-earthquake-structure-from-motion-data-off-base');
-        cy.get('a[class="heading"]').contains('Web Resource').click();
+    it("Can click on items on the dataset's sidebar (e.g. )", () => {
+        cy.visit('/dataset/ek500-water-column-sonar-data-collected-during-al0001');
+        cy.get('a[class="heading"]').contains('NCEI Contact Information').click();
         cy.get('ul[class="list-unstyled nav nav-simple"] li').eq(1).click();
     });
-})
+});

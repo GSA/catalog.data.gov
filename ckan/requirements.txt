@@ -8,22 +8,21 @@ certifi==2022.6.15
 cffi==1.15.1
 chardet==3.0.4
 ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@64e65702ae1eb5e46d9f37139dc4044c0f253526#egg=ckanext_datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@47c8ee24e4b61e69d680295e393a3d3bb971983f#egg=ckanext_datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@4054ac953e0731f0402e678ad6b33e32d15dc249#egg=ckanext_datajson
+ckanext-datagovcatalog==0.0.3
+ckanext-datagovtheme==0.1.0
+ckanext-datajson==0.1.1
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@27db0318ccfeb9ffde6ab70357be3572d82092c8
-ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@33f7e190ab332244cb961a425e09af592d9b647b
--e git+https://github.com/GSA/ckanext-geodatagov.git@9482b89da3fde68ff26df4b23febdc2af0605770#egg=ckanext_geodatagov
-ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@c6a425d5e14d658c0fa3661fdc4423162161c3f4
--e git+https://github.com/ckan/ckanext-harvest.git@89b1a322acfcdabdf3274d3c47dd95291c9c5427#egg=ckanext_harvest
+ckanext-envvars==0.0.2
+ckanext-geodatagov==0.1.2
+ckanext-googleanalyticsbasic==0.1.0
+-e git+https://github.com/ckan/ckanext-harvest.git@7b6097ad987d7d55780ee6d6f2129602b9bea870#egg=ckanext_harvest
 ckanext-saml2auth @ git+https://github.com/gsa/ckanext-saml2auth.git@0493d1d7ad321760911bed8b189ecbf02099033d
 -e git+https://github.com/gsa/ckanext-spatial.git@3828c6e7efe7c4b5cef02f4e7163339c7b5c5710#egg=ckanext_spatial
-ckantoolkit==0.0.3
+ckantoolkit==0.0.7
 click==7.1.2
 cryptography==37.0.4
 defusedxml==0.7.1
 Deprecated==1.2.13
-distro==1.7.0
 dominate==2.4.0
 elementpath==2.5.3
 fanstatic==1.1
@@ -35,7 +34,6 @@ future==0.18.2
 GeoAlchemy2==0.5.0
 geomet==0.3.0
 gevent==21.12.0
-google-compute-engine==2.8.13
 greenlet==1.1.2
 gunicorn==20.1.0
 html5lib==1.1
@@ -46,7 +44,6 @@ itsdangerous==2.1.2
 Jinja2==3.0.0
 json-table-schema==0.2.1
 jsonschema==2.4.0
-LEPL==5.1.3
 lxml==4.9.1
 Mako==1.2.1
 Markdown==3.1.1
@@ -60,11 +57,11 @@ passlib==1.7.3
 PasteDeploy==2.0.1
 pathtools==0.1.2
 pika==1.3.0
-ply==3.4
+ply==3.11
 polib==1.0.7
 psycopg2==2.8.6
 pycparser==2.21
-pyjwt==2.4.0
+PyJWT==2.4.0
 pyOpenSSL==20.0.1
 pyparsing==3.0.9
 pyproj==2.6.1
@@ -102,6 +99,6 @@ Werkzeug==2.0.0
 wrapt==1.14.1
 xlrd==2.0.1
 xmlschema==1.11.3
-zipp==3.8.0
+zipp==3.8.1
 zope.event==4.5.0
 zope.interface==5.4.0

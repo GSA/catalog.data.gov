@@ -1,11 +1,10 @@
 describe('CKAN Extensions', () => {
-    
     it('Uses CKAN 2.9', () => {
         cy.request('/api/action/status_show').should((response) => {
             expect(response.body).to.have.property('success', true);
             expect(response.body.result).to.have.property('ckan_version', '2.9.5');
         });
-    })
+    });
 
     it('Has all necessary extensions installed', () => {
         cy.request('/api/action/status_show').should((response) => {
@@ -42,5 +41,5 @@ describe('CKAN Extensions', () => {
             // expect(installed_extensions).to.include('archiver');
             // expect(installed_extensions).to.include('qa');
         });
-    })
-})
+    });
+});
