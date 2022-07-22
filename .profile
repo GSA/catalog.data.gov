@@ -57,6 +57,7 @@ SHARED_DIR=$(mktemp -d)
 
 # We need to know the application name ...
 export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
+export REAL_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
 if [[ $APP_NAME = "catalog-gather" ]] || [[ $APP_NAME = "catalog-fetch" ]]; then
   APP_NAME=catalog
 fi
@@ -79,7 +80,13 @@ export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CK
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
 export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
-export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain)
+
+# Use follower url for web instances; leader url for gather and fetch instances
+if [[ $REAL_NAME = "catalog-gather" ]] || [[ $REAL_NAME = "catalog-fetch" ]]; then
+  export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain)
+else
+  export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain_replica)
+fi
 export CKAN_SOLR_USER=$(vcap_get_service solr .credentials.username)
 export CKAN_SOLR_PASSWORD=$(vcap_get_service solr .credentials.password)
 
