@@ -305,7 +305,7 @@
     <int name="maxNumberOfBackups">2</int>
     <str name="commitReserveDuration">00:00:10</str>
     <lst name="invariants">
-      <str name="maxWriteMBPerSec">5</str>
+      <str name="maxWriteMBPerSec">20</str>
     </lst>
   </requestHandler>
 </config>
