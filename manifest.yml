@@ -12,7 +12,7 @@ applications:
       - ((app_name))-solr
       - sysadmin-users
     routes:
-      - route: ((routes-internal))
+      - route: ((route-internal))
     health-check-type: http
     health-check-http-endpoint: /dataset
     health-check-invocation-timeout: 30
@@ -27,7 +27,7 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: https://((routes-external))
+      CKAN_SITE_URL: https://((route-external))
 
   - name: ((app_name))-proxy
     buildpacks:
@@ -36,11 +36,11 @@ applications:
     # TODO: tweak with load testing
     memory: 100M
     routes:
-      - route: ((routes-external))
+      - route: ((route-external))
     env:
-      PUBLIC_ROUTE: ((routes-public))
-      EXTERNAL_ROUTE: ((routes-external))
-      INTERNAL_ROUTE: ((routes-internal))
+      PUBLIC_ROUTE: ((route-public))
+      EXTERNAL_ROUTE: ((route-external))
+      INTERNAL_ROUTE: ((route-internal))
 
   - name: ((app_name))-gather
     buildpacks:
@@ -66,7 +66,7 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: https://((routes-external))
+      CKAN_SITE_URL: https://((route-external))
 
   - name: ((app_name))-fetch
     buildpacks:
@@ -90,4 +90,4 @@ applications:
       NEW_RELIC_APP_NAME: ((new_relic_app_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: https://((routes-external))
+      CKAN_SITE_URL: https://((route-external))
