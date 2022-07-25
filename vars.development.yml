@@ -12,8 +12,9 @@ gather_memory_quota: 1G
 
 new_relic_app_name: catalog (develop)
 new_relic_monitor_mode: false
-  
-route-public:
+
+# use CDN domain for route-public if available, otherwise use router-external 
+route-public: d2jqk88ququ1n9.cloudfront.net
 route-external: catalog-dev-datagov.app.cloud.gov
 route-internal: catalog-dev-datagov.apps.internal
 
