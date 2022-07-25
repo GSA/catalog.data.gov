@@ -1,7 +1,7 @@
 ---
 # To apply this manifest: cf push --vars-file vars.yml
 applications:
-  - name: ((app_name))
+  - name: ((app_name))-web
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
       - python_buildpack
