@@ -76,4 +76,4 @@ jobs:
        - name: smoke test
          run: |
            sleep 10
-           curl -H "Host: catalog.data.gov" --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+           curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
