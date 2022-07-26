@@ -13,7 +13,7 @@ gather_memory_quota: 3G
 new_relic_app_name: catalog
 new_relic_monitor_mode: true
 
-# use CDN domain for route-public if available, otherwise use router-external 
+# use CDN domain for route-public if available, otherwise use route-external 
 route-public: drclmjip6pfj0.cloudfront.net
 route-external: catalog-prod-datagov.app.cloud.gov
 route-internal: catalog-prod-datagov.apps.internal
