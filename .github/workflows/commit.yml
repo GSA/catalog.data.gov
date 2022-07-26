@@ -87,7 +87,7 @@ jobs:
       - name: deploy
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push catalog --vars-file vars.development.yml --strategy rolling
+          command: cf push catalog-web --vars-file vars.development.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
