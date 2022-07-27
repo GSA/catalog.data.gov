@@ -18,8 +18,8 @@ new_relic_monitor_mode: true
 route-public: d1u59lafwydg4a.cloudfront.net
 route-external: catalog-stage-datagov.app.cloud.gov
 route-internal: catalog-stage-datagov.apps.internal
-route-external-admin: catalog-dev-admin-datagov.app.cloud.gov
-route-internal-admin: catalog-dev-admin-datagov.apps.internal
+route-external-admin: catalog-stage-admin-datagov.app.cloud.gov
+route-internal-admin: catalog-stage-admin-datagov.apps.internal
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
