@@ -13,10 +13,18 @@ jobs:
    #   steps:
    #     - name: checkout
    #       uses: actions/checkout@v2
-   #     - name: restart
+   #     - name: restart catalog-web
    #       uses: cloud-gov/cg-cli-tools@main
    #       with:
    #         command: cf restart catalog-web --strategy rolling
+   #         cf_org: gsa-datagov
+   #         cf_space: staging
+   #         cf_username: ${{secrets.CF_SERVICE_USER}}
+   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
+   #     - name: restart catalog-adin
+   #       uses: cloud-gov/cg-cli-tools@main
+   #       with:
+   #         command: cf restart catalog-admin --strategy rolling
    #         cf_org: gsa-datagov
    #         cf_space: staging
    #         cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -49,10 +57,18 @@ jobs:
      steps:
        - name: checkout
          uses: actions/checkout@v2
-       - name: restart
+       - name: restart catalog-web
          uses: cloud-gov/cg-cli-tools@main
          with:
            command: cf restart catalog-web --strategy rolling
+           cf_org: gsa-datagov
+           cf_space: prod
+           cf_username: ${{secrets.CF_SERVICE_USER}}
+           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+       - name: restart catalog-admin
+         uses: cloud-gov/cg-cli-tools@main
+         with:
+           command: cf restart catalog-admin --strategy rolling
            cf_org: gsa-datagov
            cf_space: prod
            cf_username: ${{secrets.CF_SERVICE_USER}}
