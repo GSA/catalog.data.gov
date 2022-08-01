@@ -21,7 +21,7 @@ jobs:
    #         cf_space: staging
    #         cf_username: ${{secrets.CF_SERVICE_USER}}
    #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     - name: restart catalog-adin
+   #     - name: restart catalog-admin
    #       uses: cloud-gov/cg-cli-tools@main
    #       with:
    #         command: cf restart catalog-admin --strategy rolling
