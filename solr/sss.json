@@ -1,9 +1,0 @@
-{
-    "solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr",
-    "solrImageTag": "8-stunnel-root",
-    "solrMem": 28672,
-    "solrCpu": 4096,
-    "solrFollowerCount": 1,
-    "disableEfs": true,
-    "disableEfsFollower": true
-}
