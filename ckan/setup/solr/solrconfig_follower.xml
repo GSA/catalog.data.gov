@@ -297,15 +297,14 @@
     <str name="content-type">text/plain; charset=UTF-8</str>
   </queryResponseWriter>
   <requestHandler name="/replication" class="solr.ReplicationHandler">
-    <lst name="leader">
-      <str name="replicateAfter">optimize</str>
-      <str name="backupAfter">optimize</str>
-      <str name="confFiles">schema.xml,stopwords.txt,synonyms.txt,protwords.txt</str>
+    <lst name="follower">
+      <str name="leaderUrl">SOLR_REPLICATION_LEADER_URL</str>
+      <str name="pollInterval">00:00:20</str>
+      <str name="compression">internal</str>
+      <str name="httpConnTimeout">5000</str>
+      <str name="httpReadTimeout">10000</str>
+      <str name="httpBasicAuthUser">SOLR_REPLICATION_LEADER_USER</str>
+      <str name="httpBasicAuthPassword">SOLR_REPLICATION_LEADER_PASSWORD</str>
     </lst>
-    <int name="maxNumberOfBackups">2</int>
-    <str name="commitReserveDuration">00:00:10</str>
-    <lst name="invariants">
-      <str name="maxWriteMBPerSec">20</str>
-    </lst>
-  </requestHandler>
+  </requestHandler> 
 </config>

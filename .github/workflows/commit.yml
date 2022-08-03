@@ -4,7 +4,6 @@ name: commit
 on:
   push:
 
-
 jobs:
   test:
     name: Build and Test
@@ -85,15 +84,31 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy
+      - name: deploy web
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push catalog --vars-file vars.development.yml --strategy rolling
+          command: cf push catalog-web --vars-file vars.development.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy-gather
+      - name: deploy proxy
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: cf push catalog-proxy --vars-file vars.development.yml --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy admin
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: cf push catalog-admin --vars-file vars.development.yml --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy gather
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-gather --vars-file vars.development.yml
@@ -101,7 +116,7 @@ jobs:
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy-fetch
+      - name: deploy fetch
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-fetch --vars-file vars.development.yml

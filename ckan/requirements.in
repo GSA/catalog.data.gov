@@ -1,35 +1,27 @@
 
 # CKAN requirements and extensions
 ckan @ git+https://github.com/ckan/ckan.git@ckan-2.9.5
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@main#egg=ckanext-datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@main#egg=ckanext-datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@main#egg=ckanext-datajson
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@master
-ckanext-envvars @ git+https://github.com/GSA/ckanext-envvars.git@main
--e git+https://github.com/GSA/ckanext-geodatagov.git@main#egg=ckanext-geodatagov
-ckanext-googleanalyticsbasic @ git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@main
--e git+https://github.com/GSA/ckanext-harvest.git@render-jinja2#egg=ckanext-harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest
 -e git+https://github.com/gsa/ckanext-spatial.git@datagov#egg=ckanext-spatial
-git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
+# git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
+git+https://github.com/gsa/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
+
+ckanext-datagovcatalog>=0.0.3
+ckanext-datagovtheme
+ckanext-datajson
+ckanext-envvars>=0.0.2
+ckanext-geodatagov>=0.1.2
+ckanext-googleanalyticsbasic
 
 
 # ckanext-harvest dependencies
-ckantoolkit==0.0.3
+ckantoolkit>=0.0.7
 pika>=1.1.0
 pyOpenSSL==20.0.1
 # redis==2.10.6 # included in ckan core
 # requests>=2.11.1 # included in ckan core
 # six>=1.12.0 # included in dcat
-
-# ckanext-datagovtheme
-# future==* # included in dcat
-
-# ckanext-datajson
-# pyyaml==5.4 # Already included in ckan requirements
-lepl
-jsonschema==2.4.0
-rfc3987
-# future # included in dcat
 
 # ckanext-archiver
 # celery==3.1.25
@@ -38,30 +30,11 @@ rfc3987
 
 # ckanext-geodatagov
 PyZ3950 @ git+https://github.com/danizen/PyZ3950
-# pip equivalent:
-# pip install -e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
-boto
-# ckantoolkit==0.0.3 # included in harvest
-# future==0.18.2 # included in dcat
-# geoalchemy2==0.5.0 # included in spatial
-# jsonschema==2.4.0 # included in datajson
-# OWSLib==0.18.0 # included in spatial
-# pika # included in harvest
-ply==3.4
-# pyOpenSSL # included in spatial
-# pyproj==2.6.1 # included in spatial
-# pyyaml==5.4 # included in ckan core
-# shapely==1.7.1 # included in spatial
-# six==1.16.0 # included in dcat
-
-# required to boto plugin to upload to S3 in some internal commands
-google_compute_engine==2.8.13
 
 # ckanext-spatial
 # GeoAlchemy>=0.6 # Unnecessary
 argparse
 GeoAlchemy2==0.5.0
-lxml>=2.3
 OWSLib==0.18.0
 pyparsing>=2.1.10
 pyproj==2.6.1
@@ -101,7 +74,8 @@ Flask==2.0
 Flask-Babel==1.0.0
 flask-multistatic==1.0
 Jinja2==3.0
-PyJWT==1.7.1
+lxml==4.9.1
+pyjwt==2.4.0
 Markdown==3.1.1           # Upgraded from CKAN pin
 passlib==1.7.3
 pastedeploy==2.0.1        # manually kept - remove when #4802 is complete

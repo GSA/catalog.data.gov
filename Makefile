@@ -21,7 +21,8 @@ copy-src:
 
 cypress:
 	# Turn on local system, and open cypress in interactive mode
-	docker-compose up -d && cd e2e && CYPRESS_USER=admin CYPRESS_USER_PASSWORD=password CYPRESS_BASE_URL=http://localhost:5000 npx cypress open
+	# If you haven't remapped localhost > ckan, you should change baseURL to "http://localhost:5000" in `e2e/cypress.json`
+	docker-compose up -d && cd e2e && CYPRESS_USER=admin CYPRESS_USER_PASSWORD=password npx cypress@7.3.0 open
 
 dev:
 	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/

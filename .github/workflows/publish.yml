@@ -108,15 +108,23 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy-ckan
+      - name: deploy web
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push catalog --vars-file vars.staging.yml --strategy rolling
+          command: cf push catalog-web --vars-file vars.staging.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy-proxy
+      - name: deploy admin
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: cf push catalog-admin --vars-file vars.staging.yml --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy proxy
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: cf push catalog-proxy --vars-file vars.staging.yml --strategy rolling
@@ -208,7 +216,15 @@ jobs:
       - name: deploy-ckan
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push catalog --vars-file vars.production.yml --strategy rolling
+          command: cf push catalog-web --vars-file vars.production.yml --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: deploy-ckan-admin
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: cf push catalog-admin --vars-file vars.production.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -224,7 +240,7 @@ jobs:
       - name: smoke test
         run: |
           sleep 10
-          curl -H "Host: catalog.data.gov" --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+          curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
 
   deploy-production-gather:
     name: deploy catalog-gather (production)

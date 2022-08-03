@@ -1,16 +1,12 @@
 describe('Cleanup site', () => {
-    const harvestOrg = 'test-harvest-org'
-    const dataJsonHarvestSoureName = 'test-harvest-datajson'
-    const wafIsoHarvestSourceName = 'test-harvest-waf-iso'
-    const wafFgdcHarvestSourceName = 'test-harvest-waf-fgdc'
-    const cswHarvestSourceName = 'test-harvest-csw'
+    const harvestOrg = 'test-harvest-org';
+    const dataJsonHarvestSoureName = 'test-harvest-datajson';
+    const wafIsoHarvestSourceName = 'test-harvest-waf-iso';
+    const wafFgdcHarvestSourceName = 'test-harvest-waf-fgdc';
+    const cswHarvestSourceName = 'test-harvest-csw';
 
     before(() => {
-        /**
-         * Login as cypress user and create an organization for testing harvest source creation and running the jobs
-         */
-        cy.logout()
-        cy.login()
+        cy.login();
 
         // Clear and remove all harvested data
         cy.delete_harvest_source(dataJsonHarvestSoureName);
@@ -25,13 +21,13 @@ describe('Cleanup site', () => {
         cy.wait(3000);
 
         // Remove organization
-        cy.delete_organization(harvestOrg)
-    })
+        cy.delete_organization(harvestOrg);
+    });
 
     it('Confirms empty site', () => {
         cy.visit('/dataset');
-        cy.contains("No datasets found");
+        cy.contains('No datasets found');
         cy.visit('/organization');
-        cy.contains("No organizations found");
-    })
-})
+        cy.contains('No organizations found');
+    });
+});

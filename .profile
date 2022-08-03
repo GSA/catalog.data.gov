@@ -5,6 +5,9 @@ set -o pipefail
 
 echo "Running setup script..."
 
+echo "Setting CA Bundle.."
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
 echo "java setup"
 
 export JAVA_HOME=/home/vcap/deps/0/apt/usr/lib/jvm/java-11-openjdk-amd64
@@ -54,7 +57,12 @@ SHARED_DIR=$(mktemp -d)
 
 # We need to know the application name ...
 export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
-if [[ $APP_NAME = "catalog-gather" ]] || [[ $APP_NAME = "catalog-fetch" ]]; then
+export REAL_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
+if [[ $APP_NAME = "catalog-web" ]] || \
+   [[ $APP_NAME = "catalog-admin" ]] || \
+   [[ $APP_NAME = "catalog-gather" ]] || \
+   [[ $APP_NAME = "catalog-fetch" ]]
+then
   APP_NAME=catalog
 fi
 
@@ -68,12 +76,24 @@ export CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH="${HOME}/${CKANEXT__SAML2AUT
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
 export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
+export CKAN___SQLALCHEMY__POOL_SIZE=250
+export CKAN___SQLALCHEMY__MAX_OVERFLOW=500
+
 export CKAN_STORAGE_PATH=${SHARED_DIR}/files
 export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
 export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
-export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain)
+
+# Use follower url for web instances; leader url for gather and fetch instances
+if [[ $REAL_NAME = "catalog-admin" ]] || \
+   [[ $REAL_NAME = "catalog-gather" ]] || \
+   [[ $REAL_NAME = "catalog-fetch" ]]
+then
+  export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain)
+else
+  export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain_replica)
+fi
 export CKAN_SOLR_USER=$(vcap_get_service solr .credentials.username)
 export CKAN_SOLR_PASSWORD=$(vcap_get_service solr .credentials.password)
 
@@ -92,7 +112,7 @@ export CKAN_SMTP_REPLY_TO=datagovhelp@gsa.gov
 # Set up the collection in Solr
 echo Setting up Solr collection
 export SOLR_COLLECTION=ckan
-./ckan/setup/migrate-solrcloud-schema.sh $SOLR_COLLECTION
+# ./ckan/setup/migrate-solrcloud-schema.sh $SOLR_COLLECTION
 export CKAN_SOLR_URL=$CKAN_SOLR_BASE_URL/solr/$SOLR_COLLECTION
 
 # Explicitly don't proxy solr,
