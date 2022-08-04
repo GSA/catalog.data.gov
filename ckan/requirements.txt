@@ -9,7 +9,7 @@ cffi==1.15.1
 chardet==3.0.4
 ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
 ckanext-datagovcatalog==0.0.3
-ckanext-datagovtheme==0.1.0
+ckanext-datagovtheme==0.1.2
 ckanext-datajson==0.1.1
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@27db0318ccfeb9ffde6ab70357be3572d82092c8
 ckanext-envvars==0.0.2
