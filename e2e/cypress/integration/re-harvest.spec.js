@@ -2,6 +2,7 @@ describe('Harvest', () => {
     // Rename this only if necessary, various test dependencies
     const harvestOrg = 'test-harvest-org';
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso';
+    const dataJsonHarvestSoureName = 'test-harvest-datajson';
 
     before(() => {
         cy.login();
@@ -41,4 +42,15 @@ describe('Harvest', () => {
             expect(duplicate_keys).to.be.empty;
         });
     });
+
+    it('Re-harvest data json', () => {
+        cy.start_harvest_job(dataJsonHarvestSoureName);
+    });
+
+    it('No datasets are duplicated in datajson', () => {
+        const dataset_title = '2015 GSA Common Baseline Implementation Plan and CIO Assignment Plan';
+        cy.request(`/api/action/package_search?q=name:"${dataset_title}"`).should((response) => {
+            expect(response.body.result.count).to.equal(1)
+        })
+    })
 });
