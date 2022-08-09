@@ -5,6 +5,13 @@ mkdir -p /tmp/ckan_config
 # Remove any residual EFS backups
 rm -rf /var/solr/data/aws-backup-restore*
 
+# In case of ECS Task stop and start, we need to make sure the Solr Core on EFS is not locked for new Task to use it.
+# We use SOLR simple locktype. This code block gives old Task up to 10 mins to clear the lock file on EFS before exit.
+# If it's been more than 10 mins, it means the old Task crashes without clearing the lock. Then the lockfile is force deleted.
+[[ -f /var/solr/data/ckan/data/index/write.lock && ! -f retry-flag ]] && { echo "Found lock file. Creating flag file"; touch retry-flag; sleep 30; };
+[[ -f /var/solr/data/ckan/data/index/write.lock && ! `find "retry-flag" -mmin +10` ]] && { echo "Keep waiting"; exit 1; };
+rm -rf /var/solr/data/ckan/data/index/write.lock retry-flag;
+
 # add solr config files for ckan 2.9
 wget -O /tmp/ckan_config/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/setup/solr/managed-schema
 wget -O /tmp/ckan_config/protwords.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/setup/solr/protwords.txt
