@@ -49,7 +49,7 @@ describe('Harvest', () => {
 
     it('No datasets are duplicated in datajson', () => {
         const dataset_title = '2015 GSA Common Baseline Implementation Plan and CIO Assignment Plan';
-        cy.request(`/api/action/package_search?q=name:"${dataset_title}"`).should((response) => {
+        cy.request(`/api/action/package_search?q=title:"${dataset_title}"`).should((response) => {
             expect(response.body.result.count).to.equal(1)
         })
     })
