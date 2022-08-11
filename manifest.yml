@@ -15,7 +15,7 @@ applications:
       - route: ((route-internal))
     health-check-type: http
     health-check-http-endpoint: /dataset
-    health-check-invocation-timeout: 30
+    health-check-invocation-timeout: 60
     instances: ((web-instances))
     disk_quota: 2G
     memory: ((memory_quota))
@@ -44,7 +44,7 @@ applications:
       - route: ((route-internal-admin))
     health-check-type: http
     health-check-http-endpoint: /dataset
-    health-check-invocation-timeout: 30
+    health-check-invocation-timeout: 60
     instances: ((admin-instances))
     disk_quota: 2G
     memory: ((memory_quota))
