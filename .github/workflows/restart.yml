@@ -94,11 +94,10 @@ jobs:
                 echo "Logs are too new!  Not going to restart"
                 exit 1
               fi
-            else
-              # if CPU usage is less then 1%, it's okay to restart
-              if [[ $((`cpu_integer` < 1)) ]]; then
-                cf restart catalog-gather
-              fi
+            fi
+            # if CPU usage is less then 1%, it's okay to restart
+            if [[ $((`cpu_integer` < 1)) ]]; then
+              cf restart catalog-gather
             fi
           cf_org: gsa-datagov
           cf_space: prod
