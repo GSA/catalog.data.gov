@@ -83,8 +83,8 @@ jobs:
             # Get the time of the last line in the log (int)
             log_last_time () { cf logs --recent catalog-gather | tail -n 1 | awk '{split($0,time,":"); print time[2]}'; }
             # Get CPU reading
-            cpu_integer () { cf app catalog-gather | tail -n 1 | awk '{ split($4,cpu,"."); print cpu[1]}' }
-            cpu_decimal () { cf app catalog-gather | tail -n 1 | awk '{ split($4,cpu,"."); split(cpu[2],dec,"%"); print dec[1]}' }
+            cpu_integer () { cf app catalog-gather | tail -n 1 | awk '{ split($4,cpu,"."); print cpu[1]}'; }
+            cpu_decimal () { cf app catalog-gather | tail -n 1 | awk '{ split($4,cpu,"."); split(cpu[2],dec,"%"); print dec[1]}'; }
 
             # Check last log
             # If there are only two lines, there are no logs
