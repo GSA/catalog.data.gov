@@ -88,9 +88,9 @@ jobs:
 
             # Check last log
             # If there are only two lines, there are no logs
-            if [[ $((`log_count` > 2)) ]]; then
+            if [[ $((`log_count` > 2)) == '1' ]]; then
               # if the timestamp is younger than half of the restart interval
-              if [[ $((`log_last_time` % 30 < 15)) ]]; then
+              if [[ $((`log_last_time` % 30 < 15)) == '1' ]]; then
                 echo "Logs are too new!  Not going to restart"
                 exit 1
               fi
