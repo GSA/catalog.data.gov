@@ -77,6 +77,29 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
+            # Utility Functions
+            # Get the number of lines in the log (int)
+            log_count () { cf logs --recent catalog-gather | wc -l; }
+            # Get the time of the last line in the log (int)
+            log_last_time () { cf logs --recent catalog-gather | tail -n 1 | awk '{split($0,time,":"); print time[2]}'; }
+            # Get CPU reading
+            cpu_integer () { cf app catalog-web | tail -n 1 | awk '{ split($4,cpu,"."); print cpu[1]}' }
+            cpu_decimal () { cf app catalog-web | tail -n 1 | awk '{ split($4,cpu,"."); split(cpu[2],dec,"%"); print dec[1]}' }
+
+            # Check last log
+            # If there are only two lines, there are no logs
+            if [[ $((log_count > 2)) ]]; then
+              # if the timestamp is younger than half of the restart interval
+              if [[ $((`log_last_time` % 30 < 15)) ]]; then
+                echo "Logs are too new!  Not going to restart"
+                exit 1
+              fi
+            else
+              # if CPU usage is less then 1%, it's okay to restart
+              if [[ $((`cpu_integer` < 1)) ]]; then
+                cf restart catalog-gather
+              fi
+            fi
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
