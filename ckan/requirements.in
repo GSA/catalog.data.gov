@@ -81,7 +81,7 @@ passlib==1.7.3
 pastedeploy==2.0.1        # manually kept - remove when #4802 is complete
 pathtools==0.1.2          # via watchdog
 polib==1.0.7
-psycopg2==2.8.6           # Upgraded from CKAN pin
+psycopg2-binary           # cloud.gov build problem
 python-magic==0.4.15
 pysolr==3.6.0
 python-dateutil>=1.5.0
