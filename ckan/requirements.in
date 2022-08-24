@@ -81,7 +81,7 @@ passlib==1.7.3
 pastedeploy==2.0.1        # manually kept - remove when #4802 is complete
 pathtools==0.1.2          # via watchdog
 polib==1.0.7
-psycopg2-binary           # cloud.gov build problem
+psycopg2==2.8.6
 python-magic==0.4.15
 pysolr==3.6.0
 python-dateutil>=1.5.0
@@ -92,6 +92,7 @@ repoze.who==2.3
 requests==2.25.0
 Routes==1.13
 rq==1.0
+setuptools==65.1.1 #to fix transitive dep issue: https://github.com/cloudfoundry/python-buildpack/issues/574
 simplejson==3.10.0
 # Following can be ignored: https://github.com/ckan/ckan/pull/4450
 # sqlalchemy-migrate==0.12.0
