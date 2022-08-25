@@ -1,10 +1,11 @@
 ---
-name: publish & deploy
+name: Publish GHCR Images
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   ghcr_publish_catalog:
@@ -25,6 +26,25 @@ jobs:
           context: ckan
           push: true
           tags: ghcr.io/gsa/catalog.data.gov:latest
+
+  ghcr_publish_solr_restarts:
+    name: publish solr.restarts on GHCR
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: publish catalog.data.gov.solr.restarts
+        uses: docker/build-push-action@v2
+        with:
+          context: solr/restarts
+          push: true
+          tags: ghcr.io/gsa/catalog.data.gov.solr.restarts:latest
 
   ghcr_publish_solr:
     name: publish solr on GHCR
@@ -63,227 +83,3 @@ jobs:
           context: postgresql
           push: true
           tags: ghcr.io/gsa/catalog.data.gov.db:latest
-
-  vendor:
-    name: vendor dependencies
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: vendor dependencies
-        run: ./vendor-requirements.sh build
-      - uses: actions/upload-artifact@v2
-        with:
-          name: python-vendored
-          path: vendor/
-          if-no-files-found: error
-
-  create-cloudgov-services-staging:
-    name: create services (staging)
-    environment: staging
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: create services
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: ./create-cloudgov-services.sh
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-
-  deploy-staging-main:
-    name: deploy catalog (staging)
-    environment: staging
-    runs-on: ubuntu-latest
-    needs:
-      - vendor
-      - create-cloudgov-services-staging
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy web
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-web --vars-file vars.staging.yml --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy admin
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-admin --vars-file vars.staging.yml --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy proxy
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-proxy --vars-file vars.staging.yml --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: smoke test
-        run: |
-          sleep 10
-          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
-
-  deploy-staging-gather:
-    name: deploy catalog-gather (staging)
-    environment: staging
-    runs-on: ubuntu-latest
-    needs:
-      - vendor
-      - create-cloudgov-services-staging
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy-gather
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-gather --vars-file vars.staging.yml
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-
-  deploy-staging-fetch:
-    name: deploy catalog-fetch (staging)
-    environment: staging
-    runs-on: ubuntu-latest
-    needs:
-      - vendor
-      - create-cloudgov-services-staging
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy-fetch
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-fetch --vars-file vars.staging.yml
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-
-  create-cloudgov-services-production:
-    name: create services (production)
-    environment: production
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: create services
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: ./create-cloudgov-services.sh
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-
-  deploy-production-main:
-    name: deploy catalog (production)
-    environment: production
-    runs-on: ubuntu-latest
-    needs:
-      - create-cloudgov-services-production
-      - deploy-staging-main
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy-ckan
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-web --vars-file vars.production.yml --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy-ckan-admin
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-admin --vars-file vars.production.yml --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: deploy-proxy
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-proxy --vars-file vars.production.yml --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: smoke test
-        run: |
-          sleep 10
-          curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
-
-  deploy-production-gather:
-    name: deploy catalog-gather (production)
-    environment: production
-    runs-on: ubuntu-latest
-    needs:
-      - create-cloudgov-services-production
-      - deploy-staging-gather
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy-gather
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-gather --vars-file vars.production.yml
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-
-  deploy-production-fetch:
-    name: deploy catalog-fetch (production)
-    environment: production
-    runs-on: ubuntu-latest
-    needs:
-      - create-cloudgov-services-production
-      - deploy-staging-fetch
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy-fetch
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: cf push catalog-fetch --vars-file vars.production.yml
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
