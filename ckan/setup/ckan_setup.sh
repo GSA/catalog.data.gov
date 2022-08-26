@@ -43,9 +43,6 @@ ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
 echo "Loading the following plugins: $CKAN__PLUGINS"
 ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
 
-# Add datagov favicon to local build
-ckan config-tool $CKAN_INI "ckan.favicon = /images/favicon.ico"
-
 # Update test-core.ini DB, SOLR & Redis settings
 echo "Loading test settings into test-core.ini"
 ckan config-tool $SRC_DIR/ckan/test-core.ini \
