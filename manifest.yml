@@ -4,7 +4,7 @@ applications:
   - name: ((app_name))-web
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - python_buildpack
+      - https://github.com/cloudfoundry/python-buildpack.git#v1.7.58 #to fix transitive dep issue: https://github.com/cloudfoundry/python-buildpack/issues/574
     services:
       - ((app_name))-db
       - ((app_name))-redis
@@ -33,7 +33,7 @@ applications:
   - name: ((app_name))-admin
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - python_buildpack
+      - https://github.com/cloudfoundry/python-buildpack.git#v1.7.58  #to fix transitive dep issue: https://github.com/cloudfoundry/python-buildpack/issues/574
     services:
       - ((app_name))-db
       - ((app_name))-redis
@@ -80,7 +80,7 @@ applications:
   - name: ((app_name))-gather
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - python_buildpack
+      - https://github.com/cloudfoundry/python-buildpack.git#v1.7.58  #to fix transitive dep issue: https://github.com/cloudfoundry/python-buildpack/issues/574
     services:
       - ((app_name))-db
       - ((app_name))-redis
@@ -106,7 +106,7 @@ applications:
   - name: ((app_name))-fetch
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - python_buildpack
+      - https://github.com/cloudfoundry/python-buildpack.git#v1.7.58  #to fix transitive dep issue: https://github.com/cloudfoundry/python-buildpack/issues/574
     services:
       - ((app_name))-db
       - ((app_name))-redis
