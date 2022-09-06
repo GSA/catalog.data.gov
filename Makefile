@@ -47,7 +47,13 @@ update-dependencies:
 	docker-compose run --rm -T ckan /app/ckan/freeze-requirements.sh $(shell id -u) $(shell id -g)
 
 up:
+	docker stop $(shell docker volume rm catalogdatagov_solr_data 2>&1 | cut -d "[" -f2 | cut -d "]" -f1)
+	docker rm $(shell docker volume rm catalogdatagov_solr_data 2>&1 | cut -d "[" -f2 | cut -d "]" -f1)
+	docker volume rm catalogdatagov_solr_data
 	docker-compose up
+
+search-index-rebuild:
+	docker-compose exec ckan /bin/bash -c "ckan search-index rebuild"
 
 test-import-tool:
 	cd tools/harvest_source_import && \
