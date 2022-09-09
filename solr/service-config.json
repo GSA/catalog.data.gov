@@ -11,5 +11,7 @@
     "disableEfsFollower": false,
     "efsProvisionedThroughput": 25,
     "efsProvisionedThroughputFollower": 75,
-    "efsPerformanceMode": "maxIO"
+    "efsPerformanceMode": "maxIO",
+    "slackNotification": true,
+    "emailNotification": "datagovhelp@gsa.gov"
 }
