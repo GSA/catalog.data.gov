@@ -65,7 +65,7 @@ polib==1.0.7
 psycopg2==2.8.6
 pycparser==2.21
 PyJWT==2.4.0
-pyOpenSSL==20.0.1
+pyOpenSSL==22.0.0
 pyparsing==3.0.9
 pyproj==2.6.1
 pysaml2==7.0.1
