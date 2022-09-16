@@ -3,12 +3,13 @@ async-timeout==4.0.2
 Babel==2.9.1
 Beaker==1.11.0
 bleach==3.3.0
-boto3==1.24.73
-botocore==1.27.73
+boto3==1.24.74
+botocore==1.27.74
 certifi==2022.9.14
 cffi==1.15.1
 chardet==3.0.4
 ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
+ckanext-archiver @ git+https://github.com/ckan/ckanext-archiver.git@534b6db93be81e866ac282e4ea10b89c3563a0e8
 ckanext-datagovcatalog==0.0.4
 ckanext-datagovtheme==0.1.8
 ckanext-datajson==0.1.3
@@ -17,6 +18,8 @@ ckanext-envvars==0.0.2
 ckanext-geodatagov==0.1.5
 ckanext-googleanalyticsbasic==0.2.0
 -e git+https://github.com/ckan/ckanext-harvest.git@98edcd3ad7e3f6208797df90b7a4ebe76b1104d6#egg=ckanext_harvest
+ckanext-qa @ git+https://github.com/ckan/ckanext-qa.git@8dad5de1c078a017277e95766ae6f0ab8b7eb737
+ckanext-report @ git+https://github.com/ckan/ckanext-report.git@24ade58d126d9480286c7bd1a904f20186d83988
 ckanext-saml2auth @ git+https://github.com/gsa/ckanext-saml2auth.git@0493d1d7ad321760911bed8b189ecbf02099033d
 -e git+https://github.com/gsa/ckanext-spatial.git@fbd3e2b3f67cc1038e4c7950731438b36da4d8b1#egg=ckanext_spatial
 ckantoolkit==0.0.7
@@ -62,18 +65,20 @@ pika==1.3.0
 pip==22.2.2
 ply==3.11
 polib==1.0.7
+progressbar==2.5
+progressbar2==3.53.3
 psycopg2==2.8.6
 pycparser==2.21
 PyJWT==2.4.0
 pyOpenSSL==22.0.0
 pyparsing==3.0.9
 pyproj==2.6.1
-pysaml2==7.0.1
+pysaml2==7.2.1
 pysolr==3.6.0
 python-dateutil==2.8.2
 python-editor==1.0.4
 python-magic==0.4.15
-python2-secrets==1.0.5
+python-utils==3.3.3
 pytz==2016.7
 PyUtilib==5.7.1
 PyYAML==5.4
