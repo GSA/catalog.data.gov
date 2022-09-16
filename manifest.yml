@@ -62,7 +62,7 @@ applications:
     buildpacks:
       - https://github.com/cloudfoundry/nginx-buildpack
     services:
-      - catalog-secrets
+      - ((app_name))-secrets
     path: ./proxy
     # TODO: tweak with load testing
     memory: 100M
