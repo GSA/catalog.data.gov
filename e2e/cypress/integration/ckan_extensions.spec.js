@@ -35,10 +35,10 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('dcat_json_interface');
             expect(installed_extensions).to.include('structured_data');
             expect(installed_extensions).to.include('datagovcatalog');
+            expect(installed_extensions).to.include('report');
+            expect(installed_extensions).to.include('archiver');
 
             // TODO: The following extensions should be verified to be installed:
-            // expect(installed_extensions).to.include('report');
-            // expect(installed_extensions).to.include('archiver');
             // expect(installed_extensions).to.include('qa');
         });
     });
