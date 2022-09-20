@@ -37,9 +37,7 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('datagovcatalog');
             expect(installed_extensions).to.include('report');
             expect(installed_extensions).to.include('archiver');
-
-            // TODO: The following extensions should be verified to be installed:
-            // expect(installed_extensions).to.include('qa');
+            expect(installed_extensions).to.include('qa');
         });
     });
 });
