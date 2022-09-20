@@ -84,7 +84,7 @@ jobs:
       - name: restart fetch
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf restart catalog-fetch
+          command: tools/restart_fetch.sh
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
