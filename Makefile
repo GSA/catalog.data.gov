@@ -47,10 +47,17 @@ update-dependencies:
 	docker-compose run --rm -T ckan /app/ckan/freeze-requirements.sh $(shell id -u) $(shell id -g)
 
 up:
+	docker-compose up
+
+clear-solr-volume:
+	# Destructive
 	docker stop $(shell docker volume rm catalogdatagov_solr_data 2>&1 | cut -d "[" -f2 | cut -d "]" -f1)
 	docker rm $(shell docker volume rm catalogdatagov_solr_data 2>&1 | cut -d "[" -f2 | cut -d "]" -f1)
 	docker volume rm catalogdatagov_solr_data
-	docker-compose up
+
+unlock-solr-volume:
+	# Corruptible
+	docker-compose run solr /bin/bash -c "rm -rf /var/solr/data/ckan/data/index/write.lock"
 
 search-index-rebuild:
 	docker-compose exec ckan /bin/bash -c "ckan search-index rebuild"
