@@ -63,6 +63,14 @@ Stop and remove the containers and volumes associated with this setup.
  See `.env` to override settings. Some settings may require a re-build (`make
  clean build`).
 
+*Note: the solr configuration has a locking mechanism that only allows one
+solr to access its data at a time.  There are two methods to recover solr in
+this state.  `make clear-solr-volume` destroys all of the solr data and starts
+from scratch.  `make unlock-solr-volume` unlocks the data to allow another
+solr to access it.  BE CAREFUL when running the `make unlock-solr-volume`
+command!  If two solrs are talking to the same volume, the data may corrupt
+and would need to be destroyed anyway.*
+
 ### Test extensions
 
 To test extensions locally you can run

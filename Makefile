@@ -49,6 +49,19 @@ update-dependencies:
 up:
 	docker-compose up
 
+clear-solr-volume:
+	# Destructive
+	docker stop $(shell docker volume rm catalogdatagov_solr_data 2>&1 | cut -d "[" -f2 | cut -d "]" -f1)
+	docker rm $(shell docker volume rm catalogdatagov_solr_data 2>&1 | cut -d "[" -f2 | cut -d "]" -f1)
+	docker volume rm catalogdatagov_solr_data
+
+unlock-solr-volume:
+	# Corruptible
+	docker-compose run solr /bin/bash -c "rm -rf /var/solr/data/ckan/data/index/write.lock"
+
+search-index-rebuild:
+	docker-compose exec ckan /bin/bash -c "ckan search-index rebuild"
+
 test-import-tool:
 	cd tools/harvest_source_import && \
 		pip install pip==20.3.3  && \
