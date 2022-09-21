@@ -112,7 +112,7 @@ export CKAN_SMTP_REPLY_TO=datagovhelp@gsa.gov
 # S3 settings
 # Use ckanext-envvars to import other configurations...
 export CKANEXT__S3SITEMAP__REGION_NAME=$(vcap_get_service s3 .credentials.region)
-export CKANEXT__S3SITEMAP__HOST_NAME=https://s3-$CKANEXT__S3SITEMAP__REGION_NAME.amazonaws.com
+export CKANEXT__S3SITEMAP__HOST_NAME=https://s3-$CKANEXT__S3FILESTORE__REGION_NAME.amazonaws.com
 export CKANEXT__S3SITEMAP__AWS_ACCESS_KEY_ID=$(vcap_get_service s3 .credentials.access_key_id)
 export CKANEXT__S3SITEMAP__AWS_SECRET_ACCESS_KEY=$(vcap_get_service s3 .credentials.secret_access_key)
 export CKANEXT__S3SITEMAP__AWS_BUCKET_NAME=$(vcap_get_service s3 .credentials.bucket)
