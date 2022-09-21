@@ -6,6 +6,9 @@ ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@master
 -e git+https://github.com/gsa/ckanext-spatial.git@datagov#egg=ckanext-spatial
 # git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
 git+https://github.com/gsa/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
+-e git+https://github.com/gsa/ckanext-qa.git@datagov#egg=ckanext-qa
+-e git+https://github.com/ckan/ckanext-archiver.git@master#egg=ckanext-archiver
+-e git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report
 
 ckanext-datagovcatalog>=0.0.3
 ckanext-datagovtheme
@@ -24,11 +27,11 @@ pyOpenSSL>=22.0.0
 # six>=1.12.0 # included in dcat
 
 # ckanext-archiver
-# celery==3.1.25
-# kombu==3.0.37
-# progressbar==2.3
+# https://github.com/ckan/ckanext-archiver/blob/master/requirements.txt
+progressbar2==3.53.3
 
 # ckanext-geodatagov
+# https://github.com/GSA/ckanext-geodatagov/blob/main/requirements.txt
 PyZ3950 @ git+https://github.com/danizen/PyZ3950
 
 # ckanext-spatial
@@ -42,9 +45,14 @@ Shapely>=1.2.13
 # requests>=1.1.0 # included in ckan core
 # six # included in dcat
 
-#ckanext-qa
-xlrd>=1.0.0
-messytables>=0.15.2
+# ckanext-qa
+# https://github.com/ckan/ckanext-qa/blob/master/requirements.txt
+progressbar
+xlrd==2.0.1
+messytables==0.15.2
+
+# ckanext-report
+# https://github.com/ckan/ckanext-report/blob/master/requirements.txt
 
 #ckanext-dcat
 rdflib==4.2.2
@@ -53,15 +61,8 @@ geomet>=0.2.0
 future>=0.18.2
 six>=1.15.0
 
-# ckanext-pysaml2
-# Using a patched 4.9 version due to a security issue: https://github.com/GSA/datagov-ckan-multi/issues/544
-pysaml2==7.0.1
-
-# to backport saml2auth to CKAN 2.8 and python2
-python2-secrets==1.0.5
-
-# ckan doesn't advertise its requirements correctly, so let's add them
-# here.
+# ckan doesn't advertise its requirements correctly, so let's add them here.
+# https://github.com/ckan/ckan/blob/ckan-2.9.5/requirements.txt
 alembic==1.0.0
 Babel==2.9.1              # Upgraded from CKAN pin
 Beaker==1.11.0

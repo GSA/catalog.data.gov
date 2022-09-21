@@ -138,7 +138,6 @@ echo Running ckan setup commands
 # Run migrations
 ckan db upgrade
 ckan harvester initdb
-# TODO: add once extensions integrated
-# ckan report initdb
-# ckan archiver init
-# ckan qa init
+ckan archiver init
+ckan report initdb
+ckan qa init
