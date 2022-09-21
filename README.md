@@ -4,7 +4,7 @@
 # catalog.data.gov
 
 
-This is a local development harness for catalog.data.gov.
+This is a local development harness for catalog.data.gov.  For details on the system architecture, please see our [data.gov systems list](https://github.com/GSA/data.gov/blob/master/SYSTEMS.md)!
 
 
 ## Usage

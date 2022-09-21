@@ -16,4 +16,4 @@ pip3 install virtualenv
 virtualenv $venv
 ${venv}/bin/pip3 install -r /app/ckan/requirements.in
 
-${venv}/bin/pip3 freeze --quiet > /app/ckan/requirements.txt
+${venv}/bin/pip3 freeze --all > /app/ckan/requirements.txt
