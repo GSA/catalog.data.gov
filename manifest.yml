@@ -114,7 +114,7 @@ applications:
       - sysadmin-users
     no-route: true
     instances: ((fetch-instances))
-    command: ckan harvester fetch-consumer
+    command: while ! ckan harvester fetch-consumer; do sleep 1; done
     health-check-type: process
     timeout: 15
     env:
