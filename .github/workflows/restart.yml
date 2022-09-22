@@ -76,7 +76,7 @@ jobs:
       - name: restart gather
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: tools/restart_gather.sh
+          command: tools/restart_harvester.sh catalog-gather
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -84,7 +84,7 @@ jobs:
       - name: restart fetch
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: tools/restart_fetch.sh
+          command: tools/restart_harvester.sh catalog-fetch
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
