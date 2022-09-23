@@ -25,7 +25,7 @@ cpu_restart () {
   i=0
   cf app $app_to_restart | tail -n $instances | awk '{ split($4,cpu,"."); print cpu[1]}' | while read -r cpu ; do
     if [[ $cpu < 1 ]]; then
-      cf restart-app-instance $app_to_restart $1
+      cf restart-app-instance $app_to_restart $i
     fi
     i=$(($i + 1))
   done;
