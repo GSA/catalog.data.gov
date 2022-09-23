@@ -19,14 +19,15 @@ log_last_time () {
   date --utc --date="$(cf logs --recent $app_to_restart | tail -n 1 | awk '{split($0,time," "); print time[1]}')" +%s
 }
 
-# Get CPU status
-cpu_status () {
+# Restart if CPU usage is < 1
+cpu_restart () {
   instances=$(cf app $app_to_restart | grep '^instances:' | sed 's/.*\///')
+  i=0
   cf app $app_to_restart | tail -n $instances | awk '{ split($4,cpu,"."); print cpu[1]}' | while read -r cpu ; do
-    if [[ $cpu > 1 ]]; then
-      echo "busy";
-      break
+    if [[ $cpu < 1 ]]; then
+      cf restart-app-instance $app_to_restart $1
     fi
+    i=$(($i + 1))
   done;
 }
 
@@ -43,6 +44,4 @@ if [[ $((`log_count` > 2)) == '1' ]]; then
 fi
 
 # if CPU status shows it is not busy, we do the restart
-if [[ $(cpu_status) != "busy" ]]; then
-  cf restart $app_to_restart
-fi
+$(cpu_restart)
