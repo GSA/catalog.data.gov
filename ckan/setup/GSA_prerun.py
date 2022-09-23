@@ -1,7 +1,9 @@
 import os
-import sys
-import time
+import psycopg2
 import requests
+import sys
+import subprocess
+import time
 try:
     from urllib.request import urlopen
     from urllib.error import URLError
@@ -12,6 +14,25 @@ except ImportError:
 import prerun as pr
 
 RETRY = 5
+
+
+def init_db():
+
+    db_command = ["ckan", "-c", pr.ckan_ini, "db", "init"]
+    print("[prerun] Initializing or upgrading db - start")
+    try:
+        subprocess.check_output(db_command, stderr=subprocess.STDOUT)
+        print("[prerun] Initializing or upgrading db - end")
+    except subprocess.CalledProcessError as e:
+        # GSA FIX: e.output is bytes upstream
+        if "OperationalError" in str(e.output):
+            print(e.output)
+            print("[prerun] Database not ready, waiting a bit before exit...")
+            time.sleep(5)
+            sys.exit(1)
+        else:
+            print(e.output)
+            raise e
 
 
 def check_solr_connection(retry=None):
@@ -35,6 +56,7 @@ def check_solr_connection(retry=None):
         time.sleep(10)
         check_solr_connection(retry=retry - 1)
     else:
+        # GSA FIX: convert Solr 'true' to Python 'True'
         try:
             pythonified = str(connection.text).replace('true', 'True')
             eval(pythonified)
@@ -50,10 +72,9 @@ if __name__ == "__main__":
         print("[prerun] Maintenance mode, skipping setup...")
     else:
         pr.check_main_db_connection()
-        pr.init_db()
+        init_db()
         pr.update_plugins()
         pr.check_datastore_db_connection()
         pr.init_datastore_db()
-        # This function does not work, but solr is up
         check_solr_connection()
         pr.create_sysadmin()
