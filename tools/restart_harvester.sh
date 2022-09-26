@@ -44,4 +44,4 @@ if [[ $((`log_count` > 2)) == '1' ]]; then
 fi
 
 # if CPU status shows it is not busy, we do the restart
-$(cpu_restart)
+cpu_restart
