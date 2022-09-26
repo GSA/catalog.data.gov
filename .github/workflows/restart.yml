@@ -60,7 +60,7 @@ jobs:
       - name: restart catalog-web
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf restart catalog-web --strategy rolling
+          command: tools/restart.sh catalog-web
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
