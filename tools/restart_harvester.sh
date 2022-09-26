@@ -39,7 +39,7 @@ if [[ $((`log_count` > 2)) == '1' ]]; then
   # if the timestamp is younger than 15 mins from start of script
   if [[ $((current_time - `log_last_time` < 900)) == '1' ]]; then
     echo "Logs are too new!  Not going to restart"
-    exit 1
+    exit 0
   fi
 fi
 
