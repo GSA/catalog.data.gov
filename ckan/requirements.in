@@ -17,6 +17,8 @@ ckanext-envvars>=0.0.2
 ckanext-geodatagov>=0.1.2
 ckanext-googleanalyticsbasic
 
+# Pin for saml2auth to work
+pysaml2==7.0.1
 
 # ckanext-harvest dependencies
 ckantoolkit>=0.0.7

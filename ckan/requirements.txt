@@ -73,7 +73,7 @@ PyJWT==2.4.0
 pyOpenSSL==22.0.0
 pyparsing==3.0.9
 pyproj==2.6.1
-pysaml2==7.2.1
+pysaml2==7.0.1
 pysolr==3.6.0
 python-dateutil==2.8.2
 python-editor==1.0.4
