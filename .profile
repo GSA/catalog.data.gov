@@ -135,9 +135,11 @@ ckan config-tool $CKAN_INI -s DEFAULT -e debug=false
 
 echo Running ckan setup commands
 
-# Run migrations
-ckan db upgrade
-ckan harvester initdb
-ckan archiver init
-ckan report initdb
-ckan qa init
+if [[ $MIGRATE_DB = 'True' ]]; then
+  # Run migrations
+  ckan db upgrade
+  ckan harvester initdb
+  ckan archiver init
+  ckan report initdb
+  ckan qa init
+fi
