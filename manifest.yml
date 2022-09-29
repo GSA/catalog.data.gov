@@ -8,6 +8,7 @@ applications:
     services:
       - ((app_name))-db
       - ((app_name))-redis
+      - ((app_name))-s3
       - ((app_name))-secrets
       - ((app_name))-solr
       - sysadmin-users
