@@ -14,7 +14,7 @@ ckanext-datagovcatalog>=0.0.3
 ckanext-datagovtheme
 ckanext-datajson
 ckanext-envvars>=0.0.2
-ckanext-geodatagov>=0.1.2
+ckanext-geodatagov>=0.1.7
 ckanext-googleanalyticsbasic
 
 # Pin for saml2auth to work
