@@ -1,0 +1,50 @@
+---
+name: DB Solr Sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      dryrun:
+        description: 'Dryrun:'
+        required: true
+        default: 'True'
+      cleanup_solr:
+        description: 'Only Cleanup Solr:'
+        required: false
+        default: 'False'
+      update_solr:
+        description: 'Only Update Solr:'
+        required: false
+        default: 'False'
+  #schedule:
+    #- cron: '0 4 * * *' # every day at 4am UTC
+
+jobs:
+  db-solr-sync:
+     name: DB Solr Sync
+     environment: production
+     runs-on: ubuntu-latest
+     steps:
+       - name: checkout
+         uses: actions/checkout@v2
+       - name: run task
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: |
+            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
+              --dryrun ${{github.event.inputs.dryrun}}
+              --cleanup_solr ${{github.event.inputs.cleanup_solr}}
+              --update_solr ${{github.event.inputs.update_solr}}
+            " --name 'db-solr-sync (CI)' -m 3G
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+       - name: monitor task output
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)'
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
