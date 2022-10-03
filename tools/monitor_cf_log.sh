@@ -6,15 +6,13 @@
 app_to_monitor=$1
 task_to_monitor=$2
 
-function print_logs() {
-  cf logs "$app_to_monitor" > grep "[APP/TASK/$task_to_monitor]"
-}
+cf logs "$app_to_monitor" | grep "\[APP/TASK/$task_to_monitor/0\]" &
+BACKGROUND_PID=$!
 
-print_logs &
-
-while ! ( cf logs --recent "$app_to_monitor" | grep "[APP/TASK/$task_to_monitor] OUT Exit status 0" )
+while ! ( cf logs --recent "$app_to_monitor" | grep "\[APP/TASK/$task_to_monitor/0\] OUT Exit status 0" )
 do 
   sleep 2
 done
 
-exit 0
+kill -9 $BACKGROUND_PID
+kill -9 $((BACKGROUND_PID-1))
