@@ -6,7 +6,7 @@ on:
 
 jobs:
   db-solr-sync:
-    name: DB Solr Sync
+    name: DB Solr Sync On Schedule
     strategy:
       matrix:
         environment: [development, staging, prod]
