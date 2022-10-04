@@ -33,7 +33,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: Only Cleanup Solr
-        if: ${{github.event.inputs.options}} == 'only cleanup solr'
+        if: ${{ github.event.inputs.options == 'Only cleanup solr' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
@@ -47,7 +47,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Only Update Solr
-        if: ${{github.event.inputs.options}} == 'only update solr'
+        if: ${{ github.event.inputs.options == 'Only update solr' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
@@ -61,7 +61,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Do Both
-        if: ${{github.event.inputs.options}} == 'both'
+        if: ${{ github.event.inputs.options == 'Both' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
