@@ -15,13 +15,21 @@ on:
         description: 'Only Update Solr:'
         required: false
         default: 'False'
+      environ_cf:
+        description: 'CF Environment:'
+        required: true
+        default: 'development'
+      environ_gh:
+        description: 'GH Environment:'
+        required: true
+        default: 'development'
   #schedule:
     #- cron: '0 4 * * *' # every day at 4am UTC
 
 jobs:
   db-solr-sync:
     name: DB Solr Sync
-    environment: production
+    environment: ${{github.event.inputs.environ_gh}}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -36,7 +44,7 @@ jobs:
               --update_solr ${{github.event.inputs.update_solr}}
             " --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
-          cf_space: prod
+          cf_space: ${{github.event.inputs.environ_cf}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
@@ -44,6 +52,6 @@ jobs:
         with:
           command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)' 'geodatagov'
           cf_org: gsa-datagov
-          cf_space: prod
+          cf_space: ${{github.event.inputs.environ_cf}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
