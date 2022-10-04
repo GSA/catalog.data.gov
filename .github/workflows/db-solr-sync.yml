@@ -42,7 +42,7 @@ jobs:
       - name: monitor task output
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)'
+          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)' 'geodatagov'
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
