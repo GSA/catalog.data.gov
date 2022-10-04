@@ -16,20 +16,20 @@ on:
         required: false
         default: 'False'
       environ_cf:
-        description: 'CF Environment:'
+        description: 'Environment:'
         required: true
-        default: 'development'
-      environ_gh:
-        description: 'GH Environment:'
-        required: true
-        default: 'development'
+        type: choice
+        options:
+          - development
+          - staging
+          - prod
   #schedule:
     #- cron: '0 4 * * *' # every day at 4am UTC
 
 jobs:
   db-solr-sync:
     name: DB Solr Sync
-    environment: ${{github.event.inputs.environ_gh}}
+    environment: ${{github.event.inputs.environ}}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -44,7 +44,7 @@ jobs:
               --update_solr ${{github.event.inputs.update_solr}}
             " --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
-          cf_space: ${{github.event.inputs.environ_cf}}
+          cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
