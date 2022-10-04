@@ -1,0 +1,33 @@
+name: DB Solr Sync
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # every day at 4am UTC
+
+jobs:
+  db-solr-sync:
+    name: DB Solr Sync
+    strategy:
+      matrix:
+        environment: [development, staging, prod]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: run task
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: |
+            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync" --name 'db-solr-sync scheduled (CI)' -m 3G
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environment }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: monitor task output
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync scheduled (CI)' 'geodatagov'
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environment }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
