@@ -10,6 +10,13 @@ jobs:
     strategy:
       matrix:
         environment: [development, staging, prod]
+        include:
+          - environment: development
+            ram: 1G
+          - environment: staging
+            ram: 3G
+          - environment: prod
+            ram: 3G
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -18,7 +25,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync" --name 'db-solr-sync scheduled (CI)' -m 3G
+            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync" --name 'db-solr-sync scheduled (CI)' -m ${{ matrix.ram }}
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environment }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
