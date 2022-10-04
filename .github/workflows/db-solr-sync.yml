@@ -26,7 +26,7 @@ on:
 
 jobs:
   db-solr-sync:
-    name: DB Solr Sync
+    name: DB Solr Sync (${{github.event.inputs.environ}})
     environment: ${{github.event.inputs.environ}}
     runs-on: ubuntu-latest
     steps:
