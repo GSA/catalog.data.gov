@@ -17,3 +17,4 @@ done
 
 kill -9 $BACKGROUND_PID
 kill -9 $((BACKGROUND_PID-1))
+kill -9 $((BACKGROUND_PID-2))
