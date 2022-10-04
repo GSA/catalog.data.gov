@@ -7,43 +7,78 @@ on:
         description: 'Dryrun:'
         required: true
         default: 'True'
-      cleanup_solr:
-        description: 'Only Cleanup Solr:'
+      options:
+        description: 'Command options:'
         required: false
-        default: 'False'
-      update_solr:
-        description: 'Only Update Solr:'
-        required: false
-        default: 'False'
-  #schedule:
-    #- cron: '0 4 * * *' # every day at 4am UTC
+        type: choice
+        options:
+          - 'Only cleanup solr'
+          - 'Only update solr'
+          - 'Both'
+      environ:
+        description: 'Environment:'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - prod
 
 jobs:
   db-solr-sync:
-    name: DB Solr Sync
-    environment: production
+    name: DB Solr Sync (${{github.event.inputs.environ}})
+    environment: ${{github.event.inputs.environ}}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: run task
+      - name: Only Cleanup Solr
+        if: ${{github.event.inputs.options}} == 'only cleanup solr'
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
             cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
               --dryrun ${{github.event.inputs.dryrun}}
-              --cleanup_solr ${{github.event.inputs.cleanup_solr}}
-              --update_solr ${{github.event.inputs.update_solr}}
+              --cleanup_solr True
+              --update_solr False
             " --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
-          cf_space: prod
+          cf_space: ${{github.event.inputs.environ}}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Only Update Solr
+        if: ${{github.event.inputs.options}} == 'only update solr'
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: |
+            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
+              --dryrun ${{github.event.inputs.dryrun}}
+              --cleanup_solr False
+              --update_solr True
+            " --name 'db-solr-sync (CI)' -m 3G
+          cf_org: gsa-datagov
+          cf_space: ${{github.event.inputs.environ}}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Do Both
+        if: ${{github.event.inputs.options}} == 'both'
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: |
+            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
+              --dryrun ${{github.event.inputs.dryrun}}
+              --cleanup_solr True
+              --update_solr True
+            " --name 'db-solr-sync (CI)' -m 3G
+          cf_org: gsa-datagov
+          cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)'
+          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)' 'geodatagov'
           cf_org: gsa-datagov
-          cf_space: prod
+          cf_space: ${{github.event.inputs.environ_cf}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}

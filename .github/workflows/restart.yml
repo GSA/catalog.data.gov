@@ -52,7 +52,7 @@ jobs:
 
   restart-prod:
     name: restart (prod)
-    environment: production
+    environment: prod
     runs-on: ubuntu-latest
     steps:
       - name: checkout

@@ -31,7 +31,7 @@ jobs:
   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
   harvest-run-prod:
     name: harvest-run (prod)
-    environment: production
+    environment: prod
     runs-on: ubuntu-latest
     steps:
       - name: harvest-run
