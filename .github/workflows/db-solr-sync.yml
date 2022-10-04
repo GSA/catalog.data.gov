@@ -15,7 +15,7 @@ on:
         description: 'Only Update Solr:'
         required: false
         default: 'False'
-      environ_cf:
+      environ:
         description: 'Environment:'
         required: true
         type: choice
