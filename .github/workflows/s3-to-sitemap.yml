@@ -9,7 +9,7 @@ on:
 jobs:
    s3-to-sitemap:
      name: s3-to-sitemap
-     environment: production
+     environment: prod
      runs-on: ubuntu-latest
      steps:
        - name: checkout
