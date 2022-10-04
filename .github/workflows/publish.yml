@@ -185,7 +185,7 @@ jobs:
 
   create-cloudgov-services-production:
     name: create services (production)
-    environment: production
+    environment: prod
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -201,7 +201,7 @@ jobs:
 
   deploy-production-main:
     name: deploy catalog (production)
-    environment: production
+    environment: prod
     runs-on: ubuntu-latest
     needs:
       - create-cloudgov-services-production
@@ -244,7 +244,7 @@ jobs:
 
   deploy-production-gather:
     name: deploy catalog-gather (production)
-    environment: production
+    environment: prod
     runs-on: ubuntu-latest
     needs:
       - create-cloudgov-services-production
@@ -267,7 +267,7 @@ jobs:
 
   deploy-production-fetch:
     name: deploy catalog-fetch (production)
-    environment: production
+    environment: prod
     runs-on: ubuntu-latest
     needs:
       - create-cloudgov-services-production
