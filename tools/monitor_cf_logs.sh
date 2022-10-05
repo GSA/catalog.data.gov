@@ -10,7 +10,7 @@ logs_to_print=$3
 cf logs "$app_to_monitor" | grep "\[APP/TASK/$task_to_monitor/0\]" | grep "\[ckanext.$logs_to_print\]" &
 BACKGROUND_PID=$!
 
-while ! ( cf logs --recent "$app_to_monitor" | grep "\[APP/TASK/$task_to_monitor/0\] OUT Exit status 0" )
+while ! ( cf logs --recent "$app_to_monitor" | grep "\[APP/TASK/$task_to_monitor/0\] OUT Exit status" )
 do 
   sleep 2
 done
