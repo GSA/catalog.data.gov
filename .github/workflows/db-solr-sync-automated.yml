@@ -1,4 +1,4 @@
-name: DB Solr Sync
+name: DB Solr Sync on Schedule
 
 on:
   schedule:
@@ -9,15 +9,16 @@ jobs:
     name: DB Solr Sync On Schedule
     strategy:
       matrix:
-        environment: [development, staging, prod]
+        environ: [development, staging, prod]
         include:
-          - environment: development
+          - environ: development
             ram: 1G
-          - environment: staging
+          - environ: staging
             ram: 3G
-          - environment: prod
+          - environ: prod
             ram: 3G
     runs-on: ubuntu-latest
+    environment: ${{matrix.environ}}
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -27,7 +28,7 @@ jobs:
           command: |
             cf run-task catalog-admin --command "ckan geodatagov db-solr-sync" --name 'db-solr-sync scheduled (CI)' -m ${{ matrix.ram }}
           cf_org: gsa-datagov
-          cf_space: ${{ matrix.environment }}
+          cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
@@ -35,6 +36,6 @@ jobs:
         with:
           command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync scheduled (CI)' 'geodatagov'
           cf_org: gsa-datagov
-          cf_space: ${{ matrix.environment }}
+          cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
