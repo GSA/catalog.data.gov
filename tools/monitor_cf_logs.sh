@@ -15,6 +15,15 @@ do
   sleep 2
 done
 
+if cf logs --recent "$app_to_monitor" | grep "\[APP/TASK/$task_to_monitor/0\] OUT Exit status 0"
+then
+  exit_code=0
+else
+  exit_code=1
+fi
+
 kill -9 $BACKGROUND_PID
 kill -9 $((BACKGROUND_PID-1))
 kill -9 $((BACKGROUND_PID-2))
+
+exit $exit_code
