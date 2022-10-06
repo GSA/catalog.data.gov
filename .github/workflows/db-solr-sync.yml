@@ -37,9 +37,9 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --dryrun
-            " --name 'db-solr-sync (CI)' -m 3G
+            cf run-task catalog-admin \
+              --command "ckan geodatagov db-solr-sync --dryrun" \
+              --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -49,9 +49,9 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --cleanup_solr
-            " --name 'db-solr-sync (CI)' -m 3G
+            cf run-task catalog-admin \
+              --command "ckan geodatagov db-solr-sync --cleanup_solr" \
+              --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -61,9 +61,9 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --update_solr
-            " --name 'db-solr-sync (CI)' -m 3G
+            cf run-task catalog-admin \
+              --command "ckan geodatagov db-solr-sync --update_solr" \
+              --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -73,10 +73,9 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --cleanup_solr
-              --update_solr
-            " --name 'db-solr-sync (CI)' -m 3G
+            cf run-task catalog-admin \
+              --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr" \
+              --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
