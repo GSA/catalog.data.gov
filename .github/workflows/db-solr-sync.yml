@@ -36,9 +36,9 @@ jobs:
         if: ${{ github.event.inputs.dryrun == 'True' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin \
-              --command "ckan geodatagov db-solr-sync --dryrun" \
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --dryrun"
               --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
@@ -48,9 +48,9 @@ jobs:
         if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Only cleanup solr') }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin \
-              --command "ckan geodatagov db-solr-sync --cleanup_solr" \
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --cleanup_solr"
               --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
@@ -60,9 +60,9 @@ jobs:
         if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Only update solr') }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin \
-              --command "ckan geodatagov db-solr-sync --update_solr" \
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --update_solr"
               --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
@@ -72,9 +72,9 @@ jobs:
         if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Both') }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin \
-              --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr" \
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr"
               --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
