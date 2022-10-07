@@ -14,7 +14,8 @@ export flagfile="/var/solr/data/retry-flag";
 [[ $(find $lockpath -name write.lock) && ! $(find $flagfile -mmin +5) ]] && { echo "Keep waiting"; exit 1; };
 ls -lart /var/solr/data;
 ls -lart /var/solr/data/ckan/data;
-rm -rf $lockfile $flagfile;
+find $lockpath -name write.lock -delete;
+rm -rf $flagfile;
 
 # add solr config files for ckan 2.9
 wget -O /tmp/ckan_config/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/setup/solr/managed-schema
