@@ -29,6 +29,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Generate Unique Task Name
+        run: |
+          INSTANCE_NAME="$(echo db-solr-sync-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
       - name: Dry Run
         if: ${{ github.event.inputs.options == 'Dryrun' }}
         uses: cloud-gov/cg-cli-tools@main
@@ -36,7 +40,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --dryrun"
-              --name 'db-solr-sync (CI)' -m 3G
+              --name $INSTANCE_NAME -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -48,7 +52,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --cleanup_solr"
-              --name 'db-solr-sync (CI)' -m 3G
+              --name $INSTANCE_NAME -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -60,7 +64,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --update_solr"
-              --name 'db-solr-sync (CI)' -m 3G
+              --name $INSTANCE_NAME -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -72,7 +76,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr"
-              --name 'db-solr-sync (CI)' -m 3G
+              --name $INSTANCE_NAME -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -80,7 +84,7 @@ jobs:
       - name: monitor task output
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)' 'geodatagov'
+          command: tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME 'geodatagov'
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ_cf}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
