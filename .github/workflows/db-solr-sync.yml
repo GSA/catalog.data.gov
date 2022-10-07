@@ -32,44 +32,50 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: Only Cleanup Solr
-        if: ${{ github.event.inputs.options == 'Only cleanup solr' }}
+      - name: Dry Run
+        if: ${{ github.event.inputs.dryrun == 'True' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --dryrun ${{github.event.inputs.dryrun}}
-              --cleanup_solr True
-              --update_solr False
-            " --name 'db-solr-sync (CI)' -m 3G
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --dryrun"
+              --name 'db-solr-sync (CI)' -m 3G
+          cf_org: gsa-datagov
+          cf_space: ${{github.event.inputs.environ}}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Only Cleanup Solr
+        if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Only cleanup solr') }}
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --cleanup_solr"
+              --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Only Update Solr
-        if: ${{ github.event.inputs.options == 'Only update solr' }}
+        if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Only update solr') }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --dryrun ${{github.event.inputs.dryrun}}
-              --cleanup_solr False
-              --update_solr True
-            " --name 'db-solr-sync (CI)' -m 3G
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --update_solr"
+              --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Do Both
-        if: ${{ github.event.inputs.options == 'Both' }}
+        if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Both') }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --dryrun ${{github.event.inputs.dryrun}}
-              --cleanup_solr True
-              --update_solr True
-            " --name 'db-solr-sync (CI)' -m 3G
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr"
+              --name 'db-solr-sync (CI)' -m 3G
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
