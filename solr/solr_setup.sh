@@ -11,7 +11,7 @@ rm -rf /var/solr/data/aws-backup-restore*
 export lockfile="/var/solr/data/ckan/data/index/write.lock";
 export flagfile="/var/solr/data/retry-flag";
 [[ -f $lockfile && ! -f $flagfile ]] && { echo "Found lock file. Creating flag file"; touch $flagfile; sleep 30; };
-[[ -f $lockfile && ! `find $flagfile -mmin +5` ]] && { echo "Keep waiting"; exit 1; };
+[[ -f $lockfile && ! $(find $flagfile -mmin +5) ]] && { echo "Keep waiting"; exit 1; };
 ls -lart /var/solr/data;
 rm -rf $lockfile $flagfile;
 
