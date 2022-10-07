@@ -3,15 +3,12 @@ name: DB Solr Sync
 on:
   workflow_dispatch:
     inputs:
-      dryrun:
-        description: 'Dryrun:'
-        required: true
-        default: 'True'
       options:
         description: 'Command options:'
         required: false
         type: choice
         options:
+          - 'Dryrun'
           - 'Only cleanup solr'
           - 'Only update solr'
           - 'Both'
@@ -33,7 +30,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: Dry Run
-        if: ${{ github.event.inputs.dryrun == 'True' }}
+        if: ${{ github.event.inputs.options == 'Dryrun' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
@@ -45,7 +42,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Only Cleanup Solr
-        if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Only cleanup solr') }}
+        if: ${{ github.event.inputs.options == 'Only cleanup solr' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
@@ -57,7 +54,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Only Update Solr
-        if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Only update solr') }}
+        if: ${{ github.event.inputs.options == 'Only update solr' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
@@ -69,7 +66,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Do Both
-        if: ${{ (github.event.inputs.dryrun != 'True') && (github.event.inputs.options == 'Both') }}
+        if: ${{ github.event.inputs.options == 'Both' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
