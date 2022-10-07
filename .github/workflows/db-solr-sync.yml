@@ -40,7 +40,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --dryrun"
-              --name $INSTANCE_NAME -m 3G
+              --name $INSTANCE_NAME -m 3G -k 1500M
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -52,7 +52,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --cleanup_solr"
-              --name $INSTANCE_NAME -m 3G
+              --name $INSTANCE_NAME -m 3G -k 1500M
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -64,7 +64,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --update_solr"
-              --name $INSTANCE_NAME -m 3G
+              --name $INSTANCE_NAME -m 3G -k 1500M
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -76,7 +76,7 @@ jobs:
           command: >
             cf run-task catalog-admin
               --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr"
-              --name $INSTANCE_NAME -m 3G
+              --name $INSTANCE_NAME -m 3G -k 1500M
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
