@@ -1,7 +1,7 @@
 ---
 name: DB Solr Sync on Schedule
 
-on:
+on:   # yamllint disable-line rule:truthy
   schedule:
     - cron: '0 4 * * *'  # every day at 4am UTC
 

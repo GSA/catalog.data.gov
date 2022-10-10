@@ -1,7 +1,7 @@
 ---
 name: DB Solr Sync
 
-on:
+on:   # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       options:
