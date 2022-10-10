@@ -107,10 +107,10 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy ${{ app }}
+      - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push ${{ app }} --vars-file vars.staging.yml --strategy rolling
+          command: cf push ${{ matrix.app }} --vars-file vars.staging.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -143,10 +143,10 @@ jobs:
         with:
           name: python-vendored
           path: vendor
-      - name: deploy ${{ app }}
+      - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push ${{ app }} --vars-file vars.production.yml --strategy rolling
+          command: cf push ${{ matrix.app }} --vars-file vars.production.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
