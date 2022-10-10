@@ -1,5 +1,5 @@
 ---
-title: Deployment Failure - {{ date | date('dddd, MMMM Do') }}
+title: Deployment Failure
 labels: bug
 ---
 
