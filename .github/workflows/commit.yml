@@ -104,7 +104,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            cf push ${{ matrix.app }} --vars-file \
+            cf push ${{ matrix.app }} --vars-file
             vars.development.yml --strategy rolling
           cf_org: gsa-datagov
           cf_space: development
