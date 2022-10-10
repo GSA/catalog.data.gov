@@ -6,49 +6,50 @@ on:
     - cron: '11/30 * * * *'
 
 jobs:
-   # restart-staging:
-   #   name: restart (staging)
-   #   environment: staging
-   #   runs-on: ubuntu-latest
-   #   steps:
-   #     - name: checkout
-   #       uses: actions/checkout@v2
-   #     - name: restart catalog-web
-   #       uses: cloud-gov/cg-cli-tools@main
-   #       with:
-   #         command: cf restart catalog-web --strategy rolling
-   #         cf_org: gsa-datagov
-   #         cf_space: staging
-   #         cf_username: ${{secrets.CF_SERVICE_USER}}
-   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     - name: restart catalog-admin
-   #       uses: cloud-gov/cg-cli-tools@main
-   #       with:
-   #         command: cf restart catalog-admin --strategy rolling
-   #         cf_org: gsa-datagov
-   #         cf_space: staging
-   #         cf_username: ${{secrets.CF_SERVICE_USER}}
-   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     # - name: restart gather
-   #     #   uses: cloud-gov/cg-cli-tools@main
-   #     #   with:
-   #     #     command: cf restart catalog-gather
-   #     #     cf_org: gsa-datagov
-   #     #     cf_space: staging
-   #     #     cf_username: ${{secrets.CF_SERVICE_USER}}
-   #     #     cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     - name: restart fetch
-   #       uses: cloud-gov/cg-cli-tools@main
-   #       with:
-   #         command: cf restart catalog-fetch
-   #         cf_org: gsa-datagov
-   #         cf_space: staging
-   #         cf_username: ${{secrets.CF_SERVICE_USER}}
-   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     - name: smoke test
-   #       run: |
-   #         sleep 10
-   #         curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+  # restart-staging:
+  #   name: restart (staging)
+  #   environment: staging
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v2
+  #     - name: restart catalog-web
+  #       uses: cloud-gov/cg-cli-tools@main
+  #       with:
+  #         command: cf restart catalog-web --strategy rolling
+  #         cf_org: gsa-datagov
+  #         cf_space: staging
+  #         cf_username: ${{secrets.CF_SERVICE_USER}}
+  #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
+  #     - name: restart catalog-admin
+  #       uses: cloud-gov/cg-cli-tools@main
+  #       with:
+  #         command: cf restart catalog-admin --strategy rolling
+  #         cf_org: gsa-datagov
+  #         cf_space: staging
+  #         cf_username: ${{secrets.CF_SERVICE_USER}}
+  #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
+  #     # - name: restart gather
+  #     #   uses: cloud-gov/cg-cli-tools@main
+  #     #   with:
+  #     #     command: cf restart catalog-gather
+  #     #     cf_org: gsa-datagov
+  #     #     cf_space: staging
+  #     #     cf_username: ${{secrets.CF_SERVICE_USER}}
+  #     #     cf_password: ${{secrets.CF_SERVICE_AUTH}}
+  #     - name: restart fetch
+  #       uses: cloud-gov/cg-cli-tools@main
+  #       with:
+  #         command: cf restart catalog-fetch
+  #         cf_org: gsa-datagov
+  #         cf_space: staging
+  #         cf_username: ${{secrets.CF_SERVICE_USER}}
+  #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
+  #     - name: smoke test
+  #       run: |
+  #         sleep 10
+  #         curl --fail --silent https://catalog-stage-datagov.app.cloud.gov \
+  #         /api/action/status_show?$(date +%s)
 
   restart-prod:
     name: restart (prod)
@@ -92,4 +93,5 @@ jobs:
       - name: smoke test
         run: |
           sleep 10
-          curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+          curl --fail --silent https://catalog.data.gov\
+          /api/action/status_show?$(date +%s)

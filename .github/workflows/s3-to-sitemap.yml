@@ -3,20 +3,22 @@ name: s3 to sitemap
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '0 4 * * *' # every day at 4am UTC
+  # schedule:
+  # - cron: '0 4 * * *' # every day at 4am UTC
 
 jobs:
-   s3-to-sitemap:
-     name: s3-to-sitemap
-     environment: prod
-     runs-on: ubuntu-latest
-     steps:
-       - name: checkout
-         uses: actions/checkout@v2
-       - name: run ckan-sitemap
-         run: | # https://github.com/GSA/data.gov/blob/f9cf8e3c2168c93ca05fd4a10f034342b14d2098/ansible/roles/software/ckan/catalog/ckan-app/templates/supervisord_misc_worker.conf.j2#L71
-           ckan --plugin=ckanext-geodatagov geodatagov sitemap-to-s3 # TODO: command will be something similar to this
-       - name: Setup tmate session on fail
-         if: ${{ failure() }}
-         uses: mxschmitt/action-tmate@v3
+  s3-to-sitemap:
+    name: s3-to-sitemap
+    environment: prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: run ckan-sitemap
+        # yamllint disable rule:line-length
+        run: | # https://github.com/GSA/data.gov/blob/f9cf8e3c2168c93ca05fd4a10f034342b14d2098/ansible/roles/software/ckan/catalog/ckan-app/templates/supervisord_misc_worker.conf.j2#L71
+          ckan --plugin=ckanext-geodatagov geodatagov sitemap-to-s3 # TODO: command will be something similar to this
+      # yamllint enable
+      - name: Setup tmate session on fail
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
