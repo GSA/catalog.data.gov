@@ -93,7 +93,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [catalog-web, catalog-admin, catalog-gather, catalog-fetch, catalog-proxy] # yamllint disable-line
+        app: [
+          catalog-web,
+          catalog-admin,
+          catalog-gather,
+          catalog-fetch,
+          catalog-proxy
+        ]
         include:
           - app: catalog-web
             smoketest: true
@@ -111,7 +117,8 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            cf push ${{ matrix.app }} --vars-file vars.staging.yml
+            cf push ${{ matrix.app }}
+            --vars-file vars.staging.yml
             --strategy rolling
           cf_org: gsa-datagov
           cf_space: staging
@@ -131,7 +138,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [catalog-web, catalog-admin, catalog-gather, catalog-fetch, catalog-proxy] # yamllint disable-line
+        app: [
+          catalog-web,
+          catalog-admin,
+          catalog-gather,
+          catalog-fetch,
+          catalog-proxy
+        ]
         include:
           - app: catalog-web
             smoketest: true
@@ -150,7 +163,8 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            cf push ${{ matrix.app }} --vars-file vars.production.yml
+            cf push ${{ matrix.app }}
+            --vars-file vars.production.yml
             --strategy rolling
           cf_org: gsa-datagov
           cf_space: prod

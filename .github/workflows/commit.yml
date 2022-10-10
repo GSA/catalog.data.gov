@@ -12,9 +12,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: Lint GitHub Actions
-        run: |
-          cd .github/workflows
-          yamllint .
+        run: yamllint .github/workflows/
   test:
     name: Build and Test
     runs-on: ubuntu-latest
@@ -85,7 +83,13 @@ jobs:
     environment: development
     strategy:
       matrix:
-        app: [catalog-web, catalog-admin, catalog-gather, catalog-fetch, catalog-proxy] # yamllint disable-line
+        app: [
+          catalog-web,
+          catalog-admin,
+          catalog-gather,
+          catalog-fetch,
+          catalog-proxy
+        ]
         include:
           - app: catalog-web
             smoketest: true
@@ -104,8 +108,9 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            cf push ${{ matrix.app }} --vars-file
-            vars.development.yml --strategy rolling
+            cf push ${{ matrix.app }}
+            --vars-file vars.development.yml
+            --strategy rolling
           cf_org: gsa-datagov
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
