@@ -176,7 +176,7 @@ jobs:
           sleep 10
           curl --fail --silent https://catalog.data.gov\
           /api/action/status_show?$(date +%s)
-      - name: Create Issue if it fails :cry:
+      - name: Create Issue if it fails 😢
         if: ${{ failure() }}
         uses: JasonEtco/create-an-issue@v2
         env:
