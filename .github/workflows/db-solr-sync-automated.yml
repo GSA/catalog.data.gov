@@ -1,8 +1,9 @@
+---
 name: DB Solr Sync on Schedule
 
-on:
+on:   # yamllint disable-line rule:truthy
   schedule:
-    - cron: '0 4 * * *' # every day at 4am UTC
+    - cron: '0 4 * * *'  # every day at 4am UTC
 
 jobs:
   db-solr-sync:
@@ -25,8 +26,11 @@ jobs:
       - name: run task
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync" --name 'db-solr-sync scheduled (CI)' -m ${{ matrix.ram }} -k 1500M
+          command: >
+            cf run-task catalog-admin
+            --command "ckan geodatagov db-solr-sync"
+            --name 'db-solr-sync scheduled (CI)'
+            -m ${{ matrix.ram }} -k 1500M
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -34,7 +38,9 @@ jobs:
       - name: monitor task output
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync scheduled (CI)' 'geodatagov'
+          command: >
+            tools/monitor_cf_logs.sh catalog-admin
+            'db-solr-sync scheduled (CI)' 'geodatagov'
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}

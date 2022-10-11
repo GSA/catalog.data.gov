@@ -1,7 +1,7 @@
 ---
 name: publish & deploy
 
-on:
+on:   # yamllint disable-line rule:truthy
   push:
     branches:
       - main
@@ -15,15 +15,15 @@ jobs:
       matrix:
         image: [ckan, solr, postgresql]
         include:
-        - image: ckan
-          name: catalog.data.gov
-          tag: ghcr.io/gsa/catalog.data.gov:latest
-        - image: solr
-          name: catalog.data.gov.solr
-          tag: ghcr.io/gsa/catalog.data.gov.solr:latest
-        - image: postgresql
-          name: catalog.data.gov.db
-          tag: ghcr.io/gsa/catalog.data.gov.db:latest
+          - image: ckan
+            name: catalog.data.gov
+            tag: ghcr.io/gsa/catalog.data.gov:latest
+          - image: solr
+            name: catalog.data.gov.solr
+            tag: ghcr.io/gsa/catalog.data.gov.solr:latest
+          - image: postgresql
+            name: catalog.data.gov.db
+            tag: ghcr.io/gsa/catalog.data.gov.db:latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -93,10 +93,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [catalog-web, catalog-admin, catalog-gather, catalog-fetch, catalog-proxy]
+        app: [
+          catalog-web,
+          catalog-admin,
+          catalog-gather,
+          catalog-fetch,
+          catalog-proxy
+        ]
         include:
-        - app: catalog-web
-          smoketest: true
+          - app: catalog-web
+            smoketest: true
     needs:
       - vendor
       - create-cloudgov-services-staging
@@ -110,7 +116,10 @@ jobs:
       - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push ${{ matrix.app }} --vars-file vars.staging.yml --strategy rolling
+          command: >
+            cf push ${{ matrix.app }}
+            --vars-file vars.staging.yml
+            --strategy rolling
           cf_org: gsa-datagov
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -119,7 +128,8 @@ jobs:
         if: ${{ matrix.smoketest }}
         run: |
           sleep 10
-          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov\
+          /api/action/status_show?$(date +%s)
 
   deploy-prod:
     name: deploy catalog (prod)
@@ -128,10 +138,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [catalog-web, catalog-admin, catalog-gather, catalog-fetch, catalog-proxy]
+        app: [
+          catalog-web,
+          catalog-admin,
+          catalog-gather,
+          catalog-fetch,
+          catalog-proxy
+        ]
         include:
-        - app: catalog-web
-          smoketest: true
+          - app: catalog-web
+            smoketest: true
     needs:
       - vendor
       - deploy-staging
@@ -146,7 +162,10 @@ jobs:
       - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push ${{ matrix.app }} --vars-file vars.production.yml --strategy rolling
+          command: >
+            cf push ${{ matrix.app }}
+            --vars-file vars.production.yml
+            --strategy rolling
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -155,7 +174,8 @@ jobs:
         if: ${{ matrix.smoketest }}
         run: |
           sleep 10
-          curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+          curl --fail --silent https://catalog.data.gov\
+          /api/action/status_show?$(date +%s)
       - name: Create Issue if it fails :cry:
         if: ${{ failure() }}
         - uses: JasonEtco/create-an-issue@v2
