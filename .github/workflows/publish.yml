@@ -26,7 +26,7 @@ jobs:
             tag: ghcr.io/gsa/catalog.data.gov.db:latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: login to ghcr
         uses: docker/login-action@v1
         with:
@@ -45,10 +45,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: vendor dependencies
         run: ./vendor-requirements.sh build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: python-vendored
           path: vendor/
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: create services
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: create services
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -108,7 +108,7 @@ jobs:
       - create-cloudgov-services-staging
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - uses: actions/download-artifact@v2
         with:
           name: python-vendored
@@ -154,7 +154,7 @@ jobs:
       - create-cloudgov-services-prod
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - uses: actions/download-artifact@v2
         with:
           name: python-vendored
