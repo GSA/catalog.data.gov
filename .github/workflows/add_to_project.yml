@@ -1,7 +1,7 @@
 ---
 name: Add New Issues to GH Projects
 
-on: # yamllint disable-line rule:truthy
+on:   # yamllint disable-line rule:truthy
   issues:
     types: [opened, labeled]
 
