@@ -117,7 +117,7 @@ export CKANEXT__S3SITEMAP__AWS_ACCESS_KEY_ID=$(vcap_get_service s3 .credentials.
 export CKANEXT__S3SITEMAP__AWS_SECRET_ACCESS_KEY=$(vcap_get_service s3 .credentials.secret_access_key)
 export CKANEXT__S3SITEMAP__AWS_BUCKET_NAME=$(vcap_get_service s3 .credentials.bucket)
 export CKANEXT__S3SITEMAP__AWS_STORAGE_PATH=catalog/sitemap
-export CKANEXT__S3SITEMAP__ENDPOINT_URL=$(vcap_get_service s3 .credentials.endpoint)
+export CKANEXT__S3SITEMAP__ENDPOINT_URL=https://$(vcap_get_service s3 .credentials.endpoint)
 
 # Set up the collection in Solr
 echo Setting up Solr collection
