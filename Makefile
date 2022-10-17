@@ -142,7 +142,7 @@ update-tracking-info:
 
 harvest:
 	# Pass any of the following arguments to run them
-	# make harvest 'fetch-consumer'
-	# make harvest 'gather-consumer'
-	# make harvest 'run'
+	# ARGS=run make harvest
+	# ARGS=gather-consumer make harvest
+	# ARGS=fetch-consumer make harvest
 	docker-compose exec ckan ckan harvester $(ARGS)
