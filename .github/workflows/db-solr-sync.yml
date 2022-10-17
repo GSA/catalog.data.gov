@@ -1,17 +1,15 @@
+---
 name: DB Solr Sync
 
-on:
+on:   # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
-      dryrun:
-        description: 'Dryrun:'
-        required: true
-        default: 'True'
       options:
         description: 'Command options:'
         required: false
         type: choice
         options:
+          - 'Dryrun'
           - 'Only cleanup solr'
           - 'Only update solr'
           - 'Both'
@@ -31,17 +29,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Generate Unique Task Name
+        # yamllint disable rule:line-length
+        run: |
+          INSTANCE_NAME="$(echo db-solr-sync-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
+        # yamllint enable
+      - name: Dry Run
+        if: ${{ github.event.inputs.options == 'Dryrun' }}
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --dryrun"
+              --name $INSTANCE_NAME
+              -m 3G -k 1500M
+          cf_org: gsa-datagov
+          cf_space: ${{github.event.inputs.environ}}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Only Cleanup Solr
         if: ${{ github.event.inputs.options == 'Only cleanup solr' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --dryrun ${{github.event.inputs.dryrun}}
-              --cleanup_solr True
-              --update_solr False
-            " --name 'db-solr-sync (CI)' -m 3G
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --cleanup_solr"
+              --name $INSTANCE_NAME
+              -m 3G -k 1500M
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -50,12 +66,11 @@ jobs:
         if: ${{ github.event.inputs.options == 'Only update solr' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --dryrun ${{github.event.inputs.dryrun}}
-              --cleanup_solr False
-              --update_solr True
-            " --name 'db-solr-sync (CI)' -m 3G
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --update_solr"
+              --name $INSTANCE_NAME
+              -m 3G -k 1500M
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -64,12 +79,13 @@ jobs:
         if: ${{ github.event.inputs.options == 'Both' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: |
-            cf run-task catalog-admin --command "ckan geodatagov db-solr-sync
-              --dryrun ${{github.event.inputs.dryrun}}
-              --cleanup_solr True
-              --update_solr True
-            " --name 'db-solr-sync (CI)' -m 3G
+          # yamllint disable rule:line-length
+          command: >
+            cf run-task catalog-admin
+              --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr"
+              --name $INSTANCE_NAME
+              -m 3G -k 1500M
+          # yamllint enable
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ}}
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -77,7 +93,8 @@ jobs:
       - name: monitor task output
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: tools/monitor_cf_logs.sh catalog-admin 'db-solr-sync (CI)' 'geodatagov'
+          command: >
+            tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME 'geodatagov'
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ_cf}}
           cf_username: ${{secrets.CF_SERVICE_USER}}

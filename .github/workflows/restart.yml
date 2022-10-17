@@ -1,54 +1,69 @@
 ---
 name: restart application
 
-on:
+on:   # yamllint disable-line rule:truthy
   schedule:
     - cron: '11/30 * * * *'
 
 jobs:
-   # restart-staging:
-   #   name: restart (staging)
-   #   environment: staging
-   #   runs-on: ubuntu-latest
-   #   steps:
-   #     - name: checkout
-   #       uses: actions/checkout@v2
-   #     - name: restart catalog-web
-   #       uses: cloud-gov/cg-cli-tools@main
-   #       with:
-   #         command: cf restart catalog-web --strategy rolling
-   #         cf_org: gsa-datagov
-   #         cf_space: staging
-   #         cf_username: ${{secrets.CF_SERVICE_USER}}
-   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     - name: restart catalog-admin
-   #       uses: cloud-gov/cg-cli-tools@main
-   #       with:
-   #         command: cf restart catalog-admin --strategy rolling
-   #         cf_org: gsa-datagov
-   #         cf_space: staging
-   #         cf_username: ${{secrets.CF_SERVICE_USER}}
-   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     # - name: restart gather
-   #     #   uses: cloud-gov/cg-cli-tools@main
-   #     #   with:
-   #     #     command: cf restart catalog-gather
-   #     #     cf_org: gsa-datagov
-   #     #     cf_space: staging
-   #     #     cf_username: ${{secrets.CF_SERVICE_USER}}
-   #     #     cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     - name: restart fetch
-   #       uses: cloud-gov/cg-cli-tools@main
-   #       with:
-   #         command: cf restart catalog-fetch
-   #         cf_org: gsa-datagov
-   #         cf_space: staging
-   #         cf_username: ${{secrets.CF_SERVICE_USER}}
-   #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
-   #     - name: smoke test
-   #       run: |
-   #         sleep 10
-   #         curl --fail --silent https://catalog-stage-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+  restart-staging:
+    name: restart (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: restart catalog-web
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: cf restart catalog-web --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: restart catalog-admin
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: cf restart catalog-admin --strategy rolling
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: restart gather
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: tools/restart_harvester.sh catalog-gather
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: restart fetch
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: tools/restart_harvester.sh catalog-fetch
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: smoke test
+        run: |
+          sleep 10
+          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov \
+          /api/action/status_show?$(date +%s)
+      - name: Create Issue if it fails 😢
+        if: ${{ failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          GITHUB_JOB: ${{ toJson(github)['job'] }}
+          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
+          LAST_COMMIT: ${{ github.sha }}
+          LAST_RUN_BY: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+        with:
+          filename: .github/deploy_failure.md
+          assignees: ${{ github.actor }}
+          update_existing: true
 
   restart-prod:
     name: restart (prod)
@@ -56,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: restart catalog-web
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -92,4 +107,19 @@ jobs:
       - name: smoke test
         run: |
           sleep 10
-          curl --fail --silent https://catalog-prod-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+          curl --fail --silent https://catalog.data.gov\
+          /api/action/status_show?$(date +%s)
+      - name: Create Issue if it fails 😢
+        if: ${{ failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          GITHUB_JOB: ${{ toJson(github)['job'] }}
+          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
+          LAST_COMMIT: ${{ github.sha }}
+          LAST_RUN_BY: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+        with:
+          filename: .github/deploy_failure.md
+          assignees: ${{ github.actor }}
+          update_existing: true

@@ -1,22 +1,30 @@
 ---
 name: commit
 
-on:
+on:   # yamllint disable-line rule:truthy
   push:
 
 jobs:
+  lint-actions:
+    name: Lint Yaml
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Lint GitHub Actions
+        run: yamllint .github/workflows/
   test:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: build
         run: make build
       - name: test
         run: make test
       - name: cypress-artifacs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-artifacts
@@ -29,9 +37,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
           architecture: x64
@@ -43,10 +51,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: vendor dependencies
         run: ./vendor-requirements.sh build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: python-vendored
           path: vendor/
@@ -59,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: create services
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -75,25 +83,34 @@ jobs:
     environment: development
     strategy:
       matrix:
-        app: [catalog-web, catalog-admin, catalog-gather, catalog-fetch, catalog-proxy]
+        app: [
+          catalog-web,
+          catalog-admin,
+          catalog-gather,
+          catalog-fetch,
+          catalog-proxy
+        ]
         include:
-        - app: catalog-web
-          smoketest: true
+          - app: catalog-web
+            smoketest: true
     runs-on: ubuntu-latest
     needs:
       - vendor
       - create-cloudgov-services-development
     steps:
       - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+        uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
         with:
           name: python-vendored
           path: vendor
       - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf push ${{ matrix.app }} --vars-file vars.development.yml --strategy rolling
+          command: >
+            cf push ${{ matrix.app }}
+            --vars-file vars.development.yml
+            --strategy rolling
           cf_org: gsa-datagov
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -102,4 +119,5 @@ jobs:
         if: ${{ matrix.smoketest }}
         run: |
           sleep 10
-          curl --fail --silent https://catalog-dev-datagov.app.cloud.gov/api/action/status_show?$(date +%s)
+          curl --fail --silent https://catalog-dev-datagov.app.cloud.gov\
+          /api/action/status_show?$(date +%s)
