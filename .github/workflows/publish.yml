@@ -26,15 +26,15 @@ jobs:
             tag: ghcr.io/gsa/catalog.data.gov.db:latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: login to ghcr
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: publish ${{ matrix.name }}
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ${{ matrix.image }}
           push: true
@@ -45,10 +45,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: vendor dependencies
         run: ./vendor-requirements.sh build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: python-vendored
           path: vendor/
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: create services
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: create services
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -108,8 +108,8 @@ jobs:
       - create-cloudgov-services-staging
     steps:
       - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+        uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
         with:
           name: python-vendored
           path: vendor
@@ -154,8 +154,8 @@ jobs:
       - create-cloudgov-services-prod
     steps:
       - name: checkout
-        uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+        uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
         with:
           name: python-vendored
           path: vendor
@@ -188,4 +188,5 @@ jobs:
           RUN_ID: ${{ github.run_id }}
         with:
           filename: .github/deploy_failure.md
+          assignees: ${{ github.actor }}
           update_existing: true
