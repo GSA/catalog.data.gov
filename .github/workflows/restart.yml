@@ -48,7 +48,7 @@ jobs:
       - name: smoke test
         run: |
           sleep 10
-          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov \
+          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov\
           /api/action/status_show?$(date +%s)
       - name: Create Issue if it fails 😢
         if: ${{ failure() }}
