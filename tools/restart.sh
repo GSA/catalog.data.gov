@@ -16,5 +16,5 @@ instances=$(cf app $app_to_restart | grep '^instances:' | sed 's/.*\///')
 for (( i=1; i<=$instances; i++ ))
 do
   cf restart-app-instance $app_to_restart $((i-1))
-  # sleep 90
+  sleep 90
 done;
