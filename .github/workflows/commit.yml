@@ -82,6 +82,7 @@ jobs:
     name: deploy (development)
     environment: development
     strategy:
+      fail-fast: false
       matrix:
         app: [
           catalog-web,
