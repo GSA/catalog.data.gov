@@ -95,8 +95,6 @@ repoze.who==2.3
 requests==2.25.0
 Routes==1.13
 rq==1.0
-# pin setuptools until we get python buildpack 1.7.58
-setuptools==65.1.1 #to fix transitive dep issue: https://github.com/cloudfoundry/python-buildpack/issues/574
 simplejson==3.10.0
 # Following can be ignored: https://github.com/ckan/ckan/pull/4450
 # sqlalchemy-migrate==0.12.0
