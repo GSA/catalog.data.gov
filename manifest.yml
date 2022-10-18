@@ -25,7 +25,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((new_relic_app_name))
+      NEW_RELIC_APP_NAME: ((app_name))-web-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((route-public))
@@ -54,7 +54,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((new_relic_app_name))
+      NEW_RELIC_APP_NAME: ((app_name))-admin-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((route-external-admin))
@@ -98,7 +98,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((new_relic_app_name))
+      NEW_RELIC_APP_NAME: ((app_name))-gather-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((route-public))
@@ -123,7 +123,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((new_relic_app_name))
+      NEW_RELIC_APP_NAME: ((app_name))-fetch-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((route-public))
