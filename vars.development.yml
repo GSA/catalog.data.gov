@@ -1,5 +1,6 @@
 # This is the name to use for the development catalog app in Cloud Foundry
 app_name: catalog
+space_name: development
 
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-dev-catalog
 ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.sandbox.idp.xml
@@ -11,7 +12,6 @@ fetch-instances: 1
 memory_quota: 750M
 gather_memory_quota: 1G
 
-new_relic_app_name: catalog (develop)
 new_relic_monitor_mode: false
 
 # use CDN domain for route-public if available, otherwise use route-external 
