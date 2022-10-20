@@ -92,7 +92,7 @@ applications:
     instances: ((gather-instances))
     disk_quota: 1.5G
     memory: ((gather_memory_quota))
-    command: ckan harvester gather-consumer
+    command: newrelic-admin run-program ckan harvester gather-consumer
     health-check-type: process
     timeout: 15
     env:
@@ -117,7 +117,7 @@ applications:
     no-route: true
     instances: ((fetch-instances))
     disk_quota: 1.5G
-    command: while ! ckan harvester fetch-consumer; do sleep 1; done
+    command: newrelic-admin run-program while ! ckan harvester fetch-consumer; do sleep 1; done
     health-check-type: process
     timeout: 15
     env:
