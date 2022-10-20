@@ -109,6 +109,16 @@ export CKAN_SMTP_PASSWORD=$(vcap_get_service smtp .credentials.smtp_password)
 export CKAN_SMTP_MAIL_FROM=harvester@$(vcap_get_service smtp .credentials.domain_arn | grep -o "ses-[[:alnum:]]\+.ssb.data.gov")
 export CKAN_SMTP_REPLY_TO=datagovhelp@gsa.gov
 
+# S3 settings
+# Use ckanext-envvars to import other configurations...
+export CKANEXT__S3SITEMAP__REGION_NAME=$(vcap_get_service s3 .credentials.region)
+export CKANEXT__S3SITEMAP__HOST_NAME=https://s3-$CKANEXT__S3FILESTORE__REGION_NAME.amazonaws.com
+export CKANEXT__S3SITEMAP__AWS_ACCESS_KEY_ID=$(vcap_get_service s3 .credentials.access_key_id)
+export CKANEXT__S3SITEMAP__AWS_SECRET_ACCESS_KEY=$(vcap_get_service s3 .credentials.secret_access_key)
+export CKANEXT__S3SITEMAP__AWS_BUCKET_NAME=$(vcap_get_service s3 .credentials.bucket)
+export CKANEXT__S3SITEMAP__AWS_STORAGE_PATH=catalog/sitemap
+export CKANEXT__S3SITEMAP__ENDPOINT_URL=https://$(vcap_get_service s3 .credentials.endpoint)
+
 # Set up the collection in Solr
 echo Setting up Solr collection
 export SOLR_COLLECTION=ckan
