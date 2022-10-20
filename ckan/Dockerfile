@@ -12,7 +12,7 @@ FROM openknowledge/ckan-dev:2.9
 COPY --from=base /usr/local/lib/python3.8/site-packages/ /usr/lib/python3.8/site-packages/
 COPY --from=base /srv/app/src/ /srv/app/src/
 
-ENV LD_LIBRARY_PATH=/lib/:/usr/lib/python3.8/site-packages/Shapely.libs/
+RUN echo export LD_LIBRARY_PATH=/lib/:$(find /usr/lib/python3.8/site-packages/ -name "*.so*" | xargs -n 1 echo | cut -d'/' -f0-6 | sort -u | paste -sd ":" -) >> /etc/environment
 
 ENV GIT_BRANCH=2.9
 

@@ -68,4 +68,6 @@ then
     done
 fi
 
+touch /etc/envrionment
+source /etc/environment
 exec /app/ckan/setup/server_start.sh
