@@ -3,9 +3,8 @@ name: s3 to sitemap
 
 on:   # yamllint disable-line rule:truthy
   workflow_dispatch:
-  # TODO: enable schedule below
-  # schedule:
-  # - cron: '0 4 * * *' # every day at 4am UTC
+  schedule:
+    - cron: '0 4 * * *'  # every day at 4am UTC
 
 jobs:
   s3-to-sitemap:
