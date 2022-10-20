@@ -1,6 +1,18 @@
+FROM python:3.8 as base
+
+COPY requirements.txt /app/requirements.txt
+RUN mkdir -p /srv/app/src
+RUN pip3 install --upgrade pip
+RUN pip3 install -r /app/requirements.txt --disable-pip-version-check --ignore-installed --src=/srv/app/src
+
+
 FROM openknowledge/ckan-dev:2.9
 # Inherit from here: https://github.com/okfn/docker-ckan/blob/master/ckan-dev/2.9/Dockerfile
 # And then from here: https://github.com/okfn/docker-ckan/blob/master/ckan-base/2.9/Dockerfile
+COPY --from=base /usr/local/lib/python3.8/site-packages/ /usr/lib/python3.8/site-packages/
+COPY --from=base /srv/app/src/ /srv/app/src/
+
+ENV LD_LIBRARY_PATH=/lib/:/usr/lib/python3.8/site-packages/Shapely.libs/
 
 ENV GIT_BRANCH=2.9
 
@@ -13,11 +25,7 @@ ADD \
   /usr/lib/jvm/java-11-openjdk/saxon/saxon.jar
 
 # Add dependencies for ckanext-spatial and geodatagov
-RUN apk add geos-dev proj proj-util proj-dev
-
-COPY requirements.txt ${APP_DIR}
-
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt --ignore-installed
+RUN apk add geos-dev proj proj-util proj-dev gcompat
 
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
