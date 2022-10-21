@@ -9,7 +9,7 @@ app_to_restart=$1
 guid=$(cf app "$1" --guid)
 running=$(cf curl "/v3/deployments?status_values=ACTIVE" | jq --arg guid "$guid" ".resources[] | select(.relationships.app.data.guid == \$guid ) | .relationships.app.data.guid")
 if [ $running != "" ]; then
-        echo "Deployment in progress for app, not doing anything"
+        echo "Deployment in progress for $1, not doing anything"
         exit 0
 fi
 
