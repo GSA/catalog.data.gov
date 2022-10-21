@@ -41,6 +41,7 @@ applications:
       - ((app_name))-secrets
       - ((app_name))-solr
       - ((app_name))-smtp
+      - ((app_name))-s3
       - sysadmin-users
     routes:
       - route: ((route-internal-admin))
@@ -65,6 +66,7 @@ applications:
       - https://github.com/cloudfoundry/nginx-buildpack
     services:
       - ((app_name))-secrets
+      - ((app_name))-s3
     path: ./proxy
     # TODO: tweak with load testing
     memory: 100M
