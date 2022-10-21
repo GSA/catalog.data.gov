@@ -119,7 +119,7 @@ applications:
     no-route: true
     instances: ((fetch-instances))
     disk_quota: 1.5G
-    command: newrelic-admin run-program while ! ckan harvester fetch-consumer; do sleep 1; done
+    command: newrelic-admin run-program ckan harvester fetch-consumer
     health-check-type: process
     timeout: 15
     env:
