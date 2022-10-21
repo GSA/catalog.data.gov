@@ -81,6 +81,7 @@ jobs:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
     environment: development
+    concurrency: catalog-development-deployment
     strategy:
       fail-fast: false
       matrix:
