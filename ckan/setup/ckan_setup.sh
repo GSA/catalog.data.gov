@@ -45,7 +45,7 @@ ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
 
 # Update test-core.ini DB, SOLR & Redis settings
 echo "Loading test settings into test-core.ini"
-ckan config-tool $SRC_DIR/ckan/test-core.ini \
+ckan config-tool $CKAN_INI \
     "sqlalchemy.url = $TEST_CKAN_SQLALCHEMY_URL" \
     "ckan.datastore.write_url = $TEST_CKAN_DATASTORE_WRITE_URL" \
     "ckan.datastore.read_url = $TEST_CKAN_DATASTORE_READ_URL" \
@@ -53,7 +53,7 @@ ckan config-tool $SRC_DIR/ckan/test-core.ini \
     "ckan.redis.url = $TEST_CKAN_REDIS_URL"
 
 # Run the prerun script to init CKAN and create the default admin user
-python GSA_prerun.py
+python /srv/app/GSA_prerun.py
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
