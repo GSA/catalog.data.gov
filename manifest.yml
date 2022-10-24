@@ -11,6 +11,7 @@ applications:
       - ((app_name))-s3
       - ((app_name))-secrets
       - ((app_name))-solr
+      - ((app_name))-s3
       - sysadmin-users
     routes:
       - route: ((route-internal))
@@ -40,6 +41,7 @@ applications:
       - ((app_name))-secrets
       - ((app_name))-solr
       - ((app_name))-smtp
+      - ((app_name))-s3
       - sysadmin-users
     routes:
       - route: ((route-internal-admin))
@@ -64,6 +66,7 @@ applications:
       - https://github.com/cloudfoundry/nginx-buildpack
     services:
       - ((app_name))-secrets
+      - ((app_name))-s3
     path: ./proxy
     # TODO: tweak with load testing
     memory: 100M
@@ -91,7 +94,7 @@ applications:
     instances: ((gather-instances))
     disk_quota: 1.5G
     memory: ((gather_memory_quota))
-    command: ckan harvester gather-consumer
+    command: newrelic-admin run-program ckan harvester gather-consumer
     health-check-type: process
     timeout: 15
     env:
@@ -116,7 +119,7 @@ applications:
     no-route: true
     instances: ((fetch-instances))
     disk_quota: 1.5G
-    command: while ! ckan harvester fetch-consumer; do sleep 1; done
+    command: newrelic-admin run-program ckan harvester fetch-consumer
     health-check-type: process
     timeout: 15
     env:
