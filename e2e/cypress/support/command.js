@@ -261,9 +261,9 @@ Cypress.Commands.add('form_request', (method, url, formData, done) => {
 });
 
 Cypress.Commands.add('hide_debug_toolbar', () => {
-    cy.get('#flHideToolBarButton').then(($button) => {
+    cy.get('#flDebugHideToolBarButton').then(($button) => {
         if ($button.is(':visible')) {
-            cy.get('#flHideToolBarButton').click();
+            cy.get('#flDebugHideToolBarButton').click();
         }
     });
 });
