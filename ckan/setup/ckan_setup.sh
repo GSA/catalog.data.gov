@@ -25,32 +25,19 @@ do
             pip3 install -e .
             cd $APP_DIR
         fi
-
-        # Point `use` in test.ini to location of `test-core.ini`
-        if [ -f $i/test.ini ];
-        then
-            echo "Updating \`test.ini\` reference to \`test-core.ini\` for plugin $i"
-            ckan config-tool $i/test.ini "use = config:../../src/ckan/test-core.ini"
-        fi
     fi
 done
 
-# Set debug to true
 echo "Enabling debug mode"
 ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
+
+echo "Enabling user creation"
+ckan config-tool $CKAN_INI "ckan.auth.create_user_via_web = true"
+ckan config-tool $CKAN_INI "ckan.auth.create_user_via_api = true"
 
 # Update the plugins setting in the ini file with the values defined in the env var
 echo "Loading the following plugins: $CKAN__PLUGINS"
 ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
-
-# Update test-core.ini DB, SOLR & Redis settings
-echo "Loading test settings into test-core.ini"
-ckan config-tool $CKAN_INI \
-    "sqlalchemy.url = $TEST_CKAN_SQLALCHEMY_URL" \
-    "ckan.datastore.write_url = $TEST_CKAN_DATASTORE_WRITE_URL" \
-    "ckan.datastore.read_url = $TEST_CKAN_DATASTORE_READ_URL" \
-    "solr_url = $TEST_CKAN_SOLR_URL" \
-    "ckan.redis.url = $TEST_CKAN_REDIS_URL"
 
 # Run the prerun script to init CKAN and create the default admin user
 python /srv/app/GSA_prerun.py

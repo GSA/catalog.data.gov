@@ -26,16 +26,19 @@ COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 
-# CKAN Setup Files
-RUN mkdir -p /srv/app && mkdir -p /var/lib/ckan
+# CKAN Setup Variables
 ENV APP_DIR=/srv/app
 ENV SRC_DIR=/srv/app/src
 ENV CKAN_INI=${APP_DIR}/ckan.ini
 ENV PIP_SRC=${SRC_DIR}
 ENV CKAN_STORAGE_PATH=/var/lib/ckan
+RUN mkdir -p $CKAN_STORAGE_PATH $APP_DIR
 
+# CKAN Setup Files
+# Our production ckan.ini messes with local login
+# (so we need to generate a new one)
 COPY setup/GSA_prerun.py ${APP_DIR}/
-COPY setup/ckan.ini ${APP_DIR}/
+RUN ckan generate config ${CKAN_INI}
 COPY setup/who.ini ${APP_DIR}/
 COPY saml2 ${APP_DIR}/saml2
 # Reference upstream prerun.py

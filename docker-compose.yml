@@ -15,6 +15,7 @@ services:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
       - ./ckan/setup/GSA_prerun.py:/srv/app/GSA_prerun.py
+      - ./ckan/setup/ckan_setup.sh:/srv/app/ckan_setup.sh
       - ./ckan/docker-entrypoint.d/:/docker-entrypoint.d/
       - .:/app
 
