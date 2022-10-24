@@ -8,6 +8,14 @@
 # Input either catalog-gather or catalog-fetch
 app_to_restart=$1
 
+# Check if deployment is happening, if so ignore
+guid=$(cf app "$1" --guid)
+running=$(cf curl "/v3/deployments?status_values=ACTIVE" | jq --arg guid "$guid" ".resources[] | select(.relationships.app.data.guid == \$guid ) | .relationships.app.data.guid")
+if [ $running != "" ]; then
+        echo "Deployment in progress for $1, not doing anything"
+        exit 0
+fi
+
 ###################
 # Utility Functions
 # Get the number of lines in the log (int)

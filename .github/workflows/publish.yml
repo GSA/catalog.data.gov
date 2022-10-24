@@ -104,7 +104,6 @@ jobs:
     name: deploy catalog (staging)
     environment: staging
     runs-on: ubuntu-latest
-    concurrency: catalog-staging-deployment
     strategy:
       fail-fast: false
       matrix:
@@ -164,7 +163,6 @@ jobs:
     name: deploy catalog (prod)
     environment: prod
     runs-on: ubuntu-latest
-    concurrency: catalog-prod-deployment
     strategy:
       fail-fast: false
       matrix:

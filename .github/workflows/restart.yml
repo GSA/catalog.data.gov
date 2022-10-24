@@ -10,14 +10,13 @@ jobs:
     name: restart (staging)
     environment: staging
     runs-on: ubuntu-latest
-    concurrency: catalog-staging-deployment
     steps:
       - name: checkout
         uses: actions/checkout@v3
       - name: restart catalog-web
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf restart catalog-web --strategy rolling
+          command: tools/restart.sh catalog-web
           cf_org: gsa-datagov
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -25,7 +24,7 @@ jobs:
       - name: restart catalog-admin
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf restart catalog-admin --strategy rolling
+          command: tools/restart.sh catalog-admin
           cf_org: gsa-datagov
           cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
@@ -70,7 +69,6 @@ jobs:
     name: restart (prod)
     environment: prod
     runs-on: ubuntu-latest
-    concurrency: catalog-prod-deployment
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -85,7 +83,7 @@ jobs:
       - name: restart catalog-admin
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: cf restart catalog-admin --strategy rolling
+          command: tools/restart.sh catalog-admin
           cf_org: gsa-datagov
           cf_space: prod
           cf_username: ${{secrets.CF_SERVICE_USER}}
