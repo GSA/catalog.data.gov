@@ -42,9 +42,8 @@ update-dependencies:
 # Test commands
 # ###############################################
 
-test:
+test: build
 	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 quick-bat-test:
