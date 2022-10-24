@@ -9,10 +9,7 @@ all: build
 # ###############################################
 
 build:
-	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
-	docker build -t ghcr.io/gsa/catalog.data.gov.solr:latest solr/
-	docker build -t ghcr.io/gsa/catalog.data.gov.db:latest postgresql/
-	docker-compose build
+	docker-compose build --parallel
 
 ci:
 	docker-compose up -d

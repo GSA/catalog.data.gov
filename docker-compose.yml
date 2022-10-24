@@ -3,6 +3,8 @@ version: "3"
 services:
   ckan:
     image: ghcr.io/gsa/catalog.data.gov:latest
+    build:
+      context: ckan/
     command: /app/ckan/setup/ckan_setup.sh
     env_file: .env
     depends_on:
@@ -23,11 +25,15 @@ services:
     env_file:
       - .env
     image: ghcr.io/gsa/catalog.data.gov.db:latest
+    build:
+      context: postgresql/
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    image: ghcr.io/gsa/catalog.data.gov.solr:8-stunnel-root
+    image: ghcr.io/gsa/catalog.data.gov.solr:latest
+    build:
+      context: solr/
     command: /app/solr/local_setup.sh
     ports:
       - "8983:8983"
