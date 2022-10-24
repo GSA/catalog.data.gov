@@ -9,8 +9,9 @@ guid=$(cf app $1 --guid)
 # Get the last two pages
 last_page=$(cf curl "/v3/apps/$guid/tasks?per_page=10" | jq -r '.pagination.total_pages')
 
-cf curl "/v3/apps/$guid/tasks?per_page=10&page=$last_page" | jq -r '.resources[] | "\(.sequence_id) \(.name) \(.state) \(.command)"'
-cf curl "/v3/apps/$guid/tasks?per_page=10&page=$((last_page-1))" | jq -r '.resources[] | "\(.sequence_id) \(.name) \(.state) \(.command)"'
+echo "No   | Name        | State       | Command"
+cf curl "/v3/apps/$guid/tasks?per_page=10&page=$last_page" | jq -r '.resources[] | "\(.sequence_id) | \(.name) | \(.state) | \(.command)"'
+cf curl "/v3/apps/$guid/tasks?per_page=10&page=$((last_page-1))" | jq -r '.resources[] | "\(.sequence_id) | \(.name) | \(.state) | \(.command)"'
 
 # All available options
 # guid, created_at, updated_at, sequence_id, name, command, state,
