@@ -1,4 +1,6 @@
-function check_harvest_done(retries) {
+Cypress.Commands.add('check_harvest_done', (retries) => {
+    // Desired harvest page needs to be loaded before this
+    // function is called.
     cy.get('td')
         .eq(4)
         .then(($td) => {
@@ -8,13 +10,13 @@ function check_harvest_done(retries) {
                 cy.log('Retried too many times, give up');
                 expect(true).to.be.false();
             } else {
-                // Not done, check again in 10 seconds
-                cy.wait(10000);
+                // Not done, check again in 5 seconds
+                cy.wait(5000);
                 cy.reload(true);
-                check_harvest_done(retries - 1);
+                cy.check_harvest_done(retries - 1);
             }
         });
-}
+});
 
 Cypress.Commands.add('login', (userName, password, loginTest) => {
     /**
@@ -229,8 +231,6 @@ Cypress.Commands.add('start_harvest_job', (harvestName) => {
 
     // Confirm stop button exists, harvest is started/queued
     cy.contains('Stop');
-    // Wait up to 10 minutes checking if harvest is complete.
-    check_harvest_done(60);
 });
 
 Cypress.Commands.add('create_dataset', (ckan_dataset) => {
@@ -261,9 +261,9 @@ Cypress.Commands.add('form_request', (method, url, formData, done) => {
 });
 
 Cypress.Commands.add('hide_debug_toolbar', () => {
-    cy.get('#flHideToolBarButton').then(($button) => {
+    cy.get('#flDebugHideToolBarButton').then(($button) => {
         if ($button.is(':visible')) {
-            cy.get('#flHideToolBarButton').click();
+            cy.get('#flDebugHideToolBarButton').click();
         }
     });
 });
