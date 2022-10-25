@@ -31,10 +31,6 @@ done
 echo "Enabling debug mode"
 ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
 
-echo "Enabling user creation"
-ckan config-tool $CKAN_INI "ckan.auth.create_user_via_web = true"
-ckan config-tool $CKAN_INI "ckan.auth.create_user_via_api = true"
-
 # Update the plugins setting in the ini file with the values defined in the env var
 echo "Loading the following plugins: $CKAN__PLUGINS"
 ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
