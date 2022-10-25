@@ -29,6 +29,7 @@ describe('Spatial', () => {
             .trigger('mousedown', { which: 1 })
             .trigger('mousemove', { clientX: 500, clientY: 153 })
             .trigger('mouseup');
+        cy.hide_debug_toolbar();
         // click the apply button then on the next redirected page find the box
         // on the map and content in the body
         cy.get('#dataset-map-edit-buttons').find('[class="btn apply btn-primary"]').click();

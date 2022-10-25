@@ -30,6 +30,7 @@ describe('Organization', () => {
         cy.visit('/organization/edit/cypress-test-org');
         cy.get('#field-description').clear();
         cy.get('#field-description').type('the new description');
+        cy.hide_debug_toolbar();
 
         cy.get('button[name=save]').click();
     });
