@@ -13,6 +13,7 @@ describe('Dataset', () => {
 
     it('Can see resource pages', () => {
         cy.visit('/dataset/2015-gsa-common-baseline-implementation-plan-and-cio-assignment-plan');
+        cy.hide_debug_toolbar();
         // Click on the resource link
         cy.contains('2015 GSA Common Baseline Implementation Plan...').click();
         cy.contains('About this Resource');
