@@ -13,7 +13,7 @@ Cypress.Commands.add('check_harvest_done', (retries) => {
                 // Not done, check again in 5 seconds
                 cy.wait(5000);
                 cy.reload(true);
-                check_harvest_done(retries - 1);
+                cy.check_harvest_done(retries - 1);
             }
         });
 });
