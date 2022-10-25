@@ -9,10 +9,7 @@ all: build
 # ###############################################
 
 build:
-	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
-	docker build -t ghcr.io/gsa/catalog.data.gov.solr:latest solr/
-	docker build -t ghcr.io/gsa/catalog.data.gov.db:latest postgresql/
-	docker-compose build
+	docker-compose build --parallel
 
 ci:
 	docker-compose up -d
@@ -45,9 +42,8 @@ update-dependencies:
 # Test commands
 # ###############################################
 
-test:
+test: build
 	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 quick-bat-test:

@@ -3,6 +3,8 @@ version: "3"
 services:
   ckan:
     image: ghcr.io/gsa/catalog.data.gov:latest
+    build:
+      context: ckan/
     command: /app/ckan/setup/ckan_setup.sh
     env_file: .env
     depends_on:
@@ -14,7 +16,8 @@ services:
     volumes:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
-      - ./ckan/setup/GSA_prerun.py:/srv/app/GSA_prerun.py
+      - ./ckan/setup/prerun.py:/srv/app/prerun.py
+      - ./ckan/setup/ckan_setup.sh:/srv/app/ckan_setup.sh
       - ./ckan/docker-entrypoint.d/:/docker-entrypoint.d/
       - .:/app
 
@@ -22,11 +25,15 @@ services:
     env_file:
       - .env
     image: ghcr.io/gsa/catalog.data.gov.db:latest
+    build:
+      context: postgresql/
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   solr:
     image: ghcr.io/gsa/catalog.data.gov.solr:8-stunnel-root
+    build:
+      context: solr/
     command: /app/solr/local_setup.sh
     ports:
       - "8983:8983"
