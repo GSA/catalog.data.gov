@@ -20,6 +20,9 @@ describe('Harvest', () => {
     });
 
     it('Re-harvest WAF ISO', () => {
+        // Make sure the original harvest is done
+        cy.visit('/harvest/' + wafIsoHarvestSourceName);
+        cy.check_harvest_done(60);
         cy.start_harvest_job(wafIsoHarvestSourceName);
     });
 
@@ -44,13 +47,20 @@ describe('Harvest', () => {
     });
 
     it('Re-harvest data json', () => {
+        // Make sure the original harvest is done
+        cy.visit('/harvest/' + dataJsonHarvestSoureName);
+        cy.check_harvest_done(60);
         cy.start_harvest_job(dataJsonHarvestSoureName);
     });
 
     it('No datasets are duplicated in datajson', () => {
+        // Make sure the re-harvest is done
+        cy.visit('/harvest/' + dataJsonHarvestSoureName);
+        cy.check_harvest_done(60);
         const dataset_title = '2015 GSA Common Baseline Implementation Plan and CIO Assignment Plan';
         cy.request(`/api/action/package_search?q=title:"${dataset_title}"`).should((response) => {
             expect(response.body.result.count).to.equal(1)
         })
     })
+
 });
