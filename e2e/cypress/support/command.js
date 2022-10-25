@@ -1,4 +1,4 @@
-Cypress.Commands.app('check_harvest_done', (retries) => {
+Cypress.Commands.add('check_harvest_done', (retries) => {
     // Desired harvest page needs to be loaded before this
     // function is called.
     cy.get('td')
