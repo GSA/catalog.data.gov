@@ -1,4 +1,5 @@
 import os
+import requests
 import sys
 import subprocess
 import psycopg2
