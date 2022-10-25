@@ -1,23 +1,20 @@
-FROM maven:3-jdk-11 as java
-
 FROM python:3.8
 
 # Install Dependencies
 # - Download Saxon jar for FGDC2ISO transform (geodatagov)
 # - Various Linux Packages
 #     (dependencies for cryptography and vim and ckanext-spatial and geodatagov)
-ENV JAVA_HOME=/usr/local/openjdk-11
-COPY --from=java $JAVA_HOME $JAVA_HOME
-RUN echo PATH=$PATH:$HOME/bin:$JAVA_HOME/bin >> /etc/profile
-ARG saxon_ver=9.9.1-7
-ADD \
-  https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${saxon_ver}/Saxon-HE-${saxon_ver}.jar \
-  /usr/lib/jvm/java-11-openjdk/saxon/saxon.jar
 
 RUN apt-get update -y && \
   apt-get install -y \
     openssl libssl-dev libffi-dev pkg-config libxml2-dev libxmlsec1-dev libxmlsec1-openssl \
-    vim zip libgeos-dev proj-bin cron
+    vim zip libgeos-dev proj-bin cron default-jre
+
+ARG saxon_ver=9.9.1-7
+ADD \
+  https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${saxon_ver}/Saxon-HE-${saxon_ver}.jar \
+  $JAVA_HOME/saxon/saxon.jar
+ENV CLASSPATH=$JAVA_HOME/saxon/saxon.jar
 
 COPY requirements.txt ${APP_DIR}
 RUN pip3 install --upgrade pip && pip3 install -r requirements.txt --ignore-installed
