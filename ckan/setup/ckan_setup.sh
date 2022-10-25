@@ -36,7 +36,7 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
 ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
 
 # Run the prerun script to init CKAN and create the default admin user
-python /srv/app/GSA_prerun.py
+python /srv/app/prerun.py
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]

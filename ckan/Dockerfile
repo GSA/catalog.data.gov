@@ -34,13 +34,10 @@ RUN mkdir -p $CKAN_STORAGE_PATH $APP_DIR
 # CKAN Setup Files
 # Our production ckan.ini messes with local login
 # (so we need to generate a new one)
-COPY setup/GSA_prerun.py ${APP_DIR}/
+COPY setup/prerun.py ${APP_DIR}/
 RUN ckan generate config ${CKAN_INI}
 COPY setup/who.ini ${APP_DIR}/
 COPY saml2 ${APP_DIR}/saml2
-# Reference upstream prerun.py
-# NOTE: This is subject to break in the future
-RUN wget -O /srv/app/prerun.py https://raw.githubusercontent.com/okfn/docker-ckan/f5f9d7c2988008b192c6d6085cc83062d0bfedcb/ckan-base/2.9/setup/prerun.py
 
 # Install dev dependencies
 RUN pip3 install flask_debugtoolbar
