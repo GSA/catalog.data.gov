@@ -31,7 +31,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   solr:
-    image: ghcr.io/gsa/catalog.data.gov.solr:latest
+    image: ghcr.io/gsa/catalog.data.gov.solr:8-stunnel-root
     build:
       context: solr/
     command: /app/solr/local_setup.sh
