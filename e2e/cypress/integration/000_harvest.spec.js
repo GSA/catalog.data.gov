@@ -57,7 +57,6 @@ describe('Harvest', () => {
 
     it('Create a datajson harvest source INVALID', () => {
         cy.visit('/organization/' + harvestOrg);
-        cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click();
         cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
@@ -82,7 +81,6 @@ describe('Harvest', () => {
          * Create a WAF ISO Harvest Source
          */
         cy.visit('/organization/' + harvestOrg);
-        cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click();
         cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
@@ -115,7 +113,6 @@ describe('Harvest', () => {
          * Create a WAF ISO Harvest Source
          */
         cy.visit('/organization/' + harvestOrg);
-        cy.hide_debug_toolbar();
 
         cy.get('a[class="btn btn-primary"]').click();
         cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
@@ -150,8 +147,6 @@ describe('Harvest', () => {
          * https://catalog.data.gov/harvest?source_type=csw
          */
         cy.visit(`/harvest/new`);
-
-        cy.hide_debug_toolbar();
 
         cy.create_harvest_source(
             'https://geonode.state.gov/catalogue/csw',

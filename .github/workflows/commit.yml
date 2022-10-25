@@ -22,7 +22,9 @@ jobs:
       - name: build
         run: make build
       - name: test
-        run: make test
+        run: |
+          echo "CI=true" >> .env
+          make test
       - name: cypress-artifacs
         uses: actions/upload-artifact@v3
         if: failure()
