@@ -37,5 +37,6 @@ sed -i "s/auth_configured/${BASIC_AUTH_ENABLED}/" ./nginx.conf
 S3_URL=https://$(vcap_get_service s3 .credentials.endpoint)
 S3_BUCKET=$(vcap_get_service s3 .credentials.bucket)
 SITEMAP_URL="$S3_URL/$S3_BUCKET/sitemap.xml"
+export SITEMAP_URL
 # replaces value in robots.txt, maybe update this to nice url?
 sed -i "s,SITEMAP_URL,${SITEMAP_URL}," ./public/robots.txt
