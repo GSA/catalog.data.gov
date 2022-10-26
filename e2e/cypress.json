@@ -1,4 +1,6 @@
 {
     "baseUrl": "http://ckan:5000",
-    "videoCompression": false
+    "videoCompression": false,
+    "videoUploadOnPasses": false,
+    "screenshotOnRunFailure": false
 }
