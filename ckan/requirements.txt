@@ -10,7 +10,8 @@ cffi==1.15.1
 chardet==3.0.4
 ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
 -e git+https://github.com/ckan/ckanext-archiver.git@c96e3c81bfc430cdb0372f3307c7abd4109a80f1#egg=ckanext_archiver
-ckanext-datagovcatalog==0.0.4
+# ckanext-datagovcatalog==0.0.4
+ckanext-datagovcatalog @ git+https://github.com/ckan/ckanext-datagovcatalog@spatial-tags-customizations
 ckanext-datagovtheme==0.1.12
 ckanext-datajson==0.1.6
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@6fb70aaa00ca9e790535e12f96c50f5c39017f6e
@@ -21,7 +22,7 @@ ckanext-googleanalyticsbasic==0.2.0
 -e git+https://github.com/ckan/ckanext-qa.git@1731b59d2bf82b06f7866c204b26eb7c6c9ea1f9#egg=ckanext_qa
 -e git+https://github.com/ckan/ckanext-report.git@24ade58d126d9480286c7bd1a904f20186d83988#egg=ckanext_report
 -e git+https://github.com/keitaroinc/ckanext-saml2auth.git@e00a4dd7206dbe8cbef6f7fae065dba9280e3fd5#egg=ckanext_saml2auth
--e git+https://github.com/gsa/ckanext-spatial.git@fbd3e2b3f67cc1038e4c7950731438b36da4d8b1#egg=ckanext_spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@6507845bec1aee47a8afaa8f2b106db36f630026#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==7.1.2
 cryptography==38.0.1
