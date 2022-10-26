@@ -48,7 +48,7 @@ function vcap_get_service () {
   name="$1"
   path="$2"
   service_name=${APP_NAME}-${name}
-  echo $VCAP_SERVICES | jq --raw-output --arg service_name "$service_name" ".[][] | select(.name == \$service_name) | $path"
+  echo "$VCAP_SERVICES" | jq --raw-output --arg service_name "$service_name" ".[][] | select(.name == \$service_name) | $path"
 }
 
 # Create a staging area for secrets and files
@@ -56,8 +56,10 @@ CONFIG_DIR=$(mktemp -d)
 SHARED_DIR=$(mktemp -d)
 
 # We need to know the application name ...
-export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
-export REAL_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
+APP_NAME=$(echo "$VCAP_APPLICATION" | jq -r '.application_name')
+export APP_NAME
+REAL_NAME=$(echo "$VCAP_APPLICATION" | jq -r '.application_name')
+export REAL_NAME
 if [[ $APP_NAME = "catalog-web" ]] || \
    [[ $APP_NAME = "catalog-admin" ]] || \
    [[ $APP_NAME = "catalog-gather" ]] || \
@@ -67,20 +69,26 @@ then
 fi
 
 # Extract credentials from VCAP_SERVICES
-export REDIS_HOST=$(vcap_get_service redis .credentials.host)
-export REDIS_PASSWORD=$(vcap_get_service redis .credentials.password)
-export REDIS_PORT=$(vcap_get_service redis .credentials.port)
-export SAML2_PRIVATE_KEY=$(vcap_get_service secrets .credentials.SAML2_PRIVATE_KEY)
+REDIS_HOST=$(vcap_get_service redis .credentials.host)
+export REDIS_HOST
+REDIS_PASSWORD=$(vcap_get_service redis .credentials.password)
+export REDIS_PASSWORD
+REDIS_PORT=$(vcap_get_service redis .credentials.port)
+export REDIS_PORT
+SAML2_PRIVATE_KEY=$(vcap_get_service secrets .credentials.SAML2_PRIVATE_KEY)
+export SAML2_PRIVATE_KEY
 export CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH="${HOME}/${CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH}"
 
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
-export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
+CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
+export CKAN_SQLALCHEMY_URL
 export CKAN___SQLALCHEMY__POOL_SIZE=250
 export CKAN___SQLALCHEMY__MAX_OVERFLOW=500
 
 export CKAN_STORAGE_PATH=${SHARED_DIR}/files
-export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
+CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
+export CKAN___BEAKER__SESSION__SECRET
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
 export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
@@ -90,34 +98,50 @@ if [[ $REAL_NAME = "catalog-admin" ]] || \
    [[ $REAL_NAME = "catalog-gather" ]] || \
    [[ $REAL_NAME = "catalog-fetch" ]]
 then
-  export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain)
+  CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain)
+  export CKAN_SOLR_BASE_URL
 else
-  export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain_replica)
+  CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain_replica)
+  export CKAN_SOLR_BASE_URL
 fi
-export CKAN_SOLR_USER=$(vcap_get_service solr .credentials.username)
-export CKAN_SOLR_PASSWORD=$(vcap_get_service solr .credentials.password)
+CKAN_SOLR_USER=$(vcap_get_service solr .credentials.username)
+export CKAN_SOLR_USER
+CKAN_SOLR_PASSWORD=$(vcap_get_service solr .credentials.password)
+export CKAN_SOLR_PASSWORD
 
-export NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_LICENSE_KEY)
+NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_LICENSE_KEY)
+export NEW_RELIC_LICENSE_KEY
 # Get sysadmins list by a user-provided-service per environment
-export CKANEXT__SAML2AUTH__SYSADMINS_LIST=$(echo $VCAP_SERVICES | jq --raw-output ".[][] | select(.name == \"sysadmin-users\") | .credentials.CKANEXT__SAML2AUTH__SYSADMINS_LIST")
+CKANEXT__SAML2AUTH__SYSADMINS_LIST=$(echo "$VCAP_SERVICES" | jq --raw-output ".[][] | select(.name == \"sysadmin-users\") | .credentials.CKANEXT__SAML2AUTH__SYSADMINS_LIST")
+export CKANEXT__SAML2AUTH__SYSADMINS_LIST
 
 # SMTP Settings
-export CKAN_SMTP_SERVER=$(vcap_get_service smtp .credentials.smtp_server)
+CKAN_SMTP_SERVER=$(vcap_get_service smtp .credentials.smtp_server)
+export CKAN_SMTP_SERVER
 export CKAN_SMTP_STARTTLS=True
-export CKAN_SMTP_USER=$(vcap_get_service smtp .credentials.smtp_user)
-export CKAN_SMTP_PASSWORD=$(vcap_get_service smtp .credentials.smtp_password)
-export CKAN_SMTP_MAIL_FROM=harvester@$(vcap_get_service smtp .credentials.domain_arn | grep -o "ses-[[:alnum:]]\+.ssb.data.gov")
+CKAN_SMTP_USER=$(vcap_get_service smtp .credentials.smtp_user)
+export CKAN_SMTP_USER
+CKAN_SMTP_PASSWORD=$(vcap_get_service smtp .credentials.smtp_password)
+export CKAN_SMTP_PASSWORD
+CKAN_SMTP_MAIL_FROM=harvester@$(vcap_get_service smtp .credentials.domain_arn | grep -o "ses-[[:alnum:]]\+.ssb.data.gov")
+export CKAN_SMTP_MAIL_FROM
 export CKAN_SMTP_REPLY_TO=datagovhelp@gsa.gov
 
 # S3 settings
 # Use ckanext-envvars to import other configurations...
-export CKANEXT__S3SITEMAP__REGION_NAME=$(vcap_get_service s3 .credentials.region)
+CKANEXT__S3SITEMAP__REGION_NAME=$(vcap_get_service s3 .credentials.region)
+export CKANEXT__S3SITEMAP__REGION_NAME
 export CKANEXT__S3SITEMAP__HOST_NAME=https://s3-$CKANEXT__S3FILESTORE__REGION_NAME.amazonaws.com
-export CKANEXT__S3SITEMAP__AWS_ACCESS_KEY_ID=$(vcap_get_service s3 .credentials.access_key_id)
-export CKANEXT__S3SITEMAP__AWS_SECRET_ACCESS_KEY=$(vcap_get_service s3 .credentials.secret_access_key)
-export CKANEXT__S3SITEMAP__AWS_BUCKET_NAME=$(vcap_get_service s3 .credentials.bucket)
-export CKANEXT__S3SITEMAP__AWS_STORAGE_PATH=catalog/sitemap
-export CKANEXT__S3SITEMAP__ENDPOINT_URL=https://$(vcap_get_service s3 .credentials.endpoint)
+CKANEXT__S3SITEMAP__AWS_ACCESS_KEY_ID=$(vcap_get_service s3 .credentials.access_key_id)
+export CKANEXT__S3SITEMAP__AWS_ACCESS_KEY_ID
+CKANEXT__S3SITEMAP__AWS_SECRET_ACCESS_KEY=$(vcap_get_service s3 .credentials.secret_access_key)
+export CKANEXT__S3SITEMAP__AWS_SECRET_ACCESS_KEY
+CKANEXT__S3SITEMAP__AWS_BUCKET_NAME=$(vcap_get_service s3 .credentials.bucket)
+export CKANEXT__S3SITEMAP__AWS_BUCKET_NAME
+CKANEXT__S3SITEMAP__AWS_STORAGE_PATH=catalog/sitemap
+export CKANEXT__S3SITEMAP__AWS_STORAGE_PATH
+CKANEXT__S3SITEMAP__ENDPOINT_URL=https://$(vcap_get_service s3 .credentials.endpoint)
+export CKANEXT__S3SITEMAP__ENDPOINT_URL
 
 # Set up the collection in Solr
 echo Setting up Solr collection
@@ -130,9 +154,9 @@ export CKAN_SOLR_URL=$CKAN_SOLR_BASE_URL/solr/$SOLR_COLLECTION
 export NO_PROXY=$NO_PROXY,$CKAN_SOLR_URL
 
 # Write out any files and directories
-mkdir -p $CKAN_STORAGE_PATH
-echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
-echo "$SAML2_CERTIFICATE" > $CKANEXT__SAML2AUTH__CERT_FILE_PATH
+mkdir -p "$CKAN_STORAGE_PATH"
+echo "$SAML2_PRIVATE_KEY" | base64 --decode > "$CKANEXT__SAML2AUTH__KEY_FILE_PATH"
+echo "$SAML2_CERTIFICATE" > "$CKANEXT__SAML2AUTH__CERT_FILE_PATH"
 
 # Setting up PostGIS
 echo Setting up PostGIS
@@ -141,7 +165,7 @@ DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py
 # Edit the config file to use our values
 export CKAN_INI="${HOME}/ckan/setup/ckan.ini"
 # ckan config-tool $CKAN_INI -s server:main -e port=${PORT}
-ckan config-tool $CKAN_INI -s DEFAULT -e debug=false
+ckan config-tool "$CKAN_INI" -s DEFAULT -e debug=false
 
 echo Running ckan setup commands
 
