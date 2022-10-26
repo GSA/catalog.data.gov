@@ -227,6 +227,7 @@ Cypress.Commands.add('start_harvest_job', (harvestName) => {
     cy.contains(/^Confirm$/).click();
 
     // Redirects back to public page for some reason, back to admin
+    cy.wait(10000);
     cy.contains('Admin').click();
 
     // Confirm stop button exists, harvest is started/queued
