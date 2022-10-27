@@ -21,8 +21,13 @@ fi
 
 instances=$(cf app $app_to_restart | grep '^instances:' | sed 's/.*\///')
 
-for (( i=1; i<=$instances; i++ ))
-do
-  cf restart-app-instance $app_to_restart $((i-1))
-  sleep 90
-done;
+
+if [[ $instances == 1 ]]; then
+  cf restart $app_to_restart --strategy rolling
+else
+  for (( i=1; i<=$instances; i++ ))
+  do
+    cf restart-app-instance $app_to_restart $((i-1))
+    sleep 90
+  done
+fi
