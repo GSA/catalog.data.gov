@@ -21,7 +21,8 @@ fi
 
 instances=$(cf app "$app_to_restart" | grep '^instances:' | sed 's/.*\///')
 
-
+# details here
+# https://github.com/GSA/catalog.data.gov/pull/550
 if [[ $instances == 1 ]]; then
   cf restart "$app_to_restart" --strategy rolling
 else
