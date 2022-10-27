@@ -2,6 +2,7 @@
 name: restart application
 
 on:   # yamllint disable-line rule:truthy
+  workflow_dispatch:
   schedule:
     - cron: '11/30 * * * *'
 
