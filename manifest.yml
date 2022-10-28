@@ -11,7 +11,6 @@ applications:
       - ((app_name))-s3
       - ((app_name))-secrets
       - ((app_name))-solr
-      - ((app_name))-s3
       - sysadmin-users
     routes:
       - route: ((route-internal))
