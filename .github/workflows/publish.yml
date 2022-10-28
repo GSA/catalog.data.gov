@@ -101,7 +101,7 @@ jobs:
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
 
   deploy-staging:
-    name: deploy catalog (staging)
+    name: deploy (staging)
     environment: staging
     runs-on: ubuntu-latest
     strategy:
@@ -160,7 +160,7 @@ jobs:
           update_existing: true
 
   deploy-prod:
-    name: deploy catalog (prod)
+    name: deploy (prod)
     environment: prod
     runs-on: ubuntu-latest
     strategy:
