@@ -46,6 +46,9 @@ test: build
 	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
+validate-proxy:
+	docker-compose -f docker-compose.yml run nginx nginx -t -c /proxy/nginx.conf
+
 quick-bat-test:
 	# if local environment is already build and running
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test

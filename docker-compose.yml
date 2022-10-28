@@ -53,8 +53,7 @@ services:
     ports:
       - "8443:443"
     volumes:
-      - ./nginx:/nginx
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/ckan.conf
+      - ./proxy:/proxy
 
   nginx-harvest-source:
     image: nginx
