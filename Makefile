@@ -47,7 +47,29 @@ test: build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 validate-proxy:
-	docker run --rm -v $(shell pwd)/proxy:/proxy nginx nginx -t -c /proxy/nginx.conf
+	sed -i 's/{{nameservers}}/127.0.0.1/g' proxy/nginx.conf
+	sed -i 's/{{env "EXTERNAL_ROUTE"}}/127.0.0.2/g' proxy/nginx.conf
+	sed -i 's/{{env "INTERNAL_ROUTE"}}/127.0.0.3/g' proxy/nginx.conf
+	sed -i 's/{{env "EXTERNAL_ROUTE_ADMIN"}}/127.0.0.4/g' proxy/nginx.conf
+	sed -i 's/{{env "INTERNAL_ROUTE_ADMIN"}}/127.0.0.5/g' proxy/nginx.conf
+	sed -i 's/{{port}}/1111/g' proxy/nginx.conf
+	sed -i 's/{{env "PUBLIC_ROUTE"}}/test.com/g' proxy/nginx-cloudfront.conf
+	sed -i 's/{{env "EXTERNAL_ROUTE"}}/127.0.0.2/g' proxy/nginx-cloudfront.conf
+	sed -i 's/{{port}}/1111/g' proxy/nginx-common.conf
+	sed -i 's#{{ENV "SITEMAP_URL"}}#http://test.com#g' proxy/nginx-common.conf
+	sed -i 's/{{env "PUBLIC_ROUTE"}}/test.com/g' proxy/nginx-authy.conf
+	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx nginx -t -c /proxy/nginx.conf
+	sed -i 's/127.0.0.1/{{nameservers}}/g' proxy/nginx.conf
+	sed -i 's/127.0.0.2/{{env "EXTERNAL_ROUTE"}}/g' proxy/nginx.conf
+	sed -i 's/127.0.0.3/{{env "INTERNAL_ROUTE"}}/g' proxy/nginx.conf
+	sed -i 's/127.0.0.4/{{env "EXTERNAL_ROUTE_ADMIN"}}/g' proxy/nginx.conf
+	sed -i 's/127.0.0.5/{{env "INTERNAL_ROUTE_ADMIN"}}/g' proxy/nginx.conf
+	sed -i 's/1111/{{port}}/g' proxy/nginx.conf
+	sed -i 's/test.com/{{env "PUBLIC_ROUTE"}}/g' proxy/nginx-cloudfront.conf
+	sed -i 's/127.0.0.2/{{env "EXTERNAL_ROUTE"}}/g' proxy/nginx-cloudfront.conf
+	sed -i 's/1111/{{port}}/g' proxy/nginx-common.conf
+	sed -i 's#http://test.com#{{ENV "SITEMAP_URL"}}#g' proxy/nginx-common.conf
+	sed -i 's/test.com/{{env "PUBLIC_ROUTE"}}/g' proxy/nginx-authy.conf
 
 quick-bat-test:
 	# if local environment is already build and running
