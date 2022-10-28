@@ -32,6 +32,15 @@ jobs:
             ./e2e/cypress/screenshots/
             ./e2e/cypress/videos/
 
+  test_proxy:
+    name: Validate Proxy Configuration Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: test
+        run: make validate-proxy
+
   test_importer:
     name: test importer
     runs-on: ubuntu-latest

@@ -46,16 +46,6 @@ services:
   redis:
     image: redis:alpine
 
-  nginx:
-    image: nginx
-    links:
-      - ckan
-    ports:
-      - "8443:443"
-    volumes:
-      - ./nginx:/nginx
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/ckan.conf
-
   nginx-harvest-source:
     image: nginx
     volumes:
