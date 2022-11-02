@@ -18,7 +18,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            cf run-task catalog-admin
+            cf run-task catalog-gather
             --command "ckan geodatagov sitemap-to-s3"
             --name sitemap
             -m 3G -k 3G
