@@ -34,7 +34,9 @@ fi
 sed -i "s/auth_configured/${BASIC_AUTH_ENABLED}/" ./nginx.conf
 
 # sitemap config
-S3_URL=https://$(vcap_get_service s3 .credentials.endpoint)
+# url constructed in nginx conf
+# the jankiness and shame of this is immeasurable
+S3_URL=$(vcap_get_service s3 .credentials.endpoint)
+sed -i "s/s3_url_placeholder/${S3_URL}/" ./nginx-common.conf
 S3_BUCKET=$(vcap_get_service s3 .credentials.bucket)
-SITEMAP_URL="$S3_URL/$S3_BUCKET/sitemap.xml"
-export SITEMAP_URL
+sed -i "s/s3_bucket_placeholder/${S3_BUCKET}/" ./nginx-common.conf
