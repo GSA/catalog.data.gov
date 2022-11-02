@@ -41,7 +41,7 @@ jobs:
         with:
           command: >
             tools/monitor_cf_logs.sh catalog-admin
-            'tracking update scheduled (CI)' 'geodatagov'
+            'tracking update scheduled (CI)'
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
