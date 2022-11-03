@@ -94,7 +94,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME 'geodatagov'
+            tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME
           cf_org: gsa-datagov
           cf_space: ${{github.event.inputs.environ_cf}}
           cf_username: ${{secrets.CF_SERVICE_USER}}

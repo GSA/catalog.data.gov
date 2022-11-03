@@ -6,10 +6,9 @@
 # log key helps to prevent printing sensitive info such as redis password
 app_to_monitor=$1
 task_to_monitor=$2
-logs_to_print=$3
 
 while read line ; do
-  echo $line | grep --line-buffered "$logs_to_print\]"
+  echo $line | grep --line-buffered " DEBUG \| INFO \| WARNING \| ERROR "
   if echo $line | grep "OUT Exit status 0"; then
     exit 0
   elif echo $line | grep "OUT Exit status"; then
