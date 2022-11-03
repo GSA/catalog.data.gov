@@ -6,7 +6,7 @@
 app_to_restart=$1
 
 # Install jq
-sudo apt install -y jq
+apt install -y jq
 
 # Check if deployment is happening, if so ignore
 guid=$(cf app "$1" --guid)
