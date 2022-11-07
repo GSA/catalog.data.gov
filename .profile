@@ -7,6 +7,7 @@ echo "Running setup script..."
 
 echo "Setting CA Bundle.."
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 echo "java setup"
 
