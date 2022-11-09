@@ -5,8 +5,9 @@ RUN cd ~vcap/app
 
 # Install any packaged dependencies for our vendored packages
 RUN apt-get -y update
-RUN apt-get -y install swig build-essential python-dev libssl-dev software-properties-common python3-distutils
+RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get -y install swig build-essential python-dev libssl-dev python3.9-distutils
 RUN apt-get -y install python3.9
 
 # Install PIP
