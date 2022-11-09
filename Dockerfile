@@ -7,8 +7,8 @@ RUN cd ~vcap/app
 RUN apt-get -y update
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get -y install swig build-essential python-dev libssl-dev python3.9-distutils
-RUN apt-get -y install python3.9
+RUN apt-get -y install swig build-essential python-dev libssl-dev python3.8-distutils
+RUN apt-get -y install python3.8
 
 # Install PIP
 RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
