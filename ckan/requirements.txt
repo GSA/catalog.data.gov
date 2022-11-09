@@ -1,7 +1,7 @@
 alembic==1.0.0
 async-timeout==4.0.2
 Babel==2.9.1
-Beaker==1.10.1
+Beaker==1.11.0
 bleach==3.3.0
 boto3==1.24.83
 botocore==1.27.83
@@ -84,7 +84,7 @@ pytz==2016.7
 PyUtilib==5.7.1
 PyYAML==5.4
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
-rdflib==4.2.1
+rdflib==4.2.2
 redis==4.3.4
 repoze.lru==0.7
 repoze.who==2.3
