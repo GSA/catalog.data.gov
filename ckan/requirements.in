@@ -114,3 +114,6 @@ gevent>=21.8.0
 
 # New Relic
 newrelic
+
+# synk security issue with 0.37.1
+wheel>=0.38.0
