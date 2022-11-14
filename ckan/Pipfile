@@ -19,6 +19,7 @@ ckanext-datajson = "*"
 ckanext-envvars = "*"
 ckanext-geodatagov = "*"
 ckanext-googleanalyticsbasic = "*"
+ckanext-metrics-dashboard = "*"
 
 ###########################
 # Pin for saml2auth to work

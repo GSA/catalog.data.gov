@@ -5,7 +5,7 @@ services:
     image: ghcr.io/gsa/catalog.data.gov:latest
     build:
       context: ckan/
-    command: /app/ckan/setup/ckan_setup.sh
+    command: pipenv run /app/ckan/setup/ckan_setup.sh
     env_file: .env
     depends_on:
       - db
