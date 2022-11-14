@@ -3,17 +3,11 @@
 set -o errexit
 set -o pipefail
 
-venv=$(mktemp -d)
+pip3 install pipenv
 
-function cleanup () {
-  rm -rf $venv
-}
+cd /app/ckan
+PIPENV_PIPFILE=/app/ckan/Pipfile
 
-trap cleanup EXIT
-
-pip3 install virtualenv
-
-virtualenv $venv
-${venv}/bin/pip3 install -r /app/ckan/requirements.in
-
-${venv}/bin/pip3 freeze --all > /app/ckan/requirements.txt
+rm /app/ckan/Pipfile.lock
+pipenv install
+pipenv lock
