@@ -35,7 +35,7 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 # Our production ckan.ini messes with local login
 # (so we need to generate a new one)
 COPY setup/prerun.py ${APP_DIR}/
-RUN ckan generate config ${CKAN_INI}
+RUN pipenv run ckan generate config ${CKAN_INI}
 COPY setup/who.ini ${APP_DIR}/
 COPY saml2 ${APP_DIR}/saml2
 
