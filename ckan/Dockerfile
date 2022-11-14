@@ -28,7 +28,6 @@ ADD Pipfile Pipfile.lock ${APP_DIR}/
 ENV PIPENV_PIPFILE=/${APP_DIR}/Pipfile
 RUN pip3 install --upgrade pipenv && pipenv install --ignore-pipfile
 
-COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 # CKAN Setup Files
