@@ -8,6 +8,5 @@ pip3 install pipenv
 cd /app/ckan
 PIPENV_PIPFILE=/app/ckan/Pipfile
 
-rm /app/ckan/Pipfile.lock
 pipenv install
-pipenv lock
+cat Pipfile.lock | jq -r '.default | to_entries[] | .key + .value.version' > requirements.txt
