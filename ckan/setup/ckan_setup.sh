@@ -29,11 +29,11 @@ do
 done
 
 echo "Enabling debug mode"
-ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
+pipenv run ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
 
 # Update the plugins setting in the ini file with the values defined in the env var
 echo "Loading the following plugins: $CKAN__PLUGINS"
-ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
+pipenv run ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
 
 # Run the prerun script to init CKAN and create the default admin user
 python /srv/app/prerun.py
