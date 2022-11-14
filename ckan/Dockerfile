@@ -24,7 +24,7 @@ ENV PIP_SRC=${SRC_DIR}
 ENV CKAN_STORAGE_PATH=/var/lib/ckan
 RUN mkdir -p $CKAN_STORAGE_PATH $APP_DIR
 
-ADD Pipfile Pipfile.lock ${APP_DIR}
+ADD Pipfile Pipfile.lock ${APP_DIR}/
 RUN pip3 install --upgrade pipenv && pipenv install --ignore-pipfile
 
 COPY freeze-requirements.sh /usr/local/bin
