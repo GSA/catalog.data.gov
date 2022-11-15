@@ -105,15 +105,10 @@ jobs:
             smoketest: true
     runs-on: ubuntu-latest
     needs:
-      - vendor
       - create-cloudgov-services-development
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: python-vendored
-          path: vendor
       - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:

@@ -118,15 +118,10 @@ jobs:
           - app: catalog-web
             smoketest: true
     needs:
-      - vendor
       - create-cloudgov-services-staging
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: python-vendored
-          path: vendor
       - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -177,16 +172,11 @@ jobs:
           - app: catalog-web
             smoketest: true
     needs:
-      - vendor
       - deploy-staging
       - create-cloudgov-services-prod
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: python-vendored
-          path: vendor
       - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
