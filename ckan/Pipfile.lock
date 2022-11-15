@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "09d8863f8a884c1aaececa65a640856af78fd65b92f5db535faa2fecc249b525"
+            "sha256": "a89d15cb85452d384aa35d7828cb75e70e0e8c28d53fb8e8c293cff95c9fcd75"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -226,6 +226,14 @@
         "ckanext-harvest": {
             "git": "https://github.com/ckan/ckanext-harvest.git",
             "ref": "a628782a984a7ee9ac2c51236d3fad4b4e9c7fbb"
+        },
+        "ckanext-metrics-dashboard": {
+            "hashes": [
+                "sha256:1b0922676e3f16307321df65407bf01c5c7dbf1231a3f8a633b5412bf7cef5ef",
+                "sha256:9012ecd0b5c6b25e6475e8dd81cc7db494b931b22c7d1b96ce638289df5fc50c"
+            ],
+            "index": "pypi",
+            "version": "==0.1.2"
         },
         "ckanext-qa": {
             "editable": true,

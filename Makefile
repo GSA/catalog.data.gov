@@ -35,6 +35,9 @@ debug:
 up:
 	docker-compose up $(ARGS)
 
+update-dependencies:
+	docker-compose run --rm ckan bash -c "PIPENV_PIPFILE=/app/ckan/Pipfile pipenv update"
+
 # ###############################################
 # Test commands
 # ###############################################
