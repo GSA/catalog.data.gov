@@ -110,5 +110,8 @@ gunicorn = "*"
 gevent = ">=21.8.0"
 newrelic = "*"
 
+[dev-packages]
+flask-debugtoolbar = "*"
+
 [requires]
 python_version = "3.8"

@@ -38,9 +38,6 @@ RUN pipenv run ckan generate config ${CKAN_INI}
 COPY setup/who.ini ${APP_DIR}/
 COPY saml2 ${APP_DIR}/saml2
 
-# Install dev dependencies
-RUN pip3 install flask_debugtoolbar
-
 # In order for dependencies to be managed, python
 # needs to be mapped to python3
 RUN ln -s /usr/bin/python3 /usr/bin/python
