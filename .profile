@@ -9,6 +9,13 @@ echo "Setting CA Bundle.."
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
+echo "Setting up egress proxy.."
+if [ -z ${proxy_url+x} ]; then
+  echo "Egress proxy is not connected."
+else
+  export https_proxy=$proxy_url
+fi
+
 echo "java setup"
 
 export JAVA_HOME=/home/vcap/deps/0/apt/usr/lib/jvm/java-11-openjdk-amd64
