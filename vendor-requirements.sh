@@ -11,14 +11,11 @@ fi
 
 # The bind mount here enables us to write back to the host filesystem
 docker run --mount type=bind,source="$(pwd)",target=/home/vcap/app --tmpfs /home/vcap/app/src --name cf_bash --rm -i catalog-vendor:latest  /bin/bash -eu <<EOF
-
 # Go where the app files are
 cd ~vcap/app
 
-# As the VCAP user, cache .whls based on the frozen requirements for vendoring
-mkdir -p src vendor
-chown vcap.vcap vendor
-chown vcap.vcap src
-su - vcap -c 'cd app && pip download -r requirements.txt --no-binary=:none: -d vendor --exists-action=w'
+# Lock versions
+pipenv install --keep-outdated -r ckan/requirements.in
+pipenv install --keep-outdated --dev -r ckan/dev-requirements.txt
 
 EOF

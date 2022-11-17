@@ -1,6 +1,5 @@
 *.csv
 src/*
-vendor/*
 vars.yml
 .*.sw*
 

@@ -24,9 +24,8 @@ ENV PIP_SRC=${SRC_DIR}
 ENV CKAN_STORAGE_PATH=/var/lib/ckan
 RUN mkdir -p $CKAN_STORAGE_PATH $APP_DIR
 
-ADD Pipfile Pipfile.lock ${APP_DIR}/
-ENV PIPENV_PIPFILE=/${APP_DIR}/Pipfile
-RUN pip3 install --upgrade pipenv && pipenv install --ignore-pipfile
+ADD requirements.in ${APP_DIR}/requirements.txt
+RUN pip3 install --upgrade pip && pip3 install -r ${APP_DIR}/requirements.txt --ignore-installed
 
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
@@ -34,7 +33,7 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 # Our production ckan.ini messes with local login
 # (so we need to generate a new one)
 COPY setup/prerun.py ${APP_DIR}/
-RUN pipenv run ckan generate config ${CKAN_INI}
+RUN ckan generate config ${CKAN_INI}
 COPY setup/who.ini ${APP_DIR}/
 COPY saml2 ${APP_DIR}/saml2
 

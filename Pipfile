@@ -1,1 +1,85 @@
-ckan/Pipfile
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ckan = {ref = "ckan-2.9.5", git = "https://github.com/ckan/ckan.git"}
+ckanext-dcat = {ref = "master", git = "https://github.com/ckan/ckanext-dcat"}
+ckanext-harvest = {editable = true, ref = "master", git = "https://github.com/ckan/ckanext-harvest.git"}
+ckanext-spatial = {editable = true, ref = "master", git = "https://github.com/ckan/ckanext-spatial.git"}
+ckanext-saml2auth = {ref = "main", git = "https://github.com/keitaroinc/ckanext-saml2auth.git"}
+ckanext-qa = {editable = true, ref = "master", git = "https://github.com/ckan/ckanext-qa.git"}
+ckanext-archiver = {editable = true, ref = "master", git = "https://github.com/ckan/ckanext-archiver.git"}
+ckanext-report = {editable = true, ref = "master", git = "https://github.com/ckan/ckanext-report.git"}
+ckanext-datagovcatalog = ">=0.0.3"
+ckanext-datagovtheme = ">=0.1.16"
+ckanext-datajson = ">=0.1.8"
+ckanext-envvars = ">=0.0.2"
+ckanext-geodatagov = ">=0.1.15"
+ckanext-googleanalyticsbasic = "*"
+pysaml2 = "==7.0.1"
+ckantoolkit = ">=0.0.7"
+pika = ">=1.1.0"
+pyopenssl = ">=22.0.0"
+progressbar2 = "==3.53.3"
+pyz3950 = {git = "https://github.com/danizen/PyZ3950"}
+argparse = "*"
+geoalchemy2 = "==0.5.0"
+owslib = "==0.18.0"
+pyparsing = ">=2.1.10"
+pyproj = "==2.6.1"
+shapely = ">=1.2.13"
+progressbar = "*"
+xlrd = "==2.0.1"
+messytables = "==0.15.2"
+rdflib = "==4.2.2"
+geomet = ">=0.2.0"
+future = ">=0.18.2"
+six = ">=1.15.0"
+alembic = "==1.0.0"
+babel = "==2.9.1"
+beaker = "==1.11.0"
+bleach = "==3.3.0"
+click = "==7.1.2"
+dominate = "==2.4.0"
+fanstatic = "==1.1"
+feedgen = "==0.9.0"
+flask = "==2.0"
+flask-babel = "==1.0.0"
+flask-multistatic = "==1.0"
+jinja2 = "==3.0"
+lxml = "==4.9.1"
+pyjwt = "==2.4.0"
+markdown = "==3.1.1"
+passlib = "==1.7.3"
+pastedeploy = "==2.0.1"
+pathtools = "==0.1.2"
+polib = "==1.0.7"
+psycopg2 = "==2.8.6"
+python-magic = "==0.4.15"
+pysolr = "==3.6.0"
+python-dateutil = ">=1.5.0"
+pytz = "==2016.7"
+pyutilib = "==5.7.1"
+pyyaml = "==5.4"
+"repoze.who" = "==2.3"
+requests = "==2.25.0"
+routes = "==1.13"
+rq = "==1.0"
+simplejson = "==3.10.0"
+sqlalchemy = "==1.3.5"
+sqlparse = "==0.4.2"
+tzlocal = "==1.3"
+unicodecsv = ">=0.9"
+webassets = "==0.12.1"
+werkzeug = "==2.0"
+gunicorn = "*"
+gevent = ">=21.8.0"
+newrelic = "*"
+
+[dev-packages]
+flask-debugtoolbar = "*"
+
+[requires]
+python_version = "3.8"
