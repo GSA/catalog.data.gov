@@ -55,20 +55,6 @@ jobs:
       - name: test_importer
         run: make test-import-tool
 
-  vendor:
-    name: vendor dependencies
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: vendor dependencies
-        run: ./vendor-requirements.sh build
-      - uses: actions/upload-artifact@v3
-        with:
-          name: python-vendored
-          path: vendor/
-          if-no-files-found: error
-
   create-cloudgov-services-development:
     if: github.ref == 'refs/heads/develop'
     name: create services (development)
