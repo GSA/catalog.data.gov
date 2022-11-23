@@ -14,6 +14,7 @@ if [ -z ${proxy_url+x} ]; then
   echo "Egress proxy is not connected."
 else
   export https_proxy=$proxy_url
+  export http_proxy=$proxy_url
 fi
 
 echo "java setup"
