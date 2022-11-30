@@ -103,6 +103,8 @@ jobs:
         include:
           - app: catalog-web
             smoketest: true
+          - app: catalog-proxy
+            robots-dev: true
     runs-on: ubuntu-latest
     needs:
       - vendor
@@ -114,6 +116,10 @@ jobs:
         with:
           name: python-vendored
           path: vendor
+      - name: Prevent crawling in development
+        if: ${{ matrix.robots-dev }}
+        run: |
+          cp proxy/public/robots.develop.txt proxy/public/robots.txt
       - name: deploy ${{ matrix.app }}
         uses: cloud-gov/cg-cli-tools@main
         with:
