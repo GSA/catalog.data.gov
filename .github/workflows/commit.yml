@@ -67,6 +67,7 @@ jobs:
     uses: ./.github/workflows/create-services-template.yml
     with:
       environ: development
+    secrets: inherit
 
   deploy-development:
     if: github.ref == 'refs/heads/develop'
@@ -79,3 +80,4 @@ jobs:
     with:
       environ: development
       app_url: https://catalog-dev-datagov.app.cloud.gov
+    secrets: inherit
