@@ -58,7 +58,7 @@ jobs:
         if: ${{ matrix.smoketest }}
         run: |
           sleep 10
-          curl --fail --silent ${{ inputs.app_url }}/api/action/status_show?$(date +%s)
+          curl --fail --silent ${{ inputs.app_url }}/api/action/status_show?$(date +%s) # yamllint disable-line rule:line-length
       - name: Create Issue if it fails 😢
         if: ${{ failure() }}
         uses: JasonEtco/create-an-issue@v2
