@@ -1,0 +1,37 @@
+---
+name: Vendor Template
+
+on:   # yamllint disable-line rule:truthy
+  workflow_call:
+    secrets:
+      ADD_TO_PROJECT_PAT:
+        required: true
+
+jobs:
+  vendor:
+    name: vendor dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: vendor dependencies
+        run: ./vendor-requirements.sh build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: python-vendored
+          path: vendor/
+          if-no-files-found: error
+      - name: Create Issue if it fails 😢
+        if: ${{ failure() && if: github.ref == 'refs/heads/main'}}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          GITHUB_JOB: ${{ toJson(github)['job'] }}
+          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
+          LAST_COMMIT: ${{ github.sha }}
+          LAST_RUN_BY: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+        with:
+          filename: .github/deploy_failure.md
+          assignees: ${{ github.actor }}
+          update_existing: true
