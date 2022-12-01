@@ -65,6 +65,8 @@ jobs:
     name: create services (development)
     environment: development
     uses: ./.github/workflows/create-services-template.yml
+    with:
+      environ: development
 
   deploy-development:
     if: github.ref == 'refs/heads/develop'
