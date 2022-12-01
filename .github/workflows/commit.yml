@@ -63,8 +63,8 @@ jobs:
   create-cloudgov-services-development:
     if: github.ref == 'refs/heads/develop'
     name: create services (development)
-    uses: ./.github/workflows/create-services-template.yml
     environment: development
+    uses: ./.github/workflows/create-services-template.yml
 
   deploy-development:
     if: github.ref == 'refs/heads/develop'
