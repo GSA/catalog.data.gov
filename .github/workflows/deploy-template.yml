@@ -56,10 +56,10 @@ jobs:
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: smoke test
         if: ${{ matrix.smoketest }}
-        # yamllint disable-line rule:line-length
         run: |
           sleep 10
-          curl --fail --silent ${{ inputs.app_url }}/api/action/status_show?$(date +%s)
+          curl --fail --silent ${{ inputs.app_url }}\
+          /api/action/status_show?$(date +%s)
       - name: Create Issue if it fails 😢
         if: ${{ failure() }}
         uses: JasonEtco/create-an-issue@v2
