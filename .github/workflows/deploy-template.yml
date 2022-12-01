@@ -61,7 +61,7 @@ jobs:
           curl --fail --silent ${{ inputs.app_url }}\
           /api/action/status_show?$(date +%s)
       - name: Create Issue if it fails 😢
-        if: ${{ failure() }}
+        if: ${{ failure() && github.ref == 'refs/heads/main' }}
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
