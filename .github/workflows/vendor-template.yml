@@ -22,7 +22,7 @@ jobs:
           path: vendor/
           if-no-files-found: error
       - name: Create Issue if it fails 😢
-        if: ${{ failure() && if: github.ref == 'refs/heads/main'}}
+        if: ${{ failure() && github.ref == 'refs/heads/main'}}
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
