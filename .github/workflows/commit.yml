@@ -61,21 +61,19 @@ jobs:
     secrets: inherit
 
   create-cloudgov-services-development:
-    name: create services (development)
-    environment: development
     if: github.ref == 'refs/heads/develop'
+    name: create services (development)
     uses: ./.github/workflows/create-services-template.yml
     with:
       environ: development
     secrets: inherit
 
   deploy-development:
+    if: github.ref == 'refs/heads/develop'
     name: deploy (development)
-    environment: development
     needs:
       - vendor
       - create-cloudgov-services-development
-    if: github.ref == 'refs/heads/develop'
     uses: ./.github/workflows/deploy-template.yml
     with:
       environ: development
