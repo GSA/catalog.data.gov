@@ -9,7 +9,7 @@ on:   # yamllint disable-line rule:truthy
 jobs:
   snyk:
     name: snyk test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,16 +19,9 @@ jobs:
           sudo apt-get update -y;
           sudo apt-get install -y \
             openssl libssl-dev libffi-dev pkg-config libxml2-dev \
-            libxmlsec1-dev libxmlsec1-openssl swig build-essential \
+            libxmlsec1-dev libxmlsec1-openssl \
             libgeos-dev proj-bin;
-          sudo apt-get -y install software-properties-common
-          sudo add-apt-repository ppa:deadsnakes/ppa
-          PY_VERSION=python3.8
-          sudo apt-get -y install python-dev ${PY_VERSION}-distutils;
-          sudo apt-get -y install ${PY_VERSION}
-          curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-          ${PY_VERSION} /tmp/get-pip.py
-          pip3.8 install -r requirements.txt;
+          pip3 install -r requirements.txt;
       - name: Run Snyk Scan
         run: >
           # Run scan
