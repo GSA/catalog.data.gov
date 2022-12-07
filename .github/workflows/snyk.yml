@@ -22,6 +22,7 @@ jobs:
             libxmlsec1-dev libxmlsec1-openssl \
             libgeos-dev proj-bin;
           pip3 install -r requirements.txt;
+      # yamllint disable rule:line-length
       - name: Run Snyk Scan
         run: >
           # Run scan
@@ -35,11 +36,11 @@ jobs:
             sed -i "/${package}.*/d" ckan/requirements.in
             sed -i "/${package}.*/d" ckan/requirements.txt
             echo $fix >> ckan/requirements.in
-          done <<< $(jq -r '.vulnerabilities[] | .moduleName,.fixedIn[]'
-            scan.json | sed 'N;s/\n/>=/');
+          done <<< $(jq -r '.vulnerabilities[] | .moduleName,.fixedIn[]' scan.json | sed 'N;s/\n/>=/');
 
           make update-dependencies;
           exit 1
+      # yamllint enable rule:line-length
       - name: Create Pull Request
         if: ${{ failure() }}
         id: scpr
