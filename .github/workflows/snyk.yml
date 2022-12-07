@@ -43,6 +43,8 @@ jobs:
           make update-dependencies
           exit 1
       # yamllint enable rule:line-length
+      - name: Setup tmate session on fail
+        uses: mxschmitt/action-tmate@v3
       - name: Create Pull Request
         if: ${{ failure() }}
         id: scpr
