@@ -10,6 +10,8 @@ jobs:
   snyk:
     name: snyk test
     runs-on: ubuntu-20.04
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,7 +27,6 @@ jobs:
       - name: Run Snyk Scan
         run: |
           # Run scan
-          SNYK_TOKEN=${{ secrets.SNYK_TOKEN }}
           snyk auth
           snyk test --file=requirements.txt --json-file-output=scan.json
 
