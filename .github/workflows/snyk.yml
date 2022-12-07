@@ -33,11 +33,14 @@ jobs:
           while read -r fix
           do
             package=$(echo $fix | cut -d "=" -f 1)
+            echo $fix
+            echo $package
             sed -i "/${package}.*/d" ckan/requirements.in
             sed -i "/${package}.*/d" ckan/requirements.txt
             echo $fix >> ckan/requirements.in
           done <<< $(jq -r '.vulnerabilities[] | .moduleName,.fixedIn[]' scan.json | sed 'N;s/\n/>=/')
 
+          rm scan.json
           make update-dependencies
           exit 1
       # yamllint enable rule:line-length
