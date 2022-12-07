@@ -1,0 +1,462 @@
+{
+  "vulnerabilities": [
+    {
+      "id": "SNYK-PYTHON-CKAN-3136882",
+      "title": "Improper Access Control",
+      "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N",
+      "credit": [
+        "Unknown"
+      ],
+      "semver": {
+        "vulnerable": [
+          "[,2.9.7)"
+        ]
+      },
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "2.9.7"
+      ],
+      "patches": [],
+      "insights": {
+        "triageAdvice": null
+      },
+      "language": "python",
+      "severity": "high",
+      "cvssScore": 8.2,
+      "functions": [],
+      "malicious": false,
+      "moduleName": "ckan",
+      "references": [
+        {
+          "url": "https://ckan.org/blog/get-latest-patch-releases-your-ckan-site-october-2022",
+          "title": "CKAN blog"
+        },
+        {
+          "url": "https://github.com/ckan/ckan/commit/4c22c135fa486afa13855d1cdb9765eaf418d2aa",
+          "title": "GitHub Commit"
+        }
+      ],
+      "cvssDetails": [
+        {
+          "assigner": "NVD",
+          "severity": "high",
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+          "cvssV3BaseScore": 8.8,
+          "modificationTime": "2022-11-24T01:11:23.937074Z"
+        }
+      ],
+      "description": "## Overview\n[ckan](https://pypi.org/project/ckan/) is a world’s leading Open Source data portal platform.\r\n\r\nIt powers dozens of Open Data portals around the world, including data.gov, open.canada.ca and europeandataportal.eu but also regional, research and community organizations.\r\n\r\nIt makes easy to publish, share and find data online and is fully customizable via extensions and plugins.\n\nAffected versions of this package are vulnerable to Improper Access Control when an existing user id is sent via an HTTP POST request. This allows a user to take over an existing account including superuser accounts.\n## Remediation\nUpgrade `ckan` to version 2.9.7 or higher.\n## References\n- [CKAN blog](https://ckan.org/blog/get-latest-patch-releases-your-ckan-site-october-2022)\n- [GitHub Commit](https://github.com/ckan/ckan/commit/4c22c135fa486afa13855d1cdb9765eaf418d2aa)\n",
+      "identifiers": {
+        "CVE": [
+          "CVE-2022-43685"
+        ],
+        "CWE": [
+          "CWE-284"
+        ],
+        "PYSEC": [
+          "PYSEC-0000-CVE-2022-43685"
+        ]
+      },
+      "packageName": "ckan",
+      "proprietary": false,
+      "creationTime": "2022-11-22T12:29:39.075091Z",
+      "functions_new": [],
+      "alternativeIds": [],
+      "disclosureTime": "2022-11-22T01:15:00Z",
+      "packageManager": "pip",
+      "publicationTime": "2022-11-22T12:29:39.290389Z",
+      "modificationTime": "2022-11-24T01:11:23.937074Z",
+      "socialTrendAlert": false,
+      "severityWithCritical": "high",
+      "from": [
+        "catalog.data.gov@0.0.0",
+        "ckan@2.9.5"
+      ],
+      "upgradePath": [],
+      "isUpgradable": false,
+      "isPatchable": false,
+      "name": "ckan",
+      "version": "2.9.5"
+    }
+  ],
+  "ok": false,
+  "dependencyCount": 111,
+  "org": "data.gov",
+  "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\nversion: v1.25.0\n# ignores vulnerabilities until expiry date; change duration by modifying expiry date\nignore:\n  SNYK-PYTHON-RDFLIB-1324490:\n    - '*':\n        reason: >-\n          No remediation available yet; Not affecting us since the ckanext-dcat\n          library uses this for harvesting and we do not use the ckanext-dcat\n          harvester.\n        expires: 2023-06-30T06:00:00.000Z\n        created: 2022-12-05T19:21:40.652Z\n        source: cli\n  SNYK-PYTHON-BEAKER-575115:\n    - '*':\n        reason: >-\n          No remediation available yet; Not affecting us since the storage is\n          not accessible to any other client\n        expires: 2023-06-30T06:00:00.000Z\n        created: 2022-12-05T19:21:40.652Z\n        source: cli\npatch: {}\n",
+  "isPrivate": true,
+  "licensesPolicy": {
+    "severities": {},
+    "orgLicenseRules": {
+      "AGPL-1.0": {
+        "licenseType": "AGPL-1.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "AGPL-3.0": {
+        "licenseType": "AGPL-3.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "Artistic-1.0": {
+        "licenseType": "Artistic-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "Artistic-2.0": {
+        "licenseType": "Artistic-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "CDDL-1.0": {
+        "licenseType": "CDDL-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "CPOL-1.02": {
+        "licenseType": "CPOL-1.02",
+        "severity": "high",
+        "instructions": ""
+      },
+      "EPL-1.0": {
+        "licenseType": "EPL-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "GPL-2.0": {
+        "licenseType": "GPL-2.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "GPL-3.0": {
+        "licenseType": "GPL-3.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "LGPL-2.0": {
+        "licenseType": "LGPL-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-2.1": {
+        "licenseType": "LGPL-2.1",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-3.0": {
+        "licenseType": "LGPL-3.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-2.1+": {
+        "licenseType": "LGPL-2.1+",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-3.0+": {
+        "licenseType": "LGPL-3.0+",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MPL-1.1": {
+        "licenseType": "MPL-1.1",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MPL-2.0": {
+        "licenseType": "MPL-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MS-RL": {
+        "licenseType": "MS-RL",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "SimPL-2.0": {
+        "licenseType": "SimPL-2.0",
+        "severity": "high",
+        "instructions": ""
+      }
+    }
+  },
+  "packageManager": "pip",
+  "ignoreSettings": {
+    "adminOnly": false,
+    "reasonRequired": false,
+    "disregardFilesystemIgnores": false
+  },
+  "summary": "3 vulnerable dependency paths",
+  "remediation": {
+    "unresolved": [
+      {
+        "id": "SNYK-PYTHON-CKAN-3136882",
+        "title": "Improper Access Control",
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N",
+        "credit": [
+          "Unknown"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[,2.9.7)"
+          ]
+        },
+        "exploit": "Not Defined",
+        "fixedIn": [
+          "2.9.7"
+        ],
+        "patches": [],
+        "insights": {
+          "triageAdvice": null
+        },
+        "language": "python",
+        "severity": "high",
+        "cvssScore": 8.2,
+        "functions": [],
+        "malicious": false,
+        "moduleName": "ckan",
+        "references": [
+          {
+            "url": "https://ckan.org/blog/get-latest-patch-releases-your-ckan-site-october-2022",
+            "title": "CKAN blog"
+          },
+          {
+            "url": "https://github.com/ckan/ckan/commit/4c22c135fa486afa13855d1cdb9765eaf418d2aa",
+            "title": "GitHub Commit"
+          }
+        ],
+        "cvssDetails": [
+          {
+            "assigner": "NVD",
+            "severity": "high",
+            "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "cvssV3BaseScore": 8.8,
+            "modificationTime": "2022-11-24T01:11:23.937074Z"
+          }
+        ],
+        "description": "## Overview\n[ckan](https://pypi.org/project/ckan/) is a world’s leading Open Source data portal platform.\r\n\r\nIt powers dozens of Open Data portals around the world, including data.gov, open.canada.ca and europeandataportal.eu but also regional, research and community organizations.\r\n\r\nIt makes easy to publish, share and find data online and is fully customizable via extensions and plugins.\n\nAffected versions of this package are vulnerable to Improper Access Control when an existing user id is sent via an HTTP POST request. This allows a user to take over an existing account including superuser accounts.\n## Remediation\nUpgrade `ckan` to version 2.9.7 or higher.\n## References\n- [CKAN blog](https://ckan.org/blog/get-latest-patch-releases-your-ckan-site-october-2022)\n- [GitHub Commit](https://github.com/ckan/ckan/commit/4c22c135fa486afa13855d1cdb9765eaf418d2aa)\n",
+        "identifiers": {
+          "CVE": [
+            "CVE-2022-43685"
+          ],
+          "CWE": [
+            "CWE-284"
+          ],
+          "PYSEC": [
+            "PYSEC-0000-CVE-2022-43685"
+          ]
+        },
+        "packageName": "ckan",
+        "proprietary": false,
+        "creationTime": "2022-11-22T12:29:39.075091Z",
+        "functions_new": [],
+        "alternativeIds": [],
+        "disclosureTime": "2022-11-22T01:15:00Z",
+        "packageManager": "pip",
+        "publicationTime": "2022-11-22T12:29:39.290389Z",
+        "modificationTime": "2022-11-24T01:11:23.937074Z",
+        "socialTrendAlert": false,
+        "from": [
+          "catalog.data.gov@0.0.0",
+          "ckan@2.9.5"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "isPinnable": true,
+        "isRuntime": false,
+        "name": "ckan",
+        "version": "2.9.5",
+        "severityWithCritical": "high"
+      }
+    ],
+    "upgrade": {},
+    "patch": {},
+    "ignore": {},
+    "pin": {
+      "ckan@2.9.5": {
+        "upgradeTo": "ckan@2.9.7",
+        "vulns": [
+          "SNYK-PYTHON-CKAN-3136882"
+        ],
+        "isTransitive": false
+      }
+    }
+  },
+  "filesystemPolicy": true,
+  "filtered": {
+    "ignore": [
+      {
+        "id": "SNYK-PYTHON-BEAKER-575115",
+        "title": "Deserialization of Untrusted Data",
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "credit": [
+          "Matheus Bratfisch"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[0,]"
+          ]
+        },
+        "exploit": "Not Defined",
+        "fixedIn": [],
+        "patches": [],
+        "insights": {
+          "triageAdvice": null
+        },
+        "language": "python",
+        "severity": "critical",
+        "cvssScore": 9.8,
+        "functions": [],
+        "malicious": false,
+        "moduleName": "beaker",
+        "references": [
+          {
+            "url": "https://github.com/bbangert/beaker/issues/191",
+            "title": "GitHub Issue"
+          }
+        ],
+        "cvssDetails": [
+          {
+            "assigner": "NVD",
+            "severity": "medium",
+            "cvssV3Vector": "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+            "cvssV3BaseScore": 6.8,
+            "modificationTime": "2022-01-03T17:39:06.286361Z"
+          },
+          {
+            "assigner": "Red Hat",
+            "severity": "medium",
+            "cvssV3Vector": "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:H/I:L/A:L",
+            "cvssV3BaseScore": 5.7,
+            "modificationTime": "2022-10-25T14:23:51.225232Z"
+          }
+        ],
+        "description": "## Overview\n\nAffected versions of this package are vulnerable to Deserialization of Untrusted Data which could lead to arbitrary code execution.\n## Remediation\nThere is no fixed version for `Beaker`.\n## References\n- [GitHub Issue](https://github.com/bbangert/beaker/issues/191)\n",
+        "identifiers": {
+          "CVE": [
+            "CVE-2013-7489"
+          ],
+          "CWE": [
+            "CWE-502"
+          ]
+        },
+        "packageName": "beaker",
+        "proprietary": false,
+        "creationTime": "2020-07-01T15:53:02.903673Z",
+        "functions_new": [],
+        "alternativeIds": [],
+        "disclosureTime": "2020-07-01T15:48:38Z",
+        "packageManager": "pip",
+        "publicationTime": "2020-07-01T16:02:51.973144Z",
+        "modificationTime": "2022-10-25T14:23:51.225232Z",
+        "socialTrendAlert": false,
+        "severityWithCritical": "critical",
+        "from": [
+          "catalog.data.gov@0.0.0",
+          "beaker@1.11.0"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "name": "beaker",
+        "version": "1.11.0",
+        "filtered": {
+          "ignored": [
+            {
+              "reason": "No remediation available yet; Not affecting us since the storage is not accessible to any other client",
+              "expires": "2023-06-30T06:00:00.000Z",
+              "created": "2022-12-05T19:21:40.652Z",
+              "source": "cli",
+              "path": [
+                "*"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "SNYK-PYTHON-RDFLIB-1324490",
+        "title": "Server-Side Request Forgery (SSRF)",
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:H",
+        "credit": [
+          "Alex Dutton"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[0,]"
+          ]
+        },
+        "exploit": "Not Defined",
+        "fixedIn": [],
+        "patches": [],
+        "insights": {
+          "triageAdvice": null
+        },
+        "language": "python",
+        "severity": "high",
+        "cvssScore": 8.6,
+        "functions": [],
+        "malicious": false,
+        "moduleName": "rdflib",
+        "references": [
+          {
+            "url": "https://github.com/RDFLib/rdflib/issues/1369",
+            "title": "GitHub Issue"
+          },
+          {
+            "url": "https://github.com/RDFLib/rdflib/pull/1385",
+            "title": "GitHub PR"
+          }
+        ],
+        "cvssDetails": [],
+        "description": "## Overview\n[rdflib](https://pypi.org/project/rdflib/) is a Python library for working with RDF, a simple yet powerful language for representing information.\n\nAffected versions of this package are vulnerable to Server-Side Request Forgery (SSRF). `rdflib` provides no way to control how external references are resolved, nor a way to implement caching of external resources.\r\n\r\nIf a web service takes `POST`ed `JSON-LD` data, `rdflib` will attempt to resolve any URL in the `@context`.\r\nThis can lead to:\r\n1. attackers being able to probe internal networks, by having `rdflib` request potential non-public URLs\r\n2. reflection attacks, if the same or slightly-different URLs are repeated multiple times in the `@context`\r\n3. resource exhaustion, as the entire remote file is loaded into memory before JSON parsing is attempted\r\n4. Denial of Service, if web or task workers are tied up waiting for extended periods for HTTP requests to complete\r\n5. attackers being able to probe the local filesystem using `file://` URLs\n## Remediation\nThere is no fixed version for `rdflib`.\n## References\n- [GitHub Issue](https://github.com/RDFLib/rdflib/issues/1369)\n- [GitHub PR](https://github.com/RDFLib/rdflib/pull/1385)\n",
+        "identifiers": {
+          "CVE": [],
+          "CWE": [
+            "CWE-918"
+          ]
+        },
+        "packageName": "rdflib",
+        "proprietary": false,
+        "creationTime": "2021-07-22T07:17:35.454285Z",
+        "functions_new": [],
+        "alternativeIds": [],
+        "disclosureTime": "2021-07-22T07:11:27Z",
+        "packageManager": "pip",
+        "publicationTime": "2021-11-28T16:37:13.881761Z",
+        "modificationTime": "2021-11-28T16:37:13.887826Z",
+        "socialTrendAlert": false,
+        "severityWithCritical": "high",
+        "from": [
+          "catalog.data.gov@0.0.0",
+          "rdflib@4.2.2"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "name": "rdflib",
+        "version": "4.2.2",
+        "filtered": {
+          "ignored": [
+            {
+              "reason": "No remediation available yet; Not affecting us since the ckanext-dcat library uses this for harvesting and we do not use the ckanext-dcat harvester.",
+              "expires": "2023-06-30T06:00:00.000Z",
+              "created": "2022-12-05T19:21:40.652Z",
+              "source": "cli",
+              "path": [
+                "*"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "patch": []
+  },
+  "uniqueCount": 1,
+  "projectName": "catalog.data.gov",
+  "foundProjectCount": 8,
+  "displayTargetFile": "requirements.txt",
+  "hasUnknownVersions": false,
+  "path": "/home/runner/work/catalog.data.gov/catalog.data.gov"
+}
