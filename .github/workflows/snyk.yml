@@ -26,7 +26,7 @@ jobs:
         run: |
           # Run scan
           snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk test --file=requirements.txt --json-file-output=scan.json
+          snyk test --file=requirements.txt --json-file-output=scan.json || echo "Scan complete"
 
           # Exit if no vulnerabilities
           [[ "$(jq '.ok' scan.json)" == "true" ]] && exit 0
