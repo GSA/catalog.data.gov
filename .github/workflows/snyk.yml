@@ -10,8 +10,6 @@ jobs:
   snyk:
     name: snyk test
     runs-on: ubuntu-20.04
-    env:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,13 +21,11 @@ jobs:
             openssl libssl-dev libffi-dev pkg-config libxml2-dev \
             libxmlsec1-dev libxmlsec1-openssl libgeos-dev proj-bin
           pip3 install -r requirements.txt
-      - name: Setup tmate session on fail
-        uses: mxschmitt/action-tmate@v3
       # yamllint disable rule:line-length
       - name: Run Snyk Scan
         run: |
           # Run scan
-          snyk auth
+          snyk auth ${{ secrets.SNYK_TOKEN }}
           snyk test --file=requirements.txt --json-file-output=scan.json
 
           # Exit if no vulnerabilities
