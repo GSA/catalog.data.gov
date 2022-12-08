@@ -1,12 +1,13 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.22.1
+version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-PYTHON-RDFLIB-1324490:
     - '*':
         reason: >-
-          No remediation available yet; Not affecting us since the ckanext-dcat library
-          uses this for harvesting and we do not use the ckanext-dcat harvester.
+          No remediation available yet; Not affecting us since the ckanext-dcat
+          library uses this for harvesting and we do not use the ckanext-dcat
+          harvester.
         expires: 2023-06-30T06:00:00.000Z
         created: 2022-12-05T19:21:40.652Z
   SNYK-PYTHON-BEAKER-575115:
@@ -14,6 +15,13 @@ ignore:
         reason: >-
           No remediation available yet; Not affecting us since the storage is
           not accessible to any other client
-        expires: 2023-06-30T06:00:00.000Z
+        expires: 2023-06-30T16:20:58.017Z
+        created: 2022-12-08T16:20:58.023Z
+  SNYK-PYTHON-CKAN-3136882:
+    - '*':
+        reason: >-
+          We are not vulnerable to the Improper Access Control bug since it is
+          disabled and we are using Login.gov
+        expires: 2023-08-30T06:00:00.000Z
         created: 2022-12-05T19:21:40.652Z
 patch: {}
