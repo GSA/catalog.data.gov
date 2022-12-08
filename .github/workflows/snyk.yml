@@ -9,7 +9,7 @@ on:   # yamllint disable-line rule:truthy
 jobs:
   snyk:
     name: snyk test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20.04   # Pin to have access to Python 3.8
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -29,7 +29,10 @@ jobs:
           snyk test --file=requirements.txt --json-file-output=scan.json || echo "Scan complete"
 
           # Exit if no vulnerabilities
+          # Succeed, so that PR is NOT created
           [[ "$(jq '.ok' scan.json)" == "true" ]] && exit 0
+
+          # Update requirements.in with the snyk fix suggestions
           while read -r fix
           do
             package=$(echo $fix | cut -d ">" -f 1)
@@ -38,8 +41,13 @@ jobs:
             echo $fix >> ckan/requirements.in
           done <<< $(jq -r '.vulnerabilities[] | .moduleName,.fixedIn[]' scan.json | sed 'N;s/\n/>=/')
 
+          # Remove unnecessary file so that it doesn't get added to the repo
           rm scan.json
+
+          # Update requirements.txt
           make update-dependencies
+
+          # Fail so that PR is created
           exit 1
       - name: Create Pull Request
         if: ${{ failure() }}
@@ -69,4 +77,4 @@ jobs:
             owners
             maintainers
           draft: false
-      # yamllint enable rule:line-length
+          # yamllint enable rule:line-length
