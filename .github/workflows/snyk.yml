@@ -33,15 +33,7 @@ jobs:
           [[ "$(jq '.ok' scan.json)" == "true" ]] && exit 0
 
           # Update requirements.in with the snyk fix suggestions
-          while read -r fix
-          do
-            package=$(echo $fix | cut -d ">" -f 1)
-            old_version=$(jq -r ".vulnerabilities[] | select(.name==\"${package}\") | .version" scan.json | cut -d ' ' -f 1)
-            sed -i "/${package}>=${old_version}/d" ckan/requirements.in
-            sed -i "/${package}==${old_version}/d" ckan/requirements.in
-            sed -i "/${package}==${old_version}/d" ckan/requirements.txt
-            echo $fix >> ckan/requirements.in
-          done <<< $(jq -r '.vulnerabilities[] | .moduleName,.fixedIn[]' scan.json | sed 'N;s/\n/>=/')
+          python tools/snyk-update.py
 
           # Remove unnecessary file so that it doesn't get added to the repo
           rm scan.json
