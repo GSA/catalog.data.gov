@@ -115,3 +115,4 @@ gevent>=21.8.0
 
 # New Relic
 newrelic
+certifi>=2022.12.7
