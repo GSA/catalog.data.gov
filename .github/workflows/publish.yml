@@ -42,8 +42,17 @@ jobs:
 
   vendor:
     name: vendor dependencies
-    uses: ./.github/workflows/vendor-template.yml
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: vendor dependencies
+        run: ./vendor-requirements.sh build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: python-vendored
+          path: vendor/
+          if-no-files-found: error
 
   create-cloudgov-services-staging:
     name: create services (staging)
