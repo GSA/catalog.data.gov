@@ -16,4 +16,11 @@ ignore:
           not accessible to any other client
         expires: 2023-06-30T06:00:00.000Z
         created: 2022-12-05T19:21:40.652Z
+  SNYK-PYTHON-CKAN-3136882:
+    - '*':
+        reason: >-
+          We are not vulnerable to the Improper Access Control bug since it is
+          disabled and we are using Login.gov
+        expires: 2023-08-30T06:00:00.000Z
+        created: 2022-12-05T19:21:40.652Z
 patch: {}
