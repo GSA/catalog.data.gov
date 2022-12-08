@@ -5,25 +5,8 @@ Beaker==1.11.0
 bleach==3.3.0
 boto3==1.26.11
 botocore==1.29.11
-certifi==2022.9.24
 cffi==1.15.1
 chardet==3.0.4
-ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
--e git+https://github.com/ckan/ckanext-archiver.git@c96e3c81bfc430cdb0372f3307c7abd4109a80f1#egg=ckanext_archiver
-ckanext-datagovcatalog==0.0.5
-ckanext-datagovtheme==0.1.16
-ckanext-datajson==0.1.9
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@6fb70aaa00ca9e790535e12f96c50f5c39017f6e
-ckanext-envvars==0.0.2
-ckanext-geodatagov==0.1.16
-ckanext-googleanalyticsbasic==0.2.0
--e git+https://github.com/ckan/ckanext-harvest.git@a628782a984a7ee9ac2c51236d3fad4b4e9c7fbb#egg=ckanext_harvest
-ckanext-metrics-dashboard==0.1.5
--e git+https://github.com/ckan/ckanext-qa.git@1731b59d2bf82b06f7866c204b26eb7c6c9ea1f9#egg=ckanext_qa
--e git+https://github.com/ckan/ckanext-report.git@24ade58d126d9480286c7bd1a904f20186d83988#egg=ckanext_report
-ckanext-saml2auth @ git+https://github.com/keitaroinc/ckanext-saml2auth.git@7aac52dece868444798830036dcb8015c53f7f0e
--e git+https://github.com/ckan/ckanext-spatial.git@6507845bec1aee47a8afaa8f2b106db36f630026#egg=ckanext_spatial
-ckantoolkit==0.0.7
 click==7.1.2
 cryptography==38.0.3
 defusedxml==0.7.1

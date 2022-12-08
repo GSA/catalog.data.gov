@@ -1,42 +1,18 @@
 
 # CKAN requirements and extensions
-ckan @ git+https://github.com/ckan/ckan.git@ckan-2.9.5
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@master
--e git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest
--e git+https://github.com/ckan/ckanext-spatial.git@master#egg=ckanext-spatial
-git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2auth
--e git+https://github.com/ckan/ckanext-qa.git@master#egg=ckanext-qa
--e git+https://github.com/ckan/ckanext-archiver.git@master#egg=ckanext-archiver
--e git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report
 
-ckanext-datagovcatalog>=0.0.3
-ckanext-datagovtheme>=0.1.16
-ckanext-datajson>=0.1.8
-ckanext-envvars>=0.0.2
-ckanext-geodatagov>=0.1.15
-ckanext-googleanalyticsbasic
-ckanext-metrics-dashboard
 
 # Pin for saml2auth to work
 pysaml2==7.0.1
 
-# ckanext-harvest dependencies
-ckantoolkit>=0.0.7
 pika>=1.1.0
 pyOpenSSL>=22.0.0
-# redis==2.10.6 # included in ckan core
-# requests>=2.11.1 # included in ckan core
 # six>=1.12.0 # included in dcat
 
-# ckanext-archiver
-# https://github.com/ckan/ckanext-archiver/blob/master/requirements.txt
 progressbar2==3.53.3
 
-# ckanext-geodatagov
-# https://github.com/GSA/ckanext-geodatagov/blob/main/requirements.txt
 PyZ3950 @ git+https://github.com/danizen/PyZ3950
 
-# ckanext-spatial
 # GeoAlchemy>=0.6 # Unnecessary
 argparse
 GeoAlchemy2==0.5.0
@@ -44,27 +20,19 @@ OWSLib==0.18.0
 pyparsing>=2.1.10
 pyproj==2.6.1
 Shapely>=1.2.13
-# requests>=1.1.0 # included in ckan core
 # six # included in dcat
 
-# ckanext-qa
-# https://github.com/ckan/ckanext-qa/blob/master/requirements.txt
 progressbar
 xlrd==2.0.1
 messytables==0.15.2
 
-# ckanext-report
-# https://github.com/ckan/ckanext-report/blob/master/requirements.txt
 
-#ckanext-dcat
 rdflib==4.2.2
 # rdflib-jsonld==0.4.0 # ignoring as cannot build on cloud.gov
 geomet>=0.2.0
 future>=0.18.2
 six>=1.15.0
 
-# ckan doesn't advertise its requirements correctly, so let's add them here.
-# https://github.com/ckan/ckan/blob/ckan-2.9.5/requirements.txt
 alembic==1.0.0
 Babel==2.9.1              # Upgraded from CKAN pin
 Beaker==1.11.0
@@ -95,8 +63,6 @@ repoze.who==2.3
 requests==2.25.0
 Routes==1.13
 rq==1.0
-simplejson==3.18.0 # ckan 2.9.5 requires 3.10.0 only
-# Following can be ignored: https://github.com/ckan/ckan/pull/4450
 # sqlalchemy-migrate==0.12.0
 SQLAlchemy==1.3.5
 sqlparse==0.4.2
@@ -115,3 +81,5 @@ gevent>=21.8.0
 
 # New Relic
 newrelic
+certifi>=2022.12.7
+ckan>=2.9.7
