@@ -3,8 +3,8 @@ name: Check for Snyk Vulnerabilities
 
 on:   # yamllint disable-line rule:truthy
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 12 * * *'  # every day at 12pm UTC
+  schedule:
+    - cron: '0 12 * * *'  # every day at 12pm UTC
 
 jobs:
   snyk:
