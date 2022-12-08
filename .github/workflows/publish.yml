@@ -57,10 +57,16 @@ jobs:
   create-cloudgov-services-staging:
     name: create services (staging)
     uses: ./.github/workflows/create-services-template.yml
+    with:
+      environ: staging
+    secrets: inherit
 
   create-cloudgov-services-prod:
     name: create services (prod)
     uses: ./.github/workflows/create-services-template.yml
+    with:
+      environ: prod
+    secrets: inherit
 
   deploy-staging:
     name: deploy (staging)
@@ -71,6 +77,7 @@ jobs:
     with:
       environ: staging
       app_url: https://catalog-stage-datagov.app.cloud.gov
+    secrets: inherit
 
   deploy-prod:
     name: deploy (prod)
@@ -82,3 +89,4 @@ jobs:
     with:
       environ: prod
       app_url: https://catalog.data.gov
+    secrets: inherit
