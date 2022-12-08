@@ -57,16 +57,13 @@ jobs:
   create-cloudgov-services-staging:
     name: create services (staging)
     uses: ./.github/workflows/create-services-template.yml
-    environment: staging
 
   create-cloudgov-services-prod:
     name: create services (prod)
-    environment: prod
     uses: ./.github/workflows/create-services-template.yml
 
   deploy-staging:
     name: deploy (staging)
-    environment: staging
     needs:
       - create-cloudgov-services-staging
       - vendor
@@ -77,7 +74,6 @@ jobs:
 
   deploy-prod:
     name: deploy (prod)
-    environment: prod
     needs:
       - vendor
       - create-cloudgov-services-prod
