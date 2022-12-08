@@ -1,6 +1,5 @@
 
 # CKAN requirements and extensions
-ckan==2.9.5
 git+https://github.com/ckan/ckanext-dcat@master#egg=ckanext-dcat
 -e git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-spatial.git@master#egg=ckanext-spatial
@@ -115,3 +114,5 @@ gevent>=21.8.0
 
 # New Relic
 newrelic
+certifi>=2022.12.7
+ckan>=2.9.7
