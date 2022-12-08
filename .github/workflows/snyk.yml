@@ -36,10 +36,7 @@ jobs:
           while read -r fix
           do
             package=$(echo $fix | cut -d ">" -f 1)
-            old_version=$(jq -r ".vulnerabilities[] | select(.name==\"${package}\") | .version" scan.json)
-            echo $package
-            echo $old_version
-            echo $fix
+            old_version=$(jq -r ".vulnerabilities[] | select(.name==\"${package}\") | .version" scan.json | cut -d ' ' -f 1)
             sed -i "/${package}>=${old_version}/d" ckan/requirements.in
             sed -i "/${package}==${old_version}/d" ckan/requirements.in
             sed -i "/${package}==${old_version}/d" ckan/requirements.txt
@@ -64,7 +61,7 @@ jobs:
           committer: Data.gov Github <datagovhelp@gsa.gov>
           author: ${{ github.actor }} <datagovhelp@gsa.gov>
           signoff: false
-          branch: example-patches
+          branch: requirement-patches
           delete-branch: true
           title: '[Snyk + GH Actions] Update requirements'
           body: |
