@@ -37,6 +37,9 @@ jobs:
           do
             package=$(echo $fix | cut -d ">" -f 1)
             old_version=$(jq -r ".vulnerabilities[] | select(.name==\"${package}\") | .version" scan.json)
+            echo $package
+            echo $old_version
+            echo $fix
             sed -i "/${package}>=${old_version}/d" ckan/requirements.in
             sed -i "/${package}==${old_version}/d" ckan/requirements.in
             sed -i "/${package}==${old_version}/d" ckan/requirements.txt
