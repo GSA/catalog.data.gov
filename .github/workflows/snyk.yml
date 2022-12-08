@@ -36,8 +36,10 @@ jobs:
           while read -r fix
           do
             package=$(echo $fix | cut -d ">" -f 1)
-            sed -i "/${package}.*/d" ckan/requirements.in
-            sed -i "/${package}.*/d" ckan/requirements.txt
+            old_version=$(jq -r ".vulnerabilities[] | select(.name==\"${package}\") | .version" scan.json)
+            sed -i "/${package}>=${old_version}/d" ckan/requirements.in
+            sed -i "/${package}==${old_version}/d" ckan/requirements.in
+            sed -i "/${package}==${old_version}/d" ckan/requirements.txt
             echo $fix >> ckan/requirements.in
           done <<< $(jq -r '.vulnerabilities[] | .moduleName,.fixedIn[]' scan.json | sed 'N;s/\n/>=/')
 

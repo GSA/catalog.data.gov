@@ -8,7 +8,7 @@ botocore==1.29.11
 certifi==2022.9.24
 cffi==1.15.1
 chardet==3.0.4
-ckan @ git+https://github.com/ckan/ckan.git@65af260bef26ea99981597f872d39da0a3f4f3f9
+ckan==2.9.5
 -e git+https://github.com/ckan/ckanext-archiver.git@c96e3c81bfc430cdb0372f3307c7abd4109a80f1#egg=ckanext_archiver
 ckanext-datagovcatalog==0.0.5
 ckanext-datagovtheme==0.1.16
@@ -83,7 +83,7 @@ python-utils==3.4.5
 pytz==2016.7
 PyUtilib==5.7.1
 PyYAML==5.4
-PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
+git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219#egg=PyZ3950
 rdflib==4.2.2
 redis==4.3.4
 repoze.lru==0.7
