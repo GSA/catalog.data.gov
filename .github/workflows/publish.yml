@@ -53,168 +53,40 @@ jobs:
           name: python-vendored
           path: vendor/
           if-no-files-found: error
-      - name: Create Issue if it fails 😢
-        if: ${{ failure() }}
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          GITHUB_JOB: ${{ toJson(github)['job'] }}
-          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
-          LAST_COMMIT: ${{ github.sha }}
-          LAST_RUN_BY: ${{ github.actor }}
-          RUN_ID: ${{ github.run_id }}
-        with:
-          filename: .github/deploy_failure.md
-          assignees: ${{ github.actor }}
-          update_existing: true
 
   create-cloudgov-services-staging:
     name: create services (staging)
-    environment: staging
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: create services
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: ./create-cloudgov-services.sh
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+    uses: ./.github/workflows/create-services-template.yml
+    with:
+      environ: staging
+    secrets: inherit
 
   create-cloudgov-services-prod:
     name: create services (prod)
-    environment: prod
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: create services
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: ./create-cloudgov-services.sh
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+    uses: ./.github/workflows/create-services-template.yml
+    with:
+      environ: prod
+    secrets: inherit
 
   deploy-staging:
     name: deploy (staging)
-    environment: staging
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        app: [
-          catalog-web,
-          catalog-admin,
-          catalog-gather,
-          catalog-fetch,
-          catalog-proxy
-        ]
-        include:
-          - app: catalog-web
-            smoketest: true
     needs:
-      - vendor
       - create-cloudgov-services-staging
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy ${{ matrix.app }}
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: >
-            cf push ${{ matrix.app }}
-            --vars-file vars.staging.yml
-            --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: staging
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: smoke test
-        if: ${{ matrix.smoketest }}
-        run: |
-          sleep 10
-          curl --fail --silent https://catalog-stage-datagov.app.cloud.gov\
-          /api/action/status_show?$(date +%s)
-      - name: Create Issue if it fails 😢
-        if: ${{ failure() }}
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          GITHUB_JOB: ${{ toJson(github)['job'] }}
-          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
-          LAST_COMMIT: ${{ github.sha }}
-          LAST_RUN_BY: ${{ github.actor }}
-          RUN_ID: ${{ github.run_id }}
-        with:
-          filename: .github/deploy_failure.md
-          assignees: ${{ github.actor }}
-          update_existing: true
+      - vendor
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      environ: staging
+      app_url: https://catalog-stage-datagov.app.cloud.gov
+    secrets: inherit
 
   deploy-prod:
     name: deploy (prod)
-    environment: prod
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        app: [
-          catalog-web,
-          catalog-admin,
-          catalog-gather,
-          catalog-fetch,
-          catalog-proxy
-        ]
-        include:
-          - app: catalog-web
-            smoketest: true
     needs:
       - vendor
-      - deploy-staging
       - create-cloudgov-services-prod
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: python-vendored
-          path: vendor
-      - name: deploy ${{ matrix.app }}
-        uses: cloud-gov/cg-cli-tools@main
-        with:
-          command: >
-            cf push ${{ matrix.app }}
-            --vars-file vars.production.yml
-            --strategy rolling
-          cf_org: gsa-datagov
-          cf_space: prod
-          cf_username: ${{secrets.CF_SERVICE_USER}}
-          cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: smoke test
-        if: ${{ matrix.smoketest }}
-        run: |
-          sleep 10
-          curl --fail --silent https://catalog.data.gov\
-          /api/action/status_show?$(date +%s)
-      - name: Create Issue if it fails 😢
-        if: ${{ failure() }}
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          GITHUB_JOB: ${{ toJson(github)['job'] }}
-          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
-          LAST_COMMIT: ${{ github.sha }}
-          LAST_RUN_BY: ${{ github.actor }}
-          RUN_ID: ${{ github.run_id }}
-        with:
-          filename: .github/deploy_failure.md
-          assignees: ${{ github.actor }}
-          update_existing: true
+      - deploy-staging
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      environ: prod
+      app_url: https://catalog.data.gov
+    secrets: inherit
