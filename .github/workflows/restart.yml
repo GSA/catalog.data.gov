@@ -14,6 +14,14 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: restart catalog-proxy
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: tools/restart.sh catalog-proxy
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: restart catalog-web
         uses: cloud-gov/cg-cli-tools@main
         with:
@@ -73,6 +81,14 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: restart catalog-proxy
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: tools/restart.sh catalog-proxy
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: restart catalog-web
         uses: cloud-gov/cg-cli-tools@main
         with:
