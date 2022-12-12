@@ -8,7 +8,7 @@ botocore==1.29.25
 certifi==2022.12.7
 cffi==1.15.1
 chardet==3.0.4
-ckan==2.9.5
+ckan==2.9.7
 -e git+https://github.com/ckan/ckanext-archiver.git@c96e3c81bfc430cdb0372f3307c7abd4109a80f1#egg=ckanext_archiver
 ckanext-datagovcatalog==0.0.5
 ckanext-datagovtheme==0.1.17
