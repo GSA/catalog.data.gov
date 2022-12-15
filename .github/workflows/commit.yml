@@ -87,5 +87,5 @@ jobs:
     with:
       environ: development
       app_url: https://catalog-dev-datagov.app.cloud.gov
-      app_names: catalog-web, catalog-admin, catalog-fetch, catalog-gather, catalog-proxy
+      app_names: [catalog-web, catalog-admin, catalog-fetch, catalog-gather, catalog-proxy]
     secrets: inherit
