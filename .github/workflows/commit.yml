@@ -69,6 +69,7 @@ jobs:
           path: vendor/
           if-no-files-found: error
 
+  # yamllint disable rule:line-length
   create-cloudgov-services-development:
     if: github.ref == 'refs/heads/develop'
     name: create services (development)
@@ -89,3 +90,4 @@ jobs:
       app_url: https://catalog-dev-datagov.app.cloud.gov
       app_names: "[catalog-web, catalog-admin, catalog-fetch, catalog-gather, catalog-proxy]"
     secrets: inherit
+  # yamllint enable rule:line-length
