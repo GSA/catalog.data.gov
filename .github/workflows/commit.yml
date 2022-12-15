@@ -72,7 +72,7 @@ jobs:
   create-cloudgov-services-development:
     if: github.ref == 'refs/heads/develop'
     name: create services (development)
-    uses: ./.github/workflows/create-services-template.yml
+    uses: gsa/data.gov/.github/workflows/create-services-template.yml@deploy-reusable-template
     with:
       environ: development
     secrets: inherit
@@ -83,8 +83,9 @@ jobs:
     needs:
       - vendor
       - create-cloudgov-services-development
-    uses: ./.github/workflows/deploy-template.yml
+    uses: gsa/data.gov/.github/workflows/deploy-template.yml@deploy-reusable-template
     with:
       environ: development
       app_url: https://catalog-dev-datagov.app.cloud.gov
+      app_names: catalog-web, catalog-admin, catalog-fetch, catalog-gather, catalog-proxy
     secrets: inherit
