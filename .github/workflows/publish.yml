@@ -77,6 +77,7 @@ jobs:
     with:
       environ: staging
       app_url: https://catalog-stage-datagov.app.cloud.gov
+      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
     secrets: inherit
 
   deploy-prod:
@@ -89,4 +90,5 @@ jobs:
     with:
       environ: prod
       app_url: https://catalog.data.gov
+      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
     secrets: inherit
