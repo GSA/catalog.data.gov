@@ -88,6 +88,6 @@ jobs:
     with:
       environ: development
       app_url: https://catalog-dev-datagov.app.cloud.gov
-      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
+      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\",\"robots-dev\":true}]}"
     secrets: inherit
     # yamllint enable rule:line-length
