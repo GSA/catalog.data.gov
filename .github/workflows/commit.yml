@@ -78,26 +78,16 @@ jobs:
       environ: development
     secrets: inherit
 
-  deploy-setup:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.matrix.outputs.value }}
-    steps:
-      - id: matrix
-        run: |
-          echo '::set-output name=value::[\"catalog-web\", \"catalog-admin\", \"catalog-fetch\", \"catalog-gather\", \"catalog-proxy\"]'
-
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
     needs:
       - vendor
       - create-cloudgov-services-development
-      - deploy-setup
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@deploy-reusable-template
     with:
       environ: development
       app_url: https://catalog-dev-datagov.app.cloud.gov
-      app_names: ${{ needs.deploy-setup.outputs.matrix }}
+      app_names: "[\"catalog-web\", \"catalog-admin\", \"catalog-fetch\", \"catalog-gather\", \"catalog-proxy\"]"
     secrets: inherit
   # yamllint enable rule:line-length
