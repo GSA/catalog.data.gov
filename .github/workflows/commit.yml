@@ -69,10 +69,11 @@ jobs:
           path: vendor/
           if-no-files-found: error
 
+  # yamllint disable rule:line-length
   create-cloudgov-services-development:
     if: github.ref == 'refs/heads/develop'
     name: create services (development)
-    uses: ./.github/workflows/create-services-template.yml
+    uses: gsa/data.gov/.github/workflows/create-services-template.yml@main
     with:
       environ: development
     secrets: inherit
@@ -83,8 +84,10 @@ jobs:
     needs:
       - vendor
       - create-cloudgov-services-development
-    uses: ./.github/workflows/deploy-template.yml
+    uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: development
       app_url: https://catalog-dev-datagov.app.cloud.gov
+      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\",\"robots-dev\":true}]}"
     secrets: inherit
+    # yamllint enable rule:line-length

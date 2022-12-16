@@ -56,27 +56,29 @@ jobs:
 
   create-cloudgov-services-staging:
     name: create services (staging)
-    uses: ./.github/workflows/create-services-template.yml
+    uses: gsa/data.gov/.github/workflows/create-services-template.yml@main
     with:
       environ: staging
     secrets: inherit
 
   create-cloudgov-services-prod:
     name: create services (prod)
-    uses: ./.github/workflows/create-services-template.yml
+    uses: gsa/data.gov/.github/workflows/create-services-template.yml@main
     with:
       environ: prod
     secrets: inherit
 
+  # yamllint disable rule:line-length
   deploy-staging:
     name: deploy (staging)
     needs:
       - create-cloudgov-services-staging
       - vendor
-    uses: ./.github/workflows/deploy-template.yml
+    uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: staging
       app_url: https://catalog-stage-datagov.app.cloud.gov
+      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
     secrets: inherit
 
   deploy-prod:
@@ -85,8 +87,10 @@ jobs:
       - vendor
       - create-cloudgov-services-prod
       - deploy-staging
-    uses: ./.github/workflows/deploy-template.yml
+    uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: prod
       app_url: https://catalog.data.gov
+      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
     secrets: inherit
+    # yamllint enable rule:line-length
