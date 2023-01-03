@@ -17,4 +17,18 @@ ignore:
           not accessible to any other client
         expires: 2023-06-30T16:20:58.017Z
         created: 2022-12-08T16:20:58.023Z
+  SNYK-PYTHON-CRYPTOGRAPHY-3172287:
+    - '*':
+        reason: >-
+          No remediation available yet; Issue tracked in github:
+          https://github.com/GSA/data.gov/issues/4144
+        expires: 2023-07-03T16:20:58.017Z
+        created: 2023-01-03T16:20:58.023Z
+  SNYK-PYTHON-FUTURE-3180414:
+    - '*':
+        reason: >-
+          No remediation available yet; Issue tracked in github:
+          https://github.com/GSA/data.gov/issues/4145
+        expires: 2023-07-03T16:20:58.017Z
+        created: 2023-01-03T16:20:58.023Z
 patch: {}
