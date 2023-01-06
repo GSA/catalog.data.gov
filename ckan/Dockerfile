@@ -8,7 +8,7 @@ FROM python:3.8
 RUN apt-get update -y && \
   apt-get install -y \
     openssl libssl-dev libffi-dev pkg-config libxml2-dev libxmlsec1-dev libxmlsec1-openssl \
-    vim zip libgeos-dev proj-bin cron default-jre
+    vim zip libgeos-dev proj-bin cron default-jre xmlsec1
 
 ARG saxon_ver=9.9.1-7
 ADD \
