@@ -1,5 +1,4 @@
-FROM mdillon/postgis:10-alpine
-MAINTAINER Open Knowledge International
+FROM postgis/postgis:12-3.3-alpine
 
 # Customize default user/pass/db
 ENV POSTGRES_DB ckan
