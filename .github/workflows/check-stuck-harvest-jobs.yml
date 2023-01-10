@@ -14,7 +14,7 @@ on:   # yamllint disable-line rule:truthy
         - prod
 
 jobs:
-  db-solr-sync:
+  check-stuck-jobs:
     name: Check Stuck Harvest Jobs
     runs-on: ubuntu-latest
     environment: ${{inputs.environ}}
