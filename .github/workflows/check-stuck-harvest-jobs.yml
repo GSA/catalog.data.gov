@@ -3,17 +3,18 @@ name: Check Stuck Harvest Jobs
 
 on:   # yamllint disable-line rule:truthy
   workflow_dispatch:
-    environ:
-    description: 'Environment:'
-    required: true
-    type: choice
-    options:
-      - development
-      - staging
-      - prod
+    inputs:
+      environ:
+      description: 'Environment:'
+      required: true
+      type: choice
+      options:
+        - development
+        - staging
+        - prod
 
 jobs:
-  db-solr-sync:
+  check-stuck-jobs:
     name: Check Stuck Harvest Jobs
     runs-on: ubuntu-latest
     environment: ${{inputs.environ}}
