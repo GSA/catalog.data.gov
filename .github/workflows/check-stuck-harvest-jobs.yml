@@ -1,0 +1,61 @@
+---
+name: Check Stuck Harvest Jobs on Schedule
+
+on:   # yamllint disable-line rule:truthy
+  schedule:
+    - cron: '0 5 * * *'  # every day at 5am UTC
+
+jobs:
+  db-solr-sync:
+    name: Check Stuck Harvest Jobs On Schedule
+    strategy:
+      matrix:
+        environ: [development, staging, prod]
+        include:
+          - environ: development
+            ram: 1G
+          - environ: staging
+            ram: 3G
+          - environ: prod
+            ram: 3G
+    runs-on: ubuntu-latest
+    environment: ${{matrix.environ}}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: run task
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin
+            --command "ckan geodatagov check-stuck-jobs"
+            --name 'check-stuck-jobs scheduled (CI)'
+            -m ${{ matrix.ram }} -k 1500M
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: monitor task output
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            tools/monitor_cf_logs.sh catalog-admin 'check-stuck-jobs scheduled (CI)'
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create Issue if it fails 😢
+        if: ${{ failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          GITHUB_JOB: ${{ toJson(github)['job'] }}
+          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
+          LAST_COMMIT: ${{ github.sha }}
+          LAST_RUN_BY: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+        with:
+          filename: .github/stuck_jobs.md
+          assignees: ${{ github.actor }}
+          update_existing: true
+
