@@ -6,7 +6,7 @@ on:   # yamllint disable-line rule:truthy
     - cron: '0 5 * * *'  # every day at 5am UTC
 
 jobs:
-  db-solr-sync:
+  check-stuck-jobs:
     name: Check Stuck Harvest Jobs On Schedule
     strategy:
       matrix:
