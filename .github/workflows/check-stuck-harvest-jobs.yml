@@ -4,14 +4,15 @@ name: Check Stuck Harvest Jobs
 on:   # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
-      environ:
-      description: 'Environment:'
-      required: true
-      type: choice
       options:
-        - development
-        - staging
-        - prod
+        environ:
+          description: 'Environment:'
+          required: true
+          type: choice
+          options:
+            - development
+            - staging
+            - prod
 
 jobs:
   check-stuck-jobs:
