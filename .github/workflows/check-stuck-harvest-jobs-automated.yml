@@ -2,9 +2,8 @@
 name: Check Stuck Harvest Jobs on Schedule
 
 on:   # yamllint disable-line rule:truthy
-  workflow_dispatch:
-  # schedule:
-  #   - cron: '0 5 * * *'  # every day at 5am UTC
+  schedule:
+    - cron: '0 5 * * *'  # every day at 5am UTC
 
 jobs:
   db-solr-sync:
