@@ -9,31 +9,31 @@ set -e
 # Install any local extensions in the src_extensions volume
 echo "Looking for local extensions to install..."
 echo "Extension dir contents:"
-ls -la $SRC_EXTENSIONS_DIR
-for i in $SRC_EXTENSIONS_DIR/*
+ls -la "$SRC_EXTENSIONS_DIR"
+for i in "$SRC_EXTENSIONS_DIR"/*
 do
-    if [ -d $i ];
+    if [ -d "$i" ];
     then
-        if [ -f $i/setup.py ];
+        if [ -f "$i"/setup.py ];
         then
-            cd $i
+            cd "$i"
             echo "Found setup.py file in $i"
             # Uninstall any current implementation of the code
             echo uninstalling "${PWD##*/}"
             pip3 uninstall -y "${PWD##*/}"
             # Install the extension in editable mode
             pip3 install -e .
-            cd $APP_DIR
+            cd "$APP_DIR"
         fi
     fi
 done
 
 echo "Enabling debug mode"
-ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
+ckan config-tool "$CKAN_INI" -s DEFAULT "debug = true"
 
 # Update the plugins setting in the ini file with the values defined in the env var
 echo "Loading the following plugins: $CKAN__PLUGINS"
-ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
+ckan config-tool "$CKAN_INI" "ckan.plugins = $CKAN__PLUGINS"
 
 # Run the prerun script to init CKAN and create the default admin user
 python /srv/app/prerun.py
