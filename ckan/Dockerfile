@@ -26,10 +26,11 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 # CKAN Setup Variables
 ENV APP_DIR=/srv/app
 ENV SRC_DIR=/srv/app/src
+ENV SRC_EXTENSIONS_DIR=/srv/app/src_extensions
 ENV CKAN_INI=${APP_DIR}/ckan.ini
 ENV PIP_SRC=${SRC_DIR}
 ENV CKAN_STORAGE_PATH=/var/lib/ckan
-RUN mkdir -p $CKAN_STORAGE_PATH $APP_DIR
+RUN mkdir -p $CKAN_STORAGE_PATH $APP_DIR $SRC_EXTENSIONS_DIR
 
 # CKAN Setup Files
 # Our production ckan.ini messes with local login
