@@ -8,6 +8,7 @@ on:   # yamllint disable-line rule:truthy
 jobs:
   check-stuck-jobs:
     name: Check Stuck Harvest Jobs On Schedule
+    fail-fast: false
     strategy:
       matrix:
         environ: [development, staging, prod]
