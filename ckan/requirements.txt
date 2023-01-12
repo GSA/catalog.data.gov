@@ -21,7 +21,7 @@ ckanext-googleanalyticsbasic==0.2.0
 ckanext-metrics-dashboard==0.1.5
 -e git+https://github.com/ckan/ckanext-qa.git@1731b59d2bf82b06f7866c204b26eb7c6c9ea1f9#egg=ckanext_qa
 -e git+https://github.com/ckan/ckanext-report.git@24ade58d126d9480286c7bd1a904f20186d83988#egg=ckanext_report
-ckanext-saml2auth @ git+https://github.com/keitaroinc/ckanext-saml2auth.git@43d65101c32b9d0313d40ce91ed66355354c3073
+ckanext-saml2auth @ git+https://github.com/keitaroinc/ckanext-saml2auth.git@9943fb22b61abdf5c9efdbb3f99dbc428ad53fbc
 -e git+https://github.com/ckan/ckanext-spatial.git@17d5a341cf8f40b35b25df91a18ce72c31195ba3#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==7.1.2
