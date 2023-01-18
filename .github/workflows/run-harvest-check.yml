@@ -14,22 +14,22 @@ jobs:
     steps:
       - name: Pausing Harvesters most likely for re-indexing
         run: echo "hi"
-  # harvest-run-staging:
-  #   name: harvest-run (staging)
-  #   environment: staging
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: harvest-run
-  #       # pinned to cf7 until --wait is available for run-task on cf8...
-  #       uses: cloud-gov/cg-cli-tools@main
-  #       with:
-  #         command: >
-  #           cf run-task catalog-admin --command 'ckan harvester run'
-  #           --name 'harvester-check-completed (CI)' -k 2G -k 1500M
-  #         cf_org: gsa-datagov
-  #         cf_space: staging
-  #         cf_username: ${{secrets.CF_SERVICE_USER}}
-  #         cf_password: ${{secrets.CF_SERVICE_AUTH}}
+  harvest-run-staging:
+    name: harvest-run (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: harvest-run
+        # pinned to cf7 until --wait is available for run-task on cf8...
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin --command 'ckan harvester run'
+            --name 'harvester-check-completed (CI)' -k 2G -k 1500M
+          cf_org: gsa-datagov
+          cf_space: staging
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
   harvest-run-prod:
     name: harvest-run (prod)
     environment: prod
