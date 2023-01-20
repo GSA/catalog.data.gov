@@ -10,7 +10,6 @@ git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2au
 -e git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report
 
 ckanext-datagovcatalog>=0.0.3
--e git+https://github.com/gsa/ckanext-datagovtheme.git@feature/sitemap2footer#egg=ckanext-datagovtheme
 ckanext-datagovtheme>=0.1.19
 ckanext-datajson>=0.1.8
 ckanext-envvars>=0.0.2
