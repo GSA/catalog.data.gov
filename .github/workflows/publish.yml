@@ -3,7 +3,8 @@ name: publish & deploy
 
 on:   # yamllint disable-line rule:truthy
   push:
-    branches: [$default-branch]
+    branches:
+      - main
 
 jobs:
   ghcr_publish:
