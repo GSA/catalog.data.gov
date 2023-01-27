@@ -18,6 +18,21 @@ Cypress.Commands.add('check_harvest_done', (retries) => {
         });
 });
 
+Cypress.Commands.add('check_dataset_harvested', (retries) => {
+    // harvester is considered functioning if we get at least 1 dataset in. 
+    cy.reload(true)
+
+    cy.contains('#content section.module-content dl dt', 'Datasets').next().invoke('text').then($text => {
+        if ($text == '0') {
+            cy.wait(1000);
+            cy.check_dataset_harvested(retries - 1);
+        } else if (retries == 0) {
+            cy.log('Retried too many times, give up');
+            expect(true).to.be.false();
+        }
+    });
+});
+
 Cypress.Commands.add('login', (userName, password, loginTest) => {
     /**
      * Method to fill and submit the CKAN Login form
