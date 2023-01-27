@@ -75,6 +75,7 @@ describe('Harvest', () => {
     it('Reharvest datajson Harvest Job', () => {
         cy.wait(5000);
         cy.start_harvest_job(dataJsonHarvestSoureName);
+        cy.check_dataset_harvested(5);
     });
 
     it('Create WAF ISO Harvest Source', () => {
@@ -108,6 +109,7 @@ describe('Harvest', () => {
 
     it('Start WAF ISO Harvest Job', () => {
         cy.start_harvest_job(wafIsoHarvestSourceName);
+        cy.check_dataset_harvested(5);
     });
 
     it('Create WAF FGDC Harvest Source', () => {
@@ -134,6 +136,7 @@ describe('Harvest', () => {
 
     it('Start WAF FGDC Harvest Job', () => {
         cy.start_harvest_job(wafFgdcHarvestSourceName);
+        cy.check_dataset_harvested(5);
     });
 
     it('Create CSW Harvest Source', () => {
@@ -168,5 +171,6 @@ describe('Harvest', () => {
 
     it('Start CSW Harvest Job', () => {
         cy.start_harvest_job(cswHarvestSourceName);
+        cy.check_dataset_harvested(5);
     });
 });
