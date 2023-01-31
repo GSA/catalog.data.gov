@@ -11,7 +11,7 @@ git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2au
 
 ckanext-datagovcatalog>=0.0.3
 ckanext-datagovtheme>=0.1.19
-ckanext-datajson>=0.1.8
+ckanext-datajson>=0.1.12
 ckanext-envvars>=0.0.2
 ckanext-geodatagov>=0.1.20
 ckanext-googleanalyticsbasic
