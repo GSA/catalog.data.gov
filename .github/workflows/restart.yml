@@ -16,11 +16,11 @@ jobs:
       # TODO what to do about gather & fetch
     secrets: inherit
 
-  restart-production:
-    name: restart (production)
+  restart-prod:
+    name: restart (prod)
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
-      environ: production
+      environ: prod
       app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
       # TODO what to do about gather & fetch
     secrets: inherit
