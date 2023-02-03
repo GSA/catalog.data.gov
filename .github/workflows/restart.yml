@@ -7,11 +7,20 @@ on:   # yamllint disable-line rule:truthy
     - cron: '11/30 * * * *'
 
 jobs:
-  restart-dev-for-testing:
-    name: restart (dev)
-    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@feature/restarts-reformat  # yamllint disable-line rule:line-length
+  restart-staging:
+    name: restart (staging)
+    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
-      environ: development
+      environ: staging
+      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
+      # TODO what to do about gather & fetch
+    secrets: inherit
+
+  restart-production:
+    name: restart (production)
+    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
+    with:
+      environ: production
       app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
       # TODO what to do about gather & fetch
     secrets: inherit
