@@ -133,26 +133,27 @@ lint-all:
 				 pip install flake8 && \
 				 flake8 . --count --select=E9 --show-source --statistics"
 
-qa:
-ifeq (${PARAMS}, all)
-	# PARAMS=all make qa
-	docker-compose exec ckan ckan report generate
-else ifeq (${PARAMS}, openness)
-	# PARAMS=openness make qa
-	# generate report at /report/openness
-	docker-compose exec ckan ckan report generate openness
-else ifeq (${PARAMS}, update)
-	# PARAMS=update make qa
-	# QA is performed when a dataset/resource is archived, or you can run it manually using a ckan command:
-	docker-compose exec ckan ckan qa update
-else ifeq (${PARAMS}, archive)
-	# PARAMS=archive make qa
-	# Archive datasets to perform QA
-	docker-compose exec ckan ckan archiver update --queue bulk
-else ifeq (${PARAMS}, worker)
-	# PARAMS=worker make qa
-	docker-compose exec ckan ckan jobs worker bulk
-endif
+# Re-enable pending https://github.com/GSA/data.gov/issues/3986
+# qa:
+# ifeq (${PARAMS}, all)
+# 	# PARAMS=all make qa
+# 	docker-compose exec ckan ckan report generate
+# else ifeq (${PARAMS}, openness)
+# 	# PARAMS=openness make qa
+# 	# generate report at /report/openness
+# 	docker-compose exec ckan ckan report generate openness
+# else ifeq (${PARAMS}, update)
+# 	# PARAMS=update make qa
+# 	# QA is performed when a dataset/resource is archived, or you can run it manually using a ckan command:
+# 	docker-compose exec ckan ckan qa update
+# else ifeq (${PARAMS}, archive)
+# 	# PARAMS=archive make qa
+# 	# Archive datasets to perform QA
+# 	docker-compose exec ckan ckan archiver update --queue bulk
+# else ifeq (${PARAMS}, worker)
+# 	# PARAMS=worker make qa
+# 	docker-compose exec ckan ckan jobs worker bulk
+# endif
 
 update-tracking-info:
 	# https://docs.ckan.org/en/2.8/maintaining/tracking.html
