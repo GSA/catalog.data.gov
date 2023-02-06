@@ -36,8 +36,10 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('structured_data');
             expect(installed_extensions).to.include('datagovcatalog');
             expect(installed_extensions).to.include('report');
-            expect(installed_extensions).to.include('archiver');
-            expect(installed_extensions).to.include('qa');
+            expect(installed_extensions).to.include('metrics_dashboard');
+            // TODO: Re-enable pending https://github.com/GSA/data.gov/issues/3986
+            // expect(installed_extensions).to.include('archiver');
+            // expect(installed_extensions).to.include('qa');
         });
     });
 });
