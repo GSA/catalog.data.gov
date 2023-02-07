@@ -13,7 +13,7 @@ ckanext-datagovcatalog>=0.0.3
 ckanext-datagovtheme>=0.1.19
 ckanext-datajson>=0.1.12
 ckanext-envvars>=0.0.2
-ckanext-geodatagov>=0.1.24
+ckanext-geodatagov>=0.1.25
 ckanext-googleanalyticsbasic
 ckanext-metrics-dashboard
 
