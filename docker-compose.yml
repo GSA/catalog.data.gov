@@ -15,7 +15,6 @@ services:
       - "0.0.0.0:${PORT}:${PORT}"
     volumes:
       - ./src:/srv/app/src_extensions
-      - ckan_storage:/var/lib/ckan
       - ./ckan/setup/prerun.py:/srv/app/prerun.py
       - ./ckan/setup/ckan_setup.sh:/srv/app/ckan_setup.sh
       - ./ckan/docker-entrypoint.d/:/docker-entrypoint.d/
@@ -53,6 +52,5 @@ services:
       - ./tests/nginx.conf:/etc/nginx/conf.d/default.conf
 
 volumes:
-  ckan_storage:
   pg_data:
   solr_data:

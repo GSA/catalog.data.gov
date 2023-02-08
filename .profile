@@ -87,7 +87,6 @@ export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
 export CKAN___SQLALCHEMY__POOL_SIZE=250
 export CKAN___SQLALCHEMY__MAX_OVERFLOW=500
 
-export CKAN_STORAGE_PATH=${SHARED_DIR}/files
 export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CKAN___BEAKER__SESSION__SECRET)
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
 export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
@@ -138,7 +137,6 @@ export CKAN_SOLR_URL=$CKAN_SOLR_BASE_URL/solr/$SOLR_COLLECTION
 export NO_PROXY=$NO_PROXY,$CKAN_SOLR_URL
 
 # Write out any files and directories
-mkdir -p $CKAN_STORAGE_PATH
 echo "$SAML2_PRIVATE_KEY" | base64 --decode > $CKANEXT__SAML2AUTH__KEY_FILE_PATH
 echo "$SAML2_CERTIFICATE" > $CKANEXT__SAML2AUTH__CERT_FILE_PATH
 
