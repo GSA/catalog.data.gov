@@ -11,10 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        environ: [development, staging, prod]
+        environ: [staging, prod]
         include:
-          - environ: development
-            ram: 1G
           - environ: staging
             ram: 3G
           - environ: prod
