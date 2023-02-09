@@ -22,7 +22,7 @@ ckanext-metrics-dashboard==0.1.5
 -e git+https://github.com/ckan/ckanext-qa.git@1731b59d2bf82b06f7866c204b26eb7c6c9ea1f9#egg=ckanext_qa
 -e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
 ckanext-saml2auth @ git+https://github.com/keitaroinc/ckanext-saml2auth.git@9943fb22b61abdf5c9efdbb3f99dbc428ad53fbc
--e git+https://github.com/ckan/ckanext-spatial.git@9d9bc236952ab055f59d392304aad148fd945e75#egg=ckanext_spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@17d5a341cf8f40b35b25df91a18ce72c31195ba3#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==7.1.2
 cryptography==39.0.1
@@ -36,7 +36,6 @@ Flask-Babel==1.0.0
 flask-multistatic==1.0
 future==0.18.3
 GeoAlchemy2==0.5.0
-geojson==2.5.0
 geomet==1.0.0
 gevent==22.10.2
 greenlet==2.0.2
