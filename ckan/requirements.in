@@ -117,3 +117,4 @@ gevent>=21.8.0
 newrelic
 certifi>=2022.12.7
 cryptography>=39.0.1
+werkzeug>=2.2.3
