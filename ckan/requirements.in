@@ -37,13 +37,12 @@ progressbar2==3.53.3
 git+https://github.com/danizen/PyZ3950#egg=PyZ3950
 
 # ckanext-spatial
-# GeoAlchemy>=0.6 # Unnecessary
 argparse
-GeoAlchemy2==0.5.0
 OWSLib==0.18.0
 pyparsing>=2.1.10
 pyproj==2.6.1
 Shapely>=1.2.13
+geojson==2.5.0
 # requests>=1.1.0 # included in ckan core
 # six # included in dcat
 
