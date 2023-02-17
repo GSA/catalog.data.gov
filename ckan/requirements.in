@@ -119,4 +119,4 @@ certifi>=2022.12.7
 cryptography>=39.0.1
 
 # Pinned for https://github.com/ckan/ckan/pull/7207
-Flask-Login>0.6.2
+Flask-Login>=0.6.2
