@@ -1,6 +1,6 @@
 
 # CKAN requirements and extensions
-ckan==2.9.8
+ckan==2.9.7
 git+https://github.com/ckan/ckanext-dcat@master#egg=ckanext-dcat
 -e git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-spatial.git@master#egg=ckanext-spatial
@@ -37,6 +37,7 @@ progressbar2==3.53.3
 git+https://github.com/danizen/PyZ3950#egg=PyZ3950
 
 # ckanext-spatial
+# GeoAlchemy>=0.6 # Unnecessary
 argparse
 GeoAlchemy2==0.5.0
 OWSLib==0.18.0
