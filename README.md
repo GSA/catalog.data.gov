@@ -122,7 +122,7 @@ Create the Redis service for cache
 
 Create the SOLR service for data search
 
-    $ cf create-service solr-cloud base ${app_name}-solr -c solr/service-config.json -b ssb-solr-gsa-datagov-development
+    $ cf create-service solr-cloud base ${app_name}-solr -c solr/service-config-${space}.json -b ssb-solr-gsa-datagov-${space}
 
 Create the secrets service to store secret environment variables. See
 [Secrets](#secrets) below.

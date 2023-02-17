@@ -1,0 +1,16 @@
+{
+    "solrImageRepo": "ghcr.io/gsa/catalog.data.gov.solr",
+    "solrImageTag": "8-stunnel-root",
+    "solrFollowerCount": 2,
+    "solrMem": 28672,
+    "solrCpu": 4096,
+    "solrFollowerMem": 28672,
+    "solrFollowerCpu": 4096,
+    "setupFollowerLink": "https://raw.githubusercontent.com/GSA/catalog.data.gov/main/solr/solr_setup.sh",
+    "disableEfs": false,
+    "disableEfsFollower": false,
+    "efsProvisionedThroughput": 5,
+    "efsProvisionedThroughputFollower": 5,
+    "efsPerformanceMode": "maxIO",
+    "slackNotification": false
+}
