@@ -19,9 +19,9 @@ else
 fi
 
 # TODO: update if and when the service broker reverts to `ssb-solr-gsa-datagov-<space>`
-cf service "${app_name}-solr"      > /dev/null 2>&1 || cf create-service solr-on-ecs base "${app_name}-solr" -c solr/service-config.json -b "ssb-solrcloud-gsa-datagov-${space}" --wait&
+cf service "${app_name}-solr"      > /dev/null 2>&1 || cf create-service solr-on-ecs base "${app_name}-solr" -c solr/service-config-${space}.json -b "ssb-solrcloud-gsa-datagov-${space}" --wait&
 
-cf service "${app_name}-smtp"      > /dev/null 2>&1 || cf create-service datagov-smtp base "${app_name}-smtp" -c smtp/service-config.json -b "ssb-smtp-gsa-datagov-${space}" --wait&
+cf service "${app_name}-smtp"      > /dev/null 2>&1 || cf create-service datagov-smtp base "${app_name}-smtp" -c smtp/service-config-${space}.json -b "ssb-smtp-gsa-datagov-${space}" --wait&
 
 # Wait until all the services are ready
 wait
