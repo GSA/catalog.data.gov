@@ -10,9 +10,11 @@ jobs:
     name: DB Solr Sync On Schedule
     strategy:
       matrix:
-        environ: [staging]
+        environ: [staging, prod]
         include:
           - environ: staging
+            ram: 3G
+          - environ: prod
             ram: 3G
     runs-on: ubuntu-latest
     environment: ${{matrix.environ}}
