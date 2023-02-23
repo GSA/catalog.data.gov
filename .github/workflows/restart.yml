@@ -12,8 +12,7 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
       environ: staging
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
-      # TODO what to do about gather & fetch
+      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
     secrets: inherit
 
   restart-prod:
@@ -21,6 +20,5 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
       environ: prod
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
-      # TODO what to do about gather & fetch
+      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
     secrets: inherit
