@@ -72,7 +72,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
-        if: github.event.schedule != '0 3 * * *'
+        if: ${{ github.event.schedule == matrix.schedule && github.event.schedule != '0 3 * * *' }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
