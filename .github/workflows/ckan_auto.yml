@@ -19,6 +19,7 @@ jobs:
         environ: [development, staging, prod]
         include:
           - app: catalog-admin
+          - monitor: true
           - schedule: '30 7 * * *'
             command: "ckan geodatagov tracking-update"
           - schedule: '11/15 * * * *'
@@ -31,6 +32,10 @@ jobs:
             command: "ckan geodatagov sitemap-to-s3"
           - schedule: '0 3 * * *'
             app: catalog-gather
+          - schedule: '11/15 * * * *'
+            monitor: false
+          - schedule: '0 3 * * *'
+            monitor: false
           - environ: development
             ram: 1G
           - environ: staging
@@ -70,7 +75,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
-        if: ${{ github.event.schedule == matrix.schedule && github.event.schedule != '0 3 * * *' }}
+        if: ${{ matrix.monitor && github.event.schedule == matrix.schedule }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
@@ -80,7 +85,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Create Issue if it fails 😢
-        if: ${{ failure() }} && github.event.schedule == '0 5 * * *'
+        if: ${{ failure() && github.event.schedule == '0 5 * * *' }}
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
