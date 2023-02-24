@@ -22,9 +22,8 @@ on:   # yamllint disable-line rule:truthy
           - 'db-solr-sync - Only cleanup solr'
           - 'db-solr-sync - Only update solr'
           - 'db-solr-sync - Both'
+          - 'harvester run'
           - 'sitemap-to-s3'
-
-
 
 jobs:
   ckan-command:
@@ -39,12 +38,12 @@ jobs:
       - name: Store check-stuck-jobs command
         if: ${{ inputs.command == 'check-stuck-jobs' }}
         run: |
-          TASK='catalog-admin --command "ckan geodatagov check-stuck-jobs" -m 2G -k 1500M'
+          TASK="catalog-admin --command \"ckan geodatagov check-stuck-jobs\" -m 2G -k 1500M"
           echo "TASK=${TASK}" | tee -a $GITHUB_ENV
       - name: Store db-solr-sync 1 command
         if: ${{ inputs.command == 'db-solr-sync - Dryrun' }}
         run: |
-          TASK='catalog-admin --command "ckan geodatagov db-solr-sync --dryrun" -m 3G -k 1500M'
+          TASK="catalog-admin --command \"ckan geodatagov db-solr-sync --dryrun\" -m 3G -k 1500M"
           echo "TASK=${TASK}" | tee -a $GITHUB_ENV
       - name: Store db-solr-sync 2 command
         if: ${{ inputs.command == 'db-solr-sync - Only cleanup solr' }}
@@ -60,6 +59,11 @@ jobs:
         if: ${{ inputs.command == 'db-solr-sync - Both' }}
         run: |
           TASK='catalog-admin --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr" -m 3G -k 1500M'
+          echo "TASK=${TASK}" | tee -a $GITHUB_ENV
+      - name: Store harvester run command
+        if: ${{ inputs.command == 'harvester run' }}
+        run: |
+          TASK='catalog-admin --command "ckan harvester run" -k 2G -k 1500M'
           echo "TASK=${TASK}" | tee -a $GITHUB_ENV
       - name: Store sitemap command
         if: ${{ inputs.command == 'sitemap-to-s3' }}
