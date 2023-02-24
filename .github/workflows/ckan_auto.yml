@@ -11,7 +11,7 @@ on:   # yamllint disable-line rule:truthy
 
 jobs:
   ckan-auto-command:
-    name: Run
+    name: ${{ matrix.command }}
     strategy:
       max-parallel: 1
       fail-fast: false
@@ -19,27 +19,25 @@ jobs:
         schedule: ['30 7 * * *', '0 3 * * *', '11/15 * * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
         environ: [development, staging, prod]
         include:
+          - app: catalog-admin
+          - schedule: '30 7 * * *'
+            command: "ckan geodatagov tracking-update"
+          - scheuled: '11/15 * * * *'
+            command: "ckan harvester run"
+          - scheuled: '0 4 * * *'
+            command: "ckan geodatagov db-solr-sync"
+          - scheuled: '0 5 * * *'
+            command: "ckan geodatagov check-stuck-jobs"
+          - scheuled: '0 3 * * *'
+            command: "ckan geodatagov sitemap-to-s3"
+          - scheuled: '0 3 * * *'
+            app: catalog-gather
           - environ: development
             ram: 1G
           - environ: staging
             ram: 3G
           - environ: prod
             ram: 3G
-          - schedule: '30 7 * * *'
-            command: "ckan geodatagov tracking-update"
-            app: catalog-admin
-          - scheuled: '0 3 * * *'
-            command: "ckan geodatagov sitemap-to-s3"
-            app: catalog-gather
-          - scheuled: '11/15 * * * *'
-            command: "ckan harvester run"
-            app: catalog-admin
-          - scheuled: '0 4 * * *'
-            command: "ckan geodatagov db-solr-sync"
-            app: catalog-admin
-          - scheuled: '0 5 * * *'
-            command: "ckan geodatagov check-stuck-jobs"
-            app: catalog-admin
         exclude:
           - schedule: '0 3 * * *'
             environ: development
@@ -65,7 +63,7 @@ jobs:
           command: >
             cf run-task ${{ matrix.app }}
             --command "${{ matrix.command }}"
-            --name $INSTANCE_NAME
+            --name "$INSTANCE_NAME"
             -m ${{ matrix.ram }} -k 2G
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environ }}
