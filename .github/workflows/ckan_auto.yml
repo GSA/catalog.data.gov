@@ -11,7 +11,6 @@ on:   # yamllint disable-line rule:truthy
 
 jobs:
   ckan-auto-command:
-    name: ${{ matrix.command }}
     strategy:
       max-parallel: 1
       fail-fast: false
@@ -22,15 +21,15 @@ jobs:
           - app: catalog-admin
           - schedule: '30 7 * * *'
             command: "ckan geodatagov tracking-update"
-          - scheuled: '11/15 * * * *'
+          - schedule: '11/15 * * * *'
             command: "ckan harvester run"
-          - scheuled: '0 4 * * *'
+          - schedule: '0 4 * * *'
             command: "ckan geodatagov db-solr-sync"
-          - scheuled: '0 5 * * *'
+          - schedule: '0 5 * * *'
             command: "ckan geodatagov check-stuck-jobs"
-          - scheuled: '0 3 * * *'
+          - schedule: '0 3 * * *'
             command: "ckan geodatagov sitemap-to-s3"
-          - scheuled: '0 3 * * *'
+          - schedule: '0 3 * * *'
             app: catalog-gather
           - environ: development
             ram: 1G
@@ -45,6 +44,7 @@ jobs:
             environ: staging
           - schedule: '0 5 * * *'
             environ: development
+    name: ${{ matrix.command }} - ${{matrix.environ}}
     runs-on: ubuntu-latest
     environment: ${{matrix.environ}}
     steps:

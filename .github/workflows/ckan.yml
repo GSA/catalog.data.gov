@@ -43,7 +43,7 @@ on:   # yamllint disable-line rule:truthy
 
 jobs:
   ckan-command:
-    name: Run CKAN Command
+    name: ${{inputs.command}}
     runs-on: ubuntu-latest
     environment: ${{inputs.environ}}
     steps:
