@@ -48,8 +48,8 @@ jobs:
     environment: ${{inputs.environ}}
     steps:
       - name: Store Instance Name
-        run: |
         # yamllint disable rule:line-length
+        run: |
           INSTANCE_NAME="$(echo ckan-auto-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
           # yamllint enable rule:line-length
