@@ -31,8 +31,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Set Unique Command Name
         run: |
-          INSTANCE_NAME="$(echo ckan-auto-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"   # yamllint disable-line rule:line-length
-          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
+          INSTANCE_NAME="$(echo ckan-auto-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV   # yamllint disable-line rule:line-length
       - name: Tracking Update
         if: github.event.schedule == '30 7 * * *'
         uses: cloud-gov/cg-cli-tools@main
