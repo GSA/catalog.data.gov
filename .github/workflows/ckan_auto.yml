@@ -1,0 +1,123 @@
+---
+name: Automated CKAN Jobs
+
+on:   # yamllint disable-line rule:truthy
+  schedule:
+    - cron: '30 7 * * *'    # Tracking Update -- every day at 7:30am UTC
+    - cron: '0 3 * * *'     # S3 Sitemap Update -- every day at 3am UTC
+    - cron: '11/15 * * * *' # Harvester Check -- every 15 mins
+    - cron: '0 4 * * *'     # DB-Solr-Sync -- every day at 4am UTC
+    - cron: '0 5 * * *'     # Check Stuck Jobs -- every day at 5am UTC
+
+jobs:
+  ckan-auto-command:
+    name: Run automated commands
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        environ: [development, staging, prod]
+        include:
+          - environ: development
+            ram: 1G
+          - environ: staging
+            ram: 3G
+          - environ: prod
+            ram: 3G
+    runs-on: ubuntu-latest
+    environment: ${{matrix.environ}}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Set Unique Command Name
+        run: |
+          INSTANCE_NAME="$(echo ckan-auto-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
+      - name: Tracking Update
+        if: github.event.schedule == '30 7 * * *'
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin
+            --command "ckan geodatagov tracking-update"
+            --name $INSTANCE_NAME
+            -m ${{ matrix.ram }} -k 2G
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Sitemap Update
+        if: github.event.schedule == '0 3 * * *' && ${{ matrix.environ }} == 'prod'
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-gather
+            --command "ckan geodatagov sitemap-to-s3"
+            --name $INSTANCE_NAME
+            -m 3G -k 3G
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Harvester Check
+        if: github.event.schedule == '11/15 * * * *'
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin --command 'ckan harvester run'
+            --name $INSTANCE_NAME
+            -k 2G -k 1500M
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: db-solr-sync
+        if: github.event.schedule == '0 4 * * *'
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin
+            --command "ckan geodatagov db-solr-sync"
+            --name $INSTANCE_NAME
+            -m ${{ matrix.ram }} -k 1500M
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: check stuck jobs
+        if: github.event.schedule == '0 5 * * *' && ( ${{ matrix.environ }} == 'staging' || ${{ matrix.environ }} == 'prod' )
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task catalog-admin
+            --command "ckan geodatagov check-stuck-jobs"
+            --name $INSTANCE_NAME
+            -m ${{ matrix.ram }} -k 1500M
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: monitor task output
+        if: github.event.schedule != '0 3 * * *'
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create Issue if it fails 😢
+        if: ${{ failure() }} && github.event.schedule == '0 5 * * *'
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          GITHUB_JOB: ${{ toJson(github)['job'] }}
+          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
+          LAST_COMMIT: ${{ github.sha }}
+          LAST_RUN_BY: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+        with:
+          filename: .github/stuck_jobs.md
+          assignees: ${{ github.actor }}
+          update_existing: true

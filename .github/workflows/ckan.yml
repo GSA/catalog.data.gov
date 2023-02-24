@@ -1,0 +1,90 @@
+---
+name: Run CKAN Command
+
+on:   # yamllint disable-line rule:truthy
+  workflow_dispatch:
+    inputs:
+      environ:
+        description: 'Environment:'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - prod
+      command:
+        description: 'Command to run:'
+        required: true
+        type: choice
+        options:
+          - 'check-stuck-jobs'
+          - 'db-solr-sync - Dryrun'
+          - 'db-solr-sync - Only cleanup solr'
+          - 'db-solr-sync - Only update solr'
+          - 'db-solr-sync - Both'
+          - 'sitemap-to-s3'
+
+
+
+jobs:
+  ckan-command:
+    name: Run CKAN Command
+    runs-on: ubuntu-latest
+    environment: ${{inputs.environ}}
+    steps:
+      - name: Store Instance Name
+        run: |
+          INSTANCE_NAME="$(echo ckan-auto-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
+      - name: Store check-stuck-jobs command
+        if: ${{ inputs.command == 'check-stuck-jobs' }}
+        run: |
+          TASK='catalog-admin --command "ckan geodatagov check-stuck-jobs" -m 2G -k 1500M'
+          echo "TASK=${TASK}" | tee -a $GITHUB_ENV
+      - name: Store db-solr-sync 1 command
+        if: ${{ inputs.command == 'db-solr-sync - Dryrun' }}
+        run: |
+          TASK='catalog-admin --command "ckan geodatagov db-solr-sync --dryrun" -m 3G -k 1500M'
+          echo "TASK=${TASK}" | tee -a $GITHUB_ENV
+      - name: Store db-solr-sync 2 command
+        if: ${{ inputs.command == 'db-solr-sync - Only cleanup solr' }}
+        run: |
+          TASK='catalog-admin --command "ckan geodatagov db-solr-sync --cleanup_solr" -m 3G -k 1500M'
+          echo "TASK=${TASK}" | tee -a $GITHUB_ENV
+      - name: Store db-solr-sync 3 command
+        if: ${{ inputs.command == 'db-solr-sync - Only update solr' }}
+        run: |
+          TASK='catalog-admin --command "ckan geodatagov db-solr-sync --update_solr" -m 3G -k 1500M'
+          echo "TASK=${TASK}" | tee -a $GITHUB_ENV
+      - name: Store db-solr-sync 4 command
+        if: ${{ inputs.command == 'db-solr-sync - Both' }}
+        run: |
+          TASK='catalog-admin --command "ckan geodatagov db-solr-sync --cleanup_solr --update_solr" -m 3G -k 1500M'
+          echo "TASK=${TASK}" | tee -a $GITHUB_ENV
+      - name: Store sitemap command
+        if: ${{ inputs.command == 'sitemap-to-s3' }}
+        run: |
+          TASK='catalog-gather --command "ckan geodatagov sitemap-to-s3" --name sitemap -m 3G -k 3G'
+          INSTANCE_NAME="$(echo ckan-auto-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "TASK=${TASK}" | tee -a $GITHUB_ENV
+          
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: run task
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: cf run-task $TASK
+          cf_org: gsa-datagov
+          cf_space: ${{ inputs.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: monitor task output
+        if: ${{ inputs.command != 'sitemap-to-s3' }}
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME
+          cf_org: gsa-datagov
+          cf_space: ${{ inputs.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
