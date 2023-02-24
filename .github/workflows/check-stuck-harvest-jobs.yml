@@ -57,7 +57,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            cf run-task ${{ inputs.app }} --command ${{ inputs.command }}
+            cf run-task ${{ inputs.app }} --command "${{ inputs.command }}"
             --name $INSTANCE_NAME -k ${{ inputs.disk }} -m ${{ inputs.memory }}
           cf_org: gsa-datagov
           cf_space: ${{ inputs.environ }}
