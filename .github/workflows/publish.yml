@@ -1,5 +1,5 @@
 ---
-name: publish & deploy
+name: 2 - Publish & Deploy
 
 on:   # yamllint disable-line rule:truthy
   push:
