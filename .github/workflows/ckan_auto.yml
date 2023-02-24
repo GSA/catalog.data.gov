@@ -11,7 +11,7 @@ on:   # yamllint disable-line rule:truthy
 
 jobs:
   ckan-auto-command:
-    name: Run automated commands
+    name: Run
     strategy:
       max-parallel: 1
       fail-fast: false
@@ -59,12 +59,12 @@ jobs:
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
           # yamllint enable rule:line-length
       - name: ${{ matrix.command }}
-        if: github.event.schedule == ${{ matrix.schedule }}
+        if: ${{ github.event.schedule == matrix.schedule }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
             cf run-task ${{ matrix.app }}
-            --command ${{ matrix.command }}
+            --command "${{ matrix.command }}"
             --name $INSTANCE_NAME
             -m ${{ matrix.ram }} -k 2G
           cf_org: gsa-datagov
