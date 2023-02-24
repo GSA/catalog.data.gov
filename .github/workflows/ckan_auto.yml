@@ -16,7 +16,7 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        schedule: ['30 7 * * *', '0 3 * * *', '11/15 * * * *', '0 4 * * *', '0 5 * * *']
+        schedule: ['30 7 * * *', '0 3 * * *', '11/15 * * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
         environ: [development, staging, prod]
         include:
           - environ: development
