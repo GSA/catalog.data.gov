@@ -1,5 +1,5 @@
 ---
-name: Automated CKAN Jobs
+name: 4 - Automated CKAN Jobs
 
 on:   # yamllint disable-line rule:truthy
   schedule:
