@@ -29,6 +29,7 @@ on:   # yamllint disable-line rule:truthy
           - 'ckan geodatagov db-solr-sync --cleanup_solr --update_solr'
           - 'ckan harvester run'
           - 'ckan geodatagov sitemap-to-s3'
+          - 'ckan geodatagov tracking-update'
       memory:
         description: 'RAM to allocate:'
         required: true
