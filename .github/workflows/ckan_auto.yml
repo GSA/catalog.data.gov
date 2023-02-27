@@ -94,6 +94,7 @@ jobs:
           LAST_COMMIT: ${{ github.sha }}
           LAST_RUN_BY: ${{ github.actor }}
           RUN_ID: ${{ github.run_id }}
+          JOB_ID: ${{ github.job_id }}
         with:
           filename: .github/stuck_jobs.md
           assignees: ${{ github.actor }}
