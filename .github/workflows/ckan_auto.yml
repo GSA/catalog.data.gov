@@ -108,7 +108,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Create Issue if it fails 😢
-        if: ${{ failure() && (env.ERROR == true) }}
+        if: ${{ failure() || (env.ERROR == true) }}
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
