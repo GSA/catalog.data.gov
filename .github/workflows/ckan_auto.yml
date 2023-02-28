@@ -9,6 +9,9 @@ on:   # yamllint disable-line rule:truthy
     - cron: '0 4 * * *'        # DB-Solr-Sync -- every day at 4am UTC
     - cron: '0 5 * * *'        # Check Stuck Jobs -- every day at 5am UTC
 
+env:
+  ERROR: false
+
 jobs:
   ckan-auto-command:
     strategy:
@@ -18,8 +21,13 @@ jobs:
         schedule: ['30 7 * * *', '0 3 * * *', '11/15 * * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
         environ: [development, staging, prod]
         include:
+          # Default app to run tasks on
           - app: catalog-admin
+          # Default timeout for task to raise issue
+          - error_seconds: 22000
+          # Default monitor everything
           - monitor: true
+          # Attach commands to schedule
           - schedule: '30 7 * * *'
             command: "ckan geodatagov tracking-update"
           - schedule: '11/15 * * * *'
@@ -30,12 +38,22 @@ jobs:
             command: "ckan geodatagov check-stuck-jobs"
           - schedule: '0 3 * * *'
             command: "ckan geodatagov sitemap-to-s3"
+          # Run sitemap-to-s3 on catalog-gather
           - schedule: '0 3 * * *'
             app: catalog-gather
+          # Don't monitor 'harvester run'
           - schedule: '11/15 * * * *'
             monitor: false
+          # Don't monitor 'sitemap-to-s3'
           - schedule: '0 3 * * *'
             monitor: false
+          # If tracking update takes longer than 210 mins, make an issue
+          - schedule: '30 7 * * *'
+            error_seconds: 12600
+          # If db solr sync takes longer than 30 mins, make an issue
+          - schedule: '0 4 * * *'
+            error_seconds: 1800
+          # Adjust RAM per space
           - environ: development
             ram: 1G
           - environ: staging
@@ -43,10 +61,12 @@ jobs:
           - environ: prod
             ram: 3G
         exclude:
+          # Don't run 'sitemap-to-s3' on development/staging
           - schedule: '0 3 * * *'
             environ: development
           - schedule: '0 3 * * *'
             environ: staging
+          # Don't run 'db-solr-sync' on development
           - schedule: '0 5 * * *'
             environ: development
     name: ${{ matrix.command }} - ${{matrix.environ}}
@@ -60,6 +80,7 @@ jobs:
         run: |
           INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
+          START=$SECONDS | tee -a $GITHUB_ENV
           # yamllint enable rule:line-length
       - name: ${{ matrix.command }}
         if: ${{ github.event.schedule == matrix.schedule }}
@@ -79,13 +100,15 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            tools/monitor_cf_logs.sh ${{ matrix.app }} $INSTANCE_NAME
+            tools/monitor_cf_logs.sh ${{ matrix.app }} $INSTANCE_NAME &&
+            ELAPSED=$(( SECONDS - START)) &&
+            if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then ERROR=true | tee -a $GITHUB_ENV; fi;
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Create Issue if it fails 😢
-        if: ${{ failure() && github.event.schedule == '0 5 * * *' }}
+        if: ${{ failure() || (env.ERROR == true) }}
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
@@ -94,7 +117,10 @@ jobs:
           LAST_COMMIT: ${{ github.sha }}
           LAST_RUN_BY: ${{ github.actor }}
           RUN_ID: ${{ github.run_id }}
+          COMMAND: ${{ matrix.command }}
+          SCHEDULE: ${{ matrix.schedule }}
+          ENVIRONMENT: ${{ matrix.environ }}
         with:
-          filename: .github/stuck_jobs.md
+          filename: .github/automated_ckan_error.md
           assignees: ${{ github.actor }}
           update_existing: true
