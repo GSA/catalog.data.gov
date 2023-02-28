@@ -25,6 +25,38 @@ wget -O /tmp/ckan_config/solrconfig_follower.xml https://raw.githubusercontent.c
 wget -O /tmp/ckan_config/stopwords.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/setup/solr/stopwords.txt
 wget -O /tmp/ckan_config/synonyms.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/setup/solr/synonyms.txt
 
+# check for multiple index folders and stop solr if so
+# https://github.com/GSA/data.gov/issues/4138
+check_index() {
+  solr_url=http://localhost:8983/solr/
+
+  # sleep until solr is ready with response code 200
+  while true; do
+    echo "In Check: Waiting for solr to be ready..."
+    sleep 1
+    status_code=$(curl --head --location --connect-timeout 5 --write-out %{http_code} --silent --output /dev/null ${solr_url})
+    [[ "$status_code" -ne 200 ]] || break
+  done
+
+  echo "In Check: Solr is ready at ${solr_url}."
+
+  # check multiple index folders
+  # use the same lockpath="/var/solr/data/ckan/data/index*"
+  export lockpath="/var/solr/data/ckan/data/index*"
+  for i in {1..2}
+  do
+    index_count=$(find ${lockpath} -type d -name index* | wc -l)
+    echo "In Check: Index folder count is ${index_count} on check ${i}."
+    [[ "$index_count" -ne 1 ]] && echo "In Check: Stopping solr." && solr stop -p 8983
+    # sleep and do it again just to be sure
+    sleep 15
+  done
+
+  echo "In Check: Finished."
+}
+# Do check in the background
+check_index &
+
 # Check if users already exist
 SECURITY_FILE=/var/solr/data/security.json
 if [ -f "$SECURITY_FILE" ]; then
