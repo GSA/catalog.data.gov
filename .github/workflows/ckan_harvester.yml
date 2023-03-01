@@ -1,0 +1,48 @@
+---
+name: 4b - CKAN Harvesting
+
+on:   # yamllint disable-line rule:truthy
+  schedule:
+    - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
+
+jobs:
+  ckan-auto-command:
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        environ: [development, staging, prod]
+        include:
+          - app: catalog-admin
+          - command: "ckan harvester run"
+          # Adjust RAM per space
+          - environ: development
+            ram: 1G
+          - environ: staging
+            ram: 3G
+          - environ: prod
+            ram: 3G
+    name: ${{ matrix.command }} - ${{matrix.environ}}
+    runs-on: ubuntu-latest
+    environment: ${{matrix.environ}}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Set Unique Command Name
+        # yamllint disable rule:line-length
+        run: |
+          INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
+          # yamllint enable rule:line-length
+      - name: ${{ matrix.command }}
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task ${{ matrix.app }}
+            --command "${{ matrix.command }}"
+            --name "$INSTANCE_NAME"
+            -m ${{ matrix.ram }} -k 2G
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}

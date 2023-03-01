@@ -1,11 +1,10 @@
 ---
-name: 4 - Automated CKAN Jobs
+name: 4 - Automated CKAN Jobs (minus Harvesting)
 
 on:   # yamllint disable-line rule:truthy
   schedule:
     - cron: '30 7 * * *'       # Tracking Update -- every day at 7:30am UTC
     - cron: '0 3 * * *'        # S3 Sitemap Update -- every day at 3am UTC
-    - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
     - cron: '0 4 * * *'        # DB-Solr-Sync -- every day at 4am UTC
     - cron: '0 5 * * *'        # Check Stuck Jobs -- every day at 5am UTC
 
@@ -18,7 +17,7 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        schedule: ['30 7 * * *', '0 3 * * *', '11/15 * * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
+        schedule: ['30 7 * * *', '0 3 * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
         environ: [development, staging, prod]
         include:
           # Default app to run tasks on
@@ -30,8 +29,6 @@ jobs:
           # Attach commands to schedule
           - schedule: '30 7 * * *'
             command: "ckan geodatagov tracking-update"
-          - schedule: '11/15 * * * *'
-            command: "ckan harvester run"
           - schedule: '0 4 * * *'
             command: "ckan geodatagov db-solr-sync"
           - schedule: '0 5 * * *'
@@ -41,9 +38,6 @@ jobs:
           # Run sitemap-to-s3 on catalog-gather
           - schedule: '0 3 * * *'
             app: catalog-gather
-          # Don't monitor 'harvester run'
-          - schedule: '11/15 * * * *'
-            monitor: false
           # Don't monitor 'sitemap-to-s3'
           - schedule: '0 3 * * *'
             monitor: false
