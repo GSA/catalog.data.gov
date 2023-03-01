@@ -100,13 +100,16 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            tools/monitor_cf_logs.sh ${{ matrix.app }} $INSTANCE_NAME &&
-            ELAPSED=$(( SECONDS - START)) &&
-            if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then ERROR=true | tee -a $GITHUB_ENV; fi;
+            tools/monitor_cf_logs.sh ${{ matrix.app }} $INSTANCE_NAME
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: check runtime
+        run: |
+          ELAPSED=$(( SECONDS - START))
+          echo "$START, $SECONDS, $ELAPSED"
+          if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then ERROR=true | tee -a $GITHUB_ENV; fi;
       - name: Create Issue if it fails 😢
         if: ${{ failure() || (env.ERROR == true) }}
         uses: JasonEtco/create-an-issue@v2
