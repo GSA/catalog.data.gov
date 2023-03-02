@@ -18,7 +18,7 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        schedule: ['30 7 * * *', '0 3 * * *', '11/15 * * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
+        schedule: ['30 7 * * *', '0 3 * * *', '4/15 * * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
         environ: [development, staging, prod]
         include:
           # Default app to run tasks on
@@ -30,7 +30,7 @@ jobs:
           # Attach commands to schedule
           - schedule: '30 7 * * *'
             command: "ckan geodatagov tracking-update"
-          - schedule: '11/15 * * * *'
+          - schedule: '4/15 * * * *'
             command: "ckan harvester run"
           - schedule: '0 4 * * *'
             command: "ckan geodatagov db-solr-sync"
@@ -42,7 +42,7 @@ jobs:
           - schedule: '0 3 * * *'
             app: catalog-gather
           # Don't monitor 'harvester run'
-          - schedule: '11/15 * * * *'
+          - schedule: '4/15 * * * *'
             monitor: false
           # Don't monitor 'sitemap-to-s3'
           - schedule: '0 3 * * *'
