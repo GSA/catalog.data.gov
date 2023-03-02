@@ -42,7 +42,7 @@ jobs:
           - schedule: '0 3 * * *'
             app: catalog-gather
           # Don't monitor 'harvester run'
-          - schedule: '11/15 * * * *'
+          - schedule: '4/15 * * * *'
             monitor: false
           # Don't monitor 'sitemap-to-s3'
           - schedule: '0 3 * * *'
