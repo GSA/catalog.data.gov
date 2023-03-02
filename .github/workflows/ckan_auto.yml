@@ -78,7 +78,7 @@ jobs:
       - name: Set Unique Command Name
         # yamllint disable rule:line-length
         run: |
-          INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT} | tr -d ' ')"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
           START=$SECONDS | tee -a $GITHUB_ENV
           # yamllint enable rule:line-length
