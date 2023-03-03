@@ -66,8 +66,10 @@ jobs:
             environ: development
           - schedule: '0 3 * * *'
             environ: staging
-          # Don't run 'db-solr-sync' on development
+          # Don't run 'db-solr-sync' + 'check-stuck-jobs' on development
           - schedule: '0 5 * * *'
+            environ: development
+          - schedule: '0 4 * * *'
             environ: development
     name: ${{ matrix.command }} - ${{matrix.environ}}
     runs-on: ubuntu-latest
