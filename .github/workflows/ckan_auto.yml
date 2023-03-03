@@ -19,87 +19,86 @@ env:
   SCHEDULE_DBSOLR_SYNC: '0 4 * * *'
 
 jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+    steps:
+      - name: Generate Matrix
+        id: generate-matrix
+        run: |
+          # Matrix Configuration Settings
+          # - Default App to run tasks on: cataog-admin
+          # - Default timeout for task to raise issue: 6 hours
+          # - Default Create an Information Issue for jobs we want to inspect: false
+          # - Default monitor state: false
+          #  schedule: tracking update
+          #   - Only run on [development, staging, prod]
+          #   - Monitor: true
+          #   - Create Error issue: if runtime longer than 210 mins
+          #   - Create Informational issue: tracking-update-info.md
+          #  schedule: sitemap update
+          #   - Only run on [prod]
+          #   - Run on [catalog-gather] app
+          #  schedule: harvesting update
+          #   - Only run on [development, staging, prod]
+          #  schedule: stuck jobs check
+          #   - Only run on [staging, prod]
+          #   - Monitor: true
+          #   - Create Error issue: if >0 stuck jobs, automated_ckan_error.md
+          #  schedule: db-solr-sync
+          #   - Only run on [staging, prod]
+          #   - Monitor: true
+          #   - Create Error issue: if runtime longer than 30 mins
+          #   - Create Informational issue: db-solr-sync-info.md
+          MATRIX=$(cat << MAT
+          {
+            "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
+                         "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
+                         "${{env.SCHEDULE_DBSOLR_SYNC}}"],
+            "environ": ["development", "staging", "prod"],
+            "include": [ {"app": "catalog-admin"},
+                         {"error_seconds": 22000},
+                         {"info_issue": false},
+                         {"issue_template": ".github/automated_ckan_error.md"},
+                         {"monitor": true},
+                         {"schedule": "${{env.SCHEDULE_HARVESTING}}", "command": "ckan harvester run"},
+                         {"schedule": "${{env.SCHEDULE_HARVESTING}}", "monitor": false},
+                         {"schedule": "${{env.SCHEDULE_TRACKING}}", "command": "ckan geodatagov tracking-update"},
+                         {"schedule": "${{env.SCHEDULE_TRACKING}}", "error_seconds": 12600},
+                         {"schedule": "${{env.SCHEDULE_TRACKING}}", "info_issue": true},
+                         {"schedule": "${{env.SCHEDULE_TRACKING}}", "issue_template": ".github/tracking-update-info.md"},
+                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "command": "ckan geodatagov sitemap-to-s3"},
+                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "app": "catalog-gather"},
+                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "monitor": false},
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "command": "ckan geodatagov db-solr-sync"},
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "error_seconds": 1800},
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "info_issue": true},
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "issue_template": ".github/db-solr-sync-info.md"},
+                         {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "command": "ckan geodatagov check-stuck-jobs"},
+                         {"environ": "development", "ram": "1G"},
+                         {"environ": "staging", "ram": "1G"},
+                         {"environ": "prod", "ram": "1G"}
+                       ],
+            "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
+                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"}
+                         {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "environ": "development"}
+                       ],
+          }
+          MAT
+          )
+          echo "matrix<<EOF" >> $GITHUB_OUTPUT
+          echo "$MATRIX" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
   ckan-auto-command:
+    needs:
+      - setup-matrix
     strategy:
       max-parallel: 1
       fail-fast: false
-      matrix:
-        schedule: [
-          $SCHEDULE_TRACKING, $SCHEDULE_SITEMAP, $SCHEDULE_HARVESTING,
-          $SCHEDULE_STUCK_JOBS, $SCHEDULE_DBSOLR_SYNC
-        ]
-        environ: [development, staging, prod]
-        include:
-          # Default app to run tasks on
-          - app: catalog-admin
-          # Default timeout for task to raise issue
-          - error_seconds: 22000
-          # Create an Information Issue for jobs we want to inspect
-          - info_issue: false
-          - issue_template: .github/automated_ckan_error.md
-          # Default monitor everything
-          - monitor: true
-          # Attach commands to schedule
-          - schedule: $SCHEDULE_TRACKING
-            command: "ckan geodatagov tracking-update"
-          - schedule: $SCHEDULE_HARVESTING
-            command: "ckan harvester run"
-          - schedule: $SCHEDULE_DBSOLR_SYNC
-            command: "ckan geodatagov db-solr-sync"
-          - schedule: $SCHEDULE_STUCK_JOBS
-            command: "ckan geodatagov check-stuck-jobs"
-          - schedule: $SCHEDULE_SITEMAP
-            command: "ckan geodatagov sitemap-to-s3"
-
-          # 'sitemap-to-s3' : Run on catalog-gather
-          - schedule: $SCHEDULE_SITEMAP
-            app: catalog-gather
-          # 'sitemap-to-s3': Don't monitor
-          - schedule: $SCHEDULE_SITEMAP
-            monitor: false
-
-          # 'harvester run': Don't monitor
-          - schedule: $SCHEDULE_HARVESTING
-            monitor: false
-
-          # 'tracking-update': make an issue if longer than 210 mins
-          - schedule: $SCHEDULE_TRACKING
-            error_seconds: 12600
-          # 'tracking-update': Create informational issue
-          - schedule: $SCHEDULE_TRACKING
-            info_issue: true
-          - schedule: $SCHEDULE_TRACKING
-            issue_template: .github/tracking-update-info.md
-
-          # 'db-solr-sync': make an issue if longer than 30 mins
-          - schedule: $SCHEDULE_DBSOLR_SYNC
-            error_seconds: 1800
-          # 'db-solr-sync': Create informational issue
-          - schedule: $SCHEDULE_DBSOLR_SYNC
-            info_issue: true
-          - schedule: $SCHEDULE_DBSOLR_SYNC
-            issue_template: .github/db-solr-sync-info.md
-
-          # Adjust RAM per space
-          - environ: development
-            ram: 1G
-          - environ: staging
-            ram: 3G
-          - environ: prod
-            ram: 3G
-        exclude:
-          # 'sitemap-to-s3': Don't run on development/staging
-          - schedule: $SCHEDULE_SITEMAP
-            environ: development
-          - schedule: $SCHEDULE_SITEMAP
-            environ: staging
-          # 'db-solr-sync': Don't run on development
-          - schedule: $SCHEDULE_DBSOLR_SYNC
-            environ: development
-          # 'check-stuck-jobs': Don't run on development
-          - schedule: $SCHEDULE_STUCK_JOBS
-            environ: development
-
+      matrix: ${{ fromJSON(needs.setup-matrix.outputs.matrix) }}
     name: ${{ matrix.command }} - ${{matrix.environ}}
     runs-on: ubuntu-latest
     environment: ${{matrix.environ}}
@@ -111,7 +110,7 @@ jobs:
         run: |
           INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT} | tr -d ' ')"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
-          START=`date +%s` | tee -a $GITHUB_ENV
+          echo "START=`date +%s`" | tee -a $GITHUB_ENV
           # yamllint enable rule:line-length
       - name: ${{ matrix.command }}
         if: ${{ github.event.schedule == matrix.schedule }}
