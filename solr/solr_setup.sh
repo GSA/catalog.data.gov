@@ -17,6 +17,33 @@ ls -lart /var/solr/data/ckan/data;
 find $lockpath -name write.lock -delete;
 rm -rf $flagfile;
 
+# Run a check in the background for 10 mins.
+check_folder() {
+  # check the index folders and lock status
+  find ${lockpath} -type d -name index* | xargs du -ch
+  find $lockpath -name write.lock | xargs ls -l
+}
+
+run_check() {
+  # Run check every 2 seconds for 5 minutes
+  for ((i=0; i<150; i++)); do
+    echo "Phase 1"
+    check_folder
+    sleep 2
+  done
+
+  # Run check every 20 seconds for the next 5 minutes
+  for ((i=0; i<15; i++)); do
+    echo "Phase 2"
+    check_folder
+    sleep 20
+  done
+
+  echo "End of checks."
+}
+
+run_check &
+
 # add solr config files for ckan 2.9
 wget -O /tmp/ckan_config/schema.xml https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/setup/solr/managed-schema
 wget -O /tmp/ckan_config/protwords.txt https://raw.githubusercontent.com/GSA/catalog.data.gov/main/ckan/setup/solr/protwords.txt
