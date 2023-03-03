@@ -1,5 +1,5 @@
 ---
-title: 📌 Tracking Update Auditing Issue 
+title: 📌 Tracking Update Auditing Log
 labels: bug
 ---
 

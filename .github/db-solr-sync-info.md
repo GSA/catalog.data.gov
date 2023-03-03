@@ -1,5 +1,5 @@
 ---
-title: 📌 DB Solr Sync Auditing Issue 
+title: 📌 DB Solr Sync Auditing Log
 labels: bug
 ---
 
