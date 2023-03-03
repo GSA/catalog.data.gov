@@ -82,7 +82,7 @@ jobs:
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
-                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"}
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "environ": "development"}
                        ],
           }
