@@ -5,7 +5,7 @@ on:   # yamllint disable-line rule:truthy
   schedule:
     - cron: '30 7 * * *'       # Tracking Update -- every day at 2:30am EST
     - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 7pm EST
-    - cron: '4/15 5-23 * * *'  # Harvester Check -- every 15 mins between 12am and 6pm EST   # yamllint disable-line rule:line-length
+    - cron: '4/15 5-23 * * *'  # Harvester Check -- every 15 mins between 12am and 6pm EST
     - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
     - cron: '0 4 * * *'        # Check Stuck Jobs -- every day at 11pm EST
 
