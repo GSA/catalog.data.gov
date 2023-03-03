@@ -34,6 +34,9 @@ jobs:
           - app: catalog-admin
           # Default timeout for task to raise issue
           - error_seconds: 22000
+          # Create an Information Issue for jobs we want to inspect
+          - info_issue: false
+          - issue_template: .github/automated_ckan_error.md
           # Default monitor everything
           - monitor: true
           # Attach commands to schedule
@@ -47,21 +50,36 @@ jobs:
             command: "ckan geodatagov check-stuck-jobs"
           - schedule: $SCHEDULE_SITEMAP
             command: "ckan geodatagov sitemap-to-s3"
-          # Run sitemap-to-s3 on catalog-gather
+
+          # 'sitemap-to-s3' : Run on catalog-gather
           - schedule: $SCHEDULE_SITEMAP
             app: catalog-gather
-          # Don't monitor 'harvester run'
-          - schedule: $SCHEDULE_HARVESTING
-            monitor: false
-          # Don't monitor 'sitemap-to-s3'
+          # 'sitemap-to-s3': Don't monitor
           - schedule: $SCHEDULE_SITEMAP
             monitor: false
-          # If tracking update takes longer than 210 mins, make an issue
+
+          # 'harvester run': Don't monitor
+          - schedule: $SCHEDULE_HARVESTING
+            monitor: false
+
+          # 'tracking-update': make an issue if longer than 210 mins
           - schedule: $SCHEDULE_TRACKING
             error_seconds: 12600
-          # If db solr sync takes longer than 30 mins, make an issue
+          # 'tracking-update': Create informational issue
+          - schedule: $SCHEDULE_TRACKING
+            info_issue: true
+          - schedule: $SCHEDULE_TRACKING
+            issue_template: .github/tracking-update-info.md
+
+          # 'db-solr-sync': make an issue if longer than 30 mins
           - schedule: $SCHEDULE_DBSOLR_SYNC
             error_seconds: 1800
+          # 'db-solr-sync': Create informational issue
+          - schedule: $SCHEDULE_DBSOLR_SYNC
+            info_issue: true
+          - schedule: $SCHEDULE_DBSOLR_SYNC
+            issue_template: .github/db-solr-sync-info.md
+
           # Adjust RAM per space
           - environ: development
             ram: 1G
@@ -70,16 +88,18 @@ jobs:
           - environ: prod
             ram: 3G
         exclude:
-          # Don't run 'sitemap-to-s3' on development/staging
+          # 'sitemap-to-s3': Don't run on development/staging
           - schedule: $SCHEDULE_SITEMAP
             environ: development
           - schedule: $SCHEDULE_SITEMAP
             environ: staging
-          # Don't run 'db-solr-sync' + 'check-stuck-jobs' on development
+          # 'db-solr-sync': Don't run on development
           - schedule: $SCHEDULE_DBSOLR_SYNC
             environ: development
+          # 'check-stuck-jobs': Don't run on development
           - schedule: $SCHEDULE_STUCK_JOBS
             environ: development
+
     name: ${{ matrix.command }} - ${{matrix.environ}}
     runs-on: ubuntu-latest
     environment: ${{matrix.environ}}
@@ -91,7 +111,7 @@ jobs:
         run: |
           INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT} | tr -d ' ')"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
-          START=$SECONDS | tee -a $GITHUB_ENV
+          START=`date +%s` | tee -a $GITHUB_ENV
           # yamllint enable rule:line-length
       - name: ${{ matrix.command }}
         if: ${{ github.event.schedule == matrix.schedule }}
@@ -118,9 +138,29 @@ jobs:
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: check runtime
         run: |
-          ELAPSED=$(( SECONDS - START))
-          echo "$START, $SECONDS, $ELAPSED"
-          if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then ERROR=true | tee -a $GITHUB_ENV; fi;
+          END=`date +%s`
+          ELAPSED=$(( END - START))
+          echo "$START, $END, $ELAPSED"
+          if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then echo ERROR=true | tee -a $GITHUB_ENV; fi;
+          if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then echo "ELAPSED=${ELAPSED}" | tee -a $GITHUB_ENV; fi;
+      - name: Create Informational Issue for auditing 📑
+        if: ${{ matrix.info_issue }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          GITHUB_JOB: ${{ toJson(github)['job'] }}
+          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
+          LAST_COMMIT: ${{ github.sha }}
+          LAST_RUN_BY: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+          COMMAND: ${{ matrix.command }}
+          SCHEDULE: ${{ matrix.schedule }}
+          ENVIRONMENT: ${{ matrix.environ }}
+          EXEC_TIME: ${{ env.ELAPSED }}
+        with:
+          filename: ${{ matrix.issue_template }}
+          assignees: ${{ github.actor }}
+          update_existing: true
       - name: Create Issue if it fails 😢
         if: ${{ failure() || (env.ERROR == true) }}
         uses: JasonEtco/create-an-issue@v2
