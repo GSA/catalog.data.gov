@@ -143,7 +143,7 @@ jobs:
           if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then echo ERROR=true | tee -a $GITHUB_ENV; fi;
           if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then echo "ELAPSED=${ELAPSED}" | tee -a $GITHUB_ENV; fi;
       - name: Create Informational Issue for auditing 📑
-        if: ${{ matrix.info_issue }}
+        if: ${{ matrix.info_issue && github.event.schedule == matrix.schedule }}
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
