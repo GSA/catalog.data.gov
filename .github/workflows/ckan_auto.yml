@@ -111,7 +111,7 @@ jobs:
         run: |
           INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT} | tr -d ' ')"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
-          START=`date +%s` | tee -a $GITHUB_ENV
+          echo "START=`date +%s`" | tee -a $GITHUB_ENV
           # yamllint enable rule:line-length
       - name: ${{ matrix.command }}
         if: ${{ github.event.schedule == matrix.schedule }}
