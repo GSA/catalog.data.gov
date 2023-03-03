@@ -11,6 +11,12 @@ on:   # yamllint disable-line rule:truthy
 
 env:
   ERROR: false
+  # Make sure 'schedule-cron' matches these varaibles.
+  SCHEDULE_TRACKING: '30 7 * * *'
+  SCHEDULE_SITEMAP: '0 3 * * *'
+  SCHEDULE_HARVESTING: '4/15 * * * *'
+  SCHEDULE_STUCK_JOBS: '0 4 * * *'
+  SCHEDULE_DBSOLR_SYNC: '0 5 * * *'
 
 jobs:
   ckan-auto-command:
@@ -18,7 +24,10 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        schedule: ['30 7 * * *', '0 3 * * *', '4/15 * * * *', '0 4 * * *', '0 5 * * *']   # yamllint disable-line rule:line-length
+        schedule: [
+          $SCHEDULE_TRACKING, $SCHEDULE_SITEMAP, $SCHEDULE_HARVESTING,
+          $SCHEDULE_STUCK_JOBS, $SCHEDULE_DBSOLR_SYNC
+        ]
         environ: [development, staging, prod]
         include:
           # Default app to run tasks on
@@ -28,30 +37,30 @@ jobs:
           # Default monitor everything
           - monitor: true
           # Attach commands to schedule
-          - schedule: '30 7 * * *'
+          - schedule: $SCHEDULE_TRACKING
             command: "ckan geodatagov tracking-update"
-          - schedule: '4/15 * * * *'
+          - schedule: $SCHEDULE_HARVESTING
             command: "ckan harvester run"
-          - schedule: '0 4 * * *'
+          - schedule: $SCHEDULE_DBSOLR_SYNC
             command: "ckan geodatagov db-solr-sync"
-          - schedule: '0 5 * * *'
+          - schedule: $SCHEDULE_STUCK_JOBS
             command: "ckan geodatagov check-stuck-jobs"
-          - schedule: '0 3 * * *'
+          - schedule: $SCHEDULE_SITEMAP
             command: "ckan geodatagov sitemap-to-s3"
           # Run sitemap-to-s3 on catalog-gather
-          - schedule: '0 3 * * *'
+          - schedule: $SCHEDULE_SITEMAP
             app: catalog-gather
           # Don't monitor 'harvester run'
-          - schedule: '4/15 * * * *'
+          - schedule: $SCHEDULE_HARVESTING
             monitor: false
           # Don't monitor 'sitemap-to-s3'
-          - schedule: '0 3 * * *'
+          - schedule: $SCHEDULE_SITEMAP
             monitor: false
           # If tracking update takes longer than 210 mins, make an issue
-          - schedule: '30 7 * * *'
+          - schedule: $SCHEDULE_TRACKING
             error_seconds: 12600
           # If db solr sync takes longer than 30 mins, make an issue
-          - schedule: '0 4 * * *'
+          - schedule: $SCHEDULE_DBSOLR_SYNC
             error_seconds: 1800
           # Adjust RAM per space
           - environ: development
@@ -62,14 +71,14 @@ jobs:
             ram: 3G
         exclude:
           # Don't run 'sitemap-to-s3' on development/staging
-          - schedule: '0 3 * * *'
+          - schedule: $SCHEDULE_SITEMAP
             environ: development
-          - schedule: '0 3 * * *'
+          - schedule: $SCHEDULE_SITEMAP
             environ: staging
           # Don't run 'db-solr-sync' + 'check-stuck-jobs' on development
-          - schedule: '0 5 * * *'
+          - schedule: $SCHEDULE_DBSOLR_SYNC
             environ: development
-          - schedule: '0 4 * * *'
+          - schedule: $SCHEDULE_STUCK_JOBS
             environ: development
     name: ${{ matrix.command }} - ${{matrix.environ}}
     runs-on: ubuntu-latest
