@@ -7,7 +7,7 @@ on:   # yamllint disable-line rule:truthy
     - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 7pm EST
     - cron: '4/15 5-23 * * *'  # Harvester Check -- every 15 mins between 12am and 6pm EST
     - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
-    - cron: '0 4 * * *'        # Check Stuck Jobs -- every day at 11pm EST
+    - cron: '30 6 * * *'        # Check Stuck Jobs -- every day at 1:30am EST
 
 env:
   ERROR: false
@@ -16,7 +16,7 @@ env:
   SCHEDULE_SITEMAP: '0 2 * * *'
   SCHEDULE_HARVESTING: '4/15 5-23 * * *'
   SCHEDULE_STUCK_JOBS: '0 3 * * *'
-  SCHEDULE_DBSOLR_SYNC: '0 4 * * *'
+  SCHEDULE_DBSOLR_SYNC: '30 6 * * *'
 
 jobs:
   ckan-auto-command:
