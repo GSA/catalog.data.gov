@@ -1,10 +1,10 @@
 ---
 title: 📌 Tracking Update Auditing Log
-labels: bug
+labels: audit
 ---
 
 Workflow with Issue: {{ workflow }}
-Job Failed: {{ env.GITHUB_JOB }}
+Job being audited: {{ env.GITHUB_JOB }}
 CKAN Command (in question): {{ env.COMMAND }}
 CKAN Command Schedule: {{ env.SCHEDULE }}
 Cloud.gov Environment: {{ env.ENVIRONMENT }}
