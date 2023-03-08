@@ -10,7 +10,13 @@ if [[ "$1" == "build" ]]; then
 fi
 
 # The bind mount here enables us to write back to the host filesystem
-docker run --mount type=bind,source="$(pwd)",target=/home/vcap/app --tmpfs /home/vcap/app/src --name cf_bash --rm -i catalog-vendor:latest  /bin/bash -eu <<EOF
+docker run \
+    --mount type=bind,source="$(pwd)",target=/home/vcap/app \
+    --tmpfs /home/vcap/app/src \
+    --name cf_bash \
+    --rm -i catalog-vendor:latest  /bin/bash \
+    -eu \
+    <<EOF
 
 # Go where the app files are
 cd ~vcap/app

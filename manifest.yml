@@ -64,6 +64,7 @@ applications:
     buildpacks:
       - https://github.com/cloudfoundry/nginx-buildpack
     services:
+      - ((app_name))-redis
       - ((app_name))-secrets
       - ((app_name))-s3
     path: ./proxy

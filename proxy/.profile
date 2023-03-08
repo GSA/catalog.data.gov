@@ -40,3 +40,7 @@ S3_URL=$(vcap_get_service s3 .credentials.endpoint)
 sed -i "s/s3_url_placeholder/${S3_URL}/" ./nginx-common.conf
 S3_BUCKET=$(vcap_get_service s3 .credentials.bucket)
 sed -i "s/s3_bucket_placeholder/${S3_BUCKET}/" ./nginx-common.conf
+
+# redis cache config
+PROXY_REDIS_HOST=$(vcap_get_service secrets .credentials.PROXY_AUTH.PASSWORD)
+export PROXY_REDIS_HOST
