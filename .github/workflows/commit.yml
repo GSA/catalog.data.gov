@@ -34,6 +34,8 @@ jobs:
 
   test_proxy:
     name: Validate Proxy Configuration Files
+    needs:
+      - vendor
     runs-on: ubuntu-latest
     steps:
       - name: checkout
