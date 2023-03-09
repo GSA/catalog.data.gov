@@ -44,8 +44,6 @@ jobs:
         with:
           name: nginx-vendored
           path: proxy/modules
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
       - name: test
         run: make validate-proxy
 
@@ -85,6 +83,8 @@ jobs:
         uses: actions/checkout@v3
       - name: vendor nginx modules
         run: ./vendor-nginx-modules.sh build
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - uses: actions/upload-artifact@v3
         with:
           name: nginx-vendored
