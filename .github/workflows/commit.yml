@@ -40,6 +40,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: nginx-vendored
+          path: nginx-vendor
       - name: test
         run: make validate-proxy
 
@@ -71,6 +75,11 @@ jobs:
         with:
           name: python-vendored
           path: vendor/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ngnix-vendored
+          path: nginx-vendor/
           if-no-files-found: error
 
   # yamllint disable rule:line-length
