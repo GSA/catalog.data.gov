@@ -31,7 +31,8 @@ pwd
 make -j2
 make install
 cd ../
-cp /opt/nginx/modules/ngx_http_redis2_module.so proxy/ngx_http_redis2_module.so
+mkdir proxy/modules
+cp /opt/nginx/modules/ngx_http_redis2_module.so proxy/modules/ngx_http_redis2_module.so
 rm -rf nginx-1.*
 rm -rf redis2-nginx-module
 
