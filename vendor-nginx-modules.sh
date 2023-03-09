@@ -24,7 +24,7 @@ cd ~vcap/app
 # As the VCAP user, cache .whls based on the frozen requirements for vendoring
 git clone https://github.com/openresty/redis2-nginx-module.git
 wget 'http://nginx.org/download/nginx-1.23.3.tar.gz'
-tar -xzvf nginx-1.31.3.tar.gz
+tar -xzvf nginx-1.23.3.tar.gz
 cd nginx-1.23.3/
 pwd
 ./configure --prefix=/opt/nginx --add-dynamic-module=/home/vcap/app/redis2-nginx-module
