@@ -33,7 +33,7 @@ jobs:
             ./e2e/cypress/videos/
 
   test_proxy:
-    name: Validate Proxy Configuration Files
+    name: validate proxy configuration files
     needs:
       - vendor-nginx
     runs-on: ubuntu-latest
@@ -44,6 +44,8 @@ jobs:
         with:
           name: nginx-vendored
           path: proxy/modules
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: test
         run: make validate-proxy
 
@@ -103,6 +105,7 @@ jobs:
     name: deploy (development)
     needs:
       - vendor
+      - vendor-nginx
       - create-cloudgov-services-development
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
