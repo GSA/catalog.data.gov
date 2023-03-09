@@ -22,6 +22,9 @@ check_folder() {
   # check the index folders and lock status
   find ${lockpath} -type d -name index* | xargs du -ch
   find $lockpath -name write.lock | xargs ls -l
+  echo "####core.properties"
+  cat /var/solr/data/ckan/core.properties
+  echo "####core.properties"
 }
 
 run_check() {
