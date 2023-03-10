@@ -18,6 +18,8 @@ docker run \
     nginx:1.23.3 /bin/bash \
     -eu \
     <<EOF
+apt update
+apt install gcc -y
 
 # Go where the app files are
 cd /home/vcap/app
