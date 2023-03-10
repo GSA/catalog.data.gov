@@ -6,7 +6,7 @@
 
 # Get the latest version of the cflinuxfs3 image
 if [[ "$1" == "build" ]]; then
-  docker build -t ngnix-vendor proxy/
+  docker build -t nginx-vendor proxy/
 fi
 
 # The bind mount here enables us to write back to the host filesystem
@@ -14,7 +14,7 @@ docker run \
     --mount type=bind,source="$(pwd)",target=/home/vcap/app \
     --tmpfs /home/vcap/app/src \
     --name cf_bash \
-    --rm -i catalog-vendor:latest  /bin/bash \
+    --rm -i nginx-vendor:latest  /bin/bash \
     -eu \
     <<EOF
 
