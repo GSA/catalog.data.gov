@@ -38,7 +38,3 @@ rm -rf nginx-1.*
 rm -rf redis2-nginx-module
 
 EOF
-
-# cleanup
-rm -rf redis2-nginx-module/
-rm -rf nginx-1.*
