@@ -6,7 +6,7 @@
 
 # Get the latest version of the cflinuxfs3 image
 if [[ "$1" == "build" ]]; then
-  docker build -t catalog-vendor .
+  docker build -t ngnix-vendor proxy/
 fi
 
 # The bind mount here enables us to write back to the host filesystem
@@ -26,7 +26,6 @@ git clone https://github.com/openresty/redis2-nginx-module.git
 wget 'http://nginx.org/download/nginx-1.23.3.tar.gz'
 tar -xzvf nginx-1.23.3.tar.gz
 cd nginx-1.23.3/
-pwd
 ./configure --prefix=/opt/nginx --add-dynamic-module=/home/vcap/app/redis2-nginx-module
 make -j2
 make install
