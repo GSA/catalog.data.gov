@@ -1,1 +1,0 @@
-FROM cloudfoundry/cflinuxfs3
