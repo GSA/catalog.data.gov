@@ -77,8 +77,8 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "issue_template": ".github/db-solr-sync-info.md"},
                          {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "command": "ckan geodatagov check-stuck-jobs"},
                          {"environ": "development", "ram": "1G"},
-                         {"environ": "staging", "ram": "1G"},
-                         {"environ": "prod", "ram": "1G"}
+                         {"environ": "staging", "ram": "2.5G"},
+                         {"environ": "prod", "ram": "2.5G"}
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
