@@ -19,7 +19,7 @@ docker run \
     -eu \
     <<EOF
 apt update
-apt install gcc libpcre2-dev zlib1g-dev make -y
+apt install gcc libpcre3-dev zlib1g-dev make -y
 
 # Go where the app files are
 cd /home/vcap/app
