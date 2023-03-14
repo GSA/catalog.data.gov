@@ -26,7 +26,7 @@ cd /home/vcap/app
 
 tar -xzvf nginx-1.21.3.tar.gz
 cd nginx-1.21.3/
-./configure --prefix=/opt/nginx --add-dynamic-module=/home/vcap/app/redis2-nginx-module
+./configure --prefix=/opt/nginx --add-dynamic-module=/home/vcap/app/redis2-nginx-module --with-compat
 make -j2
 make install
 
