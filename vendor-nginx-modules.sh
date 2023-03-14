@@ -5,7 +5,7 @@
 # container; Docker is the only local prerequisite.
 
 git clone https://github.com/openresty/redis2-nginx-module.git
-wget 'http://nginx.org/download/nginx-1.23.3.tar.gz'
+wget 'http://nginx.org/download/nginx-1.21.3.tar.gz'
 
 # The bind mount here enables us to write back to the host filesystem
 docker run \
@@ -15,7 +15,7 @@ docker run \
     --rm \
     --pull always \
     --interactive \
-    nginx:1.23.3 /bin/bash \
+    nginx:1.21.3 /bin/bash \
     -eu \
     <<EOF
 apt update
@@ -24,8 +24,8 @@ apt install gcc libpcre2-dev zlib1g-dev make -y
 # Go where the app files are
 cd /home/vcap/app
 
-tar -xzvf nginx-1.23.3.tar.gz
-cd nginx-1.23.3/
+tar -xzvf nginx-1.21.3.tar.gz
+cd nginx-1.21.3/
 ./configure --prefix=/opt/nginx --add-dynamic-module=/home/vcap/app/redis2-nginx-module
 make -j2
 make install
