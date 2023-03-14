@@ -56,7 +56,8 @@ validate-proxy:
 	sed -i 's/{{env "PUBLIC_ROUTE"}}/test.com/g' proxy/nginx-cloudfront.conf proxy/nginx-authy.conf
 	sed -i 's#{{env "S3_URL"}}#http://test.com#g' proxy/nginx-common.conf
 	sed -i 's#{{env "S3_BUCKET"}}#somebucket#g' proxy/nginx-common.conf
-	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx nginx -t -c /proxy/nginx.conf
+	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx:1.21.3 nginx -V
+	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx:1.21.3 nginx -t -c /proxy/nginx.conf
 	sed -i 's/127.0.0.1/{{nameservers}}/g' proxy/nginx.conf
 	sed -i 's/127.0.0.2/{{env "EXTERNAL_ROUTE"}}/g' proxy/nginx.conf proxy/nginx-cloudfront.conf
 	sed -i 's/127.0.0.3/{{env "INTERNAL_ROUTE"}}/g' proxy/nginx.conf
