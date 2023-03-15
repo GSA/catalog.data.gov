@@ -73,16 +73,35 @@ describe('Spatial', () => {
             '/api/action/package_show?id=conformsto-iso-example-tiger-line-shapefile-2013-nation-u-s-current-county-and-equivalent-'
         ).should((response) => {
             let extras = response.body.result.extras;
-            let spatail_info = {};
+            let spatial_info = {};
             for (let extra of response.body.result.extras) {
                 if (['old-spatial', 'spatial'].includes(extra.key)) {
-                    spatail_info[extra.key] = extra.value;
+                    spatial_info[extra.key] = extra.value;
                 }
             }
-            expect(spatail_info).to.have.property('old-spatial', '[[-14.601813, -179.231086], [71.441059, 179.859681]]');
-            expect(spatail_info).to.have.property(
+            expect(spatial_info).to.have.property('old-spatial', '[[-14.601813, -179.231086], [71.441059, 179.859681]]');
+            expect(spatial_info).to.have.property(
                 'spatial',
                 '{"type": "Polygon", "coordinates": [[[-14.601813, -179.231086], [-14.601813, 179.859681], [71.441059, 179.859681], [71.441059, -179.231086], [-14.601813, -179.231086]]]}'
+            );
+        });
+    });
+
+    it('Can parse a harvest source with plus signs in spatial tag source', () => {
+        cy.request(
+            '/api/action/package_show?id=raw-hypack-navigation-logs-text-collected-by-the-u-s-geological-survey-st-petersburg-coast'
+        ).should((response) => {
+            let extras = response.body.result.extras;
+            let spatial_info = {};
+            for (let extra of extras) {
+                if (['old-spatial', 'spatial'].includes(extra.key)) {
+                    spatial_info[extra.key] = extra.value;
+                }
+            }
+            expect(spatial_info).to.have.property('old-spatial', '-179.231086,-14.601813,+179.859681,+71.441059');
+            expect(spatial_info).to.have.property(
+                'spatial',
+                '{"type": "Polygon", "coordinates": [[[-179.231086, -14.601813], [-179.231086, 71.441059], [179.859681, 71.441059], [179.859681, -14.601813], [-179.231086, -14.601813]]]}'
             );
         });
     });
