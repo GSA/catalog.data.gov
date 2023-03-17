@@ -79,7 +79,7 @@ applications:
       INTERNAL_ROUTE: ((route-internal))
       EXTERNAL_ROUTE_ADMIN: ((route-external-admin))
       INTERNAL_ROUTE_ADMIN: ((route-internal-admin))
-      NGINX_MODULE_LOCATION: /home/vcap/app
+      NGINX_MODULE_LOCATION: home/vcap/app
 
   - name: ((app_name))-gather
     buildpacks:
