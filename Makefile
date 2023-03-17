@@ -1,6 +1,7 @@
 .PHONY: all build clean copy-src local setup test up update-dependencies
 
 CKAN_HOME := /srv/app
+NGINX_VERSION := 1.23.3
 
 all: build
 
@@ -52,17 +53,19 @@ validate-proxy:
 	sed -i 's/{{env "INTERNAL_ROUTE"}}/127.0.0.3/g' proxy/nginx.conf
 	sed -i 's/{{env "EXTERNAL_ROUTE_ADMIN"}}/127.0.0.4/g' proxy/nginx.conf
 	sed -i 's/{{env "INTERNAL_ROUTE_ADMIN"}}/127.0.0.5/g' proxy/nginx.conf
+	sed -i 's#{{env "NGINX_MODULE_LOCATION"}}#proxy#g' proxy/nginx.conf
 	sed -i 's/{{port}}/1111/g' proxy/nginx.conf proxy/nginx-common.conf
 	sed -i 's/{{env "PUBLIC_ROUTE"}}/test.com/g' proxy/nginx-cloudfront.conf proxy/nginx-authy.conf
 	sed -i 's#{{env "S3_URL"}}#http://test.com#g' proxy/nginx-common.conf
 	sed -i 's#{{env "S3_BUCKET"}}#somebucket#g' proxy/nginx-common.conf
 	# '|| true' ignores errors from the nginx test command so that the variable substitution completes
-	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx:1.21.3 nginx -t -c /proxy/nginx.conf || true
+	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx:$(NGINX_VERSION) nginx -t -c /proxy/nginx.conf || true
 	sed -i 's/127.0.0.1/{{nameservers}}/g' proxy/nginx.conf
 	sed -i 's/127.0.0.2/{{env "EXTERNAL_ROUTE"}}/g' proxy/nginx.conf proxy/nginx-cloudfront.conf
 	sed -i 's/127.0.0.3/{{env "INTERNAL_ROUTE"}}/g' proxy/nginx.conf
 	sed -i 's/127.0.0.4/{{env "EXTERNAL_ROUTE_ADMIN"}}/g' proxy/nginx.conf
 	sed -i 's/127.0.0.5/{{env "INTERNAL_ROUTE_ADMIN"}}/g' proxy/nginx.conf
+	sed -i 's#proxy#{{env "NGINX_MODULE_LOCATION"}}#g' proxy/nginx.conf
 	sed -i 's/1111/{{port}}/g' proxy/nginx.conf proxy/nginx-common.conf
 	sed -i 's/test.com/{{env "PUBLIC_ROUTE"}}/g' proxy/nginx-cloudfront.conf
 	sed -i 's#http://test.com#{{env "S3_URL"}}#g' proxy/nginx-common.conf
