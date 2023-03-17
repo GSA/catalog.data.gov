@@ -30,4 +30,4 @@ ckan/setup/solr/*.zip
 *kubeconfig*
 tmp
 scan.json
-proxy/*.so
+proxy/modules/*.so

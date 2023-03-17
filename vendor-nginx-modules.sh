@@ -33,13 +33,13 @@ make install
 
 # copy module back to host
 cd ../
-mkdir -p proxy/
-cp /etc/nginx/modules/ngx_http_redis2_module.so proxy/ngx_http_redis2_module.so
-cp /etc/nginx/modules/ngx_http_echo_module.so proxy/ngx_http_echo_module.so
+mkdir -p proxy/modules
+cp /etc/nginx/modules/ngx_http_redis2_module.so proxy/modules/ngx_http_redis2_module.so
+cp /etc/nginx/modules/ngx_http_echo_module.so proxy/modules/ngx_http_echo_module.so
 
 # cleanup
 rm -rf nginx-1.*
 rm -rf redis2-nginx-module
-rm -rf redis2-echo-module
+rm -rf echo-nginx-module/
 
 EOF
