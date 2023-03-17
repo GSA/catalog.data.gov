@@ -31,10 +31,9 @@ jobs:
           # - Default App to run tasks on: cataog-admin
           # - Default timeout for task to raise issue: 6 hours
           # - Default Create an Information Issue for jobs we want to inspect: false
-          # - Default monitor state: false
+          # - Default monitor state: true
           #  schedule: tracking update
           #   - Only run on [development, staging, prod]
-          #   - Monitor: true
           #   - Create Error issue: if runtime longer than 210 mins
           #   - Create Informational issue: tracking-update-info.md
           #  schedule: sitemap update
@@ -42,13 +41,12 @@ jobs:
           #   - Run on [catalog-gather] app
           #  schedule: harvesting update
           #   - Only run on [development, staging, prod]
+          #   - Monitor: false
           #  schedule: stuck jobs check
           #   - Only run on [staging, prod]
-          #   - Monitor: true
           #   - Create Error issue: if >0 stuck jobs, automated_ckan_error.md
           #  schedule: db-solr-sync
           #   - Only run on [staging, prod]
-          #   - Monitor: true
           #   - Create Error issue: if runtime longer than 30 mins
           #   - Create Informational issue: db-solr-sync-info.md
           MATRIX=$(cat << MAT
@@ -70,7 +68,6 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "issue_template": ".github/tracking-update-info.md"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "command": "ckan geodatagov sitemap-to-s3"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "app": "catalog-gather"},
-                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "monitor": false},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "command": "ckan geodatagov db-solr-sync"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "error_seconds": 1800},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "info_issue": true},
