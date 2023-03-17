@@ -105,7 +105,7 @@ jobs:
       - vendor
       - vendor-nginx
       - create-cloudgov-services-development
-    uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
+    uses: gsa/data.gov/.github/workflows/deploy-template.yml@update-deploy-template
     with:
       environ: development
       app_url: https://catalog-dev-datagov.app.cloud.gov
