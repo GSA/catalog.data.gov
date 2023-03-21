@@ -40,6 +40,11 @@ on:   # yamllint disable-line rule:truthy
         required: true
         type: input
         default: '1500M'
+      monitor:
+        description: 'Monitor log output?'
+        required: true
+        type: boolean
+        default: true
 
 
 jobs:
@@ -67,7 +72,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
-        if: ${{ inputs.command != 'ckan geodatagov sitemap-to-s3' }}
+        if: ${{ inputs.monitor }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
