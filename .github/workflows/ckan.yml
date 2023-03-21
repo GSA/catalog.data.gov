@@ -35,16 +35,16 @@ on:   # yamllint disable-line rule:truthy
         required: true
         type: input
         default: '2G'
-      monitor:
-        description: 'Monitor log output?'
-        required: true
-        type: boolean
-        default: true
       disk:
         description: 'Disk space to allocate:'
         required: true
         type: input
         default: '1500M'
+      monitor:
+        description: 'Monitor log output?'
+        required: true
+        type: boolean
+        default: true
 
 
 jobs:
