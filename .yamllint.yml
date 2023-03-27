@@ -1,0 +1,9 @@
+---
+extends: default
+
+rules:
+  line-length:
+    max: 220
+    level: warning
+  truthy: disable
+
