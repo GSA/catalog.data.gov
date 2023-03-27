@@ -1,7 +1,7 @@
 ---
 name: 2 - Publish & Deploy
 
-on:   # yamllint disable-line rule:truthy
+on:   # yamllint disable rule:line-length --no-warnings
   push:
     branches:
       - main
