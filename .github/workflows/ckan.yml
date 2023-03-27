@@ -15,7 +15,7 @@ on:
       app:
         description: 'App to run on:'
         required: true
-        type: input
+        type: string
         default: 'catalog-admin'
       command:
         description: 'Command to run:'
@@ -33,12 +33,12 @@ on:
       memory:
         description: 'RAM to allocate:'
         required: true
-        type: input
+        type: string
         default: '2G'
       disk:
         description: 'Disk space to allocate:'
         required: true
-        type: input
+        type: string
         default: '1500M'
       monitor:
         description: 'Monitor log output?'
