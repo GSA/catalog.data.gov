@@ -113,7 +113,7 @@ jobs:
       - name: proxy to web
         uses: cloud-gov/cg-cli-tools@main
         with:
-          command: ${{ matrix. command }}
+          command: ${{ matrix.command }}
           cf_org: gsa-datagov
           cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
