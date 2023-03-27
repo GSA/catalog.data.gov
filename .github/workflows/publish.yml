@@ -94,3 +94,27 @@ jobs:
       app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
     secrets: inherit
     # yamllint enable rule:line-length
+
+  network-policies:
+    name: Add network-policies
+    needs:
+      - deploy-staging
+      - deploy-prod
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        command: [
+          "cf add-network-policy catalog-proxy catalog-web --protocol tcp --port 61443",
+          "cf add-network-policy catalog-proxy catalog-admin --protocol tcp --port 61443"
+        ]
+        environ: [ "staging", "prod" ]
+    steps:
+      - name: proxy to web
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: ${{ matrix. command }}
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
