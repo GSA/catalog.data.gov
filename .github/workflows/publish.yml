@@ -101,6 +101,7 @@ jobs:
       - deploy-staging
       - deploy-prod
     runs-on: ubuntu-latest
+    environment: ${{ matrix.environ }}
     strategy:
       fail-fast: false
       matrix:
