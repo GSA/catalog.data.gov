@@ -106,7 +106,7 @@ jobs:
           "cf add-network-policy catalog-proxy catalog-web --protocol tcp --port 61443",
           "cf add-network-policy catalog-proxy catalog-admin --protocol tcp --port 61443"
         ]
-        environ: [ "staging", "prod" ]
+        environ: ["staging", "prod"]
     steps:
       - name: proxy to web
         uses: cloud-gov/cg-cli-tools@main
