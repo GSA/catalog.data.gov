@@ -1,7 +1,7 @@
 ---
 name: 2 - Publish & Deploy
 
-on:   # yamllint disable-line rule:truthy
+on:
   push:
     branches:
       - main
@@ -68,7 +68,6 @@ jobs:
       environ: prod
     secrets: inherit
 
-  # yamllint disable rule:line-length
   deploy-staging:
     name: deploy (staging)
     needs:
@@ -93,7 +92,6 @@ jobs:
       app_url: https://catalog.data.gov
       app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
     secrets: inherit
-    # yamllint enable rule:line-length
 
   network-policies:
     name: Add network-policies

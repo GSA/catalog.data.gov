@@ -1,7 +1,7 @@
 ---
 name: 3 - Restart Apps
 
-on:   # yamllint disable-line rule:truthy
+on:
   workflow_dispatch:
   schedule:
     - cron: '11/30 * * * *'
@@ -12,7 +12,7 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
       environ: staging
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
+      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
     secrets: inherit
 
   restart-prod:
@@ -20,5 +20,5 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
       environ: prod
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"   # yamllint disable-line rule:line-length
+      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
     secrets: inherit

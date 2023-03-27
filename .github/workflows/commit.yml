@@ -1,7 +1,7 @@
 ---
 name: 1 - Commit
 
-on:   # yamllint disable-line rule:truthy
+on:
   push:
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Lint GitHub Actions
-        run: yamllint -d relaxed .github/workflows/
+        run: yamllint -c .yamllint.yml .github/workflows/
   test:
     name: Build and Test
     runs-on: ubuntu-latest
@@ -69,7 +69,6 @@ jobs:
           path: vendor/
           if-no-files-found: error
 
-  # yamllint disable rule:line-length
   create-cloudgov-services-development:
     if: github.ref == 'refs/heads/develop'
     name: create services (development)
@@ -90,4 +89,3 @@ jobs:
       app_url: https://catalog-dev-datagov.app.cloud.gov
       app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\",\"robots-dev\":true}]}"
     secrets: inherit
-    # yamllint enable rule:line-length
