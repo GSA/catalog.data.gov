@@ -60,7 +60,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: run task
-        uses: cloud-gov/cg-cli-tools@main
+        uses: gsa/cg-cli-tools@key-not-accessible
         with:
           command: >
             cf run-task ${{ inputs.app }} --command "${{ inputs.command }}"
@@ -71,7 +71,7 @@ jobs:
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
         if: ${{ inputs.monitor }}
-        uses: cloud-gov/cg-cli-tools@main
+        uses: gsa/cg-cli-tools@key-not-accessible
         with:
           command: >
             tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME

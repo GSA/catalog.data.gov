@@ -110,7 +110,7 @@ jobs:
         environ: ["staging", "prod"]
     steps:
       - name: proxy to web
-        uses: cloud-gov/cg-cli-tools@main
+        uses: gsa/cg-cli-tools@key-not-accessible
         with:
           command: ${{ matrix.command }}
           cf_org: gsa-datagov
