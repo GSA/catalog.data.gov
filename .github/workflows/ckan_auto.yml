@@ -109,7 +109,7 @@ jobs:
           echo "START=`date +%s`" | tee -a $GITHUB_ENV
       - name: ${{ matrix.command }}
         if: ${{ github.event.schedule == matrix.schedule }}
-        uses: gsa/cg-cli-tools@key-not-accessible
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
             cf run-task ${{ matrix.app }}
@@ -122,7 +122,7 @@ jobs:
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
         if: ${{ matrix.monitor && github.event.schedule == matrix.schedule }}
-        uses: gsa/cg-cli-tools@key-not-accessible
+        uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
             tools/monitor_cf_logs.sh ${{ matrix.app }} $INSTANCE_NAME
