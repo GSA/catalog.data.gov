@@ -52,6 +52,14 @@ services:
       - ./tests/harvest-sources:/usr/share/nginx/html
       - ./tests/nginx.conf:/etc/nginx/conf.d/default.conf
 
+  ckan-requirements:
+    image: ghcr.io/gsa/catalog.data.gov:latest
+    build:
+      context: ckan/
+    env_file: .env
+    volumes:
+      - .:/app
+
 volumes:
   ckan_storage:
   pg_data:

@@ -36,7 +36,7 @@ up:
 	docker-compose up $(ARGS)
 
 update-dependencies:
-	docker-compose run --rm -T ckan /app/ckan/freeze-requirements.sh $(shell id -u) $(shell id -g)
+	docker-compose run --rm -T ckan-requirements /app/ckan/freeze-requirements.sh $(shell id -u) $(shell id -g)
 
 # ###############################################
 # Test commands
