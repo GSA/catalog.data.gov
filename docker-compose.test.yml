@@ -2,9 +2,10 @@
 version: '3'
 services:
   test:
-    image: cypress/included:7.3.0
+    image: cypress/included:11.2.0
     entrypoint: []
-    command: /bin/bash -c "npx wait-on http://ckan:5000/dataset && cypress run"
+    # command: /bin/bash -c "npx wait-on http://ckan:5000/dataset && cypress run"
+    command: cypress run
     # To run specific test, use the following syntax:
     # command: /bin/bash -c "npx wait-on http://ckan:5000 && cypress run --spec cypress/integration/login.spec.js"
     environment:
