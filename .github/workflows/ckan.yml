@@ -30,6 +30,7 @@ on:
           - 'ckan harvester run'
           - 'ckan geodatagov sitemap-to-s3'
           - 'ckan geodatagov tracking-update'
+          - 'ckan report generate'
       memory:
         description: 'RAM to allocate:'
         required: true
