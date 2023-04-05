@@ -4,6 +4,7 @@ describe('Spatial', { testIsolation: false }, () => {
     });
 
     after(() => {
+        cy.delete_group('climate');
         cy.logout();
     });
 
@@ -55,9 +56,6 @@ describe('Spatial', { testIsolation: false }, () => {
         }).should((response) => {
             expect(response.body).to.have.property('success', true);
             expect(response.body.result.groups[0]).to.have.property('name', 'climate');
-
-            // Cleanup
-            cy.delete_group(group_name);
         });
     });
 
