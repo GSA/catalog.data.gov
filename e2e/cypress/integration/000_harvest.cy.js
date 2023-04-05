@@ -1,4 +1,4 @@
-describe('Harvest', () => {
+describe('Harvest', { testIsolation: false }, () => {
     // Rename this only if necessary, various test dependencies
     const harvestOrg = 'test-harvest-org';
     const dataJsonHarvestSoureName = 'test-harvest-datajson';
@@ -16,12 +16,7 @@ describe('Harvest', () => {
         // Create the organization
         cy.create_organization(harvestOrg, 'cypress harvest org description', false);
     });
-    beforeEach(() => {
-        /**
-         * Preserve the cookies to stay logged in
-         */
-        Cypress.Cookies.preserveOnce('auth_tkt', 'ckan');
-    });
+    
     after(() => {
         cy.logout();
         /**

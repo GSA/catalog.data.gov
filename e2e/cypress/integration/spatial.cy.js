@@ -1,13 +1,6 @@
-describe('Spatial', () => {
+describe('Spatial', { testIsolation: false }, () => {
     before(() => {
         cy.login();
-    });
-
-    beforeEach(() => {
-        /**
-         * Preserve the cookies to stay logged in
-         */
-        Cypress.Cookies.preserveOnce('auth_tkt', 'ckan');
     });
 
     after(() => {
