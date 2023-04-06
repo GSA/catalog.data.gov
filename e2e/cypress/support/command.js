@@ -198,7 +198,6 @@ Cypress.Commands.add(
          * :PARAM harvestType String: Harvest source type. Ex: waf, datajson
          * :RETURN null:
          */
-        ``;
         cy.visit('/organization/' + harvestOrg);
         cy.hide_debug_toolbar();
         cy.get('a[class="btn btn-primary"]').click();
