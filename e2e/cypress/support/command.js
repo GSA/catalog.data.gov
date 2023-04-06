@@ -25,13 +25,16 @@ Cypress.Commands.add('check_dataset_harvested', (retries) => {
         expect(true).to.be.false();
     }
 
-    cy.reload(true)
-    cy.contains('#content section.module-content dl dt', 'Datasets').next().invoke('text').then($text => {
-        if ($text == '0') {
-            cy.wait(1000);
-            cy.check_dataset_harvested(retries - 1);
-        }
-    });
+    cy.reload(true);
+    cy.contains('#content section.module-content dl dt', 'Datasets')
+        .next()
+        .invoke('text')
+        .then(($text) => {
+            if ($text == '0') {
+                cy.wait(1000);
+                cy.check_dataset_harvested(retries - 1);
+            }
+        });
 });
 
 Cypress.Commands.add('login', (userName, password, loginTest) => {
@@ -185,15 +188,23 @@ Cypress.Commands.add('delete_dataset', (datasetName) => {
 
 Cypress.Commands.add(
     'create_harvest_source',
-    (dataSourceUrl, harvestTitle, harvestDesc, harvestType, harvestPrivate, invalidTest) => {
+    (harvestOrg, dataSourceUrl, harvestTitle, harvestDesc, harvestType, harvestPrivate, invalidTest) => {
         /**
          * Method to create a new CKAN harvest source via the CKAN harvest form
+         * :PARAM harvestOrg String: name of test org to create harvest source under
          * :PARAM dataSourceUrl String: URL to source the data that will be harvested
          * :PARAM harvestTitle String: Title of the organization's harvest
          * :PARAM harvestDesc String: Description of the harvest being created
          * :PARAM harvestType String: Harvest source type. Ex: waf, datajson
          * :RETURN null:
          */
+        ``;
+        cy.visit('/organization/' + harvestOrg);
+        cy.hide_debug_toolbar();
+        cy.get('a[class="btn btn-primary"]').click();
+        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
+        cy.get('a[class="btn btn-primary"]').click();
+
         if (!invalidTest) {
             cy.get('#field-url').type(dataSourceUrl);
         }
