@@ -1,10 +1,6 @@
-describe('Facets', () => {
+describe('Facets', { testIsolation: false }, () => {
     before(() => {
         cy.login();
-    });
-
-    beforeEach(() => {
-        Cypress.Cookies.preserveOnce('auth_tkt', 'ckan');
     });
 
     after(() => {
