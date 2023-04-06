@@ -1,16 +1,10 @@
-describe('Spatial', () => {
+describe('Spatial', { testIsolation: false }, () => {
     before(() => {
         cy.login();
     });
 
-    beforeEach(() => {
-        /**
-         * Preserve the cookies to stay logged in
-         */
-        Cypress.Cookies.preserveOnce('auth_tkt', 'ckan');
-    });
-
     after(() => {
+        cy.delete_group('climate');
         cy.logout();
     });
 
@@ -62,9 +56,6 @@ describe('Spatial', () => {
         }).should((response) => {
             expect(response.body).to.have.property('success', true);
             expect(response.body.result.groups[0]).to.have.property('name', 'climate');
-
-            // Cleanup
-            cy.delete_group(group_name);
         });
     });
 
