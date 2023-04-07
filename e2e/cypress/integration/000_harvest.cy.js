@@ -32,12 +32,8 @@ describe('Harvest', { testIsolation: false }, () => {
         /**
          * Test creating a valid datajson harvest source
          */
-        //cy.get('a[href="/organization/edit/'+harvestOrg+'"]').click()
-        cy.visit(`/organization/${harvestOrg}`);
-        cy.get('a[class="btn btn-primary"]').click();
-        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
-        cy.get('a[class="btn btn-primary"]').click();
         cy.create_harvest_source(
+            harvestOrg,
             'http://nginx-harvest-source/data.json',
             dataJsonHarvestSoureName,
             'cypress test datajson',
@@ -51,13 +47,7 @@ describe('Harvest', { testIsolation: false }, () => {
     });
 
     it('Create a datajson harvest source INVALID', () => {
-        cy.visit('/organization/' + harvestOrg);
-        cy.hide_debug_toolbar();
-
-        cy.get('a[class="btn btn-primary"]').click();
-        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
-        cy.get('a[class="btn btn-primary"]').click();
-        cy.create_harvest_source('😀', 'invalid datajson', 'invalid datajson', 'datajson', 'False', true);
+        cy.create_harvest_source(harvestOrg, '😀', 'invalid datajson', 'invalid datajson', 'datajson', 'False', true);
         cy.contains('URL: Missing value');
     });
 
@@ -77,13 +67,8 @@ describe('Harvest', { testIsolation: false }, () => {
         /**
          * Create a WAF ISO Harvest Source
          */
-        cy.visit('/organization/' + harvestOrg);
-        cy.hide_debug_toolbar();
-
-        cy.get('a[class="btn btn-primary"]').click();
-        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
-        cy.get('a[class="btn btn-primary"]').click();
         cy.create_harvest_source(
+            harvestOrg,
             'http://nginx-harvest-source/iso-waf/',
             wafIsoHarvestSourceName,
             'cypress test waf iso',
@@ -111,13 +96,8 @@ describe('Harvest', { testIsolation: false }, () => {
         /**
          * Create a WAF ISO Harvest Source
          */
-        cy.visit('/organization/' + harvestOrg);
-        cy.hide_debug_toolbar();
-
-        cy.get('a[class="btn btn-primary"]').click();
-        cy.get('a[href="/harvest?organization=' + harvestOrg + '"]').click();
-        cy.get('a[class="btn btn-primary"]').click();
         cy.create_harvest_source(
+            harvestOrg,
             'http://nginx-harvest-source/fgdc-waf/',
             wafFgdcHarvestSourceName,
             'cypress test waf FGDC',
@@ -147,11 +127,9 @@ describe('Harvest', { testIsolation: false }, () => {
          * how many harvest sources are created for CSW by going to
          * https://catalog.data.gov/harvest?source_type=csw
          */
-        cy.visit(`/harvest/new`);
-
-        cy.hide_debug_toolbar();
 
         cy.create_harvest_source(
+            harvestOrg,
             'https://geonode.state.gov/catalogue/csw',
             cswHarvestSourceName,
             'cypress test csw',
