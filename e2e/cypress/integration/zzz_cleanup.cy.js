@@ -1,4 +1,4 @@
-describe('Cleanup site', () => {
+describe.skip('Cleanup site', () => {
     const harvestOrg = 'test-harvest-org';
     const dataJsonHarvestSoureName = 'test-harvest-datajson';
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso';

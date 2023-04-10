@@ -16,7 +16,7 @@ describe('Harvest', { testIsolation: false }, () => {
         // Create the organization
         cy.create_organization(harvestOrg, 'cypress harvest org description', false);
     });
-    
+
     after(() => {
         cy.logout();
         /**
@@ -130,7 +130,7 @@ describe('Harvest', { testIsolation: false }, () => {
 
         cy.create_harvest_source(
             harvestOrg,
-            'https://geonode.state.gov/catalogue/csw',
+            'https://portal.opentopography.org/geoportal/csw',
             cswHarvestSourceName,
             'cypress test csw',
             'csw',
