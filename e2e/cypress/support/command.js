@@ -58,7 +58,7 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
 
     cy.get('#field-login').type(userName);
     cy.get('#field-password').type(password);
-    cy.get('.btn-primary').eq(1).click();
+    cy.get('.btn-primary').eq(0).click();
 });
 
 Cypress.Commands.add('logout', () => {
