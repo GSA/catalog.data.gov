@@ -16,7 +16,7 @@ describe('Harvest', { testIsolation: false }, () => {
         // Create the organization
         cy.create_organization(harvestOrg, 'cypress harvest org description', false);
     });
-    
+
     after(() => {
         cy.logout();
         /**
@@ -114,36 +114,38 @@ describe('Harvest', { testIsolation: false }, () => {
         cy.check_dataset_harvested(5);
     });
 
-    it('Create CSW Harvest Source', () => {
-        /**
-         * Test creating a valid csw harvest source.
-         * Mocking a CSW harvest source is extremely complex,
-         * we took a shortcut and used a public endpoint.
-         * This test may fail in the future due to removal of
-         * the service not under our control, at that point we should
-         * remove the test or create a CSW service locally.
-         * Currently only 1 harvest endpoint is working for data.gov,
-         * so testing that use case seems appropriate. You can check
-         * how many harvest sources are created for CSW by going to
-         * https://catalog.data.gov/harvest?source_type=csw
-         */
+    // TODO: delete once we confirm dropping support for CSWs
+    // ####
+    // it('Create CSW Harvest Source', () => {
+    //     /**
+    //      * Test creating a valid csw harvest source.
+    //      * Mocking a CSW harvest source is extremely complex,
+    //      * we took a shortcut and used a public endpoint.
+    //      * This test may fail in the future due to removal of
+    //      * the service not under our control, at that point we should
+    //      * remove the test or create a CSW service locally.
+    //      * Currently only 1 harvest endpoint is working for data.gov,
+    //      * so testing that use case seems appropriate. You can check
+    //      * how many harvest sources are created for CSW by going to
+    //      * https://catalog.data.gov/harvest?source_type=csw
+    //      */
 
-        cy.create_harvest_source(
-            harvestOrg,
-            'https://geonode.state.gov/catalogue/csw',
-            cswHarvestSourceName,
-            'cypress test csw',
-            'csw',
-            'False',
-            false
-        );
+    //     cy.create_harvest_source(
+    //         harvestOrg,
+    //         'https://geonode.state.gov/catalogue/csw',
+    //         cswHarvestSourceName,
+    //         'cypress test csw',
+    //         'csw',
+    //         'False',
+    //         false
+    //     );
 
-        // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
-        cy.location('pathname').should('eq', '/harvest/' + cswHarvestSourceName);
-    });
+    //     // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
+    //     cy.location('pathname').should('eq', '/harvest/' + cswHarvestSourceName);
+    // });
 
-    it('Start CSW Harvest Job', () => {
-        cy.start_harvest_job(cswHarvestSourceName);
-        cy.check_dataset_harvested(5);
-    });
+    // it('Start CSW Harvest Job', () => {
+    //     cy.start_harvest_job(cswHarvestSourceName);
+    //     cy.check_dataset_harvested(5);
+    // });
 });
