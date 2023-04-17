@@ -22,13 +22,20 @@ ignore:
         reason: >-
           Upgrade path is complex, Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4217
-        expires: 2023-03-30T16:20:58.017Z
+        expires: 2023-04-30T16:20:58.017Z
         created: 2023-02-15T16:20:58.023Z
   SNYK-PYTHON-WERKZEUG-3319935:
     - '*':
         reason: >-
           Upgrade path is complex, Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4217
-        expires: 2023-03-30T16:20:58.017Z
+        expires: 2023-04-30T16:20:58.017Z
         created: 2023-02-15T16:20:58.023Z
+  SNYK-PYTHON-OWSLIB-3356626:
+    - '*':
+        reason: >-
+          Upgrade path is complex, Issue tracked in github:
+          https://github.com/GSA/data.gov/issues/4231
+        expires: 2023-04-30T16:20:58.017Z
+        created: 2023-03-13T16:20:58.023Z
 patch: {}

@@ -1,7 +1,7 @@
 ---
 name: 5 - Run CKAN Command
 
-on:   # yamllint disable-line rule:truthy
+on:
   workflow_dispatch:
     inputs:
       environ:
@@ -15,7 +15,7 @@ on:   # yamllint disable-line rule:truthy
       app:
         description: 'App to run on:'
         required: true
-        type: input
+        type: string
         default: 'catalog-admin'
       command:
         description: 'Command to run:'
@@ -30,16 +30,22 @@ on:   # yamllint disable-line rule:truthy
           - 'ckan harvester run'
           - 'ckan geodatagov sitemap-to-s3'
           - 'ckan geodatagov tracking-update'
+          - 'ckan report generate'
       memory:
         description: 'RAM to allocate:'
         required: true
-        type: input
+        type: string
         default: '2G'
       disk:
         description: 'Disk space to allocate:'
         required: true
-        type: input
+        type: string
         default: '1500M'
+      monitor:
+        description: 'Monitor log output?'
+        required: true
+        type: boolean
+        default: true
 
 
 jobs:
@@ -49,11 +55,9 @@ jobs:
     environment: ${{inputs.environ}}
     steps:
       - name: Store Instance Name
-        # yamllint disable rule:line-length
         run: |
           INSTANCE_NAME="$(echo ckan-auto-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
-          # yamllint enable rule:line-length
       - name: checkout
         uses: actions/checkout@v3
       - name: run task
@@ -67,7 +71,7 @@ jobs:
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: monitor task output
-        if: ${{ inputs.command != 'ckan geodatagov sitemap-to-s3' }}
+        if: ${{ inputs.monitor }}
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >

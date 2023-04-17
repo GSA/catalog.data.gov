@@ -1,7 +1,7 @@
 ---
 name: Check for Snyk Vulnerabilities
 
-on:   # yamllint disable-line rule:truthy
+on:
   workflow_dispatch:
   schedule:
     - cron: '0 12 * * *'  # every day at 12pm UTC
@@ -21,7 +21,6 @@ jobs:
             openssl libssl-dev libffi-dev pkg-config libxml2-dev \
             libxmlsec1-dev libxmlsec1-openssl libgeos-dev proj-bin
           pip3 install -r requirements.txt
-      # yamllint disable rule:line-length
       - name: Run Snyk Scan
         run: |
           # Run scan
@@ -71,4 +70,3 @@ jobs:
             owners
             maintainers
           draft: false
-          # yamllint enable rule:line-length

@@ -11,9 +11,9 @@ git+https://github.com/keitaroinc/ckanext-saml2auth.git@main#egg=ckanext-saml2au
 
 ckanext-datagovcatalog>=0.0.3
 ckanext-datagovtheme>=0.1.22
-ckanext-datajson>=0.1.12
+ckanext-datajson>=0.1.13
 ckanext-envvars>=0.0.2
-ckanext-geodatagov>=0.1.27
+ckanext-geodatagov>=0.1.28
 ckanext-googleanalyticsbasic
 ckanext-metrics-dashboard
 
@@ -39,7 +39,7 @@ git+https://github.com/danizen/PyZ3950#egg=PyZ3950
 # ckanext-spatial
 argparse
 GeoAlchemy2==0.5.0
-OWSLib==0.18.0
+owslib>=0.28.1
 pyparsing>=2.1.10
 pyproj==2.6.1
 Shapely>=1.2.13
@@ -116,3 +116,4 @@ gevent>=21.8.0
 newrelic
 certifi>=2022.12.7
 cryptography>=39.0.1
+redis>=4.5.4
