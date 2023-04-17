@@ -3,7 +3,7 @@ describe('Cleanup site', () => {
     const dataJsonHarvestSoureName = 'test-harvest-datajson';
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso';
     const wafFgdcHarvestSourceName = 'test-harvest-waf-fgdc';
-    const cswHarvestSourceName = 'test-harvest-csw';
+    // const cswHarvestSourceName = 'test-harvest-csw'; TODO: delete
 
     before(() => {
         cy.login();
@@ -12,7 +12,7 @@ describe('Cleanup site', () => {
         cy.delete_harvest_source(dataJsonHarvestSoureName);
         cy.delete_harvest_source(wafIsoHarvestSourceName);
         cy.delete_harvest_source(wafFgdcHarvestSourceName);
-        cy.delete_harvest_source(cswHarvestSourceName);
+        // cy.delete_harvest_source(cswHarvestSourceName); TODO: delete
 
         // Sometimes things are left in the DB locally, you can use this to delete 1-off datasets
         // cy.delete_dataset("invasive-plant-prioritization-for-inventory-and-early-detection-at-guadalupe-nipomo-dunes-");

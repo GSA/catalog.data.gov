@@ -14,10 +14,10 @@ for k, v in remediations.items():
     new_version = v['upgradeTo'].split('@')[1]
     print(package, old_version, new_version)
 
-    # Remove old version
-    os.system('sed -i "/%s/d" ckan/requirements.in' % (package + "==" + old_version))
-    os.system('sed -i "/%s/d" ckan/requirements.in' % (package + ">=" + old_version))
+    # TODO: Handle case when vulnerable package isn't explicitly in requirements.in
 
+    # Remove old version
+    os.system('sed -i "/^%s\\(=\\|>\\|$\\)/Id" ckan/requirements.in' % (package))
     # Add new version
     os.system("echo '%s' >> ckan/requirements.in" % (package + ">=" + new_version))
 

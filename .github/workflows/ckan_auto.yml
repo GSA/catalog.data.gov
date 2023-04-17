@@ -1,22 +1,24 @@
 ---
 name: 4 - Automated CKAN Jobs
 
-on:   # yamllint disable-line rule:truthy
+on:
   schedule:
     - cron: '30 7 * * *'       # Tracking Update -- every day at 2:30am EST
-    - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 7pm EST
-    - cron: '4/15 5-23 * * *'  # Harvester Check -- every 15 mins between 12am and 6pm EST
+    - cron: '0 0 * * *'        # S3 Sitemap Update -- every day at 7pm EST
+    - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
     - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
-    - cron: '30 6 * * *'        # Check Stuck Jobs -- every day at 1:30am EST
+    - cron: '30 6 * * *'       # Check Stuck Jobs -- every day at 1:30am EST
+    - cron: '0 13 * * *'       # Generate Reports -- every day @9:00am EST
 
 env:
   ERROR: false
   # Make sure 'schedule-cron' matches these varaibles.
   SCHEDULE_TRACKING: '30 7 * * *'
   SCHEDULE_SITEMAP: '0 2 * * *'
-  SCHEDULE_HARVESTING: '4/15 5-23 * * *'
+  SCHEDULE_HARVESTING: '4/15 * * * *'
   SCHEDULE_DBSOLR_SYNC: '0 3 * * *'
   SCHEDULE_STUCK_JOBS: '30 6 * * *'
+  SCHEDULE_GEN_REPORT: '0 13 * * *'
 
 jobs:
   setup-matrix:
@@ -31,10 +33,9 @@ jobs:
           # - Default App to run tasks on: cataog-admin
           # - Default timeout for task to raise issue: 6 hours
           # - Default Create an Information Issue for jobs we want to inspect: false
-          # - Default monitor state: false
+          # - Default monitor state: true
           #  schedule: tracking update
           #   - Only run on [development, staging, prod]
-          #   - Monitor: true
           #   - Create Error issue: if runtime longer than 210 mins
           #   - Create Informational issue: tracking-update-info.md
           #  schedule: sitemap update
@@ -42,20 +43,22 @@ jobs:
           #   - Run on [catalog-gather] app
           #  schedule: harvesting update
           #   - Only run on [development, staging, prod]
+          #   - Monitor: false
           #  schedule: stuck jobs check
           #   - Only run on [staging, prod]
-          #   - Monitor: true
           #   - Create Error issue: if >0 stuck jobs, automated_ckan_error.md
           #  schedule: db-solr-sync
           #   - Only run on [staging, prod]
-          #   - Monitor: true
           #   - Create Error issue: if runtime longer than 30 mins
           #   - Create Informational issue: db-solr-sync-info.md
+          #  schedule: report generation
+          #   - Only run on [development, staging, prod]
+          #   - Create Error issue: if ckan command errors
           MATRIX=$(cat << MAT
           {
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
                          "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
-                         "${{env.SCHEDULE_DBSOLR_SYNC}}"],
+                         "${{env.SCHEDULE_DBSOLR_SYNC}}", "${{ env.SCHEDULE_GEN_REPORT}}"],
             "environ": ["development", "staging", "prod"],
             "include": [ {"app": "catalog-admin"},
                          {"error_seconds": 22000},
@@ -70,15 +73,16 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "issue_template": ".github/tracking-update-info.md"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "command": "ckan geodatagov sitemap-to-s3"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "app": "catalog-gather"},
-                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "monitor": false},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "command": "ckan geodatagov db-solr-sync"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "error_seconds": 1800},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "info_issue": true},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "issue_template": ".github/db-solr-sync-info.md"},
                          {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "command": "ckan geodatagov check-stuck-jobs"},
+                         {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "command": "ckan report generate"},
+                         {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "issue_template": ".github/report-generation-failure.md"},
                          {"environ": "development", "ram": "1G"},
-                         {"environ": "staging", "ram": "1G"},
-                         {"environ": "prod", "ram": "1G"}
+                         {"environ": "staging", "ram": "2500M"},
+                         {"environ": "prod", "ram": "2500M"}
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
@@ -106,12 +110,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Set Unique Command Name
-        # yamllint disable rule:line-length
         run: |
           INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT} | tr -d ' ')"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
           echo "START=`date +%s`" | tee -a $GITHUB_ENV
-          # yamllint enable rule:line-length
       - name: ${{ matrix.command }}
         if: ${{ github.event.schedule == matrix.schedule }}
         uses: cloud-gov/cg-cli-tools@main
@@ -142,8 +144,8 @@ jobs:
           echo "$START, $END, $ELAPSED"
           if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then echo ERROR=true | tee -a $GITHUB_ENV; fi;
           if [[ $ELAPSED > ${{ matrix.error_seconds }} ]]; then echo "ELAPSED=${ELAPSED}" | tee -a $GITHUB_ENV; fi;
-      - name: Create Informational Issue for auditing 📑
-        if: ${{ matrix.info_issue && github.event.schedule == matrix.schedule }}
+      - name: Create Issue for auditing 📑 or failure 😢
+        if: ${{ failure() || (env.ERROR == true) || (matrix.info_issue && github.event.schedule == matrix.schedule) }}
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
@@ -158,22 +160,5 @@ jobs:
           EXEC_TIME: ${{ env.ELAPSED }}
         with:
           filename: ${{ matrix.issue_template }}
-          assignees: ${{ github.actor }}
-          update_existing: true
-      - name: Create Issue if it fails 😢
-        if: ${{ failure() || (env.ERROR == true) }}
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          GITHUB_JOB: ${{ toJson(github)['job'] }}
-          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
-          LAST_COMMIT: ${{ github.sha }}
-          LAST_RUN_BY: ${{ github.actor }}
-          RUN_ID: ${{ github.run_id }}
-          COMMAND: ${{ matrix.command }}
-          SCHEDULE: ${{ matrix.schedule }}
-          ENVIRONMENT: ${{ matrix.environ }}
-        with:
-          filename: .github/automated_ckan_error.md
           assignees: ${{ github.actor }}
           update_existing: true

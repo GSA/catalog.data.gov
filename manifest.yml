@@ -88,6 +88,7 @@ applications:
       - ((app_name))-redis
       - ((app_name))-secrets
       - ((app_name))-solr
+      - ((app_name))-s3
       - sysadmin-users
     no-route: true
     instances: ((gather-instances))

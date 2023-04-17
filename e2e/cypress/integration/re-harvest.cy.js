@@ -1,4 +1,4 @@
-describe('Harvest', () => {
+describe('Harvest', { testIsolation: false }, () => {
     // Rename this only if necessary, various test dependencies
     const harvestOrg = 'test-harvest-org';
     const wafIsoHarvestSourceName = 'test-harvest-waf-iso';
@@ -6,13 +6,6 @@ describe('Harvest', () => {
 
     before(() => {
         cy.login();
-    });
-
-    beforeEach(() => {
-        /**
-         * Preserve the cookies to stay logged in
-         */
-        Cypress.Cookies.preserveOnce('auth_tkt', 'ckan');
     });
 
     after(() => {
