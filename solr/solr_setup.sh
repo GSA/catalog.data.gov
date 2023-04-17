@@ -10,7 +10,7 @@ rm -rf /var/solr/data/aws-backup-restore*
 # If it's been more than 5 mins, it means the old Task crashes without clearing the lock. Then the lockfile is force deleted.
 export lockpath="/var/solr/data/ckan/data/index*"
 export flagfile="/var/solr/data/retry-flag";
-[[ $(find $lockpath -name write.lock) && ! -f $flagfile ]] && { echo "Found lock file. Creating flag file"; touch $flagfile; sleep 30; };
+[[ $(find $lockpath -name write.lock) && ! -f $flagfile ]] && { echo "Found lock file. Creating flag file"; touch $flagfile; sleep 10; };
 [[ $(find $lockpath -name write.lock) && ! $(find $flagfile -mmin +5) ]] && { echo "Keep waiting"; exit 1; };
 ls -lart /var/solr/data;
 ls -lart /var/solr/data/ckan/data;
