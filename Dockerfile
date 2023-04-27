@@ -1,4 +1,4 @@
-FROM cloudfoundry/cflinuxfs3
+FROM cloudfoundry/cflinuxfs4
 # Specify Python version
 ARG PY_VERSION=python3.8
 
