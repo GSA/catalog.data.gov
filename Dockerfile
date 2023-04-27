@@ -9,7 +9,7 @@ RUN cd ~vcap/app
 RUN apt-get -y update
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get -y install swig build-essential python-dev libssl-dev ${PY_VERSION}-distutils
+RUN apt-get -y install swig build-essential python-dev${PY_VERSION} libssl-dev ${PY_VERSION}-distutils
 RUN apt-get -y install ${PY_VERSION}
 
 # Install PIP
