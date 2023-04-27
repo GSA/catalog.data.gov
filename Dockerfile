@@ -14,4 +14,4 @@ RUN apt-get -y install python${PY_VERSION}
 
 # Install PIP
 RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-RUN ${PY_VERSION} /tmp/get-pip.py
+RUN python${PY_VERSION} /tmp/get-pip.py
