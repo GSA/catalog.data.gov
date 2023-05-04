@@ -4,7 +4,7 @@ applications:
   - name: ((app_name))-web
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - https://github.com/cloudfoundry/python-buildpack.git#v1.8.4 # pinned for this https://github.com/GSA/data.gov/issues/4259
+      - python_buildpack
     services:
       - ((app_name))-db
       - ((app_name))-redis
@@ -33,7 +33,7 @@ applications:
   - name: ((app_name))-admin
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - https://github.com/cloudfoundry/python-buildpack.git#v1.8.4 # pinned for this https://github.com/GSA/data.gov/issues/4259
+      - python_buildpack
     services:
       - ((app_name))-db
       - ((app_name))-redis
@@ -82,7 +82,7 @@ applications:
   - name: ((app_name))-gather
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - https://github.com/cloudfoundry/python-buildpack.git#v1.8.4 # pinned for this https://github.com/GSA/data.gov/issues/4259
+      - python_buildpack
     services:
       - ((app_name))-db
       - ((app_name))-redis
@@ -109,7 +109,7 @@ applications:
   - name: ((app_name))-fetch
     buildpacks:
       - https://github.com/cloudfoundry/apt-buildpack
-      - https://github.com/cloudfoundry/python-buildpack.git#v1.8.4 # pinned for this https://github.com/GSA/data.gov/issues/4259
+      - python_buildpack
     services:
       - ((app_name))-db
       - ((app_name))-redis
