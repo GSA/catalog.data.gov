@@ -40,20 +40,6 @@ jobs:
           push: true
           tags: ${{ matrix.tag }}
 
-  vendor:
-    name: vendor dependencies
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: vendor dependencies
-        run: ./vendor-requirements.sh build
-      - uses: actions/upload-artifact@v3
-        with:
-          name: python-vendored
-          path: vendor/
-          if-no-files-found: error
-
   create-cloudgov-services-staging:
     name: create services (staging)
     uses: gsa/data.gov/.github/workflows/create-services-template.yml@main
@@ -72,7 +58,6 @@ jobs:
     name: deploy (staging)
     needs:
       - create-cloudgov-services-staging
-      - vendor
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: staging
@@ -83,7 +68,6 @@ jobs:
   deploy-prod:
     name: deploy (prod)
     needs:
-      - vendor
       - create-cloudgov-services-prod
       - deploy-staging
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
