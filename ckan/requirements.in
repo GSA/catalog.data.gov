@@ -97,7 +97,7 @@ simplejson==3.18.0 # ckan 2.9.5 requires 3.10.0 only
 # Following can be ignored: https://github.com/ckan/ckan/pull/4450
 # sqlalchemy-migrate==0.12.0
 SQLAlchemy==1.3.5
-sqlparse==0.4.2
+sqlparse==0.4.4
 tzlocal==1.3
 unicodecsv>=0.9
 webassets==0.12.1
