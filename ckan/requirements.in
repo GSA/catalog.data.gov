@@ -71,7 +71,6 @@ click==7.1.2
 dominate==2.4.0
 fanstatic==1.1
 feedgen==0.9.0
-Flask==2.0
 Flask-Babel==1.0.0
 flask-multistatic==1.0
 Jinja2==3.0
@@ -116,3 +115,4 @@ newrelic
 certifi>=2022.12.7
 cryptography>=39.0.1
 redis>=4.5.4
+flask>=2.2.5
