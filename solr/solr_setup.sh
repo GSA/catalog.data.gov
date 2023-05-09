@@ -2,6 +2,13 @@
 
 mkdir -p /tmp/ckan_config
 
+# Restore last dated EFS backup if exists
+if [ "$(ls /var/solr/data/ | grep aws-backup-restore)" ]; then
+  good_backup=`ls /var/solr/data/ | grep aws-backup-restore | tail -1`
+  rm -r /var/solr/data/ckan
+  mv /var/solr/data/$good_backup/ckan /var/solr/data/
+fi;
+
 # Remove any residual EFS backups
 rm -rf /var/solr/data/aws-backup-restore*
 
