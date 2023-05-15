@@ -7,7 +7,7 @@ if [ "$(find /var/solr/data/*aws-backup-restore* -maxdepth 0 2>/dev/null)" ]; th
   good_backup="$(find /var/solr/data/*aws-backup-restore* | tail -1)"
   echo "Found EFS backup. Restoring from $good_backup"
   rm -r /var/solr/data/ckan
-  mv /var/solr/data/"$good_backup"/ckan /var/solr/data/
+  mv "$good_backup"/ckan /var/solr/data/
 fi;
 
 # Remove any residual EFS backups
