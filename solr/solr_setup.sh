@@ -17,34 +17,33 @@ ls -lart /var/solr/data/ckan/data;
 find $lockpath -name write.lock -delete;
 rm -rf $flagfile;
 
-# Run a check in the background for 10 mins.
-check_folder() {
-  # check the index folders and lock status
-  find ${lockpath} -type d -name index* | xargs du -ch
-  find $lockpath -name write.lock | xargs ls -l
-  echo "#### start index.properties"
-  [[ -f /var/solr/data/ckan/data/index.properties ]] && cat /var/solr/data/ckan/data/index.properties
-  echo "#### end index.properties"
+logfile=/var/solr/logs/solr.log
+# add a marker to the end of the log file
+if [ -f "$logfile" ]; then
+  echo "#### CORECHECK_MARKER" >> $logfile
+fi
+
+check_corelock() {
+  # check LockObtainFailedException since last check marker
+  awk -v RS='(^|\n)CORECHECK_MARKER"\n' 'END{printf "%s", $0}' $logfile | grep -q "LockObtainFailedException"
+  if [ $? -eq 0 ]; then
+    echo "Found LockObtainFailedException in log file. Quit solr."
+    solr stop -p 8983
+  else
+    echo "#### CORECHECK_MARKER" >> $logfile
+  fi
 }
 
+# Once started, it checks every 10 seconds for 10 minutes
 run_check() {
-  # Run check every 2 seconds for 5 minutes
-  for ((i=0; i<150; i++)); do
-    echo "Phase 1"
-    check_folder
-    sleep 2
+  for ((i=0; i<60; i++)); do
+    echo "checking core lock"
+    [ -f "$logfile" ] && check_corelock
+    sleep 10
   done
-
-  # Run check every 20 seconds for the next 5 minutes
-  for ((i=0; i<15; i++)); do
-    echo "Phase 2"
-    check_folder
-    sleep 20
-  done
-
-  echo "End of checks."
 }
 
+# Run core lock check in the background.
 run_check &
 
 # add solr config files for ckan 2.9
