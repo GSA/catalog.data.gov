@@ -6,7 +6,7 @@
     "solrCpu": 4096,
     "solrFollowerMem": 28672,
     "solrFollowerCpu": 4096,
-    "setupFollowerLink": "https://raw.githubusercontent.com/GSA/catalog.data.gov/main/solr/solr_setup.sh",
+    "setupFollowerLink": "https://raw.githubusercontent.com/GSA/catalog.data.gov/develop/solr/solr_setup.sh",
     "disableEfs": false,
     "disableEfsFollower": false,
     "efsProvisionedThroughput": 5,
