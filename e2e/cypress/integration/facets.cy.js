@@ -17,6 +17,8 @@ describe('Facets', { testIsolation: false }, () => {
     });
 
     it('Show datagov facet list on organization page', () => {
+        cy.visit('/organization');
+        cy.get('a[class="btn btn-primary"]').click();
         cy.create_organization_ui('org-tags', '');
         cy.visit('/organization/org-tags');
         cy.get('.filters h2').its('length').should('be.equal', 10);
