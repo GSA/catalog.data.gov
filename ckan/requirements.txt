@@ -1,115 +1,122 @@
-alembic==1.0.0
+alembic==1.8.1
 async-timeout==4.0.2
-Babel==2.9.1
+Babel==2.10.3
+backports.zoneinfo==0.2.1
 Beaker==1.11.0
 bleach==3.3.0
-boto3==1.26.126
-botocore==1.29.126
-certifi==2022.12.7
+blinker==1.5
+boto3==1.26.137
+botocore==1.29.137
+certifi==2023.5.7
 cffi==1.15.1
-chardet==3.0.4
-git+https://github.com/gsa/ckan.git@4af8efa19edf7259530ccde5c0331a5ccd7f7066#egg=ckan
+chardet==5.1.0
+charset-normalizer==2.1.1
+ckan @ git+https://github.com/ckan/ckan.git@76ebf1ebab92a9bb08649cfe5e758e91edb616b7
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
-ckanext-datagovcatalog==0.0.5
-ckanext-datagovtheme==0.1.27
-ckanext-datajson==0.1.18
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@618928be5a211babafc45103a72b6aab4642e964
+-e git+https://github.com/gsa/ckanext-datagovcatalog.git@a3b9c7287814fa5e5b6880712ec314f509c1ecba#egg=ckanext_datagovcatalog
+-e git+https://github.com/gsa/ckanext-datagovtheme.git@8b031c6046f3b480931e948eaf14cdf2f4c8597c#egg=ckanext_datagovtheme
+-e git+https://github.com/gsa/ckanext-datajson.git@4d6d09b79d8f932303056747706a31aacd195cf6#egg=ckanext_datajson
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@14396e6d03aad3118ee5a232e04052a61edd0893
 ckanext-envvars==0.0.3
-ckanext-geodatagov==0.1.37
-ckanext-googleanalyticsbasic==0.2.0
--e git+https://github.com/ckan/ckanext-harvest.git@89a98d7ff5aa3445d8158921669b8d0b04fa41c3#egg=ckanext_harvest
-ckanext-metrics-dashboard==0.1.5
+-e git+https://github.com/gsa/ckanext-geodatagov.git@46a3ff790c734bb8cb3fed226f86a123dc6c1975#egg=ckanext_geodatagov
+-e git+https://github.com/gsa/ckanext-googleanalyticsbasic.git@0de6406608a3156ac368ba3ac14ca21be519a2dd#egg=ckanext_googleanalyticsbasic
+-e git+https://github.com/ckan/ckanext-harvest.git@eb73bed1739ac8656d892a609b5ee303e34251ca#egg=ckanext_harvest
+-e git+https://github.com/gsa/ckanext-metrics-dashboard.git@358ad6dbc4ec31ae4e0946cef6609c38920ad5d3#egg=ckanext_metrics_dashboard
 -e git+https://github.com/ckan/ckanext-qa.git@1731b59d2bf82b06f7866c204b26eb7c6c9ea1f9#egg=ckanext_qa
 -e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@c2b12a94430034c522b25d282323a064e2d6a03a
--e git+https://github.com/ckan/ckanext-spatial.git@17d5a341cf8f40b35b25df91a18ce72c31195ba3#egg=ckanext_spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@1205d3aa408e994439fc231ccb5d1cff06d644c6#egg=ckanext_spatial
 ckantoolkit==0.0.7
-click==7.1.2
-cryptography==41.0.0
+click==8.1.3
+cryptography==40.0.2
 defusedxml==0.7.1
-dominate==2.4.0
+dominate==2.7.0
 elementpath==4.1.2
-fanstatic==1.1
 feedgen==0.9.0
-Flask==2.0.0
+Flask==2.0.3
 Flask-Babel==1.0.0
+Flask-Login==0.6.1
 flask-multistatic==1.0
+Flask-WTF==1.0.1
 future==0.18.3
 GeoAlchemy2==0.5.0
+geojson==3.0.1
 geomet==1.0.0
 gevent==22.10.2
 greenlet==2.0.2
 gunicorn==20.1.0
 html5lib==1.1
-idna==2.10
+idna==3.4
+importlib-metadata==6.6.0
 importlib-resources==5.12.0
 isodate==0.6.1
 itsdangerous==2.1.2
-Jinja2==3.0.0
+Jinja2==3.1.2
 jmespath==1.0.1
 json-table-schema==0.2.1
 jsonschema==2.4.0
-lxml==4.9.1
+lxml==4.9.2
 Mako==1.2.4
-Markdown==3.1.1
+Markdown==3.4.1
 MarkupSafe==2.1.2
 messytables==0.15.2
+mypy==1.3.0
+mypy-extensions==1.0.0
 newrelic==8.8.0
 nose==1.3.7
 numpy==1.24.3
-OWSLib==0.29.1
+OWSLib==0.29.2
 packaging==23.1
-passlib==1.7.3
+passlib==1.7.4
 PasteDeploy==2.0.1
 pathtools==0.1.2
-pika==1.3.1
+pika==1.2.1
 pip==23.1.2
 ply==3.11
-polib==1.0.7
+polib==1.1.1
 progressbar==2.5
 progressbar2==3.53.3
-psycopg2==2.8.6
+psycopg2==2.9.3
 pycparser==2.21
 PyJWT==2.4.0
 pyOpenSSL==23.2.0
 pyparsing==3.0.9
 pyproj==2.6.1
 pysaml2==7.0.1
-pysolr==3.6.0
+pysolr==3.9.0
 python-dateutil==2.8.2
-python-editor==1.0.4
-python-magic==0.4.15
+python-magic==0.4.27
 python-utils==3.5.2
-pytz==2016.7
-PyUtilib==5.7.1
-PyYAML==5.4
+pytz==2023.3
+pytz-deprecation-shim==0.1.0.post0
+PyUtilib==6.0.0
+PyYAML==6.0
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
-rdflib==4.2.2
-redis==4.5.4
-repoze.lru==0.7
-repoze.who==2.3
-requests==2.31.0
+rdflib==6.1.1
+redis==4.5.5
+requests==2.28.1
 rfc3987==1.3.8
-Routes==1.13
-rq==1.0
-s3transfer==0.6.0
+rq==1.11.0
+s3transfer==0.6.1
 setuptools==67.1.0
 shapely==2.0.1
-shutilwhich==1.1.0
 simplejson==3.18.0
 six==1.16.0
-SQLAlchemy==1.3.5
+SQLAlchemy==1.4.41
+sqlalchemy2-stubs==0.0.2a34
 sqlparse==0.4.4
-tzlocal==1.3
-unicodecsv==0.14.1
+tomli==2.0.1
+typing_extensions==4.5.0
+tzdata==2023.3
+tzlocal==4.2
 urllib3==1.26.15
-webassets==0.12.1
+webassets==2.0
 webencodings==0.5.1
-WebOb==1.8.7
 Werkzeug==2.0.0
 wheel==0.40.0
+WTForms==3.0.1
 xlrd==2.0.1
-xmlschema==2.2.3
+xmlschema==2.3.0
 zipp==3.15.0
 zope.event==4.6
 zope.interface==6.0
