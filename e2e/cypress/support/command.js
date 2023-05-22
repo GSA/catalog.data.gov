@@ -101,9 +101,8 @@ Cypress.Commands.add('create_organization', (orgName, orgDesc) => {
         body: {
             description: orgDesc,
             title: orgName,
-            approval_status: 'approved',
-            state: 'active',
             name: orgName,
+            save: null
         },
     });
 });
