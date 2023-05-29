@@ -3,26 +3,27 @@ async-timeout==4.0.2
 Babel==2.9.1
 Beaker==1.11.0
 bleach==3.3.0
-boto3==1.26.126
-botocore==1.29.126
-certifi==2022.12.7
+boto3==1.26.142
+botocore==1.29.142
+certifi==2023.5.7
 cffi==1.15.1
-chardet==3.0.4
-git+https://github.com/gsa/ckan.git@4af8efa19edf7259530ccde5c0331a5ccd7f7066#egg=ckan
+chardet==5.1.0
+charset-normalizer==3.1.0
+ckan @ git+https://github.com/gsa/ckan.git@4af8efa19edf7259530ccde5c0331a5ccd7f7066
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.0.5
 ckanext-datagovtheme==0.1.27
 ckanext-datajson==0.1.18
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@618928be5a211babafc45103a72b6aab4642e964
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@14396e6d03aad3118ee5a232e04052a61edd0893
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.1.34
 ckanext-googleanalyticsbasic==0.2.0
--e git+https://github.com/ckan/ckanext-harvest.git@89a98d7ff5aa3445d8158921669b8d0b04fa41c3#egg=ckanext_harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@b24421676be23ab627cb0307f4c7dd64cdf49e5e#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.5
 -e git+https://github.com/ckan/ckanext-qa.git@1731b59d2bf82b06f7866c204b26eb7c6c9ea1f9#egg=ckanext_qa
 -e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@c2b12a94430034c522b25d282323a064e2d6a03a
--e git+https://github.com/ckan/ckanext-spatial.git@17d5a341cf8f40b35b25df91a18ce72c31195ba3#egg=ckanext_spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@1205d3aa408e994439fc231ccb5d1cff06d644c6#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==7.1.2
 cryptography==40.0.2
@@ -41,7 +42,7 @@ gevent==22.10.2
 greenlet==2.0.2
 gunicorn==20.1.0
 html5lib==1.1
-idna==2.10
+idna==3.4
 importlib-resources==5.12.0
 isodate==0.6.1
 itsdangerous==2.1.2
@@ -57,12 +58,12 @@ messytables==0.15.2
 newrelic==8.8.0
 nose==1.3.7
 numpy==1.24.3
-OWSLib==0.29.1
+OWSLib==0.29.2
 packaging==23.1
 passlib==1.7.3
 PasteDeploy==2.0.1
 pathtools==0.1.2
-pika==1.3.1
+pika==1.3.2
 pip==23.1.2
 ply==3.11
 polib==1.0.7
@@ -79,20 +80,20 @@ pysolr==3.6.0
 python-dateutil==2.8.2
 python-editor==1.0.4
 python-magic==0.4.15
-python-utils==3.5.2
+python-utils==3.6.0
 pytz==2016.7
 PyUtilib==5.7.1
 PyYAML==5.4
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==4.2.2
-redis==4.5.4
+redis==4.5.5
 repoze.lru==0.7
 repoze.who==2.3
-requests==2.25.0
+requests==2.31.0
 rfc3987==1.3.8
 Routes==1.13
 rq==1.0
-s3transfer==0.6.0
+s3transfer==0.6.1
 setuptools==67.1.0
 shapely==2.0.1
 shutilwhich==1.1.0
@@ -100,16 +101,17 @@ simplejson==3.18.0
 six==1.16.0
 SQLAlchemy==1.3.5
 sqlparse==0.4.4
+typing_extensions==4.6.2
 tzlocal==1.3
 unicodecsv==0.14.1
-urllib3==1.26.15
+urllib3==1.26.16
 webassets==0.12.1
 webencodings==0.5.1
 WebOb==1.8.7
-Werkzeug==2.0.0
+Werkzeug==2.3.4
 wheel==0.40.0
 xlrd==2.0.1
-xmlschema==2.2.3
+xmlschema==2.3.0
 zipp==3.15.0
 zope.event==4.6
 zope.interface==6.0
