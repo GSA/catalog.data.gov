@@ -11,7 +11,8 @@ certifi==2023.5.7
 cffi==1.15.1
 chardet==5.1.0
 charset-normalizer==2.1.1
-ckan @ git+https://github.com/gsa/ckan.git@838b97e7ee14885af5cc4efed98d992b024d37d2
+# ckan @ git+https://github.com/gsa/ckan.git@838b97e7ee14885af5cc4efed98d992b024d37d2
+ckan==2.10.1
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 -e git+https://github.com/gsa/ckanext-datagovcatalog.git@a3b9c7287814fa5e5b6880712ec314f509c1ecba#egg=ckanext_datagovcatalog
 -e git+https://github.com/gsa/ckanext-datagovtheme.git@8b031c6046f3b480931e948eaf14cdf2f4c8597c#egg=ckanext_datagovtheme
@@ -20,7 +21,7 @@ ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@14396e6d03aad3118ee5a232
 ckanext-envvars==0.0.3
 -e git+https://github.com/gsa/ckanext-geodatagov.git@ckan-2.10#egg=ckanext-geodatagov
 -e git+https://github.com/gsa/ckanext-googleanalyticsbasic.git@0de6406608a3156ac368ba3ac14ca21be519a2dd#egg=ckanext_googleanalyticsbasic
--e git+https://github.com/ckan/ckanext-harvest.git@eb73bed1739ac8656d892a609b5ee303e34251ca#egg=ckanext_harvest
+-e git+https://github.com/ckan/ckanext-harvest.git@bae212784ba309409bb079605e622eb7028740f9#egg=ckanext_harvest
 -e git+https://github.com/gsa/ckanext-metrics-dashboard.git@358ad6dbc4ec31ae4e0946cef6609c38920ad5d3#egg=ckanext_metrics_dashboard
 -e git+https://github.com/ckan/ckanext-qa.git@1731b59d2bf82b06f7866c204b26eb7c6c9ea1f9#egg=ckanext_qa
 -e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
