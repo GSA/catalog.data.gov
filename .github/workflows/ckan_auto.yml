@@ -3,7 +3,7 @@ name: 4 - Automated CKAN Jobs
 
 on:
   schedule:
-    - cron: '30 7 * * *'       # Tracking Update -- every day at 2:30am EST
+    - cron: '30 7 * * 0'       # Tracking Update -- every Sunday at 2:30am EST
     - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 10pm EST
     - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
     - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
@@ -13,7 +13,7 @@ on:
 env:
   ERROR: false
   # Make sure 'schedule-cron' matches these varaibles.
-  SCHEDULE_TRACKING: '30 7 * * *'
+  SCHEDULE_TRACKING: '30 7 * * 0'
   SCHEDULE_SITEMAP: '0 2 * * *'
   SCHEDULE_HARVESTING: '4/15 * * * *'
   SCHEDULE_DBSOLR_SYNC: '0 3 * * *'
