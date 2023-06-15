@@ -1,6 +1,5 @@
 # CKAN requirements and extensions
-# ckan==2.9.8
-git+https://github.com/gsa/ckan.git@ckan-210-temp#egg=ckan
+ckan==2.10.1
 git+https://github.com/ckan/ckanext-dcat@master#egg=ckanext-dcat
 -e git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-spatial.git@master#egg=ckanext-spatial
