@@ -43,7 +43,6 @@ jobs:
           #   - Run on [catalog-gather] app
           #  schedule: harvesting update
           #   - Only run on [development, staging, prod]
-          #   - Monitor: false
           #  schedule: stuck jobs check
           #   - Only run on [staging, prod]
           #   - Create Error issue: if >0 stuck jobs, automated_ckan_error.md
@@ -66,7 +65,6 @@ jobs:
                          {"issue_template": ".github/automated_ckan_error.md"},
                          {"monitor": true},
                          {"schedule": "${{env.SCHEDULE_HARVESTING}}", "command": "ckan harvester run"},
-                         {"schedule": "${{env.SCHEDULE_HARVESTING}}", "monitor": false},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "command": "ckan geodatagov tracking-update"},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "error_seconds": 12600},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "info_issue": true},
