@@ -25,7 +25,7 @@ ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@c2b12a94430
 -e git+https://github.com/ckan/ckanext-spatial.git@17d5a341cf8f40b35b25df91a18ce72c31195ba3#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==7.1.2
-cryptography==40.0.2
+cryptography==41.0.0
 defusedxml==0.7.1
 dominate==2.4.0
 elementpath==4.1.2
