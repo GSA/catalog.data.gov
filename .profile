@@ -85,6 +85,7 @@ export CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH="${HOME}/${CKANEXT__SAML2AUT
 # Export settings for CKAN via ckanext-envvars
 export CKAN_REDIS_URL=rediss://:$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT
 export CKAN_SQLALCHEMY_URL=$(vcap_get_service db .credentials.uri)
+export CKAN_SQLALCHEMY_URL=${CKAN_SQLALCHEMY_URL/postgres/postgresql}
 export CKAN___SQLALCHEMY__POOL_SIZE=250
 export CKAN___SQLALCHEMY__MAX_OVERFLOW=500
 
@@ -158,7 +159,7 @@ if [[ $MIGRATE_DB = 'True' ]]; then
   # Run migrations
   ckan db upgrade
   ckan harvester initdb
-  ckan archiver init
-  ckan report initdb
-  ckan qa init
+  # ckan archiver init
+  # ckan report initdb
+  # ckan qa init
 fi
