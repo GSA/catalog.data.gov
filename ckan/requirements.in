@@ -45,7 +45,7 @@ argparse
 GeoAlchemy2==0.5.0
 owslib>=0.28.1
 pyparsing>=2.1.10
-pyproj==2.6.1
+pyproj==3.4.1
 Shapely==2.0.1
 geojson==3.0.1
 # requests>=1.1.0 # included in ckan core
