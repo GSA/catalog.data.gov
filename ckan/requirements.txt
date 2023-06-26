@@ -82,7 +82,7 @@ pycparser==2.21
 PyJWT==2.4.0
 pyOpenSSL==23.1.1
 pyparsing==3.0.9
-pyproj==2.6.1
+pyproj==3.4.1
 pysaml2==7.0.1
 pysolr==3.9.0
 python-dateutil==2.8.2
