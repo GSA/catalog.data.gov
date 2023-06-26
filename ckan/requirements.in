@@ -9,7 +9,7 @@ git+https://github.com/GSA/ckanext-saml2auth.git@create_user_via_saml#egg=ckanex
 -e git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report
 
 ckanext-datagovcatalog>=0.0.3
-ckanext-datagovtheme>=0.1.22
+ckanext-datagovtheme>=0.1.22, ==0.1.*
 ckanext-datajson>=0.1.13
 ckanext-envvars>=0.0.2
 ckanext-geodatagov>=0.1.28
