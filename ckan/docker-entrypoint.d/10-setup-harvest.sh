@@ -4,7 +4,12 @@ echo "Init Harvest database tables"
 ckan harvester initdb
 
 echo "turn on gather and fetch workers"
-ckan harvester fetch-consumer &
+run_fetch () {
+  until ckan harvester fetch-consumer; do
+    sleep 1
+  done
+}
+run_fetch &
 ckan harvester fetch-consumer &
 ckan harvester gather-consumer &
 
