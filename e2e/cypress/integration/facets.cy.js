@@ -23,8 +23,8 @@ describe('Facets', { testIsolation: false }, () => {
         cy.visit('/organization/org-tags');
         cy.get('.module .module-narrow .module-shallow').its('length').should('be.equal', 11);
         cy.get('.module .module-narrow .module-shallow').second().contains('Topics');
-        cy.get('.module .module-narrow .module-shallow'').contains('Harvest Source');
-        cy.get('.module .module-narrow .module-shallow'').last().contains('Bureaus');
+        cy.get('.module .module-narrow .module-shallow').contains('Harvest Source');
+        cy.get('.module .module-narrow .module-shallow').last().contains('Bureaus');
     });
 
     it('Show datagov facet list on group page', () => {
