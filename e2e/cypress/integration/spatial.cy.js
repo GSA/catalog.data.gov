@@ -19,15 +19,16 @@ describe('Spatial', { testIsolation: false }, () => {
         cy.visit('/dataset');
         // Click on pencil edit button
         cy.get('.leaflet-control-custom-button').click();
-        cy.get('#dataset-map-edit-buttons').find('.disabled');
-        cy.get('#dataset-map-container')
+        // cy.get('#dataset-map-edit-buttons').find('.disabled');
+        cy.get('#draw-map-container')
             .trigger('mousedown', { which: 1 })
             .trigger('mousemove', { clientX: 500, clientY: 153 })
             .trigger('mouseup');
         cy.hide_debug_toolbar();
         // click the apply button then on the next redirected page find the box
         // on the map and content in the body
-        cy.get('#dataset-map-edit-buttons').find('[class="btn apply btn-primary"]').click();
+        // cy.get('#dataset-map-edit-buttons').find('[class="btn apply btn-primary"]').click();
+        cy.contains('Apply').click();
         cy.get('#dataset-map-container').find('svg.leaflet-zoom-animated');
         cy.contains(/datasets? found/);
     });
