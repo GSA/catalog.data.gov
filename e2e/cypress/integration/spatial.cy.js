@@ -17,6 +17,7 @@ describe('Spatial', { testIsolation: false }, () => {
 
     it('The map view works and can draw box and search', () => {
         cy.visit('/dataset');
+        cy.wait(1500);
         cy.get('.leaflet-draw-draw-rectangle').click();
         cy.get('#dataset-map-edit-buttons').find('.disabled');
         cy.get('#dataset-map-container')
