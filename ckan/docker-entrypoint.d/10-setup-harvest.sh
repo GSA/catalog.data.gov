@@ -9,9 +9,13 @@ run_fetch () {
     sleep 1
   done
 }
+run_gather () {
+  until ckan harvester gather-consumer; do
+    sleep 1
+  done
+}
 run_fetch &
-ckan harvester fetch-consumer &
-ckan harvester gather-consumer &
+run_gather &
 
 echo "check harvest job completion every 10 secs"
 check_harvester () {
