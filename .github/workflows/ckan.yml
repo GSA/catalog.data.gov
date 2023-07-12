@@ -10,7 +10,6 @@ on:
         type: choice
         options:
           - development
-          - staging
           - prod
       app:
         description: 'App to run on:'

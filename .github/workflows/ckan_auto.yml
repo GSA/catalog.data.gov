@@ -58,7 +58,7 @@ jobs:
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
                          "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
                          "${{env.SCHEDULE_DBSOLR_SYNC}}", "${{ env.SCHEDULE_GEN_REPORT}}"],
-            "environ": ["development", "staging", "prod"],
+            "environ": ["development", "prod"],
             "include": [ {"app": "catalog-admin"},
                          {"error_seconds": 22000},
                          {"info_issue": false},
@@ -79,11 +79,9 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "command": "ckan report generate"},
                          {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "issue_template": ".github/report-generation-failure.md"},
                          {"environ": "development", "ram": "1G"},
-                         {"environ": "staging", "ram": "2500M"},
                          {"environ": "prod", "ram": "2500M"}
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
-                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "environ": "development"}
                        ],
