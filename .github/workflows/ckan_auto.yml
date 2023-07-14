@@ -3,7 +3,7 @@ name: 4 - Automated CKAN Jobs
 
 on:
   schedule:
-    - cron: '30 7 * * *'       # Tracking Update -- every day at 2:30am EST
+    - cron: '30 7 * * 0'       # Tracking Update -- every Sunday at 2:30am EST
     - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 10pm EST
     - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
     - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
@@ -13,7 +13,7 @@ on:
 env:
   ERROR: false
   # Make sure 'schedule-cron' matches these varaibles.
-  SCHEDULE_TRACKING: '30 7 * * *'
+  SCHEDULE_TRACKING: '30 7 * * 0'
   SCHEDULE_SITEMAP: '0 2 * * *'
   SCHEDULE_HARVESTING: '4/15 * * * *'
   SCHEDULE_DBSOLR_SYNC: '0 3 * * *'
@@ -43,7 +43,6 @@ jobs:
           #   - Run on [catalog-gather] app
           #  schedule: harvesting update
           #   - Only run on [development, staging, prod]
-          #   - Monitor: false
           #  schedule: stuck jobs check
           #   - Only run on [staging, prod]
           #   - Create Error issue: if >0 stuck jobs, automated_ckan_error.md
@@ -59,14 +58,13 @@ jobs:
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
                          "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
                          "${{env.SCHEDULE_DBSOLR_SYNC}}", "${{ env.SCHEDULE_GEN_REPORT}}"],
-            "environ": ["development", "staging", "prod"],
+            "environ": ["development", "prod"],
             "include": [ {"app": "catalog-admin"},
                          {"error_seconds": 22000},
                          {"info_issue": false},
                          {"issue_template": ".github/automated_ckan_error.md"},
                          {"monitor": true},
                          {"schedule": "${{env.SCHEDULE_HARVESTING}}", "command": "ckan harvester run"},
-                         {"schedule": "${{env.SCHEDULE_HARVESTING}}", "monitor": false},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "command": "ckan geodatagov tracking-update"},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "error_seconds": 12600},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "info_issue": true},
@@ -81,11 +79,9 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "command": "ckan report generate"},
                          {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "issue_template": ".github/report-generation-failure.md"},
                          {"environ": "development", "ram": "1G"},
-                         {"environ": "staging", "ram": "2500M"},
                          {"environ": "prod", "ram": "2500M"}
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
-                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "environ": "development"}
                        ],

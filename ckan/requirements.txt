@@ -79,7 +79,7 @@ progressbar2==3.53.3
 psycopg2==2.9.3
 pycparser==2.21
 PyJWT==2.4.0
-pyOpenSSL==23.1.1
+pyOpenSSL==23.2.0
 pyparsing==3.0.9
 pyproj==3.4.1
 pysaml2==7.0.1
