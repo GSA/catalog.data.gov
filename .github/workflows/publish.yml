@@ -40,13 +40,6 @@ jobs:
           push: true
           tags: ${{ matrix.tag }}
 
-  create-cloudgov-services-staging:
-    name: create services (staging)
-    uses: gsa/data.gov/.github/workflows/create-services-template.yml@main
-    with:
-      environ: staging
-    secrets: inherit
-
   create-cloudgov-services-prod:
     name: create services (prod)
     uses: gsa/data.gov/.github/workflows/create-services-template.yml@main
@@ -54,22 +47,10 @@ jobs:
       environ: prod
     secrets: inherit
 
-  deploy-staging:
-    name: deploy (staging)
-    needs:
-      - create-cloudgov-services-staging
-    uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
-    with:
-      environ: staging
-      app_url: https://catalog-stage-datagov.app.cloud.gov
-      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
-    secrets: inherit
-
   deploy-prod:
     name: deploy (prod)
     needs:
       - create-cloudgov-services-prod
-      - deploy-staging
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: prod
@@ -80,7 +61,6 @@ jobs:
   network-policies:
     name: Add network-policies
     needs:
-      - deploy-staging
       - deploy-prod
     runs-on: ubuntu-latest
     environment: ${{ matrix.environ }}
@@ -91,7 +71,7 @@ jobs:
           "cf add-network-policy catalog-proxy catalog-web --protocol tcp --port 61443",
           "cf add-network-policy catalog-proxy catalog-admin --protocol tcp --port 61443"
         ]
-        environ: ["staging", "prod"]
+        environ: ["prod"]
     steps:
       - name: proxy to web
         uses: cloud-gov/cg-cli-tools@main
