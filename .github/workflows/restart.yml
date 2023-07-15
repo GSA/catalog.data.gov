@@ -15,10 +15,10 @@ jobs:
   #     app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
   #   secrets: inherit
 
-  restart-development:
-    name: restart (development)
+  restart-prod:
+    name: restart (prod)
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
-      environ: development
+      environ: prod
       app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
     secrets: inherit
