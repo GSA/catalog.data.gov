@@ -14,7 +14,9 @@ describe('Harvest', { testIsolation: false }, () => {
         // Make sure organization does not exist before creating
         cy.delete_organization(harvestOrg);
         // Create the organization
-        cy.create_organization(harvestOrg, 'cypress harvest org description', false);
+        cy.visit('/organization');
+        cy.get('a[class="btn btn-primary"]').click();
+        cy.create_organization_ui(harvestOrg, 'cypress harvest org description');
     });
 
     after(() => {
