@@ -101,9 +101,8 @@ Cypress.Commands.add('create_organization', (orgName, orgDesc) => {
         body: {
             description: orgDesc,
             title: orgName,
-            approval_status: 'approved',
-            state: 'active',
             name: orgName,
+            save: null
         },
     });
 });
@@ -215,14 +214,14 @@ Cypress.Commands.add(
         });
 
         cy.get('#field-notes').type(harvestDesc);
-        cy.get('[type="radio"]').check(harvestType);
+        cy.get('[type="radio"]').check(harvestType, { force: true });
 
         // Validate private_datasets defaults to Private
         cy.get('#field-private_datasets').find(':selected').contains('Private');
 
-        cy.get('#field-private_datasets').select(harvestPrivate);
+        cy.get('#field-private_datasets').select(harvestPrivate, { force: true });
 
-        cy.get('input[name=save]').click();
+        cy.get('input[name=save]').click({ force: true });
     }
 );
 

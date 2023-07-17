@@ -17,12 +17,14 @@ describe('Facets', { testIsolation: false }, () => {
     });
 
     it('Show datagov facet list on organization page', () => {
-        cy.create_organization('org-tags', '');
+        cy.visit('/organization');
+        cy.get('a[class="btn btn-primary"]').click();
+        cy.create_organization_ui('org-tags', 'tags for org test');
         cy.visit('/organization/org-tags');
-        cy.get('.filters h2').its('length').should('be.equal', 10);
-        cy.get('.filters h2').first().contains('Topics');
-        cy.get('.filters h2').contains('Harvest Source');
-        cy.get('.filters h2').last().contains('Bureaus');
+        cy.get('.module-shallow').its('length').should('be.equal', 11);
+        cy.get('.module-shallow').contains('Topics');
+        cy.get('.module-shallow').contains('Harvest Source');
+        cy.get('.module-shallow').last().contains('Bureaus');
     });
 
     it('Show datagov facet list on group page', () => {
