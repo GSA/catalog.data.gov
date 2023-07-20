@@ -90,7 +90,7 @@ python-dateutil>=2.8.2
 pytz
 PyUtilib==6.0.0
 pyyaml==6.0
-requests==2.28.1
+requests==2.31.0
 rq==1.11.0
 simplejson==3.18.0 # ckan 2.9.5 requires 3.10.0 only
 # Following can be ignored: https://github.com/ckan/ckan/pull/4450
@@ -115,3 +115,6 @@ certifi>=2022.12.7
 cryptography>=41.0.0
 redis>=4.5.4
 requests==2.31.0
+
+# avoid ImportError error https://github.com/GSA/data.gov/issues/4396
+importlib-resources<6.0
