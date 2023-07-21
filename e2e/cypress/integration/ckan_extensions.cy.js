@@ -1,5 +1,5 @@
 describe('CKAN Extensions', () => {
-    it('Uses CKAN 2.9', () => {
+    it('Uses CKAN 2.10', () => {
         cy.request('/api/action/status_show').should((response) => {
             expect(response.body).to.have.property('success', true);
             expect(response.body.result).to.have.property('ckan_version', '2.10.1');
