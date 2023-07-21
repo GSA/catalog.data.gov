@@ -17,18 +17,18 @@ describe('Spatial', { testIsolation: false }, () => {
 
     it('The map view works and can draw box and search', () => {
         cy.visit('/dataset');
-        cy.get('.leaflet-draw-draw-rectangle').click();
-        cy.get('#dataset-map-edit-buttons').find('.disabled');
-        cy.get('#dataset-map-container')
+        cy.get('.leaflet-control-custom-button').click();
+        cy.get('.modal-spatial-query .modal-footer').find('.disabled');
+        cy.get('#draw-map-container')
             .trigger('mousedown', { which: 1 })
             .trigger('mousemove', { clientX: 500, clientY: 153 })
             .trigger('mouseup');
         cy.hide_debug_toolbar();
         // click the apply button then on the next redirected page find the box
         // on the map and content in the body
-        cy.get('#dataset-map-edit-buttons').find('[class="btn apply btn-primary"]').click();
+        cy.get('.modal-spatial-query .modal-footer').find('[class="btn btn-primary apply"]').click();
         cy.get('#dataset-map-container').find('svg.leaflet-zoom-animated');
-        cy.contains(/datasets? found/);
+        cy.contains(/2 datasets found/);
     });
 
     it('Can search in the location dropdown', () => {
