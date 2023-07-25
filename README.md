@@ -241,4 +241,3 @@ You can log into your instance with you login.gov user.
 Continuous Integration via [GitHub Actions](https://github.com/GSA/catalog.data.gov/actions/workflows/commit.yml).
 
 Continuous Deployment via [GitHub Actions](https://github.com/GSA/catalog.data.gov/actions/workflows/publish.yml).
-```
