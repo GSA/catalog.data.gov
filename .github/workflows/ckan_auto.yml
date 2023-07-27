@@ -80,7 +80,7 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "issue_template": ".github/report-generation-failure.md"},
                          {"environ": "development", "ram": "1G"},
                          {"environ": "staging", "ram": "2500M"},
-                         {"environ": "prod", "ram": "2500M"}
+                         {"environ": "prod", "ram": "3G"}
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
