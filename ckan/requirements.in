@@ -112,9 +112,9 @@ gevent>=21.8.0
 # New Relic
 newrelic
 certifi>=2022.12.7
-cryptography>=41.0.0
 redis>=4.5.4
 requests==2.31.0
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
+cryptography>=41.0.3
