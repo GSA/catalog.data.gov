@@ -75,7 +75,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            tools/monitor_cf_logs.sh catalog-admin $INSTANCE_NAME
+            tools/monitor_cf_logs.sh ${{ inputs.app }} $INSTANCE_NAME
           cf_org: gsa-datagov
           cf_space: ${{ inputs.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
