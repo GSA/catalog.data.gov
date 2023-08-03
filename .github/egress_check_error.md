@@ -1,6 +1,6 @@
 ---
 title: Egress Check Failed
-labels: bug o&m egress
+labels: ["bug", "o&m", "egress"]
 ---
 
 Workflow with Issue: {{ workflow }}
