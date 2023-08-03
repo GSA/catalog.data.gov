@@ -1,0 +1,71 @@
+---
+name: 6 - Check Egress Operation
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  egress-check:
+    name: ${{ matrix.app - matrix-environ - matrix.command }}
+    runs-on: ubuntu-latest
+    environment: ${{ matrix.environ }}
+    strategy:
+      fail-fast: false
+      matrix:
+        command:
+          - '#GoodDomainTest;
+             curl -I -Ls --http1.1 https://gsa.gov | grep -q "HTTP/1.1 200 OK"'
+          - '#BadDomainTest;
+             curl -I -Ls --http1.1 https://yahoo.com | grep -q "HTTP/1.1 403 Forbidden"'
+        environ: ['development', 'staging', 'prod']
+        app:
+          - 'catalog-admin'
+          - 'catalog-web'
+          - 'catalog-fetch'
+          - 'catalog-gather'
+
+    steps:
+      - name: Store Instance Name
+        run: |
+          INSTANCE_NAME="$(echo egress-check-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
+          echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: run task
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            cf run-task ${{ matrix.app }} --command "${{ matrix.command }}"
+            --name $INSTANCE_NAME -k 1500M -m 150M
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: monitor task output
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: >
+            tools/monitor_cf_logs.sh ${{ matrix.app }} $INSTANCE_NAME
+          cf_org: gsa-datagov
+          cf_space: ${{ matrix.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Create Issue for failure 😢
+        if: ${{ failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          GITHUB_JOB: ${{ toJson(github)['job'] }}
+          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
+          LAST_COMMIT: ${{ github.sha }}
+          LAST_RUN_BY: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+          COMMAND: ${{ matrix.command }}
+          APP_NAME: ${{ matrix.app }}
+          ENVIRONMENT: ${{ matrix.environ }}
+        with:
+          filename: .github/egress_check_error.md
+          assignees: ${{ github.actor }}
+          update_existing: true
