@@ -3,7 +3,7 @@ name: 6 - Check Egress Operation
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
@@ -16,10 +16,8 @@ jobs:
       max-parallel: 7
       matrix:
         command:
-          - '#GoodDomainTest;
-             curl -I -Ls --http1.1 https://gsa.gov | grep -q \"HTTP/1.1 200 OK\"'
-          - '#BadDomainTest;
-             curl -I -Ls --http1.1 https://yahoo.com | grep -q \"HTTP/1.1 403 Forbidden\"'
+          - 'GoodDomainTest || curl -I -L --http1.1 https://gsa.gov | grep \"HTTP/1.1 200 OK\"'
+          - 'BadDomainTest || curl -I -L --http1.1 https://yahoo.com | grep \"HTTP/1.1 403 Forbidden\"'
         environ: ['development', 'staging', 'prod']
         app:
           - 'catalog-admin'
