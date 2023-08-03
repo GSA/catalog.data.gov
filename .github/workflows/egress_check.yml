@@ -22,7 +22,6 @@ jobs:
         environ: ['development', 'staging', 'prod']
         app:
           - 'catalog-admin'
-          - 'catalog-proxy'
           - 'catalog-web'
           - 'catalog-fetch'
           - 'catalog-gather'
