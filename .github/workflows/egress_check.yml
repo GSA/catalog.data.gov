@@ -3,7 +3,7 @@ name: 6 - Check Egress Operation
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '40 * * * *'
   workflow_dispatch:
 
 jobs:
