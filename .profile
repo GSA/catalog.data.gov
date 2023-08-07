@@ -1,5 +1,11 @@
 #!/bin/bash
 
+##############################################################################
+# NOTE: When adding commands to this file, be mindful of sensitive output.
+# Since these logs are publicly available in github actions, we don't want
+# to leak anything.
+##############################################################################
+
 set -o errexit
 set -o pipefail
 
@@ -146,7 +152,7 @@ echo "$SAML2_CERTIFICATE" > $CKANEXT__SAML2AUTH__CERT_FILE_PATH
 
 # Setting up PostGIS
 echo Setting up PostGIS
-DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py
+DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py >/dev/null 2>&1
 
 # Edit the config file to use our values
 export CKAN_INI="${HOME}/ckan/setup/ckan.ini"
