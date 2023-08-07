@@ -8,7 +8,7 @@ app_to_monitor=$1
 task_to_monitor=$2
 
 while read -r line ; do
-  echo "$line" | grep --line-buffered " DEBUG \| INFO \| WARNING \| ERROR "
+  echo "$line"
   if echo "$line" | grep "OUT Exit status 0"; then
     exit 0
   elif echo "$line" | grep "OUT Exit status"; then
