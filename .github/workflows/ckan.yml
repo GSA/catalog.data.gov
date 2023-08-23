@@ -27,6 +27,7 @@ on:
           - 'ckan geodatagov db-solr-sync --cleanup_solr'
           - 'ckan geodatagov db-solr-sync --update_solr'
           - 'ckan geodatagov db-solr-sync --cleanup_solr --update_solr'
+          - 'ckan geodatagov harvest-object-relink'
           - 'ckan harvester run'
           - 'ckan geodatagov sitemap-to-s3'
           - 'ckan geodatagov tracking-update'
