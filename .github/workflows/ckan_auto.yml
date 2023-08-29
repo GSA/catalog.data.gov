@@ -4,7 +4,8 @@ name: 4 - Automated CKAN Jobs
 on:
   schedule:
     - cron: '30 7 * * 0'       # Tracking Update -- every Sunday at 2:30am EST
-    - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 10pm EST
+    # Disable Sitemap until it is working again: https://github.com/GSA/catalog.data.gov/issues/990
+    # - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 10pm EST
     - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
     - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
     - cron: '30 6 * * *'       # Check Stuck Jobs -- every day at 1:30am EST
