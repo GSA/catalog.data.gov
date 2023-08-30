@@ -46,12 +46,15 @@ test: build
 	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
+# everytime you added some new variables, you need to swap it with some test values
+# and swap it back after the test. This is because "nginx -t" test cannot read env variables.
 validate-proxy:
 	sed -i 's/{{nameservers}}/127.0.0.1/g' proxy/nginx.conf
 	sed -i 's/{{env "EXTERNAL_ROUTE"}}/127.0.0.2/g' proxy/nginx.conf proxy/nginx-cloudfront.conf
 	sed -i 's/{{env "INTERNAL_ROUTE"}}/127.0.0.3/g' proxy/nginx.conf
 	sed -i 's/{{env "EXTERNAL_ROUTE_ADMIN"}}/127.0.0.4/g' proxy/nginx.conf
 	sed -i 's/{{env "INTERNAL_ROUTE_ADMIN"}}/127.0.0.5/g' proxy/nginx.conf
+	sed -i 's/{{env "PUBLIC_ROUTE"}}/127.0.0.6/g' proxy/nginx.conf proxy/nginx-cloudfront.conf
 	sed -i 's/{{port}}/1111/g' proxy/nginx.conf proxy/nginx-common.conf
 	sed -i 's/{{env "PUBLIC_ROUTE"}}/test.com/g' proxy/nginx-cloudfront.conf proxy/nginx-authy.conf
 	sed -i 's#{{env "S3_URL"}}#http://test.com#g' proxy/nginx-common.conf
@@ -62,6 +65,7 @@ validate-proxy:
 	sed -i 's/127.0.0.3/{{env "INTERNAL_ROUTE"}}/g' proxy/nginx.conf
 	sed -i 's/127.0.0.4/{{env "EXTERNAL_ROUTE_ADMIN"}}/g' proxy/nginx.conf
 	sed -i 's/127.0.0.5/{{env "INTERNAL_ROUTE_ADMIN"}}/g' proxy/nginx.conf
+	sed -i 's/127.0.0.6/{{env "PUBLIC_ROUTE"}}/g' proxy/nginx.conf proxy/nginx-cloudfront.conf
 	sed -i 's/1111/{{port}}/g' proxy/nginx.conf proxy/nginx-common.conf
 	sed -i 's/test.com/{{env "PUBLIC_ROUTE"}}/g' proxy/nginx-cloudfront.conf
 	sed -i 's#http://test.com#{{env "S3_URL"}}#g' proxy/nginx-common.conf
