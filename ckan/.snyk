@@ -2,40 +2,32 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-PYTHON-RDFLIB-1324490:
-    - '*':
-        reason: >-
-          No remediation available yet; Not affecting us since the ckanext-dcat
-          library uses this for harvesting and we do not use the ckanext-dcat
-          harvester.
-        expires: 2023-08-31T06:00:00.000Z
-        created: 2022-12-05T19:21:40.652Z
   SNYK-PYTHON-BEAKER-575115:
     - '*':
         reason: >-
           No remediation available yet; Not affecting us since the storage is
           not accessible to any other client
-        expires: 2023-08-31T16:20:58.017Z
+        expires: 2023-12-31T16:20:58.017Z
         created: 2022-12-08T16:20:58.023Z
   SNYK-PYTHON-WERKZEUG-3319936:
     - '*':
         reason: >-
           Upgrade path is complex, Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4217
-        expires: 2023-08-31T16:20:58.017Z
+        expires: 2023-10-31T16:20:58.017Z
         created: 2023-02-15T16:20:58.023Z
   SNYK-PYTHON-WERKZEUG-3319935:
     - '*':
         reason: >-
           Upgrade path is complex, Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4217
-        expires: 2023-08-31T16:20:58.017Z
+        expires: 2023-10-31T16:20:58.017Z
         created: 2023-02-15T16:20:58.023Z
   SNYK-PYTHON-FLASK-5490129:
     - '*':
         reason: >-
           Upgrade path is complex, Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4303
-        expires: 2023-08-31T16:20:58.017Z
+        expires: 2023-10-31T16:20:58.017Z
         created: 2023-05-08T16:20:58.023Z
 patch: {}
