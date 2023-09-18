@@ -17,7 +17,7 @@ ckanext-datagovtheme==0.2.4
 ckanext-datajson==0.1.21
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@008a3e2f22a352d7ded9dd988dc69e654f58cd87
 ckanext-envvars==0.0.3
-ckanext-geodatagov==0.2.6
+ckanext-geodatagov==0.2.7
 ckanext-googleanalyticsbasic==0.2.1
 -e git+https://github.com/ckan/ckanext-harvest.git@9fb44f79809a1c04dfeb0e1ca2540c5ff3cacef4#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.6
