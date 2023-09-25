@@ -28,7 +28,10 @@ pika>=1.1.0,<1.3.0
 
 # ckanext-googleanalytics
 # https://github.com/ckan/ckanext-googleanalytics/blob/master/requirements.txt
-oauth2client
+gdata>=2.0.0
+google-api-python-client>=1.6.1, <1.7.0
+pyOpenSSL>=16.2.0
+rsa>=3.1.4, <=4.0
 
 # ckanext-archiver
 # https://github.com/ckan/ckanext-archiver/blob/master/requirements.txt
