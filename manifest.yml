@@ -29,6 +29,7 @@ applications:
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((route-public))
+      CKAN___GOOGLEANALYTICS__ID: ((googleanalytics_id))
 
   - name: ((app_name))-admin
     buildpacks:

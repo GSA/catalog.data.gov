@@ -4,8 +4,9 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==3.3.0
 blinker==1.5
-boto3==1.28.52
-botocore==1.31.52
+boto3==1.28.53
+botocore==1.31.53
+cachetools==5.3.1
 certifi==2023.7.22
 cffi==1.15.1
 chardet==5.2.0
@@ -18,12 +19,12 @@ ckanext-datajson==0.1.21
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@93bf901684b729ccca474c970b7f47309ebace5b
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.2.7
-ckanext-googleanalyticsbasic==0.2.1
+-e git+https://github.com/ckan/ckanext-googleanalytics.git@3402d747e726fb8eb1d793da703b5a3249432c0a#egg=ckanext_googleanalytics
 -e git+https://github.com/ckan/ckanext-harvest.git@9fb44f79809a1c04dfeb0e1ca2540c5ff3cacef4#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.6
 -e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@4d59366423ed965ba86a7b85547a6bd9f4351869
--e git+https://github.com/GSA/ckanext-spatial.git@f8e0ad7af15425e8df3f650a602f85f1e77526ff#egg=ckanext_spatial
+-e git+https://github.com/GSA/ckanext-spatial.git@6c92b9b5aedf19dc6a4737222372898ecae77e7f#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==8.1.3
 cryptography==41.0.4
@@ -41,9 +42,15 @@ GeoAlchemy2==0.5.0
 geojson==3.0.1
 geomet==1.0.0
 gevent==23.9.1
+google-api-core==2.12.0
+google-api-python-client==2.101.0
+google-auth==2.23.0
+google-auth-httplib2==0.1.1
+googleapis-common-protos==1.60.0
 greenlet==2.0.2
 gunicorn==21.2.0
 html5lib==1.1
+httplib2==0.22.0
 idna==3.4
 importlib-metadata==6.8.0
 importlib-resources==5.13.0
@@ -63,6 +70,7 @@ mypy-extensions==1.0.0
 newrelic==9.0.0
 nose==1.3.7
 numpy==1.26.0
+oauth2client==4.1.3
 OWSLib==0.29.2
 packaging==23.1
 passlib==1.7.4
@@ -74,7 +82,10 @@ ply==3.11
 polib==1.1.1
 progressbar==2.5
 progressbar2==3.53.3
+protobuf==4.24.3
 psycopg2==2.9.3
+pyasn1==0.5.0
+pyasn1-modules==0.3.0
 pycparser==2.21
 PyJWT==2.4.0
 pyOpenSSL==23.2.0
@@ -84,7 +95,7 @@ pysaml2==7.0.1
 pysolr==3.9.0
 python-dateutil==2.8.2
 python-magic==0.4.27
-python-utils==3.7.0
+python-utils==3.8.0
 pytz==2023.3.post1
 pytz-deprecation-shim==0.1.0.post0
 PyUtilib==6.0.0
@@ -95,6 +106,7 @@ redis==5.0.0
 requests==2.31.0
 rfc3987==1.3.8
 rq==1.11.0
+rsa==4.9
 s3transfer==0.6.2
 sansjson==0.3.0
 setuptools==67.1.0
@@ -108,6 +120,7 @@ tomli==2.0.1
 typing_extensions==4.8.0
 tzdata==2023.3
 tzlocal==4.2
+uritemplate==4.1.1
 urllib3==1.26.16
 webassets==2.0
 webencodings==0.5.1
@@ -115,7 +128,7 @@ Werkzeug==2.0.0
 wheel==0.41.2
 WTForms==3.0.1
 xlrd==2.0.1
-xmlschema==2.4.0
+xmlschema==2.5.0
 zipp==3.17.0
 zope.event==5.0
 zope.interface==6.0

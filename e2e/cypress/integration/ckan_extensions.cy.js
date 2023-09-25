@@ -30,7 +30,7 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('spatial_metadata');
             expect(installed_extensions).to.include('spatial_query');
             expect(installed_extensions).to.include('spatial_harvest_metadata_api');
-            expect(installed_extensions).to.include('googleanalyticsbasic');
+            expect(installed_extensions).to.include('googleanalytics');
             expect(installed_extensions).to.include('dcat');
             expect(installed_extensions).to.include('dcat_json_interface');
             expect(installed_extensions).to.include('structured_data');
