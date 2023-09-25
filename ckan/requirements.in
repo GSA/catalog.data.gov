@@ -27,6 +27,7 @@ pika>=1.1.0,<1.3.0
 # six>=1.12.0 # included in dcat
 
 # ckanext-googleanalytics
+# https://github.com/ckan/ckanext-googleanalytics/blob/master/requirements.txt
 oauth2client
 
 # ckanext-archiver
