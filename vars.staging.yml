@@ -14,7 +14,7 @@ gather_memory_quota: 3G
 
 new_relic_monitor_mode: true
 
-# use CDN domain for route-public if available, otherwise use route-external
+# use CDN domain for route-public if available, otherwise use route-external 
 route-public: catalog-stage.data.gov
 route-external: catalog-stage-datagov.app.cloud.gov
 route-internal: catalog-stage-datagov.apps.internal
@@ -22,8 +22,8 @@ route-external-admin: catalog-stage-admin-datagov.app.cloud.gov
 route-internal-admin: catalog-stage-admin-datagov.apps.internal
 
 saml2_certificate: |
-    -----BEGIN CERTIFICATE-----
-    placeholder
-    -----END CERTIFICATE-----
+  -----BEGIN CERTIFICATE-----
+  placeholder
+  -----END CERTIFICATE-----
 
-googleanalytics_id: G-WP7FK9QXZD
+googleanalytics_id: UA-00000000-2
