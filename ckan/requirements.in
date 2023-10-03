@@ -118,3 +118,4 @@ requests==2.31.0
 importlib-resources<6.0
 cryptography>=41.0.3
 gevent>=23.9.0
+urllib3>=1.26.17
