@@ -13,7 +13,7 @@ jobs:
     environment: ${{ matrix.environ }}
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 2
       matrix:
         command:
           - 'GoodDomainTest || curl -I -L --http1.1 https://gsa.gov | grep \"HTTP/1.1 200 OK\"'
