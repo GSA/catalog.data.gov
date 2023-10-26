@@ -99,14 +99,12 @@ SQLAlchemy[mypy]==1.4.41
 sqlparse==0.4.4
 tzlocal==4.2
 webassets==2.0
-Werkzeug==2.0
 # zope.interface==4.7.2
 
 # we are running under gunicorn
 # Pinned greenlet version to match version delivered with OS,
 # preventing error with gevent dependency using newer version.
 gunicorn
-gevent>=21.8.0
 # greenlet==0.4.12
 
 # New Relic
@@ -117,4 +115,8 @@ requests==2.31.0
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-cryptography>=41.0.3
+cryptography>=41.0.5
+gevent>=23.9.0
+pip>=23.3
+urllib3>=1.26.18
+werkzeug>=3.0.1
