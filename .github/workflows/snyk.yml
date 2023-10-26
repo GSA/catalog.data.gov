@@ -65,5 +65,5 @@ jobs:
             requirements
             automated pr
             snyk
-          team-reviewers: GSA/data-gov-team
+          team-reviewers: data-gov-support
           draft: false
