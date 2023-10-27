@@ -1,5 +1,11 @@
 ---
+cleancache: true
+keys:
+  - https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
+repos:
+  - deb https://download.newrelic.com/infrastructure_agent/linux/apt/ jammy main
 packages:
   - xmlsec1  # required for pysaml2
   - default-jre-headless # required for geodatagov fgdc2iso transform
   - libsaxonhe-java # required for geodatagov fgdc2iso transform
+  - newrelic-infra

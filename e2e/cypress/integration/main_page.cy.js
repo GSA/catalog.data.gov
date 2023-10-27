@@ -11,7 +11,7 @@ describe('Main Page', () => {
 
     it('google tracker injected', () => {
         cy.request('/dataset').then((response) => {
-            expect(response.body).to.have.string('UA-1010101-1');
+            expect(response.body).to.have.string('UA-00000000-0');
         });
     });
 });
