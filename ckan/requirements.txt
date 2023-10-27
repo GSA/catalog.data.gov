@@ -4,12 +4,12 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==3.3.0
 blinker==1.5
-boto3==1.28.65
-botocore==1.31.65
+boto3==1.28.72
+botocore==1.31.72
 certifi==2023.7.22
 cffi==1.16.0
 chardet==5.2.0
-charset-normalizer==3.3.0
+charset-normalizer==3.3.1
 ckan==2.10.1
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.0
@@ -26,7 +26,7 @@ ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@4d59366423e
 -e git+https://github.com/GSA/ckanext-spatial.git@6c92b9b5aedf19dc6a4737222372898ecae77e7f#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==8.1.3
-cryptography==41.0.4
+cryptography==41.0.5
 defusedxml==0.7.1
 dominate==2.7.0
 elementpath==4.1.5
@@ -43,7 +43,7 @@ geojson==3.0.1
 geomet==1.0.0
 gevent==23.9.1
 google-api-python-client==1.6.7
-greenlet==3.0.0
+greenlet==3.0.1
 gunicorn==21.2.0
 html5lib==1.1
 httplib2==0.22.0
@@ -63,7 +63,7 @@ MarkupSafe==2.1.3
 messytables==0.15.2
 mypy==1.6.1
 mypy-extensions==1.0.0
-newrelic==9.1.0
+newrelic==9.1.1
 nose==1.3.7
 numpy==1.26.1
 oauth2client==4.1.3
@@ -73,7 +73,7 @@ passlib==1.7.4
 PasteDeploy==2.0.1
 pathtools==0.1.2
 pika==1.2.1
-pip==23.2.1
+pip==23.3.1
 ply==3.11
 polib==1.1.1
 progressbar==2.5
@@ -83,7 +83,7 @@ pyasn1==0.5.0
 pyasn1-modules==0.3.0
 pycparser==2.21
 PyJWT==2.4.0
-pyOpenSSL==23.2.0
+pyOpenSSL==23.3.0
 pyparsing==3.1.1
 pyproj==3.4.1
 pysaml2==7.0.1
@@ -119,7 +119,7 @@ uritemplate==3.0.1
 urllib3==1.26.18
 webassets==2.0
 webencodings==0.5.1
-Werkzeug==2.0.0
+Werkzeug==3.0.1
 wheel==0.41.2
 WTForms==3.1.0
 xlrd==2.0.1

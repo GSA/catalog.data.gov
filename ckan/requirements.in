@@ -106,7 +106,6 @@ SQLAlchemy[mypy]==1.4.41
 sqlparse==0.4.4
 tzlocal==4.2
 webassets==2.0
-Werkzeug==2.0
 # zope.interface==4.7.2
 
 # we are running under gunicorn
@@ -123,5 +122,6 @@ requests==2.31.0
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-cryptography>=41.0.3
 gevent>=23.9.0
+cryptography>=41.0.5
+werkzeug>=3.0.1
