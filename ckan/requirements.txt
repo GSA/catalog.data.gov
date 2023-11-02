@@ -4,12 +4,12 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==3.3.0
 blinker==1.5
-boto3==1.28.73
-botocore==1.31.73
+boto3==1.28.76
+botocore==1.31.76
 certifi==2023.7.22
 cffi==1.16.0
 chardet==5.2.0
-charset-normalizer==3.3.1
+charset-normalizer==3.3.2
 ckan==2.10.1
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.0
@@ -119,9 +119,9 @@ uritemplate==3.0.1
 urllib3==1.26.18
 webassets==2.0
 webencodings==0.5.1
-Werkzeug==2.0.0
+Werkzeug==3.0.1
 wheel==0.41.2
-WTForms==3.1.0
+WTForms==3.1.1
 xlrd==2.0.1
 xmlschema==2.5.0
 zipp==3.17.0
