@@ -44,4 +44,11 @@ ignore:
           https://github.com/GSA/data.gov/issues/4217
         expires: 2023-12-31T14:44:52.166Z
         created: 2023-11-02T14:44:52.170Z
+  SNYK-PYTHON-CRYPTOGRAPHY-6050294:
+    - '*':
+        reason: >-
+          No remediation available yet; Issue tracked in github:
+          https://github.com/GSA/data.gov/issues/4532
+        expires: 2024-02-8T00:00:00.000Z
+        created: 2023-11-16T20:31:20.590Z
 patch: {}
