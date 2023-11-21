@@ -66,5 +66,4 @@ jobs:
           ENVIRONMENT: ${{ matrix.environ }}
         with:
           filename: .github/egress_check_error.md
-          assignees: ${{ github.actor }}
           update_existing: true
