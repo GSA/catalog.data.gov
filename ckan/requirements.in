@@ -123,5 +123,5 @@ requests==2.31.0
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-cryptography>=41.0.3
 gevent>=23.9.0
+cryptography>=41.0.6
