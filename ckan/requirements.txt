@@ -1,7 +1,12 @@
+-e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
+-e git+https://github.com/ckan/ckanext-googleanalytics.git@24d9a7ff62235bc2d543e6594f7362763411b0f9#egg=ckanext_googleanalytics
+-e git+https://github.com/ckan/ckanext-harvest.git@9fb44f79809a1c04dfeb0e1ca2540c5ff3cacef4#egg=ckanext_harvest
+-e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
+-e git+https://github.com/ckan/ckanext-spatial.git@938308469892e4bcf7389cb4adee5ccdd5a0ccca#egg=ckanext_spatial
 alembic==1.8.1
-async-timeout==4.0.3
-Babel==2.10.3
-Beaker==1.11.0
+argparse==1.4.0
+babel==2.10.3
+beaker==1.11.0
 bleach==3.3.0
 blinker==1.5
 boto3==1.33.2
@@ -10,20 +15,15 @@ certifi==2023.11.17
 cffi==1.16.0
 chardet==5.2.0
 charset-normalizer==3.3.2
-ckan==2.10.1
--e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
+ckan==2.10.3
 ckanext-datagovcatalog==0.1.0
 ckanext-datagovtheme==0.2.9
 ckanext-datajson==0.1.22
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@1109205069dd105dda27e3486898e4ca1525a808
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@master
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.2.7
--e git+https://github.com/ckan/ckanext-googleanalytics.git@24d9a7ff62235bc2d543e6594f7362763411b0f9#egg=ckanext_googleanalytics
--e git+https://github.com/ckan/ckanext-harvest.git@9fb44f79809a1c04dfeb0e1ca2540c5ff3cacef4#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.6
--e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
-ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@4d59366423ed965ba86a7b85547a6bd9f4351869
--e git+https://github.com/ckan/ckanext-spatial.git@938308469892e4bcf7389cb4adee5ccdd5a0ccca#egg=ckanext_spatial
+ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@create_user_via_saml.log_210
 ckantoolkit==0.0.7
 click==8.1.3
 cryptography==41.0.7
@@ -31,14 +31,14 @@ defusedxml==0.7.1
 dominate==2.7.0
 elementpath==4.1.5
 feedgen==0.9.0
-Flask==2.0.3
-Flask-Babel==1.0.0
-Flask-Login==0.6.1
+flask==2.0.3
+flask-babel==1.0.0
+flask-login==0.6.1
 flask-multistatic==1.0
-Flask-WTF==1.0.1
+flask-wtf==1.0.1
 future==0.18.3
 gdata==2.0.18
-GeoAlchemy2==0.5.0
+geoalchemy2==0.5.0
 geojson==3.0.1
 geomet==1.1.0
 gevent==23.9.1
@@ -48,18 +48,17 @@ gunicorn==21.2.0
 html5lib==1.1
 httplib2==0.22.0
 idna==3.6
-importlib-metadata==6.8.0
 importlib-resources==5.13.0
 isodate==0.6.1
 itsdangerous==2.1.2
-Jinja2==3.1.2
+jinja2==3.1.2
 jmespath==1.0.1
 json-table-schema==0.2.1
 jsonschema==2.4.0
 lxml==4.9.3
-Mako==1.3.0
-Markdown==3.4.1
-MarkupSafe==2.1.3
+mako==1.3.0
+markdown==3.4.1
+markupsafe==2.1.3
 messytables==0.15.2
 mypy==1.7.1
 mypy-extensions==1.0.0
@@ -67,13 +66,12 @@ newrelic==9.2.0
 nose==1.3.7
 numpy==1.26.2
 oauth2client==4.1.3
-OWSLib==0.29.3
+owslib==0.29.3
 packaging==23.2
 passlib==1.7.4
-PasteDeploy==2.0.1
+pastedeploy==2.0.1
 pathtools==0.1.2
 pika==1.2.1
-pip==23.3.1
 ply==3.11
 polib==1.1.1
 progressbar==2.5
@@ -82,8 +80,8 @@ psycopg2==2.9.3
 pyasn1==0.5.1
 pyasn1-modules==0.3.0
 pycparser==2.21
-PyJWT==2.4.0
-pyOpenSSL==23.3.0
+pyjwt==2.4.0
+pyopenssl==23.3.0
 pyparsing==3.1.1
 pyproj==3.4.1
 pysaml2==7.0.1
@@ -93,9 +91,9 @@ python-magic==0.4.27
 python-utils==3.8.1
 pytz==2023.3.post1
 pytz-deprecation-shim==0.1.0.post0
-PyUtilib==6.0.0
-PyYAML==6.0
-PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
+pyutilib==6.0.0
+pyyaml==6.0
+pyz3950 @ git+https://github.com/danizen/PyZ3950
 rdflib==6.1.1
 redis==5.0.1
 requests==2.31.0
@@ -104,26 +102,22 @@ rq==1.11.0
 rsa==4.9
 s3transfer==0.8.1
 sansjson==0.3.0
-setuptools==67.1.0
 shapely==2.0.1
 simplejson==3.18.0
 six==1.16.0
-SQLAlchemy==1.4.41
+sqlalchemy[mypy]==1.4.41
 sqlalchemy2-stubs==0.0.2a37
 sqlparse==0.4.4
-tomli==2.0.1
-typing_extensions==4.8.0
+typing-extensions==4.8.0
 tzdata==2023.3
 tzlocal==4.2
 uritemplate==3.0.1
 urllib3==1.26.18
 webassets==2.0
 webencodings==0.5.1
-Werkzeug==2.0.0
-wheel==0.41.3
-WTForms==3.1.1
+werkzeug==2.0.0
+wtforms==3.1.1
 xlrd==2.0.1
 xmlschema==2.5.0
-zipp==3.17.0
-zope.event==5.0
-zope.interface==6.1
+zope-event==5.0
+zope-interface==6.1
