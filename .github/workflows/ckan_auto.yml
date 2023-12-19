@@ -158,5 +158,4 @@ jobs:
           EXEC_TIME: ${{ env.ELAPSED }}
         with:
           filename: ${{ matrix.issue_template }}
-          assignees: ${{ github.actor }}
           update_existing: true
