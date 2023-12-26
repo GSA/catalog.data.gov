@@ -127,7 +127,7 @@ You should now be able to visit `https://[ROUTE]`, where `[ROUTE]` is the route 
 ### Secrets
 
 ips on managing
-[secrets](https://github.com/GSA/data.gov/wiki/Cloud.gov-Cheat-Sheet#secrets-management).
+[secrets](https://github.com/GSA/data.gov/wiki/cloud.gov#secrets-management).
 When creating the service for the first time, use `create-user-provided-service`
 instead of update.
 
