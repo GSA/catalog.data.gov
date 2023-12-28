@@ -51,4 +51,18 @@ ignore:
           https://github.com/GSA/data.gov/issues/4532
         expires: 2024-02-8T00:00:00.000Z
         created: 2023-11-16T20:31:20.590Z
+  SNYK-PYTHON-CKAN-6124881:
+    - '*':
+        reason: >-
+          Remediation blocked by CKAN upgrade to 2.10.3:
+          https://github.com/GSA/data.gov/issues/4571
+        expires: 2024-03-14T00:00:00.000Z
+        created: 2023-12-14T00:00:00.000Z
+  SNYK-PYTHON-CRYPTOGRAPHY-6126975:
+    - '*':
+        reason: >-
+          No remediation available yet; Issue tracked in github:
+          https://github.com/GSA/data.gov/issues/4532
+        expires: 2024-03-14T00:00:00.000Z
+        created: 2023-12-14T00:00:00.000Z        
 patch: {}
