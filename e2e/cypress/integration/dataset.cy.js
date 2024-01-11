@@ -54,4 +54,19 @@ describe('Dataset', () => {
         cy.get('a[class="heading"]').contains('NCEI Contact Information').click();
         cy.get('ul[class="list-unstyled nav nav-simple"] li').eq(1).click();
     });
+
+    it("Can click on feedback button", () => {
+        cy.visit('/dataset/ek500-water-column-sonar-data-collected-during-al0001');
+        // sleep for 1 second to allow touchpoint js to load
+        cy.wait(1000);
+        cy.hide_debug_toolbar();
+        // the button is visible
+        cy.get('#contact-btn').should('be.visible').click();
+        // the modal is invisible
+        cy.get('#fba-modal-dialog').should('be.visible');
+        cy.get('#fba_location_code').should('have.value', 'ek500-water-column-sonar-data-collected-during-al0001');
+        // can hide the modal
+        cy.get('a[class="fba-modal-close"]').click();
+        cy.get('#fba-modal-dialog').should('not.be.visible');
+    });
 });
