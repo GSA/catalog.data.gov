@@ -4,8 +4,8 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==3.3.0
 blinker==1.5
-boto3==1.34.17
-botocore==1.34.17
+boto3==1.34.19
+botocore==1.34.19
 certifi==2023.11.17
 cffi==1.16.0
 chardet==5.2.0
@@ -13,7 +13,7 @@ charset-normalizer==3.3.2
 ckan==2.10.1
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.0
-ckanext-datagovtheme==0.2.11
+ckanext-datagovtheme==0.2.12
 ckanext-datajson==0.1.23
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@1109205069dd105dda27e3486898e4ca1525a808
 ckanext-envvars==0.0.3
