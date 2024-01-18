@@ -4,8 +4,8 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==3.3.0
 blinker==1.5
-boto3==1.34.19
-botocore==1.34.19
+boto3==1.34.21
+botocore==1.34.21
 certifi==2023.11.17
 cffi==1.16.0
 chardet==5.2.0
