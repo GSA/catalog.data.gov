@@ -47,6 +47,9 @@ jobs:
           # Update requirements.txt
           make update-dependencies
 
+          # show git diff
+          git diff --color-words="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
+
           # Fail so that PR is created
           exit 1
       - name: Create Pull Request
