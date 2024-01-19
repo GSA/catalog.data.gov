@@ -79,4 +79,16 @@ ignore:
           https://github.com/GSA/data.gov/issues/4532
         expires: 2024-04-10T19:29:54.032Z
         created: 2024-01-11T19:29:54.039Z
+  SNYK-PYTHON-PYOPENSSL-6157250:
+    - '*':
+        reason: >-
+          No remediation available yet; Issue tracked in github:
+          https://github.com/GSA/data.gov/issues/4591
+        expires: 2024-04-10T19:29:54.032Z
+  SNYK-PYTHON-CRYPTOGRAPHY-6157248:
+    - '*':
+        reason: >-
+          No remediation available yet; Issue tracked in github:
+          https://github.com/GSA/data.gov/issues/4590
+        expires: 2024-04-10T19:29:54.032Z
 patch: {}
