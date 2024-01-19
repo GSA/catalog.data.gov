@@ -41,11 +41,17 @@ jobs:
           # Update requirements.in with the snyk fix suggestions
           python tools/snyk-update.py
 
-          # Remove unnecessary file so that it doesn't get added to the repo
-          rm scan.json
-
           # Update requirements.txt
           make update-dependencies
+
+          # Check if there are any changes
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Found vulnerable issues but no upgrade or patch available"
+            cat scan.json | jq '[.vulnerabilities[] | .id] | unique[]'
+          else
+            echo "Changes made to add into PR: "
+            git diff
+          fi
 
           # Fail so that PR is created
           exit 1
