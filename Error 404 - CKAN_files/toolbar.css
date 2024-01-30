@@ -1,0 +1,399 @@
+/* Debug Toolbar CSS Reset, adapted from Eric Meyer's CSS Reset */
+#flDebug, #flDebug * {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:12px;
+  line-height:1.5em;
+  color:#000;
+  vertical-align:baseline;
+  background: none;
+  font-family: inherit;
+  text-align:left;
+}
+
+#flDebug { font-family: sans-serif; color: #000; background: #fff; }
+
+#flDebug tbody, #flDebug code, #flDebug pre {
+  font-family: Consolas, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", monospace;
+}
+
+#flDebug #flDebugToolbar {
+  background:#111;
+  width:200px;
+  z-index:100000000;
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  opacity:0.9;
+  overflow-y: auto;
+}
+
+#flDebug #flDebugToolbar small {
+  color:#999;
+}
+
+#flDebug #flDebugToolbar ul {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+#flDebug #flDebugToolbar li {
+  border-bottom:1px solid #222;
+  color:#fff;
+  display:block;
+  font-weight:bold;
+  float:none;
+  margin:0;
+  padding:0;
+  position:relative;
+  width:auto;
+}
+
+#flDebug #flDebugToolbar li>a,
+#flDebug #flDebugToolbar li>div.flDebugContentless  {
+  font-weight:normal;
+  font-style:normal;
+  text-decoration:none;
+  display:block;
+  font-size:16px;
+  padding:10px 10px 5px 25px;
+  color:#fff;
+}
+
+#flDebug #flDebugToolbar li a:hover {
+  color:#111;
+  background-color:#ffc;
+}
+
+#flDebug #flDebugToolbar li.flDebugActive {
+  background-image:url(../img/indicator.png);
+  background-repeat:no-repeat;
+  background-position:left center;
+  background-color:#333;
+  padding-left:10px;
+}
+
+#flDebug #flDebugToolbar li.flDebugActive a:hover {
+  color:#b36a60;
+  background-color:transparent;
+}
+
+#flDebug #flDebugToolbar li small {
+  font-size:12px;
+  color:#999;
+  font-style:normal;
+  text-decoration:none;
+  font-variant:small-caps;
+}
+
+#flDebug #flDebugToolbar li .flDebugSwitch {
+  font-size: 10px;
+  position: absolute;
+  display: block;
+  color: white;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  top: 15px;
+  right: 2px;
+}
+
+#flDebug #flDebugToolbar li .flDebugSwitch.flDebugActive {
+  background-image: url(../img/tick.png);
+}
+
+#flDebug #flDebugToolbar li .flDebugSwitch.flDebugInactive {
+  background-image: url(../img/tick-red.png);
+}
+
+
+#flDebug #flDebugToolbarHandle {
+  position:fixed;
+  background:#fff;
+  border:1px solid #111;
+  top:30px;
+  right:0;
+  z-index:100000000;
+  opacity:0.75;
+}
+
+#flDebug a#flDebugShowToolBarButton {
+  display:block;
+  height:75px;
+  width:30px;
+  border-right:none;
+  border-bottom:4px solid #fff;
+  border-top:4px solid #fff;
+  border-left:4px solid #fff;
+  color:#fff;
+  font-size:10px;
+  font-weight:bold;
+  text-decoration:none;
+  text-align:center;
+  text-indent:-999999px;
+  background:#000 url(../img/djdt_vertical.png) no-repeat left center;
+  opacity:0.5;
+}
+
+#flDebug a#flDebugShowToolBarButton:hover {
+  background-color:#111;
+  padding-right:6px;
+  border-top-color:#FFE761;
+  border-left-color:#FFE761;
+  border-bottom-color:#FFE761;
+  opacity:1.0;
+}
+
+#flDebug code {
+  display:inline;
+  white-space:pre;
+  overflow:auto;
+}
+
+#flDebug tr.flDebugOdd {
+  background-color:#f5f5f5;
+}
+
+#flDebug .flDebugPanelContentParent {
+  display:none;
+  position:fixed;
+  margin:0;
+  top:0;
+  right:200px;
+  bottom:0;
+  left:0px;
+  background-color:#eee;
+  color:#666;
+  overflow: auto;
+  z-index:100000000;
+}
+
+#flDebug .flDebugPanelContentParent > div {
+  border-bottom:1px solid #ddd;
+}
+
+#flDebug .flDebugPanelTitle {
+  position:absolute;
+  background-color:#ffc;
+  color:#666;
+  padding-left:20px;
+  top:0;
+  right:0;
+  left:0;
+  height:50px;
+}
+
+#flDebug .flDebugPanelTitle code {
+  display:inline;
+  font-size:inherit;
+}
+
+#flDebug .flDebugPanelContent {
+  position:absolute;
+  top:50px;
+  right:0;
+  bottom:0;
+  left:0;
+  height:auto;
+  padding:0 0 0 20px;
+}
+
+#flDebug .flDebugPanelContent .flDebugScroll {
+  height:100%;
+  overflow:auto;
+  display:block;
+  padding:0 10px 10px 0;
+}
+
+#flDebug h3 {
+  font-size:24px;
+  font-weight:normal;
+  line-height:50px;
+}
+
+#flDebug h4 {
+  font-size:20px;
+  font-weight:bold;
+  margin-top:0.8em;
+}
+
+#flDebug h5 {
+  font-size: 14px;
+}
+
+#flDebug .flDebugPanelContentParent table {
+  border:1px solid #ccc;
+  border-collapse:collapse;
+  width:100%;
+  background-color:#fff;
+  display:block;
+  margin-top:0.8em;
+  overflow: auto;
+}
+#flDebug .flDebugPanelContentParent tbody td,
+#flDebug .flDebugPanelContentParent tbody th {
+  vertical-align:top;
+  padding:2px 3px;
+}
+#flDebug .flDebugPanelContentParent thead th {
+  padding:1px 6px 1px 3px;
+  text-align:left;
+  font-weight:bold;
+  font-size:14px;
+}
+#flDebug .flDebugPanelContentParent tbody th {
+  width:12em;
+  text-align:right;
+  color:#666;
+  padding-right:.5em;
+}
+
+#flDebug .flDebugPanelContentParent ol li {
+  margin: 0 0 1em 2em;
+}
+
+#flDebug .flDebugPanelContentParent pre {
+  border:1px solid #ccc;
+  background-color:#fff;
+  display:block;
+  margin:0.8em 0;
+  padding: 0.2em 0.5em;
+}
+
+#flDebug .flTemplateHideContextDiv {
+  background-color:#fff;
+}
+
+#flDebug .flDebugPanelContentParent .flDebugClose {
+  text-indent:-9999999px;
+  display:block;
+  position:absolute;
+  top:4px;
+  right:15px;
+  height:40px;
+  width:40px;
+  background:url(../img/close.png) no-repeat center center;
+}
+
+#flDebug .flDebugPanelContentParent .flDebugClose:hover {
+  background-image:url(../img/close_hover.png);
+}
+
+#flDebug .flDebugPanelContentParent .flDebugClose.flDebugBack {
+  background-image:url(../img/back.png);
+}
+
+#flDebug .flDebugPanelContentParent .flDebugClose.flDebugBack:hover  {
+  background-image:url(../img/back_hover.png);
+}
+
+#flDebug .flDebugPanelContentParent dt, #flDebug .flDebugPanelContentParent dd {
+  display:block;
+}
+
+#flDebug .flDebugPanelContentParent dt {
+  margin-top:0.75em;
+}
+
+#flDebug .flDebugPanelContentParent dd {
+  margin-left:10px;
+}
+
+#flDebug a.flDebugToggleTemplate {
+  padding:4px;
+  background-color:#bbb;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+}
+
+#flDebug a.flDebugToggleTemplate:hover {
+  padding:4px;
+  background-color:#444;
+  color:#ffe761;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+}
+
+
+#flDebug a.flDebugTemplateShowContext, #flDebug a.flDebugTemplateShowContext span.flDebugToggleArrow {
+  color:#999;
+}
+
+#flDebug a.flDebugTemplateShowContext:hover,  #flDebug a.flDebugTemplateShowContext:hover span.flDebugToggleArrow {
+  color:#000;
+  cursor:pointer;
+}
+
+#flDebug .flDebugSqlWrap {
+  position:relative;
+}
+
+#flDebug .flDebugSql {
+  z-index:100000002;
+}
+
+#flDebug .flDebugHideStacktraceDiv tbody th {
+  text-align: left;
+}
+
+#flDebug span.flDebugLineChart {
+  background-color:#777;
+  height:3px;
+  position:absolute;
+  bottom:0;
+  top:0;
+  left:0;
+  display:block;
+  z-index:1000000001;
+}
+#flDebug span.flDebugLineChartWarning {
+  background-color:#900;
+}
+
+#flDebug .highlight  { color:#000; }
+#flDebug .highlight .err { color:#000; } /* Error */
+#flDebug .highlight .g { color:#000; } /* Generic */
+#flDebug .highlight .k { color:#000; font-weight:bold } /* Keyword */
+#flDebug .highlight .o { color:#000; } /* Operator */
+#flDebug .highlight .n { color:#000; } /* Name */
+#flDebug .highlight .mi { color:#000; font-weight:bold } /* Literal.Number.Integer */
+#flDebug .highlight .l { color:#000; } /* Literal */
+#flDebug .highlight .x { color:#000; } /* Other */
+#flDebug .highlight .p { color:#000; } /* Punctuation */
+#flDebug .highlight .m { color:#000; font-weight:bold } /* Literal.Number */
+#flDebug .highlight .s { color:#333 } /* Literal.String */
+#flDebug .highlight .w { color:#888888 } /* Text.Whitespace */
+#flDebug .highlight .il { color:#000; font-weight:bold } /* Literal.Number.Integer.Long */
+#flDebug .highlight .na { color:#333 } /* Name.Attribute */
+#flDebug .highlight .nt { color:#000; font-weight:bold } /* Name.Tag */
+#flDebug .highlight .nv { color:#333 } /* Name.Variable */
+#flDebug .highlight .s2 { color:#333 } /* Literal.String.Double */
+#flDebug .highlight .cp { color:#333 } /* Comment.Preproc */
+
+/* tablesorted */
+#flDebug table.flDebugTablesorter {
+  width: 100%;
+}
+#flDebug table.flDebugTablesorter thead th, table.flDebugTablesorter tfoot th {
+  padding-right: 20px;
+}
+#flDebug table.flDebugTablesorter thead th {
+  background: url(../img/bg.gif) center right no-repeat;
+  cursor: pointer;
+}
+#flDebug table.flDebugTablesorter tbody tr.odd td {
+  background-color: #F0F0F6;
+}
+#flDebug table.flDebugTablesorter thead .headerSortUp {
+  background-image: url(../img/asc.gif);
+}
+#flDebug table.flDebugTablesorter thead .headerSortDown {
+  background-image: url(../img/desc.gif);
+}
+#flDebug table.flDebugTablesorter thead .headerSortDown, #flDebug table.flDebugTablesorter thead .headerSortUp {
+  background-color: #8dbdd8;
+}
