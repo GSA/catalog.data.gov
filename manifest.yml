@@ -79,6 +79,7 @@ applications:
       INTERNAL_ROUTE: ((route-internal))
       EXTERNAL_ROUTE_ADMIN: ((route-external-admin))
       INTERNAL_ROUTE_ADMIN: ((route-internal-admin))
+      DENY_PACKAGE_CREATE: ((deny_package_create))
 
   - name: ((app_name))-gather
     buildpacks:
