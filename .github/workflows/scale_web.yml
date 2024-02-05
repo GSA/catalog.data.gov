@@ -1,0 +1,23 @@
+---
+name: 7 - Scale catalog-web
+
+on:
+  workflow_dispatch:
+    inputs:
+      environ:
+        description: 'Environment:'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - prod
+
+jobs:
+  scale-catalog-web:
+    name: scale ${{inputs.environ}} catalog-web
+    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@scale
+    with:
+      environ: ${{inputs.environ}}
+      app_names: "{\"include\":[{\"app\":\"catalog-web\"},]}"
+    secrets: inherit
