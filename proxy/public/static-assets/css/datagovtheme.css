@@ -264,14 +264,14 @@ template{
   font-style:normal;
   font-weight:400;
   font-display:fallback;
-  src:url(../../fonts/source-sans-pro/sourcesanspro-regular-webfont.woff2) format("woff2"), url(../../fonts/source-sans-pro/sourcesanspro-regular-webfont.woff) format("woff"), url(../../fonts/source-sans-pro/sourcesanspro-regular-webfont.ttf) format("truetype");
+  src:url(/static-assets/fonts/sourcesanspro-regular-webfont.woff2) format("woff2"), url(/static-assets/fonts/sourcesanspro-regular-webfont.woff) format("woff"), url(../../fonts/source-sans-pro/sourcesanspro-regular-webfont.ttf) format("truetype");
 }
 @font-face{
   font-family:"Source Sans Pro Web";
   font-style:normal;
   font-weight:700;
   font-display:fallback;
-  src:url(../../fonts/source-sans-pro/sourcesanspro-bold-webfont.woff2) format("woff2"), url(../../fonts/source-sans-pro/sourcesanspro-bold-webfont.woff) format("woff"), url(../../fonts/source-sans-pro/sourcesanspro-bold-webfont.ttf) format("truetype");
+  src:url(/static-assets/fonts/sourcesanspro-bold-webfont.woff2) format("woff2"), url(../../fonts/source-sans-pro/sourcesanspro-bold-webfont.woff) format("woff"), url(../../fonts/source-sans-pro/sourcesanspro-bold-webfont.ttf) format("truetype");
 }
 @font-face{
   font-family:"Source Sans Pro Web";
@@ -27000,14 +27000,14 @@ a {
     display: block;
     float: left;
     height: 53px;
-    background-image: url('/images/logo.png');
+    background-image: url('/static-assets/images/logo.png');
     width: 204px;
 }
 .masthead .container .logo a {
     display: block;
     float: left;
     height: 48px;
-    background: url('/images/logo.svg') no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);
+    background: url('/static-assets/images/logo.svg') no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);
     width: 200px;
 }
 .masthead .container .logo a span {
@@ -28193,7 +28193,7 @@ footer.site-footer {
         rgba(0, 0, 0, 0);
 }
 a.logo-brand {
-    background: url('/images/logo.png') no-repeat scroll left center;
+    background: url('/static-assets/images/logo.png') no-repeat scroll left center;
     margin-left: 15px;
     overflow: hidden;
     text-indent: -9999em;
@@ -29369,7 +29369,7 @@ body .usa-header .grid-container {
     position: relative;
 }
 body .usa-logo a {
-    background-image: url('/images/logo.svg');
+    background-image: url('/static-assets/images/logo.svg');
     background-repeat: no-repeat;
     height: 48px;
     width: 200px;
