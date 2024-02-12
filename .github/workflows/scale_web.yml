@@ -1,0 +1,16 @@
+---
+name: 7 - Scale catalog-web
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  scale-prod-web:
+    name: scale prod catalog-web
+    uses: gsa/data.gov/.github/workflows/scale-web-template.yml@main
+    with:
+      environ: prod
+      app_names: "{\"include\":[{\"app\":\"catalog-web\"},]}"
+    secrets: inherit

@@ -27,3 +27,5 @@ saml2_certificate: |
   -----END CERTIFICATE-----
 
 googleanalytics_id: UA-00000000-2
+
+deny_package_create: false
