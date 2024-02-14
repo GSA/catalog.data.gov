@@ -60,6 +60,8 @@ validate-proxy:
 	sed -i 's#{{env "S3_URL"}}#http://test.com#g' proxy/nginx-common.conf
 	sed -i 's#{{env "S3_BUCKET"}}#somebucket#g' proxy/nginx-common.conf
 	sed -i 's#{{env "DENY_PACKAGE_CREATE"}}#truetodeny#g' proxy/nginx-common.conf
+	sed -i 's#{{env "CATALOG_WEB_MODE"}}#maintenancemaybe#g' proxy/nginx.conf
+	sed -i 's#{{env "CATALOG_ADMIN_MODE"}}#maintenancemaybe#g' proxy/nginx.conf
 	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx nginx -t -c /proxy/nginx.conf
 	sed -i 's/127.0.0.1/{{nameservers}}/g' proxy/nginx.conf
 	sed -i 's/127.0.0.2/{{env "EXTERNAL_ROUTE"}}/g' proxy/nginx.conf proxy/nginx-cloudfront.conf
@@ -72,6 +74,8 @@ validate-proxy:
 	sed -i 's#http://test.com#{{env "S3_URL"}}#g' proxy/nginx-common.conf
 	sed -i 's#somebucket#{{env "S3_BUCKET"}}#g' proxy/nginx-common.conf
 	sed -i 's/truetodeny/{{env "DENY_PACKAGE_CREATE"}}/g' proxy/nginx-common.conf
+	sed -i 's/maintenancemaybe/{{env "CATALOG_WEB_MODE"}}/g' proxy/nginx.conf
+	sed -i 's/maintenancemaybe/{{env "CATALOG_ADMIN_MODE"}}/g' proxy/nginx.conf
 
 quick-bat-test:
 	# if local environment is already build and running
