@@ -1,0 +1,64 @@
+---
+name: 8 - Maintenance Mode
+
+on:
+  workflow_dispatch:
+    inputs:
+      environ:
+        description: 'Environment:'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - prod
+      app:
+        description: 'Catalog App:'
+        required: true
+        type: choice
+        options:
+          - catalog-web
+          - catalog-admin
+          - both
+      mode:
+        description: 'Operation Mode:'
+        required: true
+        type: choice
+        options:
+          - Normal
+          - Scheduled_Maintenance
+          - Unscheduled_Downtime
+      notification:
+        description: 'Notification to Slack?'
+        required: true
+        type: boolean
+        default: true
+
+jobs:
+  set-maintenance-mode:
+    name: Set ${{inputs.environ}}:${{inputs.app}} to ${{inputs.mode}}
+    runs-on: ubuntu-latest
+    environment: ${{inputs.environ}}
+    steps:
+      - name: checkout datagov
+        uses: actions/checkout@v3
+        with:
+          path: './catalog'
+      - name: run task
+        uses: cloud-gov/cg-cli-tools@main
+        with:
+          command: catalog/tools/set_maintenance.sh ${{inputs.app}} ${{inputs.mode}}
+          cf_org: gsa-datagov
+          cf_space: ${{ inputs.environ }}
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+      - name: Send notification to Slack
+        if: ${{ inputs.notification }}
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "${{inputs.app}} catalog app in ${{inputs.environ}} space is now in ${{inputs.mode}} mode."
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
