@@ -9,6 +9,7 @@ web-instances: 1
 admin-instances: 1
 gather-instances: 1
 fetch-instances: 1
+proxy-instances: 1
 memory_quota: 750M
 gather_memory_quota: 1G
 
