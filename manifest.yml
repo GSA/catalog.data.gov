@@ -70,6 +70,7 @@ applications:
     path: ./proxy
     # TODO: tweak with load testing
     memory: 100M
+    instances: ((proxy-instances))
     routes:
       - route: ((route-external))
       - route: ((route-external-admin))
