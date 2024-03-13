@@ -163,9 +163,10 @@ echo Running ckan setup commands
 
 if [[ $MIGRATE_DB = 'True' ]]; then
   # Run migrations
+  ckan db init
   ckan db upgrade
   ckan harvester initdb
+  ckan report initdb
   # ckan archiver init
-  # ckan report initdb
   # ckan qa init
 fi
