@@ -1,5 +1,4 @@
 # CKAN requirements and extensions
-ckan==2.10.1
 git+https://github.com/ckan/ckanext-dcat@master#egg=ckanext-dcat
 -e git+https://github.com/ckan/ckanext-harvest.git@v1.5.6#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-googleanalytics.git@master#egg=ckanext-googleanalytics
@@ -125,3 +124,4 @@ importlib-resources<6.0
 gevent>=23.9.0
 jinja2>=3.1.3
 cryptography>=42.0.4
+ckan>=2.10.4
