@@ -84,16 +84,4 @@ ignore:
           No remediation available yet; Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4590
         expires: 2024-04-10T19:29:54.032Z
-  SNYK-PYTHON-CKAN-6124881:
-    - '*':
-        reason: >-
-          Work in progress. Issue tracked in github:
-          https://github.com/GSA/data.gov/issues/4571
-        expires: 2024-03-31T19:29:54.032Z
-  SNYK-PYTHON-CKAN-6437666:
-    - '*':
-        reason: >-
-          Work in progress. Issue tracked in github:
-          https://github.com/GSA/data.gov/issues/4659
-        expires: 2024-03-31T19:29:54.032Z
 patch: {}

@@ -1,5 +1,5 @@
 # CKAN requirements and extensions
-ckan==2.10.1
+ckan==2.10.4
 git+https://github.com/ckan/ckanext-dcat@master#egg=ckanext-dcat
 -e git+https://github.com/ckan/ckanext-harvest.git@v1.5.6#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-googleanalytics.git@master#egg=ckanext-googleanalytics
@@ -71,42 +71,45 @@ future>=0.18.3
 # https://github.com/ckan/ckan/blob/ckan-2.9.5/requirements.txt
 alembic==1.8.1
 Babel==2.10.3
+backports-zoneinfo==0.2.1; python_version < '3.9'
 Beaker==1.11.0
-bleach==3.3.0
+bleach==5.0.1
 blinker==1.5
 click==8.1.3
 dominate==2.7.0
 feedgen==0.9.0
 Flask==2.0.3
 Flask-Babel==1.0.0
-flask-multistatic==1.0
 Flask-Login==0.6.1
 Flask-WTF==1.0.1
-pyjwt==2.4.0
+flask-multistatic==1.0
+greenlet==2.0.2
+#Jinja2==3.1.2
+PyJWT==2.4.0
 Markdown==3.4.1
 passlib==1.7.4
-pastedeploy==2.0.1        # manually kept - remove when #4802 is complete
-pathtools==0.1.2          # via watchdog
 polib==1.1.1
 psycopg2==2.9.3
-PyJWT==2.4.0
 python-magic==0.4.27
 pysolr==3.9.0
-python-dateutil>=2.8.2
+python-dateutil==2.8.2
 pytz
 PyUtilib==6.0.0
-pyyaml==6.0
-requests==2.31.0
+pyyaml==6.0.1
+#requests==2.28.1
 rq==1.11.0
-simplejson==3.18.0 # ckan 2.9.5 requires 3.10.0 only
-# Following can be ignored: https://github.com/ckan/ckan/pull/4450
-# sqlalchemy-migrate==0.12.0
+#simplejson==3.17.6
 SQLAlchemy[mypy]==1.4.41
-sqlparse==0.4.4
+#sqlparse==0.4.2
+typing_extensions==4.3.0
 tzlocal==4.2
 webassets==2.0
-Werkzeug==2.0
-# zope.interface==4.7.2
+Werkzeug[watchdog]==2.0.3
+zope.interface==5.4.0
+
+# catalog uses newer versions of these packages
+simplejson==3.18.0
+sqlparse==0.4.4
 
 # we are running under gunicorn
 # Pinned greenlet version to match version delivered with OS,
