@@ -4,8 +4,8 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==5.0.1
 blinker==1.5
-boto3==1.34.69
-botocore==1.34.69
+boto3==1.34.73
+botocore==1.34.73
 certifi==2024.2.2
 cffi==1.16.0
 chardet==5.2.0
@@ -55,14 +55,14 @@ Jinja2==3.1.3
 jmespath==1.0.1
 json-table-schema==0.2.1
 jsonschema==2.4.0
-lxml==5.1.0
+lxml==5.1.1
 Mako==1.3.2
 Markdown==3.4.1
 MarkupSafe==2.1.5
 messytables==0.15.2
 mypy==1.9.0
 mypy-extensions==1.0.0
-newrelic==9.7.1
+newrelic==9.8.0
 nose==1.3.7
 numpy==1.26.4
 oauth2client==4.1.3
@@ -76,8 +76,8 @@ polib==1.1.1
 progressbar==2.5
 progressbar2==3.53.3
 psycopg2==2.9.3
-pyasn1==0.5.1
-pyasn1-modules==0.3.0
+pyasn1==0.6.0
+pyasn1_modules==0.4.0
 pycparser==2.21
 PyJWT==2.4.0
 pyOpenSSL==24.1.0
@@ -121,6 +121,6 @@ Werkzeug==2.0.3
 wheel==0.42.0
 WTForms==3.1.2
 xlrd==2.0.1
-xmlschema==3.1.0
+xmlschema==3.2.0
 zope.event==5.0
 zope.interface==5.4.0
