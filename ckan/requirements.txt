@@ -4,8 +4,8 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==5.0.1
 blinker==1.5
-boto3==1.34.73
-botocore==1.34.73
+boto3==1.34.75
+botocore==1.34.75
 certifi==2024.2.2
 cffi==1.16.0
 chardet==5.2.0
@@ -55,7 +55,7 @@ Jinja2==3.1.3
 jmespath==1.0.1
 json-table-schema==0.2.1
 jsonschema==2.4.0
-lxml==5.1.1
+lxml==5.1.0
 Mako==1.3.2
 Markdown==3.4.1
 MarkupSafe==2.1.5
@@ -78,7 +78,7 @@ progressbar2==3.53.3
 psycopg2==2.9.3
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
-pycparser==2.21
+pycparser==2.22
 PyJWT==2.4.0
 pyOpenSSL==24.1.0
 pyparsing==3.1.2
