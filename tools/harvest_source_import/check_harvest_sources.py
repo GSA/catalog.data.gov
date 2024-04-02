@@ -87,7 +87,7 @@ for name in names:
            f'Config: {config}'
     print(info)
     
-    command = (['docker-compose', 'exec', 'ckan', 
+    command = (['docker compose', 'exec', 'ckan', 
                 'ckan', 'harvester', 'run_test',
                 hs.get("id"), '--config=/app/ckan/setup/ckan.ini'])
     out = subprocess.Popen(
