@@ -18,7 +18,6 @@ ckanext-datajson==0.1.23
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@e2183dd13bf2dbb0532281d84225f909b8362dd3
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.2.8
--e git+https://github.com/ckan/ckanext-googleanalytics.git@24d9a7ff62235bc2d543e6594f7362763411b0f9#egg=ckanext_googleanalytics
 -e git+https://github.com/ckan/ckanext-harvest.git@9fb44f79809a1c04dfeb0e1ca2540c5ff3cacef4#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.6
 -e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
