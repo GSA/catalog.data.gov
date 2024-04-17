@@ -44,7 +44,7 @@ geomet==1.1.0
 gevent==23.9.1
 google-api-python-client==1.6.7
 greenlet==3.0.3
-gunicorn==21.2.0
+gunicorn==22.0.0
 html5lib==1.1
 httplib2==0.22.0
 idna==3.6
@@ -110,7 +110,7 @@ simplejson==3.18.0
 six==1.16.0
 SQLAlchemy==1.4.41
 sqlalchemy2-stubs==0.0.2a38
-sqlparse==0.4.4
+sqlparse==0.5.0
 tomli==2.0.1
 typing_extensions==4.9.0
 tzdata==2023.4
