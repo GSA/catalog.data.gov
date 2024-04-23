@@ -97,6 +97,7 @@ typing_extensions==4.3.0
 tzlocal==4.2
 webassets==2.0
 Werkzeug[watchdog]==2.0.3
+wheel==0.42.0
 zope.interface==5.4.0
 
 # catalog uses newer versions of these packages
