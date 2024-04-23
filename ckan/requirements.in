@@ -97,11 +97,12 @@ typing_extensions==4.3.0
 tzlocal==4.2
 webassets==2.0
 Werkzeug[watchdog]==2.0.3
+wheel==0.42.0
 zope.interface==5.4.0
 
 # catalog uses newer versions of these packages
 simplejson==3.18.0
-sqlparse==0.4.4
+sqlparse==0.5.0
 
 # we are running under gunicorn
 # Pinned greenlet version to match version delivered with OS,
