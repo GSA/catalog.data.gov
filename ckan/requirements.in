@@ -101,12 +101,10 @@ zope.interface==5.4.0
 
 # catalog uses newer versions of these packages
 simplejson==3.18.0
-sqlparse==0.4.4
 
 # we are running under gunicorn
 # Pinned greenlet version to match version delivered with OS,
 # preventing error with gevent dependency using newer version.
-gunicorn
 # greenlet==0.4.12
 
 # New Relic
@@ -124,3 +122,5 @@ cryptography>=42.0.4
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
 # as in https://github.com/GSA/data.gov/issues/4681
 lxml==5.1.0
+gunicorn>=22.0.0
+sqlparse>=0.5.0
