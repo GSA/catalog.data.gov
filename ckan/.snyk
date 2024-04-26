@@ -54,15 +54,13 @@ ignore:
   SNYK-PYTHON-CRYPTOGRAPHY-6592767:
     - '*':
         reason: >-
-          No remediation available yet; Issue tracked in github:
-          https://github.com/GSA/data.gov/issues/4532
+          No remediation available yet; Low severity.
         expires: 2024-10-24T17:21:30.083Z
         created: 2024-04-24T17:21:30.089Z
   SNYK-PYTHON-PYOPENSSL-6592766:
     - '*':
         reason: >-
-          No remediation available yet; Issue tracked in github:
-          https://github.com/GSA/data.gov/issues/4591
+          No remediation available yet; Low severity.
         expires: 2024-10-24T17:24:47.251Z
         created: 2024-04-24T17:24:47.257Z
 patch: {}
