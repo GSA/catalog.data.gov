@@ -41,7 +41,8 @@ COPY setup/who.ini ${APP_DIR}/
 COPY saml2 ${APP_DIR}/saml2
 
 # Install dev dependencies
-RUN pip3 install flask_debugtoolbar
+# pin to 0.14.1
+RUN pip3 install flask_debugtoolbar==0.14.1
 
 # In order for dependencies to be managed, python
 # needs to be mapped to python3
