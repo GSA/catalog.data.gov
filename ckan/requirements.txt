@@ -4,8 +4,8 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==5.0.1
 blinker==1.5
-boto3==1.34.90
-botocore==1.34.90
+boto3==1.34.93
+botocore==1.34.93
 certifi==2024.2.2
 cffi==1.16.0
 chardet==5.2.0
@@ -15,7 +15,7 @@ ckan==2.10.4
 ckanext-datagovcatalog==0.1.0
 ckanext-datagovtheme==0.2.20
 ckanext-datajson==0.1.24
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@6fb1780c6351a34621698f8ed8af3e29608e26d7
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.2.8
 -e git+https://github.com/GSA/ckanext-harvest.git@9039e7a5d563a40177d62487758b366ab77434b6#egg=ckanext_harvest
@@ -112,6 +112,6 @@ Werkzeug==2.0.3
 wheel==0.42.0
 WTForms==3.1.2
 xlrd==2.0.1
-xmlschema==3.3.0
+xmlschema==3.3.1
 zope.event==5.0
 zope.interface==5.4.0
