@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.10
 
 # Install Dependencies
 # - Download Saxon jar for FGDC2ISO transform (geodatagov)
@@ -41,7 +41,8 @@ COPY setup/who.ini ${APP_DIR}/
 COPY saml2 ${APP_DIR}/saml2
 
 # Install dev dependencies
-RUN pip3 install flask_debugtoolbar
+# pin to 0.14.1
+RUN pip3 install flask_debugtoolbar==0.14.1
 
 # In order for dependencies to be managed, python
 # needs to be mapped to python3

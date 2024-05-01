@@ -77,7 +77,7 @@ To test extensions locally you can run
 _TODO: update this for pytest_
 
 ```
-docker-compose exec ckan bash
+docker compose exec ckan bash
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datagovtheme/
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datajson/
 nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/geodatagov/
@@ -207,7 +207,7 @@ You can use the ckan template in much the same way as a source install, only
 executing the command inside the CKAN container and setting the mounted `src/`
 folder as output:
 
-    $ docker-compose exec ckan /bin/bash -c \
+    $ docker compose exec ckan /bin/bash -c \
     "ckan generate extension"
 
 The new extension will be created in the `src/` folder. You might need to change
@@ -219,7 +219,7 @@ the owner of its folder to have the appropriate permissions.
 To run a container and be able to add a breakpoint with `pdb` or `ipdb`, run the
 `ckan-dev` container with the `--service-ports` option:
 
-    docker-compose run --service-ports ckan
+    docker compose run --service-ports ckan
 
 This will start a new container, displaying the standard output in your
 terminal. If you add a breakpoint in a source file in the `src` folder (`import
@@ -241,3 +241,8 @@ You can log into your instance with you login.gov user.
 Continuous Integration via [GitHub Actions](https://github.com/GSA/catalog.data.gov/actions/workflows/commit.yml).
 
 Continuous Deployment via [GitHub Actions](https://github.com/GSA/catalog.data.gov/actions/workflows/publish.yml).
+
+
+## Put site into maintenance mode
+
+To block access to the catalog apps (`catalog-web`, `catalog-admin`), set the environment variables (`CATALOG_WEB_MODE`, `CATALOG_ADMIN_MODE`) in the `catalog-proxy` app. Use 'MAINTENANCE' for scheduled downtime, 'DOWN' for unscheduled downtime. Any other value will resume normal operation.

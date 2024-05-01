@@ -2,7 +2,7 @@ describe('CKAN Extensions', () => {
     it('Uses CKAN 2.10', () => {
         cy.request('/api/action/status_show').should((response) => {
             expect(response.body).to.have.property('success', true);
-            expect(response.body.result).to.have.property('ckan_version', '2.10.1');
+            expect(response.body.result).to.have.property('ckan_version', '2.10.4');
         });
     });
 
@@ -30,7 +30,6 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('spatial_metadata');
             expect(installed_extensions).to.include('spatial_query');
             expect(installed_extensions).to.include('spatial_harvest_metadata_api');
-            expect(installed_extensions).to.include('googleanalytics');
             expect(installed_extensions).to.include('dcat');
             expect(installed_extensions).to.include('dcat_json_interface');
             expect(installed_extensions).to.include('structured_data');
