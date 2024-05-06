@@ -96,7 +96,7 @@ SQLAlchemy[mypy]==1.4.41
 typing_extensions==4.3.0
 tzlocal==4.2
 webassets==2.0
-Werkzeug[watchdog]==2.0.3
+Werkzeug[watchdog]==3.0.3
 wheel==0.42.0
 zope.interface==5.4.0
 
@@ -125,4 +125,3 @@ cryptography>=42.0.4
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
 # as in https://github.com/GSA/data.gov/issues/4681
 lxml==5.1.0
-werkzeug>=3.0.3
