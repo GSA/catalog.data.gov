@@ -125,3 +125,4 @@ cryptography>=42.0.4
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
 # as in https://github.com/GSA/data.gov/issues/4681
 lxml==5.1.0
+werkzeug>=3.0.3
