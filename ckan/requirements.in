@@ -125,3 +125,7 @@ cryptography>=42.0.4
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
 # as in https://github.com/GSA/data.gov/issues/4681
 lxml==5.1.0
+
+# duplicate Werkzeug[watchdog]==2.0.3 requrements from ckan list
+# so that snyk doesn't complain about the version mismatch
+Werkzeug==2.0.3
