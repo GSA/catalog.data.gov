@@ -63,4 +63,9 @@ ignore:
           No remediation available yet; Low severity.
         expires: 2024-10-24T17:24:47.251Z
         created: 2024-04-24T17:24:47.257Z
+  SNYK-PYTHON-WERKZEUG-6808933:
+    - '*':
+        reason: >-
+           Not affecting us since no debugger is enabled in cloud.gov apps
+        expires: 2024-06-31T16:20:58.017Z
 patch: {}
