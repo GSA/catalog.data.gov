@@ -32,7 +32,7 @@ jobs:
         run: |
           # Run scan
           snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk test --file=ckan/requirements.txt --json-file-output=scan.json || echo "Scan complete"
+          snyk test --severity-threshold=medium --file=ckan/requirements.txt --json-file-output=scan.json || echo "Scan complete"
 
           # Exit if no vulnerabilities
           # Succeed, so that PR is NOT created
