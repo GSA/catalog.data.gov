@@ -49,7 +49,7 @@ ignore:
         reason: >-
           No remediation available yet; Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4591
-        expires: 2024-05-31T19:29:54.032Z
+        expires: 2024-07-31T19:29:54.032Z
         created: 2024-01-14T00:00:00.000Z
   SNYK-PYTHON-CRYPTOGRAPHY-6592767:
     - '*':
