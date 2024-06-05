@@ -4,18 +4,18 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==5.0.1
 blinker==1.5
-boto3==1.34.104
-botocore==1.34.104
+boto3==1.34.111
+botocore==1.34.111
 certifi==2024.2.2
 cffi==1.16.0
 chardet==5.2.0
 charset-normalizer==3.3.2
-ckan==2.10.4
+ckan @ git+https://github.com/GSA/ckan.git@7159a872ba740069b768fcd2a43cde81a57ee492
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.0
-ckanext-datagovtheme==0.2.20
+ckanext-datagovtheme==0.2.21
 ckanext-datajson==0.1.24
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@48b5e6169eb6330ef8c2c6d6a11d9fa3cc76156e
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@6ec5630e45c987301069339c499f8c3876989793
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.2.8
 -e git+https://github.com/GSA/ckanext-harvest.git@9039e7a5d563a40177d62487758b366ab77434b6#egg=ckanext_harvest
@@ -88,7 +88,7 @@ PyYAML==6.0.1
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==6.1.1
 redis==5.0.4
-requests==2.31.0
+requests==2.32.0
 rfc3987==1.3.8
 rq==1.11.0
 s3transfer==0.10.1

@@ -1,5 +1,5 @@
 # CKAN requirements and extensions
-ckan==2.10.4
+git+https://github.com/GSA/ckan.git@ckan-2-10-4-fork#egg=ckan
 git+https://github.com/ckan/ckanext-dcat@master#egg=ckanext-dcat
 -e git+https://github.com/GSA/ckanext-harvest.git@release-v1-5-6#egg=ckanext-harvest
 -e git+https://github.com/ckan/ckanext-spatial.git@v2.1.1#egg=ckanext-spatial
@@ -114,7 +114,7 @@ gunicorn
 newrelic
 certifi>=2022.12.7
 redis>=4.5.4
-requests==2.31.0
+requests==2.32.0
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
