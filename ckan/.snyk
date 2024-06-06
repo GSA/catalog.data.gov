@@ -68,4 +68,16 @@ ignore:
         reason: >-
            Not affecting us since no debugger is enabled in cloud.gov apps
         expires: 2024-06-31T16:20:58.017Z
+  SNYK-PYTHON-CRYPTOGRAPHY-7161587:
+    - '*':
+        reason: >-
+           No remediation available yet. Issue tracked in github:
+           https://github.com/GSA/data.gov/issues/4781
+        expires: 2024-06-31T16:20:58.017Z
+  SNYK-PYTHON-PYOPENSSL-7161590:
+    - '*':
+        reason: >-
+           No remediation available yet. Issue tracked in github:
+           https://github.com/GSA/data.gov/issues/4782
+        expires: 2024-06-31T16:20:58.017Z
 patch: {}
