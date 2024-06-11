@@ -67,33 +67,6 @@
         },
         {
             "@type": "dcat:Dataset",
-            "title": "Concur - Reporting Travel Model",
-            "description": "The data dictionary for the reporting travel model  within Concur.",
-            "modified": "2016-01-20",
-            "accessLevel": "non-public",
-            "identifier": "GSA - 139046",
-            "dataQuality": true,
-            "license": "http://www.usa.gov/publicdomain/label/1.0/",
-            "rights": "Trade secrets & commercial/financial info obtained from a person and privileged or confidential.",
-            "publisher": {
-                "@type": "org:Organization",
-                "name": "General Services Administration"
-            },
-            "accrualPeriodicity": "R/P1Y",
-            "isPartOf": "GSA-2015-09-11-01",
-            "contactPoint": {
-                "@type": "vcard:Contact",
-                "fn": "Norma H Tolson",
-                "hasEmail": "mailto:norma.tolson@gsa.gov"
-            },
-            "keyword": ["Credit Card", "travel card"],
-            "bureauCode": ["023:00"],
-            "programCode": ["023:010"],
-            "language": ["en-us"],
-            "theme": ["Travel and Transportation"]
-        },
-        {
-            "@type": "dcat:Dataset",
             "title": "Concur Travel Parent",
             "description": "This is the Parent folder for Concur datasets reporting on; Closed-Paid Vouchers in Concur Government Edition (CGE), Authorization Model, Travel Model, User Profile, and Voucher Model.",
             "modified": "2016-02-23",
