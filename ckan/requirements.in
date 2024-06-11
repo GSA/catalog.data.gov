@@ -114,6 +114,7 @@ gunicorn
 newrelic
 certifi>=2022.12.7
 redis>=4.5.4
+requests~=2.32.2
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
@@ -127,4 +128,4 @@ lxml==5.1.0
 
 # duplicate Werkzeug[watchdog]==2.0.3 requrements from ckan list
 # so that snyk doesn't complain about the version mismatch
-Werkzeug==2.0.3requests>=2.32.2
+Werkzeug==2.0.3
