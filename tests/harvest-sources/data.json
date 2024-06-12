@@ -33,7 +33,7 @@
                     "downloadURL": "https://inventory.data.gov/dataset/64c56cec-4b8f-44c7-ba69-090517f9f32e/resource/87e53999-aff1-4560-8bf0-42d9dc8e4a69/download/2015gsafitaraimplementationandcioassignmentplan.pdf"
                 }
             ],
-            "keyword": ["Assignment Plan", "CIO", "Common Baseline", "FITARA", "GSA IT", "Implementation Plan"],
+            "keyword": ["Assignment Plan", "CIO", "Common Baseline", "FITARA", "Implementation Plan"],
             "bureauCode": ["023:00"],
             "programCode": ["023:000"],
             "theme": ["IT Initiatives"]
@@ -67,8 +67,35 @@
         },
         {
             "@type": "dcat:Dataset",
+            "title": "Concur - Reporting Travel Model",
+            "description": "The data dictionary for the reporting travel model  within Concur.",
+            "modified": "2016-01-20",
+            "accessLevel": "non-public",
+            "identifier": "GSA - 139046",
+            "dataQuality": true,
+            "license": "http://www.usa.gov/publicdomain/label/1.0/",
+            "rights": "Trade secrets & commercial/financial info obtained from a person and privileged or confidential.",
+            "publisher": {
+                "@type": "org:Organization",
+                "name": "General Services Administration"
+            },
+            "accrualPeriodicity": "R/P1Y",
+            "isPartOf": "GSA-2015-09-11-01",
+            "contactPoint": {
+                "@type": "vcard:Contact",
+                "fn": "Norma H Tolson",
+                "hasEmail": "mailto:norma.tolson@gsa.gov"
+            },
+            "keyword": ["Credit Card", "travel card"],
+            "bureauCode": ["023:00"],
+            "programCode": ["023:010"],
+            "language": ["en-us"],
+            "theme": ["Travel and Transportation"]
+        },
+        {
+            "@type": "dcat:Dataset",
             "title": "Concur Travel Parent",
-            "description": "This is the Parent folder for Concur datasets reporting on; Closed-Paid Vouchers in Concur Government Edition (CGE), Authorization Model, Travel Model, User Profile, and Voucher Model.",
+            "description": "This is the Parent folder for Concur reporting on; Closed-Paid Vouchers in Concur Government Edition (CGE), Authorization Model, Travel Model, User Profile, and Voucher Model.",
             "modified": "2016-02-23",
             "accessLevel": "non-public",
             "identifier": "GSA-2015-09-11-01",
@@ -85,7 +112,7 @@
                 "fn": "Norma H Tolson",
                 "hasEmail": "mailto:norma.tolson@gsa.gov"
             },
-            "keyword": ["Authorization", "Closed", "Concur", "Paid", "Travel", "Voucher"],
+            "keyword": ["Authorization", "Closed", "Paid", "Travel", "Voucher"],
             "bureauCode": ["023:00"],
             "programCode": ["023:010"],
             "language": ["en-us"],
