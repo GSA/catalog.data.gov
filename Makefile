@@ -176,4 +176,5 @@ harvest:
 	docker compose exec ckan ckan harvester $(ARGS)
 
 test-ssl:
-	@docker compose exec ckan grep -riI "SSL_" /usr/local/lib/python3.10/site-packages/ || echo "SSL_free_buffers not be used"
+	# Check for no usage of SSL_free_buffers. # Details: https://github.com/GSA/data.gov/issues/4781
+	! docker compose run --rm -T ckan grep -riI "SSL_free_buffers" /usr/local/lib/python3.10/site-packages/ && echo "Vulnerable SSL_free_buffers is not used"
