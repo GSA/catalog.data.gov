@@ -55,6 +55,15 @@ jobs:
       - name: test_importer
         run: make test-import-tool
 
+  test_vulnerability:
+    name: test vulnerability
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: test_vulnerability
+        run: make vulnerability-check
+
   create-cloudgov-services-development:
     if: github.ref == 'refs/heads/develop'
     name: create services (development)
