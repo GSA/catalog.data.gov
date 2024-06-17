@@ -174,3 +174,6 @@ harvest:
 	# ARGS=gather-consumer make harvest
 	# ARGS=fetch-consumer make harvest
 	docker compose exec ckan ckan harvester $(ARGS)
+
+test-ssl:
+	@docker compose exec ckan grep -riI "SSL_" /usr/local/lib/python3.10/site-packages/ || echo "SSL_free_buffers not be used"
