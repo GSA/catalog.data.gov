@@ -4,8 +4,8 @@ Babel==2.10.3
 Beaker==1.11.0
 bleach==5.0.1
 blinker==1.5
-boto3==1.34.120
-botocore==1.34.120
+boto3==1.34.128
+botocore==1.34.128
 certifi==2024.6.2
 cffi==1.16.0
 chardet==5.2.0
@@ -13,9 +13,9 @@ charset-normalizer==3.3.2
 ckan @ git+https://github.com/GSA/ckan.git@7159a872ba740069b768fcd2a43cde81a57ee492
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.0
-ckanext-datagovtheme==0.2.22
-ckanext-datajson==0.1.24
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@104fc9b279130788cbd79353523393926c311cb5
+ckanext-datagovtheme==0.2.23
+ckanext-datajson==0.1.25
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@83495ba99cba17398ba8feb1bc0da486f3798584
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.2.8
 -e git+https://github.com/GSA/ckanext-harvest.git@9039e7a5d563a40177d62487758b366ab77434b6#egg=ckanext_harvest
@@ -58,11 +58,11 @@ MarkupSafe==2.1.5
 messytables==0.15.2
 mypy==1.10.0
 mypy-extensions==1.0.0
-newrelic==9.10.0
+newrelic==9.11.0
 nose==1.3.7
 numpy==1.26.4
 OWSLib==0.31.0
-packaging==24.0
+packaging==24.1
 passlib==1.7.4
 pika==1.2.1
 pip==24.0
@@ -87,8 +87,8 @@ PyUtilib==6.0.0
 PyYAML==6.0.1
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==6.1.1
-redis==5.0.5
-requests==2.32.2
+redis==5.0.6
+requests==2.32.3
 rfc3987==1.3.8
 rq==1.11.0
 s3transfer==0.10.1
@@ -104,7 +104,7 @@ tomli==2.0.1
 typing_extensions==4.3.0
 tzdata==2024.1
 tzlocal==4.2
-urllib3==2.2.1
+urllib3==2.2.2
 watchdog==4.0.1
 webassets==2.0
 webencodings==0.5.1
