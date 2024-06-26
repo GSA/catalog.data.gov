@@ -159,7 +159,7 @@
         {
             "@type": "dcat:Dataset",
             "title": "Data.gov Statistics Parent",
-            "description": "Various reports regarding the Data.gov sites, from Daily Visitors, to Top 10 Countries, and States. -- test update",
+            "description": "Various reports regarding the Data.gov sites, from Daily Visitors, to Top 10 Countries, and States.",
             "modified": "2015-09-14",
             "accessLevel": "public",
             "identifier": "GSA-2015-09-14-01",
