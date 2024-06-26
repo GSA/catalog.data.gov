@@ -158,32 +158,6 @@
         },
         {
             "@type": "dcat:Dataset",
-            "title": "Data.gov Statistics Parent",
-            "description": "Various reports regarding the Data.gov sites, from Daily Visitors, to Top 10 Countries, and States.",
-            "modified": "2015-09-14",
-            "accessLevel": "public",
-            "identifier": "GSA-2015-09-14-01",
-            "dataQuality": true,
-            "issued": "2013-04-11",
-            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-            "spatial": "Worldwide",
-            "publisher": {
-                "@type": "org:Organization",
-                "name": "General Services Administration"
-            },
-            "contactPoint": {
-                "@type": "vcard:Contact",
-                "fn": "Hyon Joo Kim",
-                "hasEmail": "mailto:hyon.kim@gsa.gov"
-            },
-            "keyword": ["Countries", "States", "Statistics", "Visitors", "data.gov"],
-            "bureauCode": ["023:00"],
-            "programCode": ["023:019"],
-            "language": ["en-us"],
-            "theme": ["Data.gov Site"]
-        },
-        {
-            "@type": "dcat:Dataset",
             "accessLevel": "public",
             "bureauCode": ["010:12"],
             "programCode": ["010:012"],
