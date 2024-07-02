@@ -128,7 +128,6 @@ lxml==5.1.0
 
 # duplicate Werkzeug[watchdog]==2.0.3 requrements from ckan list
 # so that snyk doesn't complain about the version mismatch
-Werkzeug==2.0.3
 
 # pin numpy as 2.x causes array import issues w/ shapely
-numpy==1.26.4
+numpy==1.26.4werkzeug>=3.0.3
