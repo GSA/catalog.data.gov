@@ -112,7 +112,6 @@ gunicorn
 
 # New Relic
 newrelic
-certifi>=2022.12.7
 redis>=4.5.4
 requests~=2.32.2
 
@@ -131,4 +130,4 @@ lxml==5.1.0
 Werkzeug==2.0.3
 
 # pin numpy as 2.x causes array import issues w/ shapely
-numpy==1.26.4
+numpy==1.26.4certifi>=2024.7.4
