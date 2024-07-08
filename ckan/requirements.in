@@ -9,7 +9,8 @@ git+https://github.com/GSA/ckanext-saml2auth.git@datagov#egg=ckanext-saml2auth
 -e git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report
 
 ckanext-datagovcatalog
-ckanext-datagovtheme
+# ckanext-datagovtheme
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@4737_org-pub-fix-fix#egg=ckanext-datagovtheme
 ckanext-datajson
 ckanext-envvars>=0.0.3
 ckanext-geodatagov
@@ -132,3 +133,4 @@ Werkzeug==2.0.3
 
 # pin numpy as 2.x causes array import issues w/ shapely
 numpy==1.26.4
+
