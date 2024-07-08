@@ -78,9 +78,9 @@ _TODO: update this for pytest_
 
 ```
 docker compose exec ckan bash
-nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datagovtheme/
-nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/datajson/
-nosetests --ckan --with-pylons=src/ckan/test-catalog-next.ini src/ckanext-datagovtheme/ckanext/geodatagov/
+nosetests --ckan --with-pylons=src/ckan/test-catalog-prev.ini src/ckanext-datagovtheme/ckanext/datagovtheme/
+nosetests --ckan --with-pylons=src/ckan/test-catalog-prev.ini src/ckanext-datagovtheme/ckanext/datajson/
+nosetests --ckan --with-pylons=src/ckan/test-catalog-prev.ini src/ckanext-datagovtheme/ckanext/geodatagov/
 ```
 
 ### Run Cypress Tests
@@ -163,11 +163,6 @@ image. The `ckan-base:2.9` image, if needed for some reasons, is available via
 dockerhub with the aformentioned tag, as referenced in [OKF's docker-ckan
 repository](https://github.com/okfn/docker-ckan).
 
-
-## Public docker image
-
-If build pass tests a docker-image will be published in the docker hub: https://hub.docker.com/r/datagov/catalog-next.  
-This image will be used in extensions to test.  
 
 ## Note on requirements
 

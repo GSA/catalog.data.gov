@@ -18,9 +18,9 @@ Search harvest sources
  - 3 Results
 ```
 
-## SQL queries tests for catalog-next
+## SQL queries tests for catalog
 
-This script is to check times for SQL queries in catalog-next
+This script is to check times for SQL queries in catalog
 
 ```
 python3 sql-test.py \
