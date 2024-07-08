@@ -138,6 +138,9 @@ export CKANEXT__S3SITEMAP__ENDPOINT_URL=https://$(vcap_get_service s3 .credentia
 # Disable this in favor of CKANEXT__DATAGOVTHEME__JS_RECENT_VIEW
 export CKANEXT__DATAGOVCATALOG__ADD_PACKAGES_TRACKING_INFO=false
 
+# remove ckanext-harvest dependency
+export CKANEXT__DATAGOVTHEME__NEXT_HARVEST=True
+
 # Render recent view using AJAX call to boost page loading speed
 export CKANEXT__DATAGOVTHEME__JS_RECENT_VIEW=true
 
@@ -171,7 +174,6 @@ if [[ $MIGRATE_DB = 'True' ]]; then
   # Run migrations
   ckan db init
   ckan db upgrade
-  ckan harvester initdb
   ckan report initdb
   # ckan archiver init
   # ckan qa init
