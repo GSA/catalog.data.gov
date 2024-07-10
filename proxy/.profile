@@ -7,7 +7,7 @@ function vcap_get_service () {
     local path name
     name="$1"
     path="$2"
-    service_name=catalog-${name}
+    service_name=catalog-next-${name}
     echo "$VCAP_SERVICES" | jq --raw-output --arg service_name "$service_name" ".[][] | select(.name == \$service_name) | $path"
 }
 

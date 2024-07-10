@@ -73,12 +73,10 @@ SHARED_DIR=$(mktemp -d)
 # We need to know the application name ...
 export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
 export REAL_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
-if [[ $APP_NAME = "catalog-web" ]] || \
-   [[ $APP_NAME = "catalog-admin" ]] || \
-   [[ $APP_NAME = "catalog-gather" ]] || \
-   [[ $APP_NAME = "catalog-fetch" ]]
+if [[ $APP_NAME = "catalog-next-web" ]] || \
+   [[ $APP_NAME = "catalog-next-admin" ]]
 then
-  APP_NAME=catalog
+  APP_NAME=catalog-next
 fi
 
 # Extract credentials from VCAP_SERVICES
@@ -102,9 +100,7 @@ export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
 
 # Use follower url for web instances; leader url for gather and fetch instances
-if [[ $REAL_NAME = "catalog-admin" ]] || \
-   [[ $REAL_NAME = "catalog-gather" ]] || \
-   [[ $REAL_NAME = "catalog-fetch" ]]
+if [[ $REAL_NAME = "catalog-nex-admin" ]]
 then
   export CKAN_SOLR_BASE_URL=https://$(vcap_get_service solr .credentials.domain)
 else
@@ -162,6 +158,7 @@ echo "$SAML2_CERTIFICATE" > $CKANEXT__SAML2AUTH__CERT_FILE_PATH
 # Setting up PostGIS
 echo Setting up PostGIS
 DATABASE_URL=$CKAN_SQLALCHEMY_URL python3 configure-postgis.py >/dev/null 2>&1
+
 
 # Edit the config file to use our values
 export CKAN_INI="${HOME}/ckan/setup/ckan.ini"
