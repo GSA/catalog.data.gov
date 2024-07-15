@@ -2,7 +2,7 @@
     "license_title": "License not specified",
     "maintainer": null,
     "relationships_as_object": [],
-    "private": true,
+    "private": false,
     "maintainer_email": null,
     "num_tags": 1,
     "metadata_created": "2019-12-18T19:01:33.429530",
@@ -37,7 +37,7 @@
     "public_access_level": "public",
     "publisher": "Department of the Interior",
     "unique_id": "doi-123456789",
-    "title": "Test Dataset 1",
-    "name": "test-dataset-1",
+    "title": "Test Dataset",
+    "name": "test-dataset",
     "program_code": "010:001"
 }

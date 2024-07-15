@@ -16,7 +16,3 @@ services:
       - ckan
     volumes:
     - ./e2e:/e2e
-
-  ckan:
-    links:
-      - nginx-harvest-source

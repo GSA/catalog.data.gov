@@ -44,6 +44,8 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
      * :PARAM password String: password for the user logging in
      * :RETURN null:
      */
+    cy.logout();
+
     if (!loginTest) {
         cy.visit('/user/login');
     }
@@ -55,10 +57,31 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
         password = Cypress.env('USER_PASSWORD');
     }
     cy.hide_debug_toolbar();
-
+    // make sure we can use cookie size to tell if we are logged in
+    // cookie size is <700(?) characters when not logged in
+    // cookie size is >700(?) characters when logged in
+    // this is needed to restore login state after any api call
+    // since api calls need to be logggout to work
     cy.get('#field-login').type(userName);
     cy.get('#field-password').type(password);
     cy.get('.btn-primary').eq(0).click();
+
+    // create an API token named 'cypress token'
+    cy.visit('/user/' + userName + '/api-tokens');
+
+    cy.get('body').then($body => {
+        if ($body.text().includes('cypress token')) {
+            cy.log('cypress token exists. skipping token creation.');
+        } else {
+            cy.get('#name').type('cypress token');
+            cy.get('button[value="create"]').click();
+            // After creating, find the token in <code> tag and save it for later use
+            cy.get('div.alert-success code').invoke('text').then((text) => {
+                cy.writeFile('cypress/fixtures/api_token.json', { api_token: text });
+            });
+            cy.log('cypress token created.');
+        }
+    });
 });
 
 Cypress.Commands.add('logout', () => {
@@ -152,22 +175,34 @@ Cypress.Commands.add('delete_organization', (orgName) => {
      * :PARAM orgName String: Name of the organization to purge from the current state
      * :RETURN null:
      */
-    cy.request({
-        url: '/api/action/organization_delete',
-        method: 'POST',
-        failOnStatusCode: false,
-        body: {
-            id: orgName,
-        },
+    cy.fixture('api_token').then((data) => {
+        cy.request({
+            url: '/api/action/organization_delete',
+            method: 'POST',
+            headers: {
+                'Authorization': data.api_token,
+                'Content-Type': 'application/json'
+            },
+            body: {
+                id: orgName? orgName: 'test-organization'
+            },
+        });
+
+        cy.request({
+            url: '/api/action/organization_purge',
+            method: 'POST',
+            headers: {
+                'Authorization': data.api_token,
+                'Content-Type': 'application/json'
+            },
+            body: {
+                id: orgName? orgName: 'test-organization'
+            },
+        });
+    
     });
-    cy.request({
-        url: '/api/action/organization_purge',
-        method: 'POST',
-        failOnStatusCode: false,
-        body: {
-            id: orgName,
-        },
-    });
+
+
 });
 
 Cypress.Commands.add('delete_dataset', (datasetName) => {
@@ -176,12 +211,19 @@ Cypress.Commands.add('delete_dataset', (datasetName) => {
      * :PARAM datasetName String: Name of the dataset to purge from the current state
      * :RETURN null:
      */
-    cy.request({
-        url: '/api/action/dataset_purge',
-        method: 'POST',
-        body: {
-            id: datasetName,
-        },
+    // if no datasetName is provided, use the default test-dataset
+    cy.fixture('api_token').then((data) => {
+        cy.request({
+            url: '/api/action/dataset_purge',
+            method: 'POST',
+            headers: {
+                'Authorization': data.api_token,
+                'Content-Type': 'application/json'
+            },
+            body: {
+                id: datasetName? datasetName: 'test-dataset'
+            },
+        });
     });
 });
 
@@ -257,17 +299,21 @@ Cypress.Commands.add('start_harvest_job', (harvestName) => {
 });
 
 Cypress.Commands.add('create_dataset', (ckan_dataset) => {
-    var options = {
-        method: 'POST',
-        url: '/api/3/action/package_create',
-        headers: {
-            'cache-control': 'no-cache',
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify(ckan_dataset),
-    };
 
-    return cy.request(options);
+    cy.fixture('api_token').then((token_data) => {
+        cy.fixture('ckan_dataset').then((dataset) => {
+            cy.request({
+                url: '/api/3/action/package_create',
+                method: 'POST',
+                headers: {
+                    'Authorization': token_data.api_token,
+                    'Content-Type': 'application/json'
+                },
+                body: ckan_dataset? JSON.stringify(ckan_dataset): dataset
+            });
+        });
+    });
+
 });
 
 // Performs an XMLHttpRequest instead of a cy.request (able to send data as FormData - multipart/form-data)

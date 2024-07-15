@@ -46,12 +46,6 @@ services:
   redis:
     image: redis:alpine
 
-  nginx-harvest-source:
-    image: nginx
-    volumes:
-      - ./tests/harvest-sources:/usr/share/nginx/html
-      - ./tests/nginx.conf:/etc/nginx/conf.d/default.conf
-
 volumes:
   ckan_storage:
   pg_data:
