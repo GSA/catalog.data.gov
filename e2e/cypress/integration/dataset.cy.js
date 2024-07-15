@@ -10,6 +10,8 @@ describe('Prepare', { testIsolation: false }, () => {
         cy.login();
 
         // Create the Test Organization using UI
+        // We can use the API to create the organization, but we want to test the UI
+        // expecially the js part to create the testOrgId from the testOrgName
         cy.visit('/organization');
         cy.get('a[class="btn btn-primary"]').click();
         cy.create_organization_ui(testOrgName, testOrgDesc);
@@ -24,14 +26,14 @@ describe('Prepare', { testIsolation: false }, () => {
         cy.delete_organization();
     });
 
-    it('Test Org is created', () => {
+    it('Test Org is present', () => {
         // can visit the org using testOrgId 
         cy.visit('/organization/' + testOrgId);
         cy.contains(testOrgName);
         cy.contains(testOrgDesc);
     });
 
-    it('Test Dataset is created', () => {
+    it('Test Dataset is present', () => {
         cy.visit('/dataset/test-dataset');
         cy.contains('Test Dataset');
     });

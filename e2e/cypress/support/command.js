@@ -57,11 +57,7 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
         password = Cypress.env('USER_PASSWORD');
     }
     cy.hide_debug_toolbar();
-    // make sure we can use cookie size to tell if we are logged in
-    // cookie size is <700(?) characters when not logged in
-    // cookie size is >700(?) characters when logged in
-    // this is needed to restore login state after any api call
-    // since api calls need to be logggout to work
+
     cy.get('#field-login').type(userName);
     cy.get('#field-password').type(password);
     cy.get('.btn-primary').eq(0).click();
