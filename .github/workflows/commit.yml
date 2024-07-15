@@ -83,3 +83,19 @@ jobs:
       app_url: https://catalog-dev-datagov.app.cloud.gov
       app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\",\"robots-dev\":true}]}"
     secrets: inherit
+
+  # catalog-next
+  deploy-next-development:
+    if: github.ref == 'refs/heads/catalog-next'
+    name: deploy catalog-next (development)
+    ## The create-services-template.yml does not really work
+    ## We have been relying on the services being created manually
+    # needs:
+    #   - create-cloudgov-services-development
+    uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
+    with:
+      environ: development
+      app_url: https://catalog-next-dev-datagov.app.cloud.gov
+      app_names: "{\"include\":[{\"app\":\"catalog-next-web\",\"smoketest\":true},{\"app\":\"catalog-next-admin\"},{\"app\":\"catalog-next-proxy\",\"robots-dev\":true}]}"
+    secrets: inherit
+  
