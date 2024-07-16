@@ -132,3 +132,6 @@ Werkzeug==2.0.3
 # pin numpy as 2.x causes array import issues w/ shapely
 numpy==1.26.4
 certifi>=2024.7.4
+
+# snyk finding
+setuptools>=70.0.0
