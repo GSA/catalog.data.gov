@@ -2,6 +2,9 @@
 name: Check for Snyk Vulnerabilities
 
 on:
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
   schedule:
     - cron: '0 12 * * *'  # every day at 12pm UTC
@@ -56,7 +59,7 @@ jobs:
           # Fail so that PR is created
           exit 1
       - name: Create Pull Request
-        if: ${{ failure() }}
+        if: ${{ failure() && github.event_name == 'schedule' }}
         id: scpr
         uses: peter-evans/create-pull-request@v5
         with:
