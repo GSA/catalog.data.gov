@@ -8,5 +8,4 @@ module.exports = defineConfig({
     videoCompression: false,
     videoUploadOnPasses: false,
     screenshotOnRunFailure: false,
-    defaultCommandTimeout: 10000,
 });
