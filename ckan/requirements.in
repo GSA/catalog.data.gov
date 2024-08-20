@@ -95,7 +95,6 @@ SQLAlchemy[mypy]==1.4.41
 typing_extensions==4.3.0
 tzlocal==4.2
 webassets==2.0
-Werkzeug[watchdog]==2.0.3
 wheel==0.42.0
 zope.interface==5.4.0
 
@@ -133,5 +132,5 @@ certifi>=2024.7.4
 
 # snyk finding
 setuptools>=70.0.0
-flask>=2.2.5
-werkzeug>=2.3.8
+flask==2.2.5
+Werkzeug>=2.0.3
