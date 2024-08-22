@@ -135,3 +135,4 @@ certifi>=2024.7.4
 
 # snyk finding
 setuptools>=70.0.0
+ckan>=2.10.5
