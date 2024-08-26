@@ -66,7 +66,7 @@ describe('Dataset', () => {
         cy.get('.fba-modal-dialog').should('be.visible');
         cy.get('#fba_location_code').should('have.value', 'ek500-water-column-sonar-data-collected-during-al0001');
         // can hide the modal
-        cy.get('a.fba-modal-close').click();
+        cy.get('button.fba-modal-close').click();
         cy.get('.fba-modal-dialog').should('not.be.visible');
     });
 });
