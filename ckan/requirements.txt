@@ -10,7 +10,7 @@ certifi==2024.7.4
 cffi==1.16.0
 chardet==5.2.0
 charset-normalizer==3.3.2
-ckan @ git+https://github.com/GSA/ckan.git@374f566de9a68bb9f7dc696d8d60debda5af0d8c
+ckan @ git+https://github.com/GSA/ckan.git@453dd7f8ecdcf678e5d068d2c838c73b7ecac448
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.0
 ckanext-datagovtheme==0.2.33
