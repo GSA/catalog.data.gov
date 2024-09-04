@@ -135,4 +135,4 @@ numpy==1.26.4
 certifi>=2024.7.4
 
 # snyk finding
-setuptools>=70.0.0
+setuptools~=71.0.3
