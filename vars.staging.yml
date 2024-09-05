@@ -1,0 +1,65 @@
+# This is the name to use for the staging catalog app in Cloud Foundry
+app_name: catalog
+space_name: staging
+
+ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-stage-catalog
+ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.production.idp.xml
+
+web-instances: 2
+admin-instances: 1
+gather-instances: 1
+fetch-instances: 1
+proxy-instances: 1
+memory_quota: 750M
+gather_memory_quota: 3G
+
+new_relic_monitor_mode: true
+
+# use CDN domain for route-public if available, otherwise use route-external 
+route-public: catalog-stage.data.gov
+route-external: catalog-stage-datagov.app.cloud.gov
+route-internal: catalog-stage-datagov.apps.internal
+route-external-admin: catalog-stage-admin-datagov.app.cloud.gov
+route-internal-admin: catalog-stage-admin-datagov.apps.internal
+
+saml2_certificate: |
+  -----BEGIN CERTIFICATE-----
+  MIIGQTCCBCkCFAHCH4OnnkSn89liqLUTPL4V4tJkMA0GCSqGSIb3DQEBCwUAMIHc
+  MQswCQYDVQQGEwJVUzEdMBsGA1UECAwURGlzdHJpY3Qgb2YgQ29sdW1iaWExEzAR
+  BgNVBAcMCldhc2hpbmd0b24xKDAmBgNVBAoMH0dlbmVyYWwgU2VydmljZXMgQWRt
+  aW5pc3RyYXRpb24xKjAoBgNVBAsMIVRlY2hub2xvZ3kgVHJhbnNmb3JtYXRpb24g
+  U2VydmljZTEiMCAGCSqGSIb3DQEJARYTZGF0YWdvdmhlbHBAZ3NhLmdvdjEfMB0G
+  A1UEAwwWY2F0YWxvZy1zdGFnZS5kYXRhLmdvdjAeFw0yNDAzMDYxNjU4MTJaFw0y
+  NTA0MDUxNjU4MTJaMIHcMQswCQYDVQQGEwJVUzEdMBsGA1UECAwURGlzdHJpY3Qg
+  b2YgQ29sdW1iaWExEzARBgNVBAcMCldhc2hpbmd0b24xKDAmBgNVBAoMH0dlbmVy
+  YWwgU2VydmljZXMgQWRtaW5pc3RyYXRpb24xKjAoBgNVBAsMIVRlY2hub2xvZ3kg
+  VHJhbnNmb3JtYXRpb24gU2VydmljZTEiMCAGCSqGSIb3DQEJARYTZGF0YWdvdmhl
+  bHBAZ3NhLmdvdjEfMB0GA1UEAwwWY2F0YWxvZy1zdGFnZS5kYXRhLmdvdjCCAiIw
+  DQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAKuF+/5v1Hkor4avTvSvqJVQ/naU
+  6sVsOU2tSwfZcjo2ERDsiPgemude7nOhvZ5WgQakmPb13iS2nHOADG1UF0x4iYNF
+  LYnoxOt+LphTkEnFFkkbV0tUYzZdDegOjfpxbjZk7/aa8q74UOLbrnjkspNLdWlL
+  JDDZ4sPkIuVnGMIz033oVOZO9xZq1bGrwDEqmm8pH572qB/CJUnyG9gJBauzcgMZ
+  zcy+Np8bAQdp799kIE40MPbCS6gMYg6+Lg0PqDobe+LNjGv/yFEYx9oQ/dCpheoU
+  wtTyqOeSR+oq1GN8Ebt0AxccDVDdbLg/ciXbR9ID29DhsVtYeYpY2D60TnpVvd26
+  bo7NgOa3qhsNZp+mAXmpG4G3aV9nJr5mmq9bYpSlXRjvtkSRY+N3TS0nX9xim60u
+  HDhnUFaNCOC8bIYsO8fdLUJ8hUc9SiyobCvb+sKUObTBnxpSDr4CcPwyAB65ElMe
+  O//ezP3vOnlc03RBk1ZCqezdxI0RmzqsoHxUFIBXFjeisCzs3OkkHln7uydTpBU9
+  MJbsunPRLMu7AkAVX5o3k6SLAupyFY6pcJoXOgF0Rx0CcxN6tGHGJL+e8ttUk5Oo
+  i+2ZUUXJFoxkSi6xQQV7FzNnTjfRJWaJC2xMz7ilm1bbyueLzQ3MqxYRyA5mzCt3
+  JaisICaDYvo8sqjBAgMBAAEwDQYJKoZIhvcNAQELBQADggIBAAyuURjrp+/89iPf
+  1JUVuvpB5GiblpbIo7d1Wvcu8DgqXMcc8OclNWyqJNnI07VtumnOVUUpK/FowU3B
+  hiSSMX/PWUQtjlEIBMH84MfAM++tYiSfUEK/yY8zoAaL2J0FEca7QQ+f3Ju5h+qU
+  w/x1rJ9WTgms/okvnjNTQxTsHnDmXvzXbmeNJjs2etRSWQOdOqGuM4SCosr3nr1b
+  uXJWUL7T8OZtM1hQ3xB2GKG2tNbM1lJ0Q9++65k/twXf8pUgIIXqv7I6FReOznxS
+  EqwMl7VBCtBrkwdxbnceirfmtxUWleH6wWH0b4snwXAdXQ8hHhJRH1G53JliRKKr
+  svSExyW6z8eCuA73LqFyQmhRM2PP306Cwyb4pYcVazA/zQlgefUbnbXru5nZ5aRT
+  E2l38PTrNou9UMFGxZ6DxXPbEPnceYCYI7cPgs/9Cl5nM99FjHg22KQOpteKObEg
+  kodTrEC4Ge7yZ6lsobhKy884v+fCh85deEbfYKqZh63nLWynlbNcOk0BOskGKb7l
+  XixzZRTin/Rg3BkMUzKcE/M2z0W2o5GyKcUkgpj/rCUKHWkAdVGYZD8CM3NCCEY3
+  MJafXHZnY6PIE2glDU7sDRfAtvK2aLEfXnsRXLSUefqpQdNSJ1WTkGn770gHpEWk
+  qwTG1ciJBV6hcOXG2UJv50oGC4t/
+  -----END CERTIFICATE-----
+
+googleanalytics_id: UA-00000000-2
+
+deny_package_create: false
