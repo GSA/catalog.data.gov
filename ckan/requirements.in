@@ -1,5 +1,5 @@
 # CKAN requirements and extensions
-git+https://github.com/GSA/ckan.git@ckan-2-10-4-fork#egg=ckan
+git+https://github.com/GSA/ckan.git@ckan-2-10-5-fork#egg=ckan
 git+https://github.com/ckan/ckanext-dcat@v1.7.0#egg=ckanext-dcat
 -e git+https://github.com/GSA/ckanext-harvest.git@release-v1-5-6#egg=ckanext-harvest
 -e git+https://github.com/GSA/ckanext-spatial.git@iis-dir#egg=ckanext-spatial
@@ -77,11 +77,12 @@ Flask-WTF==1.0.1
 flask-multistatic==1.0
 greenlet==2.0.2
 #Jinja2==3.1.2
-PyJWT==2.4.0
 Markdown==3.4.1
+packaging==24.1
 passlib==1.7.4
 polib==1.1.1
 psycopg2==2.9.3
+PyJWT==2.4.0
 python-magic==0.4.27
 pysolr==3.9.0
 python-dateutil==2.8.2
@@ -113,12 +114,12 @@ gunicorn
 # New Relic
 newrelic
 redis>=4.5.4
-requests~=2.32.2
+requests~=2.32.3
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
 gevent>=23.9.0
-jinja2>=3.1.3
+jinja2>=3.1.4
 cryptography>=42.0.4
 
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
@@ -134,4 +135,4 @@ numpy==1.26.4
 certifi>=2024.7.4
 
 # snyk finding
-setuptools>=70.0.0
+setuptools~=71.0.3
