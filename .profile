@@ -135,6 +135,12 @@ export CKANEXT__S3SITEMAP__AWS_BUCKET_NAME=$(vcap_get_service s3 .credentials.bu
 export CKANEXT__S3SITEMAP__AWS_STORAGE_PATH=catalog/sitemap
 export CKANEXT__S3SITEMAP__ENDPOINT_URL=https://$(vcap_get_service s3 .credentials.endpoint)
 
+# Disable this in favor of CKANEXT__DATAGOVTHEME__JS_RECENT_VIEW
+export CKANEXT__DATAGOVCATALOG__ADD_PACKAGES_TRACKING_INFO=false
+
+# Render recent view using AJAX call to boost page loading speed
+export CKANEXT__DATAGOVTHEME__JS_RECENT_VIEW=true
+
 # Set up the collection in Solr
 echo Setting up Solr collection
 export SOLR_COLLECTION=ckan
