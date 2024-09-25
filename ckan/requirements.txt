@@ -14,7 +14,7 @@ ckan @ git+https://github.com/GSA/ckan.git@8c4a517efeac80db098cc6ba144cb742bbeca
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.0
 ckanext-datagovtheme==0.2.34
-ckanext-datajson==0.1.26
+ckanext-datajson==0.1.27
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.3
 ckanext-geodatagov==0.2.9
