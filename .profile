@@ -141,6 +141,9 @@ export CKANEXT__DATAGOVCATALOG__ADD_PACKAGES_TRACKING_INFO=false
 # Render recent view using AJAX call to boost page loading speed
 export CKANEXT__DATAGOVTHEME__JS_RECENT_VIEW=true
 
+# Max number of resources to be allowed in a dataset to be harvested
+export CKANEXT__DATAJSON__MAX_RESOURCE_COUNT=1500
+
 # Set up the collection in Solr
 echo Setting up Solr collection
 export SOLR_COLLECTION=ckan
