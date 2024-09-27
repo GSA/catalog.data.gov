@@ -58,7 +58,7 @@ jobs:
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
                          "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
                          "${{env.SCHEDULE_DBSOLR_SYNC}}", "${{ env.SCHEDULE_GEN_REPORT}}"],
-            "environ": ["development", "staging", "prod"],
+            "environ": ["development", "staging"],
             "include": [ {"app": "catalog-admin"},
                          {"error_seconds": 22000},
                          {"info_issue": false},
