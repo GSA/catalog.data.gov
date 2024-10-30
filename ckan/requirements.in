@@ -136,3 +136,6 @@ certifi>=2024.7.4
 
 # snyk finding
 setuptools~=71.0.3
+
+# Pin MarkupSafe to avoid button issue for logged in user
+MarkupSafe==2.*
