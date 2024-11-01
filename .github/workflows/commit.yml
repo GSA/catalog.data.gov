@@ -72,11 +72,25 @@ jobs:
       environ: development
     secrets: inherit
 
+  clear-cache-development:
+      name: Clear Buildpack Cache (development)
+      runs-on: ubuntu-latest
+      environment: development
+      steps:
+        - name: Clear buildpack cache
+          run: |
+            for app in catalog-web catalog-admin catalog-fetch catalog-gather catalog-proxy 
+            do
+              app_guid=$(cf app --guid "$app")
+              cf curl -X POST /v3/apps/${app_guid}/actions/clear_buildpack_cache
+            done
+
   deploy-development:
     if: github.ref == 'refs/heads/develop'
     name: deploy (development)
     needs:
       - create-cloudgov-services-development
+      - clear-cache-development
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: development

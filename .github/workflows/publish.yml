@@ -54,10 +54,37 @@ jobs:
       environ: prod
     secrets: inherit
 
+  clear-cache-staging:
+    name: Clear Buildpack Cache (staging)
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Clear buildpack cache
+        run: |
+          for app in catalog-web catalog-admin catalog-fetch catalog-gather catalog-proxy
+          do
+            app_guid=$(cf app --guid "$app")
+            cf curl -X POST /v3/apps/${app_guid}/actions/clear_buildpack_cache
+          done
+
+  clear-cache-prod:
+    name: Clear Buildpack Cache (prod)
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Clear buildpack cache
+        run: |
+          for app in catalog-web catalog-admin catalog-fetch catalog-gather catalog-proxy
+          do
+            app_guid=$(cf app --guid "$app")
+            cf curl -X POST /v3/apps/${app_guid}/actions/clear_buildpack_cache
+          done
+
   deploy-staging:
     name: deploy (staging)
     needs:
       - create-cloudgov-services-staging
+      - clear-cache-staging
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: staging
@@ -70,6 +97,7 @@ jobs:
     needs:
       - create-cloudgov-services-prod
       - deploy-staging
+      - clear-cache-prod
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: prod
