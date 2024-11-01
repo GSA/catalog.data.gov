@@ -81,8 +81,7 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:
           command: >
-            for app in catalog-web catalog-admin catalog-fetch catalog-gather catalog-proxy
-            do
+            for app in catalog-web catalog-admin catalog-fetch catalog-gather catalog-proxy; do
               app_guid=$(cf app --guid "$app")
               cf curl -X POST /v3/apps/${app_guid}/actions/clear_buildpack_cache
             done
