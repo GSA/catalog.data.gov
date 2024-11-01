@@ -77,20 +77,19 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - name: Log in to Cloud Foundry
+      - name: Clear buildpack cache
         uses: cloud-gov/cg-cli-tools@main
         with:
+          command: >
+            for app in catalog-web catalog-admin catalog-fetch catalog-gather catalog-proxy
+            do
+              app_guid=$(cf app --guid "$app")
+              cf curl -X POST /v3/apps/${app_guid}/actions/clear_buildpack_cache
+            done
           cf_org: gsa-datagov
           cf_space: development
           cf_username: ${{ secrets.CF_SERVICE_USER }}
           cf_password: ${{ secrets.CF_SERVICE_AUTH }}
-      - name: Clear buildpack cache
-        run: |
-          for app in catalog-web catalog-admin catalog-fetch catalog-gather catalog-proxy
-          do
-            app_guid=$(cf app --guid "$app")
-            cf curl -X POST /v3/apps/${app_guid}/actions/clear_buildpack_cache
-          done
 
   deploy-development:
     if: github.ref == 'refs/heads/develop'
