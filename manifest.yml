@@ -80,4 +80,4 @@ applications:
       EXTERNAL_ROUTE_ADMIN: ((route-external-admin))
       INTERNAL_ROUTE_ADMIN: ((route-internal-admin))
       DENY_PACKAGE_CREATE: ((deny_package_create))
-
+      HARVEST_ADMIN_URL: ((harvest_admin_url))

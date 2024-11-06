@@ -137,6 +137,9 @@ export CKANEXT__DATAGOVCATALOG__ADD_PACKAGES_TRACKING_INFO=false
 # remove ckanext-harvest dependency
 export CKANEXT__DATAGOVTHEME__HARVEST_NEXT=True
 
+# add harvest admin url
+echo "$HARVEST_ADMIN_URL" > $CKANEXT__DATAGOVTHEME__HARVEST_ADMIN_URL
+
 # Render recent view using AJAX call to boost page loading speed
 export CKANEXT__DATAGOVTHEME__JS_RECENT_VIEW=true
 
