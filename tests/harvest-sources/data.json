@@ -36,7 +36,8 @@
             "keyword": ["Assignment Plan", "CIO", "Common Baseline", "FITARA", "GSA IT", "Implementation Plan"],
             "bureauCode": ["023:00"],
             "programCode": ["023:000"],
-            "theme": ["IT Initiatives"]
+            "theme": ["IT Initiatives"],
+            "extraProperty": "foo"
         },
         {
             "@type": "dcat:Dataset",
@@ -63,7 +64,8 @@
             "bureauCode": ["023:00"],
             "programCode": ["023:010"],
             "language": ["en-us"],
-            "theme": ["Travel and Transportation"]
+            "theme": ["Travel and Transportation"],
+            "extraProperty2": "bar"
         },
         {
             "@type": "dcat:Dataset",
@@ -90,7 +92,8 @@
             "bureauCode": ["023:00"],
             "programCode": ["023:010"],
             "language": ["en-us"],
-            "theme": ["Travel and Transportation"]
+            "theme": ["Travel and Transportation"],
+            "extraProperty3": ["foo", ["bar"], {"baz": true}]
         },
         {
             "@type": "dcat:Dataset",
