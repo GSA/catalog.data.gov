@@ -7,12 +7,11 @@ git+https://github.com/GSA/ckanext-saml2auth.git@datagov#egg=ckanext-saml2auth
 # -e git+https://github.com/ckan/ckanext-qa.git@master#egg=ckanext-qa
 -e git+https://github.com/ckan/ckanext-archiver.git@master#egg=ckanext-archiver
 -e git+https://github.com/ckan/ckanext-report.git@master#egg=ckanext-report
-
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@harvest-next#egg=ckanext_datagovcatalog
 -e git+https://github.com/GSA/ckanext-datagovtheme.git@harvest-next#egg=ckanext_datagovtheme
+-e git+https://github.com/GSA/ckanext-geodatagov.git@harvest-next#egg=ckanext_geodatagov
 ckanext-datajson
 ckanext-envvars>=0.0.3
-ckanext-geodatagov
 ckanext-metrics-dashboard
 
 # Pin for saml2auth to work
