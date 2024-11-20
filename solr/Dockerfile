@@ -11,7 +11,7 @@ USER root
 RUN apt-get update && apt-get install -y curl vim stunnel4 git
 
 # Install EFS Dependencies
-RUN git clone https://github.com/aws/efs-utils && \
+RUN git clone --depth 1 --branch v2.1.0 https://github.com/aws/efs-utils && \
   cd efs-utils && \
   apt-get -y install binutils rustc cargo pkg-config libssl-dev && \
   ./build-deb.sh && \
