@@ -11,9 +11,11 @@ USER root
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y curl vim stunnel4 git
 
 # Install EFS Dependencies
-RUN apt-get -y install binutils rustc cargo pkg-config libssl-dev
-RUN git clone --depth 1 --branch v2.1.0 https://github.com/aws/efs-utils
-RUN cd efs-utils && ./build-deb.sh && apt-get -y install ./build/amazon-efs-utils*deb
+RUN git clone --depth 1 --branch v2.1.0 https://github.com/aws/efs-utils && \
+  cd efs-utils && \
+  apt-get -y install binutils rustc cargo pkg-config libssl-dev && \
+  ./build-deb.sh && \
+  apt-get -y install ./build/amazon-efs-utils*deb
 
 # Install hostname resolution dependencies
 RUN apt-get install -y dnsutils
