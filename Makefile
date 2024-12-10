@@ -19,8 +19,9 @@ clean:
 
 cypress:
 	# Turn on local system, and open cypress in interactive mode
-	# If you haven't remapped localhost > ckan, you should change baseURL to "http://localhost:5000" in `e2e/cypress.json`
-	docker compose up -d && cd e2e && CYPRESS_USER=admin CYPRESS_USER_PASSWORD=password npx cypress@7.3.0 open
+	# If you haven't remapped localhost > ckan, you should change baseURL to "http://localhost:5000" in `e2e/cypress.config.js`
+	# If you get receive "Error: Cannot find module 'cypress'", run `npm i` in the root directory to install the cypress binary
+	docker compose up -d && cd e2e && CYPRESS_USER=admin CYPRESS_USER_PASSWORD=password npx cypress@13.16.1 open
 
 dev:
 	docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
@@ -42,8 +43,7 @@ update-dependencies:
 # Test commands
 # ###############################################
 
-test: build
-	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
+test: clean build
 	docker compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
 
 # everytime you added some new variables, you need to swap it with some test values
