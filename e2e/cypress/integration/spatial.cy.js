@@ -1,6 +1,7 @@
 describe('Spatial', { testIsolation: false }, () => {
     before(() => {
         cy.login();
+        cy.create_group('climate', 'Climate Group');        
     });
 
     after(() => {
@@ -43,15 +44,12 @@ describe('Spatial', { testIsolation: false }, () => {
     });
 
     it('Can put a package with weird tags in an group', () => {
-        const group_name = 'climate';
-        cy.delete_group(group_name);
-        cy.create_group(group_name, 'Climate Group');
         cy.request({
             url: '/api/action/package_patch',
             method: 'POST',
             body: {
                 id: 'nefsc-2000-spring-bottom-trawl-survey-al0002-ek500',
-                groups: [{ name: group_name }],
+                groups: [{ name: 'climate' }],
             },
         }).should((response) => {
             expect(response.body).to.have.property('success', true);

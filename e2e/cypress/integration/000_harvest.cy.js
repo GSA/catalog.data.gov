@@ -12,8 +12,6 @@ describe('Harvest', { testIsolation: false }, () => {
          */
         cy.login();
         cy.make_api_token();
-        // Make sure organization does not exist before creating
-        cy.delete_organization(harvestOrg);
         // Create the organization
         cy.visit('/organization');
         cy.get('a[class="btn btn-primary"]').click();
