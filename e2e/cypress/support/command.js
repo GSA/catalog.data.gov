@@ -117,7 +117,6 @@ Cypress.Commands.add('create_organization', (orgName, orgDesc) => {
     cy.request({
         url: '/api/action/organization_create',
         method: 'POST',
-        failOnStatusCode: false,
         body: {
             description: orgDesc,
             title: orgName,
@@ -138,7 +137,6 @@ Cypress.Commands.add('create_group', (groupName, groupDesc) => {
     cy.request({
         url: '/api/action/group_create',
         method: 'POST',
-        failOnStatusCode: false,
         body: {
             description: groupDesc,
             title: groupName,
@@ -160,7 +158,6 @@ Cypress.Commands.add('delete_group', (groupName) => {
     cy.request({
         url: '/api/action/group_purge',
         method: 'POST',
-        failOnStatusCode: false,
         body: {
             id: groupName,
         },
@@ -170,14 +167,13 @@ Cypress.Commands.add('delete_group', (groupName) => {
 Cypress.Commands.add('delete_organization', (orgName) => {
     /**
      * Method to purge an organization from the current state
-     * :PARAM orgName String: Name of the organization to purge from the current state
+     * :PARAM orgName String: Name of the orggstanization to purge from the current state
      * :RETURN null:
      */
     cy.fixture('api_token').then((data) => {
         cy.request({
             url: '/api/action/organization_delete',
             method: 'POST',
-            failOnStatusCode: false,
             headers: {
                 'Authorization': data.api_token,
                 'Content-Type': 'application/json'
@@ -190,7 +186,6 @@ Cypress.Commands.add('delete_organization', (orgName) => {
         cy.request({
             url: '/api/action/organization_purge',
             method: 'POST',
-            failOnStatusCode: false,
             headers: {
                 'Authorization': data.api_token,
                 'Content-Type': 'application/json'
@@ -216,7 +211,6 @@ Cypress.Commands.add('delete_dataset', (datasetName) => {
         cy.request({
             url: '/api/action/dataset_purge',
             method: 'POST',
-            failOnStatusCode: false,
             headers: {
                 'Authorization': data.api_token,
                 'Content-Type': 'application/json'
@@ -306,7 +300,6 @@ Cypress.Commands.add('create_dataset', (ckan_dataset) => {
             cy.request({
                 url: '/api/3/action/package_create',
                 method: 'POST',
-                failOnStatusCode: false,
                 headers: {
                     'Authorization': token_data.api_token,
                     'Content-Type': 'application/json'
