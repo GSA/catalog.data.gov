@@ -62,8 +62,6 @@ Cypress.Commands.add('login', (userName, password) => {
      * :PARAM password String: password for the user logging in
      * :RETURN null:
      */
-    cy.logout();
-
     cy.visit('/user/login');
 
     if (!userName) {
