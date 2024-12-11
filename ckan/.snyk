@@ -28,7 +28,7 @@ ignore:
         reason: >-
           Upgrade path is complex, Issue tracked in github:
           https://github.com/GSA/data.gov/issues/4217
-        expires: 2024-11-30T19:29:54.032Z
+        expires: 2025-02-28T19:29:54.032Z
         created: 2023-02-15T16:20:58.023Z
   SNYK-PYTHON-FLASK-5490129:
     - '*':
@@ -55,7 +55,7 @@ ignore:
     - '*':
         reason: >-
           No remediation available yet; Low severity.
-        expires: 2024-11-30T17:24:47.251Z
+        expires: 2025-02-28T19:29:54.032Z
         created: 2024-04-24T17:24:47.257Z
   SNYK-PYTHON-WERKZEUG-6808933:
     - '*':

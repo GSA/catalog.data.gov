@@ -13,7 +13,7 @@ charset-normalizer==3.4.0
 ckan @ git+https://github.com/GSA/ckan.git@8c4a517efeac80db098cc6ba144cb742bbeca194
 -e git+https://github.com/ckan/ckanext-archiver.git@cbfadf9fbf10405958fdef9f77a7faedc05aa20b#egg=ckanext_archiver
 ckanext-datagovcatalog==0.1.1
-ckanext-datagovtheme==0.2.37
+ckanext-datagovtheme==0.2.40
 ckanext-datajson==0.1.27
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
