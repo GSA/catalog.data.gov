@@ -165,7 +165,7 @@ Cypress.Commands.add('delete_group', (groupName) => {
 Cypress.Commands.add('delete_organization', (orgName) => {
     /**
      * Method to purge an organization from the current state
-     * :PARAM orgName String: Name of the orggstanization to purge from the current state
+     * :PARAM orgName String: Name of the organization to purge from the current state
      * :RETURN null:
      */
     cy.fixture('api_token').then((data) => {
