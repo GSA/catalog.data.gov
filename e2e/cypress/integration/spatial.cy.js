@@ -1,11 +1,15 @@
+const group = {
+    name: 'climate',
+    desc: 'Climate Group'
+}
 describe('Spatial', { testIsolation: false }, () => {
     before(() => {
         cy.login();
-        cy.create_group('climate', 'Climate Group');        
+        cy.create_group(group.name, group.desc);        
     });
 
     after(() => {
-        cy.delete_group('climate');
+        cy.delete_group(group.name);
         cy.logout();
     });
 
@@ -49,11 +53,11 @@ describe('Spatial', { testIsolation: false }, () => {
             method: 'POST',
             body: {
                 id: 'nefsc-2000-spring-bottom-trawl-survey-al0002-ek500',
-                groups: [{ name: 'climate' }],
+                groups: [{ name: group.name }],
             },
         }).should((response) => {
             expect(response.body).to.have.property('success', true);
-            expect(response.body.result.groups[0]).to.have.property('name', 'climate');
+            expect(response.body.result.groups[0]).to.have.property('name', group.name);
         });
     });
 
