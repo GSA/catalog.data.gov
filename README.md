@@ -240,4 +240,4 @@ Continuous Deployment via [GitHub Actions](https://github.com/GSA/catalog.data.g
 
 ## Put site into maintenance mode
 
-To block access to the catalog apps (`catalog-web`, `catalog-admin`), set the environment variables (`CATALOG_WEB_MODE`, `CATALOG_ADMIN_MODE`) in the `catalog-proxy` app. Use 'MAINTENANCE' for scheduled downtime, 'DOWN' for unscheduled downtime. Any other value will resume normal operation.
+To block access to the catalog apps (`catalog-web`, `catalog-admin`), set the environment variables (`CATALOG_WEB_MODE`, `CATALOG_ADMIN_MODE`) in the `catalog-proxy` app. Use 'MAINTENANCE' for scheduled downtime, 'DOWN' for unscheduled downtime,  'FEDERAL-SHUTDOWN' for the special occasion. Any other value will resume normal operation. Any change on `CATALOG_WEB_MODE` need to be followed by a CloudFront cache clear.
