@@ -18,6 +18,9 @@ case "$2" in
     "Unscheduled_Downtime")
         maintenance_mode="DOWN"
         ;;
+    "Federal_Shutdown")
+        maintenance_mode="FEDERAL-SHUTDOWN"
+        ;;
     *)
         maintenance_mode="NORMAL"
         ;;
