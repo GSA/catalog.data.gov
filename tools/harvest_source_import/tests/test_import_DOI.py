@@ -2,7 +2,6 @@ import json
 import pytest
 from remote_ckan.lib import RemoteCKAN
 
-
 @pytest.mark.vcr()
 def test_load_from_name():
     """ Test source using force_all config. """
