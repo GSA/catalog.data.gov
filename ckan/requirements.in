@@ -118,7 +118,6 @@ requests~=2.32.3
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-jinja2>=3.1.4
 cryptography>=42.0.4
 
 # fix for https://security.snyk.io/vuln/SNYK-PYTHON-GEVENT-8320934
@@ -144,3 +143,4 @@ MarkupSafe==2.*
 
 # avoid conflic dependencies issue
 greenlet>=3.1.1
+jinja2>=3.1.5
