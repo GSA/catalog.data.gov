@@ -12,6 +12,7 @@ fetch-instances: 1
 proxy-instances: 1
 memory_quota: 750M
 gather_memory_quota: 3G
+fetch_memory_quota: 500M
 
 new_relic_monitor_mode: true
 
