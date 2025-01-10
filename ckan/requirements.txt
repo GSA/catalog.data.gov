@@ -74,7 +74,7 @@ psycopg2==2.9.3
 pycparser==2.22
 PyJWT==2.4.0
 pyOpenSSL==24.3.0
-pyparsing==3.2.0
+pyparsing==3.2.1
 pyproj==3.4.1
 pysaml2==7.0.1
 pysolr==3.9.0
