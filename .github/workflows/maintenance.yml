@@ -28,6 +28,7 @@ on:
           - Normal
           - Scheduled_Maintenance
           - Unscheduled_Downtime
+          - Federal_Shutdown
       notification:
         description: 'Notification to Slack?'
         required: true
@@ -41,7 +42,7 @@ jobs:
     environment: ${{inputs.environ}}
     steps:
       - name: checkout datagov
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: './catalog'
       - name: run task
@@ -54,7 +55,7 @@ jobs:
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
       - name: Send notification to Slack
         if: ${{ inputs.notification }}
-        uses: slackapi/slack-github-action@v1.25.0
+        uses: slackapi/slack-github-action@v2
         with:
           payload: |
             {

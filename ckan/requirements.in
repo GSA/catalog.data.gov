@@ -75,7 +75,7 @@ Flask-Babel==1.0.0
 Flask-Login==0.6.1
 Flask-WTF==1.0.1
 flask-multistatic==1.0
-greenlet==2.0.2
+# greenlet==2.0.2
 #Jinja2==3.1.2
 Markdown==3.4.1
 packaging==24.1
@@ -118,9 +118,11 @@ requests~=2.32.3
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-gevent>=23.9.0
-jinja2>=3.1.4
+jinja2>=3.1.5
 cryptography>=42.0.4
+
+# fix for https://security.snyk.io/vuln/SNYK-PYTHON-GEVENT-8320934
+gevent>=24.10.1
 
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
 # as in https://github.com/GSA/data.gov/issues/4681
@@ -136,3 +138,9 @@ certifi>=2024.7.4
 
 # snyk finding
 setuptools~=71.0.3
+
+# Pin MarkupSafe to avoid button issue for logged in user
+MarkupSafe==2.*
+
+# avoid conflic dependencies issue
+greenlet>=3.1.1
