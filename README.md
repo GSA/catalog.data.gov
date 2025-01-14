@@ -127,7 +127,7 @@ You should now be able to visit `https://[ROUTE]`, where `[ROUTE]` is the route 
 ### Secrets
 
 ips on managing
-[secrets](https://github.com/GSA/datagov-deploy/wiki/Cloud.gov-Cheat-Sheet#secrets-management).
+[secrets](https://github.com/GSA/data.gov/wiki/cloud.gov#secrets-management).
 When creating the service for the first time, use `create-user-provided-service`
 instead of update.
 
@@ -142,12 +142,12 @@ SAML2_PRIVATE_KEY | Base64 encoded SAML2 key matching the certificate configured
 ## Login.gov integration
 
 We use Login.gov as our
-[SAML2](https://github.com/GSA/datagov-deploy/wiki/SAML2-authentication)
+[SAML2](https://github.com/GSA/data.gov/wiki/SAML2-authentication)
 Identity Provider (IdP). Production apps use the production Login.gov instance
 while other apps use the Login.gov identity sandbox.
 
 Each year in March, Login.gov rotates their credentials. See our
-[wiki](https://github.com/GSA/datagov-deploy/wiki/SAML2-authentication#working-with-logingov)
+[wiki](https://github.com/GSA/data.gov/wiki/SAML2-authentication#working-with-logingov)
 for details.
 
 Our Service Provider (SP) certificate and key are provided in through
