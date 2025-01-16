@@ -12,5 +12,6 @@ jobs:
     uses: gsa/data.gov/.github/workflows/scale-web-template.yml@main
     with:
       environ: prod
+      app_url: https://catalog.data.gov
       app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},]}"
     secrets: inherit
