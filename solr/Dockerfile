@@ -8,7 +8,7 @@ USER root
 #######################
 
 # Add curl to access API routes
-RUN apt-get update && apt dist-upgrade -y && apt-get install -y curl vim stunnel4 git
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y curl vim stunnel4 git
 
 # Install EFS Dependencies
 RUN apt-get -y install binutils rustc cargo pkg-config libssl-dev
