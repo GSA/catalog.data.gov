@@ -39,5 +39,23 @@
     "unique_id": "doi-123456789",
     "title": "Test Dataset",
     "name": "test-dataset",
-    "program_code": "010:001"
+    "program_code": "010:001",
+    "extras": [
+        {
+            "key": "identifier",
+            "value": "dataset01"
+        },
+        {
+            "key": "harvest_source_id",
+            "value": "s1"
+        },
+        {
+            "key": "harvest_source_title",
+            "value": "Test Source"
+        },
+        {
+            "key": "harvest_object_id",
+            "value": "abcd-1234"
+        }
+    ]
 }
