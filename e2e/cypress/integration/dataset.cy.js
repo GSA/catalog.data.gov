@@ -8,6 +8,7 @@ describe('Prepare', { testIsolation: false }, () => {
          * Login as cypress user and create an organization
          */
         cy.login();
+        cy.create_token();
 
         // Create the Test Organization using UI
         // We can use the API to create the organization, but we want to test the UI
@@ -15,15 +16,17 @@ describe('Prepare', { testIsolation: false }, () => {
         cy.visit('/organization');
         cy.get('a[class="btn btn-primary"]').click();
         cy.create_organization_ui(testOrgName, testOrgDesc);
+        cy.logout();
 
         // Create the Test Dataset
         cy.create_dataset();
     });
 
     after(() => {
-        cy.logout();
         cy.delete_dataset();
         cy.delete_organization();
+        cy.revoke_token();
+        cy.logout();
     });
 
     it('Test Org is present', () => {

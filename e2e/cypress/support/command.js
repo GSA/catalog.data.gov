@@ -61,6 +61,19 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
     cy.get('#field-login').type(userName);
     cy.get('#field-password').type(password);
     cy.get('.btn-primary').eq(0).click();
+});
+
+
+Cypress.Commands.add('create_token', (userName, tokenName) => {
+
+    cy.hide_debug_toolbar();
+    if (!userName) {
+        userName = Cypress.env('USER');
+        cy.log(userName, process.env);
+    }
+    if (!tokenName) {
+        tokenName = 'cypress token';
+    }
 
     // create an API token named 'cypress token'
     cy.visit('/user/' + userName + '/api-tokens');
@@ -69,18 +82,45 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
         if ($body.text().includes('cypress token')) {
             cy.log('cypress token exists. skipping token creation.');
         } else {
+            const token_file = 'cypress/fixtures/api_token.json';
             cy.get('#name').type('cypress token');
             cy.get('button[value="create"]').click();
-            // After creating, find the token in <code> tag and save it for later use
-            cy.get('div.alert-success code').invoke('text').then((text) => {
-                cy.writeFile('cypress/fixtures/api_token.json', { api_token: text });
-                // I am not sure why we need to wait here, but without it
-                // api call fails. Wait for token file to be ready?
-                cy.wait(1000);
+            // find the token in <code> tag and save it for later use
+            // find the token id (jti) somewhere in the form
+            cy.get('div.alert-success code').invoke('text').then((text1) => {
+                cy.get('form[action^="/user/' + userName +'/api-tokens/"]').invoke('attr', 'action').then((text2) => {
+                    const jti = text2.split('/')[4]
+                    cy.writeFile(token_file, { api_token: text1, jti: jti });
+                    // I am not sure why we need to wait here, but without it
+                    // api call fails. Wait for token file to be ready?
+                    cy.wait(1000);
+                })
             });
             cy.log('cypress token created.');
         }
     });
+});
+
+
+Cypress.Commands.add('revoke_token', (tokenName) => {
+
+    if (!tokenName) {
+        tokenName = 'cypress token';
+    }
+    cy.log('Revoking cypress token.......');
+    cy.fixture('api_token').then((token_data) => {
+        cy.request({
+            url: '/api/3/action/api_token_revoke',
+            method: 'POST',
+            headers: {
+                'Authorization': token_data.api_token,
+                'Content-Type': 'application/json'
+            },
+            body: '{"jti": "' + token_data.jti + '"}'
+        });
+    });
+    const token_file = 'cypress/fixtures/api_token.json';
+    cy.task('deleteFile', token_file)
 });
 
 Cypress.Commands.add('logout', () => {
