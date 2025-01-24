@@ -74,6 +74,9 @@ Cypress.Commands.add('login', (userName, password, loginTest) => {
             // After creating, find the token in <code> tag and save it for later use
             cy.get('div.alert-success code').invoke('text').then((text) => {
                 cy.writeFile('cypress/fixtures/api_token.json', { api_token: text });
+                // I am not sure why we need to wait here, but without it
+                // api call fails. Wait for token file to be ready?
+                cy.wait(1000);
             });
             cy.log('cypress token created.');
         }
