@@ -108,7 +108,7 @@ Copy `vars.yml.template` to `vars.yml`, and customize the values in that file. T
 
 Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available (see [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time)).
 
-    $ cf create-service aws-rds small-psql ${app_name}-db -c '{"version": "12"}'
+    $ cf create-service aws-rds small-psql ${app_name}-db -c '{"version": "15"}'
 
 Create the Redis service for cache
 
