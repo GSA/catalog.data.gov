@@ -108,7 +108,7 @@ Copy `vars.yml.template` to `vars.yml`, and customize the values in that file. T
 
 Create the database used by CKAN itself. You have to wait a bit for the datastore DB to be available (see [the cloud.gov instructions on how to know when it's up](https://cloud.gov/docs/services/relational-database/#instance-creation-time)).
 
-    $ cf create-service aws-rds small-psql ${app_name}-db -c '{"version": "11"}'
+    $ cf create-service aws-rds small-psql ${app_name}-db -c '{"version": "12"}'
 
 Create the Redis service for cache
 
@@ -116,7 +116,7 @@ Create the Redis service for cache
 
 Create the SOLR service for data search
 
-    $ cf create-service solr-cloud base ${app_name}-solr -c solr/service-config-${space}.json -b ssb-solr-gsa-datagov-${space}
+    $ cf create-service solr-on-ecs base ${app_name}-solr -c solr/service-config-${space}.json -b "ssb-solrcloud-gsa-datagov-${space}"
 
 Create the secrets service to store secret environment variables. See
 [Secrets](#secrets) below.
