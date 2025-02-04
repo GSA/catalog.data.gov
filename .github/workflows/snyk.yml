@@ -63,11 +63,9 @@ jobs:
         id: scpr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.ADD_TO_PROJECT_PAT }}
           commit-message: Update Pip Requirements
-          committer: Data.gov Github <datagovhelp@gsa.gov>
-          author: ${{ github.actor }} <datagovhelp@gsa.gov>
           signoff: false
+          sign-commits: true
           branch: requirement-patches
           delete-branch: true
           title: '[Snyk + GH Actions] Update requirements'
