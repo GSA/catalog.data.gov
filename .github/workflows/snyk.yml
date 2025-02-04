@@ -59,7 +59,7 @@ jobs:
           # Fail so that PR is created
           exit 1
       - name: Create Pull Request
-        if: ${{ failure() && github.event_name == 'schedule' }}
+        if: ${{ failure() }}
         id: scpr
         uses: peter-evans/create-pull-request@v5
         with:
