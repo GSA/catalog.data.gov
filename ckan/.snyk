@@ -73,4 +73,10 @@ ignore:
            Issue created and triaged. GitHub issue:
            https://github.com/GSA/data.gov/issues/4951
         expires: 2025-04-30T16:20:58.017Z
+  SNYK-PYTHON-CKAN-8689473:
+    - '*':
+        reason: >-
+           Issue created and triaged. GitHub issue:
+           https://github.com/GSA/data.gov/issues/5078
+        expires: 2025-03-07T16:20:58.017Z
 patch: {}
