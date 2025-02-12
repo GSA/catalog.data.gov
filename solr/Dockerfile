@@ -18,7 +18,6 @@ RUN cd efs-utils && ./build-deb.sh && apt-get -y install ./build/amazon-efs-util
 # Install hostname resolution dependencies
 RUN apt-get install -y dnsutils
 
-# Fix Issue https://github.com/GSA/datagov-deploy/issues/3285
 # Update the angularjs library files
 ADD https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js \
 https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js \
@@ -61,7 +60,6 @@ RUN sed -i 's/jquery-1.7.2.min.js/jquery-3.6.0.min.js/' \
     /opt/solr/server/solr/configsets/sample_techproducts_configs/conf/velocity/head.vm
 
 
-# Fix Issue https://github.com/GSA/datagov-deploy/issues/3283
 # Disable directory listing
 RUN perl -0777  -i -pe 's/ \
     <param-name>dirAllowed<\/param-name>\n.*<param-value>true<\/param-value>/ \
