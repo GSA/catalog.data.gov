@@ -66,11 +66,17 @@ ignore:
     - '*':
         reason: >-
            Not affecting us since it only affects Windows systems
-        expires: 2025-01-28T16:20:58.017Z
+        expires: 2025-04-30T16:20:58.017Z
   SNYK-PYTHON-WERKZEUG-8309092:
     - '*':
         reason: >-
            Issue created and triaged. GitHub issue:
            https://github.com/GSA/data.gov/issues/4951
-        expires: 2025-01-28T16:20:58.017Z
+        expires: 2025-04-30T16:20:58.017Z
+  SNYK-PYTHON-CKAN-8689473:
+    - '*':
+        reason: >-
+           Issue created and triaged. GitHub issue:
+           https://github.com/GSA/data.gov/issues/5078
+        expires: 2025-03-07T16:20:58.017Z
 patch: {}
