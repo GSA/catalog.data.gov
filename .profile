@@ -165,7 +165,4 @@ if [[ $MIGRATE_DB = 'True' ]]; then
   # Run migrations
   ckan db init
   ckan db upgrade
-  ckan report initdb
-  # ckan archiver init
-  # ckan qa init
 fi
