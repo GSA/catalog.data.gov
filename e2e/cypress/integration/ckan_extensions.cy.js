@@ -13,13 +13,11 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('envvars');
             expect(installed_extensions).to.include('image_view');
             expect(installed_extensions).to.include('text_view');
-            expect(installed_extensions).to.include('recline_view');
             expect(installed_extensions).to.include('ckan_harvester');
             expect(installed_extensions).to.include('datajson_harvest');
             expect(installed_extensions).to.include('datagovtheme');
             expect(installed_extensions).to.include('datagov_harvest');
             expect(installed_extensions).to.include('geodatagov');
-            expect(installed_extensions).to.include('geodatagov_miscs');
             expect(installed_extensions).to.include('z3950_harvester');
             expect(installed_extensions).to.include('arcgis_harvester');
             expect(installed_extensions).to.include('geodatagov_geoportal_harvester');

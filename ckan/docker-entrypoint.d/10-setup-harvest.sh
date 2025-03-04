@@ -1,7 +1,7 @@
 set -e
 
 echo "Init Harvest database tables"
-ckan harvester initdb
+ckan db upgrade -p harvest
 
 echo "turn on gather and fetch workers"
 run_fetch () {
