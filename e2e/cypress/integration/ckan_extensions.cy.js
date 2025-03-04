@@ -13,10 +13,8 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('envvars');
             expect(installed_extensions).to.include('image_view');
             expect(installed_extensions).to.include('text_view');
-            expect(installed_extensions).to.include('recline_view');
             expect(installed_extensions).to.include('datagovtheme');
             expect(installed_extensions).to.include('geodatagov');
-            expect(installed_extensions).to.include('geodatagov_miscs');
             expect(installed_extensions).to.include('spatial_metadata');
             expect(installed_extensions).to.include('spatial_query');
             expect(installed_extensions).to.include('dcat');

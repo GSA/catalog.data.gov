@@ -4,4 +4,4 @@
 # ckan archiver init
 
 echo "Setup Report database table"
-ckan report initdb
+ckan db upgrade -p report
