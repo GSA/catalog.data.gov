@@ -12,7 +12,7 @@ ckanext-datagovcatalog
 ckanext-datagovtheme
 ckanext-datajson
 ckanext-envvars>=0.0.3
--e git+https://github.com/GSA/ckanext-geodatagov.git@ckan-211-upgrade#egg=ckanext-harvest
+-e git+https://github.com/GSA/ckanext-geodatagov.git@ckan-211-upgrade#egg=ckanext-geodatagov
 ckanext-metrics-dashboard
 
 # Pin for saml2auth to work
