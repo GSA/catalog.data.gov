@@ -3,5 +3,5 @@
 # echo "Setup Archiver database table"
 # ckan archiver init
 
-echo "Setup Report database table"
-ckan db upgrade -p report
+# echo "Setup Report database table"
+# ckan db upgrade -p report
