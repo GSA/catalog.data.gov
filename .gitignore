@@ -23,6 +23,7 @@ secrets.json
 e2e/cypress/videos/*
 e2e/cypress/screenshots/*
 e2e/cypress/results/output.xml
+e2e/cypress/fixtures/api_token.json
 node_modules
 package-lock.json
 
