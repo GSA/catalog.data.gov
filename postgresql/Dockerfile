@@ -1,4 +1,4 @@
-FROM postgis/postgis:12-3.3-alpine
+FROM postgis/postgis:15-3.4-alpine
 
 # Customize default user/pass/db
 ENV POSTGRES_DB ckan
