@@ -17,11 +17,11 @@ ckanext-datajson==0.1.27
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
 -e git+https://github.com/GSA/ckanext-geodatagov.git@0ef72d9beee1c62db6e128e3a50fe4149c70eb86#egg=ckanext_geodatagov
--e git+https://github.com/ckan/ckanext-harvest.git@a8d1ebf08a3500f9d809f9420dfdf754b5181152#egg=ckanext_harvest
+-e git+https://github.com/GSA/ckanext-harvest.git@drop-temp-table#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.7
 -e git+https://github.com/ckan/ckanext-report.git@3588577f46d17e5f6ef163bb984d0e7016daef71#egg=ckanext_report
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@387cfc1c6a7619f670bf387384f2634516de5844
--e git+https://github.com/ckan/ckanext-spatial.git@c68bd4f6b4c37cd78fed7a73f3567946b6c8e969#egg=ckanext_spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@v2.3.0#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==8.1.7
 cryptography==44.0.2
@@ -91,7 +91,7 @@ rq==1.16.2
 s3transfer==0.11.3
 sansjson==0.3.0
 setuptools==71.0.4
-shapely==2.0.1
+shapely==2.0.7
 simplejson==3.19.2
 six==1.17.0
 SQLAlchemy==1.4.52
