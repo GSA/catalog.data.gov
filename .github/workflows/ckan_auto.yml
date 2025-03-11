@@ -15,6 +15,7 @@ env:
   # Make sure 'schedule-cron' matches these varaibles.
   SCHEDULE_TRACKING: '30 7 * * *'
   SCHEDULE_SITEMAP: '0 2 * * *'
+  SCHEDULE_HARVESTING: '4/15 * * * *'
   SCHEDULE_DBSOLR_SYNC: '0 3 * * *'
   SCHEDULE_STUCK_JOBS: '30 6 * * *'
   SCHEDULE_GEN_REPORT: '0 13 * * *'
@@ -55,7 +56,7 @@ jobs:
           MATRIX=$(cat << MAT
           {
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
-                         "${{env.SCHEDULE_STUCK_JOBS}}",
+                         "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
                          "${{env.SCHEDULE_DBSOLR_SYNC}}", "${{ env.SCHEDULE_GEN_REPORT}}"],
             "environ": ["development", "staging", "prod"],
             "include": [ {"app": "catalog-admin"},
@@ -63,6 +64,7 @@ jobs:
                          {"info_issue": false},
                          {"issue_template": ".github/automated_ckan_error.md"},
                          {"monitor": true},
+                         {"schedule": "${{env.SCHEDULE_HARVESTING}}", "command": "ckan harvester run"},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "command": "ckan geodatagov tracking-update"},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "error_seconds": 12600},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "info_issue": true},
