@@ -1,8 +1,7 @@
 # run with make test
-version: '3'
 services:
   test:
-    image: cypress/included:12.9.0
+    image: cypress/included:13.16.1
     entrypoint: []
     command: /bin/bash -c "npx wait-on http://ckan:5000/dataset && cypress run"
     # To run specific test, use the following syntax:

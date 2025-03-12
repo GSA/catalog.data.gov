@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   ckan:
     image: ghcr.io/gsa/catalog.data.gov:latest

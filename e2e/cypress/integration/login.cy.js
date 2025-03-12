@@ -2,7 +2,7 @@ describe('Login', () => {
     it('Invalid user login attempt', () => {
         cy.visit('/dataset');
         cy.get('a[href="/user/login"]').click();
-        cy.login('not-user', 'not-password', true);
+        cy.login('not-user', 'not-password');
         cy.get('.flash-messages .alert').should('contain', 'Login failed. Bad username or password.');
     });
 
