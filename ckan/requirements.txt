@@ -3,8 +3,8 @@ async-timeout==5.0.1
 Babel==2.15.0
 bleach==6.1.0
 blinker==1.8.2
-boto3==1.37.10
-botocore==1.37.10
+boto3==1.37.11
+botocore==1.37.11
 cachelib==0.13.0
 certifi==2025.1.31
 cffi==1.17.1
@@ -12,8 +12,8 @@ chardet==5.2.0
 charset-normalizer==3.4.1
 ckan @ git+https://github.com/ckan/ckan.git@710dfff718859ff284f0e9feee70c1ecfc86677a
 ckanext-datagovcatalog==0.1.1
--e git+https://github.com/GSA/ckanext-datagovtheme.git@33b849599c27438c11983628e8b0014fbfa8e9f2#egg=ckanext_datagovtheme
-ckanext-datajson==0.1.27
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@9dac3bd202372b2fe445472cdbd68af33f71e3c0#egg=ckanext_datagovtheme
+ckanext-datajson==0.1.28
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
 -e git+https://github.com/GSA/ckanext-geodatagov.git@c96828e2291c63598eb04875abdcdf6fda813ff8#egg=ckanext_geodatagov
