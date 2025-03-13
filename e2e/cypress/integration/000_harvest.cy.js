@@ -11,8 +11,7 @@ describe('Harvest', { testIsolation: false }, () => {
          * Login as cypress user and create an organization for testing harvest source creation and running the jobs
          */
         cy.login();
-        // Make sure organization does not exist before creating
-        cy.delete_organization(harvestOrg);
+        cy.make_api_token();
         // Create the organization
         cy.visit('/organization');
         cy.get('a[class="btn btn-primary"]').click();

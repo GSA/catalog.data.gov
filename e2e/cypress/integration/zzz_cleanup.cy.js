@@ -19,9 +19,12 @@ describe('Cleanup site', () => {
 
         // Make sure DB is fully cleared
         cy.wait(3000);
-
         // Remove organization
         cy.delete_organization(harvestOrg);
+    });
+
+    after(() => {
+        cy.logout();
     });
 
     it('Confirms empty site', () => {
