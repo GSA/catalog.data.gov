@@ -57,6 +57,7 @@ jobs:
         if: ${{ inputs.notification }}
         uses: slackapi/slack-github-action@v2
         with:
+          webhook-type: incoming-webhook
           payload: |
             {
               "text": "${{inputs.app}} catalog app in ${{inputs.environ}} space is now in ${{inputs.mode}} mode."
