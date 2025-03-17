@@ -7,10 +7,10 @@ applications:
       - python_buildpack
     services:
       - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-s3
-      - ((app_name))-secrets
-      - ((app_name))-solr
+      - catalog-redis
+      - catalog-s3
+      - catalog-secrets
+      - catalog-solr
       - sysadmin-users
     routes:
       - route: ((route-internal))
@@ -25,50 +25,50 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-web-((space_name))
+      NEW_RELIC_APP_NAME: catalog-web-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
       CKAN_SITE_URL: https://((route-public))
       CKAN___GOOGLEANALYTICS__ID: ((googleanalytics_id))
 
-  - name: ((app_name))-admin
-    buildpacks:
-      - https://github.com/cloudfoundry/apt-buildpack
-      - python_buildpack
-    services:
-      - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-secrets
-      - ((app_name))-solr
-      - ((app_name))-smtp
-      - ((app_name))-s3
-      - sysadmin-users
-    routes:
-      - route: ((route-internal-admin))
-    health-check-type: http
-    health-check-http-endpoint: /dataset
-    health-check-invocation-timeout: 60
-    instances: ((admin-instances))
-    disk_quota: 2G
-    memory: ((memory_quota))
-    command: ./ckan/setup/server_start.sh
-    env:
-      CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
-      CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
-      SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-admin-((space_name))
-      NEW_RELIC_HOST: gov-collector.newrelic.com
-      NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
-      CKAN_SITE_URL: https://((route-external-admin))
+  # - name: ((app_name))-admin
+  #   buildpacks:
+  #     - https://github.com/cloudfoundry/apt-buildpack
+  #     - python_buildpack
+  #   services:
+  #     - ((app_name))-db
+  #     - ((app_name))-redis
+  #     - ((app_name))-secrets
+  #     - ((app_name))-solr
+  #     - ((app_name))-smtp
+  #     - ((app_name))-s3
+  #     - sysadmin-users
+  #   routes:
+  #     - route: ((route-internal-admin))
+  #   health-check-type: http
+  #   health-check-http-endpoint: /dataset
+  #   health-check-invocation-timeout: 60
+  #   instances: ((admin-instances))
+  #   disk_quota: 2G
+  #   memory: ((memory_quota))
+  #   command: ./ckan/setup/server_start.sh
+  #   env:
+  #     CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
+  #     CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
+  #     SAML2_CERTIFICATE: ((saml2_certificate))
+  #     NEW_RELIC_APP_NAME: ((app_name))-admin-((space_name))
+  #     NEW_RELIC_HOST: gov-collector.newrelic.com
+  #     NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+  #     NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
+  #     CKAN_SITE_URL: https://((route-external-admin))
 
   - name: ((app_name))-proxy
     buildpacks:
       - https://github.com/cloudfoundry/nginx-buildpack
     services:
-      - ((app_name))-secrets
-      - ((app_name))-s3
+      - catalog-secrets
+      - catalog-s3
     path: ./proxy
     # TODO: tweak with load testing
     memory: 100M
@@ -84,55 +84,55 @@ applications:
       INTERNAL_ROUTE_ADMIN: ((route-internal-admin))
       DENY_PACKAGE_CREATE: ((deny_package_create))
 
-  - name: ((app_name))-gather
-    buildpacks:
-      - https://github.com/cloudfoundry/apt-buildpack
-      - python_buildpack
-    services:
-      - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-secrets
-      - ((app_name))-solr
-      - ((app_name))-s3
-      - sysadmin-users
-    no-route: true
-    instances: ((gather-instances))
-    disk_quota: 1.5G
-    memory: ((gather_memory_quota))
-    command: newrelic-admin run-program ckan harvester gather-consumer
-    health-check-type: process
-    timeout: 15
-    env:
-      CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
-      CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
-      SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-gather-((space_name))
-      NEW_RELIC_HOST: gov-collector.newrelic.com
-      NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: https://((route-public))
+  # - name: ((app_name))-gather
+  #   buildpacks:
+  #     - https://github.com/cloudfoundry/apt-buildpack
+  #     - python_buildpack
+  #   services:
+  #     - ((app_name))-db
+  #     - ((app_name))-redis
+  #     - ((app_name))-secrets
+  #     - ((app_name))-solr
+  #     - ((app_name))-s3
+  #     - sysadmin-users
+  #   no-route: true
+  #   instances: ((gather-instances))
+  #   disk_quota: 1.5G
+  #   memory: ((gather_memory_quota))
+  #   command: newrelic-admin run-program ckan harvester gather-consumer
+  #   health-check-type: process
+  #   timeout: 15
+  #   env:
+  #     CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
+  #     CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
+  #     SAML2_CERTIFICATE: ((saml2_certificate))
+  #     NEW_RELIC_APP_NAME: ((app_name))-gather-((space_name))
+  #     NEW_RELIC_HOST: gov-collector.newrelic.com
+  #     NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+  #     CKAN_SITE_URL: https://((route-public))
 
-  - name: ((app_name))-fetch
-    buildpacks:
-      - https://github.com/cloudfoundry/apt-buildpack
-      - python_buildpack
-    services:
-      - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-secrets
-      - ((app_name))-solr
-      - sysadmin-users
-    no-route: true
-    instances: ((fetch-instances))
-    disk_quota: 1.5G
-    memory: ((fetch_memory_quota))
-    command: newrelic-admin run-program sh -c 'while ! ckan harvester fetch-consumer; do sleep 10; done'
-    health-check-type: process
-    timeout: 15
-    env:
-      CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
-      CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
-      SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-fetch-((space_name))
-      NEW_RELIC_HOST: gov-collector.newrelic.com
-      NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
-      CKAN_SITE_URL: https://((route-public))
+  # - name: ((app_name))-fetch
+  #   buildpacks:
+  #     - https://github.com/cloudfoundry/apt-buildpack
+  #     - python_buildpack
+  #   services:
+  #     - ((app_name))-db
+  #     - ((app_name))-redis
+  #     - ((app_name))-secrets
+  #     - ((app_name))-solr
+  #     - sysadmin-users
+  #   no-route: true
+  #   instances: ((fetch-instances))
+  #   disk_quota: 1.5G
+  #   memory: ((fetch_memory_quota))
+  #   command: newrelic-admin run-program sh -c 'while ! ckan harvester fetch-consumer; do sleep 10; done'
+  #   health-check-type: process
+  #   timeout: 15
+  #   env:
+  #     CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
+  #     CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
+  #     SAML2_CERTIFICATE: ((saml2_certificate))
+  #     NEW_RELIC_APP_NAME: ((app_name))-fetch-((space_name))
+  #     NEW_RELIC_HOST: gov-collector.newrelic.com
+  #     NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+  #     CKAN_SITE_URL: https://((route-public))
