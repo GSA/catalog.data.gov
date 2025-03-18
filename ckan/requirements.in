@@ -95,6 +95,7 @@ zope.interface==6.4post2
 # Pinned greenlet version to match version delivered with OS,
 # preventing error with gevent dependency using newer version.
 gunicorn
+eventlet
 # greenlet==0.4.12
 
 # New Relic
@@ -103,7 +104,6 @@ redis>=4.5.4
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-gevent>=24.10.1
 cryptography>=42.0.4
 
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
