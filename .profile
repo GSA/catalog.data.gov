@@ -117,6 +117,7 @@ else
 fi
 export CKAN_SOLR_USER=$(vcap_get_service solr .credentials.username)
 export CKAN_SOLR_PASSWORD=$(vcap_get_service solr .credentials.password)
+export CKAN___SECRET_KEY=$(vcap_get_service secrets .credentials.CKAN___SECRET_KEY)
 
 export NEW_RELIC_LICENSE_KEY=$(vcap_get_service secrets .credentials.NEW_RELIC_LICENSE_KEY)
 # Get sysadmins list by a user-provided-service per environment
