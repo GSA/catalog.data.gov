@@ -108,6 +108,7 @@ sqlparse==0.5.0
 # Pinned greenlet version to match version delivered with OS,
 # preventing error with gevent dependency using newer version.
 gunicorn
+eventlet
 # greenlet==0.4.12
 
 # New Relic
@@ -117,8 +118,6 @@ requests~=2.32.3
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-gevent>=23.9.0
-jinja2>=3.1.4
 cryptography>=42.0.4
 
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
