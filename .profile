@@ -167,7 +167,4 @@ if [[ $MIGRATE_DB = 'True' ]]; then
   ckan db init
   ckan db upgrade
   ckan db upgrade -p harvest
-  ckan db upgrade -p report
-  # ckan archiver init
-  # ckan qa init
 fi

@@ -8,7 +8,6 @@ on:
     - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
     - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
     - cron: '30 6 * * *'       # Check Stuck Jobs -- every day at 1:30am EST
-    - cron: '0 13 * * *'       # Generate Reports -- every day @9:00am EST
 
 env:
   ERROR: false
@@ -18,7 +17,6 @@ env:
   SCHEDULE_HARVESTING: '4/15 * * * *'
   SCHEDULE_DBSOLR_SYNC: '0 3 * * *'
   SCHEDULE_STUCK_JOBS: '30 6 * * *'
-  SCHEDULE_GEN_REPORT: '0 13 * * *'
 
 jobs:
   setup-matrix:
@@ -50,14 +48,11 @@ jobs:
           #   - Only run on [staging, prod]
           #   - Create Error issue: if runtime longer than 30 mins
           #   - Create Informational issue: db-solr-sync-info.md
-          #  schedule: report generation
-          #   - Only run on [development, staging, prod]
-          #   - Create Error issue: if ckan command errors
           MATRIX=$(cat << MAT
           {
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
                          "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
-                         "${{env.SCHEDULE_DBSOLR_SYNC}}", "${{ env.SCHEDULE_GEN_REPORT}}"],
+                         "${{env.SCHEDULE_DBSOLR_SYNC}}"],
             "environ": ["development", "staging", "prod"],
             "include": [ {"app": "catalog-admin"},
                          {"error_seconds": 22000},
@@ -76,8 +71,6 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "info_issue": true},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "issue_template": ".github/db-solr-sync-info.md"},
                          {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "command": "ckan geodatagov check-stuck-jobs"},
-                         {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "command": "ckan report generate"},
-                         {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "issue_template": ".github/report-generation-failure.md"},
                          {"environ": "development", "ram": "1G"},
                          {"environ": "staging", "ram": "2500M"},
                          {"environ": "prod", "ram": "3G"}
