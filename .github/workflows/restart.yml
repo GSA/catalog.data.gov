@@ -7,13 +7,13 @@ on:
     - cron: '11/30 * * * *'
 
 jobs:
-  restart-staging:
-    name: restart (staging)
-    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
-    with:
-      environ: staging
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
-    secrets: inherit
+  # restart-staging:
+  #   name: restart (staging)
+  #   uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
+  #   with:
+  #     environ: staging
+  #     app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
+  #   secrets: inherit
 
   restart-prod:
     name: restart (prod)
