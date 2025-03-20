@@ -79,7 +79,6 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "command": "ckan report generate"},
                          {"schedule": "${{env.SCHEDULE_GEN_REPORT}}", "issue_template": ".github/report-generation-failure.md"},
                          {"environ": "development", "ram": "1G"},
-                         {"environ": "prod", "ram": "3G"}
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"},
