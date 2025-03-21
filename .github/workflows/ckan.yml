@@ -10,7 +10,6 @@ on:
         type: choice
         options:
           - development
-          - prod
       app:
         description: 'App to run on:'
         required: true
