@@ -115,38 +115,14 @@ describe('Harvest', { testIsolation: false }, () => {
         cy.check_dataset_harvested(5);
     });
 
-    // TODO: delete once we confirm dropping support for CSWs
-    // ####
-    // it('Create CSW Harvest Source', () => {
-    //     /**
-    //      * Test creating a valid csw harvest source.
-    //      * Mocking a CSW harvest source is extremely complex,
-    //      * we took a shortcut and used a public endpoint.
-    //      * This test may fail in the future due to removal of
-    //      * the service not under our control, at that point we should
-    //      * remove the test or create a CSW service locally.
-    //      * Currently only 1 harvest endpoint is working for data.gov,
-    //      * so testing that use case seems appropriate. You can check
-    //      * how many harvest sources are created for CSW by going to
-    //      * https://catalog.data.gov/harvest?source_type=csw
-    //      */
-
-    //     cy.create_harvest_source(
-    //         harvestOrg,
-    //         'https://geonode.state.gov/catalogue/csw',
-    //         cswHarvestSourceName,
-    //         'cypress test csw',
-    //         'csw',
-    //         'False',
-    //         false
-    //     );
-
-    //     // harvestTitle must not contain spaces, otherwise the URL redirect will not confirm
-    //     cy.location('pathname').should('eq', '/harvest/' + cswHarvestSourceName);
-    // });
-
-    // it('Start CSW Harvest Job', () => {
-    //     cy.start_harvest_job(cswHarvestSourceName);
-    //     cy.check_dataset_harvested(5);
-    // });
+    it('Contains Last Job report', () => {
+        cy.visit('/harvest/about/test-harvest-datajson');
+        cy.get('td').contains('The number in parentheses');
+        cy.get('span').contains(/0\s+errors/);
+        cy.get('td').contains('Finished');
+        cy.visit('/harvest/about/test-harvest-waf-iso');
+        cy.get('td').should('not.contain', 'The number in parentheses');
+        cy.get('span').contains(/0\s+updated/);
+        cy.get('td').contains('Finished');
+    });
 });
