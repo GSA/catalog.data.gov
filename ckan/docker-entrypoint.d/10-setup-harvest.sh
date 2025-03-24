@@ -1,7 +1,12 @@
 set -e
 
 echo "Init Harvest database tables"
-ckan harvester initdb
+# datagov_harvest and harvest can't coexist in the same ckan instance
+# so we have to temporarilly load harvest into plugin and create harvest tables.
+tmp_config=$(mktemp)
+sed '/^ckan.plugins/ s/datagov_harvest/harvest/g' /srv/app/ckan.ini > "$tmp_config"
+ckan -c "$tmp_config" db upgrade -p harvest
+rm "$tmp_config"
 
 echo "turn on gather and fetch workers"
 run_fetch () {

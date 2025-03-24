@@ -30,4 +30,23 @@ describe('Organization', { testIsolation: false }, () => {
 
         cy.get('button[name=save]').click();
     });
+
+    it('Edit Organization with Custom Field', () => {
+        cy.visit('/organization/edit/cypress-test-org');
+        cy.get('#field-extras-1-key').type('organization_type');
+        cy.get('#field-extras-1-value').type('Federal Government');
+        cy.hide_debug_toolbar();
+
+        cy.get('button[name=save]').click();
+    });
+
+    it('Verify Organization Type Banner', () => {
+        cy.visit('/organization/cypress-test-org');
+
+        cy.get('.organization-type')
+            .should('have.attr', 'title', 'Federal Government')
+            .and('have.attr', 'data-organization-type', 'federal');
+
+        cy.get('.organization-type span').should('contain', 'Federal');
+    });
 });

@@ -10,6 +10,8 @@ on:
         type: choice
         options:
           - development
+          - staging
+          - prod
       app:
         description: 'App to run on:'
         required: true
@@ -28,7 +30,6 @@ on:
           - 'ckan harvester run'
           - 'ckan geodatagov sitemap-to-s3'
           - 'ckan geodatagov tracking-update'
-          - 'ckan report generate'
       memory:
         description: 'RAM to allocate:'
         required: true

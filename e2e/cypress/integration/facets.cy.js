@@ -21,10 +21,10 @@ describe('Facets', { testIsolation: false }, () => {
         cy.get('a[class="btn btn-primary"]').click();
         cy.create_organization_ui('org-tags', 'tags for org test');
         cy.visit('/organization/org-tags');
-        cy.get('.module-shallow').its('length').should('be.equal', 11);
-        cy.get('.module-shallow').contains('Topics');
-        cy.get('.module-shallow').contains('Harvest Source');
-        cy.get('.module-shallow').last().contains('Bureaus');
+        cy.get('section.module-shallow').its('length').should('be.equal', 10);
+        cy.get('section.module-shallow').contains('Topics');
+        cy.get('section.module-shallow').contains('Harvest Source');
+        cy.get('section.module-shallow').last().contains('Bureaus');
     });
 
     it('Show datagov facet list on group page', () => {
