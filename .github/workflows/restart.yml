@@ -6,6 +6,11 @@ on:
   schedule:
     - cron: '11/30 * * * *'
 
+permissions:
+  contents: read
+  id-token: write
+  actions: write
+
 jobs:
   restart-staging:
     name: restart (staging)
