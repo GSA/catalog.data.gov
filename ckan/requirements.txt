@@ -3,8 +3,8 @@ async-timeout==5.0.1
 Babel==2.15.0
 bleach==6.1.0
 blinker==1.8.2
-boto3==1.37.18
-botocore==1.37.18
+boto3==1.37.19
+botocore==1.37.19
 cachelib==0.13.0
 certifi==2025.1.31
 cffi==1.17.1
@@ -12,11 +12,11 @@ chardet==5.2.0
 charset-normalizer==3.4.1
 ckan @ git+https://github.com/GSA/ckan.git@040bd82163204e300342f0e0cd2f74eba2997ad8
 ckanext-datagovcatalog==0.1.1
--e git+https://github.com/GSA/ckanext-datagovtheme.git@15df9b493cfa01da976885d29478e73c9b1c56c9#egg=ckanext_datagovtheme
+ckanext-datagovtheme==0.3.1
 ckanext-datajson==0.1.28
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
--e git+https://github.com/GSA/ckanext-geodatagov.git@c96828e2291c63598eb04875abdcdf6fda813ff8#egg=ckanext_geodatagov
+ckanext-geodatagov==0.3.0
 -e git+https://github.com/GSA/ckanext-harvest.git@8da16a1f993f0fbf18f9fc810ab6ed7dfb7f871a#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.7
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@99f35585c219a5cd39717b8c42cc54cdd959dfb4
@@ -78,7 +78,7 @@ pysaml2==7.0.1
 pysolr==3.9.0
 python-dateutil==2.9.0.post0
 python-magic==0.4.27
-pytz==2025.1
+pytz==2025.2
 PyYAML==6.0.1
 PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==6.1.1
