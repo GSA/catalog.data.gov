@@ -51,6 +51,8 @@ test: build
 
 # everytime you added some new variables, you need to swap it with some test values
 # and swap it back after the test. This is because "nginx -t" test cannot read env variables.
+# NOTE: on Mac OS-X you need to install gnu-sed `brew install gnu-sed` and add gnubin to your $PATH
+#		or this will error out b/c Mac uses BSD-sed
 validate-proxy:
 	sed -i 's/{{nameservers}}/127.0.0.1/g' proxy/nginx.conf
 	sed -i 's/{{env "EXTERNAL_ROUTE"}}/127.0.0.2/g' proxy/nginx.conf proxy/nginx-cloudfront.conf
