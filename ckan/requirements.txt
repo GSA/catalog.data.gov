@@ -3,20 +3,20 @@ async-timeout==5.0.1
 Babel==2.15.0
 bleach==6.1.0
 blinker==1.8.2
-boto3==1.37.19
-botocore==1.37.19
+boto3==1.37.22
+botocore==1.37.22
 cachelib==0.13.0
 certifi==2025.1.31
 cffi==1.17.1
 chardet==5.2.0
 charset-normalizer==3.4.1
-ckan @ git+https://github.com/GSA/ckan.git@040bd82163204e300342f0e0cd2f74eba2997ad8
+ckan @ git+https://github.com/GSA/ckan.git@bc9fc45d6124a5b8cf219e70767dc5ec92b428ff
 ckanext-datagovcatalog==0.1.1
 ckanext-datagovtheme==0.3.3
 ckanext-datajson==0.1.28
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
-ckanext-geodatagov==0.3.1
+ckanext-geodatagov==0.3.2
 -e git+https://github.com/GSA/ckanext-harvest.git@8da16a1f993f0fbf18f9fc810ab6ed7dfb7f871a#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.7
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@99f35585c219a5cd39717b8c42cc54cdd959dfb4
@@ -58,7 +58,7 @@ messytables==0.15.2
 msgspec==0.18.6
 mypy==1.15.0
 mypy-extensions==1.0.0
-newrelic==10.7.0
+newrelic==10.8.0
 numpy==1.26.4
 OWSLib==0.32.0
 packaging==24.1
@@ -102,7 +102,7 @@ urllib3==2.3.0
 watchdog==6.0.0
 webassets==2.0
 webencodings==0.5.1
-Werkzeug==3.0.3
+Werkzeug==3.0.6
 wheel==0.45.1
 WTForms==3.2.1
 xlrd==2.0.1
