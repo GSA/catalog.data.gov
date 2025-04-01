@@ -44,7 +44,7 @@ update-dependencies:
 
 test: build
 	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
-	docker compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
+	docker compose --profile test up --abort-on-container-exit test
 
 # everytime you added some new variables, you need to swap it with some test values
 # and swap it back after the test. This is because "nginx -t" test cannot read env variables.
@@ -79,7 +79,7 @@ validate-proxy:
 
 quick-bat-test:
 	# if local environment is already build and running
-	docker compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
+	docker compose --profile test up --abort-on-container-exit test
 
 test-extensions:
 	# test our extensions
