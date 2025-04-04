@@ -1,14 +1,6 @@
 describe('Collection', () => {
 
-		function randomSlug() {
-			return Array.apply(0, Array(5)).map(function() {
-					return (function(charset){
-							return charset.charAt(Math.floor(Math.random() * charset.length))
-					}('abcdefghijklmnopqrstuvwxyz'));
-			}).join('')
-		}
-
-    const orgId = "org-" + randomSlug();
+    const orgId = "org-" + cy.helpers.randomSlug();
     const parentId = "parent-" + orgId;
 		const childId = "child-" + parentId;
 

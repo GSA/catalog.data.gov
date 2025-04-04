@@ -17,3 +17,5 @@
 import './command.js';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+import './helpers.js'
+

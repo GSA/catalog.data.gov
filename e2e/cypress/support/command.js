@@ -1,42 +1,3 @@
-Cypress.Commands.add('check_harvest_done', (retries) => {
-    // Desired harvest page needs to be loaded before this
-    // function is called.
-    cy.get('td')
-        .eq(4)
-        .then(($td) => {
-            if ($td.text() == 'Finished') {
-                cy.wrap($td.text()).should('eq', 'Finished');
-            } else if (retries == 0) {
-                cy.log('Retried too many times, give up');
-                expect(true).to.be.false();
-            } else {
-                // Not done, check again in 5 seconds
-                cy.wait(5000);
-                cy.reload(true);
-                cy.check_harvest_done(retries - 1);
-            }
-        });
-});
-
-Cypress.Commands.add('check_dataset_harvested', (retries) => {
-    // harvester is considered functioning if we get at least 1 dataset in.
-    if (retries == 0) {
-        cy.log('Retried too many times, give up');
-        expect(true).to.be.false();
-    }
-
-    cy.reload(true);
-    cy.contains('#content section.module-content dl dt', 'Datasets')
-        .next()
-        .invoke('text')
-        .then(($text) => {
-            if ($text == '0') {
-                cy.wait(1000);
-                cy.check_dataset_harvested(retries - 1);
-            }
-        });
-});
-
 Cypress.Commands.add('login', (userName, password, loginTest) => {
     /**
      * Method to fill and submit the CKAN Login form
@@ -374,6 +335,26 @@ Cypress.Commands.add('create_dataset', (ckan_dataset) => {
             });
         });
     });
+
+});
+
+Cypress.Commands.add('create_resource', (package_id, url, name = "test-resource") => {
+
+  cy.fixture('api_token').then((token_data) => {
+    cy.request({
+        url: '/api/3/action/resource_create',
+        method: 'POST',
+        headers: {
+            'Authorization': token_data.api_token,
+            'Content-Type': 'application/json'
+        },
+        body: {
+          "package_id": package_id,
+          "url": url,
+          "name": name
+        }
+    });
+  });
 
 });
 
