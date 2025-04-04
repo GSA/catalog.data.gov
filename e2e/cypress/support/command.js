@@ -208,6 +208,28 @@ Cypress.Commands.add('delete_group', (groupName) => {
     });
 });
 
+Cypress.Commands.add('delete_dataset', (datasetName) => {
+  /**
+   * Method to purge an dataset from the current state
+   * :PARAM datasetName String: Name of the dataset to purge from the current state
+   * :RETURN null:
+   */
+  cy.fixture('api_token').then((data) => {
+    cy.request({
+        url: '/api/action/package_delete',
+        method: 'POST',
+        headers: {
+            'Authorization': data.api_token,
+            'Content-Type': 'application/json'
+        },
+        body: {
+            id: datasetName
+        },
+    });
+  });
+});
+
+
 Cypress.Commands.add('delete_organization', (orgName) => {
     /**
      * Method to purge an organization from the current state
@@ -238,7 +260,7 @@ Cypress.Commands.add('delete_organization', (orgName) => {
                 id: orgName? orgName: 'test-organization'
             },
         });
-    
+
     });
 
 
