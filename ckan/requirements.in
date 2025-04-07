@@ -118,3 +118,6 @@ numpy==1.26.4
 
 # snyk finding
 setuptools~=71.0.3
+
+# Pin MarkupSafe to avoid button issue for logged in user
+MarkupSafe==2.*
