@@ -2,7 +2,7 @@ describe('Collection', () => {
 
     const orgId = "org-" + cy.helpers.randomSlug();
     const parentId = "parent-" + orgId;
-		const childId = "child-" + parentId;
+    const childId = "child-" + parentId;
 
     before(() => {
       cy.login();
@@ -11,30 +11,30 @@ describe('Collection', () => {
       cy.create_dataset({
         "name": parentId,
         "owner_org": orgId,
-				"extras": [
-					{
-						"key": "Identifier",
-						"value": parentId
-					},
-					{
-						"key": "harvest_source_id",
-						"value": "harvest-source"
-					}
-				]
+        "extras": [
+          {
+            "key": "Identifier",
+            "value": parentId
+          },
+          {
+            "key": "harvest_source_id",
+            "value": "harvest-source"
+          }
+        ]
       });
       cy.create_dataset({
         "name": childId,
         "owner_org": orgId,
-				"extras": [
-					{
-						"key": "isPartOf",
-						"value": parentId
-					},
-					{
-						"key": "harvest_source_id",
-						"value": "harvest-source"
-					}
-				]
+        "extras": [
+          {
+            "key": "isPartOf",
+            "value": parentId
+          },
+          {
+            "key": "harvest_source_id",
+            "value": "harvest-source"
+          }
+        ]
       });
     });
 
