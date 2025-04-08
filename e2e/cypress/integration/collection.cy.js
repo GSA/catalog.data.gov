@@ -42,6 +42,8 @@ describe('Collection', () => {
       cy.delete_dataset(childId);
       cy.delete_dataset(parentId);
       cy.delete_organization(orgId);
+      cy.revoke_token();
+      cy.logout();
     });
 
     it('Has a UI search button', () => {

@@ -118,15 +118,21 @@ Cypress.Commands.add('create_organization', (orgName, orgDesc) => {
      * :RETURN null:
      */
 
-    cy.request({
-        url: '/api/action/organization_create',
-        method: 'POST',
-        body: {
-            description: orgDesc,
-            title: orgName,
-            name: orgName,
-            save: null
-        },
+    cy.fixture('api_token').then((token_data) => {
+      cy.request({
+          url: '/api/action/organization_create',
+          method: 'POST',
+          headers: {
+              'Authorization': token_data.api_token,
+              'Content-Type': 'application/json'
+          },
+          body: {
+              description: orgDesc,
+              title: orgName,
+              name: orgName,
+              save: null
+          },
+      });
     });
 });
 
@@ -138,16 +144,19 @@ Cypress.Commands.add('create_group', (groupName, groupDesc) => {
      * :RETURN null:
      */
 
-    cy.request({
+    cy.fixture('api_token').then((token_data) => {
+      cy.request({
         url: '/api/action/group_create',
         method: 'POST',
-        body: {
-            description: groupDesc,
-            title: groupName,
-            approval_status: 'approved',
-            state: 'active',
-            name: groupName,
+        headers: {
+            'Authorization': token_data.api_token,
+            'Content-Type': 'application/json'
         },
+        body: {
+            name: groupName,
+            description: groupDesc,
+        },
+      });
     });
 });
 

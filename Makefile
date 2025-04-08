@@ -44,7 +44,7 @@ update-dependencies:
 
 test: build
 	# docker build -t ghcr.io/gsa/catalog.data.gov:latest ckan/
-	docker compose --profile test up --abort-on-container-exit test
+	docker compose --profile test up --force-recreate --abort-on-container-exit test
 
 # everytime you added some new variables, you need to swap it with some test values
 # and swap it back after the test. This is because "nginx -t" test cannot read env variables.

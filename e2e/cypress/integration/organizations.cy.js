@@ -1,10 +1,12 @@
 describe('Organization', { testIsolation: false }, () => {
     before(() => {
         cy.login();
+        cy.create_token();
     });
 
     after(() => {
         cy.delete_organization('cypress-test-org');
+        cy.revoke_token();
         cy.logout();
     });
 
@@ -16,6 +18,7 @@ describe('Organization', { testIsolation: false }, () => {
     });
 
     it('Contains Organization Information', () => {
+        cy.visit('/organization/cypress-test-org');
         cy.contains('No datasets found');
         cy.contains('cypress test description');
         cy.contains('0');

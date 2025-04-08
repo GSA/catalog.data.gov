@@ -18,9 +18,6 @@ describe('DCAT Extension', () => {
     });
 
     it('Datasets have an rdf endpoint', () => {
-        cy.request(`/dataset/${packageId}.rdf`).should((response) => {
-            expect(response.status).to.eq(200);
-            expect(response.body).to.contain('dcat:Dataset');
-        });
+      cy.request(`/dataset/${packageId}.rdf`).its('body').should('include', 'dcat:Dataset')
     });
 });
