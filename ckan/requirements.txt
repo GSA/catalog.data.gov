@@ -16,7 +16,7 @@ ckan @ git+https://github.com/GSA/ckan.git@0482ac3a602815c32998904b46e490e4ec6fb
 ckanext-datajson==0.1.28
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
--e git+https://github.com/GSA/ckanext-geodatagov.git@83d03d8e500bc0702648f407538c2e246b08ce8c#egg=ckanext_geodatagov
+-e git+https://github.com/GSA/ckanext-geodatagov.git@d81534bb824b7c2ef84628555eab620a4954aa47#egg=ckanext_geodatagov
 -e git+https://github.com/GSA/ckanext-harvest.git@8da16a1f993f0fbf18f9fc810ab6ed7dfb7f871a#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.7
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@99f35585c219a5cd39717b8c42cc54cdd959dfb4
