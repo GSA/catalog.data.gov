@@ -1,42 +1,3 @@
-Cypress.Commands.add('check_harvest_done', (retries) => {
-    // Desired harvest page needs to be loaded before this
-    // function is called.
-    cy.get('td')
-        .eq(4)
-        .then(($td) => {
-            if ($td.text() == 'Finished') {
-                cy.wrap($td.text()).should('eq', 'Finished');
-            } else if (retries == 0) {
-                cy.log('Retried too many times, give up');
-                expect(true).to.be.false();
-            } else {
-                // Not done, check again in 5 seconds
-                cy.wait(5000);
-                cy.reload(true);
-                cy.check_harvest_done(retries - 1);
-            }
-        });
-});
-
-Cypress.Commands.add('check_dataset_harvested', (retries) => {
-    // harvester is considered functioning if we get at least 1 dataset in.
-    if (retries == 0) {
-        cy.log('Retried too many times, give up');
-        expect(true).to.be.false();
-    }
-
-    cy.reload(true);
-    cy.contains('#content section.module-content dl dt', 'Datasets')
-        .next()
-        .invoke('text')
-        .then(($text) => {
-            if ($text == '0') {
-                cy.wait(1000);
-                cy.check_dataset_harvested(retries - 1);
-            }
-        });
-});
-
 Cypress.Commands.add('login', (userName, password, loginTest) => {
     /**
      * Method to fill and submit the CKAN Login form
@@ -157,15 +118,21 @@ Cypress.Commands.add('create_organization', (orgName, orgDesc) => {
      * :RETURN null:
      */
 
-    cy.request({
-        url: '/api/action/organization_create',
-        method: 'POST',
-        body: {
-            description: orgDesc,
-            title: orgName,
-            name: orgName,
-            save: null
-        },
+    cy.fixture('api_token').then((token_data) => {
+      cy.request({
+          url: '/api/action/organization_create',
+          method: 'POST',
+          headers: {
+              'Authorization': token_data.api_token,
+              'Content-Type': 'application/json'
+          },
+          body: {
+              description: orgDesc,
+              title: orgName,
+              name: orgName,
+              save: null
+          },
+      });
     });
 });
 
@@ -177,16 +144,19 @@ Cypress.Commands.add('create_group', (groupName, groupDesc) => {
      * :RETURN null:
      */
 
-    cy.request({
+    cy.fixture('api_token').then((token_data) => {
+      cy.request({
         url: '/api/action/group_create',
         method: 'POST',
-        body: {
-            description: groupDesc,
-            title: groupName,
-            approval_status: 'approved',
-            state: 'active',
-            name: groupName,
+        headers: {
+            'Authorization': token_data.api_token,
+            'Content-Type': 'application/json'
         },
+        body: {
+            name: groupName,
+            description: groupDesc,
+        },
+      });
     });
 });
 
@@ -207,6 +177,28 @@ Cypress.Commands.add('delete_group', (groupName) => {
         },
     });
 });
+
+Cypress.Commands.add('delete_dataset', (datasetName) => {
+  /**
+   * Method to purge an dataset from the current state
+   * :PARAM datasetName String: Name of the dataset to purge from the current state
+   * :RETURN null:
+   */
+  cy.fixture('api_token').then((data) => {
+    cy.request({
+        url: '/api/action/package_delete',
+        method: 'POST',
+        headers: {
+            'Authorization': data.api_token,
+            'Content-Type': 'application/json'
+        },
+        body: {
+            id: datasetName
+        },
+    });
+  });
+});
+
 
 Cypress.Commands.add('delete_organization', (orgName) => {
     /**
@@ -238,7 +230,7 @@ Cypress.Commands.add('delete_organization', (orgName) => {
                 id: orgName? orgName: 'test-organization'
             },
         });
-    
+
     });
 
 
@@ -352,6 +344,26 @@ Cypress.Commands.add('create_dataset', (ckan_dataset) => {
             });
         });
     });
+
+});
+
+Cypress.Commands.add('create_resource', (package_id, url, name = "test-resource") => {
+
+  cy.fixture('api_token').then((token_data) => {
+    cy.request({
+        url: '/api/3/action/resource_create',
+        method: 'POST',
+        headers: {
+            'Authorization': token_data.api_token,
+            'Content-Type': 'application/json'
+        },
+        body: {
+          "package_id": package_id,
+          "url": url,
+          "name": name
+        }
+    });
+  });
 
 });
 
