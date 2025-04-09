@@ -1,4 +1,4 @@
-FROM python:3.10.16
+FROM python:3.10.17
 
 # Install Dependencies
 # - Download Saxon jar for FGDC2ISO transform (geodatagov)
