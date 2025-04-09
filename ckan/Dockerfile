@@ -17,7 +17,9 @@ ADD \
 ENV CLASSPATH=$JAVA_HOME/saxon/saxon.jar
 
 COPY requirements.txt ${APP_DIR}
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt --ignore-installed
+RUN pip3 install --upgrade pip setuptools wheel
+RUN pip3 install -r requirements.txt
+# RUN pip3 install --upgrade pip && pip3 install -r requirements.txt --ignore-installed
 
 COPY freeze-requirements.sh /usr/local/bin
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
