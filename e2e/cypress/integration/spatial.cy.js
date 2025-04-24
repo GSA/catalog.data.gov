@@ -5,7 +5,6 @@ describe('Spatial', () => {
     });
 
     after(() => {
-        cy.revoke_token();
         cy.logout();
     });
 
@@ -47,18 +46,18 @@ describe('Spatial', () => {
         cy.get('#dataset-map-container').find('svg.leaflet-zoom-animated');
         cy.contains(/1 dataset found/);
 
-        cy.delete_dataset(packageId);
-        cy.delete_organization(orgId);
+        // cy.delete_dataset(packageId);
+        // cy.delete_organization(orgId);
     });
 
     it('Can search in the location dropdown', () => {
-        // find location search box and find "Washington, DC" by term 'wash'
+        // find location search box and find "Sioux Falls, SD" by term 'Sioux Falls'
         cy.visit('/dataset');
         cy.get('#dataset-map-edit').find('span').contains('Enter location...').click();
-        cy.get('#select2-drop').find('input').type('wash');
-        cy.get('#select2-results-1').find('div').contains('Washington, DC').click();
-        cy.url().should('include', 'ext_location=Washington%2C+DC+%2820001%29&ext_bbox=-77.0275');
-        cy.get('#select2-chosen-1').contains('Washington, DC (20001)');
+        cy.get('#select2-drop').find('input').type('sioux falls');
+        cy.get('#select2-results-1').find('div').contains('Sioux Falls, SD').click();
+        cy.url().should('include', 'ext_location=Sioux+Falls%2C+SD+%2857103%29&ext_bbox=-96.7258%2C43.5003%2C-96.6618%2C43.5873');
+        cy.get('#select2-chosen-1').contains('Sioux Falls, SD (57103)');
         cy.contains(/datasets? found/);
     });
 });

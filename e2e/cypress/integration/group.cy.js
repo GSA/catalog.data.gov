@@ -15,10 +15,10 @@ describe('Group', () => {
     });
 
     after(() => {
-        cy.delete_group(group.name);
-        cy.delete_dataset(packageId);
-        cy.delete_organization(orgId);
-        cy.revoke_token();
+        // cy.delete_group(group.name);
+        // cy.delete_dataset(packageId);
+        // cy.delete_organization(orgId);
+        // cy.revoke_token();
         cy.logout();
     });
 

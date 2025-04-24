@@ -1,11 +1,19 @@
+let orgName = `org-${cy.helpers.randomSlug()}`;
+let groupName = `group-${cy.helpers.randomSlug()}`;
+
+
 describe('Facets', { testIsolation: false }, () => {
     before(() => {
         cy.login();
+        cy.create_token();
+        cy.create_organization(orgName);
+        cy.create_group(groupName, "some group description");
     });
 
     after(() => {
-        cy.delete_organization('org-tags');
-        cy.delete_group('group-facets');
+        // cy.delete_organization('org-tags');
+        // cy.delete_group('group-facets');
+        cy.revoke_token();
         cy.logout();
     });
 
@@ -19,17 +27,15 @@ describe('Facets', { testIsolation: false }, () => {
     it('Show datagov facet list on organization page', () => {
         cy.visit('/organization');
         cy.get('a[class="btn btn-primary"]').click();
-        cy.create_organization_ui('org-tags', 'tags for org test');
-        cy.visit('/organization/org-tags');
-        cy.get('.module-shallow').its('length').should('be.equal', 11);
+        cy.visit('/organization/' + orgName);
+        cy.get('.module-shallow').its('length').should('be.equal', 10);
         cy.get('.module-shallow').contains('Topics');
         cy.get('.module-shallow').contains('Harvest Source');
         cy.get('.module-shallow').last().contains('Bureaus');
     });
 
     it('Show datagov facet list on group page', () => {
-        cy.create_group('group-facets');
-        cy.visit('/group/group-facets');
+        cy.visit('/group/' + groupName);
         cy.get('.filters h2').its('length').should('be.equal', 6);
         cy.get('.filters h2').first().contains('Categories');
         cy.get('.filters h2').last().contains('Organizations');
@@ -37,7 +43,7 @@ describe('Facets', { testIsolation: false }, () => {
 
     // https://github.com/GSA/datagov-deploy/issues/3672
     it('Can visit organization and group facet link', () => {
-        cy.visit('/organization/org-tags?tags=_');
-        cy.visit('/group/group-facets?tags=_');
+        cy.visit('/organization/' + orgName + '?tags=_');
+        cy.visit('/group/' + groupName + '?tags=_');
     });
 });
