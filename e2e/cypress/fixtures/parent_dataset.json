@@ -1,0 +1,14 @@
+{
+    "name": "parent",
+    "owner_org": "test-organization-collection",
+    "extras": [
+      {
+        "key": "Identifier",
+        "value": "pid"
+      },
+      {
+        "key": "harvest_source_id",
+        "value": "harvest-source"
+      }
+    ]
+  }

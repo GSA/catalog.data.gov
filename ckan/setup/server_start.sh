@@ -12,5 +12,5 @@ DIR="$(dirname "${BASH_SOURCE[0]}")"
 if [[ "$CKAN_SITE_URL" = "http://ckan:5000" ]]; then
   exec newrelic-admin run-program gunicorn "wsgi:application" --config "$DIR/gunicorn.conf.py" -b "0.0.0.0:$PORT" --chdir $DIR  --timeout 120 --workers 2
 else
-  exec newrelic-admin run-program gunicorn "wsgi:application" --config "$DIR/gunicorn.conf.py" -b "0.0.0.0:$PORT" --chdir $DIR  --timeout 120 --worker-class gevent --workers 4 --threads 4 --forwarded-allow-ips='*'
+  exec newrelic-admin run-program gunicorn "wsgi:application" --config "$DIR/gunicorn.conf.py" -b "0.0.0.0:$PORT" --chdir $DIR  --timeout 120 --worker-class eventlet --workers 4 --threads 4 --forwarded-allow-ips='*'
 fi

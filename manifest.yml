@@ -27,6 +27,7 @@ applications:
       NEW_RELIC_APP_NAME: ((app_name))-web-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+      NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
       CKAN_SITE_URL: https://((route-public))
       CKAN___GOOGLEANALYTICS__ID: ((googleanalytics_id))
       HARVEST_ADMIN_URL: ((harvest_admin_url))
@@ -59,6 +60,7 @@ applications:
       NEW_RELIC_APP_NAME: ((app_name))-admin-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
+      NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
       CKAN_SITE_URL: https://((route-external-admin))
       HARVEST_ADMIN_URL: ((harvest_admin_url))
 

@@ -5,8 +5,6 @@ describe('Organization', { testIsolation: false }, () => {
     });
 
     after(() => {
-        cy.delete_organization('cypress-test-org');
-        cy.revoke_token();
         cy.logout();
     });
 

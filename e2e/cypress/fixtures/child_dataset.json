@@ -1,0 +1,14 @@
+{
+  "name": "child",
+  "owner_org": "test-organization-collection",
+  "extras": [
+    {
+      "key": "isPartOf",
+      "value": "pid"
+    },
+    {
+      "key": "harvest_source_id",
+      "value": "harvest-source"
+    }
+  ]
+}

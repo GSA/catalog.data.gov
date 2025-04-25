@@ -13,8 +13,8 @@ describe('DCAT Extension', () => {
     });
 
     after(() => {
-      cy.delete_dataset(packageId);
-      cy.delete_organization(orgId);
+      // cy.delete_dataset(packageId);
+      // cy.delete_organization(orgId);
     });
 
     it('Datasets have an rdf endpoint', () => {

@@ -1,14 +1,14 @@
 describe('Dataset', () => {
     // Uses datasets from data.json local harvest to check
 
-    const orgId = "org-" + cy.helpers.randomSlug();
-    const packageId = "dataset-" + orgId;
+    const orgId = "test-organization-dataset";
+    const packageId = "dataset-test";
     const title = "Data.gov Statistics Parent";
 
     before(() => {
       cy.login();
       cy.create_token();
-      cy.create_organization(orgId);
+      cy.create_organization(orgId, "Test Organization Dataset");
       cy.create_dataset({
         "name": packageId,
         "title": title,
@@ -36,8 +36,8 @@ describe('Dataset', () => {
     });
 
     after(() => {
-      cy.delete_dataset(packageId);
-      cy.delete_organization(orgId);
+      // cy.delete_dataset(packageId);
+      // cy.delete_organization(orgId);
     });
 
     it('Has a details page with core metadata', () => {
