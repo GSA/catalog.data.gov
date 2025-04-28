@@ -64,7 +64,7 @@ OWSLib==0.32.0
 packaging==24.1
 passlib==1.7.4
 pika==1.2.1
-pip==25.0.1
+pip==25.1
 ply==3.11
 polib==1.2.0
 progressbar==2.5
