@@ -43,9 +43,14 @@ describe('Dataset', () => {
     it('Has a details page with core metadata', () => {
         cy.visit('/dataset/' + packageId);
         cy.contains(title);
-        cy.contains('Metadata Source');
         cy.contains('Additional Metadata');
         cy.contains('Publisher');
+        cy.contains('Metadata Source');
+        cy.contains('Download Metadata');
+        cy.contains('Source Technical Details');
+        cy.contains('Harvested from source-title');
+        cy.get('#dataset-metadata-source').contains('source-title').click();
+        cy.contains('1 dataset found');
     });
 
     it('Can see resource page', () => {
