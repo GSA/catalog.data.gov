@@ -12,7 +12,7 @@ chardet==5.2.0
 charset-normalizer==3.4.2
 ckan @ git+https://github.com/GSA/ckan.git@0482ac3a602815c32998904b46e490e4ec6fbfbf
 ckanext-datagovcatalog==0.1.3
-ckanext-datagovtheme==0.3.7
+ckanext-datagovtheme==0.3.8
 ckanext-datajson==0.1.28
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
