@@ -59,7 +59,7 @@ blinker==1.8.2
 certifi>=2024.7.4
 click==8.1.7
 dominate==2.9.1
-feedgen==1.0.0
+git+https://github.com/GSA/python-feedgen.git@main
 Flask==3.0.3
 Flask-Babel==4.0.0
 Flask-Login==0.6.3
@@ -113,7 +113,7 @@ lxml==5.1.0
 numpy==1.26.4
 
 # snyk finding
-setuptools~=71.0.3
+setuptools~=78.1.1
 
 # Pin MarkupSafe to avoid button issue for logged in user
 MarkupSafe==2.*
