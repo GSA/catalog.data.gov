@@ -1,5 +1,5 @@
 # This is the name to use for the staging catalog app in Cloud Foundry
-app_name: catalog
+app_name: catalog-new
 space_name: prod
 
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-prod-catalog
@@ -14,14 +14,14 @@ memory_quota: 800M
 gather_memory_quota: 3G
 fetch_memory_quota: 500M
 
-new_relic_monitor_mode: true
+new_relic_monitor_mode: false
 
 # use CDN domain for route-public if available, otherwise use route-external 
-route-public: catalog.data.gov
-route-external: catalog-prod-datagov.app.cloud.gov
-route-internal: catalog-prod-datagov.apps.internal
-route-external-admin: catalog-prod-admin-datagov.app.cloud.gov
-route-internal-admin: catalog-prod-admin-datagov.apps.internal
+route-public: catalog-new-prod-datagov.app.cloud.gov
+route-external: catalog-new-prod-datagov.app.cloud.gov
+route-internal: catalog-new-prod-datagov.apps.internal
+route-external-admin: catalog-new-prod-admin-datagov.app.cloud.gov
+route-internal-admin: catalog-new-prod-admin-datagov.apps.internal
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----

@@ -6,11 +6,11 @@ applications:
       - https://github.com/cloudfoundry/apt-buildpack
       - python_buildpack
     services:
-      - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-s3
-      - ((app_name))-secrets
-      - ((app_name))-solr
+      - catalog-db
+      - catalog-redis
+      - catalog-s3
+      - catalog-secrets
+      - catalog-new-solr
       - sysadmin-users
     routes:
       - route: ((route-internal))
@@ -25,7 +25,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-web-((space_name))
+      NEW_RELIC_APP_NAME: catalog-web-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
@@ -37,12 +37,12 @@ applications:
       - https://github.com/cloudfoundry/apt-buildpack
       - python_buildpack
     services:
-      - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-secrets
-      - ((app_name))-solr
-      - ((app_name))-smtp
-      - ((app_name))-s3
+      - catalog-db
+      - catalog-redis
+      - catalog-secrets
+      - catalog-new-solr
+      - catalog-smtp
+      - catalog-s3
       - sysadmin-users
     routes:
       - route: ((route-internal-admin))
@@ -57,7 +57,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-admin-((space_name))
+      NEW_RELIC_APP_NAME: catalog-admin-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
@@ -67,8 +67,8 @@ applications:
     buildpacks:
       - https://github.com/cloudfoundry/nginx-buildpack
     services:
-      - ((app_name))-secrets
-      - ((app_name))-s3
+      - catalog-secrets
+      - catalog-s3
     path: ./proxy
     # TODO: tweak with load testing
     memory: 100M
@@ -89,11 +89,11 @@ applications:
       - https://github.com/cloudfoundry/apt-buildpack
       - python_buildpack
     services:
-      - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-secrets
-      - ((app_name))-solr
-      - ((app_name))-s3
+      - catalog-db
+      - catalog-redis
+      - catalog-secrets
+      - catalog-new-solr
+      - catalog-s3
       - sysadmin-users
     no-route: true
     instances: ((gather-instances))
@@ -106,7 +106,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-gather-((space_name))
+      NEW_RELIC_APP_NAME: catalog-gather-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((route-public))
@@ -116,10 +116,10 @@ applications:
       - https://github.com/cloudfoundry/apt-buildpack
       - python_buildpack
     services:
-      - ((app_name))-db
-      - ((app_name))-redis
-      - ((app_name))-secrets
-      - ((app_name))-solr
+      - catalog-db
+      - catalog-redis
+      - catalog-secrets
+      - catalog-new-solr
       - sysadmin-users
     no-route: true
     instances: ((fetch-instances))
@@ -132,7 +132,7 @@ applications:
       CKANEXT__SAML2AUTH__IDP_METADATA__LOCAL_PATH: ((ckanext__saml2auth__idp_metadata__local_path))
       CKANEXT__SAML2AUTH__ENTITY_ID: ((ckanext__saml2auth__entity_id))
       SAML2_CERTIFICATE: ((saml2_certificate))
-      NEW_RELIC_APP_NAME: ((app_name))-fetch-((space_name))
+      NEW_RELIC_APP_NAME: catalog-fetch-((space_name))
       NEW_RELIC_HOST: gov-collector.newrelic.com
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       CKAN_SITE_URL: https://((route-public))

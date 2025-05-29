@@ -1,5 +1,5 @@
 # This is the name to use for the development catalog app in Cloud Foundry
-app_name: catalog
+app_name: catalog-new
 space_name: development
 
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-dev-catalog
@@ -17,11 +17,11 @@ fetch_memory_quota: 300M
 new_relic_monitor_mode: false
 
 # use CDN domain for route-public if available, otherwise use route-external 
-route-public: catalog-dev.data.gov
-route-external: catalog-dev-datagov.app.cloud.gov
-route-internal: catalog-dev-datagov.apps.internal
-route-external-admin: catalog-dev-admin-datagov.app.cloud.gov
-route-internal-admin: catalog-dev-admin-datagov.apps.internal
+route-public: catalog-new-dev-datagov.app.cloud.gov
+route-external: catalog-new-dev-datagov.app.cloud.gov
+route-internal: catalog-new-dev-datagov.apps.internal
+route-external-admin: catalog-new-dev-admin-datagov.app.cloud.gov
+route-internal-admin: catalog-new-dev-admin-datagov.apps.internal
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
