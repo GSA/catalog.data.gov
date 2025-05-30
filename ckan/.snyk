@@ -1,11 +1,4 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
-ignore:
-  SNYK-PYTHON-SETUPTOOLS-9964606:
-    - '*':
-        reason: >-
-           Issue created and triaged. GitHub issue:
-           https://github.com/GSA/data.gov/issues/5228
-        expires: 2025-06-03T16:20:58.017Z
 patch: {}
