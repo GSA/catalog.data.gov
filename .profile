@@ -106,7 +106,7 @@ export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
 
 # Use follower url for web instances; leader url for gather and fetch instances
-if [[ $REAL_NAME = "catalog-admin" ]] || \
+if [[ $REAL_NAME = "catalog-new-admin" ]] || \
    [[ $REAL_NAME = "catalog-gather" ]] || \
    [[ $REAL_NAME = "catalog-fetch" ]]
 then
