@@ -28,7 +28,6 @@ defusedxml==0.7.1
 dnspython==2.7.0
 dominate==2.9.1
 elementpath==5.0.0
-eventlet==0.39.1
 feedgen @ git+https://github.com/GSA/python-feedgen.git@b1fe34a7e14ebdaf6f415cdee5855c3c77305f16
 Flask==3.0.3
 flask-babel==4.0.0
