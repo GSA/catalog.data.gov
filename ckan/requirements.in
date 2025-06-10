@@ -94,8 +94,6 @@ zope.interface==6.4post2
 # Pinned greenlet version to match version delivered with OS,
 # preventing error with gevent dependency using newer version.
 gunicorn
-eventlet
-# greenlet==0.4.12
 
 # New Relic
 newrelic
