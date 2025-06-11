@@ -5,7 +5,7 @@ space_name: prod
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-prod-catalog
 ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.production.idp.xml
 
-web-instances: 3
+web-instances: 5
 admin-instances: 1
 gather-instances: 1
 fetch-instances: 3

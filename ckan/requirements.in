@@ -79,7 +79,7 @@ pysolr==3.9.0
 python-dateutil==2.9.0.post0
 pytz
 pyyaml==6.0.1
-requests==2.32.3
+requests==2.32.4
 rq==1.16.2
 simplejson==3.19.2
 SQLAlchemy[mypy]==1.4.52
@@ -94,8 +94,6 @@ zope.interface==6.4post2
 # Pinned greenlet version to match version delivered with OS,
 # preventing error with gevent dependency using newer version.
 gunicorn
-eventlet
-# greenlet==0.4.12
 
 # New Relic
 newrelic
