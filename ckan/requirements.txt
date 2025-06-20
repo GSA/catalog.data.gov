@@ -3,10 +3,10 @@ async-timeout==5.0.1
 Babel==2.15.0
 bleach==6.1.0
 blinker==1.8.2
-boto3==1.38.34
-botocore==1.38.34
+boto3==1.38.40
+botocore==1.38.40
 cachelib==0.13.0
-certifi==2025.4.26
+certifi==2025.6.15
 cffi==1.17.1
 chardet==5.2.0
 charset-normalizer==3.4.2
@@ -25,9 +25,8 @@ ckantoolkit==0.0.7
 click==8.1.7
 cryptography==45.0.4
 defusedxml==0.7.1
-dnspython==2.7.0
 dominate==2.9.1
-elementpath==5.0.1
+elementpath==5.0.2
 feedgen @ git+https://github.com/GSA/python-feedgen.git@b1fe34a7e14ebdaf6f415cdee5855c3c77305f16
 Flask==3.0.3
 flask-babel==4.0.0
@@ -55,9 +54,9 @@ Markdown==3.6
 MarkupSafe==2.1.5
 messytables==0.15.2
 msgspec==0.18.6
-mypy==1.16.0
+mypy==1.16.1
 mypy_extensions==1.1.0
-newrelic==10.13.0
+newrelic==10.14.0
 numpy==1.26.4
 OWSLib==0.32.0
 packaging==24.1
@@ -98,7 +97,7 @@ sqlparse==0.5.0
 tomli==2.2.1
 typing_extensions==4.12.2
 tzlocal==5.2
-urllib3==2.4.0
+urllib3==2.5.0
 watchdog==6.0.0
 webassets==2.0
 webencodings==0.5.1
