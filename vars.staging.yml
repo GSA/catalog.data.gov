@@ -2,6 +2,8 @@
 app_name: catalog-next
 space_name: staging
 
+enable_basic_auth: true
+
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-next-stage-catalog
 ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.sandbox.idp.xml
 
