@@ -18,6 +18,19 @@ export SPACE_NAME
 
 echo "Setting up proxy in $APP_NAME on $SPACE_NAME"
 
+# basic auth
+if [ "$ENABLE_BASIC_AUTH" = "true" ]; then
+    echo "Setting up basic authentication"
+    HTPASSWD_CONTENT=$(vcap_get_service secrets .credentials.htpasswd_content)
+    if [ "$HTPASSWD_CONTENT" != "null" ] && [ -n "$HTPASSWD_CONTENT" ]; then
+        mkdir -p ./nginx-auth || true
+        echo "$HTPASSWD_CONTENT" > ./nginx-auth/.htpasswd
+        echo "Basic auth file created successfully at ./nginx-auth/.htpasswd"
+    else
+        echo "Warning: ENABLE_BASIC_AUTH is true but no secrets service found or htpasswd_content is empty"
+    fi
+fi
+
 # sitemap config
 # url constructed in nginx conf
 # the jankiness and shame of this is immeasurable
