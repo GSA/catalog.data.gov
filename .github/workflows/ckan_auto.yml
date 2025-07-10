@@ -5,18 +5,14 @@ on:
   schedule:
     - cron: '30 7 * * *'       # Tracking Update -- every day at 2:30am EST
     - cron: '0 2 * * *'        # S3 Sitemap Update -- every day at 10pm EST
-    - cron: '4/15 * * * *'     # Harvester Check -- every 15 mins
-    - cron: '0 3 * * *'        # DB-Solr-Sync -- every day at 10pm EST
-    - cron: '30 6 * * *'       # Check Stuck Jobs -- every day at 1:30am EST
+    - cron: '0 3 * * *'        # DB-Solr-Sync-Next -- every day at 10pm EST
 
 env:
   ERROR: false
   # Make sure 'schedule-cron' matches these varaibles.
   SCHEDULE_TRACKING: '30 7 * * *'
   SCHEDULE_SITEMAP: '0 2 * * *'
-  SCHEDULE_HARVESTING: '4/15 * * * *'
   SCHEDULE_DBSOLR_SYNC: '0 3 * * *'
-  SCHEDULE_STUCK_JOBS: '30 6 * * *'
 
 jobs:
   setup-matrix:
@@ -39,19 +35,13 @@ jobs:
           #  schedule: sitemap update
           #   - Only run on [prod]
           #   - Run on [catalog-gather] app
-          #  schedule: harvesting update
-          #   - Only run on [development, staging, prod]
-          #  schedule: stuck jobs check
-          #   - Only run on [staging, prod]
-          #   - Create Error issue: if >0 stuck jobs, automated_ckan_error.md
-          #  schedule: db-solr-sync
+          #  schedule: db-solr-sync-next
           #   - Only run on [staging, prod]
           #   - Create Error issue: if runtime longer than 30 mins
           #   - Create Informational issue: db-solr-sync-info.md
           MATRIX=$(cat << MAT
           {
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
-                         "${{env.SCHEDULE_HARVESTING}}", "${{env.SCHEDULE_STUCK_JOBS}}",
                          "${{env.SCHEDULE_DBSOLR_SYNC}}"],
             "environ": ["development", "staging", "prod"],
             "include": [ {"app": "catalog-admin"},
@@ -59,26 +49,23 @@ jobs:
                          {"info_issue": false},
                          {"issue_template": ".github/automated_ckan_error.md"},
                          {"monitor": true},
-                         {"schedule": "${{env.SCHEDULE_HARVESTING}}", "command": "ckan harvester run"},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "command": "ckan geodatagov tracking-update"},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "error_seconds": 12600},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "info_issue": true},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "issue_template": ".github/tracking-update-info.md"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "command": "ckan geodatagov sitemap-to-s3"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "app": "catalog-gather"},
-                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "command": "ckan geodatagov db-solr-sync"},
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "command": "ckan geodatagov db-solr-sync-next"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "error_seconds": 1800},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "info_issue": true},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "issue_template": ".github/db-solr-sync-info.md"},
-                         {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "command": "ckan geodatagov check-stuck-jobs"},
                          {"environ": "development", "ram": "1G"},
                          {"environ": "staging", "ram": "2500M"},
                          {"environ": "prod", "ram": "3G"}
                        ],
             "exclude": [ {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "development"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "environ": "staging"},
-                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"},
-                         {"schedule": "${{env.SCHEDULE_STUCK_JOBS}}", "environ": "development"}
+                         {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "environ": "development"}
                        ],
           }
           MAT

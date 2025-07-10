@@ -11,16 +11,15 @@ cffi==1.17.1
 chardet==5.2.0
 charset-normalizer==3.4.1
 ckan @ git+https://github.com/GSA/ckan.git@0482ac3a602815c32998904b46e490e4ec6fbfbf
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@4065ed607509f6f99cbe692cb0d97f4008c3b1af#egg=ckanext_datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@a59ee495c731459cdccc7785eef888f329da45b7#egg=ckanext_datagovtheme
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@b60f69e4cb15d3cdce80698e5b4b2dc406a2ca05#egg=ckanext_datagovcatalog
+-e git+https://github.com/GSA/ckanext-datagovtheme.git@8cf3e64df10e2ddba897f65fa2424b1d62a28428#egg=ckanext_datagovtheme
 ckanext-datajson==0.1.28
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@b8ebf24004cd3f3edb7f9d01c87c20259c102093
 ckanext-envvars==0.0.6
--e git+https://github.com/GSA/ckanext-geodatagov.git@aa30619f197abe0f918d547fc81db327d520dc8f#egg=ckanext_geodatagov
--e git+https://github.com/GSA/ckanext-harvest.git@8da16a1f993f0fbf18f9fc810ab6ed7dfb7f871a#egg=ckanext_harvest
+-e git+https://github.com/GSA/ckanext-geodatagov.git@0ec4ae5fc826693fa3a9e954e5fb77735f9e38e2#egg=ckanext_geodatagov
 ckanext-metrics-dashboard==0.1.7
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@99f35585c219a5cd39717b8c42cc54cdd959dfb4
--e git+https://github.com/GSA/ckanext-spatial.git@6d83a53efa1e9ff225daf4e7a5751b98367ee7f2#egg=ckanext_spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@v2.1.1#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==8.1.7
 cryptography==44.0.2
