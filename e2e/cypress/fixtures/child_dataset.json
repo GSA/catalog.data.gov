@@ -1,5 +1,7 @@
 {
   "name": "child",
+  "title": "Child Dataset",
+  "notes": "This is a child dataset.",
   "owner_org": "test-organization-collection",
   "extras": [
     {
