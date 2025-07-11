@@ -165,13 +165,6 @@ update-tracking-info:
 	# https://docs.ckan.org/en/2.8/maintaining/tracking.html
 	docker compose exec ckan ckan tracking update
 
-harvest:
-	# Pass any of the following arguments to run them
-	# ARGS=run make harvest
-	# ARGS=gather-consumer make harvest
-	# ARGS=fetch-consumer make harvest
-	docker compose exec ckan ckan harvester $(ARGS)
-
 vulnerability-check:
 	# Check for no usage of SSL_free_buffers. # Details: https://github.com/GSA/data.gov/issues/4781
 	! docker compose run --rm -T ckan grep -riI "SSL_free_buffers" /usr/local/lib/python3.10/site-packages/ && echo "Vulnerable SSL_free_buffers is not used"

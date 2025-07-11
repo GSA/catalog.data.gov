@@ -13,6 +13,7 @@ describe('Dataset', () => {
         "name": packageId,
         "title": title,
         "owner_org": orgId,
+        "notes": "This is a test dataset created for e2e testing.",
         "extras": [
           {
             "key": "publisher",

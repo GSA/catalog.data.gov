@@ -22,12 +22,10 @@ on:
         required: true
         type: choice
         options:
-          - 'ckan geodatagov check-stuck-jobs'
-          - 'ckan geodatagov db-solr-sync --dryrun'
-          - 'ckan geodatagov db-solr-sync --cleanup_solr'
-          - 'ckan geodatagov db-solr-sync --update_solr'
-          - 'ckan geodatagov db-solr-sync --cleanup_solr --update_solr'
-          - 'ckan harvester run'
+          - 'ckan geodatagov db-solr-sync-next --dryrun'
+          - 'ckan geodatagov db-solr-sync-next --cleanup_solr'
+          - 'ckan geodatagov db-solr-sync-next --update_solr'
+          - 'ckan geodatagov db-solr-sync-next --cleanup_solr --update_solr'
           - 'ckan geodatagov sitemap-to-s3'
           - 'ckan geodatagov tracking-update'
       memory:

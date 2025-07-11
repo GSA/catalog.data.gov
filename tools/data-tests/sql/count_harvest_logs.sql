@@ -1,1 +1,0 @@
-SELECT count(id) AS total_harvest_logs FROM harvest_log;
