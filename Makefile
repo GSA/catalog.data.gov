@@ -64,7 +64,6 @@ validate-proxy:
 	sed -i 's/{{env "PUBLIC_ROUTE"}}/test.com/g' proxy/nginx-cloudfront.conf proxy/nginx-authy.conf
 	sed -i 's#{{env "S3_URL"}}#http://test.com#g' proxy/nginx-common.conf
 	sed -i 's#{{env "S3_BUCKET"}}#somebucket#g' proxy/nginx-common.conf
-	sed -i 's#{{env "DENY_PACKAGE_CREATE"}}#truetodeny#g' proxy/nginx-common.conf
 	sed -i 's#{{env "CATALOG_WEB_MODE"}}#webmaintenance#g' proxy/nginx.conf
 	sed -i 's#{{env "CATALOG_ADMIN_MODE"}}#adminmaintenance#g' proxy/nginx.conf
 	docker run --rm -e nameservers=127.0.0.1 -v $(shell pwd)/proxy:/proxy nginx nginx -t -c /proxy/nginx.conf
@@ -78,7 +77,6 @@ validate-proxy:
 	sed -i 's/test.com/{{env "PUBLIC_ROUTE"}}/g' proxy/nginx-cloudfront.conf proxy/nginx-authy.conf
 	sed -i 's#http://test.com#{{env "S3_URL"}}#g' proxy/nginx-common.conf
 	sed -i 's#somebucket#{{env "S3_BUCKET"}}#g' proxy/nginx-common.conf
-	sed -i 's/truetodeny/{{env "DENY_PACKAGE_CREATE"}}/g' proxy/nginx-common.conf
 	sed -i 's/webmaintenance/{{env "CATALOG_WEB_MODE"}}/g' proxy/nginx.conf
 	sed -i 's/adminmaintenance/{{env "CATALOG_ADMIN_MODE"}}/g' proxy/nginx.conf
 

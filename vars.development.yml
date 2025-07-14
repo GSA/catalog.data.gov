@@ -2,8 +2,6 @@
 app_name: catalog-next
 space_name: development
 
-enable_basic_auth: false
-
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-next-dev-catalog
 ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.sandbox.idp.xml
 
@@ -61,6 +59,6 @@ saml2_certificate: |
 
 googleanalytics_id: UA-00000000-4
 
-deny_package_create: false
+enable_basic_auth: false
 
 harvest_admin_url: https://datagov-harvest-dev.app.cloud.gov

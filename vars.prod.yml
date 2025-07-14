@@ -59,6 +59,6 @@ saml2_certificate: |
 
 googleanalytics_id: UA-00000000-6
 
-deny_package_create: false
+enable_basic_auth: false
 
 harvest_admin_url: https://datagov-harvest.app.cloud.gov/
