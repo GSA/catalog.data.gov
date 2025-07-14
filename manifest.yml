@@ -30,7 +30,6 @@ applications:
       NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
       CKAN_SITE_URL: https://((route-public))
       CKAN___GOOGLEANALYTICS__ID: ((googleanalytics_id))
-      HARVEST_ADMIN_URL: ((harvest_admin_url))
 
   - name: ((app_name))-admin
     buildpacks:
@@ -61,7 +60,6 @@ applications:
       NEW_RELIC_MONITOR_MODE: ((new_relic_monitor_mode))
       NEW_RELIC_CONFIG_FILE: /home/vcap/app/ckan/setup/newrelic.ini
       CKAN_SITE_URL: https://((route-external-admin))
-      HARVEST_ADMIN_URL: ((harvest_admin_url))
 
   - name: ((app_name))-proxy
     buildpacks:
