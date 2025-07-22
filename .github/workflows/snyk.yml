@@ -2,9 +2,6 @@
 name: Check for Snyk Vulnerabilities
 
 on:
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
   schedule:
     - cron: '0 12 * * *'  # every day at 12pm UTC
