@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 # Install Dependencies
 # - Download Saxon jar for FGDC2ISO transform (geodatagov)
@@ -9,6 +9,17 @@ RUN apt-get update -y && \
   apt-get install -y \
     openssl libssl-dev libffi-dev pkg-config libxml2-dev libxmlsec1-dev libxmlsec1-openssl \
     vim zip libgeos-dev proj-bin cron default-jre xmlsec1
+
+# Add more to slim image
+RUN apt-get install -y git libpq-dev gcc libmagic1 libmagic-dev
+
+# Update PAM packages to fix CVE-2025-6020 SNYK-DEBIAN12-PAM-10378969
+RUN apt-get install -y --only-upgrade libpam-modules libpam0g libpam-runtime
+
+# increase security by removing unnecessary packages
+RUN apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ARG saxon_ver=9.9.1-7
 ADD \
