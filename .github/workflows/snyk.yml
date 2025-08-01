@@ -88,6 +88,8 @@ jobs:
 
   snyk-monitor:
     name: snyk monitor
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
