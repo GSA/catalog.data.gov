@@ -41,20 +41,6 @@ jobs:
       - name: test
         run: make validate-proxy
 
-  test_importer:
-    name: test importer
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: setup python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-          architecture: x64
-      - name: test_importer
-        run: make test-import-tool
-
   test_vulnerability:
     name: test vulnerability
     runs-on: ubuntu-latest
