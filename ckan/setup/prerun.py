@@ -12,6 +12,7 @@ except ImportError:
 
 import time
 import re
+import ast
 
 ckan_ini = os.environ.get("CKAN_INI", "/srv/app/ckan.ini")
 
@@ -88,8 +89,8 @@ def check_solr_connection(retry=None):
         # GSA FIX: convert Solr 'true' to Python 'True'
         try:
             pythonified = str(connection.text).replace('true', 'True')
-            eval(pythonified)
-        except TypeError:
+            ast.literal_eval(pythonified)
+        except (ValueError, SyntaxError):
             pass
 
 

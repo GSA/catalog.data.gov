@@ -1,6 +1,0 @@
-__pycache__
-*.log
-report-*.csv
-source-check*
-checks/
-*.txt
