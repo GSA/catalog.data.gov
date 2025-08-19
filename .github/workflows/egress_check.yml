@@ -16,8 +16,9 @@ jobs:
       max-parallel: 2
       matrix:
         command:
-          - 'GoodDomainTest || curl -I -L --http1.1 https://gsa.gov | grep \"HTTP/1.1 200 OK\"'
-          - 'BadDomainTest || curl -I -L --http1.1 https://yahoo.com | grep \"HTTP/1.1 403 Forbidden\"'
+          - 'HTTP403Test || curl -I -L --http1.1 http://gsa.gov | grep \"HTTP/1.1 403 Forbidden\"'
+          - 'GoodDomain200Test || python -c \"import requests,sys; sys.exit(requests.get(''https://gsa.gov'').status_code!=200)\"'
+          - 'BadDomain403Test || curl -I -L --http1.1 https://yahoo.com | grep \"HTTP/1.1 403 Forbidden\"'
         environ: ['development', 'staging', 'prod']
         app:
           - 'catalog-admin'
