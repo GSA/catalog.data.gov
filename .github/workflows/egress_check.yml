@@ -32,7 +32,7 @@ jobs:
           INSTANCE_NAME="$(echo egress-check-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT})"
           echo "INSTANCE_NAME=${INSTANCE_NAME}" | tee -a $GITHUB_ENV
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: run task
         uses: cloud-gov/cg-cli-tools@main
         with:
