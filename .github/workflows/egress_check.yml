@@ -16,8 +16,9 @@ jobs:
       max-parallel: 2
       matrix:
         command:
-          - 'GoodDomainTest || curl -I -L --http1.1 https://gsa.gov | grep \"HTTP/1.1 200 OK\"'
-          - 'BadDomainTest || curl -I -L --http1.1 https://yahoo.com | grep \"HTTP/1.1 403 Forbidden\"'
+          - 'HTTPSTest || python -c \"import requests,sys; sys.exit(requests.get(''http://gsa.gov'').status_code!=403)\"'
+          - 'GoodDomainTest || python -c \"import requests,sys; sys.exit(requests.get(''https://gsa.gov'').status_code!=200)\"'
+          - 'BadDomainTest || python -c \"import requests,sys; sys.exit(requests.get(''https://yahoo.com'').status_code!=403)\"'
         environ: ['development', 'staging', 'prod']
         app:
           - 'catalog-admin'
@@ -51,19 +52,3 @@ jobs:
           cf_space: ${{ matrix.environ }}
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
-      - name: Create Issue for failure 😢
-        if: ${{ failure() }}
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          GITHUB_JOB: ${{ toJson(github)['job'] }}
-          GITHUB_ATTEMPTS: ${{ github.run_attempt }}
-          LAST_COMMIT: ${{ github.sha }}
-          LAST_RUN_BY: ${{ github.actor }}
-          RUN_ID: ${{ github.run_id }}
-          COMMAND: ${{ matrix.command }}
-          APP_NAME: ${{ matrix.app }}
-          ENVIRONMENT: ${{ matrix.environ }}
-        with:
-          filename: .github/egress_check_error.md
-          update_existing: true
