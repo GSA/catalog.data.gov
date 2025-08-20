@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.14.0rc1-slim
 
 # Install Dependencies
 # - Download Saxon jar for FGDC2ISO transform (geodatagov)
