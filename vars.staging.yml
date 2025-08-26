@@ -63,4 +63,4 @@ googleanalytics_id: UA-00000000-5
 
 enable_basic_auth: true
 
-harvest_admin_url: https://datagov-harvest-staging.app.cloud.gov/
+harvest_admin_url: https://datagov-harvest-staging.app.cloud.gov

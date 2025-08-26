@@ -13,8 +13,8 @@ memory_quota: 800M
 new_relic_monitor_mode: true
 
 # use CDN domain for route-public if available, otherwise use route-external
-route-public: catalog-next-prod-datagov.app.cloud.gov
-route-external: catalog-next-prod-datagov.app.cloud.gov
+route-public: catalog-beta.data.gov
+route-external: catalog-beta.data.gov
 route-internal: catalog-next-prod-datagov.apps.internal
 route-external-admin: catalog-next-prod-admin-datagov.app.cloud.gov
 route-internal-admin: catalog-next-prod-admin-datagov.apps.internal
@@ -59,6 +59,6 @@ saml2_certificate: |
 
 googleanalytics_id: UA-00000000-6
 
-enable_basic_auth: true
+enable_basic_auth: false
 
-harvest_admin_url: https://datagov-harvest.app.cloud.gov/
+harvest_admin_url: https://harvest.data.gov

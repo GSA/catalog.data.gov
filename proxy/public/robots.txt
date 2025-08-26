@@ -1,9 +1,2 @@
 User-agent: *
-Disallow: /dataset/rate/
-Disallow: /revision/
-Disallow: /dataset/*/history
-Disallow: /api/
-Crawl-Delay: 10
-
-# sitemap url should get replaced by proxy .profile
-Sitemap: https://catalog.data.gov/sitemap.xml
+Disallow: /
