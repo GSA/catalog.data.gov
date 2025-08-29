@@ -6,8 +6,8 @@ ignore:
   SNYK-DEBIAN12-ZLIB-6008963:
     - '*':
         reason: "python:3.10-slim is on Debian 13 (Trixie), not Debian 12"
-        expires: "2099-12-31T23:59:59Z"
+        expires: "2026-12-31T23:59:59Z"
   SNYK-DEBIAN12-PAM-10378969:
     - '*':
         reason: "python:3.10-slim is on Debian 13 (Trixie), not Debian 12"
-        expires: "2099-12-31T23:59:59Z"
+        expires: "2026-12-31T23:59:59Z"
