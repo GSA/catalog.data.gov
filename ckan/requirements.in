@@ -1,6 +1,6 @@
 # CKAN requirements and extensions
 git+https://github.com/GSA/ckan.git@ckan-2.11.2-fork#egg=ckan
-git+https://github.com/ckan/ckanext-dcat@v1.7.0#egg=ckanext-dcat
+git+https://github.com/ckan/ckanext-dcat@v2.4.0#egg=ckanext-dcat
 -e git+https://github.com/GSA/ckanext-harvest.git@v1.6.1-fork#egg=ckanext-harvest
 -e git+https://github.com/GSA/ckanext-spatial.git@v2.1.1-fork#egg=ckanext-spatial
 git+https://github.com/GSA/ckanext-saml2auth.git@ckan-2-11-datagov#egg=ckanext-saml2auth
@@ -45,9 +45,10 @@ messytables==0.15.2
 # https://github.com/ckan/ckanext-report/blob/master/requirements.txt
 
 #ckanext-dcat
-rdflib==6.1.1
-# rdflib-jsonld==0.4.0 # ignoring as cannot build on cloud.gov
+rdflib>=6.1.1
+pyld>=2.0.4
 geomet>=0.2.0
+# ckantoolkit>=0.0.7 # duplicated in ckanext-harvest dependencies
 
 # ckan doesn't advertise its requirements correctly, so let's add them here.
 # https://github.com/ckan/ckan/blob/ckan-2.11.0/requirements.txt
