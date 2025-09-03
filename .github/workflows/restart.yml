@@ -17,7 +17,7 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@deldel
     with:
       environ: staging
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\",\"smoketest\":true},]}"
+      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
     secrets: inherit
 
   restart-prod:
@@ -25,5 +25,5 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@del
     with:
       environ: prod
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\",\"smoketest\":true},]}"
+      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
     secrets: inherit
