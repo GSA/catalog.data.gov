@@ -14,7 +14,7 @@ permissions:
 jobs:
   restart-staging:
     name: restart (staging)
-    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
+    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@del
     with:
       environ: staging
       app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
@@ -22,7 +22,7 @@ jobs:
 
   restart-prod:
     name: restart (prod)
-    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
+    uses: gsa/data.gov/.github/workflows/app-restart-template.yml@del
     with:
       environ: prod
       app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
