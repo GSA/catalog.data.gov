@@ -5,8 +5,8 @@ git+https://github.com/ckan/ckanext-dcat@v1.7.0#egg=ckanext-dcat
 git+https://github.com/GSA/ckanext-saml2auth.git@ckan-2-11-datagov#egg=ckanext-saml2auth
 
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@harvest-next#egg=ckanext_datagovcatalog
--e git+https://github.com/GSA/ckanext-datagovtheme.git@harvest-next-211#egg=ckanext_datagovtheme
--e git+https://github.com/GSA/ckanext-geodatagov.git@harvest-next-211#egg=ckanext_geodatagov
+ckanext-datagovtheme>=0.4.0
+ckanext-geodatagov>=0.4.0
 ckanext-datajson
 ckanext-envvars>=0.0.3
 ckanext-metrics-dashboard
