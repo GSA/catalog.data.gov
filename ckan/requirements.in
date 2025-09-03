@@ -6,10 +6,10 @@ git+https://github.com/ckan/ckanext-dcat@v2.4.0#egg=ckanext-dcat
 git+https://github.com/GSA/ckanext-saml2auth.git@ckan-2-11-datagov#egg=ckanext-saml2auth
 
 ckanext-datagovcatalog
-ckanext-datagovtheme
+ckanext-datagovtheme<0.4.0
 ckanext-datajson
 ckanext-envvars>=0.0.3
-ckanext-geodatagov
+ckanext-geodatagov<0.4.0
 ckanext-metrics-dashboard
 
 # Pin for saml2auth to work
