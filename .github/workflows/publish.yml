@@ -4,7 +4,7 @@ name: 2 - Publish & Deploy
 on:
   push:
     branches:
-      - main
+      - catalog-next
 
 jobs:
   ghcr_publish:
@@ -17,13 +17,13 @@ jobs:
         include:
           - image: ckan
             name: catalog.data.gov
-            tag: ghcr.io/gsa/catalog.data.gov:latest
+            tag: ghcr.io/gsa/catalog-beta.data.gov:latest
           - image: solr
             name: catalog.data.gov.solr
-            tag: ghcr.io/gsa/catalog.data.gov.solr:latest
+            tag: ghcr.io/gsa/catalog-beta.data.gov.solr:latest
           - image: postgresql
             name: catalog.data.gov.db
-            tag: ghcr.io/gsa/catalog.data.gov.db:latest
+            tag: ghcr.io/gsa/catalog-beta.data.gov.db:latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -62,7 +62,7 @@ jobs:
     with:
       environ: staging
       app_url: https://catalog-stage-datagov.app.cloud.gov
-      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
+      app_names: "{\"include\":[{\"app\":\"catalog-next-web\",\"smoketest\":true},{\"app\":\"catalog-next-admin\"},{\"app\":\"catalog-next-proxy\"}]}"
     secrets: inherit
 
   deploy-prod:
@@ -74,7 +74,7 @@ jobs:
     with:
       environ: prod
       app_url: https://catalog.data.gov
-      app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
+      app_names: "{\"include\":[{\"app\":\"catalog-next-web\",\"smoketest\":true},{\"app\":\"catalog-next-admin\"},{\"app\":\"catalog-next-proxy\"}]}"
     secrets: inherit
 
   network-policies:
@@ -88,8 +88,8 @@ jobs:
       fail-fast: false
       matrix:
         command: [
-          "cf add-network-policy catalog-proxy catalog-web --protocol tcp --port 61443",
-          "cf add-network-policy catalog-proxy catalog-admin --protocol tcp --port 61443"
+          "cf add-network-policy catalog-next-proxy catalog-next-web --protocol tcp --port 61443",
+          "cf add-network-policy catalog-next-proxy catalog-next-admin --protocol tcp --port 61443"
         ]
         environ: ["staging", "prod"]
     steps:

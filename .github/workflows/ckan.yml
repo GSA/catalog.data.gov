@@ -16,7 +16,7 @@ on:
         description: 'App to run on:'
         required: true
         type: string
-        default: 'catalog-admin'
+        default: 'catalog-next-admin'
       command:
         description: 'Command to run:'
         required: true

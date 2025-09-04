@@ -20,10 +20,8 @@ jobs:
           - 'BadDomainTest || curl -I -L --http1.1 https://yahoo.com | grep \"HTTP/1.1 403 Forbidden\"'
         environ: ['development', 'staging', 'prod']
         app:
-          - 'catalog-admin'
-          - 'catalog-web'
-          - 'catalog-fetch'
-          - 'catalog-gather'
+          - 'catalog-next-admin'
+          - 'catalog-next-web'
 
     steps:
       - name: Store Instance Name

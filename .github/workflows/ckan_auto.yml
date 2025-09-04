@@ -34,7 +34,7 @@ jobs:
           #   - Create Informational issue: tracking-update-info.md
           #  schedule: sitemap update
           #   - Only run on [prod]
-          #   - Run on [catalog-gather] app
+          #   - Run on [catalog-admin] app
           #  schedule: db-solr-sync-next
           #   - Only run on [staging, prod]
           #   - Create Error issue: if runtime longer than 30 mins
@@ -44,7 +44,7 @@ jobs:
             "schedule": ["${{env.SCHEDULE_TRACKING}}", "${{env.SCHEDULE_SITEMAP}}",
                          "${{env.SCHEDULE_DBSOLR_SYNC}}"],
             "environ": ["development", "staging", "prod"],
-            "include": [ {"app": "catalog-admin"},
+            "include": [ {"app": "catalog-next-admin"},
                          {"error_seconds": 22000},
                          {"info_issue": false},
                          {"issue_template": ".github/automated_ckan_error.md"},
@@ -54,7 +54,7 @@ jobs:
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "info_issue": true},
                          {"schedule": "${{env.SCHEDULE_TRACKING}}", "issue_template": ".github/tracking-update-info.md"},
                          {"schedule": "${{env.SCHEDULE_SITEMAP}}", "command": "ckan geodatagov sitemap-to-s3"},
-                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "app": "catalog-gather"},
+                         {"schedule": "${{env.SCHEDULE_SITEMAP}}", "app": "catalog-next-admin"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "command": "ckan geodatagov db-solr-sync-next"},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "error_seconds": 1800},
                          {"schedule": "${{env.SCHEDULE_DBSOLR_SYNC}}", "info_issue": true},
