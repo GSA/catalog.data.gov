@@ -17,7 +17,7 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
       environ: staging
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
+      app_names: "{\"include\":[{\"app\":\"catalog-next-proxy\"},{\"app\":\"catalog-next-web\"},{\"app\":\"catalog-next-admin\"},]}"
     secrets: inherit
 
   restart-prod:
@@ -25,5 +25,5 @@ jobs:
     uses: gsa/data.gov/.github/workflows/app-restart-template.yml@main
     with:
       environ: prod
-      app_names: "{\"include\":[{\"app\":\"catalog-proxy\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-web\"},{\"app\":\"catalog-admin\"},]}"
+      app_names: "{\"include\":[{\"app\":\"catalog-next-proxy\"},{\"app\":\"catalog-next-web\"},{\"app\":\"catalog-next-admin\"},]}"
     secrets: inherit
