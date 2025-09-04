@@ -1,7 +1,7 @@
 # CKAN requirements and extensions
 git+https://github.com/GSA/ckan.git@ckan-2.11.2-fork#egg=ckan
-git+https://github.com/ckan/ckanext-dcat@v1.7.0#egg=ckanext-dcat
--e git+https://github.com/ckan/ckanext-spatial.git@v2.3.0#egg=ckanext-spatial
+git+https://github.com/ckan/ckanext-dcat@v2.4.0#egg=ckanext-dcat
+-e git+https://github.com/ckan/ckanext-spatial.git@v2.1.1#egg=ckanext_spatial
 git+https://github.com/GSA/ckanext-saml2auth.git@ckan-2-11-datagov#egg=ckanext-saml2auth
 
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@harvest-next#egg=ckanext_datagovcatalog
@@ -20,10 +20,6 @@ pika>=1.1.0,<1.3.0
 # redis==2.10.6 # included in ckan core
 # requests>=2.11.1 # included in ckan core
 # six>=1.12.0 # included in dcat
-
-# ckanext-archiver
-# https://github.com/ckan/ckanext-archiver/blob/master/requirements.txt
-progressbar2==3.53.3
 
 # ckanext-geodatagov
 # https://github.com/GSA/ckanext-geodatagov/blob/main/requirements.txt
@@ -46,10 +42,10 @@ xlrd==2.0.1
 messytables==0.15.2
 
 #ckanext-dcat
-rdflib==6.1.1
-# rdflib-jsonld==0.4.0 # ignoring as cannot build on cloud.gov
+rdflib>=6.1.1
+pyld>=2.0.4
 geomet>=0.2.0
-future>=0.18.3
+# ckantoolkit>=0.0.7 # duplicated in ckanext-harvest dependencies
 
 # ckan doesn't advertise its requirements correctly, so let's add them here.
 # https://github.com/ckan/ckan/blob/ckan-2.9.5/requirements.txt
@@ -60,7 +56,7 @@ blinker==1.8.2
 certifi>=2024.7.4
 click==8.1.7
 dominate==2.9.1
-feedgen==1.0.0
+git+https://github.com/GSA/python-feedgen.git@main
 Flask==3.0.3
 Flask-Babel==4.0.0
 Flask-Login==0.6.3
@@ -80,7 +76,7 @@ pysolr==3.9.0
 python-dateutil==2.9.0.post0
 pytz
 pyyaml==6.0.1
-requests==2.32.3
+requests==2.32.4
 rq==1.16.2
 simplejson==3.19.2
 SQLAlchemy[mypy]==1.4.52
@@ -93,11 +89,8 @@ zope.interface==6.4post2
 
 
 # we are running under gunicorn
-# Pinned greenlet version to match version delivered with OS,
-# preventing error with gevent dependency using newer version.
 gunicorn
 eventlet
-# greenlet==0.4.12
 
 # New Relic
 newrelic
@@ -116,7 +109,12 @@ lxml==5.1.0
 numpy==1.26.4
 
 # snyk finding
-setuptools~=71.0.3
+setuptools>=78.1.1
+
+# avoid conflic dependencies issue
+greenlet>=3.1.1
+pip>=25.0
+urllib3>=2.5.0
 
 # Pin MarkupSafe to avoid button issue for logged in user
 MarkupSafe==2.*
