@@ -18,9 +18,7 @@ jobs:
     with:
       environ: staging
       app_names: "{\"include\":[{\"app\":\"catalog-proxy\"}]}"
-    secrets:
-      CF_SERVICE_USER: ${{ secrets.CF_SERVICE_USER }}
-      CF_SERVICE_AUTH: ${{ secrets.CF_SERVICE_AUTH }}
+    secrets: inherit
 
   # restart-prod:
   #   name: restart (prod)
