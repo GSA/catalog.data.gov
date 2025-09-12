@@ -13,11 +13,11 @@ chardet==5.2.0
 charset-normalizer==3.4.3
 ckan @ git+https://github.com/GSA/ckan.git@416b88e74d2bd643bcdd1da7a900e29c6d443bfe
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@b60f69e4cb15d3cdce80698e5b4b2dc406a2ca05#egg=ckanext_datagovcatalog
-ckanext-datagovtheme==0.4.1
+ckanext-datagovtheme==0.4.2
 ckanext-datajson==0.1.28
 ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@255fcf1352273f9be98e9f02a5198efc4790c94e
 ckanext-envvars==0.0.6
-ckanext-geodatagov==0.4.0
+ckanext-geodatagov==0.4.1
 ckanext-metrics-dashboard==0.1.7
 ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@99f35585c219a5cd39717b8c42cc54cdd959dfb4
 -e git+https://github.com/ckan/ckanext-spatial.git@938308469892e4bcf7389cb4adee5ccdd5a0ccca#egg=ckanext_spatial
