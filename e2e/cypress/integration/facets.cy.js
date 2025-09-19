@@ -20,7 +20,7 @@ describe('Facets', { testIsolation: false }, () => {
     it('Show datagov facet list on dataset page', () => {
         cy.visit('/dataset');
         cy.get('.filters h2').its('length').should('be.equal', 7);
-        cy.get('.filters h2').first().contains('Topics');
+        cy.get('.filters h2').first().contains('Dataset Type');
         cy.get('.filters h2').last().contains('Bureaus');
     });
 
@@ -29,7 +29,7 @@ describe('Facets', { testIsolation: false }, () => {
         cy.get('a[class="btn btn-primary"]').click();
         cy.visit('/organization/' + orgName);
         cy.get('.module-shallow').its('length').should('be.equal', 7);
-        cy.get('.module-shallow').contains('Topics');
+        cy.get('.module-shallow').contains('Dataset Type');
         cy.get('.module-shallow').contains('Harvest Source');
         cy.get('.module-shallow').last().contains('Bureaus');
     });
