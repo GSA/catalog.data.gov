@@ -3,4 +3,18 @@ version: v1.25.0
 language-settings:
   python: "3.10"
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-PYTHON-CKAN-13774796:
+    - '*':
+        reason: >-
+          postponing in favor of new catalog development/release
+        expires: 2026-01-29T05:30:00.000Z
+        created: 2025-11-10T12:15:00.000Z
+
+  SNYK-PYTHON-CKAN-13774801:
+    - '*':
+        reason: >-
+          postponing in favor of new catalog development/release
+        expires: 2026-01-29T05:30:00.000Z
+        created: 2025-11-10T12:15:00.000Z
 patch: {}
