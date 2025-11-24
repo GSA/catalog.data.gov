@@ -42,7 +42,7 @@ jobs:
     environment: ${{inputs.environ}}
     steps:
       - name: checkout datagov
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: './catalog'
       - name: run task

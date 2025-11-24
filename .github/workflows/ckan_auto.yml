@@ -99,7 +99,7 @@ jobs:
     environment: ${{matrix.environ}}
     steps:
       - name: checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Set Unique Command Name
         run: |
           INSTANCE_NAME="$(echo ${{ matrix.command }}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT} | tr -d ' ')"
