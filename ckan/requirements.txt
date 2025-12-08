@@ -99,7 +99,7 @@ sqlparse==0.5.4
 tomli==2.3.0
 typing_extensions==4.12.2
 tzlocal==5.2
-urllib3==2.5.0
+urllib3==2.6.0
 watchdog==6.0.0
 webassets==2.0
 webencodings==0.5.1
