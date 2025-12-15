@@ -65,7 +65,7 @@ jobs:
       - name: Create Pull Request
         if: ${{ failure() }}
         id: scpr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: Update Pip Requirements
           signoff: false
