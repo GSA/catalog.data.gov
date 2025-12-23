@@ -83,11 +83,11 @@ requests==2.32.4
 rq==1.16.2
 simplejson==3.19.2
 SQLAlchemy[mypy]==1.4.52
-sqlparse==0.5.0
+sqlparse==0.5.4
 typing_extensions==4.12.2
 tzlocal==5.2
 webassets==2.0
-Werkzeug[watchdog]==3.0.6
+Werkzeug[watchdog]==3.1.4
 zope.interface==6.4post2
 
 # we are running under gunicorn
