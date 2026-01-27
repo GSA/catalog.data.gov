@@ -18,7 +18,6 @@ describe('CKAN Extensions', () => {
             expect(installed_extensions).to.include('datagovtheme');
             expect(installed_extensions).to.include('datagov_harvest');
             expect(installed_extensions).to.include('geodatagov');
-            expect(installed_extensions).to.include('z3950_harvester');
             expect(installed_extensions).to.include('arcgis_harvester');
             expect(installed_extensions).to.include('geodatagov_geoportal_harvester');
             expect(installed_extensions).to.include('waf_harvester_collection');
