@@ -81,7 +81,6 @@ python-dateutil==2.9.0.post0
 python-magic==0.4.27
 pytz==2025.2
 PyYAML==6.0.1
-PyZ3950 @ git+https://github.com/danizen/PyZ3950@6d44a4ab85c8bda3a7542c2c9efdfad46c830219
 rdflib==7.5.0
 redis==7.1.0
 requests==2.32.4
