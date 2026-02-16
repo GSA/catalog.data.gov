@@ -33,7 +33,8 @@ geojson==3.1.0
 
 # ckanext-qa
 # https://github.com/ckan/ckanext-qa/blob/master/requirements.txt
-progressbar
+# Older progressbar releases (e.g. 2.3) fail on Python 3.10 during build.
+progressbar==2.5
 xlrd==2.0.1
 messytables==0.15.2
 
@@ -80,7 +81,7 @@ rq==1.16.2
 simplejson==3.19.2
 SQLAlchemy[mypy]==1.4.52
 sqlparse==0.5.4
-typing_extensions==4.12.2
+typing_extensions>=4.13.2
 tzlocal==5.2
 webassets==2.0
 Werkzeug[watchdog]==3.1.5
@@ -97,7 +98,7 @@ redis>=4.5.4
 
 # avoid ImportError error https://github.com/GSA/data.gov/issues/4396
 importlib-resources<6.0
-cryptography>=44.0.1
+cryptography>=46.0.5
 
 # lxml beyond 5.1.0 show error module 'lxml.etree' has no attribute '_ElementStringResult'
 # as in https://github.com/GSA/data.gov/issues/4681
