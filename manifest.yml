@@ -17,7 +17,7 @@ applications:
     health-check-type: http
     health-check-http-endpoint: /dataset
     health-check-invocation-timeout: 60
-    instances: ((web-instances))
+    instances: 2
     disk_quota: 2G
     memory: ((memory_quota))
     command: ./ckan/setup/server_start.sh
