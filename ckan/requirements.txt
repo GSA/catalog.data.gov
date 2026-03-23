@@ -20,7 +20,7 @@ ckanext-envvars==0.0.6
 ckanext-geodatagov==0.3.7
 -e git+https://github.com/GSA/ckanext-harvest.git@8da16a1f993f0fbf18f9fc810ab6ed7dfb7f871a#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.7
-ckanext-saml2auth @ git+https://github.com/FuhuXia/ckanext-saml2auth.git@deldel1
+ckanext-saml2auth @ git+https://github.com/FuhuXia/ckanext-saml2auth.git@b27dc54e048fbb4442e16e40ece6e5bd5bb0fc8d
 -e git+https://github.com/GSA/ckanext-spatial.git@6d83a53efa1e9ff225daf4e7a5751b98367ee7f2#egg=ckanext_spatial
 ckantoolkit==0.0.7
 click==8.1.7
