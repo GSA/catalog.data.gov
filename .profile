@@ -100,6 +100,7 @@ export CKAN___BEAKER__SESSION__SECRET=$(vcap_get_service secrets .credentials.CK
 export CKAN___BEAKER__SESSION__URL=${CKAN_SQLALCHEMY_URL}
 export CKANEXT__SAML2AUTH__KEY_FILE_PATH=${CONFIG_DIR}/saml2_key.pem
 export CKANEXT__SAML2AUTH__CERT_FILE_PATH=${CONFIG_DIR}/saml2_certificate.pem
+export CKANEXT__SAML2AUTH__AUTHN_REQUESTS_SIGNED=True
 
 # Use follower url for web instances; leader url for gather and fetch instances
 if [[ $REAL_NAME = "catalog-admin" ]] || \
