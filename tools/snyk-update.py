@@ -3,7 +3,7 @@ import json
 import os
 
 # Load results
-scan_file = open('scan.json')
+scan_file = open('/tmp/scan.json')
 scan = json.load(scan_file)
 scan_file.close()
 
