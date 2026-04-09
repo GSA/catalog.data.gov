@@ -46,10 +46,10 @@ jobs:
           [[ "$(jq '.ok' /tmp/scan.json)" == "true" ]] && exit 0
 
           # Update requirements.in with the snyk fix suggestions
-          python bin/snyk-update.py
+          python tools/snyk-update.py
 
           # Update requirements.txt
-          make requirements
+          make update-dependencies
 
           # Check if there are any changes
           if [ -z "$(git status --porcelain)" ]; then
