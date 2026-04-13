@@ -12,9 +12,9 @@ memory_quota: 800M
 new_relic_monitor_mode: true
 
 # use CDN domain for route-public if available, otherwise use route-external
-route-public: catalog.data.gov
-route-external: catalog-prod-datagov.app.cloud.gov
-route-internal: catalog-prod-datagov.apps.internal
+route-public: catalog-old.data.gov
+route-external: catalog-old-prod-datagov.app.cloud.gov
+route-internal: catalog-old-prod-datagov.apps.internal
 
 saml2_certificate: |
   -----BEGIN CERTIFICATE-----
