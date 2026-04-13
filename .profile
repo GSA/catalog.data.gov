@@ -31,7 +31,7 @@ export PATH=$PATH:$JAVA_HOME/bin
 # Setup saxon jar file on classpath
 export CLASSPATH=$CLASSPATH:/home/vcap/deps/0/apt/usr/share/java/Saxon-HE.jar
 
-# Copy our provided JKS cacerts to the expected location 
+# Copy our provided JKS cacerts to the expected location
 #
 # TODO: Generate this file on the fly the way that ca-certificates-java package
 #       does in the postinst script. We can make use of
@@ -74,6 +74,7 @@ SHARED_DIR=$(mktemp -d)
 export APP_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
 export REAL_NAME=$(echo $VCAP_APPLICATION | jq -r '.application_name')
 if [[ $APP_NAME = "catalog-web" ]] || \
+   [[ $APP_NAME = "catalog-old-web" ]] || \
    [[ $APP_NAME = "catalog-admin" ]] || \
    [[ $APP_NAME = "catalog-gather" ]] || \
    [[ $APP_NAME = "catalog-fetch" ]]
