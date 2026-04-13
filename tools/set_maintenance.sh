@@ -26,27 +26,17 @@ case "$2" in
         ;;
 esac
 
-# set for catalog-web
-if [ "$1" == "catalog-web" ] || [ "$1" == "both" ] ; then
+# set for catalog-old-web
+if [ "$1" == "catalog-old-web" ] || [ "$1" == "both" ] ; then
     # compare with existing env value, run cf set-env only if it's different or not set
-    current_mode=$(cf env catalog-proxy | grep CATALOG_WEB_MODE | awk '{print $2}')
+    current_mode=$(cf env catalog-old-proxy | grep CATALOG_WEB_MODE | awk '{print $2}')
     if [ "$current_mode" != "$maintenance_mode" ] ; then
-        cf set-env catalog-proxy CATALOG_WEB_MODE $maintenance_mode
+        cf set-env catalog-old-proxy CATALOG_WEB_MODE $maintenance_mode
         need_restart=true
     fi
 fi
 
-# set for catalog-admin
-if [ "$1" == "catalog-admin" ] || [ "$1" == "both" ] ; then
-    # compare with existing env value, run cf set-env only if it's different or not set
-    current_mode=$(cf env catalog-proxy | grep CATALOG_ADMIN_MODE | awk '{print $2}')
-    if [ "$current_mode" != "$maintenance_mode" ] ; then
-        cf set-env catalog-proxy CATALOG_ADMIN_MODE $maintenance_mode
-        need_restart=true
-    fi
-fi
-
-# restart catalog-proxy if needed
+# restart catalog-old-proxy if needed
 if [ "$need_restart" == "true" ] ; then
-    cf restart catalog-proxy --strategy rolling
+    cf restart catalog-old-proxy --strategy rolling
 fi
