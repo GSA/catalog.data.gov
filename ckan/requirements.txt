@@ -1,6 +1,9 @@
+-e git+https://github.com/GSA/ckanext-harvest.git@8da16a1f993f0fbf18f9fc810ab6ed7dfb7f871a#egg=ckanext_harvest
+-e git+https://github.com/GSA/ckanext-spatial.git@6d83a53efa1e9ff225daf4e7a5751b98367ee7f2#egg=ckanext_spatial
 alembic==1.13.2
+argparse==1.4.0
 async-timeout==5.0.1
-Babel==2.15.0
+babel==2.15.0
 bleach==6.1.0
 blinker==1.8.2
 boto3==1.42.68
@@ -11,31 +14,29 @@ certifi==2026.2.25
 cffi==2.0.0
 chardet==7.1.0
 charset-normalizer==3.4.6
-ckan @ git+https://github.com/GSA/ckan.git@cf93bfa00f413015ed614b0e0fd85be33f2d72d9
+ckan @ git+https://github.com/GSA/ckan.git@ckan-2.11.4-fork
 ckanext-datagovcatalog==0.1.3
 ckanext-datagovtheme==0.3.10
 ckanext-datajson==0.1.28
-ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@255fcf1352273f9be98e9f02a5198efc4790c94e
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat@v2.4.0
 ckanext-envvars==0.0.6
 ckanext-geodatagov==0.3.7
--e git+https://github.com/GSA/ckanext-harvest.git@8da16a1f993f0fbf18f9fc810ab6ed7dfb7f871a#egg=ckanext_harvest
 ckanext-metrics-dashboard==0.1.7
-ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@062f26b19a525139bd613ef3654ca9dc64e0a096
--e git+https://github.com/GSA/ckanext-spatial.git@6d83a53efa1e9ff225daf4e7a5751b98367ee7f2#egg=ckanext_spatial
+ckanext-saml2auth @ git+https://github.com/GSA/ckanext-saml2auth.git@ckan-2-11-datagov
 ckantoolkit==0.0.7
 click==8.1.7
 cryptography==46.0.5
 defusedxml==0.7.1
 dominate==2.9.1
 elementpath==5.1.1
-feedgen @ git+https://github.com/GSA/python-feedgen.git@b1fe34a7e14ebdaf6f415cdee5855c3c77305f16
-Flask==3.0.3
+feedgen @ git+https://github.com/GSA/python-feedgen.git@main
+flask==3.0.3
 flask-babel==4.0.0
-Flask-Login==0.6.3
-Flask-Session==0.8.0
-Flask-WTF==1.2.1
+flask-login==0.6.3
+flask-session==0.8.0
+flask-wtf==1.2.1
 frozendict==2.4.7
-GeoAlchemy2==0.5.0
+geoalchemy2==0.5.0
 geojson==3.1.0
 geomet==1.1.0
 greenlet==3.3.2
@@ -45,34 +46,33 @@ idna==3.11
 importlib-resources==5.13.0
 isodate==0.7.2
 itsdangerous==2.2.0
-Jinja2==3.1.6
+jinja2==3.1.6
 jmespath==1.1.0
 json-table-schema==0.2.1
 jsonschema==2.4.0
 librt==0.8.1
 lxml==5.1.0
-Mako==1.3.10
-Markdown==3.6
-MarkupSafe==2.1.5
+mako==1.3.10
+markdown==3.6
+markupsafe==2.1.5
 messytables==0.15.2
 msgspec==0.18.6
 mypy==1.19.1
-mypy_extensions==1.1.0
+mypy-extensions==1.1.0
 newrelic==12.0.0
 numpy==1.26.4
-OWSLib==0.32.0
+owslib==0.32.0 ; python_version >= "3.10"
 packaging==24.1
 passlib==1.7.4
 pathspec==1.0.4
 pika==1.2.1
-pip==26.0.1
 polib==1.2.0
 progressbar==2.5
 psycopg2==2.9.9
 pycparser==3.0
-PyJWT==2.8.0
-PyLD==2.0.4
-pyOpenSSL==26.0.0
+pyjwt==2.8.0
+pyld==2.0.4
+pyopenssl==26.0.0
 pyparsing==3.1.2
 pyproj==3.4.1
 pysaml2==7.0.1
@@ -80,7 +80,7 @@ pysolr==3.9.0
 python-dateutil==2.9.0.post0
 python-magic==0.4.27
 pytz==2026.1.post1
-PyYAML==6.0.1
+pyyaml==6.0.1
 rdflib==7.6.0
 redis==7.3.0
 requests==2.32.4
@@ -88,22 +88,21 @@ rfc3987==1.3.8
 rq==1.16.2
 s3transfer==0.16.0
 sansjson==0.3.0
-setuptools==78.1.1
 shapely==2.0.7
 simplejson==3.19.2
 six==1.17.0
-SQLAlchemy==1.4.52
+sqlalchemy[mypy]==1.4.52
 sqlalchemy2-stubs==0.0.2a38
 sqlparse==0.5.4
 tomli==2.4.0
-typing_extensions==4.15.0
+typing-extensions==4.15.0
 tzlocal==5.2
 urllib3==2.6.3
 watchdog==6.0.0
 webassets==2.0
 webencodings==0.5.1
-Werkzeug==3.1.5
-WTForms==3.2.1
+werkzeug[watchdog]==3.1.6
+wtforms==3.2.1
 xlrd==2.0.1
 xmlschema==4.3.1
-zope.interface==6.4.post2
+zope-interface==6.4.post2
