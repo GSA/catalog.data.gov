@@ -73,7 +73,7 @@ jobs:
     uses: gsa/data.gov/.github/workflows/deploy-template.yml@main
     with:
       environ: prod
-      app_url: https://catalog.data.gov
+      app_url: https://catalog-old.data.gov
       app_names: "{\"include\":[{\"app\":\"catalog-web\",\"smoketest\":true},{\"app\":\"catalog-admin\"},{\"app\":\"catalog-fetch\"},{\"app\":\"catalog-gather\"},{\"app\":\"catalog-proxy\"}]}"
     secrets: inherit
 
