@@ -5,18 +5,18 @@ space_name: staging
 ckanext__saml2auth__entity_id: urn:gov:gsa:SAML:2.0.profiles:sp:sso:gsa:datagov-stage-catalog
 ckanext__saml2auth__idp_metadata__local_path: ckan/setup/login.production.idp.xml
 
-web-instances: 2
-admin-instances: 1
-gather-instances: 1
-fetch-instances: 1
-proxy-instances: 1
+web-instances: 0
+admin-instances: 0
+gather-instances: 0
+fetch-instances: 0
+proxy-instances: 0
 memory_quota: 750M
 gather_memory_quota: 3G
 fetch_memory_quota: 500M
 
 new_relic_monitor_mode: true
 
-# use CDN domain for route-public if available, otherwise use route-external 
+# use CDN domain for route-public if available, otherwise use route-external
 route-public: catalog-stage.data.gov
 route-external: catalog-stage-datagov.app.cloud.gov
 route-internal: catalog-stage-datagov.apps.internal
