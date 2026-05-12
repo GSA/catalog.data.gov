@@ -4,6 +4,9 @@ name: 1 - Commit
 on:
   push:
 
+permissions:
+  contents: read
+
 jobs:
   lint-actions:
     name: Lint Yaml

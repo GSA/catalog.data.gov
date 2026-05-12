@@ -6,6 +6,9 @@ on:
   #   - cron: '40 02,14 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   egress-check:
     name: ${{matrix.app}} - ${{matrix.environ}} - ${{matrix.command}}
