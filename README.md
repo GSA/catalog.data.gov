@@ -160,7 +160,7 @@ The Login.gov IdP metadata is stored in file under `ckan/setup/`.
 
 The repository extends the Open Knowledge Foundation `ckan-dev:2.9` docker
 image. The `ckan-base:2.9` image, if needed for some reasons, is available via
-dockerhub with the aformentioned tag, as referenced in [OKF's docker-ckan
+dockerhub with the aforementioned tag, as referenced in [OKF's docker-ckan
 repository](https://github.com/okfn/docker-ckan).
 
 
