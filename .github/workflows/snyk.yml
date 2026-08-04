@@ -3,9 +3,6 @@ name: Snyk Security
 
 on:
   workflow_dispatch:
-  schedule:
-    # Run weekly on Sundays at 2:00 AM EST (7:00 AM UTC)
-    - cron: '0 7 * * 0'
   push:
     branches:
       - main
