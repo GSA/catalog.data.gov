@@ -102,7 +102,7 @@ urllib3==2.6.3
 watchdog==6.0.0
 webassets==2.0
 webencodings==0.5.1
-Werkzeug==3.1.5
+Werkzeug==3.1.6
 WTForms==3.2.1
 xlrd==2.0.1
 xmlschema==4.3.1
